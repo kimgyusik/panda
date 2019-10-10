@@ -10,6 +10,6 @@
 
 index페이지입니다
 <button onclick="location.href='home.do';">홈으로</button>
-
+수진테스트
 </body>
 </html>
