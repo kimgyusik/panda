@@ -58,7 +58,7 @@
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
 								<div><a href="#">Register</a></div>
-								<div><a href="#">Sign in</a></div>
+								<div><a href="allLogin.do">로그인</a></div>
 							</div>
 						</div>
 					</div>
