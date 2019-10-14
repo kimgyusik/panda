@@ -15,11 +15,11 @@
 	</properties>
 	
 	<repositories>
-			<repository>
-				<id>Spring Plugins</id>
-				<url>https://repo.spring.io/plugins-release/</url>
-			</repository>
-		</repositories>
+		<repository>
+			<id>Spring Plugins</id>
+			<url>https://repo.spring.io/plugins-release/</url>
+		</repository>
+	</repositories>
 	
 	<dependencies>
 		<!-- Spring -->
