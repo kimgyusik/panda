@@ -11,7 +11,7 @@
 index페이지입니다
 <button onclick="location.href='home.do';">홈으로</button>
 
-dsfsdf
+test
 
 </body>
 </html>
