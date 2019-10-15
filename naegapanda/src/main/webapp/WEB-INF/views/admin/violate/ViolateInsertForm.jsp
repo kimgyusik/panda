@@ -15,6 +15,10 @@
 		margin-top:50px; 
 	}
 	
+	.readonly:focus{
+		outline:none !important;
+	}
+	
 </style>
 
 </head>
@@ -24,38 +28,49 @@
 	
 	
 	<div class="outer">
-		<h1 align="center">게시글 작성하기</h1>
+	
+		<h1 align="center">판매자 신고하기</h1>
 		<br>
+	<form action="vinsert.do" method="post" encType="multipart/form-data">
 		<table class="table">
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">First</th>
-	      <th scope="col">Last</th>
-	      <th scope="col">Handle</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>Jacob</td>
-	      <td>Thornton</td>
-	      <td>@fat</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td>Larry</td>
-	      <td>the Bird</td>
-	      <td>@twitter</td>
-	    </tr>
-	  </tbody>
-	</table>
+		  	<tbody>
+			    <tr>
+			      <th scope="col" width="100px" align="center">신고 상품</th>
+			      <td width="500px">
+			      	<input type="text" class="form-control" name="pId"  value="히히히"  style="border:none;" <%--"${ pId }" --%> >
+			      </td>
+			      <td width="200px">
+			      	<input type="text" class="form-control readonly"name="sNo"  value="히히히" <%--"${ sNo }" --%> readonly style="border:none;background:white">
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row">제목</th>
+			      <td colspan="2">
+			      	<input type="text" class="form-control" name="vTitle" placeholder="제목" style="border:none;">
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row" height="300px">내용</th>
+			      <td colspan="2">
+			      	summerNote
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row">첨부 파일</th>
+			      <td colspan="2">
+				      <input type="file" name="vfile">
+			      </td>
+			    </tr>
+			    
+			    <tr>
+			    	<td colspan="3" align="center">
+			    		<button type="submit" class="btn btn-primary">신고하기</button>
+			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='home.do';">취소</button>
+			    	</td>
+			    </tr>
+	  	  	</tbody>
+		</table>
+	</form>
 	</div>
 	
 

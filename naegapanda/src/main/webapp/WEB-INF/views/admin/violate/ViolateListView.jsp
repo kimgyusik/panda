@@ -25,7 +25,7 @@
 	<table align="center" border="1" cellspacing="0" width="700">
 		<tr>
 			<th>번호</th>
-			<th width="300">내용</th>
+			<th width="300">제목</th>
 			<th>판매자</th>
 			<th>날짜</th>
 			<th>신고자</th>
@@ -38,16 +38,16 @@
 					<c:url value="vdetail.do" var="vdetail">
 						<c:param name="vNo" value="${ v.vNo }"/>
 					</c:url>
-					<a href="${ vdetail }">${ v.vContent }</a>
+					<a href="${ vdetail }">${ v.vTitle }</a>
 				</td>
 				<td align="center">${ v.sNo }</td>
 				<td align="center">${ v.vDate }</td>
 				<td align="center">${ v.mNo }</td>
 				<td align="center">
-					<c:if test="${ v.Status eq 'Y' }">
+					<c:if test="${ v.vStatus eq 'Y' }">
 						◎
 					</c:if>
-					<c:if test="${ v.Status ne 'N' }">
+					<c:if test="${ v.vStatus ne 'N' }">
 						&nbsp;
 					</c:if>
 				</td>

@@ -9,6 +9,7 @@ public class Violate {
 	private int mNo;			// 신고자
 	private int pId;			// 신고상품
 	private int stId;			// 신고방송
+	private String vTitle;		// 신고제목
 	private String vContent;	// 신고내용
 	private Date vDate;			// 신고일자
 	private String vPhoto;		// 신고첨부
@@ -18,14 +19,15 @@ public class Violate {
 	public Violate() {}
 
 
-	public Violate(int vNo, int sNo, int mNo, int pId, int stId, String vContent, Date vDate, String vPhoto,
-			String vStatus) {
+	public Violate(int vNo, int sNo, int mNo, int pId, int stId, String vTitle, String vContent, Date vDate,
+			String vPhoto, String vStatus) {
 		super();
 		this.vNo = vNo;
 		this.sNo = sNo;
 		this.mNo = mNo;
 		this.pId = pId;
 		this.stId = stId;
+		this.vTitle = vTitle;
 		this.vContent = vContent;
 		this.vDate = vDate;
 		this.vPhoto = vPhoto;
@@ -83,6 +85,16 @@ public class Violate {
 	}
 
 
+	public String getvTitle() {
+		return vTitle;
+	}
+
+
+	public void setvTitle(String vTitle) {
+		this.vTitle = vTitle;
+	}
+
+
 	public String getvContent() {
 		return vContent;
 	}
@@ -125,9 +137,12 @@ public class Violate {
 
 	@Override
 	public String toString() {
-		return "Violate [vNo=" + vNo + ", sNo=" + sNo + ", mNo=" + mNo + ", pId=" + pId + ", stId=" + stId
-				+ ", vContent=" + vContent + ", vDate=" + vDate + ", vPhoto=" + vPhoto + ", vStatus=" + vStatus + "]";
+		return "Violate [vNo=" + vNo + ", sNo=" + sNo + ", mNo=" + mNo + ", pId=" + pId + ", stId=" + stId + ", vTitle="
+				+ vTitle + ", vContent=" + vContent + ", vDate=" + vDate + ", vPhoto=" + vPhoto + ", vStatus=" + vStatus
+				+ "]";
 	}
 
 	
+	
+
 }
