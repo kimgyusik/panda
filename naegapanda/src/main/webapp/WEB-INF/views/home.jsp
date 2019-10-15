@@ -24,9 +24,6 @@
 	
 	<c:import url="common/menubar.jsp"/>
 
-							
-		
-		
 	
 	<!-- Banner -->
 
