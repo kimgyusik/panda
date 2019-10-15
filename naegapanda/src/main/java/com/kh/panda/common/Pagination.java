@@ -1,6 +1,6 @@
 package com.kh.panda.common;
 
-import com.kh.panda.common.PageInfo;
+import com.kh.panda.common.model.vo.PageInfo;
 
 public class Pagination {
 
