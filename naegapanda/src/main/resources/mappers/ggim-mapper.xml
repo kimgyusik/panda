@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ggimMapper">
+
+	<resultMap id="ggimResultSet" type="Ggim">
+		<id property="pId" column="p_id" />
+		<id property="mNo" column="m_no"/>
+		<result property="pName" column="p_name"/>
+		<result property="price" column="p_price"/>
+		<result property="category2" column="c_name2"/>
+		<result property="storeName" column="storeName"/>
+		<result property="addDate" column="add_date"/>
+	</resultMap>
+
+	<select id="getListCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from ggim
+		where m_no = #{mNo}
+	</select>
+	
+	<select id="selectList" parameterType="_int" resultMap="ggimResultSet">
+		select p_id, m_no, add_date, p_name, p_price, c_name2, storeName
+		from ggim
+		join product using(p_id)
+		join category using(c_id)
+		join seller using(s_no)
+		where m_no = #{mNo}
+		order by add_date desc
+	</select>
+	
+	<insert id="addGgim" parameterType="Ggim">
+		insert into ggim
+		values (#{pId}, #{mNo}, default)
+	</insert>
+	
+	<delete id="deleteGgim" parameterType="Ggim">
+		delete
+		from ggim
+		where p_id = #{pId} and m_no = #{mNo}
+	</delete>
+
+	
+</mapper>
+	
