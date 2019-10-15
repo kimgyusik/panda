@@ -1,4 +1,4 @@
-package com.kh.panda.board.model.vo;
+package com.kh.panda.common;
 
 public class PageInfo {
 	
