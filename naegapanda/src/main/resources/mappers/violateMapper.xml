@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="violateMapper">
+
+	<resultMap id="violateResultSet" type="Violate">
+		<id property="vNo" column="v_no"/>
+  		<result property="sNo" column="s_no"/>
+  		<result property="mNo" column="m_no"/>
+  		<result property="pId" column="p_id"/>
+  		<result property="stId" column="st_id"/>
+  		<result property="vContent" column="v_content"/>
+  		<result property="vDate" column="v_date"/>
+  		<result property="vPhoto" column="v_photo"/>
+  		<result property="vStatus" column="v_status"/>
+	</resultMap>
+
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from violate
+	</select>
+
+	<select id="selectList" resultMap="violateResultSet">
+		select *
+		from violate
+		order by v_no desc
+	</select>
+
+
+
+
+
+
+</mapper>
