@@ -23,5 +23,10 @@ public class MemberControll {
 		return "member/memberLoginForm";
 	}
 	
+	@RequestMapping("mJoin.do")
+	public String memberJoinForm() {
+		return "member/memberJoinForm";
+	}
+	
 
 }

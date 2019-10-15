@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	.outer{
+		margin-top:10px;
+	}
+</style>
 <body>
 
 <c:import url="../common/menubar.jsp"/>
@@ -16,8 +21,8 @@
 	  <p class="lead">가입하쇼</p>
 	  <hr class="my-4">
 	  <p>일반회원과 판매회원 구분 해놨다.</p>
-	 	<button class="btn btn-primary btn-lg" onclick="location.href='#';">일반회원</button>
-		<button class="btn btn-primary btn-lg" onclick="location.href='sJoin.do';" style="margin-left:150px">판매회원</button>
+	 	<button class="btn btn-primary btn-lg" onclick="location.href='mJoin.do';" >일반회원</button>
+		<button class="btn btn-primary btn-lg" onclick="location.href='sJoin.do';">판매회원</button>
 	</div>
 </div>
 <c:import url="../common/footer.jsp"/>
