@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.admin.violate.model.service.ViolateService;
 import com.kh.panda.admin.violate.model.vo.Violate;
+import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
-import com.kh.panda.common.model.vo.PageInfo;
 
 @Controller
 public class ViolateController {

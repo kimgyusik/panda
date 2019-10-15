@@ -230,7 +230,6 @@
 										</ul>
 									</li>
 									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-									<!-- <li><a href="vlist.do">Soojin<i class="fas fa-chevron-down"></i></a></li> -->
 									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>

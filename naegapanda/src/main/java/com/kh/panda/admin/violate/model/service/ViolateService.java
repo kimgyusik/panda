@@ -3,7 +3,7 @@ package com.kh.panda.admin.violate.model.service;
 import java.util.ArrayList;
 
 import com.kh.panda.admin.violate.model.vo.Violate;
-import com.kh.panda.common.model.vo.PageInfo;
+import com.kh.panda.common.PageInfo;
 
 public interface ViolateService {
 
