@@ -87,14 +87,14 @@
 			</div>
 			<div class="form-group col-md-6">
 				<select class="form-control" id="exampleFormControlSelect1">
-			      <option selected>업종</option>
+			      <option>업종</option>
 			      <option value="">2</option>
 			      <option>3</option>
 			      <option>4</option>
 			      <option>5</option>
 			    </select>
 				<select class="form-control" id="exampleFormControlSelect2">
-			      <option selected>업태</option>
+			      <option>업태</option>
 			      <option>2</option>
 			      <option>3</option>
 			      <option>4</option>
