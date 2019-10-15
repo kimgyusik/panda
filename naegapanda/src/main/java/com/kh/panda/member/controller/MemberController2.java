@@ -20,14 +20,14 @@ import com.kh.panda.member.model.vo.Member;
 
 
 @Controller 
-public class MemberController {
+public class MemberController2 {
 	
 	@Autowired
 	private MemberService mService;
 	
 
 	
-	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private Logger logger = LoggerFactory.getLogger(MemberController2.class);
 	
 	
 	
