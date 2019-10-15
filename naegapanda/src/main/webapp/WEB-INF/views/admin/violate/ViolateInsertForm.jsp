@@ -64,7 +64,7 @@
 			    
 			    <tr>
 			    	<td colspan="3" align="center">
-			    		<button type="submit" class="btn btn-primary">신고하기</button>
+			    		<button type="submit" class="btn btn-outline-primary">신고하기</button>
 			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='home.do';">취소</button>
 			    	</td>
 			    </tr>
