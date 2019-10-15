@@ -8,12 +8,12 @@
 	</settings>
 	
 	<typeAliases>
-		
+		<typeAlias type="com.kh.panda.myShopping.ggim.model.vo.Ggim" alias="Ggim"/>
 
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mappers/test-mapper.xml"/>
+		<mapper resource="mappers/ggim-mapper.xml"/>
 
 	</mappers>
 </configuration>

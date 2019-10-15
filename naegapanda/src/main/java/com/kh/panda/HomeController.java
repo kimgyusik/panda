@@ -33,6 +33,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		//INSERT INTTO MEMBER VALUES (MEMBER_SEQ.NEXTVAL, 'admin', 'admin', '관리자', '2000/1/1', 'M', 'admin@panda.com', '010-1234-4567', 'KH정보교육원', DEFAULT, DEFAULT, DEFAULT);
+		
 		return "home";
 	}
 	
