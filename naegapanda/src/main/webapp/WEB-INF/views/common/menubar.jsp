@@ -4,7 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="OneTech shop project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PANDA</title>
+<link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
+<link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/slick-1.8.0/slick.css">
+<link rel="stylesheet" type="text/css" href="resources/style/main_styles.css">
+<link rel="stylesheet" type="text/css" href="resources/style/responsive.css">
 </head>
 <body>
 
@@ -43,7 +54,7 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
-								<div><a href="join.me">Register</a></div>
+								<div><a href="join.do">회원가입</a></div>
 								<div><a href="allLogin.do">로그인</a></div>
 							</div>
 						</div>
@@ -327,5 +338,19 @@
 		
 
 </header>
+
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="resources/style/bootstrap4/popper.js"></script>
+<script src="resources/style/bootstrap4/bootstrap.min.js"></script>
+<script src="resources/plugins/greensock/TweenMax.min.js"></script>
+<script src="resources/plugins/greensock/TimelineMax.min.js"></script>
+<script src="resources/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="resources/plugins/greensock/animation.gsap.min.js"></script>
+<script src="resources/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="resources/plugins/slick-1.8.0/slick.js"></script>
+<script src="resources/plugins/easing/easing.js"></script>
+<script src="resources/js/custom.js"></script>
+
 </body>
 </html>

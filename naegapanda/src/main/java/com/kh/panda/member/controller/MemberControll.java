@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller 
 public class MemberControll {
 	
+
+	@RequestMapping("join.do")
+	public String joinForm() {
+		
+		return "member/joinForm";
+	}
+	
+	
 	@RequestMapping("allLogin.do")
 	public String enrollView() {
 		

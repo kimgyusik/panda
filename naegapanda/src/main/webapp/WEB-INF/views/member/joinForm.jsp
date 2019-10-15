@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<button onclick="location href='#';">일반회원</button>
-	<button onclick="location href='sJoin.se'">판매자</button>
+
+	<button onclick="location.href='#';">일반회원</button>
+	<button onclick="location.href='sJoin.do';">판매자</button>
+
 </body>
 </html>
