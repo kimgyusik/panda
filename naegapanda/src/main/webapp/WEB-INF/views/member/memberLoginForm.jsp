@@ -6,14 +6,20 @@
 <head>
 <meta charset="utf-8">
     <title>Ryan Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" type="text/css" href="resources/style/memberLoginForm.css">
+    <link rel="stylesheet" type="text/css" href="resources/style/memberLoginContainer.css">
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+	 p{
+	        text-align: center;
+	    }
+</style>
 </head>
 <body>
-    <form>
+    <form action="login.do" method="post"> 
         <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,150 C0,65 120,65 120,150" fill="#e0a243" stroke="#000" stroke-width="2.5" />
             <g class="ears">
@@ -36,22 +42,35 @@
             </g>
             <path d="M40,105 C10,140 110,140 80,105 L80,105 L70,111 L60,105 L50,111 L40,105" fill="#fff" />
         </svg>
-	        <input type="text" placeholder="ID를 입력해주세요">
-	        <input type="password" placeholder="비밀번호를 입력해주세요">
-	        <br>
-			<br>
-		<table>
-			<td rowspan="2" colsspan="2"><button id="#">로그인</button></td>
-				<br>
-			<td rowspan="2" colsspan="2"><button id="#">사업자 로그인</button></td>
-				<br>
-			<td rowspan="2" colsspan="2"><button id="#">일반회원 회원가입</button></td>
-				<br>
-			<td rowspan="2" colsspan="2"><button id="#">사업자 회원가입</button></td>
-		<!-- 		<br>
-			<button id="#">취소</button> -->
-		</table>	
-    </form>
+	  
+		
+		<div class="container">	
+		
+			 	
+		 			<table id="loginTable" style="text-algin:center">
+					<tr>
+						<td>아이디</td>
+						<td><input type="text" name="id"></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" name="pwd"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<p>
+							<a href="enrollView.do">회원가입</a> 
+							<a href="">아이디/비밀번호찾기</a>
+							</p>
+							<button id="loginBtn">로그인</button>
+						</td>
+					</tr>
+				</table>
+   				
+   	
+    </div>
+    
+		
     
     <div id="indexBtn" class="center">
 		<button id="visual-btn" onclick="location.href='home.do';">처음으로</button>
@@ -60,6 +79,6 @@
     
     <script src="script.js"></script>
     <script src="resources/js/memberLoginForm.js"></script>
-
+</form> 
 </body>
 </html>
