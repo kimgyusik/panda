@@ -17,6 +17,14 @@
 <link rel="stylesheet" type="text/css" href="resources/style/main_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/responsive.css">
 </head>
+<style>
+
+	.cat_menu_container ul{
+		visibility: hidden;
+		opacity: 0;
+	}
+</style>
+
 <body>
 
 <!-- Header -->
