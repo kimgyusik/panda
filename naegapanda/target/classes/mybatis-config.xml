@@ -9,11 +9,11 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.panda.myShopping.ggim.model.vo.Ggim" alias="Ggim"/>
-
+		<typeAlias type="com.kh.panda.myShopping.basket.model.vo.Basket" alias="Basket"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mappers/ggim-mapper.xml"/>
-
+		<mapper resource="mappers/basket-mapper.xml"/>
 	</mappers>
 </configuration>
