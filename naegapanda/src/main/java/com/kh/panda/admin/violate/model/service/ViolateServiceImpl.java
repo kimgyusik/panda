@@ -26,6 +26,11 @@ public class ViolateServiceImpl implements ViolateService{
 		 
 		return vDao.selectList(pi);
 	}
+
+	@Override
+	public int insertViolate(Violate v) {
+		return vDao.insertViolate(v);
+	}
 	
 	
 	

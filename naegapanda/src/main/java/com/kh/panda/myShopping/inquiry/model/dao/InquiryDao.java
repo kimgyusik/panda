@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.panda.myShopping.inquiry.model.vo.Inquiry;
 
-@Repository("iDao")
+@Repository("inDao")
 public class InquiryDao {
 	
 	@Autowired

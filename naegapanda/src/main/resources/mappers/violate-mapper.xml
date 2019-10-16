@@ -7,7 +7,7 @@
   		<result property="sNo" column="s_no"/>
   		<result property="mNo" column="m_no"/>
   		<result property="pId" column="p_id"/>
-  		<result property="stId" column="st_id"/>
+  		<result property="stNo" column="st_no"/>
   		<result property="vTitle" column="v_title"/>
   		<result property="vContent" column="v_content"/>
   		<result property="vDate" column="v_date"/>
@@ -26,7 +26,11 @@
 		order by v_no desc
 	</select>
 
-
+	<select id="insertViolate" parameterType="Violate">
+  	insert into violate
+  	values(violate_seq.nextval, #{sNO}, #{mNo}, #{pId}, 
+  			#{stNo}, #{vTitle},  #{vContent},  sysdate,  #{vPhoto},  default)
+  </select>
 
 
 
