@@ -24,6 +24,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public ArrayList<Notice> selectList(PageInfo pi) {
 		return nDao.selectList(pi);
 	}
+
+	@Override
+	public int insertNotice(Notice n) {
+		return nDao.insertNotice(n);
+	}
 	
 	
 	

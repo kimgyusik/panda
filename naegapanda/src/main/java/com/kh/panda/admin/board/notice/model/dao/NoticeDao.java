@@ -28,4 +28,8 @@ public class NoticeDao {
 		
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectList", null, rowBounds);
 	}
+	
+	public int insertNotice(Notice n) {
+		return sqlSession.insert("noticeMapper.insertNotice", n);
+	}
 }
