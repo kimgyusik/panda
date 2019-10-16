@@ -1,9 +1,7 @@
 package com.kh.panda.admin.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
-import com.kh.panda.admin.model.service.AdminService;
+import org.springframework.stereotype.Controller;
 
 @Controller
 public class AdminController {
@@ -11,8 +9,7 @@ public class AdminController {
 	
 //------------------------------vv공통vv------------------------------//
 	
-	@Autowired
-	private AdminService aService;
+	
 	
 //------------------------------^^공통^^------------------------------//
 			

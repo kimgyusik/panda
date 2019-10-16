@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +19,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService nService;
 	
+	@RequestMapping("nlist.do")
 	public ModelAndView selectList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		// 공지사항 총 갯수
@@ -27,7 +29,7 @@ public class NoticeController {
 		
 		ArrayList<Notice> list = nService.selectList(pi);
 		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/board/notice/noticeListView");
+		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/board/noticeListView");
 		
 		return mv;
 		
