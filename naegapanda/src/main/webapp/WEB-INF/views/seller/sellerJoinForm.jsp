@@ -61,16 +61,16 @@
 				<input type="text" class="form-control" name="sId" placeholder="ID" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="password" class="form-control" name="sPassword1" placeholder="비밀번호" required>
+				<input type="password" class="form-control" name="sPwd" placeholder="비밀번호" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="password" class="form-control" name="sPassword2" placeholder="비밀번호확인" required>
+				<input type="password" class="form-control" name="sPwd2" placeholder="비밀번호확인" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sAddress" placeholder="생년월일(예 19990101)" required>
+				<input type="text" class="form-control" name="sNum" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sPhone" placeholder="핸드폰번호(-포함 입력)" required>
+				<input type="text" class="form-control" name="sPhone" placeholder="핸드폰번호(-미포함)" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="Email" class="form-control" name="sEmail" placeholder="Email" required>
@@ -80,14 +80,14 @@
 			<div class="form-group col-md-6" id="ad1">
 					<input type="text" name="post" class="form-control postcodify_postcode5">
 					<button type="button" id="post_search_btn1" class="btn btn-light">주소찾기</button>				
-					<input type="text" class="form-control postcodify_address" id="sAddress1" placeholder="도로명주소" required>
-					<input type="text" class="form-control postcodify_extra_info" id="sAddress2" placeholder="상세주소" required>
+					<input type="text" class="form-control postcodify_address" name="sAddress1" placeholder="도로명주소" >
+					<input type="text" class="form-control postcodify_extra_info" name="sAddress2" placeholder="상세주소" >
 			</div>
 			<div class="form-group col-md-6" >
-				<input type="text" class="form-control" id="inputsbNum" placeholder="사업자번호" required>
+				<input type="text" class="form-control" name="sbNum" placeholder="사업자번호" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="inputStNum" placeholder="전자통신등록번호" required>
+				<input type="text" class="form-control" name="stNum" placeholder="전자통신등록번호" required>
 			</div>	
 		 </div> 
 
@@ -96,35 +96,35 @@
 		 <h1>2.스토어정보</h1>
 		 <div class="form-row" >		
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="inputStoreName" placeholder="상점명" required>
+				<input type="text" class="form-control" name="storeName" placeholder="상점명" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="inputCeoName" placeholder="대표이름" required> 
+				<input type="text" class="form-control" name="sCeoName" placeholder="대표이름" required> 
 			</div>
 			<div class="form-group col-md-6">
-				<select class="form-control" id="exampleFormControlSelect1">
+				<select class="form-control" id="exampleFormControlSelect1" name="state">
 			      <option>업종</option>
-			      <option value="">2</option>
-			      <option>3</option>
-			      <option>4</option>
-			      <option>5</option>
+			      <option value="2">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
+			      <option value="5">5</option>
 			    </select>
-				<select class="form-control" id="exampleFormControlSelect2">
+				<select class="form-control" id="exampleFormControlSelect2" name="sector">
 			      <option>업태</option>
-			      <option>2</option>
-			      <option>3</option>
-			      <option>4</option>
-			      <option>5</option>
+			      <option value="2">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
+			      <option value="5">5</option>
 			    </select>
 			</div>
 			<div class="form-group col-md-6" id="ad2">
 				<input type="text" name="sbPost" class="form-control postcodify_postcode5">
 				<button type="button" id="post_search_btn2" class="btn btn-light">주소찾기</button>				
-				<input type="text" class="form-control postcodify_address" id="sbAddress1" placeholder="도로명주소 (사업장)" required>
-				<input type="text" class="form-control postcodify_extra_info" id="sbAddress2" placeholder="상세주소 (사업장)" required>
+				<input type="text" class="form-control postcodify_address" name="sbAddress1" placeholder="도로명주소 (사업장)">
+				<input type="text" class="form-control postcodify_extra_info" name="sbAddress2" placeholder="상세주소 (사업장)">
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="inputSbPhone" placeholder="전화번호 (사업장)" required>
+				<input type="text" class="form-control" name="sbPhone" placeholder="전화번호 (사업장)" required>
 			</div>
 		</div>
 
