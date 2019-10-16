@@ -8,25 +8,25 @@ import org.springframework.stereotype.Service;
 import com.kh.panda.myShopping.basket.model.dao.BasketDao;
 import com.kh.panda.myShopping.basket.model.vo.Basket;
 
-@Service("bService")
+@Service("baService")
 public class BasketServiceImpl implements BasketService{
 	
 	@Autowired
-	private BasketDao bDao;
+	private BasketDao baDao;
 
 	@Override
 	public ArrayList<Basket> selectbasketList(int mNo) {
-		return bDao.selectbasketList(mNo);
+		return baDao.selectbasketList(mNo);
 	}
 
 	@Override
 	public int addBasket(Basket b) {
-		return bDao.addBasket(b);
+		return baDao.addBasket(b);
 	}
 
 	@Override
 	public int deleteBasket(Basket b) {
-		return bDao.deleteBasket(b);
+		return baDao.deleteBasket(b);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class BasketServiceImpl implements BasketService{
 			b.setmNo(mNo);
 			b.setpId(Integer.parseInt(arr[i]));
 			
-			result = bDao.deleteBasket(b);
+			result = baDao.deleteBasket(b);
 			
 			if(result == 0) {
 				return result;

@@ -40,16 +40,51 @@
 				<div class="row">
 					<div class="col d-flex flex-row">
 						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">			<!-- 일반회원, 판매자 로그인시 다르게 my page 메뉴 리스트 다르게 보이게 설정하기 -->
+							<div class="top_bar_menu">			
 								<ul class="standard_dropdown top_bar_dropdown">
 									<li>
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li><a href="nlist.do">판다 공지</a></li>
 											<li><a href="#">QnA</a></li>
-											<li><a href="#">~~~</a></li>
+											<li><a href="#"></a></li>
 										</ul>
 									</li>
+									<!-- 로그인 안했을때 보이는 MyPage -->
+									<c:if test="${ empty loginUser && empty loginSeller }">
+										<li>
+										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>			
+										</li>
+									</c:if>
+
+
+									<!-- 회원이 로그인 했을때 보이는 MyPage -->
+									<c:if test="${ !empty loginUser }">
+
+											<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
+													<li>
+														<a href="#">Admin Page<i class="fas fa-chevron-down"></i></a>
+															<ul>
+																<li><a href="#">공지 관리</a></li>
+																<li><a href="#">QnA 관리</a></li>
+																<li><a href="temp.do">신고 관리</a></li>
+															</ul>
+													</li>
+													</c:if>
+													<c:if test="${ sessionScope.loginUser.id ne 'admin' }">
+															<li>
+																	<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+																		<ul>
+																			<li><a href="#">회원쪽에서 설정해주세요</a></li>
+																			<li><a href="#">정보수정</a></li>
+																		</ul>
+																</li>
+													</c:if>
+									</c:if>
+									
+									
+									<!-- 판매자가 로그인 했을때 보이는 MyPage -->
+									<c:if test="${ !empty loginSeller }">
 									<li>
 										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
 											<ul>
@@ -57,6 +92,7 @@
 												<li><a href="#">정보수정</a></li>
 											</ul>
 									</li>
+									
 								</ul>
 							</div>
 							<div class="top_bar_user">
@@ -90,7 +126,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#" onclick="location.href='home.do';">PANDA</a></div>
+							<div class="logo"><img src="resources/images/pandaLogo.gif"onclick="location.href='home.do';"></div>
 						</div>
 					</div>
 
@@ -247,8 +283,8 @@
 											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
-									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="finishViolate.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="chatMain.do">SoojinChat<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 							

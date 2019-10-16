@@ -8,10 +8,13 @@ import com.kh.panda.common.PageInfo;
 public interface ViolateService {
 
 	
-	// 1_1. 게시판 총 갯수 조회
+	// 게시판 총 갯수 조회
 	int getListCount();
-	// 1_2. 게시판 리스트 조회
+	// 게시판 리스트 조회
 	ArrayList<Violate> selectList(PageInfo pi);
+	
+	// 게시판 작성
+	int insertViolate(Violate v);
 	
 	
 	

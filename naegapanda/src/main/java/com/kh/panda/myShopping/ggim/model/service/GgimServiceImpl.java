@@ -9,41 +9,41 @@ import com.kh.panda.common.PageInfo;
 import com.kh.panda.myShopping.ggim.model.dao.GgimDao;
 import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 
-@Service("gService")
+@Service("ggService")
 public class GgimServiceImpl implements GgimService{
 	
 	@Autowired
-	private GgimDao gDao;
+	private GgimDao ggDao;
 	
 	@Override
 	public int getListCount(int mNo) {
-		return gDao.getListCount(mNo);
+		return ggDao.getListCount(mNo);
 	}
 
 	@Override
 	public ArrayList<Ggim> selectGgimList(PageInfo pi, int mNo) {
-		return gDao.selectGgimList(pi, mNo);
+		return ggDao.selectGgimList(pi, mNo);
 	}
 	
 	@Override
 	public ArrayList<Ggim> selectGgimList(int mNo) {
-		return gDao.selectGgimList(mNo);
+		return ggDao.selectGgimList(mNo);
 	}
 
 	@Override
 	public int changeGgim(Ggim ggim, int flag) {
 		
 		if(flag == 0) {
-			return gDao.addGgim(ggim);
+			return ggDao.addGgim(ggim);
 		}else {
-			return gDao.deleteGgim(ggim);
+			return ggDao.deleteGgim(ggim);
 		}
 		
 	}
 	
 	@Override
 	public int deleteGgim(Ggim ggim) {
-		return gDao.deleteGgim(ggim);
+		return ggDao.deleteGgim(ggim);
 	}
 
 	

@@ -1,5 +1,9 @@
 package com.kh.panda.admin.violate.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.admin.violate.model.service.ViolateService;
@@ -49,6 +54,72 @@ public class ViolateController {
 		return "admin/violate/ViolateInsertForm";
 	}
 	
+	@RequestMapping("vinsert.do")
+	public String insertViolate(Violate v, HttpServletRequest request, Model model, 
+			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
+	
+		/*
+		 * if(!file.getOriginalFilename().equals("")) {
+		 * 
+		 * String renameFileName = saveFile(file, request); if(renameFileName != null) {
+		 * // 파일이 잘 저장된 경우 v.setvPhoto(renameFileName); }
+		 * 
+		 * }
+		 */
+		
+		int result = vService.insertViolate(v);
+		
+		
+		if(result > 0) {
+			return "redirect:finishViolate.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	
+	
+public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
+		// 파일이 저장될 경로 설정
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\vUpload";
+		
+		File folder = new File(savePath); // 저장될 폴더
+		
+		if(!folder.exists()) { 	// 폴더가 없다면
+			folder.mkdirs();	// 폴더 생성해라
+		}
+		
+		String originalFileName = file.getOriginalFilename(); // 원본명(확장자)
+		
+		// 파일명 수정작업 --> 년월일시분초.확장자
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) // 년월일시분초
+							  + originalFileName.substring(originalFileName.lastIndexOf("."));
+		
+		// 실제 저장될 경로 savePath + 저장하고자하는 파일명 renameFileName
+		String renamePath = savePath + "\\" + renameFileName; 
+		
+		
+	
+			try {
+				file.transferTo(new File(renamePath));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		
+
+		return renameFileName; // 수정명 반환
+		
+	}
+
+
+
+	
 	
 	
 	 @RequestMapping("vdetailView.do") 
@@ -63,7 +134,11 @@ public class ViolateController {
 	 }
 	
 	
-	
+		@RequestMapping("temp.do")
+		public String ViolateListView() {
+			return "admin/violate/ViolateListView2";
+		}
+		
 	
 
 }

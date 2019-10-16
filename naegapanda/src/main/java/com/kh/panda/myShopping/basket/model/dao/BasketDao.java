@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.panda.myShopping.basket.model.vo.Basket;
 import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 
-@Repository("bDao")
+@Repository("baDao")
 public class BasketDao {
 	
 	@Autowired
