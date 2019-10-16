@@ -40,7 +40,7 @@
 				<div class="row">
 					<div class="col d-flex flex-row">
 						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">			<!-- 일반회원, 판매자 로그인시 다르게 my page 메뉴 리스트 다르게 보이게 설정하기 -->
+							<div class="top_bar_menu">			
 								<ul class="standard_dropdown top_bar_dropdown">
 									<li>
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
@@ -50,6 +50,24 @@
 											<li><a href="#">~~~</a></li>
 										</ul>
 									</li>
+									<!-- 로그인 안했을때 보이는 MyPage -->
+									<c:if test="${ empty loginUser && empty loginSeller }">
+										<li>
+										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>			
+										</li>
+									</c:if>
+									<!-- 로그인 했을때 보이는 MyPage -->
+									<c:if test="${ !empty loginUser }">
+										<li>
+										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+											<ul>
+												<li><a href="#">회원쪽에서 설정해주세요</a></li>
+												<li><a href="#">정보수정</a></li>
+											</ul>
+									</li>
+									</c:if>
+									<!-- 판매자가 로그인 했을때 보이는 MyPage -->
+									<c:if test="${ !empty loginSeller }">
 									<li>
 										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
 											<ul>
@@ -57,6 +75,7 @@
 												<li><a href="#">정보수정</a></li>
 											</ul>
 									</li>
+									</c:if>
 								</ul>
 							</div>
 							<div class="top_bar_user">
