@@ -53,11 +53,11 @@
 										</ul>
 									</li>
 									<li>
-										<a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
+										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="#">EUR Euro</a></li>
-											<li><a href="#">GBP British Pound</a></li>
-											<li><a href="#">JPY Japanese Yen</a></li>
+											<li><a href="nlist.do">판다 공지</a></li>
+											<li><a href="#">QnA</a></li>
+											<li><a href="#">~~~</a></li>
 										</ul>
 									</li>
 								</ul>
