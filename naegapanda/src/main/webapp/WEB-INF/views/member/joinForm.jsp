@@ -21,7 +21,7 @@
 	  <p class="lead">가입하쇼</p>
 	  <hr class="my-4">
 	  <p>일반회원과 판매회원 구분 해놨다.</p>
-	 	<button class="btn btn-primary btn-lg" onclick="location.href='mJoin.do';" >일반회원</button>
+	 	<button class="btn btn-primary btn-lg" onclick="location.href='mJoin.do';">일반회원</button>
 		<button class="btn btn-primary btn-lg" onclick="location.href='sJoin.do';">판매회원</button>
 	</div>
 </div>
