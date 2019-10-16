@@ -13,7 +13,7 @@
 		<typeAlias type="com.kh.panda.myShopping.basket.model.vo.Basket" alias="Basket"/>
 		<typeAlias type="com.kh.panda.myShopping.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.kh.panda.admin.board.notice.model.vo.Notice" alias="Notice" />
-		<typeAlias type="com.kh.panda.admin.violate.model.vo.violate" alias="Violate"/>
+		<typeAlias type="com.kh.panda.admin.violate.model.vo.Violate" alias="Violate"/>
 	</typeAliases>
 
 	<mappers>
