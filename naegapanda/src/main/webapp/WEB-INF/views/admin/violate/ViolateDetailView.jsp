@@ -28,28 +28,29 @@
 
 	<div class="outer"> 
 
-
+			<c:forEach items="${ list }" var="v">
 					<table class="table">
 					  
 						    <tr>
 						      <th scope="col" width="100px" align="center">신고 상품</th>
 						      <td width="500px">
-						      	<input  type="text" name="pId"  value="히히히"  style="border:none;" <%--"${ pId }" --%> readonly>
+						      	<input  type="text" name="pId"  value="히히히"  style="border:none;" <%-- value="${ v.vNo }" --%> readonly>
 						      </td>
 						      <td width="200px">
-						      	<input type="text" name="sNo"  value="히히히"  style="border:none;" <%--"${ sNo }" --%> readonly>
+						      	<input type="text" name="sNo"  value="히히히"  style="border:none;" <%-- value="${ v.sNo }" --%> readonly>
 						      </td>
 						    </tr>
 						    <tr>
 						      <th scope="row">제목</th>
 						      <td colspan="2">
-						      	<input type="text" name="vTitle" placeholder="제목" style="border:none;" readonly>
+						      	<input type="text" name="vTitle" placeholder="제목" style="border:none;" <%-- value="${ v.vTitle }" --%> readonly>
 						      </td>
 						    </tr>
 						    <tr>
 						      <th scope="row" height="300px">내용</th>
 						      <td colspan="2">
-						      	<textarea style="width:700px;height:300px;border:none;"></textarea>
+						      	<textarea style="width:700px;height:300px;border:none;"  <%-- value="${ v.vConten }" --%> ></textarea>
+						      	
 						      </td>
 						    </tr>
 						    <tr>
@@ -69,13 +70,14 @@
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    		<button type="submit" class="btn btn-outline-primary">신고하기</button>
-						    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='home.do';">취소</button>
+						    		<button type="submit" class="btn btn-outline-primary">판매글 정지</button>
+						    		<button type="button" class="btn btn-outline-primary" onclick=";">취소</button>
 						    	</td>
 						    </tr>
 				  	  	
 					</table>
-				</div>
+				</c:forEach>
+			</div>
 
 
 
