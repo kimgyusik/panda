@@ -8,46 +8,46 @@ import org.springframework.stereotype.Service;
 import com.kh.panda.myShopping.inquiry.model.dao.InquiryDao;
 import com.kh.panda.myShopping.inquiry.model.vo.Inquiry;
 
-@Service("iService")
+@Service("inService")
 public class InquiryServiceImpl implements InquiryService{
 	
 	@Autowired
-	private InquiryDao iDao;
+	private InquiryDao inDao;
 
 	@Override
 	public ArrayList<Inquiry> selectMyInquiryList(int mNo) {
-		return iDao.selectMyInquiryList(mNo);
+		return inDao.selectMyInquiryList(mNo);
 	}
 
 	@Override
 	public int addInquiry(Inquiry i) {
-		return iDao.addInquiry(i);
+		return inDao.addInquiry(i);
 	}
 
 	@Override
 	public int deleteInquiry(int iId) {
-		return iDao.deleteInquiry(iId);
+		return inDao.deleteInquiry(iId);
 	}
 
 	@Override
 	public int updateInquiry(Inquiry i) {
-		return iDao.updateInquiry(i);
+		return inDao.updateInquiry(i);
 	}
 	
 	
 	@Override
 	public ArrayList<Inquiry> selectprodInquiryList(int pId) {
-		return iDao.selectprodInquiryList(pId);
+		return inDao.selectprodInquiryList(pId);
 	}
 
 	@Override
 	public int answerInquiry(Inquiry i) {
-		return iDao.answerInquiry(i);
+		return inDao.answerInquiry(i);
 	}
 
 	@Override
 	public int updateAnswerInquiry(Inquiry i) {
-		return iDao.updateAnswerInquiry(i);
+		return inDao.updateAnswerInquiry(i);
 	}
 
 }

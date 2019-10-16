@@ -20,7 +20,7 @@ import com.kh.panda.myShopping.inquiry.model.vo.Inquiry;
 public class InquiryController {
 	
 	@Autowired
-	private InquiryService iService;
+	private InquiryService inService;
 	
 	private int getmNo(HttpSession session) {
 		return ((Member)session.getAttribute("loginUser")).getId();
@@ -29,7 +29,7 @@ public class InquiryController {
 	@RequestMapping("myInquiryList.in")
 	public ModelAndView selectMyInquiryList(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Inquiry> list = iService.selectMyInquiryList(getmNo(session));
+		ArrayList<Inquiry> list = inService.selectMyInquiryList(getmNo(session));
 		
 		mv.addObject("list", list);
 		mv.setViewName("내문의뷰");
@@ -43,7 +43,7 @@ public class InquiryController {
 		
 		i.setmNo(getmNo(session));
 		
-		int result = iService.addInquiry(i);
+		int result = inService.addInquiry(i);
 		
 		if(result > 0 ) {
 			return "success";
@@ -57,7 +57,7 @@ public class InquiryController {
 	@RequestMapping("deleteInquiry.in")
 	public String deleteInquiry(int iId) {
 		
-		int result = iService.deleteInquiry(iId);
+		int result = inService.deleteInquiry(iId);
 		
 		if(result > 0 ) {
 			return "success";
@@ -73,7 +73,7 @@ public class InquiryController {
 		
 		i.setmNo(getmNo(session));
 		
-		int result = iService.updateInquiry(i);
+		int result = inService.updateInquiry(i);
 		
 		if(result > 0 ) {
 			return "success";
@@ -90,7 +90,7 @@ public class InquiryController {
 	@RequestMapping("prodInquiryList.in")
 	public ModelAndView selectprodInquiryList(ModelAndView mv, int pId) {
 		
-		ArrayList<Inquiry> list = iService.selectprodInquiryList(pId);
+		ArrayList<Inquiry> list = inService.selectprodInquiryList(pId);
 		
 		mv.addObject("list", list);
 		mv.setViewName("상품상세뷰");
@@ -102,7 +102,7 @@ public class InquiryController {
 	@RequestMapping("answerInquiry.in")
 	public String answerInquiry(HttpSession session, Inquiry i) { // 인풋: 문의번호, 답변내용
 		
-		int result = iService.answerInquiry(i);
+		int result = inService.answerInquiry(i);
 		
 		if(result > 0 ) {
 			return "success";
@@ -116,7 +116,7 @@ public class InquiryController {
 	@RequestMapping("updateAnswerInquiry.in")
 	public String updateAnswerInquiry(HttpSession session, Inquiry i) {
 		
-		int result = iService.updateAnswerInquiry(i);
+		int result = inService.updateAnswerInquiry(i);
 		
 		if(result > 0 ) {
 			return "success";

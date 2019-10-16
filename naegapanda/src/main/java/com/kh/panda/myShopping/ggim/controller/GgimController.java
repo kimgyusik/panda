@@ -23,7 +23,7 @@ import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 public class GgimController {
 	
 	@Autowired
-	private GgimService gService;
+	private GgimService ggService;
 	
 	@RequestMapping("ggimList.gg")
 	public ModelAndView selectGgimList(ModelAndView mv, HttpSession session/*, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage*/) {
@@ -36,7 +36,7 @@ public class GgimController {
 //		mv.addObject("pi", pi);
 		
 		
-		ArrayList<Ggim> list = gService.selectGgimList(mNo);
+		ArrayList<Ggim> list = ggService.selectGgimList(mNo);
 		
 		ArrayList<String> category;
 		
@@ -73,7 +73,7 @@ public class GgimController {
 		ggim.setmNo(mNo);
 		ggim.setpId(pId);
 		
-		int result = gService.changeGgim(ggim, flag);
+		int result = ggService.changeGgim(ggim, flag);
 		
 		if(result > 0) {
 			return "success";
@@ -92,7 +92,7 @@ public class GgimController {
 		ggim.setmNo(mNo);
 		ggim.setpId(pId);
 		
-		int result = gService.deleteGgim(ggim);
+		int result = ggService.deleteGgim(ggim);
 		
 		if(result > 0) {
 			return "redirect:ggimList.gg";
