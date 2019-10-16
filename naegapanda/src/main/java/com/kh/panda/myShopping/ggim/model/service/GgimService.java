@@ -7,14 +7,19 @@ import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 
 public interface GgimService {
 	
+	// 찜 추가/삭제 토글
 	int changeGgim(Ggim ggim, int flag);
 	
+	// 페이징 처리
 	int getListCount(int mNo);
 	
-	ArrayList<Ggim> selectList(PageInfo pi, int mNo);
+	// 내 찜 리스트(페이징 처리)
+	ArrayList<Ggim> selectGgimList(PageInfo pi, int mNo);
 	
-	ArrayList<Ggim> selectList(int mNo);
+	// 내 찜 리스트(페이징 x)
+	ArrayList<Ggim> selectGgimList(int mNo);
 	
+	// 찜 삭제
 	int deleteGgim(Ggim ggim);
 
 }

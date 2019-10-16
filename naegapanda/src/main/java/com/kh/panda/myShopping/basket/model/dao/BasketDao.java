@@ -15,8 +15,8 @@ public class BasketDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public ArrayList<Basket> selectList(int mNo){
-		return (ArrayList)sqlSession.selectList("basketMapper.selectList", mNo);
+	public ArrayList<Basket> selectbasketList(int mNo){
+		return (ArrayList)sqlSession.selectList("basketMapper.selectbasketList", mNo);
 	}
 	
 	public int addBasket(Basket b) {

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="inquiryMapper">
+
+	<resultMap id="inquiryResultSet" type="Inquiry">
+		<id property="iId" column="i_id" />
+		<result property="iTitle" column="i_title"/>
+		<result property="iContents" column="i_contents"/>
+		<result property="iDate" column="i_date"/>
+		<result property="mNo" column="m_no"/>
+		<result property="mId" column="m_id"/>
+		<result property="iAnswer" column="i_answer"/>
+		<result property="iaDate" column="i_a_date"/>
+		<result property="iState" column="i_state"/>
+		<result property="iDel" column="i_del"/>
+		<result property="pId" column="p_id"/>
+		<result property="pName" column="p_name"/>
+		<result property="sNo" column="s_no"/>
+		<result property="openYn" column="open_yn"/>
+		
+	</resultMap>
+	
+	<select id="selectMyInquiryList" parameterType="_int" resultMap="inquiryResultSet">
+		select i_id, i_title, i_contents, i_date, m_no, i_answer, i_a_date, i_state, i_del, p_id, open_yn, m_id, p_name, s_no 
+		from inquiry
+		join product using(p_id)
+		join member using(m_no)
+		where m_no = #{mNo} and i_del = 'N'
+		order by i_date desc
+	</select>
+	
+	<insert id=addInquiry parameterType="Inquiry">
+		insert into inquiry
+		values ()
+	</insert>
+	
+	<update id="deleteInquiry" parameterType="_int">
+		update inquiry
+		set i_del = 'Y'
+		where i_id = #{iId}
+	</update>
+	
+	<update id="updateInquiry" parameterType="Inquiry">
+		update inquiry
+		set i_title = #{iTitle}, i_contents = #{iContents}
+		where i_id = #{iId}
+	</update>
+	
+	<select id="selectprodInquiryList" parameterType="_int" resultMap="inquiryResultSet">
+		select i_id, i_title, i_contents, i_date, m_no, i_answer, i_a_date, i_state, i_del, p_id, open_yn, m_id, p_name, s_no 
+		from inquiry
+		join product using(p_id)
+		join member using(m_no)
+		where p_id = #{pId} and i_del = 'N'
+		order by i_date desc
+	</select>
+	
+	<update id="answerInquiry" parameterType="Inquiry">
+		update inquiry
+		set i_answer = #{iAnswer}, i_a_date = sysdate, i_state = 'Y'
+		where i_id = #{iId}
+	</update>
+	
+	<update id="updateAnswerInquiry" parameterType="Inquiry">
+		update inquiry
+		set i_answer = #{iAnswer}
+		where i_id = #{iId}
+	</update>
+
+	
+</mapper>
+	

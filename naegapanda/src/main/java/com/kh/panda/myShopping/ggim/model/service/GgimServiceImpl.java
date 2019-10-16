@@ -21,13 +21,13 @@ public class GgimServiceImpl implements GgimService{
 	}
 
 	@Override
-	public ArrayList<Ggim> selectList(PageInfo pi, int mNo) {
-		return gDao.selectList(pi, mNo);
+	public ArrayList<Ggim> selectGgimList(PageInfo pi, int mNo) {
+		return gDao.selectGgimList(pi, mNo);
 	}
 	
 	@Override
-	public ArrayList<Ggim> selectList(int mNo) {
-		return gDao.selectList(mNo);
+	public ArrayList<Ggim> selectGgimList(int mNo) {
+		return gDao.selectGgimList(mNo);
 	}
 
 	@Override
