@@ -29,7 +29,7 @@
 		order by i_date desc
 	</select>
 	
-	<insert id=addInquiry parameterType="Inquiry">
+	<insert id="addInquiry" parameterType="Inquiry">
 		insert into inquiry
 		values ()
 	</insert>
