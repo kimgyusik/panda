@@ -52,7 +52,7 @@
 <div class="outer">
 	<hr>
 	<h1>1.회원정보</h1>
-	<form class="joinForm" >
+	<form class="joinForm" action="sinsert.do" method="post">
 		<div class="form-row" >
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" name="sName" placeholder="이름" required>
@@ -83,21 +83,18 @@
 					<input type="text" class="form-control postcodify_address" id="sAddress1" placeholder="도로명주소" required>
 					<input type="text" class="form-control postcodify_extra_info" id="sAddress2" placeholder="상세주소" required>
 			</div>
-			
-		 </div>
-		 
-		 
-
-		 <br><hr>
-
-		 <h1>2.스토어정보</h1>
-		 <div class="form-row" >	
 			<div class="form-group col-md-6" >
 				<input type="text" class="form-control" id="inputsbNum" placeholder="사업자번호" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" id="inputStNum" placeholder="전자통신등록번호" required>
-			</div>
+			</div>	
+		 </div> 
+
+		 <br><hr>
+
+		 <h1>2.스토어정보</h1>
+		 <div class="form-row" >		
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" id="inputStoreName" placeholder="상점명" required>
 			</div>
@@ -145,8 +142,7 @@
 	<script> 
 			$("#post_search_btn1").postcodifyPopUp({container: $("#ad1") });
 			
-			$("#post_search_btn2").postcodifyPopUp({container: $("#ad2") }); 
-			
+			$("#post_search_btn2").postcodifyPopUp({container: $("#ad2") }); 			
 	</script>
 
 <br><br><br><br><br><br>
