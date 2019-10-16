@@ -19,7 +19,7 @@ import com.kh.panda.myShopping.basket.model.vo.Basket;
 public class BasketController {
 	
 	@Autowired
-	private BasketService bService;
+	private BasketService baService;
 	
 	private int getmNo(HttpSession session) {
 		return ((Member)session.getAttribute("loginUser")).getId();
@@ -28,7 +28,7 @@ public class BasketController {
 	@RequestMapping("basketList.ba")
 	public ModelAndView selectbasketList(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Basket> list = bService.selectbasketList(getmNo(session));
+		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
 		
 		// 이미지 가져와야함
 		
@@ -46,7 +46,7 @@ public class BasketController {
 		
 		b.setmNo(getmNo(session));
 		
-		int result = bService.addBasket(b);
+		int result = baService.addBasket(b);
 		
 		if(result > 0 ) {
 			return "success";
@@ -60,7 +60,7 @@ public class BasketController {
 	@RequestMapping("deleteBasketList.ba")
 	public String deleteBasketList(HttpSession session, @RequestParam("arr") String[] arr) {
 		
-		int result = bService.deleteBasketList(getmNo(session), arr);
+		int result = baService.deleteBasketList(getmNo(session), arr);
 		
 		if(result > 0 ) {
 			return "success";

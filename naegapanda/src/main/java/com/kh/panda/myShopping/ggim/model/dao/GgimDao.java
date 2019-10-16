@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 
-@Repository("gDao")
+@Repository("ggDao")
 public class GgimDao {
 	
 	@Autowired
