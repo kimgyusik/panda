@@ -26,7 +26,7 @@ public class GgimController {
 	private GgimService gService;
 	
 	@RequestMapping("ggimList.gg")
-	public ModelAndView selectList(ModelAndView mv, HttpSession session/*, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage*/) {
+	public ModelAndView selectGgimList(ModelAndView mv, HttpSession session/*, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage*/) {
 		
 		int mNo = ((Member)session.getAttribute("loginUser")).get();
 		
@@ -36,7 +36,7 @@ public class GgimController {
 //		mv.addObject("pi", pi);
 		
 		
-		ArrayList<Ggim> list = gService.selectList(mNo);
+		ArrayList<Ggim> list = gService.selectGgimList(mNo);
 		
 		ArrayList<String> category;
 		

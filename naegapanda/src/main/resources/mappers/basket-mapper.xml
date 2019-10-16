@@ -12,7 +12,7 @@
 		<result property="amount" column="ab_amount"/>
 	</resultMap>
 
-	<select id="selectList" parameterType="_int" resultMap="basketResultSet">
+	<select id="selectbasketList" parameterType="_int" resultMap="basketResultSet">
 		select p_id, m_no, p_name, p_price, c_name2, storeName, ab_amount
 		from SHOPPING_BASKET
 		join product using(p_id)

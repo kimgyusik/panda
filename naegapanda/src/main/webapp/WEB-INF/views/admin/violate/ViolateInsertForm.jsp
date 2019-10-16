@@ -21,7 +21,30 @@
 	
 </style>
 
+
+<script
+   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script
+   src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- include summernote css/js-->
+<link
+   href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css"
+   rel="stylesheet">
+<script
+   src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    $("#popbutton").click(function(){
+        $('div.modal').modal({remote : 'layer.html'});
+    });
+});
+
+</script>
+
 </head>
+
+
 <body>
 
 	<c:import url="../../common/menubar.jsp"/>
@@ -52,7 +75,7 @@
 			    <tr>
 			      <th scope="row" height="300px">내용</th>
 			      <td colspan="2">
-			      	summerNote
+			      	<div id="summernote" style="height:300px"></div>			      
 			      </td>
 			    </tr>
 			    <tr>
@@ -66,6 +89,14 @@
 			    	<td colspan="3" align="center">
 			    		<button type="submit" class="btn btn-outline-primary">신고하기</button>
 			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='home.do';">취소</button>
+						<button type="button" class="btn btn-outline-primary" id="popbutton">상세보기</button>
+						<div class="modal fade">
+						  	<div class="modal-dialog">
+						    	<div class="modal-content">
+						    	
+						    	</div>
+							</div>
+						</div>
 			    	</td>
 			    </tr>
 	  	  	</tbody>
@@ -73,7 +104,43 @@
 	</form>
 	</div>
 	
+	
+	
+	<!-- <a data-toggle="modal" href="vdetailView.do" data-target="#modal-testNew" role="button" data-backdrop="static">
+ <span class="btn btn-xs btn-success">테스트 등록</span>
+</a>
+ 
+ 
+<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+    <div class="modal-dialog" style="width:1200px;height:700px">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+ -->
+	
+	
+	 <script>
+		$(document).ready(function() {
+		     $('#summernote').summernote({
+		             height: 300,                 // set editor height
+		             minHeight: null,             // set minimum height of editor
+		             maxHeight: null,             // set maximum height of editor
+		             focus: true                  // set focus to editable area after initializing summernote
+		     });
+		});
+		
+		
+		$(function(){
+		    $("#popbutton").click(function(){
+		        $('div.modal').modal({remote : 'layer.html'});
+		    })
+		})
 
+	</script>
+	
+	
+	
 	<c:import url="../../common/footer.jsp"/>
 
 </body>

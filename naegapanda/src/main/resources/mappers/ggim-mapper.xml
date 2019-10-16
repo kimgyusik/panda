@@ -18,7 +18,7 @@
 		where m_no = #{mNo}
 	</select>
 	
-	<select id="selectList" parameterType="_int" resultMap="ggimResultSet">
+	<select id="selectGgimList" parameterType="_int" resultMap="ggimResultSet">
 		select p_id, m_no, add_date, p_name, p_price, c_name2, storeName
 		from ggim
 		join product using(p_id)
