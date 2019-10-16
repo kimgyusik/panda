@@ -50,11 +50,11 @@
 		 			<table id="loginTable" style="text-algin:center">
 					<tr>
 						<td>아이디</td>
-						<td><input type="text" name="id"></td>
+						<td><input type="text" name="id" required></td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="pwd"></td>
+						<td><input type="password" name="pwd" required></td>
 					</tr>
 					<tr>
 						<td colspan="3">

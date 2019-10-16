@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sellerMapper">
+
+	<resultMap id="sellerResultSet" type="Seller">
+		<id property="sNo" column="s_no"/>
+		<result property="sId" column="s_id"/>
+		<result property="sPwd" column="s_pwd"/>
+		<result property="sName" column="s_name"/>
+		<result property="sAddress" column="s_address"/>
+		<result property="sNum" column="s_num"/>
+		<result property="sEmail" column="s_email"/>
+		<result property="comunication" column="comunication"/>
+		<result property="sPhone" column="s_phone"/>
+		<result property="stNum" column="s_tnum"/>
+		<result property="sbNum" column="s_bnum"/>
+		<result property="storeName" column="storename"/>
+		<result property="sCeoName" column="sceoname"/>
+		<result property="state" column="state"/>
+		<result property="sector" column="sector"/>
+		<result property="ssAddress" column="s_saddress"/>
+		<result property="ssPhone" column="s_sphone"/>
+		<result property="sOk" column="s_ok"/>
+		<result property="sStatus" column="s_status"/>
+	</resultMap>
+
+
+	<!-- 가입 -->
+	<insert id="insertSeller" parameterType="">
+	
+	</insert>
+
+
+
+</mapper>

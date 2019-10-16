@@ -39,7 +39,7 @@
 	
 	<update id="deleteMember" parameterType="string">
 		update member
-		set drop_yn='N
+		set drop_yn='Y'
 		where m_id=#{id}
 	</update>
 
