@@ -251,7 +251,7 @@
 										</ul>
 									</li>
 									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="vdetailView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="finishViolate.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 							

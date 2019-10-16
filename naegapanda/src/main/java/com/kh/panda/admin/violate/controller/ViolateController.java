@@ -51,9 +51,16 @@ public class ViolateController {
 	
 	
 	
-	 @RequestMapping("vdetailView.do") public String ViolateDetailView() { return
-	 "admin/violate/ViolateDetailView"; }
+	 @RequestMapping("vdetailView.do") 
+	 public String ViolateDetailView() { 
+		 
+		 return "admin/violate/ViolateDetailView"; 
+	}
 	 
+	 @RequestMapping("finishViolate.do")
+	 public String FinishViolateView() {
+		 return "admin/violate/FinishViolateView";
+	 }
 	
 	
 	
