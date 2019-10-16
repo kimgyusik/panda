@@ -47,16 +47,33 @@
 										<ul>
 											<li><a href="nlist.do">판다 공지</a></li>
 											<li><a href="#">QnA</a></li>
-											<li><a href="#">~~~</a></li>
+											<li><a href="#"></a></li>
 										</ul>
 									</li>
-									<li>
-										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
-											<ul>
-												<li><a href="#">상품관리</a></li>
-												<li><a href="#">정보수정</a></li>
-											</ul>
-									</li>
+									
+									
+									<c:if test="${ !empty sessionScope.loginUser }">
+									
+										<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
+										<li>
+											<a href="#">Admin Page<i class="fas fa-chevron-down"></i></a>
+												<ul>
+													<li><a href="#">공지 관리</a></li>
+													<li><a href="#">QnA 관리</a></li>
+													<li><a href="temp.do">신고 관리</a></li>
+												</ul>
+										</li>
+										</c:if>
+										<c:if test="${ sessionScope.loginUser.id ne 'admin' }">
+										<li>
+											<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+												<ul>
+													<li><a href="#">상품관리</a></li>
+													<li><a href="#">정보수정</a></li>
+												</ul>
+										</li>
+										</c:if>
+									</c:if>
 								</ul>
 							</div>
 							<div class="top_bar_user">
@@ -247,7 +264,7 @@
 											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
-									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="chatMain.do">SoojinChat<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>

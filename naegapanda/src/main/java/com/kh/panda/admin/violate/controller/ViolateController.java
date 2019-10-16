@@ -134,7 +134,11 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 	 }
 	
 	
-	
+		@RequestMapping("temp.do")
+		public String ViolateListView() {
+			return "admin/violate/ViolateListView2";
+		}
+		
 	
 
 }
