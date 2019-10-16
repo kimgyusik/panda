@@ -37,6 +37,8 @@ public class MemberController {
 	 
 	 return "member/memberLoginForm"; }
 	 
+	 
+	 
 	
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
@@ -59,6 +61,9 @@ public class MemberController {
 	}
 		
 	
+	
+	
+	
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
 		
@@ -69,6 +74,54 @@ public class MemberController {
 	}
 	
 		
+	
+	@RequestMapping("myInfo.do")
+	public String myInfoView() {
+		return "member/myPage";
+	}
+	
+	
+	
+	
+	@RequestMapping("mupdate.do")
+	public String updateMember(Member m, Model model,
+							   @RequestParam("post") String post,
+							   @RequestParam("address1") String address1,
+							   @RequestParam("address2") String address2) {
+		
+		if(!post.equals("")) { // 주소 작성해서 값이 넘어왔을 경우
+			m.setAddress(post+","+address1+","+address2);
+		}
+		
+		int result = mService.updateMember(m);
+		
+		if(result > 0) {
+			model.addAttribute("loginUser", m);
+			return "redirect:home.do";
+		}else {
+			model.addAttribute("msg", "회원 정보 수정 실패!!");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("mdelete.do")
+	public String deleteMember(String id, Model model) {
+		
+		int result = mService.deleteMember(id);
+		
+		if(result > 0) {
+			
+			return "redirect:logout.do";
+		}else {
+			model.addAttribute("msg", "회원 탈퇴 실패!!");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	
 		
 		@RequestMapping("enrollView.do")
 		public String enrollView() {

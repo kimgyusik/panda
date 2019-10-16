@@ -12,6 +12,17 @@
 <div class="super_container">
 	
 	<c:import url="common/menubar.jsp"/>
+	
+	<script>
+		$(function(){
+			var msg = "<%=request.getAttribute("msg")%>"; 
+			// "로그인후 사용가능합니다." 또는 "null"
+			
+			if(msg != "null"){
+				alert(msg);
+			}
+		});
+	</script>
 
 							
 	
