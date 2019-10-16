@@ -7,45 +7,47 @@ public class Seller {
 	private String sPwd;
 	private String sName;
 	private String sAddress;
-	private int sRrNum;	// 주민번호
+	private int sNum;	// 주민번호
 	private String sEmail;
-	private String sPhone;			
-	private String sbNum;	// 사업자번호
+	private String comunication;	// 이메일수신여부
+	private String sPhone;
 	private String stNum;	// 전자통신등록번호
+	private String sbNum;	// 사업자번호
 	private String storeName;	// 상점명
 	private String sCeoName;	// 대표이름
 	private String state;	// 업태
 	private String sector;	// 업종
-	private String sbAddress;	// 사업장주소
-	private String comunication;	// 이메일수신여부
-	private String sbPhone;	// 사업장전화번호
+	private String ssAddress;	// 사업장주소
+	private String ssPhone;	// 사업장전화번호
+	private String sOk;		// 승인여부
 	private String sStatus; // 탈퇴여부
 	
 	public Seller() {
 		
 	}
 
-	public Seller(int sNo, String sId, String sPwd, String sName, String sAddress, int sRrNum, String sEmail,
-			String sPhone, String sbNum, String stNum, String storeName, String sCeoName, String state, String sector,
-			String sbAddress, String comunication, String sbPhone, String sStatus) {
+	public Seller(int sNo, String sId, String sPwd, String sName, String sAddress, int sNum, String sEmail,
+			String comunication, String sPhone, String stNum, String sbNum, String storeName, String sCeoName,
+			String state, String sector, String ssAddress, String ssPhone, String sOk, String sStatus) {
 		super();
 		this.sNo = sNo;
 		this.sId = sId;
 		this.sPwd = sPwd;
 		this.sName = sName;
 		this.sAddress = sAddress;
-		this.sRrNum = sRrNum;
+		this.sNum = sNum;
 		this.sEmail = sEmail;
+		this.comunication = comunication;
 		this.sPhone = sPhone;
-		this.sbNum = sbNum;
 		this.stNum = stNum;
+		this.sbNum = sbNum;
 		this.storeName = storeName;
 		this.sCeoName = sCeoName;
 		this.state = state;
 		this.sector = sector;
-		this.sbAddress = sbAddress;
-		this.comunication = comunication;
-		this.sbPhone = sbPhone;
+		this.ssAddress = ssAddress;
+		this.ssPhone = ssPhone;
+		this.sOk = sOk;
 		this.sStatus = sStatus;
 	}
 
@@ -89,12 +91,12 @@ public class Seller {
 		this.sAddress = sAddress;
 	}
 
-	public int getsRrNum() {
-		return sRrNum;
+	public int getsNum() {
+		return sNum;
 	}
 
-	public void setsRrNum(int sRrNum) {
-		this.sRrNum = sRrNum;
+	public void setsNum(int sNum) {
+		this.sNum = sNum;
 	}
 
 	public String getsEmail() {
@@ -105,6 +107,14 @@ public class Seller {
 		this.sEmail = sEmail;
 	}
 
+	public String getComunication() {
+		return comunication;
+	}
+
+	public void setComunication(String comunication) {
+		this.comunication = comunication;
+	}
+
 	public String getsPhone() {
 		return sPhone;
 	}
@@ -113,20 +123,20 @@ public class Seller {
 		this.sPhone = sPhone;
 	}
 
-	public String getSbNum() {
-		return sbNum;
-	}
-
-	public void setSbNum(String sbNum) {
-		this.sbNum = sbNum;
-	}
-
 	public String getStNum() {
 		return stNum;
 	}
 
 	public void setStNum(String stNum) {
 		this.stNum = stNum;
+	}
+
+	public String getSbNum() {
+		return sbNum;
+	}
+
+	public void setSbNum(String sbNum) {
+		this.sbNum = sbNum;
 	}
 
 	public String getStoreName() {
@@ -161,28 +171,28 @@ public class Seller {
 		this.sector = sector;
 	}
 
-	public String getSbAddress() {
-		return sbAddress;
+	public String getSsAddress() {
+		return ssAddress;
 	}
 
-	public void setSbAddress(String sbAddress) {
-		this.sbAddress = sbAddress;
+	public void setSsAddress(String ssAddress) {
+		this.ssAddress = ssAddress;
 	}
 
-	public String getComunication() {
-		return comunication;
+	public String getSsPhone() {
+		return ssPhone;
 	}
 
-	public void setComunication(String comunication) {
-		this.comunication = comunication;
+	public void setSsPhone(String ssPhone) {
+		this.ssPhone = ssPhone;
 	}
 
-	public String getSbPhone() {
-		return sbPhone;
+	public String getsOk() {
+		return sOk;
 	}
 
-	public void setSbPhone(String sbPhone) {
-		this.sbPhone = sbPhone;
+	public void setsOk(String sOk) {
+		this.sOk = sOk;
 	}
 
 	public String getsStatus() {
@@ -196,10 +206,10 @@ public class Seller {
 	@Override
 	public String toString() {
 		return "Seller [sNo=" + sNo + ", sId=" + sId + ", sPwd=" + sPwd + ", sName=" + sName + ", sAddress=" + sAddress
-				+ ", sRrNum=" + sRrNum + ", sEmail=" + sEmail + ", sPhone=" + sPhone + ", sbNum=" + sbNum + ", stNum="
-				+ stNum + ", storeName=" + storeName + ", sCeoName=" + sCeoName + ", state=" + state + ", sector="
-				+ sector + ", sbAddress=" + sbAddress + ", comunication=" + comunication + ", sbPhone=" + sbPhone
-				+ ", sStatus=" + sStatus + "]";
+				+ ", sNum=" + sNum + ", sEmail=" + sEmail + ", comunication=" + comunication + ", sPhone=" + sPhone
+				+ ", stNum=" + stNum + ", sbNum=" + sbNum + ", storeName=" + storeName + ", sCeoName=" + sCeoName
+				+ ", state=" + state + ", sector=" + sector + ", ssAddress=" + ssAddress + ", ssPhone=" + ssPhone
+				+ ", sOk=" + sOk + ", sStatus=" + sStatus + "]";
 	}
 	
 }
