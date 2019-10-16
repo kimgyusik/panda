@@ -29,4 +29,8 @@ public class ViolateDao {
 		return (ArrayList)sqlSession.selectList("violateMapper.selectList", null, rowBounds);
 	}
 	
+	public int insertViolate(Violate v) {
+		return sqlSession.insert("violateMapper.insertViolate", v);
+	}
+	
 }

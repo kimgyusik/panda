@@ -90,7 +90,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#" onclick="location.href='home.do';">PANDA</a></div>
+							<div class="logo"><img src="resources/images/pandaLogo.gif"onclick="location.href='home.do';"></div>
 						</div>
 					</div>
 
@@ -248,7 +248,7 @@
 										</ul>
 									</li>
 									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="finishViolate.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 							

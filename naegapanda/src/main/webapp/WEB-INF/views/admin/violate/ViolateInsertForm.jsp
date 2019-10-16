@@ -60,22 +60,25 @@ $(function(){
 			    <tr>
 			      <th scope="col" width="100px" align="center">신고 상품</th>
 			      <td width="500px">
-			      	<input type="text" class="form-control" name="pId"  value="히히히"  style="border:none;" <%--"${ pId }" --%> >
+			      	<input type="text" class="form-control" name="pId"  value="111"  style="border:none;" <%--"${ pId }" --%> >
+			      	<input type="hidden" name="sNo" value="${ loginUser.mno }">
 			      </td>
 			      <td width="200px">
-			      	<input type="text" class="form-control readonly"name="sNo"  value="히히히" <%--"${ sNo }" --%> readonly style="border:none;background:white">
+			      	<input type="text" class="form-control readonly"name="sNo"  value="111" <%--"${ sNo }" --%> readonly style="border:none;background:white">
 			      </td>
 			    </tr>
 			    <tr>
 			      <th scope="row">제목</th>
 			      <td colspan="2">
-			      	<input type="text" class="form-control" name="vTitle" placeholder="제목" style="border:none;">
+			      	<input type="text" class="form-control" name="vTitle" placeholder="제목" style="border:none;"  required>
 			      </td>
 			    </tr>
 			    <tr>
 			      <th scope="row" height="300px">내용</th>
 			      <td colspan="2">
-			      	<div id="summernote" style="height:300px"></div>			      
+			      	<div id="summernote" style="height:300px">
+			      		<textarea style="width:700px;height:300px;border:none;" required></textarea>
+			      	</div>			      
 			      </td>
 			    </tr>
 			    <tr>
