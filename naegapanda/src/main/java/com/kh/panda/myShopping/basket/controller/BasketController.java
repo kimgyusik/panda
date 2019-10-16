@@ -22,13 +22,13 @@ public class BasketController {
 	private BasketService bService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).get();
+		return ((Member)session.getAttribute("loginUser")).getId();
 	}
 	
 	@RequestMapping("basketList.ba")
-	public ModelAndView selectList(ModelAndView mv, HttpSession session) {
+	public ModelAndView selectbasketList(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Basket> list = bService.selectList(getmNo(session));
+		ArrayList<Basket> list = bService.selectbasketList(getmNo(session));
 		
 		// 이미지 가져와야함
 		

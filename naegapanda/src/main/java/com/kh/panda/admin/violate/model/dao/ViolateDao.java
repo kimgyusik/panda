@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.panda.admin.violate.model.vo.Violate;
-import com.kh.panda.common.model.vo.PageInfo;
+import com.kh.panda.common.PageInfo;
 
 @Repository("vDao")
 public class ViolateDao {

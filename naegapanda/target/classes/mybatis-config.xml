@@ -8,12 +8,16 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="com.kh.panda.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.panda.myShopping.ggim.model.vo.Ggim" alias="Ggim"/>
 		<typeAlias type="com.kh.panda.myShopping.basket.model.vo.Basket" alias="Basket"/>
+		<typeAlias type="com.kh.panda.myShopping.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/ggim-mapper.xml"/>
 		<mapper resource="mappers/basket-mapper.xml"/>
+		<mapper resource="mappers/inquiry-mapper.xml"/>
 	</mappers>
 </configuration>

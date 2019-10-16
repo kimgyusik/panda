@@ -10,6 +10,7 @@
   		<result property="mNo" column="m_no"/>
   		<result property="pId" column="p_id"/>
   		<result property="stId" column="st_id"/>
+  		<result property="vTitle" column="v_title"/>
   		<result property="vContent" column="v_content"/>
   		<result property="vDate" column="v_date"/>
   		<result property="vPhoto" column="v_photo"/>

@@ -6,11 +6,16 @@ import com.kh.panda.myShopping.basket.model.vo.Basket;
 
 public interface BasketService {
 	
-	ArrayList<Basket> selectList(int mNo);
+	// 내 장바구니
+	ArrayList<Basket> selectbasketList(int mNo);
 	
+	// 장바구니에 추가
 	int addBasket(Basket b);
 	
+	// 장바구니에서 제외(단일처리)
 	int deleteBasket(Basket b);
 	
+	// 장바구니에서 제외(다중처리)
 	int deleteBasketList(int mNo, String[] arr);
+	
 }

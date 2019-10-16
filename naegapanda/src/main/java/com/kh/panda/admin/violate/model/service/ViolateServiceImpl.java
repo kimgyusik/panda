@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.panda.admin.violate.model.dao.ViolateDao;
 import com.kh.panda.admin.violate.model.vo.Violate;
-import com.kh.panda.common.model.vo.PageInfo;
+import com.kh.panda.common.PageInfo;
 
 @Service("vService")
 public class ViolateServiceImpl implements ViolateService{
