@@ -20,7 +20,7 @@ public class GgimDao {
 		return sqlSession.selectOne("ggimMapper.getListCount", mNo);
 	}
 	
-	public ArrayList<Ggim> selectList(PageInfo pi, int mNo){
+	public ArrayList<Ggim> selectGgimList(PageInfo pi, int mNo){
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
@@ -28,9 +28,9 @@ public class GgimDao {
 		return (ArrayList)sqlSession.selectList("ggimMapper.selectList", mNo, rowBounds);
 	}
 	
-	public ArrayList<Ggim> selectList(int mNo){
+	public ArrayList<Ggim> selectGgimList(int mNo){
 
-		return (ArrayList)sqlSession.selectList("ggimMapper.selectList", mNo);
+		return (ArrayList)sqlSession.selectList("ggimMapper.selectGgimList", mNo);
 	}
 	
 	public int addGgim(Ggim ggim) {

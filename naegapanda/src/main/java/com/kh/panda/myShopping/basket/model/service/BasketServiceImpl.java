@@ -15,8 +15,8 @@ public class BasketServiceImpl implements BasketService{
 	private BasketDao bDao;
 
 	@Override
-	public ArrayList<Basket> selectList(int mNo) {
-		return bDao.selectList(mNo);
+	public ArrayList<Basket> selectbasketList(int mNo) {
+		return bDao.selectbasketList(mNo);
 	}
 
 	@Override

@@ -16,6 +16,8 @@
 <link rel="stylesheet" type="text/css" href="resources/plugins/slick-1.8.0/slick.css">
 <link rel="stylesheet" type="text/css" href="resources/style/main_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/responsive.css">
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <style>
 
@@ -61,9 +63,20 @@
 								</ul>
 							</div>
 							<div class="top_bar_user">
+							<c:if test="${ empty sessionScope.loginUser }">
+							<form action="login.do" method="post">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
 								<div><a href="join.do">회원가입</a></div>
 								<div><a href="allLogin.do">로그인</a></div>
+							</form>
+							</c:if>
+							<c:if test="${ !empty sessionScope.loginUser }">
+							<h6 align="right">
+							<c:out value="${ loginUser.name }님 환영합니다."/>
+							<button onclick="location.href='myInfo.do';">정보수정</button>
+							<button onclick="location.href='logout.do';">로그아웃</button>
+							</h6>
+							</c:if>
 							</div>
 						</div>
 					</div>
@@ -80,7 +93,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<div class="logo"><a href="#">PANDA</a></div>
 						</div>
 					</div>
 

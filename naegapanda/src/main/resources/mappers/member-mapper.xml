@@ -20,7 +20,6 @@
 	</resultMap>
 
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
-	
 		select *
 		from member
 		where m_id=#{id} and drop_yn='N'

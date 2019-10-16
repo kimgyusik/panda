@@ -20,7 +20,6 @@
 <title>회원가입</title>
 </head>
 <body>
-<%-- <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/> --%>
 
 	<h1 align="center">회원가입</h1>
 	
@@ -53,7 +52,7 @@
 					<td>
 						<input type="radio" name="gender" value="M"> 남 
 						<input type="radio" name="gender" value="F"> 여
-					</td>
+					</td>t
 				</tr>
 				<tr>
 					<td>생일</td>
