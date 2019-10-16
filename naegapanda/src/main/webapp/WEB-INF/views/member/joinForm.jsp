@@ -14,7 +14,7 @@
 </style>
 <body>
 
-<c:import url="../common/menubar.jsp"/>
+<c:import url="../common/menubar.jsp"/> 
 <div class="outer" align="center">
 	<div class="jumbotron" style="width:450px;" align="center">
 	  <h1 class="display-4">내가판다의 회원가입 환영^^</h1>

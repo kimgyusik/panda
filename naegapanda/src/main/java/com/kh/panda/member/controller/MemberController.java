@@ -18,26 +18,25 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.kh.panda.member.model.service.MemberService;
 import com.kh.panda.member.model.vo.Member;
 
-
+@SessionAttributes("loginUser")
 @Controller 
-public class MemberController2 {
+public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
 	
 
 	
-	private Logger logger = LoggerFactory.getLogger(MemberController2.class);
+	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	
 	
-	@RequestMapping("Loginmove.do")
-	public String loginView() {
-		
-		
-		return "member/memberLoginForm";
-	}
 	
+	 @RequestMapping("Loginmove.do") public String loginView() {
+	 
+	 
+	 return "member/memberLoginForm"; }
+	 
 	
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
