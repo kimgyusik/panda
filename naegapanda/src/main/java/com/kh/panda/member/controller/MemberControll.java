@@ -19,6 +19,7 @@ public class MemberControll {
 	  return "member/memberLoginForm"; }
 	 
 
+	// 회원가입 때 일반회원,판매자 선택하는 화면
 	@RequestMapping("mJoin.do")
 	public String memberJoinForm() {
 		return "member/memberJoinForm";

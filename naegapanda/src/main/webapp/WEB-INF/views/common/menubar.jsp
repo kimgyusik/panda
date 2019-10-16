@@ -39,19 +39,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="resources/images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="resources/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">
+							<div class="top_bar_menu">			<!-- 일반회원, 판매자 로그인시 다르게 my page 메뉴 리스트 다르게 보이게 설정하기 -->
 								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#">English<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Italian</a></li>
-											<li><a href="#">Spanish</a></li>
-											<li><a href="#">Japanese</a></li>
-										</ul>
-									</li>
 									<li>
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>
@@ -59,6 +49,13 @@
 											<li><a href="#">QnA</a></li>
 											<li><a href="#">~~~</a></li>
 										</ul>
+									</li>
+									<li>
+										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+											<ul>
+												<li><a href="#">상품관리</a></li>
+												<li><a href="#">정보수정</a></li>
+											</ul>
 									</li>
 								</ul>
 							</div>
@@ -93,7 +90,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#">PANDA</a></div>
+							<div class="logo"><a href="#" onclick="location.href='home.do';">PANDA</a></div>
 						</div>
 					</div>
 
