@@ -26,4 +26,7 @@ public interface NoticeService {
 	
 	// 5. 공지 삭제
 	int deleteNotice(int nId);
+	
+	// 6. 공지 수정
+	int updateNotice(Notice n);
 }

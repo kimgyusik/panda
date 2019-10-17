@@ -70,6 +70,7 @@ public class NoticeController {
 			}
 		}
 		
+		
 		int result = nService.insertNotice(n);
 		
 		if(result > 0) {
@@ -158,6 +159,38 @@ public class NoticeController {
 			f.delete();
 		}
 	}
+	
+	@RequestMapping("nupdate.do")
+	public String updateNotice(Notice n, HttpServletRequest request, Model model,
+							   @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+		
+		if(!file.getOriginalFilename().equals("")) { // 첨부파일이 넘어온 경우
+			
+			// 서버에 파일 등록(폴더에 저장)
+			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일명 돌려주는 savefile 
+			String nRenameFileName = saveFile(file, request);
+			
+			if(nRenameFileName != null) {
+				n.setnOriginalFileName(file.getOriginalFilename());
+				n.setnRenameFileName(nRenameFileName);
+			}
+		}
+		
+		System.out.println("수정 notice n "+n);
+		
+		int result = nService.updateNotice(n);
+		
+		System.out.println(result);
+		
+		if(result > 0) {
+			return "redirect:nlist.do";
+		}else {
+			model.addAttribute("msg", "공지 수정 실패@@");
+			return "common/errorPage";
+		}
+	}
+	
+	
 	
 	
 }

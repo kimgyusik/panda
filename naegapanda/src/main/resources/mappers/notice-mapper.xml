@@ -49,5 +49,11 @@
 		set n_status='Y'
 		where n_id=#{nId}
 	</update>
+	
+	<update id="updateNotice" parameterType="Notice">
+		update notice
+		set n_title=#{nTitle}, n_content=#{nContent}, n_modify_date=sysdate, n_original_filename=#{nOriginalFileName}, n_rename_filename=#{nRenameFileName}
+		where n_id=#{nId}
+	</update>
 
 </mapper>

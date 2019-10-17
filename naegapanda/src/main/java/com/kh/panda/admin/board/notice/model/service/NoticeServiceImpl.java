@@ -53,6 +53,12 @@ public class NoticeServiceImpl implements NoticeService{
 	public int deleteNotice(int nId) {
 		return nDao.deleteNotice(nId);
 	}
+
+	@Override
+	public int updateNotice(Notice n) {
+		return nDao.updateNotice(n);
+	}
+
 	
 	
 	
