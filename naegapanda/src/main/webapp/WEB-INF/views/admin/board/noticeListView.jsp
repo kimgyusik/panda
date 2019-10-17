@@ -44,44 +44,12 @@
 <body>
 
 <div class="super_container">
+
+	<c:import url="../../common/menubar.jsp"/> 
+
+	<c:import url="../../common/admin.jsp"/> 
 	
-	<c:import url="../../common/menubar.jsp"/>
-	
-	
-	<!-- Home -->
-
-	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="resources/images/shop_background.jpg"></div>
-		<div class="home_overlay"></div>
-		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title" style="font-weight:bold;">고객센터</h2>
-		</div>
-	</div>
-
-	<!-- Shop -->
-
-	<div class="shop">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-
-					<!-- Shop Sidebar -->
-					<div class="shop_sidebar">
-						<div class="sidebar_section">
-							<div class="sidebar_title">Categories</div>
-							<ul class="sidebar_categories">
-								<li><a href="nlist.do">판다 공지</a></li>
-								<li><a href="#">QnA</a></li>
-								<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
-									<li><a href="#">판매관리</a></li>
-									<li><a href="test.do">신고관리</a></li>
-								</c:if>
-							</ul>
-						</div>
-						
-					</div>
-
-					</div>
+</div>
 	
 	
 						<div class="bs-example">
@@ -125,19 +93,12 @@
 										</tr>
 									</c:forEach>
 									
-								</tbody>
-								
-								
-								
+								</tbody>					
 							</table>
 						</div>
-						
-						
-					
-	
 			</div>
 		</div>
-		
+
 		<div align="center">
 					
 										<!-- [이전] -->	
@@ -184,10 +145,6 @@
 		
 	</div>
 	
-					
-
-
-
 	<!-- Brands -->
 
 	<div class="brands">
@@ -222,9 +179,8 @@
 	</div>
 
 
-	
-</div>
 
+<c:import url="../../common/adminFooter.jsp"/> 
 <c:import url="../../common/footer.jsp"/>
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>

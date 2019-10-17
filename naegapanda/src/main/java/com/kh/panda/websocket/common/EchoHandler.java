@@ -52,14 +52,12 @@ private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
         String user = ((Member)(session.getAttributes().get("loginUser"))).getName();   //getId();
        
-        int cnt = 0;
+ 
         //for(WebSocketSession sess : sessionList){
-        	for(int i = 0; i >0 ; i++) {
-        		WebSocketSession sess = (WebSocketSession) sessionList;
+        for(WebSocketSession sess : sessionList){
+        	for(int i = 0; i > 0 ; i++) {
         		sess.sendMessage(new TextMessage("- - - - " + user+"님이 입장하셨습니다. - - - -"));// 아이디 : 메세지 내용 출력              
         	}
-        for(WebSocketSession sess : sessionList){
-        	
 	           if(session.getAttributes().get("bId") == null) {   // 방에 안들어왔으면
 	        	  
 	        	   if(session.getId().equals(sess.getId())) {      // 보낸사람 id와 보내야되는 사람 id 가 같을때

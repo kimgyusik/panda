@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -400,6 +401,8 @@
 <script src="resources/plugins/slick-1.8.0/slick.js"></script>
 <script src="resources/plugins/easing/easing.js"></script>
 <script src="resources/js/custom.js"></script>
+
+
 
 </body>
 </html>
