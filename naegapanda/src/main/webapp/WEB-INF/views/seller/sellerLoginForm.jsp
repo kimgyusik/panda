@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <head>
 <meta charset="utf-8">
     <title>Ryan Login</title>
@@ -72,7 +74,7 @@
 </style>
 </head>
 <body>
-    <form action="login.do" method="post"> 
+    <form action="sLogin.do" method="post"> 
         <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,150 C0,65 120,65 120,150" fill="#e0a243" stroke="#000" stroke-width="2.5" />
             <g class="ears">
@@ -101,17 +103,18 @@
 
 			<table id="loginTable" style="text-algin: center">
 				<tr>
-					<td><input type="text" name="id" placeholder="아이디" required></td>
+					<td style="display:block"><input type="text" name="sId" placeholder="아이디" required></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
+					<td><input type="password" name="sPwd" placeholder="비밀번호" required></td>
+					<button type="submit" id="loginBtn">로그인</button>	
 				</tr>
 				<tr>
 					<td colspan="3">
 						<p>
 							<a href="join.do">회원가입</a> <a href="">아이디/비밀번호찾기</a>
 						</p>
-						<button type="submit" id="loginBtn">로그인</button>
+						
 					</td>
 				</tr>
 			</table>
@@ -135,9 +138,8 @@
     <script>
     	$(document).ready(function(){
     		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
-    	});  	
-    	
+    	});
+    	    	
     </script>
 </form> 
 </body>
-</html>

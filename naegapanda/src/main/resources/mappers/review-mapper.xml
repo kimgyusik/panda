@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reviewMapper">
+
+	<resultMap id="reviewResultSet" type="Review">
+		<id property="rId" column="r_id" />
+		<result property="rTitle" column="r_title"/>
+		<result property="rContents" column="r_contents"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rCount" column="r_count"/>
+		<result property="mNo" column="m_no"/>
+		<result property="mId" column="m_id"/>
+		<result property="rDel" column="r_del"/>
+		<result property="rCommend" column="r_commed"/>
+		<result property="payId" column="pay_id"/>
+		<result property="rImage" column="r_image"/>
+	</resultMap>
+	
+	<resultMap id="paymentResultSet" type="Payment">
+		<id property="payId" column="pay_id" />
+		<result property="pId" column="p_id"/>
+		<result property="price" column="price"/>
+		<result property="pStatus" column="p_status"/>
+		<result property="payRequest" column="pay_request"/>
+		<result property="payDate" column="pay_date"/>
+		<result property="count" column="count"/>
+		<result property="deleveryStatus" column="delevery_status"/>
+		<result property="pName" column="p_name"/>
+		<result property="storeName" column="storename"/>
+		<result property="sBphone" column="s_bphone"/>
+	</resultMap>
+	
+	<resultMap id="replyResultSet" type="Reply">
+		<id property="rrId" column="r_r_id" />
+		<result property="mNo" column="m_no"/>
+		<result property="mId" column="m_id"/>
+		<result property="rrContents" column="r_r_contents"/>
+		<result property="rrDate" column="r_r_date"/>
+		<result property="rrDel" column="r_r_del"/>
+		<result property="rId" column="r_id"/>
+	
+	</resultMap>
+
+	<select id="selectMyReviewList" parameterType="_int" resultMap="reviewResultSet">
+		select r_id, r_title, r_contents, r_date, r_count, m_no, m_id, r_del, r_commed, pay_id, r_image
+		from REVIEW
+		join member using(m_no)
+		where m_no = #{mNo} and r_del = 'N'
+	</select>
+	
+	<select id="selectProdReviewList" parameterType="_int" resultMap="reviewResultSet">
+		select r_id, r_title, r_contents, r_date, r_count, m_no, m_id, r_del, r_commed, pay_id, r_image
+		from REVIEW
+		join member using(m_no)
+		where p_id = #{pId} and r_del = 'N'
+	</select>
+	
+	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">
+		select pay_id, p_id, price, p_status, pay_request, pay_date, count, delevery_status, p_name, storename, s_bphone
+		from payment
+		left join review using(pay_id)
+		join product using(p_id)
+		join seller using(s_no)
+		where m_no = #{mNo} and DELIVERY_STATUS = '구매확정'
+		and r_id is null;
+	</select>
+	
+	<select id="selectReview" parameterType="_int" resultMap="reviewResultSet">
+		select *
+		from review
+		where r_id = #{rId] and r_del = 'N'
+	</select>
+	
+	<update id="countUp" parameterType="_int">
+		update review
+		set r_count = r_count+1
+		where r_id = #{rId]
+	</update>
+	
+	<insert id="addReview" parameterType="Review">
+		insert into review
+		values (review_seq.nextval, #{rTitle}, #{rContents}, default, default, #{mNo}, default, default, #{payId}, #{rImage})
+	</insert>
+	
+	<update id="updateReview" parameterType="Review">
+		update review
+		set r_title = #{rTitle}, r_contents = #{rContents}, r_image = #{rImage}
+		where r_id = #{rId]
+	</update>
+	
+	<update id="deleteReview" parameterType="_int">
+		update review
+		set r_del = 'Y'
+		where r_id = #{rId}
+	</update>
+	
+	<delete id="cancleCommend" parameterType="Commend">
+		delete from REVIEW_COMMEND
+		where r_id = #{rId} and m_no = #{mNo}
+	</delete>
+	
+	<insert id="addCommend" parameterType="Commend">
+		insert into commend
+		values (#{rId}, #{mNo})
+	</insert>
+	
+	<select id="getReplyList" parameterType="_int" resultMap="replyResultSet">
+		select r_r_id, m_no, m_id, r_r_contents, r_r_date, r_r_del, r_id
+		from REVIEW_REPLY
+		join member using(m_no)
+		where r_r_id = #{rrId} and R_R_DEL = 'N'
+		order by r_r_date
+	</select>
+	
+	<insert id="addReply" parameterType="Reply">
+		insert into REVIEW_REPLY
+		values (REVIEW_REPLY_seq.nextval, #{mNo}, #{rrContents}, default, default, #{rId})
+	</insert>
+	
+	<update id="deleteReply" parameterType="_int">
+		update REVIEW_REPLY
+		set r_r_del = 'Y'
+		where r_r_id = #{rrId}
+	</update>
+	
+	
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

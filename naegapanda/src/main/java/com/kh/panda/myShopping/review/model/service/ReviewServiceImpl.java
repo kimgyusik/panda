@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.myShopping.review.model.dao.ReviewDao;
 import com.kh.panda.myShopping.review.model.vo.Commend;
 import com.kh.panda.myShopping.review.model.vo.Reply;
@@ -34,7 +35,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public Review selectReview(int rId) {
 		
-		reDao.countUp();
+		reDao.countUp(rId);
 		
 		return reDao.selectReview(rId);
 	}
