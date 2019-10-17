@@ -32,4 +32,16 @@ public class NoticeDao {
 	public int insertNotice(Notice n) {
 		return sqlSession.insert("noticeMapper.insertNotice", n);
 	}
+	
+	public int updateCount(int nId) {
+		return sqlSession.update("noticeMapper.updateCount", nId);
+	}
+	
+	public Notice noticeDetail(int nId) {
+		return sqlSession.selectOne("noticeMapper.selectNotice", nId);
+	}
+	
+	public int deleteNotice(int nId) {
+		return sqlSession.update("noticeMapper.deleteNotice", nId);
+	}
 }
