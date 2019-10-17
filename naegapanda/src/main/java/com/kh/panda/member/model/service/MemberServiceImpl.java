@@ -42,13 +42,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idCheck(String id) {
-		int result = mDao.idCheck(id);
-		
-		if(result <= 0) {
-			result = sDao.idCheck(id);
-		}
-		
-		return result;
+		return mDao.idCheck(id);
 	}
 	
 	
