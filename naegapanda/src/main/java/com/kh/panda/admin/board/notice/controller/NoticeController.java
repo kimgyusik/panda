@@ -37,7 +37,8 @@ public class NoticeController {
 		
 		ArrayList<Notice> list = nService.selectList(pi);
 		
-		//System.out.println(list);
+		//System.out.println(pi);
+		//System.out.println("리스트"+list);
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/board/noticeListView");
 		
@@ -54,11 +55,13 @@ public class NoticeController {
 	public String inserNotice(Notice n, HttpServletRequest request, Model model,
 						     @RequestParam(name="uploadFile", required=false) MultipartFile file) {
 		
-		System.out.println(n);
-		System.out.println(file.getOriginalFilename());
+		//System.out.println(n);
+		//System.out.println(file.getOriginalFilename());
 		
 		if(!file.getOriginalFilename().equals("")) { // 첨부파일이 넘어온 경우
 			
+			// 서버에 파일 등록(폴더에 저장)
+			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일명 돌려주는 savefile 
 			String nRenameFileName = saveFile(file, request);
 			
 			if(nRenameFileName != null) {
@@ -89,16 +92,16 @@ public class NoticeController {
 			folder.mkdirs();	// 폴더 생성해라
 		}
 		
-		String nOriginalFileName = file.getOriginalFilename();	// 원본명 (확장자)
+		String originalFileName = file.getOriginalFilename();	// 원본명 (확장자)
 		
 		// 파일명 수정작업 --> 년월일시분초.확장자
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		
-		String nRenameFileName = sdf.format(new Date(System.currentTimeMillis()))	// 년월일시분초
-								+ nOriginalFileName.substring(nOriginalFileName.lastIndexOf("."));
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))	// 년월일시분초
+								+ originalFileName.substring(originalFileName.lastIndexOf("."));
 		
 		// 실제 저장될 경로 savePath + 저장하고자 하는 파일명 nRenameFileName
-		String renamePath = savePath + "\\" + nRenameFileName;	// resources\nupload\20120312451232.jpg
+		String renamePath = savePath + "\\" + renameFileName;	// resources\nupload\20120312451232.jpg
 		
 		try {
 			file.transferTo(new File(renamePath));	// 이때 서버에 업로드 됨
@@ -107,8 +110,53 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 		
-		return nRenameFileName;	// 수정명 반환
+		return renameFileName;	// 수정명 반환
 		
+	}
+	
+	@RequestMapping("ndetail.do")
+	public ModelAndView noticeDetail(int nId, ModelAndView mv) {
+		
+		Notice n = nService.noticeDetail(nId);
+		
+		if(n != null) {
+			mv.addObject("n", n).setViewName("admin/board/noticeDetailView");
+		}else {
+			mv.addObject("msg", "공지 상세조회 실패!!").setViewName("common/errorPage");
+		}
+		return mv;
+		
+	}
+	
+	@RequestMapping("ndelete.do")
+	public String noticeDelete(int nId, HttpServletRequest request) {
+		
+		Notice n = nService.selectNotice(nId);
+		
+		if(n.getnRenameFileName() != null) {
+			
+			// 서버에 올라가 있는 파일 삭제
+			deleteFile(n.getnRenameFileName(), request);
+		}
+		
+		int result = nService.deleteNotice(nId);
+		
+		if(result > 0) {
+			return "redirect:nlist.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\nupload";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		if(f.exists()) {
+			f.delete();
+		}
 	}
 	
 	

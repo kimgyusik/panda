@@ -35,9 +35,9 @@
         border-top-right-radius: 5px;
         border-bottom-right-radius:5px;
         color:white;
-
     }
-    
+   
+	.atag { text-decoration:none ; color:black; }
 </style>
 </head>
 
@@ -75,7 +75,7 @@
 													${ n.nTitle }
 												</c:if>
 												<c:if test="${ !empty loginUser }">
-													<c:url value="ndetatil.do" var="ndetail">
+													<c:url value="ndetail.do" var="ndetail">
 														<c:param name="nId" value="${ n.nId }"/>
 													</c:url>
 													<a href="${ ndetail }">${ n.nTitle }</a>
@@ -107,19 +107,19 @@
 											[이전] 
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="blist.do" var="before">
+											<c:url value="nlist.do" var="before">
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
-											<a href="${ before }">[이전] </a> 
+											<a class="atag" href="${ before }">[이전] </a> 
 										</c:if>		
 										
-										<!-- 번호들  -->
+										<!-- 번호  -->
 										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
 											<c:if test="${ p eq pi.currentPage }">
-												<font color="red" size="4">[${ p }]</font>
+												<font  size="4">[${ p }]</font>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="blist.do" var="page">
+												<c:url value="nlist.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
 												</c:url>
 												<a href="${ page }">${ p }</a>
@@ -131,10 +131,10 @@
 											 [다음]
 										</c:if>
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="blist.do" var="next">
+											<c:url value="nlist.do" var="next">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 											</c:url>
-											<a href="${ next }"> [다음]</a>
+											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
 									</div>
 		
