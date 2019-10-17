@@ -19,7 +19,13 @@
 </head>
 <body>
 
-	<c:import url="../../common/menubar.jsp"/>
+	<div class="super_container">
+
+   <c:import url="../../common/menubar.jsp"/> 
+
+   <c:import url="../../common/admin.jsp"/> 
+   
+	</div>
 	
 	<div class="outer">
 	<h1 align="center">게시글 목록</h1>
@@ -102,6 +108,7 @@
 </table>
 	
 	</div>
+	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
 	
 </body>
