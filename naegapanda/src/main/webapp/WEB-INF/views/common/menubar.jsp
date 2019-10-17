@@ -92,7 +92,7 @@
 												<li><a href="#">정보수정</a></li>
 											</ul>
 									</li>
-									
+									</c:if>
 								</ul>
 							</div>
 							<div class="top_bar_user">
