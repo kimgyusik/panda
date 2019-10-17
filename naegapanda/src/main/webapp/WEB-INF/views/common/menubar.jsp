@@ -47,7 +47,12 @@
 										<ul>
 											<li><a href="nlist.do">판다 공지</a></li>
 											<li><a href="#">QnA</a></li>
-											<li><a href="#"></a></li>
+											
+											<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
+												<li><a href="#">판매관리</a></li>
+												<li><a href="test.do">신고관리</a></li>
+											</c:if>
+											
 										</ul>
 									</li>
 									<!-- 로그인 안했을때 보이는 MyPage -->
@@ -60,26 +65,15 @@
 
 									<!-- 회원이 로그인 했을때 보이는 MyPage -->
 									<c:if test="${ !empty loginUser }">
-
-											<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
-													<li>
-														<a href="#">Admin Page<i class="fas fa-chevron-down"></i></a>
-															<ul>
-																<li><a href="#">공지 관리</a></li>
-																<li><a href="#">QnA 관리</a></li>
-																<li><a href="temp.do">신고 관리</a></li>
-															</ul>
-													</li>
-													</c:if>
-													<c:if test="${ sessionScope.loginUser.id ne 'admin' }">
-															<li>
-																	<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
-																		<ul>
-																			<li><a href="#">회원쪽에서 설정해주세요</a></li>
-																			<li><a href="#">정보수정</a></li>
-																		</ul>
-																</li>
-													</c:if>
+											<c:if test="${ sessionScope.loginUser.id ne 'admin' }">
+												<li>
+													<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+													<ul>
+														<li><a href="#">회원쪽에서 설정해주세요</a></li>
+														<li><a href="#">정보수정</a></li>
+													</ul>
+												</li>
+											</c:if>
 									</c:if>
 									
 									
