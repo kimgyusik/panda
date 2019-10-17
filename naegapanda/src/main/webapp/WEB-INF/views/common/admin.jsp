@@ -59,7 +59,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 		<!-- Shop Sidebar -->
-					<div class="shop_sidebar">
+					<div class="shop_sidebar" style="width:100px;margin:0;'">
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">

@@ -43,100 +43,100 @@
 
 <body>
 
-<div class="super_container">
-
-	<c:import url="../../common/menubar.jsp"/> 
-
-	<c:import url="../../common/admin.jsp"/> 
+	<div class="super_container">
 	
-</div>
+		<c:import url="../../common/menubar.jsp"/> 
+	
+		<c:import url="../../common/admin.jsp"/> 
+		
+	</div>
 	
 	
-						<div class="bs-example">
-							<table class="table table-hover" align="center" cellspacing="0" >
-								<h3 style="font-weight:bold;">PANDA 공지</h3><br>
-								<thead align="center">
-									<tr>
-										<th>No.</th>
-										<th width="300">제목</th>
-										<th width="180">날짜</th>
-										<th>조회수</th>
-										<th>첨부파일</th>
-									</tr>
-								</thead>
-								<tbody>
+	<div class="bs-example">
+		<table class="table table-hover" align="center" cellspacing="0" >
+			<h3 style="font-weight:bold;">PANDA 공지</h3><br>
+				<thead align="center">
+					<tr>
+						<th>No.</th>
+						<th width="300">제목</th>
+						<th width="180">날짜</th>
+						<th>조회수</th>
+						<th>첨부파일</th>
+					</tr>
+				</thead>
+					<tbody>
 								
-									<c:forEach items="${ list }" var="n">
+						<c:forEach items="${ list }" var="n">
 									
-										<tr>
-											<td align="center">${ n.nId }</td>
-											<td align="left">
-												<c:if test="${ empty loginUser }">
-													${ n.nTitle }
-												</c:if>
-												<c:if test="${ !empty loginUser }">
-													<c:url value="ndetatil.do" var="ndetail">
-														<c:param name="nId" value="${ n.nId }"/>
-													</c:url>
-													<a href="${ ndetail }">${ n.nTitle }</a>
-												</c:if>
-											</td>
-											<td align="center">${ n.nCreateDate }</td>
-											<td align="center">${ n.nCount }</td>
-											<td align="center">
-												<c:if test="${ !empty n.nOriginalFileName }">
-													<span style="color:#0e8ce4"><i class="far fa-file"></i></span>
-												</c:if>
-												<c:if test="${ empty n.nOriginalFileName }">
-													&nbsp;
-												</c:if>
-											</td>
-										</tr>
-									</c:forEach>
+						<tr>
+							<td align="center">${ n.nId }</td>
+							<td align="left">
+								<c:if test="${ empty loginUser }">
+									${ n.nTitle }
+								</c:if>
+								<c:if test="${ !empty loginUser }">
+									<c:url value="ndetatil.do" var="ndetail">
+									<c:param name="nId" value="${ n.nId }"/>
+								</c:url>
+									<a href="${ ndetail }">${ n.nTitle }</a>
+								</c:if>
+							</td>
+							<td align="center">${ n.nCreateDate }</td>
+							<td align="center">${ n.nCount }</td>
+							<td align="center">
+								<c:if test="${ !empty n.nOriginalFileName }">
+									<span style="color:#0e8ce4"><i class="far fa-file"></i></span>
+								</c:if>
+								<c:if test="${ empty n.nOriginalFileName }">
+									&nbsp;
+								</c:if>
+							</td>
+						</tr>
+						
+						</c:forEach>
 									
-								</tbody>					
-							</table>
-						</div>
+					</tbody>					
+				</table>
 			</div>
 		</div>
 
 		<div align="center">
 					
-										<!-- [이전] -->	
-										<c:if test="${ pi.currentPage eq 1 }">
-											[이전] 
-										</c:if>
-										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="blist.do" var="before">
-												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-											</c:url>
-											<a href="${ before }">[이전] </a> 
-										</c:if>		
+			<!-- [이전] -->	
+			<c:if test="${ pi.currentPage eq 1 }">
+				[이전] 
+			</c:if>
+			<c:if test="${ pi.currentPage ne 1 }">
+				<c:url value="blist.do" var="before">
+					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+				</c:url>
+				<a href="${ before }">[이전] </a> 
+			</c:if>		
+			
+			<!-- 번호들  -->
+			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+				<c:if test="${ p eq pi.currentPage }">
+					<font color="red" size="4">[${ p }]</font>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url value="blist.do" var="page">
+						<c:param name="currentPage" value="${ p }"/>
+					</c:url>
+					<a href="${ page }">${ p }</a>
+				</c:if>
+			</c:forEach>
 										
-										<!-- 번호들  -->
-										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-											<c:if test="${ p eq pi.currentPage }">
-												<font color="red" size="4">[${ p }]</font>
-											</c:if>
-											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="blist.do" var="page">
-													<c:param name="currentPage" value="${ p }"/>
-												</c:url>
-												<a href="${ page }">${ p }</a>
-											</c:if>
-										</c:forEach>
-										
-										<!-- [다음] -->
-										<c:if test="${ pi.currentPage eq pi.maxPage }">
-											 [다음]
-										</c:if>
-										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="blist.do" var="next">
-												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-											</c:url>
-											<a href="${ next }"> [다음]</a>
-										</c:if>
-									</div>
+			<!-- [다음] -->
+				<c:if test="${ pi.currentPage eq pi.maxPage }">
+					[다음]
+				</c:if>
+				<c:if test="${ pi.currentPage ne pi.maxPage }">
+					<c:url value="blist.do" var="next">
+						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+					</c:url>
+					<a href="${ next }"> [다음]</a>
+				</c:if>
+			</div>
 		
 		<div class="col-lg-11" align="right">
 			<c:if test="${ sessionScope.loginUser.name eq '관리자' }">
@@ -146,38 +146,7 @@
 		
 	</div>
 	
-	<!-- Brands -->
 
-	<div class="brands">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="brands_slider_container">
-						
-						<!-- Brands Slider -->
-
-						<div class="owl-carousel owl-theme brands_slider">
-							
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_1.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_2.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_3.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_4.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_5.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_6.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_7.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_8.jpg" alt=""></div></div>
-
-						</div>
-						
-						<!-- Brands Slider Navigation -->
-						<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-						<div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 
