@@ -101,18 +101,24 @@
 								</ul>
 							</div>
 							<div class="top_bar_user">
-							<c:if test="${ empty sessionScope.loginUser }">
+							<c:if test="${ empty sessionScope.loginUser && empty sessionScope.loginSeller }">
 							<form action="login.do" method="post">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
 								<div><a href="join.do">회원가입</a></div>
 								<div><a href="allLogin.do">로그인</a></div>
 							</form>
 							</c:if>
-							<c:if test="${ !empty sessionScope.loginUser }">
+							<c:if test="${ !empty sessionScope.loginUser}">
 							<h6 align="right">
 							<c:out value="${ loginUser.name }님 환영합니다."/>
 							<!-- <button onclick="location.href='myInfo.do';">정보수정</button> -->
 							<button onclick="location.href='logout.do';">로그아웃</button>
+							</h6>
+							</c:if>
+							<c:if test="${ !empty sessionScope.loginSeller }">
+							<h6 align="right">
+							<c:out value="${ loginSeller.sName }님 환영합니다."/>
+							<button onclick="location.href='sLogout.do';">로그아웃</button>
 							</h6>
 							</c:if>
 							</div>
