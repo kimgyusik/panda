@@ -12,10 +12,29 @@
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 눈 효과 -->
+<script src="https://tistory3.daumcdn.net/tistory/941717/skin/images/jquery.min.js" type="text/javascript"></script> 
+<script src="https://tistory3.daumcdn.net/tistory/941717/skin/images/snowfall.jquery.js" type="text/javascript"></script>
+
 <style>
 	 p{
 	        text-align: center;
 	    }
+	    
+	    
+	    		    body {
+		    background: rgb(14, 140, 228);
+		}
+		
+		form {
+		    width: 320px;
+		    padding: 60px 25px 80px;
+		    margin: 50px auto;
+		    background: rgb(14, 140, 228);
+		    display: flex;
+		    flex-direction: column;
+		}
+		
 </style>
 </head>
 <body>
@@ -62,23 +81,30 @@
 							<a href="enrollView.do">회원가입</a> 
 							<a href="">아이디/비밀번호찾기</a>
 							</p>
-							<button id="loginBtn">로그인</button>
+							<button id="loginBtn">L o g i n</button>
 						</td>
 					</tr>
+					
+					
 				</table>
    				
-   	
+			   	<div id="indexBtn" class="center">
+					<button id="visual-btn" onclick="location.href='home.do';">처음으로</button>
+				</div>
     </div>
     
 		
     
-    <div id="indexBtn" class="center">
-		<button id="visual-btn" onclick="location.href='home.do';">처음으로</button>
-	</div>
+    
     
     
     <script src="script.js"></script>
     <script src="resources/js/memberLoginForm.js"></script>
+    <script>
+    	$(document).ready(function(){
+    		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+    	});
+    </script>
 </form> 
 </body>
 </html>

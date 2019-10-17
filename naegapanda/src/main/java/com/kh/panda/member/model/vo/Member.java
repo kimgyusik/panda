@@ -13,56 +13,30 @@ import lombok.ToString;
 
 
 public class Member {
-	private int mno;
+	private int mNo;
 	private String id;
 	private String pwd;
 	private String name;
-	private String birthdate;
+	private String birthDate;
 	private String gender;
 	private String email;
 	private String phone;
 	private String address;
-	private Date joindate;
-	private String dropyn;
-	private String blackcode;
+	private Date joinDate;
+	private String dropYn;
+	private String blackCode;
 	
 	
 	public Member() {}
 
-	
-	
-	
 
-	public Member(int mno, String id, String pwd, String name, String birthdate, String gender, String email,
-			String phone, String address, Date joindate, String dropyn, String blackcode) {
-		super();
-		this.mno = mno;
-		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
-		this.birthdate = birthdate;
-		this.gender = gender;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.joindate = joindate;
-		this.dropyn = dropyn;
-		this.blackcode = blackcode;
+	public int getmNo() {
+		return mNo;
 	}
 
 
-
-	
-
-
-
-	public int getMno() {
-		return mno;
-	}
-
-
-	public void setMno(int mno) {
-		this.mno = mno;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
 
@@ -96,13 +70,13 @@ public class Member {
 	}
 
 
-	public String getBirthdate() {
-		return birthdate;
+	public String getBirthDate() {
+		return birthDate;
 	}
 
 
-	public void setBirthdate(String birthdate) {
-		this.birthdate = birthdate;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
 
@@ -146,44 +120,63 @@ public class Member {
 	}
 
 
-	public Date getJoindate() {
-		return joindate;
+	public Date getJoinDate() {
+		return joinDate;
 	}
 
 
-	public void setJoindate(Date joindate) {
-		this.joindate = joindate;
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
 	}
 
 
-	public String getDropyn() {
-		return dropyn;
+	public String getDropYn() {
+		return dropYn;
 	}
 
 
-	public void setDropyn(String dropyn) {
-		this.dropyn = dropyn;
+	public void setDropYn(String dropYn) {
+		this.dropYn = dropYn;
 	}
 
 
-	public String getBlackcode() {
-		return blackcode;
+	public String getBlackCode() {
+		return blackCode;
 	}
 
 
-	public void setBlackcode(String blackcode) {
-		this.blackcode = blackcode;
+	public void setBlackCode(String blackCode) {
+		this.blackCode = blackCode;
+	}
+
+
+	public Member(int mNo, String id, String pwd, String name, String birthDate, String gender, String email,
+			String phone, String address, Date joinDate, String dropYn, String blackCode) {
+		super();
+		this.mNo = mNo;
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.joinDate = joinDate;
+		this.dropYn = dropYn;
+		this.blackCode = blackCode;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Member [mno=" + mno + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", birthdate=" + birthdate
+		return "Member [mNo=" + mNo + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", birthDate=" + birthDate
 				+ ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", joindate=" + joindate + ", dropyn=" + dropyn + ", blackcode=" + blackcode + "]";
+				+ ", joinDate=" + joinDate + ", dropYn=" + dropYn + ", blackCode=" + blackCode + "]";
 	}
+
 	
-	
+
 	
 	
 	

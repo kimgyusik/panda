@@ -105,6 +105,7 @@ public class MemberController {
 		
 	}
 	
+	
 	@RequestMapping("mdelete.do")
 	public String deleteMember(String id, Model model) {
 		
