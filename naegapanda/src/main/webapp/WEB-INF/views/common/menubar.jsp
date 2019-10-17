@@ -104,7 +104,7 @@
 							<form action="login.do" method="post">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
 								<div><a href="join.do">회원가입</a></div>
-								<div><a href="allLogin.do">로그인/</a></div>
+								<div><a href="allLogin.do">로그인</a></div>/
 								<div><a href="sellerLogin.do">판매자로그인</a></div>	
 							</form>
 							</c:if>

@@ -5,12 +5,16 @@ import org.springframework.stereotype.Service;
 
 import com.kh.panda.member.model.dao.MemberDao;
 import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.seller.model.dao.SellerDao;
 
 @Service("mService") 
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDao mDao;
+	
+	@Autowired
+	private SellerDao sDao;
 
 	@Override
 	public Member loginMember(Member m) {
@@ -38,7 +42,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idCheck(String id) {
-		return mDao.idCheck(id);
+		int result = mDao.idCheck(id);
+		
+		if(result <= 0) {
+			result = sDao.idCheck(id);
+		}
+		
+		return result;
 	}
 	
 	
