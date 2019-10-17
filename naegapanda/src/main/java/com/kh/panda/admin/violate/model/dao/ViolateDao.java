@@ -17,7 +17,7 @@ public class ViolateDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public int getListCount() {
-		return sqlSession.selectOne("violteMapper.getListCount");
+		return sqlSession.selectOne("violateMapper.getListCount");
 	}
 	
 	public ArrayList<Violate> selectList(PageInfo pi){
