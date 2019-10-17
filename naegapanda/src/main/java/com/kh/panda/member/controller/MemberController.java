@@ -1,11 +1,8 @@
 package com.kh.panda.member.controller;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.panda.member.model.service.MemberService;
 import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.seller.model.service.SellerService;
 
 @SessionAttributes("loginUser")
 @Controller 
@@ -24,6 +22,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private SellerService sService;
 	
 
 	
@@ -179,9 +180,11 @@ public class MemberController {
 			if(result > 0) { // 존재하는 아이디 있음 --> 사용 불가능 "fail"
 				return "fail";
 			}else { // 존재하는 아이디 없음 --> 사용 가능 "ok"
-				return "ok";
+				if(sService.idCheck(id)<=0) {
+					return "ok";
+				}
+				return "fail";
 			}
-			
 		}
 
 }
