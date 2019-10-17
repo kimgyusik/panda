@@ -48,6 +48,18 @@
 											
 										</ul>
 									</li>
+									
+									<c:if test="${ empty loginSeller && empty loginUser }">
+										<li>
+											<a href="sProduct.do">My Page<i class="fas fa-chevron-down"></i></a>
+												<ul>
+													<li><a href="sProduct.do">상품관리</a></li>
+													<li><a href="sPage.do">정보수정</a></li>
+													<li><a href="streaming.do">방송관리</a></li>
+												</ul>
+										</li>
+									</c:if>
+									
 
 									<!-- 판매자가 로그인 했을때 보이는 MyPage -->
 									<c:if test="${ !empty loginSeller }">
@@ -56,7 +68,7 @@
 											<ul>
 												<li><a href="sProduct.do">상품관리</a></li>
 												<li><a href="sPage.do">정보수정</a></li>
-												<li><a href="#">방송관리</a></li>
+												<li><a href="streaming.do">방송관리</a></li>
 											</ul>
 									</li>
 									</c:if>
@@ -65,12 +77,18 @@
 								</ul>
 							</div>
 							<div class="top_bar_user">
-							<c:if test="${ !empty sessionScope.loginSeller }">
-							<h6 align="right">
-							<c:out value="${ loginSeller.sName }님 환영합니다."/>
-							<button onclick="location.href='sLogout.do';">로그아웃</button>
-							</h6>
+								<c:if test="${ empty sessionScope.loginUser && empty sessionScope.loginSeller }">
+									<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
+									<div><a href="join.do">회원가입</a></div>
+									<div><a href="sellerLogin.do">판매자로그인</a></div>
 							</c:if>
+							<c:if test="${ !empty sessionScope.loginSeller }">
+								<h6 align="right">
+								<c:out value="${ loginSeller.sName }님 환영합니다."/> &nbsp;&nbsp;&nbsp;
+								<a href="sLogout.do">로그아웃</a>
+								</h6>
+							</c:if>
+							
 							</div>
 						</div>
 					</div>
@@ -119,7 +137,7 @@
 									<li><a href="sProduct.do">상품리스트</a></li>
 									<li><a href="pInsert.do">상품등록</a></li>
 									<li><a href="oderPage.do">주문목록관리</a></li>
-									<li><a href="Streaming.do">방송관리</a></li>
+									<li><a href="streaming.do">방송관리</a></li>
 									<li><a href="sPage.do">정보수정?</a></li>
 								</ul>
 							</div>

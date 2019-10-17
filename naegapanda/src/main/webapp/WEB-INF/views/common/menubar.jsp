@@ -103,21 +103,20 @@
 							<form action="login.do" method="post">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
 								<div><a href="join.do">회원가입</a></div>
-								<div><a href="allLogin.do">로그인</a></div>/
-								<div><a href="sellerLogin.do">판매자로그인</a></div>	
+								<div><a href="allLogin.do">회원</a></div> /
+								<div><a href="sellerLogin.do">판매자 로그인</a></div>	
 							</form>
 							</c:if>
 							<c:if test="${ !empty sessionScope.loginUser}">
 							<h6 align="right">
-							<c:out value="${ loginUser.name }님 환영합니다."/>
-							<!-- <button onclick="location.href='myInfo.do';">정보수정</button> -->
-							<button onclick="location.href='logout.do';">로그아웃</button>
+							<c:out value="${ loginUser.name }님 환영합니다."/> &nbsp;&nbsp;&nbsp;
+							<a href="logout.do">로그아웃</a>
 							</h6>
 							</c:if>
 							<c:if test="${ !empty sessionScope.loginSeller }">
 							<h6 align="right">
-							<c:out value="${ loginSeller.sName }님 환영합니다."/>
-							<button onclick="location.href='sLogout.do';">로그아웃</button>
+							<c:out value="${ loginSeller.sName }님 환영합니다."/> &nbsp;&nbsp;&nbsp;
+							<a href="sLogout.do">로그아웃</a>
 							</h6>
 							</c:if>
 							</div>

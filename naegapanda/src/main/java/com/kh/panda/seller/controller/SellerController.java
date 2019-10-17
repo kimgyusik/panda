@@ -129,5 +129,10 @@ public class SellerController {
 		  return "seller/product/oderProductForm";
 	  }
 	 
+	  // 방송관리
+	  @RequestMapping("streaming.do")
+	  public String sellerStreaming() {
+		  return "seller/sellerStreamingForm";
+	  }
 
 }
