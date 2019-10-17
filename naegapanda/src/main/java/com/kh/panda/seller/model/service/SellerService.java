@@ -9,5 +9,7 @@ public interface SellerService {
 
 	// 2. 판매자 로그인
 	Seller loginSeller(Seller s);
+	
+	int idCheck(String sId);
 
 }

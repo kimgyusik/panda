@@ -26,4 +26,9 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.loginSeller(s);
 	}
 
+	@Override
+	public int idCheck(String sId) {
+		return sDao.idCheck(sId);
+	}
+
 }
