@@ -87,7 +87,7 @@ public class SellerController {
 	
 
 	  // 로그인
-	  @RequestMapping(value="", method=RequestMethod.POST) 
+	  @RequestMapping(value="sLogin.do", method=RequestMethod.POST) 
 	  public String loginSeller(Seller s, Model model) {
 	  
 	  Seller loginSeller = sService.loginSeller(s);
@@ -102,6 +102,13 @@ public class SellerController {
 	  model.addAttribute("msg", "로그인 실패"); return "common/errorPage"; }
 	  
 	  }
+	  
+	  @RequestMapping("sellerLogin.do")
+	  public String sellerLogin() {
+		  
+		  return "seller/sellerLoginForm";
+	  }
+	  
 	 
 	 
 

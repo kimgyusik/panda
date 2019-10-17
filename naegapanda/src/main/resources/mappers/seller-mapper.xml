@@ -30,6 +30,12 @@
 									#{storeName}, #{sCeoName}, #{state}, #{sector}, #{sbAddress}, #{sbPhone}, default, default)
 	</insert>
 
+	<!-- 로그인 -->
+	<select id="loginSeller" parameterType="Seller" resultMap="sellerResultSet">
+		select *
+		from seller
+		where s_id=#{sId} and s_status='Y'
+	</select>
 
 
 </mapper>
