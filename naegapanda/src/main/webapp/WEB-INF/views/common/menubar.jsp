@@ -93,6 +93,7 @@
 											</ul>
 									</li>
 									</c:if>
+									
 								</ul>
 							</div>
 							<div class="top_bar_user">
