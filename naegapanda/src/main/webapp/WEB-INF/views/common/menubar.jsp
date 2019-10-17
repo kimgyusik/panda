@@ -92,6 +92,7 @@
 												<li><a href="#">정보수정</a></li>
 											</ul>
 									</li>
+									</c:if>
 									
 								</ul>
 							</div>

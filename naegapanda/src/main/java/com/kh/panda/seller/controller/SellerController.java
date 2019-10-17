@@ -86,7 +86,7 @@ public class SellerController {
 	}
 	
 
-		// 로그인
+	  // 로그인
 	  @RequestMapping(value="", method=RequestMethod.POST) 
 	  public String loginSeller(Seller s, Model model) {
 	  
