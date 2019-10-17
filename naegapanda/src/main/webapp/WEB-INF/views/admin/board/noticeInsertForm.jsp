@@ -73,61 +73,24 @@
 
 	<div class="super_container">
 
-		<c:import url="../../common/menubar.jsp" />
+	<c:import url="../../common/menubar.jsp"/> 
 
+	<c:import url="../../common/admin.jsp"/> 
+	
+	</div>
 
-		<!-- Home -->
-
-		<div class="home">
-			<div class="home_background parallax-window" data-parallax="scroll"
-				data-image-src="resources/images/shop_background.jpg"></div>
-			<div class="home_overlay"></div>
-			<div
-				class="home_content d-flex flex-column align-items-center justify-content-center">
-				<h2 class="home_title" style="font-weight: bold;">고객센터</h2>
-			</div>
-		</div>
-
-		<!-- Shop -->
-
-		<div class="shop">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3">
-
-						<!-- Shop Sidebar -->
-						<div class="shop_sidebar">
-							<div class="sidebar_section">
-								<div class="sidebar_title">Categories</div>
-								<ul class="sidebar_categories">
-									<li><a href="#">Computers & Laptops</a></li>
-									<li><a href="#">Cameras & Photos</a></li>
-									<li><a href="#">Hardware</a></li>
-									<li><a href="#">Smartphones & Tablets</a></li>
-									<li><a href="#">TV & Audio</a></li>
-									<li><a href="#">Gadgets</a></li>
-									<li><a href="#">Car Electronics</a></li>
-									<li><a href="#">Video Games & Consoles</a></li>
-									<li><a href="#">Accessories</a></li>
-								</ul>
-							</div>
-
-						</div>
-
-					</div>
 
 					<div class="col-lg-7">
 
 						<h2>PANDA 공지사항</h2>
-						&nbsp;
-						&nbsp;
+						<br><br>
 
 						<form encType="multipart/form-data" method="post" action="ninsert.do">
 
 							<div class="mb-3">
 
-								<label for="title">제목</label> <input type="text"
-									class="form-control" name="title" id="title"
+								<label for="title">제목</label> 
+								<input type="text" class="form-control" name="nTitle" id="title"
 									placeholder="제목을 입력해 주세요">
 
 							</div>
@@ -137,7 +100,7 @@
 
 								<label for="content">내용</label>
 
-								<textarea class="form-control" rows="8" name="content"
+								<textarea class="form-control" rows="8" name="nContent"
 									id="content" placeholder="내용을 입력해 주세요" style="resize:none;"></textarea>
 
 							</div>
@@ -146,8 +109,8 @@
 
 							<div class="mb-3">
 
-								<label for="file">첨부파일</label> <input type="file"
-									name="upladFile">
+								<label for="file">첨부파일</label> 
+								<input type="file" name="upladFile">
 
 							</div>
 
@@ -166,13 +129,6 @@
 
 					</div>
 
-
-
-
-
-
-
-
 				</div>
 			</div>
 
@@ -181,90 +137,9 @@
 
 
 
+	<c:import url="../../common/adminFooter.jsp"/> 
+	<c:import url="../../common/footer.jsp"/>
 
-		<!-- Brands -->
-
-		<div class="brands">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="brands_slider_container">
-
-							<!-- Brands Slider -->
-
-							<div class="owl-carousel owl-theme brands_slider">
-
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_1.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_2.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_3.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_4.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_5.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_6.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_7.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_8.jpg" alt="">
-									</div>
-								</div>
-
-							</div>
-
-							<!-- Brands Slider Navigation -->
-							<div class="brands_nav brands_prev">
-								<i class="fas fa-chevron-left"></i>
-							</div>
-							<div class="brands_nav brands_next">
-								<i class="fas fa-chevron-right"></i>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-	</div>
-
-
-	<c:import url="../../common/footer.jsp" />
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
 	<script src="resources/style/bootstrap4/popper.js"></script>

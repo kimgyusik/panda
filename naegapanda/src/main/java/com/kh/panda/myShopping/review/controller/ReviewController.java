@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
 import com.kh.panda.myShopping.review.model.vo.Commend;
 import com.kh.panda.myShopping.review.model.vo.Reply;

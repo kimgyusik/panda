@@ -23,9 +23,10 @@ public class InquiryController {
 	private InquiryService inService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getId();
+		return ((Member)session.getAttribute("loginUser")).getMno();
 	}
 	
+	// 내 문의 리스트 조회
 	@RequestMapping("myInquiryList.in")
 	public ModelAndView selectMyInquiryList(ModelAndView mv, HttpSession session) {
 		
@@ -37,6 +38,7 @@ public class InquiryController {
 		return mv;
 	}
 	
+	// 문의 추가 처리
 	@ResponseBody
 	@RequestMapping("addInquiry.in")
 	public String addInquiry(Inquiry i, HttpSession session) {
@@ -53,6 +55,7 @@ public class InquiryController {
 		
 	}
 	
+	// 문의 삭제 처리
 	@ResponseBody
 	@RequestMapping("deleteInquiry.in")
 	public String deleteInquiry(int iId) {
@@ -67,6 +70,7 @@ public class InquiryController {
 		
 	}
 	
+	// 문의 수정 처리
 	@ResponseBody
 	@RequestMapping("updateInquiry.in")
 	public String updateInquiry(HttpSession session, Inquiry i) {
@@ -86,7 +90,7 @@ public class InquiryController {
 	
 	// ----------------------------------------------  판매자 처리 기능 ---------------------------------------------
 	
-	
+	// 상품 문의 리스트 조회
 	@RequestMapping("prodInquiryList.in")
 	public ModelAndView selectprodInquiryList(ModelAndView mv, int pId) {
 		
@@ -98,6 +102,7 @@ public class InquiryController {
 		return mv;
 	}
 	
+	// 문의 답변 등록 처리
 	@ResponseBody
 	@RequestMapping("answerInquiry.in")
 	public String answerInquiry(HttpSession session, Inquiry i) { // 인풋: 문의번호, 답변내용
@@ -112,6 +117,7 @@ public class InquiryController {
 		
 	}
 	
+	// 문의 답변 수정 처리
 	@ResponseBody
 	@RequestMapping("updateAnswerInquiry.in")
 	public String updateAnswerInquiry(HttpSession session, Inquiry i) {

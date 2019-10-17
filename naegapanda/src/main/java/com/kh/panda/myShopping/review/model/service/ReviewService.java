@@ -2,7 +2,7 @@ package com.kh.panda.myShopping.review.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.panda.myShopping.review.controller.Payment;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.myShopping.review.model.vo.Commend;
 import com.kh.panda.myShopping.review.model.vo.Reply;
 import com.kh.panda.myShopping.review.model.vo.Review;
