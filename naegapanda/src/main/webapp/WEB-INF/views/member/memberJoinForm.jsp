@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<td>생일</td>
-					<td><input type="text" min="20" max="100" name="birthdate"></td>
+					<td><input type="text" min="20" max="100" name="birthDate"></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
