@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="resources/style/main_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/responsive.css">
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <style>
@@ -24,6 +25,12 @@
 	.cat_menu_container ul{
 		visibility: hidden;
 		opacity: 0;
+	}
+	
+	.logo:hover{
+	
+	cursor: pointer;
+	
 	}
 </style>
 
@@ -70,7 +77,7 @@
 													<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a href="#">회원쪽에서 설정해주세요</a></li>
-														<li><a href="#">정보수정</a></li>
+														<li><a href="myInfo.do">정보수정</a></li>
 													</ul>
 												</li>
 											</c:if>
@@ -88,6 +95,8 @@
 									</li>
 									</c:if>
 									
+									<li><a href="sellerLogin.do">판매자로그인</a></li>
+									
 								</ul>
 							</div>
 							<div class="top_bar_user">
@@ -101,7 +110,7 @@
 							<c:if test="${ !empty sessionScope.loginUser }">
 							<h6 align="right">
 							<c:out value="${ loginUser.name }님 환영합니다."/>
-							<button onclick="location.href='myInfo.do';">정보수정</button>
+							<!-- <button onclick="location.href='myInfo.do';">정보수정</button> -->
 							<button onclick="location.href='logout.do';">로그아웃</button>
 							</h6>
 							</c:if>
@@ -121,7 +130,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><img src="resources/images/pandaLogo.gif"onclick="location.href='home.do';"></div>
+							<div class="logo"><img src="resources/images/pandaLogo.gif"onclick="location.href='home.do';" ></div>
 						</div>
 					</div>
 
