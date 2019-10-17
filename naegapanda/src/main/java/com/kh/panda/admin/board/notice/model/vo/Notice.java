@@ -10,15 +10,16 @@ public class Notice {
 	private int nCount;
 	private Date nCreateDate;
 	private Date nModifyDate;
-	private String nFileName;
+	private String nOriginalFileName;
+	private String nRenameFileName;
 	private String nStatus;
 	
 	public Notice() {
 		
 	}
-	
+
 	public Notice(int nId, String nTitle, String nContent, int nCount, Date nCreateDate, Date nModifyDate,
-			String nFileName, String nStatus) {
+			String nOriginalFileName, String nRenameFileName, String nStatus) {
 		super();
 		this.nId = nId;
 		this.nTitle = nTitle;
@@ -26,7 +27,8 @@ public class Notice {
 		this.nCount = nCount;
 		this.nCreateDate = nCreateDate;
 		this.nModifyDate = nModifyDate;
-		this.nFileName = nFileName;
+		this.nOriginalFileName = nOriginalFileName;
+		this.nRenameFileName = nRenameFileName;
 		this.nStatus = nStatus;
 	}
 
@@ -78,12 +80,20 @@ public class Notice {
 		this.nModifyDate = nModifyDate;
 	}
 
-	public String getnFileName() {
-		return nFileName;
+	public String getnOriginalFileName() {
+		return nOriginalFileName;
 	}
 
-	public void setnFileName(String nFileName) {
-		this.nFileName = nFileName;
+	public void setnOriginalFileName(String nOriginalFileName) {
+		this.nOriginalFileName = nOriginalFileName;
+	}
+
+	public String getnRenameFileName() {
+		return nRenameFileName;
+	}
+
+	public void setnRenameFileName(String nRenameFileName) {
+		this.nRenameFileName = nRenameFileName;
 	}
 
 	public String getnStatus() {
@@ -97,9 +107,10 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [nId=" + nId + ", nTitle=" + nTitle + ", nContent=" + nContent + ", nCount=" + nCount
-				+ ", nCreateDate=" + nCreateDate + ", nModifyDate=" + nModifyDate + ", nFileName=" + nFileName
-				+ ", nStatus=" + nStatus + "]";
+				+ ", nCreateDate=" + nCreateDate + ", nModifyDate=" + nModifyDate + ", nOriginalFileName="
+				+ nOriginalFileName + ", nRenameFileName=" + nRenameFileName + ", nStatus=" + nStatus + "]";
 	}
+	
 	
 	
 	

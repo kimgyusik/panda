@@ -9,7 +9,8 @@
 		<result property="nCount" column="n_count" />
 		<result property="nCreateDate" column="n_create_date" />
 		<result property="nModifyDate" column="n_modify_date" />
-		<result property="nFileName" column="n_file_name" />
+		<result property="nOriginalFileName" column="n_original_filename" />
+		<result property="nRenameFileName" column="n_rename_filename" />
 		<result property="nStatus" column="n_status" />
 	</resultMap>
 	
@@ -22,8 +23,13 @@
 	<select id="selectList" resultMap="noticeResultSet">
 		select *
 		from notice
-		where n_status='Y'
+		where n_status='N'
 		order by n_id desc
 	</select>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		insert into notice
+		values(notice_seq.nextval, #{nTitle}, #{nContent}, default, sysdate, sysdate, #{nOriginalFileName}, #{nRenameFileName}, defauㅣt)
+	</insert>
 
 </mapper>

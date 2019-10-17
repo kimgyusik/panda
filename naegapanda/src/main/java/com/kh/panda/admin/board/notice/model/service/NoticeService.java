@@ -14,5 +14,8 @@ public interface NoticeService {
 	int getListCount();
 	// 1_2. 공지사항 리스트 조회
 	ArrayList<Notice> selectList(PageInfo pi);
+	
+	// 2. 공지 작성
+	int insertNotice(Notice n);
 
 }
