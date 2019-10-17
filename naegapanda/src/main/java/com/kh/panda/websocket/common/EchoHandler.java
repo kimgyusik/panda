@@ -50,14 +50,15 @@ private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
               
 
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-        
+        String user = ((Member)(session.getAttributes().get("loginUser"))).getName();   //getId();
+        	
         for(WebSocketSession sess : sessionList){
            if(session.getAttributes().get("bId") == null) {   // 방에 안들어왔으면
+        	   sess.sendMessage(new TextMessage("----- "+user+" 님이 입장하셨습니다-----");// 아이디 : 메세지 내용 출력              
               
               if(session.getId().equals(sess.getId())) {      // 보낸사람 id와 보내야되는 사람 id 가 같을때
                  sess.sendMessage(new TextMessage("나:"+ message.getPayload()));   // 나 : 메세지 내용 출력
               }else {                                 // 다를때
-            	  String user = ((Member)(session.getAttributes().get("loginUser"))).getName();   //getId();
                  sess.sendMessage(new TextMessage(user+":"+ message.getPayload()));// 아이디 : 메세지 내용 출력              
               }
               
