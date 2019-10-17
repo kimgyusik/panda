@@ -35,6 +35,40 @@
 		    flex-direction: column;
 		}
 		
+		/* 라디오버튼 영역 */   
+	.switch-contents {
+	  padding: 1em;
+	  text-align: center;
+	}
+	input[name="layout"] {
+	  display: none;
+	}
+	label {
+	  display: inline-block;
+	  margin: 0 1em;
+	  font-size: 1.2rem;
+	  font-family: 'Open Sans', sans-serif;
+	  font-weight: 300;
+	  cursor: pointer;
+	}
+	label:hover {
+	  border-bottom: 2px solid #000;
+	}
+	input[name="layout"]:checked + label {
+	  border-bottom: 2px solid #3498db;
+	  cursor: default;
+	}
+	ul {
+	  margin: 0;
+	  padding: 1em 0 0;
+	  list-style: none;
+	  text-align: left;
+	}
+	ul li {
+	  min-height: 200px;
+	  background: #3498db;
+	}
+		
 </style>
 </head>
 <body>
@@ -63,30 +97,60 @@
         </svg>
 	  
 		
-		<div class="container">	
+			 	<div class="container">	
 		
-			 	
-		 			<table id="loginTable" style="text-algin:center">
-					<tr>
-						<td>아이디</td>
-						<td><input type="text" name="id" required></td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" name="pwd" required></td>
-					</tr>
-					<tr>
-						<td colspan="3">
-							<p>
-							<a href="enrollView.do">회원가입</a> 
-							<a href="">아이디/비밀번호찾기</a>
-							</p>
-							<button id="loginBtn">L o g i n</button>
-						</td>
-					</tr>
-					
-					
-				</table>
+			<div class="switch-contents">
+			  <input id="layout-single" type="radio" name="layout" checked value="user"><label for="layout-single">일반회원</label>
+			  <input id="layout-column" type="radio" name="layout" value="seller"><label for="layout-column">판매자</label>
+			</div>
+			
+			<c:choose>
+				<c:when test="${value eq user}">
+					<table id="loginTable" style="text-algin:center">
+						<tr>
+							<td>아이디</td>
+							<td><input type="text" name="id" required></td>
+						</tr>
+						<tr>
+							<td>비밀번호</td>
+							<td><input type="password" name="pwd" required></td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<p>
+								<a href="enrollView.do">회원가입</a> 
+								<a href="">아이디/비밀번호찾기</a>
+								</p>
+								<button id="loginBtn">로그인</button>
+							</td>
+						</tr>
+					</table>
+				</c:when>
+			
+				<c:when test="${value eq seller}">
+					<table id="loginTable" style="text-algin:center">
+						<tr>
+							<td>아이디</td>
+							<td><input type="text" name="id" required></td>
+						</tr>
+						<tr>
+							<td>비밀번호</td>
+							<td><input type="password" name="pwd" required></td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<p>
+								<a href="enrollView.do">회원가입</a> 
+								<a href="">아이디/비밀번호찾기</a>
+								</p>
+								<button id="loginBtn">로그인</button>
+							</td>
+						</tr>
+					</table>
+				</c:when>
+			</c:choose>
+
+
    				
 			   	<div id="indexBtn" class="center">
 					<button id="visual-btn" onclick="location.href='home.do';">처음으로</button>
