@@ -37,7 +37,7 @@ public class NoticeController {
 		
 		ArrayList<Notice> list = nService.selectList(pi);
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/board/noticeListView");
 		
@@ -54,7 +54,8 @@ public class NoticeController {
 	public String inserNotice(Notice n, HttpServletRequest request, Model model,
 						     @RequestParam(name="uploadFile", required=false) MultipartFile file) {
 		
-		System.out.println( );
+		System.out.println(n);
+		System.out.println(file.getOriginalFilename());
 		
 		if(!file.getOriginalFilename().equals("")) { // 첨부파일이 넘어온 경우
 			
