@@ -89,6 +89,7 @@
 	
 						<div class="bs-example">
 							<table class="table table-hover" align="center" cellspacing="0" >
+								<h3 style="font-weight:bold;">PANDA 공지</h3><br>
 								<thead align="center">
 									<tr>
 										<th>No.</th>

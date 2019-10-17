@@ -28,5 +28,10 @@
 		<property name="maxUploadSize" value="100000000" />
 		<property name="maxInMemorySize" value="100000000" />
 	</bean>
+	
+	<!-- Multipar 관련된 빈 등록  파일 업로드 시 사용 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	
+	</bean>
 		
 </beans>
