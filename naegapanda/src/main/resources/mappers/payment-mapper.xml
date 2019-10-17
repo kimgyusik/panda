@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="paymentMapper">
+
+	<resultMap id="paymentResultSet" type="Payment">
+		<id property="payId" column="pay_id"/>
+		<result property="mNo" column="m_no"/>
+		<result property="pId" column="p_id"/>
+		<result property="price" column="price"/>
+		<result property="pStatus" column="p_status"/>
+		<result property="deliverySpot" column="delivery_spot"/>
+		<result property="payRequest" column="pay_request"/>
+		<result property="payDate" column="pay_date"/>
+		<result property="count" column="count"/>
+		<result property="deliveryStatus" column="delivery_status"/>
+		<result property="recipient" column="recipient"/>
+		<result property="recipientPhone" column="recipient_phone"/>
+		<result property="pName" column="p_name"/>
+		<result property="pContent" column="p_content"/>
+		<result property="cId" column="c_id"/>
+		<result property="cName" column="c_name"/>
+		<result property="cName2" column="c_name2"/>
+		<result property="sNo" column="s_no"/>
+		<result property="storeName" column="store_name"/>
+		<result property="sBaddress" column="s_baddress"/>
+		<result property="sBphone" column="s_bphone"/>
+	</resultMap>
+
+	<select id="myPaymentList" parameterType="_int" resultMap="paymentResultSet">
+		select pay_id, m_no, p_id, price, p_status, delivery_spot, pay_request, pay_date, count, delivery_status
+		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, store_name, s_baddress, s_bphone
+		from payment
+		join product using(p_id)
+		join category using(c_id)
+		join seller using(s_no)
+		where m_no = #{mNo} and 
+	</select>
+	
+	<insert id="addPayment" parameterType="Payment">
+		insert into payment
+		values (payment_seq.nextval, #{mNo}, #{pId}, #{price}, default, #{deliverySpot}, #{payRequest}, default, #{count}, default, #{recipient}, #{recipientPhone})
+	</insert>
+	
+	<update id="fixPayment" parameterType="_int">
+		update payment
+		set DELIVERY_STATUS = '구매확정'
+		where pay_id = #{payId}
+	</update>
+	
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

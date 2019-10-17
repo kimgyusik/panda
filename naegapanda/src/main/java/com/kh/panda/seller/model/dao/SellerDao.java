@@ -25,4 +25,9 @@ public class SellerDao {
 		return sqlSession.selectOne("sellerMapper.loginSeller", s);
 	}
 
+
+	public int idCheck(String sId) {
+		return sqlSession.selectOne("sellerMapper.idCheck", sId);
+	}
+
 }

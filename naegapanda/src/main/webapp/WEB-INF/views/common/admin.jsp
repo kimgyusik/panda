@@ -59,7 +59,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 		<!-- Shop Sidebar -->
-					<div class="shop_sidebar">
+					<div class="shop_sidebar" style="width:100px;margin:0;'">
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
@@ -67,7 +67,7 @@
 								<li><a href="#">QnA</a></li>
 								<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 									<li><a href="#">판매관리</a></li>
-									<li><a href="test.do">신고관리</a></li>
+									<li><a href="testView.do">신고관리</a></li>
 								</c:if>
 							</ul>
 						</div>

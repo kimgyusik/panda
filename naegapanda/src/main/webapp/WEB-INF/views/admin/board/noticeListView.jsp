@@ -43,30 +43,30 @@
 
 <body>
 
-<div class="super_container">
-
-	<c:import url="../../common/menubar.jsp"/> 
-
-	<c:import url="../../common/admin.jsp"/> 
+	<div class="super_container">
 	
-</div>
+		<c:import url="../../common/menubar.jsp"/> 
+	
+		<c:import url="../../common/admin.jsp"/> 
+		
+	</div>
 	
 	
-						<div class="bs-example">
-							<table class="table table-hover" align="center" cellspacing="0" >
-								<h3 style="font-weight:bold;">PANDA 공지</h3><br>
-								<thead align="center">
-									<tr>
-										<th>No.</th>
-										<th width="300">제목</th>
-										<th width="180">날짜</th>
-										<th>조회수</th>
-										<th>첨부파일</th>
-									</tr>
-								</thead>
-								<tbody>
+	<div class="bs-example">
+		<table class="table table-hover" align="center" cellspacing="0" >
+			<h3 style="font-weight:bold;">PANDA 공지</h3><br>
+				<thead align="center">
+					<tr>
+						<th>No.</th>
+						<th width="300">제목</th>
+						<th width="180">날짜</th>
+						<th>조회수</th>
+						<th>첨부파일</th>
+					</tr>
+				</thead>
+					<tbody>
 								
-									<c:forEach items="${ list }" var="n">
+						<c:forEach items="${ list }" var="n">
 									
 										<tr>
 											<td align="center">${ n.nId }</td>
@@ -94,9 +94,8 @@
 										</tr>
 									</c:forEach>
 									
-								</tbody>					
-							</table>
-						</div>
+					</tbody>					
+				</table>
 			</div>
 		</div>
 
@@ -146,38 +145,7 @@
 		
 	</div>
 	
-	<!-- Brands -->
 
-	<div class="brands">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="brands_slider_container">
-						
-						<!-- Brands Slider -->
-
-						<div class="owl-carousel owl-theme brands_slider">
-							
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_1.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_2.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_3.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_4.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_5.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_6.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_7.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_8.jpg" alt=""></div></div>
-
-						</div>
-						
-						<!-- Brands Slider Navigation -->
-						<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-						<div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 

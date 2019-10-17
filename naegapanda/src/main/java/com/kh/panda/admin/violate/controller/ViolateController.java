@@ -43,8 +43,8 @@ public class ViolateController {
 		
 		ArrayList<Violate> list = vService.selectList(pi);
 		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView.jsp");
-		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView");
+		// 객체                                                                                         경로로반환한거당
 		return mv;
 		
 	}
@@ -82,7 +82,7 @@ public class ViolateController {
 	
 	
 public String saveFile(MultipartFile file, HttpServletRequest request) {
-		
+												//session을 쓰려구
 		// 파일이 저장될 경로 설정
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\vUpload";
@@ -133,12 +133,39 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 		 return "admin/violate/FinishViolateView";
 	 }
 	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	
-		@RequestMapping("temp.do")
-		public String ViolateListView() {
-			return "admin/violate/ViolateListView2";
-		}
+	/*
+	 * @RequestMapping("testView.do") public String ViolateListView() { return
+	 * "admin/violate/ViolateListView2"; }
+	 */
 		
+		
+		@RequestMapping("testView.do")
+		public ModelAndView tselectList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+			int listCount = vService.getListCount();
+
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			ArrayList<Violate> list = vService.selectList(pi);
+			
+			System.out.println("list:" + list);
+			System.out.println("listcount:" + listCount);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView2");
+			// 객체                                                                                         경로로반환한거당
+			return mv;
+			
+		}
 	
 
 }

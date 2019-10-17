@@ -24,7 +24,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -32,8 +31,6 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
-		//INSERT INTTO MEMBER VALUES (MEMBER_SEQ.NEXTVAL, 'admin', 'admin', '관리자', '2000/1/1', 'M', 'admin@panda.com', '010-1234-4567', 'KH정보교육원', DEFAULT, DEFAULT, DEFAULT);
 		
 		return "home";
 	}
