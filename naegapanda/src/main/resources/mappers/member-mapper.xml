@@ -5,18 +5,18 @@
 <mapper namespace="memberMapper">
 
 	<resultMap id="memberResultSet" type="Member">
-		<id property="mno" column="m_no"/>
+		<id property="mNo" column="m_no"/>
 		<result property="id" column="m_id"/>
 		<result property="pwd" column="m_pwd"/>
 		<result property="name" column="m_name"/>
-		<result property="birthdate" column="birth_date"/>
+		<result property="birthDate" column="birth_date"/>
 		<result property="gender" column="gender"/>
 		<result property="email" column="email"/>
 		<result property="phone" column="phone"/>
 		<result property="address" column="address"/>
-		<result property="joindate" column="join_date"/>
-		<result property="dropyn" column="drop_yn"/>
-		<result property="blackcode" column="black_code"/>
+		<result property="joinDate" column="join_date"/>
+		<result property="dropYn" column="drop_yn"/>
+		<result property="blackCode" column="black_code"/>
 	</resultMap>
 
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
@@ -27,13 +27,13 @@
 	
 	<insert id="insertMember" parameterType="Member">
 		insert into member
-		values(member_seq.nextval, #{id}, #{pwd}, #{name}, #{birthdate}, #{gender}, #{email},
+		values(member_seq.nextval, #{id}, #{pwd}, #{name}, #{birthDate}, #{gender}, #{email},
 			   #{phone}, #{address}, default, default, default)
 	</insert>
 	
 	<update id="updateMember" parameterType="Member">
 		update member
-		set email=#{email}, gender=#{gender}, birth_date=#{birthdate}, phone=#{phone}, address=#{address}
+		set email=#{email}, gender=#{gender}, birth_date=#{birthDate}, phone=#{phone}, address=#{address}
 		where m_id=#{id}
 	</update>
 	

@@ -49,7 +49,7 @@
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td><input type="number" min="20" max="100" name="birthdate" value="${ loginUser.birthdate }"></td>
+					<td><input type="number" min="20" max="100" name="birthDate" value="${ loginUser.birthDate }"></td>
 				</tr>
 				<tr>
 					<td>이메일</td>

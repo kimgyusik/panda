@@ -44,47 +44,12 @@
 <body>
 
 <div class="super_container">
+
+	<c:import url="../../common/menubar.jsp"/> 
+
+	<c:import url="../../common/admin.jsp"/> 
 	
-	<c:import url="../../common/menubar.jsp"/>
-	
-	
-	<!-- Home -->
-
-	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="resources/images/shop_background.jpg"></div>
-		<div class="home_overlay"></div>
-		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title" style="font-weight:bold;">고객센터</h2>
-		</div>
-	</div>
-
-	<!-- Shop -->
-
-	<div class="shop">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-
-					<!-- Shop Sidebar -->
-					<div class="shop_sidebar">
-						<div class="sidebar_section">
-							<div class="sidebar_title">Categories</div>
-							<ul class="sidebar_categories">
-								<li><a href="#">Computers & Laptops</a></li>
-								<li><a href="#">Cameras & Photos</a></li>
-								<li><a href="#">Hardware</a></li>
-								<li><a href="#">Smartphones & Tablets</a></li>
-								<li><a href="#">TV & Audio</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Car Electronics</a></li>
-								<li><a href="#">Video Games & Consoles</a></li>
-								<li><a href="#">Accessories</a></li>
-							</ul>
-						</div>
-						
-					</div>
-
-					</div>
+</div>
 	
 	
 						<div class="bs-example">
@@ -129,19 +94,12 @@
 										</tr>
 									</c:forEach>
 									
-								</tbody>
-								
-								
-								
+								</tbody>					
 							</table>
 						</div>
-						
-						
-					
-	
 			</div>
 		</div>
-		
+
 		<div align="center">
 					
 										<!-- [이전] -->	
@@ -188,10 +146,6 @@
 		
 	</div>
 	
-					
-
-
-
 	<!-- Brands -->
 
 	<div class="brands">
@@ -226,9 +180,8 @@
 	</div>
 
 
-	
-</div>
 
+<c:import url="../../common/adminFooter.jsp"/> 
 <c:import url="../../common/footer.jsp"/>
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
