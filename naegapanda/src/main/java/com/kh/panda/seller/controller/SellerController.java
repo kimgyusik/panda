@@ -79,7 +79,7 @@ public class SellerController {
 	  if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
 	  loginSeller.getsPwd())) {
 	  
-	  model.addAttribute("loginSeller", loginSeller); return "redirect:home.do";
+	  model.addAttribute("loginSeller", loginSeller); return "redirect:sProduct.do";
 	  
 	  }else {
 	  
@@ -105,12 +105,34 @@ public class SellerController {
 		  
 	  }
 	  
-	  // 셀러 마이페이지
-	  @RequestMapping("sellerPage.do")
-	  public String sellerPage() {
-		  return "seller/product/sellerProduct";
+	  // 셀러상품관리페이지
+	  @RequestMapping("sProduct.do")
+	  public String sellerProduct() {
+		  return "seller/product/sellerProductForm";
 	  }
 	 
+	  // 셀러페이지(정보수정)
+	  @RequestMapping("sPage.do")
+	  public String sellerPage() {
+		  return "seller/sellerInfo";
+	  }
+	  
+	  // 상품등록페이지
+	  @RequestMapping("pInsert.do")
+	  public String insertProduct() {
+		  return "seller/product/insertProductForm";
+	  }
+	  
+	  // 주문들어온 상품페이지
+	  @RequestMapping("oderPage.do")
+	  public String oderProduct() {
+		  return "seller/product/oderProductForm";
+	  }
 	 
+	  // 방송관리
+	  @RequestMapping("streaming.do")
+	  public String sellerStreaming() {
+		  return "seller/sellerStreamingForm";
+	  }
 
 }

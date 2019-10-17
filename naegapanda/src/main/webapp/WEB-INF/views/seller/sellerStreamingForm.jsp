@@ -5,19 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PANDA:방송관리</title>
 </head>
 <body>
-	
+
 	<c:import url="../common/sellerMenubar.jsp"/>
-	
-	<h1>
-	정보 수정하는 페이지
-	</h1>
-	
-	
-	
+
+	<h1>방송관리 페이지</h1>
+
 	<c:import url="../common/footer.jsp"/>
-	
+
 </body>
 </html>

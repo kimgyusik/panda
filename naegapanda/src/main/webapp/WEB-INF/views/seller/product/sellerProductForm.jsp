@@ -7,27 +7,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	#menu{
+		margin-left:20px;
+		margin-top:20px;
+	}
+	.logo{
+	cursor: pointer;
+	}
+</style>
 <body>
 
-<c:import url="../../common/menubar.jsp"/>
+<c:import url="../../common/sellerMenubar.jsp"/>
 
-	<div id="menu">
-		<ul>
-			<li><h4>판매자 페이지</h4></li>
-			<li><a href="sellerPage.do">상품관리</a></li>
-			<li><a href="#">정보수정</a></li>
-			<li><a href="#">방송관리</a></li>
-		</ul>
-	</div>
-	<div id="outer">
-		
-		
-		
-		
-		
-		
-		
-	</div>
+
+<h1>
+상품 리스트가 보여질 페이지
+이쪽에서 수정 삭제 가능하게??
+
+</h1>
+
+
+
+
+
+
+
 
 
 <c:import url="../../common/footer.jsp"/>
