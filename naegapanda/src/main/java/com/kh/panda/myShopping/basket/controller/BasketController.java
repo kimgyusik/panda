@@ -22,9 +22,10 @@ public class BasketController {
 	private BasketService baService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getId();
+		return ((Member)session.getAttribute("loginUser")).getMno();
 	}
 	
+	// 내 장바구니 조회
 	@RequestMapping("basketList.ba")
 	public ModelAndView selectbasketList(ModelAndView mv, HttpSession session) {
 		
@@ -39,7 +40,7 @@ public class BasketController {
 	}
 	
 	
-	// 삭제는 ajax로 처리하는게 좋은지 뷰단까지 만들어봐야 앎. 
+	// 장바구니 추가 처리
 	@ResponseBody
 	@RequestMapping("addBasket.ba")
 	public String addBasket(Basket b, HttpSession session) {
@@ -47,7 +48,7 @@ public class BasketController {
 		b.setmNo(getmNo(session));
 		
 		int result = baService.addBasket(b);
-		
+		// 삭제는 ajax로 처리하는게 좋은지 뷰단까지 만들어봐야 앎. 
 		if(result > 0 ) {
 			return "success";
 		}else {
@@ -56,6 +57,7 @@ public class BasketController {
 		
 	}
 	
+	// 장바구니 삭제 처리
 	@ResponseBody
 	@RequestMapping("deleteBasketList.ba")
 	public String deleteBasketList(HttpSession session, @RequestParam("arr") String[] arr) {

@@ -34,7 +34,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public Review selectReview(int rId) {
 		
-		reDao.countUp();
+		reDao.countUp(rId);
 		
 		return reDao.selectReview(rId);
 	}
