@@ -66,7 +66,7 @@
 									<!-- 로그인 안했을때 보이는 MyPage -->
 									<c:if test="${ empty loginUser && empty loginSeller }">
 										<li>
-										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>			
+										<a href="#" onclick="alert('로그인후 이용가능합니다');">My Page<i class="fas fa-chevron-down"></i></a>			
 										</li>
 									</c:if>
 
@@ -75,7 +75,7 @@
 									<c:if test="${ !empty loginUser }">
 											<c:if test="${ sessionScope.loginUser.id ne 'admin' }">
 												<li>
-													<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+													<a href="#" id="page">My Page<i class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a href="#">회원쪽에서 설정해주세요</a></li>
 														<li><a href="myInfo.do">정보수정</a></li>
@@ -88,10 +88,11 @@
 									<!-- 판매자가 로그인 했을때 보이는 MyPage -->
 									<c:if test="${ !empty loginSeller }">
 									<li>
-										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+										<a href="sellerPage.do">My Page<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="#">상품관리</a></li>
+												<li><a href="sellerPage.do">상품관리</a></li>
 												<li><a href="#">정보수정</a></li>
+												<li><a href="#">방송관리</a></li>
 											</ul>
 									</li>
 									</c:if>
@@ -416,7 +417,11 @@
 <script src="resources/plugins/slick-1.8.0/slick.js"></script>
 <script src="resources/plugins/easing/easing.js"></script>
 <script src="resources/js/custom.js"></script>
-
+<script>
+		$("#page").click(function(){
+			alert("로그인 후 이용해주세요");
+		});
+</script>
 
 
 </body>

@@ -104,6 +104,12 @@ public class SellerController {
 		  
 		  
 	  }
+	  
+	  // 셀러 마이페이지
+	  @RequestMapping("sellerPage.do")
+	  public String sellerPage() {
+		  return "seller/product/sellerProduct";
+	  }
 	 
 	 
 
