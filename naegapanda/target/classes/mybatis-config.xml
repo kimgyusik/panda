@@ -27,6 +27,7 @@
 		<mapper resource="mappers/basket-mapper.xml"/>
 		<mapper resource="mappers/inquiry-mapper.xml"/>
 		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/payment-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/violate-mapper.xml"/>
 		<mapper resource="mappers/seller-mapper.xml"/>

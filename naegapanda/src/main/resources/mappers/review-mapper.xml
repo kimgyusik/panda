@@ -104,7 +104,7 @@
 		values (#{rId}, #{mNo})
 	</insert>
 	
-	<select id="addAbleReview" parameterType="_int" resultMap="replyResultSet">
+	<select id="getReplyList" parameterType="_int" resultMap="replyResultSet">
 		select r_r_id, m_no, m_id, r_r_contents, r_r_date, r_r_del, r_id
 		from REVIEW_REPLY
 		join member using(m_no)
