@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<c:import url="../../common/sellerMenubar.jsp"/>
 	
-	<c:import url="../common/sellerMenubar.jsp"/>
+	<h1>상품등록하는 페이지</h1>
 	
-	<h1>
-	정보 수정하는 페이지
-	</h1>
-	
-	
-	
-	<c:import url="../common/footer.jsp"/>
-	
+	<c:import url="../../common/footer.jsp"/>
+
 </body>
 </html>

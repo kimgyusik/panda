@@ -18,8 +18,6 @@
 <link rel="stylesheet" type="text/css" href="resources/style/main_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/responsive.css">
 
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <style>
 
@@ -88,10 +86,10 @@
 									<!-- 판매자가 로그인 했을때 보이는 MyPage -->
 									<c:if test="${ !empty loginSeller }">
 									<li>
-										<a href="sellerPage.do">My Page<i class="fas fa-chevron-down"></i></a>
+										<a href="sProduct.do">My Page<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="sellerPage.do">상품관리</a></li>
-												<li><a href="#">정보수정</a></li>
+												<li><a href="sProduct.do">상품관리</a></li>
+												<li><a href="sPage.do">정보수정</a></li>
 												<li><a href="#">방송관리</a></li>
 											</ul>
 									</li>
@@ -169,7 +167,6 @@
 							</div>
 						</div>
 					</div>
-
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
@@ -417,12 +414,6 @@
 <script src="resources/plugins/slick-1.8.0/slick.js"></script>
 <script src="resources/plugins/easing/easing.js"></script>
 <script src="resources/js/custom.js"></script>
-<script>
-		$("#page").click(function(){
-			alert("로그인 후 이용해주세요");
-		});
-</script>
-
 
 </body>
 </html>
