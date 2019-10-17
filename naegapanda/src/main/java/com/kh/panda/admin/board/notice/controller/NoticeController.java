@@ -54,6 +54,8 @@ public class NoticeController {
 	public String inserNotice(Notice n, HttpServletRequest request, Model model,
 						     @RequestParam(name="uploadFile", required=false) MultipartFile file) {
 		
+		System.out.println( );
+		
 		if(!file.getOriginalFilename().equals("")) { // 첨부파일이 넘어온 경우
 			
 			String nRenameFileName = saveFile(file, request);

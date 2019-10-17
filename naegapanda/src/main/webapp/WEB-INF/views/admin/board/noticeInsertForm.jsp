@@ -85,15 +85,14 @@
 					<div class="col-lg-7">
 
 						<h2>PANDA 공지사항</h2>
-						&nbsp;
-						&nbsp;
+						<br><br>
 
 						<form encType="multipart/form-data" method="post" action="ninsert.do">
 
 							<div class="mb-3">
 
-								<label for="title">제목</label> <input type="text"
-									class="form-control" name="title" id="title"
+								<label for="title">제목</label> 
+								<input type="text" class="form-control" name="nTitle" id="title"
 									placeholder="제목을 입력해 주세요">
 
 							</div>
@@ -103,7 +102,7 @@
 
 								<label for="content">내용</label>
 
-								<textarea class="form-control" rows="8" name="content"
+								<textarea class="form-control" rows="8" name="nContent"
 									id="content" placeholder="내용을 입력해 주세요" style="resize:none;"></textarea>
 
 							</div>
@@ -112,8 +111,8 @@
 
 							<div class="mb-3">
 
-								<label for="file">첨부파일</label> <input type="file"
-									name="upladFile">
+								<label for="file">첨부파일</label> 
+								<input type="file" name="upladFile">
 
 							</div>
 
