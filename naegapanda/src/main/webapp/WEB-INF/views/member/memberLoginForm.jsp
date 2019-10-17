@@ -99,27 +99,19 @@
 
 		<div class="container">
 
-			<div class="switch-contents">
-				<input id="layout-single" type="radio" name="layout" checked value="user"><label for="layout-single">일반회원</label> 
-				<input id="layout-column" type="radio" name="layout" value="seller"><label for="layout-column">판매자</label>
-			</div>
-
-
 			<table id="loginTable" style="text-algin: center">
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="id" required></td>
+					<td><input type="text" name="id" placeholder="아이디" required></td>
 				</tr>
 				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="pwd" required></td>
+					<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
 				</tr>
 				<tr>
 					<td colspan="3">
 						<p>
-							<a href="enrollView.do">회원가입</a> <a href="">아이디/비밀번호찾기</a>
+							<a href="join.do">회원가입</a> <a href="">아이디/비밀번호찾기</a>
 						</p>
-						<button id="loginBtn">로그인</button>
+						<button type="submit" id="loginBtn">로그인</button>
 					</td>
 				</tr>
 			</table>
@@ -129,7 +121,7 @@
 
 
 			<div id="indexBtn" class="center">
-				<button id="visual-btn" onclick="location.href='home.do';">처음으로</button>
+				<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>
 			</div>
 		</div>
 
@@ -143,12 +135,7 @@
     <script>
     	$(document).ready(function(){
     		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
-    	});
-    	
-    	$(function(){
-    		$()
-    	});
-    	
+    	});  	
     	
     </script>
 </form> 
