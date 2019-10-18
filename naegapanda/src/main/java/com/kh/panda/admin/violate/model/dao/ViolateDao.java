@@ -33,4 +33,8 @@ public class ViolateDao {
 		return sqlSession.insert("violateMapper.insertViolate", v);
 	}
 	
+	public Violate violateDetail(int vNo) {
+		return sqlSession.selectOne("violateMapper.violateDetail", vNo);
+	}
+	
 }

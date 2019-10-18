@@ -31,6 +31,12 @@ public class ViolateServiceImpl implements ViolateService{
 	public int insertViolate(Violate v) {
 		return vDao.insertViolate(v);
 	}
+
+	@Override
+	public Violate violateDetail(int vNo) {
+		return vDao.violateDetail(vNo);
+	}
+	
 	
 	
 	
