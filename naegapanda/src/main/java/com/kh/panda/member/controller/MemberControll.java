@@ -12,12 +12,25 @@ public class MemberControll {
 		return "member/joinForm";
 	}
 
+	
+	
 	  @RequestMapping("allLogin.do") public String enrollView() {
-	 
-	 
+	 	 
 	 
 	  return "member/memberLoginForm"; }
 	 
+	  
+	  
+	  
+	  
+	  @RequestMapping("find.do")
+			public String find() {
+				return "member/find";
+			}
+		
+	  
+	  
+	  
 
 	// 회원가입 때 일반회원,판매자 선택하는 화면
 	@RequestMapping("mJoin.do")

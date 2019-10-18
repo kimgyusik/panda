@@ -1,5 +1,9 @@
 package com.kh.panda.member.model.service;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import com.kh.panda.member.model.vo.Member;
 
 public interface MemberService {
@@ -19,4 +23,10 @@ public interface MemberService {
 	// 5. 아이디 중복체크를 위한 메소드
 	int idCheck(String id);
 
+	
+	// 6. 아이디를 찾기 위한 메소드
+	String find_id(String email);
+	
+	
+	
 }
