@@ -23,7 +23,7 @@ public class InquiryController {
 	private InquiryService inService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getMno();
+		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 문의 리스트 조회

@@ -92,6 +92,8 @@
 
 						<form encType="multipart/form-data" method="post" action="nupdate.do" >
 
+							<input type="hidden" name="nId" value="${ n.nId }" >
+							
 							<div class="mb-3">
 
 								<label for="title">제목</label> 
@@ -114,10 +116,11 @@
 
 							<div class="mb-3">
 
-								<label for="file">첨부파일</label> 
+								<label for="file" class="fUpload">첨부파일</label> 
 								<c:if test="${!empty n.nOriginalFileName }">
 									<a href="${ contextPath }/resources/nupload/${ n.nRenameFileName}" download="${ n.nOriginalFileName }">${ n.nOriginalFileName }</a>
-									<input type="file" name="uploadFile">
+									<button type="button" id="delfile">X</button>
+									<!-- 새 첨부파일 <input type="file" name="uploadFile"> -->
 								</c:if>
 								<c:if test="${ empty n.nOriginalFileName }">
 									<input type="file" name="uploadFile">
@@ -238,6 +241,33 @@
 
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
+<!-- 	
+	<script>
+		
+			$("#delfile").on("click", function(){
+				
+				var nId = ${ n.nId };
+				
+				$.ajax({
+					url:"nfiledel.do",
+					data:{nId:nId},
+					type:"get",
+					success:function(data){
+						if(data == ""){
+							
+						}else{
+							alert("파일 삭제 실패!");
+						}
+					},
+					error:function(){
+						console.log("서버와의 통신 실패");
+					}
+				});
+				
+			});
+		
+	
+	</script> -->
 
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
