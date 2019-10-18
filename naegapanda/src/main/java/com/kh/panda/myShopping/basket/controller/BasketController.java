@@ -22,7 +22,7 @@ public class BasketController {
 	private BasketService baService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getMno();
+		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 장바구니 조회
@@ -57,7 +57,26 @@ public class BasketController {
 		
 	}
 	
-	// 장바구니 삭제 처리
+	// 장바구니 삭제 처리(단일)
+	@ResponseBody
+	@RequestMapping("deleteBasket.ba")
+	public String deleteBasket(HttpSession session, int pId) {
+		
+		Basket b = new Basket();
+		b.setmNo(getmNo(session));
+		b.setpId(pId);
+		
+		int result = baService.deleteBasket(b);
+		
+		if(result > 0 ) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
+	// 장바구니 삭제 처리(다중)
 	@ResponseBody
 	@RequestMapping("deleteBasketList.ba")
 	public String deleteBasketList(HttpSession session, @RequestParam("arr") String[] arr) {

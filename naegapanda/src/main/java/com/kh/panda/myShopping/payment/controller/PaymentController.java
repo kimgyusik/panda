@@ -3,7 +3,6 @@ package com.kh.panda.myShopping.payment.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +13,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.myShopping.basket.model.service.BasketService;
+import com.kh.panda.myShopping.basket.model.vo.Basket;
 import com.kh.panda.myShopping.payment.model.service.PaymentService;
 import com.kh.panda.myShopping.payment.model.vo.Payment;
-import com.kh.panda.myShopping.review.model.vo.Commend;
 
 @Controller
 public class PaymentController {
 	
 	@Autowired
 	private PaymentService paService;
+	@Autowired
+	private BasketService baService;
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
 		return ((Member)session.getAttribute("loginUser")).getmNo();
+	}
+	
+	// 결재 진행 화면
+	@RequestMapping("paymentPage.pa")
+	public ModelAndView paymentPage(ModelAndView mv, HttpSession session) {
+		
+		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
+		
+		mv.addObject("list", list);
+		mv.setViewName("myShopping/payment/paymentPage");
+		
+		return mv;
 	}
 		
 	// 내 결재 리스트 조회
@@ -48,7 +62,9 @@ public class PaymentController {
 	
 	// 결재 추가 처리
 	@RequestMapping("addPayment.pa")
-	public String addPayment(Payment p, Model model) {
+	public String addPayment(Payment p, Model model, HttpSession session) {
+		
+		p.setmNo(getmNo(session));
 
 		int result = paService.addPayment(p);
 		

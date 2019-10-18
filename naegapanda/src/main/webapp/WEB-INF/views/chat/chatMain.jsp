@@ -16,13 +16,14 @@
 </head>
 <body>
 
-<div id="data">
+<div id="data" style="width:300px;height:300px;border:1px solid blue;">
 
 
 </div>
-
+<div style="width:300px;align:center">
 <input type="text" id="message">  
 <button id="sendBtn">전송</button>
+</div>
 
 
 <script>

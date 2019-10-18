@@ -25,19 +25,21 @@ public class GgimController {
 	@Autowired
 	private GgimService ggService;
 	
+	private int getmNo(HttpSession session) {
+		return ((Member)session.getAttribute("loginUser")).getmNo();
+	}
+	
 	// 내 찜 리스트 조회
 	@RequestMapping("ggimList.gg")
 	public ModelAndView selectGgimList(ModelAndView mv, HttpSession session/*, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage*/) {
 		
-		int mNo = ((Member)session.getAttribute("loginUser")).getMno();
-		
-//		int listCount = gService.getListCount(mNo);
+//		int listCount = gService.getListCount(getmNo(session));
 //		PageInfo pi = Pagination.getPageInfo(listCount, currentPage);
-//		ArrayList<Ggim> list = gService.selectList(pi, mNo);
+//		ArrayList<Ggim> list = gService.selectList(pi, getmNo(session));
 //		mv.addObject("pi", pi);
 		
 		
-		ArrayList<Ggim> list = ggService.selectGgimList(mNo);
+		ArrayList<Ggim> list = ggService.selectGgimList(getmNo(session));
 		
 		ArrayList<String> category = new ArrayList<>();
 		
@@ -69,10 +71,8 @@ public class GgimController {
 		
 		// flag 0이나 1로 넘길건지 선택해야함
 		
-		int mNo = ((Member)session.getAttribute("loginUser")).getMno();
-		
 		Ggim ggim = new Ggim();
-		ggim.setmNo(mNo);
+		ggim.setmNo(getmNo(session));
 		ggim.setpId(pId);
 		
 		int result = ggService.changeGgim(ggim, flag);
@@ -88,10 +88,8 @@ public class GgimController {
 	@RequestMapping("deleteGgim.gg") // ajax로 처리하려면 리턴 void로 
 	public String deleteGgim(int pId, HttpServletRequest request, HttpSession session) {
 		
-		int mNo = ((Member)session.getAttribute("loginUser")).getMno();
-		
 		Ggim ggim = new Ggim();
-		ggim.setmNo(mNo);
+		ggim.setmNo(getmNo(session));
 		ggim.setpId(pId);
 		
 		int result = ggService.deleteGgim(ggim);
