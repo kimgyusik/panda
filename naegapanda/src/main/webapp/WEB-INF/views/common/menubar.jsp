@@ -48,6 +48,12 @@
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">			
 								<ul class="standard_dropdown top_bar_dropdown">
+								<c:if test="${ !empty loginSeller }">
+									<li>
+										<a href="sellervmessage.do"><img src="resources/images/vmessage.JPG"></a>
+										
+									</li>
+								</c:if>
 									<li>
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>

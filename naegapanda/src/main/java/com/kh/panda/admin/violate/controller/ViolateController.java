@@ -126,8 +126,6 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 	 public ModelAndView ViolateDetailView(ModelAndView mv, int vNo) { 
 		 
 		 Violate v = vService.violateDetail(vNo);
-		System.out.println("vNo:"+vNo);
-		System.out.println("v"+v);
 		 if(v != null) {
 			 mv.addObject("v",v).setViewName("admin/violate/ViolateDetailView");
 		 }else {
@@ -146,16 +144,6 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 	 
 	 
 	 
-	 
-	 
-	 
-	 
-	 
-	
-	/*
-	 * @RequestMapping("testView.do") public String ViolateListView() { return
-	 * "admin/violate/ViolateListView2"; }
-	 */
 		
 		
 		@RequestMapping("violateView.do")

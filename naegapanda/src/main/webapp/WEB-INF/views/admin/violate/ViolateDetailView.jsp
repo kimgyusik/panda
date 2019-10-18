@@ -40,28 +40,22 @@
 						      <th scope="col" width="100px" align="center">신고 상품</th>
 						      <td width="500px">
 						       <h4>${ v.pId }</h4>
-						      <%-- 	<input  type="text" name="pId"  value="111"  style="border:none;" value="${ v.vNo }" readonly> --%>
 						      </td>
 						      <th width="70px">판매자</th>
 						      <td> <!-- 판매자 -->
 						      	 ${ v.sName }
-						      	<%-- <input type="text" name="sNo"  value="111"  style="border:none;" value="${ v.sNo }" readonly> --%>
 						      </td>
 						    </tr>
 						    <tr>
 						      <th scope="row">제목</th>
 						      <td colspan="3">
 						      	<h4>${ v.vTitle }</h4>
-						      	<%-- <input type="text" name="vTitle" placeholder="제목" style="border:none;" value="${ v.vTitle }" readonly > --%>
 						      </td>
 						    </tr>
 						    <tr>
 						      <th scope="row" height="300px">내용</th>
 						      <td colspan="3">
 						      	<div style="width:700px;height:300px;border:none;">${v.vContent}</div>
-						      <%-- 
-						      	<textarea style="width:700px;height:300px;border:none;"  value="${ v.vConten }"></textarea> --%>
-						      	
 						      </td>
 						    </tr>
 						    <tr>
@@ -81,7 +75,7 @@
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    		<button type="submit" class="btn btn-outline-primary">판매글 정지</button>
+						    		<button type="submit" class="btn btn-outline-primary" onclick="vmessageInsertView.do;">판매글 정지</button>
 						    		<button type="button" class="btn btn-outline-primary" onclick="violateView.do;">취소</button>
 						    	</td>
 						    </tr>

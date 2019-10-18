@@ -17,10 +17,26 @@
 		select count(*)
 		from vmessage
 	</select>
+	<select id="getSellerListCount" resultType="_int" parameterType="_int">
+		select count(*)
+		from vmessage
+		where s_no=#{sNo}
+	</select>
 
 	<select id="selectList" resultMap="vmessageResultSet">
 		select *
 		from vmList
 	</select>
+	<select id="selectSellerList" resultMap="vmessageResultSet" parameterType="_int">
+		select *
+		from vmList
+		where s_no=#{sNo}
+	</select>
 
+	<select id="vmessageDetail" resultMap="vmessageResultSet" parameterType="_int">
+		select *
+		from vmList
+		where vm_no=#{vmNo}
+	
+	</select>
 </mapper>

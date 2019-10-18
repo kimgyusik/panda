@@ -6,18 +6,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.outer{
+		width:900px;
+		height: 500px;
+		margin-left: 300px;
+		margin-top:50px; 
+	}
+</style>
 </head>
 <body>
 
+<c:if test="${ empty loginSeller }">
 	<div class="super_container">
-   
+</c:if>
       <c:import url="../../common/menubar.jsp"/> 
-   
+<c:if test="${ empty loginSeller }">   
       <c:import url="../../common/admin.jsp"/> 
       
    </div>
-   
-   <div class="bs-example">
+</c:if>
+<c:if test="${ !empty loginSeller }">
+   <div class="outer">
+</c:if>
+<c:if test="${ !empty loginSeller }">
+	<div class="bs-example">
+</c:if>
    
    	<h3 style="font-weight:bold;">신고 메세지 관리</h3><br>
 				<br>
@@ -36,7 +50,7 @@
 							
 								<c:forEach items="${ list }" var="vm"> 
 									
-											<c:url value="vmdetailView.do" var="vmdetail">
+											<c:url value="vmDetailView.do" var="vmdetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
 									<tr>
@@ -62,6 +76,51 @@
 					  </tbody>
 					  
 				</table>
+				
+				<!-- 페이징~~ -->
+				<div align="center">
+					<table>
+						<tr align="center" height="20">
+							<td colspan="6">
+								
+								<!-- [이전] -->
+								<c:if test="${ pi.currentPage eq 1 }">
+									[◁]
+								</c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+									<c:url value="vmessage.do" var="before">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+									</c:url>
+									<a href="${ before }">[◀]</a>
+								</c:if>					
+								<!-- 번호들 -->
+								<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+									<c:if test="${ p eq pi.currentPage }">
+										<font color="blue" size="4">[${ p }]</font>
+									</c:if>
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url value="vmessage.do" var="page">
+											<c:param name="currentPage" value="${ p }"/>
+										</c:url>
+										<a href="${ page }">${ p }</a>
+									</c:if>
+								</c:forEach>
+								<!-- [다음] -->
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+									[▷]
+								</c:if>
+								<c:if test="${ pi.currentPage ne pi.maxPage }">
+									<c:url value="vmessage.do" var="next">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+									</c:url>
+									<a href="${ next }">[▶]</a>
+								</c:if>	
+						
+							</td>
+						</tr>
+					
+					</table>
+				</div>
    
    
    

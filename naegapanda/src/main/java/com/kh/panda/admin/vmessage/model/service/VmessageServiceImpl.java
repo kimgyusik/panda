@@ -19,10 +19,25 @@ public class VmessageServiceImpl implements VmessageService{
 	public int getListCount() {
 		return vmDao.getListCount();
 	}
+	@Override
+	public int getSellerListCount(int sNo) {
+		return vmDao.getSellerListCount(sNo);
+	}
 
 	@Override
 	public ArrayList<Vmessage> selectList(PageInfo pi) {
 		return vmDao.selectList(pi);
 	}
+	@Override
+	public ArrayList<Vmessage> selectSellerList(PageInfo pi, int sNo) {
+		return vmDao.selectSellerList(pi,sNo);
+	}
+
+	@Override
+	public Vmessage vmessageDetail(int vmNo) {
+		return vmDao.vmessageDetail(vmNo);
+	}
+
+
 	
 }

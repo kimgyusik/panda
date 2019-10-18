@@ -8,7 +8,12 @@ import com.kh.panda.common.PageInfo;
 public interface VmessageService {
 	
 	int getListCount();
+	int getSellerListCount(int sNo);
 	
 	ArrayList<Vmessage> selectList(PageInfo pi);
+	ArrayList<Vmessage> selectSellerList(PageInfo pi,int sNo);
+	
+	
+	Vmessage vmessageDetail(int vmNo);
 
 }
