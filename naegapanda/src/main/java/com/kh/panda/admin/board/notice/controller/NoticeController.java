@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -164,9 +165,8 @@ public class NoticeController {
 	public String updateNotice(Notice n, HttpServletRequest request, Model model,
 							   @RequestParam(name="uploadFile", required=false) MultipartFile file) {
 		
-		if(!file.getOriginalFilename().equals("")) { // 첨부파일이 넘어온 경우
+		if(!file.getOriginalFilename().equals("")) { // 첨부파일을 추가한 경우에
 			
-			// 서버에 파일 등록(폴더에 저장)
 			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일명 돌려주는 savefile 
 			String nRenameFileName = saveFile(file, request);
 			
@@ -188,6 +188,22 @@ public class NoticeController {
 			model.addAttribute("msg", "공지 수정 실패@@");
 			return "common/errorPage";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("nfiledel.do")
+	public String deleteFile(int nId, HttpServletRequest request) {
+		
+		Notice n = nService.selectNotice(nId);
+		
+		if(n.getnRenameFileName() != null) {
+			
+			deleteFile(n.getnRenameFileName(), request);
+		}
+		return null;
+		
+		
+		
 	}
 	
 	
