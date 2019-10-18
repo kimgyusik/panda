@@ -110,7 +110,7 @@
 							<div class="mb-3">
 
 								<label for="file">첨부파일</label> 
-								<input type="file" name="upladFile">
+								<input type="file" name="uploadFile">
 
 							</div>
 

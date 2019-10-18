@@ -72,7 +72,8 @@
 </style>
 </head>
 <body>
-    <form action="login.do" method="post"> 
+
+    <form id="loginForm" action="login.do" method="post"> 
         <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,150 C0,65 120,65 120,150" fill="#e0a243" stroke="#000" stroke-width="2.5" />
             <g class="ears">
@@ -98,8 +99,20 @@
 
 
 		<div class="container">
+<script>
+	$("input:radio[name=user]").click(function(){
+			if($("input[name=radio]:checked").val() == "user"){
+			console.log($('input:radio[name=user]').val());
+				
+		}
+	});
 
+
+</script>
 			<table id="loginTable" style="text-algin: center">
+				<tr>
+					<td><input type="radio" id="radio1" name="user" value="user">유저 <input type="radio" id="radio2" name="user" value="seller">판매자</td>
+				</tr>
 				<tr>
 					<td><input type="text" name="id" placeholder="아이디" required></td>
 				</tr>

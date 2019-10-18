@@ -64,7 +64,7 @@
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
 								<li><a href="nlist.do">판다 공지</a></li>
-								<li><a href="#">QnA</a></li>
+								<li><a href="qlist.do">QnA</a></li>
 								<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 									<li><a href="#">판매관리</a></li>
 									<li><a href="testView.do">신고관리</a></li>

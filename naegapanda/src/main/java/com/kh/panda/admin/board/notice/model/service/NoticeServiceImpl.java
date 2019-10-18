@@ -29,6 +29,36 @@ public class NoticeServiceImpl implements NoticeService{
 	public int insertNotice(Notice n) {
 		return nDao.insertNotice(n);
 	}
+
+	@Override
+	public Notice noticeDetail(int nId) {
+
+		// 1. 조회수 증가
+		int result = nDao.updateCount(nId);
+		
+		// 2. 상세조회
+		if(result > 0) {
+			return nDao.noticeDetail(nId);
+		}else {
+			return null;
+		}
+	}
+
+	@Override
+	public Notice selectNotice(int nId) {
+		return nDao.noticeDetail(nId);
+	}
+
+	@Override
+	public int deleteNotice(int nId) {
+		return nDao.deleteNotice(nId);
+	}
+
+	@Override
+	public int updateNotice(Notice n) {
+		return nDao.updateNotice(n);
+	}
+
 	
 	
 	

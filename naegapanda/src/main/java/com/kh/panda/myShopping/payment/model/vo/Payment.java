@@ -9,11 +9,11 @@ public class Payment {
 	private int pId;
 	private int price;
 	private String pStatus;
-	private String deleverySpot;
+	private String deliverySpot;
 	private String payRequest;
 	private Date payDate;
 	private int count;
-	private String deleveryStatus;
+	private String deliveryStatus;
 	private String recipient;
 	private String recipientPhone;
 	private String pName;
@@ -31,8 +31,8 @@ public class Payment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Payment(int payId, int mNo, int pId, int price, String pStatus, String deleverySpot, String payRequest,
-			Date payDate, int count, String deleveryStatus, String recipient, String recipientPhone, String pName,
+	public Payment(int payId, int mNo, int pId, int price, String pStatus, String deliverySpot, String payRequest,
+			Date payDate, int count, String deliveryStatus, String recipient, String recipientPhone, String pName,
 			String pContent, int cId, String cName, String cName2, int sNo, String storeName, String sBaddress,
 			String sBphone) {
 		super();
@@ -41,11 +41,11 @@ public class Payment {
 		this.pId = pId;
 		this.price = price;
 		this.pStatus = pStatus;
-		this.deleverySpot = deleverySpot;
+		this.deliverySpot = deliverySpot;
 		this.payRequest = payRequest;
 		this.payDate = payDate;
 		this.count = count;
-		this.deleveryStatus = deleveryStatus;
+		this.deliveryStatus = deliveryStatus;
 		this.recipient = recipient;
 		this.recipientPhone = recipientPhone;
 		this.pName = pName;
@@ -99,12 +99,12 @@ public class Payment {
 		this.pStatus = pStatus;
 	}
 
-	public String getDeleverySpot() {
-		return deleverySpot;
+	public String getDeliverySpot() {
+		return deliverySpot;
 	}
 
-	public void setDeleverySpot(String deleverySpot) {
-		this.deleverySpot = deleverySpot;
+	public void setDeliverySpot(String deliverySpot) {
+		this.deliverySpot = deliverySpot;
 	}
 
 	public String getPayRequest() {
@@ -131,12 +131,12 @@ public class Payment {
 		this.count = count;
 	}
 
-	public String getDeleveryStatus() {
-		return deleveryStatus;
+	public String getDeliveryStatus() {
+		return deliveryStatus;
 	}
 
-	public void setDeleveryStatus(String deleveryStatus) {
-		this.deleveryStatus = deleveryStatus;
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
 	}
 
 	public String getRecipient() {
@@ -230,12 +230,14 @@ public class Payment {
 	@Override
 	public String toString() {
 		return "Payment [payId=" + payId + ", mNo=" + mNo + ", pId=" + pId + ", price=" + price + ", pStatus=" + pStatus
-				+ ", deleverySpot=" + deleverySpot + ", payRequest=" + payRequest + ", payDate=" + payDate + ", count="
-				+ count + ", deleveryStatus=" + deleveryStatus + ", recipient=" + recipient + ", recipientPhone="
+				+ ", deliverySpot=" + deliverySpot + ", payRequest=" + payRequest + ", payDate=" + payDate + ", count="
+				+ count + ", deliveryStatus=" + deliveryStatus + ", recipient=" + recipient + ", recipientPhone="
 				+ recipientPhone + ", pName=" + pName + ", pContent=" + pContent + ", cId=" + cId + ", cName=" + cName
 				+ ", cName2=" + cName2 + ", sNo=" + sNo + ", storeName=" + storeName + ", sBaddress=" + sBaddress
 				+ ", sBphone=" + sBphone + "]";
 	}
+
+	
 	
 	
 

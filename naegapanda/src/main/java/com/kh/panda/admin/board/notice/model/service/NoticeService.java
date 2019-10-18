@@ -17,5 +17,16 @@ public interface NoticeService {
 	
 	// 2. 공지 작성
 	int insertNotice(Notice n);
+	
+	// 3. 공지 상세 조회
+	Notice noticeDetail(int nId);
 
+	// 4. 공지 조회
+	Notice selectNotice(int nId);
+	
+	// 5. 공지 삭제
+	int deleteNotice(int nId);
+	
+	// 6. 공지 수정
+	int updateNotice(Notice n);
 }

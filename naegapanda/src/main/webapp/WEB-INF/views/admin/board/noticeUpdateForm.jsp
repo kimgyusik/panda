@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>PANDA 공지</title>
+<title>공지 수정</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -58,17 +58,14 @@
 }
 
 .btn {
-	background:#0e8ce4;
-    border:#0e8ce4;
-    margin:5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius:5px;
-    color:white;
-	float:right;
+	background: #0e8ce4;
+	border: #0e8ce4;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	color: white;
 }
-
 </style>
 </head>
 
@@ -83,14 +80,12 @@
 	</div>
 
 
-		
-
 					<div class="col-lg-7">
 
 						<h2>PANDA 공지사항</h2>
 						<br><br>
 
-						<form encType="multipart/form-data" method="post" action="nupdate.do" >
+						<form encType="multipart/form-data" method="post" action="nupdate.do">
 
 							<div class="mb-3">
 
@@ -99,14 +94,14 @@
 									value="${ n.nTitle }">
 
 							</div>
-
+							
 
 							<div class="mb-3">
 
 								<label for="content">내용</label>
 
 								<textarea class="form-control" rows="8" name="nContent"
-									id="content"  style="resize:none;">${ n.nContent }</textarea>
+									id="content" style="resize:none;" >${ n.nContent }</textarea>
 
 							</div>
 
@@ -125,29 +120,20 @@
 
 							</div>
 
-						<div>
-						
-							<button type="button"  class="btn" onclick="location.href='nlist.do';">목록</button>
+	
+						<div align="center">
+
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 							&nbsp; &nbsp;
-							<button type="submit" class="btn" id="btnSave">수정하기</button>
-							&nbsp; &nbsp;
-							<button type="button" class="btn" onclick="location.href='ndelete.do?nId=${ n.nId }';">삭제하기</button>
+							<button type="button" class="btn btn-sm btn-primary" onclick="location.href='nlist.do'">목록</button>
 
 						</div>
 
 
 						</form>
-						
-						
-						
+
+
 					</div>
-
-
-
-
-
-
-
 
 				</div>
 			</div>
@@ -155,90 +141,10 @@
 		</div>
 
 
-
-
-
-		<!-- Brands -->
-
-		<div class="brands">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="brands_slider_container">
-
-							<!-- Brands Slider -->
-
-							<div class="owl-carousel owl-theme brands_slider">
-
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_1.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_2.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_3.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_4.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_5.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_6.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_7.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_8.jpg" alt="">
-									</div>
-								</div>
-
-							</div>
-
-							<!-- Brands Slider Navigation -->
-							<div class="brands_nav brands_prev">
-								<i class="fas fa-chevron-left"></i>
-							</div>
-							<div class="brands_nav brands_next">
-								<i class="fas fa-chevron-right"></i>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
-
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
 	<script src="resources/style/bootstrap4/popper.js"></script>

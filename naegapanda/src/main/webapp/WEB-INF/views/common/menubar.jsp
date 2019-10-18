@@ -18,8 +18,6 @@
 <link rel="stylesheet" type="text/css" href="resources/style/main_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/responsive.css">
 
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <style>
 
@@ -66,7 +64,7 @@
 									<!-- 로그인 안했을때 보이는 MyPage -->
 									<c:if test="${ empty loginUser && empty loginSeller }">
 										<li>
-										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>			
+										<a href="#" onclick="alert('로그인후 이용가능합니다');">My Page<i class="fas fa-chevron-down"></i></a>			
 										</li>
 									</c:if>
 
@@ -75,7 +73,7 @@
 									<c:if test="${ !empty loginUser }">
 											<c:if test="${ sessionScope.loginUser.id ne 'admin' }">
 												<li>
-													<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+													<a href="#" id="page">My Page<i class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a href="#">회원쪽에서 설정해주세요</a></li>
 														<li><a href="myInfo.do">정보수정</a></li>
@@ -88,10 +86,11 @@
 									<!-- 판매자가 로그인 했을때 보이는 MyPage -->
 									<c:if test="${ !empty loginSeller }">
 									<li>
-										<a href="#">My Page<i class="fas fa-chevron-down"></i></a>
+										<a href="sProduct.do">My Page<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="#">상품관리</a></li>
-												<li><a href="#">정보수정</a></li>
+												<li><a href="sProduct.do">상품관리</a></li>
+												<li><a href="sPage.do">정보수정</a></li>
+												<li><a href="#">방송관리</a></li>
 											</ul>
 									</li>
 									</c:if>
@@ -104,21 +103,20 @@
 							<form action="login.do" method="post">
 								<div class="user_icon"><img src="resources/images/user.svg" alt=""></div>
 								<div><a href="join.do">회원가입</a></div>
-								<div><a href="allLogin.do">로그인</a></div>/
-								<div><a href="sellerLogin.do">판매자로그인</a></div>	
+								<div><a href="allLogin.do">회원</a></div> /
+								<div><a href="sellerLogin.do">판매자 로그인</a></div>	
 							</form>
 							</c:if>
 							<c:if test="${ !empty sessionScope.loginUser}">
 							<h6 align="right">
-							<c:out value="${ loginUser.name }님 환영합니다."/>
-							<!-- <button onclick="location.href='myInfo.do';">정보수정</button> -->
-							<button onclick="location.href='logout.do';">로그아웃</button>
+							<c:out value="${ loginUser.name }님 환영합니다."/> &nbsp;&nbsp;&nbsp;
+							<a href="logout.do">로그아웃</a>
 							</h6>
 							</c:if>
 							<c:if test="${ !empty sessionScope.loginSeller }">
 							<h6 align="right">
-							<c:out value="${ loginSeller.sName }님 환영합니다."/>
-							<button onclick="location.href='sLogout.do';">로그아웃</button>
+							<c:out value="${ loginSeller.sName }님 환영합니다."/> &nbsp;&nbsp;&nbsp;
+							<a href="sLogout.do">로그아웃</a>
 							</h6>
 							</c:if>
 							</div>
@@ -168,7 +166,6 @@
 							</div>
 						</div>
 					</div>
-
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
@@ -416,8 +413,6 @@
 <script src="resources/plugins/slick-1.8.0/slick.js"></script>
 <script src="resources/plugins/easing/easing.js"></script>
 <script src="resources/js/custom.js"></script>
-
-
 
 </body>
 </html>

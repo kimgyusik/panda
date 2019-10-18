@@ -35,9 +35,9 @@
         border-top-right-radius: 5px;
         border-bottom-right-radius:5px;
         color:white;
-
     }
-    
+   
+	.atag { text-decoration:none ; color:black; }
 </style>
 </head>
 
@@ -68,32 +68,31 @@
 								
 						<c:forEach items="${ list }" var="n">
 									
-						<tr>
-							<td align="center">${ n.nId }</td>
-							<td align="left">
-								<c:if test="${ empty loginUser }">
-									${ n.nTitle }
-								</c:if>
-								<c:if test="${ !empty loginUser }">
-									<c:url value="ndetatil.do" var="ndetail">
-									<c:param name="nId" value="${ n.nId }"/>
-								</c:url>
-									<a href="${ ndetail }">${ n.nTitle }</a>
-								</c:if>
-							</td>
-							<td align="center">${ n.nCreateDate }</td>
-							<td align="center">${ n.nCount }</td>
-							<td align="center">
-								<c:if test="${ !empty n.nOriginalFileName }">
-									<span style="color:#0e8ce4"><i class="far fa-file"></i></span>
-								</c:if>
-								<c:if test="${ empty n.nOriginalFileName }">
-									&nbsp;
-								</c:if>
-							</td>
-						</tr>
-						
-						</c:forEach>
+										<tr>
+											<td align="center">${ n.nId }</td>
+											<td align="left">
+												<c:if test="${ empty loginUser }">
+													${ n.nTitle }
+												</c:if>
+												<c:if test="${ !empty loginUser }">
+													<c:url value="ndetail.do" var="ndetail">
+														<c:param name="nId" value="${ n.nId }"/>
+													</c:url>
+													<a href="${ ndetail }">${ n.nTitle }</a>
+												</c:if>
+											</td>
+											<td align="center">${ n.nCreateDate }</td>
+											<td align="center">${ n.nCount }</td>
+											<td align="center">
+												<c:if test="${ !empty n.nOriginalFileName }">
+													<span style="color:#0e8ce4"><i class="far fa-file"></i></span>
+												</c:if>
+												<c:if test="${ empty n.nOriginalFileName }">
+													&nbsp;
+												</c:if>
+											</td>
+										</tr>
+									</c:forEach>
 									
 					</tbody>					
 				</table>
@@ -102,41 +101,41 @@
 
 		<div align="center">
 					
-			<!-- [이전] -->	
-			<c:if test="${ pi.currentPage eq 1 }">
-				[이전] 
-			</c:if>
-			<c:if test="${ pi.currentPage ne 1 }">
-				<c:url value="blist.do" var="before">
-					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-				</c:url>
-				<a href="${ before }">[이전] </a> 
-			</c:if>		
-			
-			<!-- 번호들  -->
-			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-				<c:if test="${ p eq pi.currentPage }">
-					<font color="red" size="4">[${ p }]</font>
-				</c:if>
-				<c:if test="${ p ne pi.currentPage }">
-					<c:url value="blist.do" var="page">
-						<c:param name="currentPage" value="${ p }"/>
-					</c:url>
-					<a href="${ page }">${ p }</a>
-				</c:if>
-			</c:forEach>
+										<!-- [이전] -->	
+										<c:if test="${ pi.currentPage eq 1 }">
+											[이전] 
+										</c:if>
+										<c:if test="${ pi.currentPage ne 1 }">
+											<c:url value="nlist.do" var="before">
+												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+											</c:url>
+											<a class="atag" href="${ before }">[이전] </a> 
+										</c:if>		
 										
-			<!-- [다음] -->
-				<c:if test="${ pi.currentPage eq pi.maxPage }">
-					[다음]
-				</c:if>
-				<c:if test="${ pi.currentPage ne pi.maxPage }">
-					<c:url value="blist.do" var="next">
-						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-					</c:url>
-					<a href="${ next }"> [다음]</a>
-				</c:if>
-			</div>
+										<!-- 번호  -->
+										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+											<c:if test="${ p eq pi.currentPage }">
+												<font  size="4">[${ p }]</font>
+											</c:if>
+											<c:if test="${ p ne pi.currentPage }">
+												<c:url value="nlist.do" var="page">
+													<c:param name="currentPage" value="${ p }"/>
+												</c:url>
+												<a href="${ page }">${ p }</a>
+											</c:if>
+										</c:forEach>
+										
+										<!-- [다음] -->
+										<c:if test="${ pi.currentPage eq pi.maxPage }">
+											 [다음]
+										</c:if>
+										<c:if test="${ pi.currentPage ne pi.maxPage }">
+											<c:url value="nlist.do" var="next">
+												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+											</c:url>
+											<a class="atag" href="${ next }" > [다음]</a>
+										</c:if>
+									</div>
 		
 		<div class="col-lg-11" align="right">
 			<c:if test="${ sessionScope.loginUser.name eq '관리자' }">
