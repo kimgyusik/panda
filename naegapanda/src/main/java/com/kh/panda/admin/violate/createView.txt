@@ -1,0 +1,7 @@
+create or replace view vList
+as
+select v_no,s_no,s_name,m_no,m_name,p_id,st_no,v_title,v_content,v_date,v_photo,v_status
+from violate
+join member using(m_no)
+join seller using(s_no)
+order by v_no desc;
