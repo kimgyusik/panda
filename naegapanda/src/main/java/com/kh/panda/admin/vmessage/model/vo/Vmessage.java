@@ -13,8 +13,8 @@ public class Vmessage {
 	private String vmContent;			// 신고메세지 내용
 	private Date vmSendDate;			// 신고메세지 발신 날짜
 	private Date vmCheckDate;			// 신고메세지 확인 날짜	
-	private Date vmOriginalFileName;	// 신고메세지 첨부파일 원래이름
-	private Date vmRenameFileName;		// 신고메세지 첨부파일 변경이름
+	private String vmOriginalFileName;	// 신고메세지 첨부파일 원래이름
+	private String vmRenameFileName;		// 신고메세지 첨부파일 변경이름
 	private String vmStatus;			// 신고메세지 확인 상태
 
 
@@ -22,7 +22,7 @@ public class Vmessage {
 
 
 	public Vmessage(int vmNo, int sNo, String sName, int pId, String pName, String vmTitle, String vmContent,
-			Date vmSendDate, Date vmCheckDate, Date vmOriginalFileName, Date vmRenameFileName, String vmStatus) {
+			Date vmSendDate, Date vmCheckDate, String vmOriginalFileName, String vmRenameFileName, String vmStatus) {
 		super();
 		this.vmNo = vmNo;
 		this.sNo = sNo;
@@ -129,22 +129,22 @@ public class Vmessage {
 	}
 
 
-	public Date getVmOriginalFileName() {
+	public String getVmOriginalFileName() {
 		return vmOriginalFileName;
 	}
 
 
-	public void setVmOriginalFileName(Date vmOriginalFileName) {
+	public void setVmOriginalFileName(String vmOriginalFileName) {
 		this.vmOriginalFileName = vmOriginalFileName;
 	}
 
 
-	public Date getVmRenameFileName() {
+	public String getVmRenameFileName() {
 		return vmRenameFileName;
 	}
 
 
-	public void setVmRenameFileName(Date vmRenameFileName) {
+	public void setVmRenameFileName(String vmRenameFileName) {
 		this.vmRenameFileName = vmRenameFileName;
 	}
 
@@ -166,7 +166,6 @@ public class Vmessage {
 				+ vmCheckDate + ", vmOriginalFileName=" + vmOriginalFileName + ", vmRenameFileName=" + vmRenameFileName
 				+ ", vmStatus=" + vmStatus + "]";
 	}
-
 
 	
 }

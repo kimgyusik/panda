@@ -12,8 +12,8 @@
   		<result property="vmContent" column="vm_content"/>
   		<result property="vmSendDate" column="vm_send_date"/>
   		<result property="vmCheckDate" column="vm_check_date"/>
-  		<result property="vOriginalFileName" column="vm_original_filename"/> 		
-  		<result property="vRenameFileName" column="vm_Rename_filename"/> 		
+  		<result property="vmOriginalFileName" column="vm_original_filename"/> 		
+  		<result property="vmRenameFileName" column="vm_Rename_filename"/> 		
   		<result property="vmStatus" column="vm_status"/>
 	</resultMap>
 	
@@ -54,6 +54,9 @@
 		select *
 		from vmList
 		where vm_no=#{vmNo}
-	
 	</select>
+	<insert id="vmessageInsert" parameterType="Vmessage">
+	insert into vmessage
+	values(VMESSAGE_SEQ.nextval,#{sNo},#{pId},#{vmTitle},#{vmContent},sysdate,null,#{vmOriginalFileName},#{vmRenameFileName},default)
+	</insert>
 </mapper>

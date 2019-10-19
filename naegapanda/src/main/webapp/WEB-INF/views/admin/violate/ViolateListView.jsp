@@ -6,7 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>신고관리</title>
+<style>
 
+	a:visited { 
+		color: black; 
+		text-decoration: none;
+	}
+
+</style>
 </head>
 <body>
 

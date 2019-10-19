@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -57,70 +58,56 @@ public class ViolateController {
 	@RequestMapping("vinsert.do")
 	public String insertViolate(Violate v, HttpServletRequest request, Model model, 
 			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
-	
-		/*
-		 * if(!file.getOriginalFilename().equals("")) {
-		 * 
-		 * String renameFileName = saveFile(file, request); if(renameFileName != null) {
-		 * // 파일이 잘 저장된 경우 v.setvPhoto(renameFileName); }
-		 * 
-		 * }
-		 */
+		
+		if(!file.getOriginalFilename().equals("")){
+			String renameFileName = saveFile(file,request);
+			
+			if(renameFileName != null) {
+				v.setvOriginalFileName(file.getOriginalFilename());
+				v.setvRenameFileName(renameFileName);
+			}
+		}
 		
 		int result = vService.insertViolate(v);
+
+		return "redirect:finishViolate.do";
 		
-		
-		if(result > 0) {
-			return "redirect:finishViolate.do";
-		}else {
-			return "common/errorPage";
-		}
 		
 	}
 	
 	
 	
 	
-public String saveFile(MultipartFile file, HttpServletRequest request) {
-												//session을 쓰려구
-		// 파일이 저장될 경로 설정
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\vUpload";
+		String savePath = root + "\\vupload";
 		
-		File folder = new File(savePath); // 저장될 폴더
+		File folder = new File(savePath);
 		
-		if(!folder.exists()) { 	// 폴더가 없다면
-			folder.mkdirs();	// 폴더 생성해라
+		if(!folder.exists()) {
+			folder.mkdirs();
 		}
 		
-		String originalFileName = file.getOriginalFilename(); // 원본명(확장자)
+		String vOriginalFileName = file.getOriginalFilename();
 		
-		// 파일명 수정작업 --> 년월일시분초.확장자
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) // 년월일시분초
-							  + originalFileName.substring(originalFileName.lastIndexOf("."));
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + vOriginalFileName.substring(vOriginalFileName.lastIndexOf("."));
 		
-		// 실제 저장될 경로 savePath + 저장하고자하는 파일명 renameFileName
-		String renamePath = savePath + "\\" + renameFileName; 
+		String renamePath = savePath + "\\" + renameFileName;
 		
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
 		
-	
-			try {
-				file.transferTo(new File(renamePath));
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
-		
-
-		return renameFileName; // 수정명 반환
+		return renameFileName;
 		
 	}
 
 
-
-	
-	
 	
 	 @RequestMapping("vdetailView.do") 
 	 public ModelAndView ViolateDetailView(ModelAndView mv, int vNo) { 
@@ -162,9 +149,10 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 		}
 		
 		@RequestMapping("vmessageInsertView.do")
-		public ModelAndView VmessageInsertView(ModelAndView mv, int sNo, int pNo) {
-						
-			mv.addObject("sNo",sNo).addObject("pNo",pNo).setViewName("admin/vmessage/VmessageInsertView");
+		public ModelAndView VmessageInsertView(ModelAndView mv, int vNo) {
+			
+			Violate v = vService.violateDetail(vNo);
+			mv.addObject("v",v).setViewName("admin/vmessage/VmessageInsertView");
 			
 			return mv;
 		}

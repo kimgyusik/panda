@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <title>신고메세지</title>
 
+<style>
+
+	a:visited { 
+		color: black; 
+		text-decoration: none;
+	}
+
+</style>
+
 </head>
 <body>
 
@@ -38,17 +47,17 @@
 						
 						<tbody>
 							
-								<c:forEach items="${ list }" var="vm"> 
-										<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
+									<c:forEach items="${ list }" var="vm"> 
+										<c:if test="${ empty loginSeller }">
 											<c:url value="vmDetailView.do" var="vmdetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
 										</c:if>
-										<c:if test="${ !empty loginSeller}">
-											<c:url value="vmSellerDetailView.do" var="vmdetail">
+										<c:if test="${ !empty loginSeller }">
+											<c:url value="vmSellerDetailView.do" var="vmSellerDetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
-										</c:if>									
+										</c:if>							
 									<tr>
 										<th scope="row">
 											<a href="${ vmdetail }">${vm.vmNo}</a>

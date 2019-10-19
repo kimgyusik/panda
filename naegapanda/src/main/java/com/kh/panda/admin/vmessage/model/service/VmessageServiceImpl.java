@@ -1,6 +1,5 @@
 package com.kh.panda.admin.vmessage.model.service;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,25 +34,33 @@ public class VmessageServiceImpl implements VmessageService{
 	}
 
 	@Override
-	public Vmessage vmessageDetail(int vmNo, int sNo) {
-
+	public Vmessage vmessageDetail(int vmNo) {
+		return vmDao.vmessageDetail(vmNo);
+	}
+	
+	@Override
+	public Vmessage vmessageSellerDetail(int vmNo, int sNo) {
+		
 		String check = vmDao.vmessageCheck(vmNo);
 		int result = 0;
-			
-			if(check == null){
-				result = vmDao.vmessageCheckDate(vmNo);
-			}
-			System.out.println(check);
-			System.out.println(result);
+		
+		if(check == null){
+			result = vmDao.vmessageCheckDate(vmNo);
+		}
+		System.out.println("11111111111111111");
+		System.out.println(check);
+		System.out.println(result);
+		
 		if(result > 0) {
 			return vmDao.vmessageDetail(vmNo);
 		}else {
 			return null;
 		}
 	}
+	
 	@Override
-	public Vmessage vmessageDetail(int vmNo) {
-		return vmDao.vmessageDetail(vmNo);
+	public int insertVmessage(Vmessage vm) {
+		return vmDao.vmessageInsert(vm);
 	}
 
 

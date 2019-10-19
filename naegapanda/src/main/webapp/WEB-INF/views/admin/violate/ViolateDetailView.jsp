@@ -27,21 +27,23 @@
 	</div>
 	
 	<div class="bs-example">
-			<%-- <c:forEach items="${ list }" var="v"> --%>
+			
+			
+				<h3 style="font-weight:bold;">신고 게시글</h3><br>
+				<br>
 					<table class="table">
 					  
 						    <tr>
 						      <th scope="col" width="100px" align="center">신고 상품</th>
-						      <td width="500px">
-						       <h4>${ v.pId }</h4>
-						         <input type="hidden" name="pId" value="{v.pId}">
-						      	 <!-- <input type="hidden" name="pName" value="{v.pName}"> -->
+						      <td width="400px">
+						       <h4>${ v.pName }</h4>
 						      </td>
 						      <th width="70px">판매자</th>
+						      <c:url value="vmessageInsertView.do" var="vmInsert">
+					 						<c:param name="vNo" value="${ v.vNo }"/>
+									</c:url>
 						      <td> <!-- 판매자 -->
-						      	 ${ v.sName }
-						      	 <input type="hidden" name="sName" value="{v.sName}">
-						      	 <input type="hidden" name="sNo" value="{v.sNo}">
+									<a href="${ vmInsert }">${ v.sName }</a>
 						      </td>
 						    </tr>
 						    <tr>
@@ -51,34 +53,24 @@
 						      </td>
 						    </tr>
 						    <tr>
-						      <th scope="row" height="300px">내용</th>
-						      <td colspan="3">
-						      	<div style="width:700px;height:300px;border:none;">${v.vContent}</div>
-						      </td>
+						      <th>첨부파일</th>
+								<td colspan="3">
+									<c:if test="${ !empty vm.vmOriginalFileName }">
+										<a href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }">${vm.vmOriginalFileName }</a>
+									</c:if>
+								</td>
 						    </tr>
 						    <tr>
-						      <th scope="row">첨부 파일</th>
+						      <th scope="row" height="300px">내용</th>
 						      <td colspan="3">
-							      <div class="file" style="width:100px;height:100px;border:1px solid blue;"></div>
-							     <%--  <% for(int i=0; i<fileList.size(); i++){%>
-										<td colspan="2" class="photo">
-												<div class="file" style="width:100px;height:100px;">
-													<img width="100" height="100" src="src/main/webapp/resources/images/<%=fileList.get(i).getvFile()%>">
-												</div>
-										</td>
-					
-								<% } %> --%>
+						      	<div style="width:500px;height:300px;border:none;">${v.vContent}</div>
 						      </td>
 						    </tr>
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    	<%-- <c:url value="vmessageInsertView.do" var="vmInsert">
-					 					<c:param name="sNo" value="${ v.sNo }"/>
-					 					<c:param name="pId" value="${ v.pId }"/>
-								</c:url> --%>
-						    		<button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button>
-						    		<button type="button" class="btn btn-outline-primary" onclick="location.href='violateView.do';">취소</button>
+						    		<!-- <button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button> -->
+						    		<button type="button" class="btn btn-outline-primary" onclick="location.href='violateView.do';">뒤로가기</button>
 						    	</td>
 						    </tr>
 				  	  	

@@ -10,9 +10,10 @@
 <style type="text/css">
 
 	.outer{
-		width:900px;
+		width:700px;
 		height: 500px;
-		margin-left: 300px;
+		margin-left: auto;
+		margin-right: auto;
 		margin-top:50px; 
 	}
 </style>
@@ -41,19 +42,15 @@
 					  
 						    <tr>
 						      <th scope="col" width="100px" align="center">판매자</th>
-						      <td width="450px">
-						       <h4>${ vm.sName }</h4>
-						      </td>
-						      <th width="70px">발신날짜</th>
-						      <td width="100px">
+						      <td width="70px"> ${ vm.sName } </td>
+						      <td width="70px" align="right"><b>발신날짜</b></td>
+						      <td width="70px">
 						      	 ${ vm.vmSendDate }
 						      </td>
 						    </tr>
 						    <tr>
 						      <th scope="row">제목</th>
-						      <td colspan="2">
-						      	<h4>${ vm.vmTitle }</h4>
-						      </td>
+						      <td colspan="2"> ${ vm.vmTitle } </td>
 						      <td>
 						      <c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 							      <c:if test="${ empty vm.vmCheckDate }">
@@ -69,21 +66,29 @@
 						      </td>
 						    </tr>
 						    <tr>
+						    <th>첨부파일</th>
+								<td colspan="3">
+									<c:if test="${ !empty vm.vmOriginalFileName }">
+										<a href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }">${vm.vmOriginalFileName }</a>
+									</c:if>
+								</td>
+						    </tr>
+						    <tr>
 						      <th scope="row" height="300px">내용</th>
 						      <td colspan="3">
-						      	<div style="width:700px;height:300px;border:none;">${vm.vmContent}</div>
+						      	<div style="width:500px;height:300px;border:none;">${vm.vmContent}</div>
 						      </td>
 						   </tr>
 						    
 						    <tr>
 						    	<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
-							    	<td colspan="3" align="center">
-							    		<button type="button" class="btn btn-outline-primary" onclick="location.href='vmessage.do';">뒤로</button>
+							    	<td colspan="4" align="center">
+							    		<button type="button" class="btn btn-outline-primary" onclick="location.href='vmessage.do';">뒤로가기</button>
 							    	</td>
 						    	</c:if>
 						    	<c:if test="${ !empty loginSeller }">
-							    	<td colspan="3" align="center">
-							    		<button type="button" class="btn btn-outline-primary" onclick="location.href='sellervmessage.do';">뒤로</button>
+							    	<td colspan="4" align="center">
+							    		<button type="button" class="btn btn-outline-primary" onclick="location.href='sellervmessage.do';">뒤로가기</button>
 							    	</td>
 						    	</c:if>
 						    </tr>

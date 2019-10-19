@@ -298,7 +298,7 @@
 										</ul>
 									</li>
 									<li><a href="chatMain.do">SoojinChat<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="vdetailView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 							

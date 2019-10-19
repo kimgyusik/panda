@@ -74,6 +74,7 @@ public class VmessageController {
 	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo) {
 
 		Vmessage vm = vmService.vmessageDetail(vmNo);
+		System.out.println("2222222222222222222222222222222");
 
 		mv.addObject("vm", vm).setViewName("admin/vmessage/VmessageDetailView");
 
@@ -81,11 +82,14 @@ public class VmessageController {
 	}
 
 	@RequestMapping("vmSellerDetailView.do")
-	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo, HttpSession session) {
+	public ModelAndView VmessageSellerDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
+		System.out.println(sNo);
+		System.out.println("11111111111111111111111111111111");
 
-		Vmessage vm = vmService.vmessageDetail(vmNo, sNo);
+		Vmessage vm = vmService.vmessageSellerDetail(vmNo, sNo);
+		System.out.println(vm);
 
 		mv.addObject("vm", vm).setViewName("admin/vmessage/VmessageDetailView");
 
@@ -93,64 +97,51 @@ public class VmessageController {
 	}
 
 	@RequestMapping("vmInsert.do")
-	public ModelAndView VmessageInsert(ModelAndView mv) {
-		return null;
+	public String VmessageInsert(Vmessage vm, HttpServletRequest request, Model model, @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+		
+		if(!file.getOriginalFilename().equals("")) {
+			String renameFileName = saveFile(file, request);
+			
+			if(renameFileName != null) {
+				vm.setVmOriginalFileName(file.getOriginalFilename());
+				vm.setVmRenameFileName(renameFileName);
+			}
+		
+		}
+		
+		int result = vmService.insertVmessage(vm);
+		
+		return "redirect:vmessage.do";
+	}
+	
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\vmupload";
+		
+		File folder = new File(savePath);
+		
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		String vmOriginalFileName = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + vmOriginalFileName.substring(vmOriginalFileName.lastIndexOf("."));
+		
+		String renamePath = savePath + "\\" + renameFileName;
+		
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return renameFileName;
+		
 	}
 
-	/*
-	 * @RequestMapping("vinsert.do") public String insertViolate(Violate v,
-	 * HttpServletRequest request, Model model,
-	 * 
-	 * @RequestParam(name="uploadFile", required=false) MultipartFile file) {
-	 * 
-	 * 
-	 * if(!file.getOriginalFilename().equals("")) {
-	 * 
-	 * String renameFileName = saveFile(file, request); if(renameFileName != null) {
-	 * // 파일이 잘 저장된 경우 v.setvPhoto(renameFileName); }
-	 * 
-	 * }
-	 * 
-	 * 
-	 * int result = vService.insertViolate(v);
-	 * 
-	 * 
-	 * if(result > 0) { return "redirect:finishViolate.do"; }else { return
-	 * "common/errorPage"; }
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * public String saveFile(MultipartFile file, HttpServletRequest request) {
-	 * //session을 쓰려구 // 파일이 저장될 경로 설정 String root =
-	 * request.getSession().getServletContext().getRealPath("resources"); String
-	 * savePath = root + "\\vUpload";
-	 * 
-	 * File folder = new File(savePath); // 저장될 폴더
-	 * 
-	 * if(!folder.exists()) { // 폴더가 없다면 folder.mkdirs(); // 폴더 생성해라 }
-	 * 
-	 * String originalFileName = file.getOriginalFilename(); // 원본명(확장자)
-	 * 
-	 * // 파일명 수정작업 --> 년월일시분초.확장자 SimpleDateFormat sdf = new
-	 * SimpleDateFormat("yyyyMMddHHmmss");
-	 * 
-	 * String renameFileName = sdf.format(new Date(System.currentTimeMillis())) //
-	 * 년월일시분초 + originalFileName.substring(originalFileName.lastIndexOf("."));
-	 * 
-	 * // 실제 저장될 경로 savePath + 저장하고자하는 파일명 renameFileName String renamePath =
-	 * savePath + "\\" + renameFileName;
-	 * 
-	 * 
-	 * 
-	 * try { file.transferTo(new File(renamePath)); } catch (IllegalStateException |
-	 * IOException e) { e.printStackTrace(); }
-	 * 
-	 * 
-	 * return renameFileName; // 수정명 반환
-	 * 
-	 * }
-	 */
+
 }

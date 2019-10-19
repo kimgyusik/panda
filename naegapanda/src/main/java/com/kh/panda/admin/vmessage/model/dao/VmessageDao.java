@@ -1,6 +1,5 @@
 package com.kh.panda.admin.vmessage.model.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
@@ -57,5 +56,9 @@ public class VmessageDao {
 	
 	public Vmessage vmessageDetail(int vmNo) {
 		return sqlsession.selectOne("vmessageMapper.vmessageDetail",vmNo);
+	}
+	
+	public int vmessageInsert(Vmessage vm){
+		return sqlsession.insert("vmessageMapper.vmessageInsert",vm);
 	}
 }
