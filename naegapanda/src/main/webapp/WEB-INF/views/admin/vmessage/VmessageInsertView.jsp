@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
@@ -19,7 +21,6 @@
 <script>
 $(document).ready(function() {
 	  $('#summernote').summernote({
- 	    	placeholder: 'content',
 	        minHeight: 370,
 	        maxHeight: null,
 	        focus: true, 
@@ -59,7 +60,7 @@ $(document).ready(function() {
 			      <td colspan="2">
 			      <!-- <textArea name="vmContent" style="width:500px;height:300px;border:none;"></textArea> -->
 			      	 <div id="summernote" style="height:300px">
-			      		<textarea style="width:500px;height:300px;border:none;" required></textarea>
+			      		<textarea id="summernote" name="summernote" style="width:500px;height:300px;border:none;" required></textarea>
 			      	</div> 	  
 			      </td>
 			    </tr>
