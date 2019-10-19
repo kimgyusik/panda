@@ -20,7 +20,6 @@
 		<typeAlias type="com.kh.panda.admin.violate.model.vo.Violate" alias="Violate"/>
 		<typeAlias type="com.kh.panda.seller.model.vo.Seller" alias="Seller"/>
 		<typeAlias type="com.kh.panda.admin.board.qna.model.vo.Qna" alias="Qna" />
-		<typeAlias type="com.kh.panda.admin.vmessage.model.vo.Vmessage" alias="Vmessage"/>
 	</typeAliases>
 
 	<mappers>
@@ -34,6 +33,5 @@
 		<mapper resource="mappers/violate-mapper.xml"/>
 		<mapper resource="mappers/seller-mapper.xml"/>
 		<mapper resource="mappers/qna-mapper.xml" />
-		<mapper resource="mappers/vmessage-mapper.xml"/>
 	</mappers>
 </configuration>
