@@ -38,13 +38,18 @@ public class VmessageServiceImpl implements VmessageService{
 	public Vmessage vmessageDetail(int vmNo, int sNo) {
 
 		String check = vmDao.vmessageCheck(vmNo);
+		int result = 0;
 			
 			if(check == null){
-				int date = vmDao.vmessageCheckDate(vmNo);
+				result = vmDao.vmessageCheckDate(vmNo);
 			}
-				
-		return vmDao.vmessageDetail(vmNo);
-		
+			System.out.println(check);
+			System.out.println(result);
+		if(result > 0) {
+			return vmDao.vmessageDetail(vmNo);
+		}else {
+			return null;
+		}
 	}
 	@Override
 	public Vmessage vmessageDetail(int vmNo) {

@@ -6,10 +6,14 @@
 		<id property="vmNo" column="vm_no"/>
   		<result property="sNo" column="s_no"/>
   		<result property="sName" column="s_name"/>
+  		<result property="pId" column="p_Id"/>
+  		<result property="pName" column="p_name"/>
   		<result property="vmTitle" column="vm_title"/>
   		<result property="vmContent" column="vm_content"/>
   		<result property="vmSendDate" column="vm_send_date"/>
   		<result property="vmCheckDate" column="vm_check_date"/>
+  		<result property="vOriginalFileName" column="vm_original_filename"/> 		
+  		<result property="vRenameFileName" column="vm_Rename_filename"/> 		
   		<result property="vmStatus" column="vm_status"/>
 	</resultMap>
 	

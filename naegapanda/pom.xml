@@ -243,7 +243,7 @@
 		</dependency>
 		
 		
-		<!-- chatting -->
+		  <!-- 웹소켓 라이브러리 -->
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>
@@ -268,6 +268,13 @@
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
 		    <version>2.6</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>springloaded</artifactId>
+    		<version>1.2.6.RELEASE</version>
+    		<scope>provided</scope>
 		</dependency>
 		
       

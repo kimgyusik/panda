@@ -34,10 +34,14 @@
 						      <th scope="col" width="100px" align="center">신고 상품</th>
 						      <td width="500px">
 						       <h4>${ v.pId }</h4>
+						         <input type="hidden" name="pId" value="{v.pId}">
+						      	 <!-- <input type="hidden" name="pName" value="{v.pName}"> -->
 						      </td>
 						      <th width="70px">판매자</th>
 						      <td> <!-- 판매자 -->
 						      	 ${ v.sName }
+						      	 <input type="hidden" name="sName" value="{v.sName}">
+						      	 <input type="hidden" name="sNo" value="{v.sNo}">
 						      </td>
 						    </tr>
 						    <tr>
@@ -69,8 +73,12 @@
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    		<button type="submit" class="btn btn-outline-primary" onclick="vmessageInsertView.do;">판매글 정지</button>
-						    		<button type="button" class="btn btn-outline-primary" onclick="violateView.do;">취소</button>
+						    	<%-- <c:url value="vmessageInsertView.do" var="vmInsert">
+					 					<c:param name="sNo" value="${ v.sNo }"/>
+					 					<c:param name="pId" value="${ v.pId }"/>
+								</c:url> --%>
+						    		<button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button>
+						    		<button type="button" class="btn btn-outline-primary" onclick="location.href='violateView.do';">취소</button>
 						    	</td>
 						    </tr>
 				  	  	

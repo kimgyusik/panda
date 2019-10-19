@@ -21,7 +21,7 @@ public class VmessageDao {
 		return sqlsession.selectOne("vmessageMapper.getListCount");
 	}
 	public int getSellerListCount(int sNo) {
-		return sqlsession.selectOne("vmessageMapper.getSellerListCount");
+		return sqlsession.selectOne("vmessageMapper.getSellerListCount",sNo);
 	}
 	
 	

@@ -154,15 +154,19 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
 			ArrayList<Violate> list = vService.selectList(pi);
-		
-		 System.out.println("list:" + list); 
-		 System.out.println("listcount:" + listCount);
-		 
 			
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView");
 			// 객체                                                                                         경로로반환한거당
 			return mv;
 			
+		}
+		
+		@RequestMapping("vmessageInsertView.do")
+		public ModelAndView VmessageInsertView(ModelAndView mv, int sNo, int pNo) {
+						
+			mv.addObject("sNo",sNo).addObject("pNo",pNo).setViewName("admin/vmessage/VmessageInsertView");
+			
+			return mv;
 		}
 	
 

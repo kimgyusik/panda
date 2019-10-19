@@ -78,12 +78,12 @@
 						    <tr>
 						    	<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 							    	<td colspan="3" align="center">
-							    		<button type="button" class="btn btn-outline-primary" onclick="vmessage.do;">뒤로</button>
+							    		<button type="button" class="btn btn-outline-primary" onclick="location.href='vmessage.do';">뒤로</button>
 							    	</td>
 						    	</c:if>
 						    	<c:if test="${ !empty loginSeller }">
 							    	<td colspan="3" align="center">
-							    		<button type="button" class="btn btn-outline-primary" onclick="sellervmessage.do;">뒤로</button>
+							    		<button type="button" class="btn btn-outline-primary" onclick="location.href='sellervmessage.do';">뒤로</button>
 							    	</td>
 						    	</c:if>
 						    </tr>
