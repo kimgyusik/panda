@@ -58,7 +58,7 @@
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li><a href="nlist.do">판다 공지</a></li>
-											<li><a href="#">QnA</a></li>
+											<li><a href="qlist.do">QnA</a></li>
 											
 											<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 												<li><a href="#">판매관리</a></li>

@@ -54,43 +54,39 @@
 	
 	<div class="bs-example">
 		<table class="table table-hover" align="center" cellspacing="0" >
-			<h3 style="font-weight:bold;">PANDA 공지</h3><br>
+			<h3 style="font-weight:bold;">PANDA Q&A</h3><br>
 				<thead align="center">
 					<tr>
 						<th>No.</th>
 						<th width="300">제목</th>
-						<th width="180">날짜</th>
+						<th width="150">작성자</th>
+						<th>날짜</th>
 						<th>조회수</th>
-						<th>첨부파일</th>
 					</tr>
 				</thead>
 					<tbody>
 								
-						<c:forEach items="${ list }" var="n">
+						<c:forEach items="${ list }" var="q">
 									
 										<tr>
-											<td align="center">${ n.nId }</td>
+											<td align="center">${ q.qId }</td>
 											<td align="center">
 												<c:if test="${ empty loginUser }">
-													${ n.nTitle }
+													${ q.qTitle }
 												</c:if>
 												<c:if test="${ !empty loginUser }">
-													<c:url value="ndetail.do" var="ndetail">
-														<c:param name="nId" value="${ n.nId }"/>
+													<c:url value="qdetail.do" var="qdetail">
+														<c:param name="qId" value="${ q.qId }"/>
 													</c:url>
-													<a href="${ ndetail }">${ n.nTitle }</a>
+													<a href="${ qdetail }">${ q.qTitle }</a>
 												</c:if>
 											</td>
-											<td align="center">${ n.nCreateDate }</td>
-											<td align="center">${ n.nCount }</td>
 											<td align="center">
-												<c:if test="${ !empty n.nOriginalFileName }">
-													<span style="color:#0e8ce4"><i class="far fa-file"></i></span>
-												</c:if>
-												<c:if test="${ empty n.nOriginalFileName }">
-													&nbsp;
-												</c:if>
+												${ q.mNo }
 											</td>
+											<td align="center">${ q.qModifyDate }</td>
+											<td align="center">${ q.qCount }</td>
+											
 										</tr>
 									</c:forEach>
 									
@@ -106,7 +102,7 @@
 											[이전] 
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="nlist.do" var="before">
+											<c:url value="qlist.do" var="before">
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
@@ -118,7 +114,7 @@
 												<font  size="4">[${ p }]</font>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="nlist.do" var="page">
+												<c:url value="qlist.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
 												</c:url>
 												<a href="${ page }">${ p }</a>
@@ -130,7 +126,7 @@
 											 [다음]
 										</c:if>
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="nlist.do" var="next">
+											<c:url value="qlist.do" var="next">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
@@ -138,8 +134,8 @@
 									</div>
 		
 		<div class="col-lg-11" align="right">
-			<c:if test="${ sessionScope.loginUser.name eq '관리자' }">
-			<button onclick="location.href='ninsertView.do';" class="btn">글쓰기</button>
+			<c:if test="${ !empty sessionScope.loginUser }">
+				<button onclick="location.href='qinsertView.do';" class="btn">글쓰기</button>
 			</c:if>
 		</div>
 		
