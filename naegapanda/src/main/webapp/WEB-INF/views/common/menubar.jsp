@@ -50,7 +50,7 @@
 								<ul class="standard_dropdown top_bar_dropdown">
 								<c:if test="${ !empty loginSeller }">
 									<li>
-										<a href="sellervmessage.do"><img src="resources/images/vmessage.JPG"></a>
+										<a href="sellervmessage.do"><img src="resources/images/vmessage.png"></a>
 										
 									</li>
 								</c:if>
