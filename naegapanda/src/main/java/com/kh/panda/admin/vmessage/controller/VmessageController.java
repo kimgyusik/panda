@@ -69,8 +69,10 @@ public class VmessageController {
 	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 		
 		int sNo = ((Seller)(session.getAttribute("loginSeller"))).getsNo();
-		
-		Vmessage vm = vmService.vmessageDetail(vmNo,sNo);
+		if(sNo > 0) {			
+			Vmessage vm = vmService.vmessageDetail(vmNo,sNo);
+		}
+		Vmessage vm = vmService.vmessageDetail(vmNo);
 		
 		mv.addObject("vm",vm).setViewName("admin/vmessage/VmessageDetailView");
 		

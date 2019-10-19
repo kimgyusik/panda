@@ -36,17 +36,19 @@ public class VmessageServiceImpl implements VmessageService{
 
 	@Override
 	public Vmessage vmessageDetail(int vmNo, int sNo) {
-		
-		if(sNo > 0) {
-			String check = vmDao.vmessageCheck(vmNo);
+
+		String check = vmDao.vmessageCheck(vmNo);
 			
-				if(check == null){
-					int date = vmDao.vmessageCheckDate(vmNo);
-				}
+			if(check == null){
+				int date = vmDao.vmessageCheckDate(vmNo);
+			}
 				
-		}
-			return vmDao.vmessageDetail(vmNo);
+		return vmDao.vmessageDetail(vmNo);
 		
+	}
+	@Override
+	public Vmessage vmessageDetail(int vmNo) {
+		return vmDao.vmessageDetail(vmNo);
 	}
 
 

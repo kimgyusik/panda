@@ -15,5 +15,6 @@ public interface VmessageService {
 	
 	
 	Vmessage vmessageDetail(int vmNo, int sNo);
+	Vmessage vmessageDetail(int vmNo);
 
 }
