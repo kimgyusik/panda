@@ -29,12 +29,13 @@
 <c:if test="${ !empty loginSeller }">
    <div class="outer">
 </c:if>
-<c:if test="${ !empty loginSeller }">
+<c:if test="${ empty loginSeller }">
 	<div class="bs-example">
 </c:if>
    
-   
-   <table class="table">
+   	<h3 style="font-weight:bold;">신고 메세지 관리</h3><br>
+				<br>
+   						<table class="table">
 					  
 						    <tr>
 						      <th scope="col" width="100px" align="center">판매자</th>
@@ -73,21 +74,28 @@
 						   </tr>
 						    
 						    <tr>
-						    	<td colspan="3" align="center">
-						    		<button type="button" class="btn btn-outline-primary" onclick="vmessage.do;">뒤로</button>
-						    	</td>
+						    	<c:if test="${ loginUser eq 'admin' }">
+							    	<td colspan="3" align="center">
+							    		<button type="button" class="btn btn-outline-primary" onclick="vmessage.do;">뒤로</button>
+							    	</td>
+						    	</c:if>
+						    	<c:if test="${ !empty loginSeller }">
+							    	<td colspan="3" align="center">
+							    		<button type="button" class="btn btn-outline-primary" onclick="sellervmessage.do;">뒤로</button>
+							    	</td>
+						    	</c:if>
 						    </tr>
 				  	  	
 					</table>
    
-   
-   
-   
-   
-   
+  
 	</div>
 	
-	<c:import url="../../common/adminFooter.jsp"/> 
+	
+	<br><br><br>
+	<c:if test="${ empty loginSeller }">
+		<c:import url="../../common/adminFooter.jsp"/> 
+	</c:if>
 	<c:import url="../../common/footer.jsp"/>
 </body>
 </html>

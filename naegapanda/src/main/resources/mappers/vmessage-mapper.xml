@@ -33,6 +33,19 @@
 		where s_no=#{sNo}
 	</select>
 
+	
+	<select id="vmessageCheck" parameterType="_int" resultType="String">
+		select vm_check_date
+		from vmList
+		where s_no=#{sNo}
+	</select>
+	
+	<update id="vmessageCheckDate" parameterType="_int">
+		update vmessage
+		set vm_check_date = sysdate
+  		where vm_No=#{vmNo}
+	</update>
+
 	<select id="vmessageDetail" resultMap="vmessageResultSet" parameterType="_int">
 		select *
 		from vmList

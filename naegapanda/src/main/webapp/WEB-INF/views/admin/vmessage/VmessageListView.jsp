@@ -17,21 +17,18 @@
 </head>
 <body>
 
-<c:if test="${ empty loginSeller }">
+
 	<div class="super_container">
-</c:if>
+
       <c:import url="../../common/menubar.jsp"/> 
-<c:if test="${ empty loginSeller }">   
+
       <c:import url="../../common/admin.jsp"/> 
       
    </div>
-</c:if>
-<c:if test="${ !empty loginSeller }">
-   <div class="outer">
-</c:if>
-<c:if test="${ !empty loginSeller }">
+
+
 	<div class="bs-example">
-</c:if>
+
    
    	<h3 style="font-weight:bold;">신고 메세지 관리</h3><br>
 				<br>
@@ -121,16 +118,6 @@
 					
 					</table>
 				</div>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    
    
    

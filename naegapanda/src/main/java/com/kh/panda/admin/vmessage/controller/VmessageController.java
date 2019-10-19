@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -57,7 +58,7 @@ public class VmessageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
 		ArrayList<Vmessage> list = vmService.selectSellerList(pi,sNo);
-		
+		System.out.println(list);
 		
 		mv.addObject("pi",pi).addObject("list",list).addObject("sNo",sNo).setViewName("admin/vmessage/SellerVmessageListView");
 		
@@ -65,9 +66,11 @@ public class VmessageController {
 	}
 	
 	@RequestMapping("vmDetailView.do")
-	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo) {
+	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 		
-		Vmessage vm = vmService.vmessageDetail(vmNo);
+		int sNo = ((Seller)(session.getAttribute("loginSeller"))).getsNo();
+		
+		Vmessage vm = vmService.vmessageDetail(vmNo,sNo);
 		
 		mv.addObject("vm",vm).setViewName("admin/vmessage/VmessageDetailView");
 		
