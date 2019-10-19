@@ -5,9 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신고 메세지 작성</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+
 </head>
 <body>
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote({
+ 	    	placeholder: 'content',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR'
+	  });
+	});
+</script>
 <div class="super_container">
    
       <c:import url="../../common/menubar.jsp"/> 
@@ -38,10 +57,10 @@
 			    <tr>
 			      <th scope="row" height="300px">내용</th>
 			      <td colspan="2">
-			      <textArea name="vmContent" style="width:500px;height:300px;border:none;"></textArea>
-			      	<!-- <div id="summernote" style="height:300px">
-			      		<textarea style="width:700px;height:300px;border:none;" required></textarea>
-			      	</div>	 -->		      
+			      <!-- <textArea name="vmContent" style="width:500px;height:300px;border:none;"></textArea> -->
+			      	 <div id="summernote" style="height:300px">
+			      		<textarea style="width:500px;height:300px;border:none;" required></textarea>
+			      	</div> 	  
 			      </td>
 			    </tr>
 			    <tr>
@@ -63,8 +82,7 @@
 		</table>
 	</form>
    
-   
-   
+
    
    
    

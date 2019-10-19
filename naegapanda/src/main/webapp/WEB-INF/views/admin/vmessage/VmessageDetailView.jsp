@@ -69,7 +69,8 @@
 						    <th>첨부파일</th>
 								<td colspan="3">
 									<c:if test="${ !empty vm.vmOriginalFileName }">
-										<a href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }">${vm.vmOriginalFileName }</a>
+										<%-- <a href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }">${vm.vmOriginalFileName }</a> --%>
+										<a  href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" data-target="#myModal" data-toggle="modal">${vm.vmRenameFileName }</a>
 									</c:if>
 								</td>
 						    </tr>
@@ -94,10 +95,48 @@
 						    </tr>
 				  	  	
 					</table>
+					
+					
    
   
 	</div>
 	
+	<div class="col-lg-3 col-md-4 col-xs-6 thumb"  style="width:750px; height:550px;">
+        <%-- <img id="image-modal" class="img-responsive img-rounded" src="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" data-target="#myModal" data-toggle="modal" alt=""> --%>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width:730px; height:700px;">
+                    <div class="modal-header">
+                        ${ vm.vmTitle } <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-responsive" src="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" alt="" width="700px" height="500px">
+                    		<br><br>
+                    	<div style="width:700px;height:300px;border:none;">${vm.vmContent}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script>
+	$(document).ready(function () {
+	    $('#myModal').on('show.bs.modal', function (e) {
+	        var img = $(e.relatedTarget).attr('src'); // get image
+	        $('#showimg').attr('src' , img); //load image in modal
+	    });
+	});
+	
+	$(document).ready(function () {
+	    $('#myModal').on('show.bs.modal', function (e) {
+	        var img = $(e.relatedTarget).attr('href'); // get image with <a> tag
+	        $('#showimg').attr('src' , img); //load image in modal
+	    });
+	});
+
+	
+	</script>
 	
 	<br><br><br>
 	<c:if test="${ empty loginSeller }">

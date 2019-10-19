@@ -56,7 +56,8 @@
 						      <th>첨부파일</th>
 								<td colspan="3">
 									<c:if test="${ !empty vm.vmOriginalFileName }">
-										<a href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }">${vm.vmOriginalFileName }</a>
+										<%-- <a href="${ contextPath }/resources/vmupload/${ v.vRenameFileName }">${v.vOriginalFileName }</a> --%>
+										<a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" data-target="#myModal" data-toggle="modal">${v.vRenameFileName }</a>
 									</c:if>
 								</td>
 						    </tr>
@@ -77,7 +78,40 @@
 					</table>
 				<%-- </c:forEach> --%>
 	</div>
-
+	
+	<div class="col-lg-3 col-md-4 col-xs-6 thumb"  style="width:750px; height:550px;">
+        <%-- <img id="image-modal" class="img-responsive img-rounded" src="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" data-target="#myModal" data-toggle="modal" alt=""> --%>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width:730px; height:700px;">
+                    <div class="modal-header">
+                        ${ v.vTitle } <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-responsive" src="${ contextPath }/resources/vupload/${ v.vRenameFileName }" alt="" width="700px" height="500px">
+                    		<br><br>
+                    		<div style="align:center"><a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" download>${ v.vRenameFileName }</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script>
+	$(document).ready(function () {
+	    $('#myModal').on('show.bs.modal', function (e) {
+	        var img = $(e.relatedTarget).attr('src'); // get image
+	        $('#showimg').attr('src' , img); //load image in modal
+	    });
+	});
+	
+	$(document).ready(function () {
+	    $('#myModal').on('show.bs.modal', function (e) {
+	        var img = $(e.relatedTarget).attr('href'); // get image with <a> tag
+	        $('#showimg').attr('src' , img); //load image in modal
+	    });
+	});
 
 
 <c:import url="../../common/adminFooter.jsp"/> 
