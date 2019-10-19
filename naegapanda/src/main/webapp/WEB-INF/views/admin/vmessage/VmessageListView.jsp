@@ -5,15 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	.outer{
-		width:900px;
-		height: 500px;
-		margin-left: 300px;
-		margin-top:50px; 
-	}
-</style>
+<title>신고메세지</title>
+
 </head>
 <body>
 
@@ -46,10 +39,16 @@
 						<tbody>
 							
 								<c:forEach items="${ list }" var="vm"> 
-									
+										<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 											<c:url value="vmDetailView.do" var="vmdetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
+										</c:if>
+										<c:if test="${ !empty loginSeller}">
+											<c:url value="vmSellerDetailView.do" var="vmdetail">
+					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
+											</c:url>
+										</c:if>									
 									<tr>
 										<th scope="row">
 											<a href="${ vmdetail }">${vm.vmNo}</a>

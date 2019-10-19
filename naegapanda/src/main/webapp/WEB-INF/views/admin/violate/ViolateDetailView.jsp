@@ -5,16 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신고관리</title>
 
-
-<style>
-	.outer{
-		width:900px;
-		height: 1250px;
-		margin-left: 300px;
-		margin-top:50px; 
-	}
+<style type="text/css">
+   
 	
 	td{
 	 border:none;

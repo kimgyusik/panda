@@ -50,15 +50,12 @@ public class VmessageController {
 	public ModelAndView SellervmessageList(HttpSession session, ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		int sNo = ((Seller)(session.getAttribute("loginSeller"))).getsNo();
-		System.out.println(sNo);
-		
-//		String idTest = session.getAtt
+
 		int listCount = vmService.getSellerListCount(sNo);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
 		ArrayList<Vmessage> list = vmService.selectSellerList(pi,sNo);
-		System.out.println(list);
 		
 		mv.addObject("pi",pi).addObject("list",list).addObject("sNo",sNo).setViewName("admin/vmessage/SellerVmessageListView");
 		
@@ -66,13 +63,20 @@ public class VmessageController {
 	}
 	
 	@RequestMapping("vmDetailView.do")
+	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo) {
+		
+		Vmessage vm = vmService.vmessageDetail(vmNo);
+		
+		mv.addObject("vm",vm).setViewName("admin/vmessage/VmessageDetailView");
+		
+		return mv;
+	}
+	@RequestMapping("vmSellerDetailView.do")
 	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 		
-		int sNo = ((Seller)(session.getAttribute("loginSeller"))).getsNo();
-		if(sNo > 0) {			
-			Vmessage vm = vmService.vmessageDetail(vmNo,sNo);
-		}
-		Vmessage vm = vmService.vmessageDetail(vmNo);
+		  int sNo = ((Seller)(session.getAttribute("loginSeller"))).getsNo();
+		  
+		  Vmessage vm = vmService.vmessageDetail(vmNo,sNo);
 		
 		mv.addObject("vm",vm).setViewName("admin/vmessage/VmessageDetailView");
 		

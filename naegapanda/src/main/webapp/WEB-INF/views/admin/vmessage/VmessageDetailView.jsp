@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
+<title>신고메세지</title>
+
+<style type="text/css">
+
 	.outer{
 		width:900px;
 		height: 500px;
@@ -74,7 +76,7 @@
 						   </tr>
 						    
 						    <tr>
-						    	<c:if test="${ loginUser eq 'admin' }">
+						    	<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 							    	<td colspan="3" align="center">
 							    		<button type="button" class="btn btn-outline-primary" onclick="vmessage.do;">뒤로</button>
 							    	</td>

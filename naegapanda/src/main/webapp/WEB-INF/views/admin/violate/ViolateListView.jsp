@@ -5,16 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PANDA</title>
-
-<style>
-	.outer{
-		width:900px;
-		height: 1250px;
-		margin-left: 300px;
-		margin-top:50px; 
-	}	
-</style>
+<title>신고관리</title>
 
 </head>
 <body>
