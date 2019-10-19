@@ -16,6 +16,6 @@ public interface ViolateService {
 	// 게시판 작성
 	int insertViolate(Violate v);
 	
-	
+	Violate violateDetail(int vNo);
 	
 }

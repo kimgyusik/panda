@@ -52,7 +52,7 @@
 					<td>
 						<input type="radio" name="gender" value="M"> 남 
 						<input type="radio" name="gender" value="F"> 여
-					</td>t
+					</td>
 				</tr>
 				<tr>
 					<td>생일</td>

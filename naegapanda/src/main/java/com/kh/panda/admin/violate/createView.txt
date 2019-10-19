@@ -1,7 +1,34 @@
 create or replace view vList
 as
-select v_no,s_no,s_name,m_no,m_name,p_id,st_no,v_title,v_content,v_date,v_photo,v_status
-from violate
-join member using(m_no)
-join seller using(s_no)
+select  v.v_no as v_no,
+        s.s_no as s_no,
+        s.s_name as s_name,
+        m.m_no as m_no,
+        m.m_name as m_name,
+        p.p_id as p_id,
+        p.p_name as p_name,
+        v.st_no as st_no,
+        v.v_title as v_title,
+        v.v_content as v_content,
+        v.v_date as v_date,
+        v.v_photo as v_photo,
+        v.v_status as v_status
+from violate v, member m, seller s, product p
+where   v.m_no = m.m_no  
+    and v.s_no = s.s_no
+    and v.p_id = p.p_id
+    and p.s_no = s.s_no
 order by v_no desc;
+
+
+
+
+
+
+
+create or replace view vmList
+as
+select vm_no,s_no,s_name,vm_title,vm_content,vm_photo,vm_send_date,vm_check_date,vm_status
+from vmessage
+join seller using(s_no)
+order by vm_no desc;

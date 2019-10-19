@@ -36,6 +36,9 @@
 							<div class="top_bar_menu">			
 								<ul class="standard_dropdown top_bar_dropdown">
 									<li>
+										<a href="sellervmessage.do"><img src="resources/images/vmessage.JPG"></a>
+									</li>
+									<li>
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li><a href="nlist.do">판다 공지</a></li>

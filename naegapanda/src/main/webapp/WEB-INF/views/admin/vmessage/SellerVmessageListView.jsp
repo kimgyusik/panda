@@ -5,21 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고관리</title>
-
+<title>Insert title here</title>
+<style>
+	.outer{
+		width:900px;
+		height: 500px;
+		margin-left: 300px;
+		margin-top:50px; 
+	}
+</style>
 </head>
 <body>
 
-	<div class="super_container">
 
-   <c:import url="../../common/menubar.jsp"/> 
+      <c:import url="../../common/menubar.jsp"/> 
 
-   <c:import url="../../common/admin.jsp"/> 
+
+   <div class="outer">
+
+
+	<div class="bs-example">
+
    
-	</div>
-		<div class="bs-example">
-			<!-- <div class="outer"> -->
-				<h3 style="font-weight:bold;">신고 게시글</h3><br>
+   	<h3 style="font-weight:bold;">신고 메세지 관리</h3><br>
 				<br>
 				<table class="table table-hover">
 					  	<thead>
@@ -27,44 +35,33 @@
 							      <th scope="col">No.</th>
 							      <th scope="col" width="250">제목</th>
 							      <th scope="col" width="80">판매자</th>
-							      <th scope="col" width="80">신고자</th>
-							      <th scope="col" width="120">날짜</th>
-							      <th scope="col">처리여부</th>
+							      <th scope="col" width="120">발신날짜</th>
+							      <th scope="col" width="120">확인날짜</th>
 						    </tr>
 						</thead>
 						
 						<tbody>
 							
-								<c:forEach items="${ list }" var="v"> 
+								<c:forEach items="${ list }" var="vm"> 
 									
-											<c:url value="vdetailView.do" var="vdetail">
-					 						    <c:param name="vNo" value="${ v.vNo }"/>
+											<c:url value="vmDetailView.do" var="vmdetail">
+					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
 									<tr>
 										<th scope="row">
-											<a href="${ vdetail }">${v.vNo}</a>
+											<a href="${ vmdetail }">${vm.vmNo}</a>
 										</th>
 										<td>
-											<a href="${ vdetail }">${v.vTitle}</a>
+											<a href="${ vmdetail }">${vm.vmTitle}</a>
 										</td>
 										<td>
-											<a href="${ vdetail }">${v.sName}</a>
+											<a href="${ vmdetail }">${vm.sName}</a>
 										</td>
 										<td>
-											<a href="${ vdetail }">${v.mName}</a>
+											<a href="${ vmdetail }">${vm.vmSendDate}</a>
 										</td>
 										<td>
-											<a href="${ vdetail }">${v.vDate}</a>
-										</td>
-										<td>
-											<a href="${ vdetail }">
-												<c:if test="${ v.vStatus eq 'Y' }">
-													◎
-												</c:if>
-												<c:if test="${ v.vStatus ne 'N' }">
-													&nbsp;
-												</c:if>
-											</a>
+											<a href="${ vmdetail }">${vm.vmCheckDate}</a>
 										</td>
 						  
 								    </tr>
@@ -74,8 +71,7 @@
 					  
 				</table>
 				
-				
-					<!-- 페이징~~~~ -->		  
+				<!-- 페이징~~ -->
 				<div align="center">
 					<table>
 						<tr align="center" height="20">
@@ -86,7 +82,7 @@
 									[◁]
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url value="violateView.do" var="before">
+									<c:url value="sellervmessage.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
@@ -97,7 +93,7 @@
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="violateView.do" var="page">
+										<c:url value="sellervmessage.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
@@ -108,7 +104,7 @@
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="violateView.do" var="next">
+									<c:url value="sellervmessage.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>
@@ -119,12 +115,31 @@
 					
 					</table>
 				</div>
-			<!-- </div> -->
-	</div>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </div>
 
-	
-	<c:import url="../../common/adminFooter.jsp"/> 
-	<c:import url="../../common/footer.jsp"/>
-	
+
+
+
+<c:import url="../../common/footer.jsp"/>
+   
+   
+   
+   
+
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.kh.panda.member.model.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,20 @@ public class MemberServiceImpl implements MemberService {
 	public int idCheck(String id) {
 		return mDao.idCheck(id);
 	}
+
+	
+	
+	
+	
+	@Override
+	public String find_id(String email) {
+		return mDao.find_id(email);
+	}
+
+	
+	
+	
+	
 	
 	
 

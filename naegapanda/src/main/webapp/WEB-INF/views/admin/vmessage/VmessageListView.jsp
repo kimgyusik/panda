@@ -5,30 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PANDA</title>
-
-<style>
-	.outer{
-		width:900px;
-		height: 1250px;
-		margin-left: 300px;
-		margin-top:50px; 
-	}	
-</style>
+<title>신고메세지</title>
 
 </head>
 <body>
 
+
 	<div class="super_container">
 
-   <c:import url="../../common/menubar.jsp"/> 
+      <c:import url="../../common/menubar.jsp"/> 
 
-   <c:import url="../../common/admin.jsp"/> 
+      <c:import url="../../common/admin.jsp"/> 
+      
+   </div>
+
+
+	<div class="bs-example">
+
    
-	</div>
-		<div class="bs-example">
-			<!-- <div class="outer"> -->
-				<h3 style="font-weight:bold;">신고 게시글</h3><br>
+   	<h3 style="font-weight:bold;">신고 메세지 관리</h3><br>
 				<br>
 				<table class="table table-hover">
 					  	<thead>
@@ -36,38 +31,49 @@
 							      <th scope="col">No.</th>
 							      <th scope="col" width="250">제목</th>
 							      <th scope="col" width="80">판매자</th>
-							      <th scope="col" width="80">신고자</th>
-							      <th scope="col" width="120">날짜</th>
-							      <th scope="col">처리여부</th>
+							      <th scope="col" width="120">발신날짜</th>
+							      <th scope="col" width="120">확인날짜</th>
 						    </tr>
 						</thead>
 						
 						<tbody>
-							<c:forEach items="${ list }" var="v"> 
-								
-								<tr>
-									<th scope="row">${v.vNo}</th>
-									<td>${v.vTitle}</td>
-									<td>${v.sName}</td>
-									<td>${v.mName}</td>
-									<td>${v.vDate}</td>
-									<td>
-										<c:if test="${ v.vStatus eq 'Y' }">
-											◎
+							
+								<c:forEach items="${ list }" var="vm"> 
+										<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
+											<c:url value="vmDetailView.do" var="vmdetail">
+					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
+											</c:url>
 										</c:if>
-										<c:if test="${ v.vStatus ne 'N' }">
-											&nbsp;
-										</c:if>
-									</td>
-							    </tr>
-							    
- 						    </c:forEach> 
+										<c:if test="${ !empty loginSeller}">
+											<c:url value="vmSellerDetailView.do" var="vmdetail">
+					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
+											</c:url>
+										</c:if>									
+									<tr>
+										<th scope="row">
+											<a href="${ vmdetail }">${vm.vmNo}</a>
+										</th>
+										<td>
+											<a href="${ vmdetail }">${vm.vmTitle}</a>
+										</td>
+										<td>
+											<a href="${ vmdetail }">${vm.sName}</a>
+										</td>
+										<td>
+											<a href="${ vmdetail }">${vm.vmSendDate}</a>
+										</td>
+										<td>
+											<a href="${ vmdetail }">${vm.vmCheckDate}</a>
+										</td>
+						  
+								    </tr>
+								    
+	 						    </c:forEach> 
 					  </tbody>
 					  
 				</table>
 				
-				
-					<!-- 페이징 -->		  
+				<!-- 페이징~~ -->
 				<div align="center">
 					<table>
 						<tr align="center" height="20">
@@ -78,7 +84,7 @@
 									[◁]
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url value="vlist.do" var="before">
+									<c:url value="vmessage.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
@@ -89,7 +95,7 @@
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="vlist.do" var="page">
+										<c:url value="vmessage.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
@@ -100,7 +106,7 @@
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="vlist.do" var="next">
+									<c:url value="vmessage.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>
@@ -111,12 +117,21 @@
 					
 					</table>
 				</div>
-			<!-- </div> -->
-	</div>
+   
+   
+   
+   
+   
+   </div>
 
-	
-	<c:import url="../../common/adminFooter.jsp"/> 
-	<c:import url="../../common/footer.jsp"/>
-	
+
+
+<c:import url="../../common/adminFooter.jsp"/> 
+<c:import url="../../common/footer.jsp"/>
+   
+   
+   
+   
+
 </body>
 </html>

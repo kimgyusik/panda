@@ -32,6 +32,16 @@ public class MemberDao {
 	public int idCheck(String id) {
 		return sqlSession.selectOne("memberMapper.idCheck", id);
 	}
+	
+	
+
+	public String find_id(String email){
+		return sqlSession.selectOne("memberMapper.find_id", email);
+	}
+
+	
+	
+	
 }
 
 

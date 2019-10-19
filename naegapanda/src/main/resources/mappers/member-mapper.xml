@@ -48,6 +48,22 @@
 		from member
 		where m_id=#{id}
 	</select>
+	
+	
+	<select id="find_id" parameterType="String" resultType="String">
+			select m_id 
+			from member 
+			where email = #{email}
+	</select>
+
+	
+	
+	<!-- 비밀번호 변경 -->
+	<update id="update_pw" parameterType="member">
+		update member set m_pwd = #{pwd} where id = #{id}
+	</update>
+	
+
 </mapper>
 
 

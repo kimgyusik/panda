@@ -48,6 +48,12 @@
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">			
 								<ul class="standard_dropdown top_bar_dropdown">
+								<c:if test="${ !empty loginSeller }">
+									<li>
+										<a href="sellervmessage.do"><img src="resources/images/vmessage.JPG"></a>
+										
+									</li>
+								</c:if>
 									<li>
 										<a href="nlist.do">고객센터<i class="fas fa-chevron-down"></i></a>
 										<ul>
@@ -56,9 +62,9 @@
 											
 											<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 												<li><a href="#">판매관리</a></li>
-												<li><a href="testView.do">신고관리</a></li>
+												<li><a href="violateView.do">신고관리</a></li>
+												<li><a href="vmessage.do">신고메세지</a><li>
 											</c:if>
-											
 										</ul>
 									</li>
 									<!-- 로그인 안했을때 보이는 MyPage -->
@@ -292,7 +298,7 @@
 										</ul>
 									</li>
 									<li><a href="chatMain.do">SoojinChat<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="vdetailView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 							

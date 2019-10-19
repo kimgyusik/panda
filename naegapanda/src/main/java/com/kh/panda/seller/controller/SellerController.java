@@ -1,5 +1,7 @@
 package com.kh.panda.seller.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,7 @@ public class SellerController {
 	@RequestMapping("sJoin.do")
 	public String InsertSeller() {
 
-		return "seller/sellerJoinForm";
+return "seller/sellerJoinForm";
 
 	}
 	
@@ -73,8 +75,8 @@ public class SellerController {
 	  // 로그인
 	  @RequestMapping(value="sLogin.do", method=RequestMethod.POST) 
 	  public String loginSeller(Seller s, Model model) {
-	  
-	  Seller loginSeller = sService.loginSeller(s);
+
+		  Seller loginSeller = sService.loginSeller(s);
 	  
 	  if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
 	  loginSeller.getsPwd())) {

@@ -123,9 +123,16 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 	
 	
 	 @RequestMapping("vdetailView.do") 
-	 public String ViolateDetailView() { 
+	 public ModelAndView ViolateDetailView(ModelAndView mv, int vNo) { 
 		 
-		 return "admin/violate/ViolateDetailView"; 
+		 Violate v = vService.violateDetail(vNo);
+		 if(v != null) {
+			 mv.addObject("v",v).setViewName("admin/violate/ViolateDetailView");
+		 }else {
+			/* mv.addObject("msg","글이 없습니다...").setViewName("common/errorPage");   흠 필요없어!!!!!!!!*/
+		 }
+		 
+		 return mv;
 	}
 	 
 	 @RequestMapping("finishViolate.do")
@@ -137,19 +144,9 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 	 
 	 
 	 
-	 
-	 
-	 
-	 
-	 
-	
-	/*
-	 * @RequestMapping("testView.do") public String ViolateListView() { return
-	 * "admin/violate/ViolateListView2"; }
-	 */
 		
 		
-		@RequestMapping("testView.do")
+		@RequestMapping("violateView.do")
 		public ModelAndView tselectList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 			int listCount = vService.getListCount();
@@ -157,11 +154,12 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
 			ArrayList<Violate> list = vService.selectList(pi);
+		
+		 System.out.println("list:" + list); 
+		 System.out.println("listcount:" + listCount);
+		 
 			
-			System.out.println("list:" + list);
-			System.out.println("listcount:" + listCount);
-			
-			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView2");
+			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView");
 			// 객체                                                                                         경로로반환한거당
 			return mv;
 			
