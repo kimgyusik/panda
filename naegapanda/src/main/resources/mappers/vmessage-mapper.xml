@@ -3,7 +3,8 @@
 <mapper namespace="vmessageMapper">
 
 	<resultMap id="vmessageResultSet" type="Vmessage">
-		<id property="vmNo" column="vm_no"/>
+		<id property="vmNo" column="vm_no"/>		
+  		<result property="vNo" column="v_no"/>
   		<result property="sNo" column="s_no"/>
   		<result property="sName" column="s_name"/>
   		<result property="pId" column="p_Id"/>
@@ -57,6 +58,12 @@
 	</select>
 	<insert id="vmessageInsert" parameterType="Vmessage">
 	insert into vmessage
-	values(VMESSAGE_SEQ.nextval,#{sNo},#{pId},#{vmTitle},#{vmContent},sysdate,null,#{vmOriginalFileName},#{vmRenameFileName},default)
+	values(VMESSAGE_SEQ.nextval,#{vNo},#{sNo},#{pId},#{vmTitle},#{vmContent},sysdate,null,#{vmOriginalFileName},#{vmRenameFileName},default)
 	</insert>
+	
+	<update id="violateStatus" parameterType="_int">
+	update violate
+	set v_status='Y'
+	where v_no=#{vNo}
+	</update>
 </mapper>

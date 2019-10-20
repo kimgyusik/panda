@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.panda.admin.violate.model.dao.ViolateDao;
 import com.kh.panda.admin.vmessage.model.dao.VmessageDao;
 import com.kh.panda.admin.vmessage.model.vo.Vmessage;
 import com.kh.panda.common.PageInfo;
@@ -60,6 +61,10 @@ public class VmessageServiceImpl implements VmessageService{
 	
 	@Override
 	public int insertVmessage(Vmessage vm) {
+		int vNo = vm.getvNo();
+		
+		int result = vmDao.violateStatus(vNo);
+		
 		return vmDao.vmessageInsert(vm);
 	}
 
