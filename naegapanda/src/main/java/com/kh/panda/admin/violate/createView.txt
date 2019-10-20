@@ -30,6 +30,7 @@ order by v_no desc;
 create or replace view vmList
 as
 select  vm.vm_no,
+        v.v_no,
         s.s_no,
         s.s_name,
         p.p_id,
@@ -41,8 +42,9 @@ select  vm.vm_no,
         vm.vm_send_date,
         vm.vm_check_date,
         vm.vm_status
-from vmessage vm, seller s, product p
+from vmessage vm, seller s, product p, violate v
 where   vm.s_no = s.s_no
     and vm.p_id = p.p_id
+    and vm.v_no = v.v_no
     -- and p.s_no = s.s_no
 order by vm_no desc;

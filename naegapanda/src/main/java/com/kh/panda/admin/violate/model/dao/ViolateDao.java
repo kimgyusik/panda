@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.panda.admin.violate.model.vo.Violate;
+import com.kh.panda.admin.vmessage.model.vo.Vmessage;
 import com.kh.panda.common.PageInfo;
 
 @Repository("vDao")
@@ -36,5 +37,6 @@ public class ViolateDao {
 	public Violate violateDetail(int vNo) {
 		return sqlSession.selectOne("violateMapper.violateDetail", vNo);
 	}
+
 	
 }

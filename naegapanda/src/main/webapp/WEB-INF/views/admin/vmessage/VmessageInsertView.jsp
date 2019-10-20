@@ -59,9 +59,9 @@ $(document).ready(function() {
 			      <th scope="row" height="300px">내용</th>
 			      <td colspan="2">
 			      <!-- <textArea name="vmContent" style="width:500px;height:300px;border:none;"></textArea> -->
-			      	 <div id="summernote" style="height:300px">
-			      		<textarea id="summernote" name="summernote" style="width:500px;height:300px;border:none;" required></textarea>
-			      	</div> 	  
+			      	 
+			      		<textarea name="vmContent" style="width:500px;height:300px;border:none;" required></textarea>
+			      
 			      </td>
 			    </tr>
 			    <tr>
@@ -73,6 +73,7 @@ $(document).ready(function() {
 			    
 			    <tr>
 			    	<td colspan="3" align="center">
+			    		<input type="hidden" name="vNo" value="${ v.vNo }">
 				    	<input type="hidden" name="sNo" value="${ v.sNo }"> 
 				    	<input type="hidden" name="pId" value="${ v.pId }"> 
 			    		<button type="submit" class="btn btn-outline-primary" onclick="locatioin.href='vmIsert.do';">보내기</button>

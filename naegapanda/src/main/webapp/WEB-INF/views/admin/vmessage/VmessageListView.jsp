@@ -74,7 +74,7 @@
 										<td>
 											<a href="${ vmdetail }">${vm.vmCheckDate}</a>
 										</td>
-						  
+							  			
 								    </tr>
 								    
 	 						    </c:forEach> 
