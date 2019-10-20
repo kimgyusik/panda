@@ -136,5 +136,18 @@ return "seller/sellerJoinForm";
 	  public String sellerStreaming() {
 		  return "seller/sellerStreamingForm";
 	  }
+	  
+	  // 아이디/비번찾기 페이지
+	  @RequestMapping("findSeller.do")
+	  public String findSeller() {
+		  return "seller/find_sellerId_form";
+	  }
+	  
+	  // 아이디 찾기
+	  @RequestMapping(value="findsId.do", method = RequestMethod.POST)
+	  public String findsId(@RequestParam("sEmail") String sEmail, Model model) throws Exception{		
+		 model.addAttribute("sId", sService.findsId(sEmail));		
+		 return "seller/find_sId";  
+	  }
 
 }
