@@ -70,7 +70,7 @@ public class VmessageController {
 		return mv;
 	}
 
-	@RequestMapping("vmDetailView.do")
+	@RequestMapping("vmDetail.do")
 	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo) {
 
 		Vmessage vm = vmService.vmessageDetail(vmNo);
@@ -81,7 +81,7 @@ public class VmessageController {
 		return mv;
 	}
 
-	@RequestMapping("vmSellerDetailView.do")
+	@RequestMapping("vmSellerDetail.do")
 	public ModelAndView VmessageSellerDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
