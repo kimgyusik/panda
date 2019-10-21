@@ -78,7 +78,7 @@
 												</c:if>
 												<c:if test="${ !empty loginUser }">
 													<c:url value="qdetail.do" var="qdetail">
-														<c:param name="qId" value="${ q.uqId }"/>
+														<c:param name="uqId" value="${ q.uqId }"/>
 													</c:url>
 													<a href="${ qdetail }">${ q.uqTitle }</a>
 												</c:if>
