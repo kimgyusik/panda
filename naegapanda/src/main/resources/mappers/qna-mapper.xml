@@ -3,16 +3,18 @@
 <mapper namespace="qnaMapper">
 	
 	<resultMap id="qnaResultSet" type="qna">
-		<id property="qId" column="q_id" />
-		<result property="qTitle" column="q_title" />
-		<result property="qContent" column="q_content" />
+		<id property="uqId" column="q_id" />
+		<result property="uqTitle" column="q_title" />
+		<result property="uqCategory" column="q_category" />
+		<result property="uqContent" column="q_content" />
 		<result property="mNo" column="m_no" />
-		<result property="sNo" column="s_no" />
-		<result property="qCount" column="q_count" />
-		<result property="qCreateDate" column="q_create_date" />
-		<result property="qModifyDate" column="q_modify_date" />
-		<result property="qStatus" column="q_status" />
+		<result property="uqCount" column="q_count" />
+		<result property="uqCreateDate" column="q_create_date" />
+		<result property="uqModifyDate" column="q_modify_date" />
+		<result property="uqStatus" column="q_status" />
+		<result property="mName" column="m_name" />
 	</resultMap>
+	
 
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -24,4 +26,10 @@
 		select * 
 		from qlist
 	</select>
+	
+	<insert id="insertQna" parameterType="Qna">
+		insert into qna
+		values(qna_seq.nextval, #{uqCategory}, #{uqTitle}, #{uqContent}, #{mNo}, default, sysdate, sysdate, default )
+	</insert>
+	
 </mapper>
