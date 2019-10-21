@@ -49,8 +49,9 @@ return "seller/sellerJoinForm";
 								){
 
 		
-		String encPwd = bcryptPasswordEncoder.encode(s.getsPwd());
-		s.setsPwd(encPwd);
+		/*
+		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
+		 */
 		
 		if(!post.equals("")) {
 			s.setsAddress(post +"," + sAddress1 + "," + sAddress2);
@@ -78,8 +79,10 @@ return "seller/sellerJoinForm";
 
 		  Seller loginSeller = sService.loginSeller(s);
 	  
-	  if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
-	  loginSeller.getsPwd())) {
+	  /*if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
+	  loginSeller.getsPwd())) {*/
+	
+	  if(loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
 	  
 	  model.addAttribute("loginSeller", loginSeller); return "redirect:sProduct.do";
 	  
@@ -180,8 +183,9 @@ return "seller/sellerJoinForm";
 													    @RequestParam("sbAddress1") String sbAddress1,
 													    @RequestParam("sbAddress2") String sbAddress2){
 		  
-		  String encPwd = bcryptPasswordEncoder.encode(s.getsPwd());
-			s.setsPwd(encPwd);
+		/*
+		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
+		 */
 		  
 		  if( !post.equals("")) {	// 주소 작성해서 값이 넘어왔을 경우
 				s.setsAddress(post+ ","+sAddress1+","+sAddress2);
@@ -189,7 +193,7 @@ return "seller/sellerJoinForm";
 		  if(!sbPost.equals("")) {
 				s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 			}
-			
+		  System.out.println(s);
 			int result = sService.updateSeller(s);
 			
 			if(result > 0) {
