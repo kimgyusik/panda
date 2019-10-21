@@ -48,6 +48,12 @@
 		from seller
 		where s_email = #{sEmail}
 	</select>
+	
+	<update id="updateSeller" parameterType="Seller">
+		update seller
+		set s_pwd=#{sPwd}, s_phone=#{sPhone}, s_address=#{sAddress}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
+		where s_id=#{sId}
+	</update>
 
 
 </mapper>

@@ -11,8 +11,10 @@ public interface SellerService {
 	Seller loginSeller(Seller s);
 	
 	// 3. 아이디 중복체크
-	int idCheck(String sId);
+	int sIdCheck(String sId);
 
 	String findsId(String sEmail);
+
+	int updateSeller(Seller s);
 
 }

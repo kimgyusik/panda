@@ -26,13 +26,18 @@ public class SellerDao {
 	}
 
 
-	public int idCheck(String sId) {
-		return sqlSession.selectOne("sellerMapper.idCheck", sId);
+	public int sIdCheck(String sId) {
+		return sqlSession.selectOne("sellerMapper.sIdCheck", sId);
 	}
 
 
 	public String findsId(String sEmail) {
 		return sqlSession.selectOne("sellerMapper.findsId", sEmail);
+	}
+
+
+	public int updateSeller(Seller s) {
+		return sqlSession.update("sellerMapper.updateSeller", s);
 	}
 
 }
