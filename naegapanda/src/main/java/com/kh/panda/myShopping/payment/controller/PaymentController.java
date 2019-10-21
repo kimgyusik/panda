@@ -43,11 +43,13 @@ public class PaymentController {
 		return mv;
 	}
 		
-	// 내 결재 리스트 조회
+	// 내 결재 리스트 조회(마이쇼핑 메인)
 	@RequestMapping("myPaymentList.pa")
 	public ModelAndView myPaymentList(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Payment> list = paService.myPaymentList(getmNo(session));
+
+		// ArrayList<Payment> list = paService.myPaymentList(getmNo(session));
+		ArrayList<Payment> list = new ArrayList<>();
 		
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 //		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) //년월일시분초
