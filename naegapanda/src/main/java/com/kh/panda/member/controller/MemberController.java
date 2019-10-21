@@ -173,7 +173,7 @@ public class MemberController {
 		if (result > 0) { // 존재하는 아이디 있음 --> 사용 불가능 "fail"
 			return "fail";
 		} else { // 존재하는 아이디 없음 --> 사용 가능 "ok"
-			if (sService.idCheck(id) <= 0) {
+			if (sService.sIdCheck(id) <= 0) {
 				return "ok";
 			}
 			return "fail";
