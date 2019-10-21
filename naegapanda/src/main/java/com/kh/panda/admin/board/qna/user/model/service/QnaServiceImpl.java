@@ -29,6 +29,30 @@ public class QnaServiceImpl implements QnaService {
 	public int insertQna(Qna q) {
 		return qDao.insertQna(q);
 	}
+
+	@Override
+	public Qna qnaDetail(int uqId) {
+		
+		// 1. 조회수 증가
+		int result = qDao.updateCount(uqId);
+		
+		// 2. 상세조회
+		if(result>0) {
+			return qDao.qnaDetail(uqId);
+		}else {
+			return null;
+		}
+	}
+
+	@Override
+	public int updateQna(Qna q) {
+		return qDao.updateQna(q);
+	}
+
+	@Override
+	public int deleteQna(int uqId) {
+		return qDao.deleteQna(uqId);
+	}
 	
 	
 }

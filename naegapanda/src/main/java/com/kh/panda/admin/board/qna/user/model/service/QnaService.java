@@ -19,4 +19,12 @@ public interface QnaService {
 	// 2. 회원 서비스 문의 작성
 	int insertQna(Qna q);
 	
+	// 3. 회원 서비스 문의 상세 조회
+	Qna qnaDetail(int uqId);
+	
+	// 4. 회원 서비스 문의 수정
+	int updateQna(Qna q);
+	
+	// 5. 회원 서비스 문의 삭제
+	int deleteQna(int uqId);
 }
