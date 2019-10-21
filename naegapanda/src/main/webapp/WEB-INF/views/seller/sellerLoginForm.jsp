@@ -112,7 +112,7 @@
 				<tr>
 					<td colspan="3">
 						<p>
-							<a href="join.do">회원가입</a> <a href="">아이디/비밀번호찾기</a>
+							<a href="join.do">회원가입</a> <a href="findSeller.do">아이디/비밀번호찾기</a>
 						</p>
 						<button type="submit" id="loginBtn">로그인</button>
 					</td>

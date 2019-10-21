@@ -4,26 +4,28 @@ import java.sql.Date;
 
 public class Violate {
 
-	private int vNo;			// 신고 번호
-	private int sNo;			// 신고 대상 판매자
-	private String sName;		// 판매자명
-	private int mNo;			// 신고자
-	private	String mName;		// 신고자명
-	private int pId;			// 신고 상품 번호
-	private String pName;		// 신고 상품 이름
-	private int stNo;			// 신고 방송
-	private String vTitle;		// 신고 제목
-	private String vContent;	// 신고 내용
-	private Date vDate;			// 신고 일자
-	private String vPhoto;		// 신고 첨부
-	private String vStatus;		// 처리 상태
-	
+	private int vNo;					// 신고 번호
+	private int sNo;					// 신고 대상 판매자
+	private String sName;				// 판매자명
+	private int mNo;					// 신고자
+	private	String mName;				// 신고자명
+	private int pId;					// 신고 상품 번호
+	private String pName;				// 신고 상품 이름
+	private int stNo;					// 신고 방송
+	private String vTitle;				// 신고 제목
+	private String vContent;			// 신고 내용
+	private Date vDate;					// 신고 일자
+	private String vOriginalFileName; 	// 신고 파일 원래 이름
+	private String vRenameFileName; 	// 신고 파일 변경 이름
+	private String vStatus;				// 처리 상태
+		
 	
 	public Violate() {}
 
 
 	public Violate(int vNo, int sNo, String sName, int mNo, String mName, int pId, String pName, int stNo,
-			String vTitle, String vContent, Date vDate, String vPhoto, String vStatus) {
+			String vTitle, String vContent, Date vDate, String vOriginalFileName, String vRenameFileName,
+			String vStatus) {
 		super();
 		this.vNo = vNo;
 		this.sNo = sNo;
@@ -36,7 +38,8 @@ public class Violate {
 		this.vTitle = vTitle;
 		this.vContent = vContent;
 		this.vDate = vDate;
-		this.vPhoto = vPhoto;
+		this.vOriginalFileName = vOriginalFileName;
+		this.vRenameFileName = vRenameFileName;
 		this.vStatus = vStatus;
 	}
 
@@ -151,13 +154,23 @@ public class Violate {
 	}
 
 
-	public String getvPhoto() {
-		return vPhoto;
+	public String getvOriginalFileName() {
+		return vOriginalFileName;
 	}
 
 
-	public void setvPhoto(String vPhoto) {
-		this.vPhoto = vPhoto;
+	public void setvOriginalFileName(String vOriginalFileName) {
+		this.vOriginalFileName = vOriginalFileName;
+	}
+
+
+	public String getvRenameFileName() {
+		return vRenameFileName;
+	}
+
+
+	public void setvRenameFileName(String vRenameFileName) {
+		this.vRenameFileName = vRenameFileName;
 	}
 
 
@@ -175,10 +188,10 @@ public class Violate {
 	public String toString() {
 		return "Violate [vNo=" + vNo + ", sNo=" + sNo + ", sName=" + sName + ", mNo=" + mNo + ", mName=" + mName
 				+ ", pId=" + pId + ", pName=" + pName + ", stNo=" + stNo + ", vTitle=" + vTitle + ", vContent="
-				+ vContent + ", vDate=" + vDate + ", vPhoto=" + vPhoto + ", vStatus=" + vStatus + "]";
+				+ vContent + ", vDate=" + vDate + ", vOriginalFileName=" + vOriginalFileName + ", vRenameFileName="
+				+ vRenameFileName + ", vStatus=" + vStatus + "]";
 	}
 
 
-	
 
 }

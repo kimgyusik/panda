@@ -6,7 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>신고관리</title>
+<style>
 
+	a:visited { 
+		color: black; 
+		text-decoration: none;
+	}
+
+</style>
 </head>
 <body>
 
@@ -56,13 +63,13 @@
 										<td>
 											<a href="${ vdetail }">${v.vDate}</a>
 										</td>
-										<td>
+										<td align="center">
 											<a href="${ vdetail }">
 												<c:if test="${ v.vStatus eq 'Y' }">
-													◎
+													${ v.vStatus }
 												</c:if>
-												<c:if test="${ v.vStatus ne 'N' }">
-													&nbsp;
+												<c:if test="${ v.vStatus ne 'Y' }">
+													${ v.vStatus }
 												</c:if>
 											</a>
 										</td>

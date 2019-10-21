@@ -9,7 +9,7 @@
 
 <style>
 	.outer{
-		width:900px;
+		width:800px;
 		height: 1250px;
 		margin-left: 300px;
 		margin-top:50px; 
@@ -52,54 +52,43 @@ $(function(){
 	
 	<div class="outer">
 	
-		<h1 align="center">판매자 신고하기</h1>
+		<h3 style="font-weight:bold;">신고 메세지 작성</h3><br>
 		<br>
 	<form action="vinsert.do" method="post" encType="multipart/form-data">
-		<table class="table">
+		<table class="table" style="width:800px;">
 		  	<tbody>
 			    <tr>
-			      <th scope="col" width="100px" align="center">신고 상품</th>
-			      <td width="500px">
-			      	<input type="text" class="form-control" name="pId"  value="111"  style="border:none;" <%--"${ pId }" --%> >
-			      	<input type="hidden" name="sNo" value="${ loginUser.mno }">
-			      </td>
-			      <td width="200px">
-			      	<input type="text" class="form-control readonly"name="sNo"  value="111" <%--"${ sNo }" --%> readonly style="border:none;background:white">
-			      </td>
+			      	<th scope="col" width="80px" align="center">신고 상품</th>
+			      	<td width="100px"> <h4>감자 1KG<%-- ${ p.pName } --%></h4> </td>
+			      	<td scope="col" width="30px" align="right"><b>판매자</b></td>
+			      	<td width="50px"> <h4>김말똥<%-- ${ p.sName } --%></h4></td>
+			      	
 			    </tr>
 			    <tr>
 			      <th scope="row">제목</th>
-			      <td colspan="2">
-			      	<input type="text" class="form-control" name="vTitle" placeholder="제목" style="border:none;"  required>
+			      <td colspan="3" width="100px">
+			      	<input type="text" class="form-control" name="vTitle" style="border:none;"  required>
 			      </td>
 			    </tr>
 			    <tr>
 			      <th scope="row" height="300px">내용</th>
-			      <td colspan="2">
-			      	<div id="summernote" style="height:300px">
-			      		<textarea style="width:700px;height:300px;border:none;" required></textarea>
-			      	</div>			      
+			      <td colspan="3">
+			      	<!-- <div id="summernote" style="height:300px"> -->
+			      		<textarea style="width:650px;height:300px;border:none;" required></textarea>
+			      	<!-- </div>	 -->		      
 			      </td>
 			    </tr>
 			    <tr>
 			      <th scope="row">첨부 파일</th>
-			      <td colspan="2">
-				      <input type="file" name="vfile">
+			      <td colspan="3">
+				      <input type="file" name="uploadFile">
 			      </td>
 			    </tr>
 			    
 			    <tr>
-			    	<td colspan="3" align="center">
+			    	<td colspan="4" align="center">
 			    		<button type="submit" class="btn btn-outline-primary" onclick="locatioin.href='violateFinish.do';">신고하기</button>
 			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='home.do';">취소</button>
-						<button type="button" class="btn btn-outline-primary" id="popbutton">상세보기</button>
-						<div class="modal fade">
-						  	<div class="modal-dialog">
-						    	<div class="modal-content">
-						    	
-						    	</div>
-							</div>
-						</div>
 			    	</td>
 			    </tr>
 	  	  	</tbody>

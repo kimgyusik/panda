@@ -8,11 +8,21 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:900px;
+		width:800px;
 		height: 500px;
-		margin-left: 300px;
+		margin-left: auto;
+		margin-right: auto;
 		margin-top:50px; 
 	}
+	
+
+
+	a:visited { 
+		color: black; 
+		text-decoration: none;
+	}
+
+
 </style>
 </head>
 <body>
@@ -32,8 +42,8 @@
 				<table class="table table-hover">
 					  	<thead>
 						    <tr>
-							      <th scope="col">No.</th>
-							      <th scope="col" width="250">제목</th>
+							      <th scope="col" width="80">No.</th>
+							      <td scope="col" width="300" align="left"><b>제목</b></td>
 							      <th scope="col" width="80">판매자</th>
 							      <th scope="col" width="120">발신날짜</th>
 							      <th scope="col" width="120">확인날짜</th>

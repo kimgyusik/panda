@@ -50,7 +50,7 @@
 								<ul class="standard_dropdown top_bar_dropdown">
 								<c:if test="${ !empty loginSeller }">
 									<li>
-										<a href="sellervmessage.do"><img src="resources/images/vmessage.JPG"></a>
+										<a href="sellervmessage.do"><img src="resources/images/vmessage.png"></a>
 										
 									</li>
 								</c:if>
@@ -299,7 +299,7 @@
 										</ul>
 									</li>
 									<li><a href="chatMain.do">SoojinChat<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="vdetailView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 							

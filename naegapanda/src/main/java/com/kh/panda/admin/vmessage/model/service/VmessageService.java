@@ -14,7 +14,9 @@ public interface VmessageService {
 	ArrayList<Vmessage> selectSellerList(PageInfo pi,int sNo);
 	
 	
-	Vmessage vmessageDetail(int vmNo, int sNo);
 	Vmessage vmessageDetail(int vmNo);
+	Vmessage vmessageSellerDetail(int vmNo, int sNo);
+	
+	int insertVmessage(Vmessage vm);
 
 }

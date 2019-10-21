@@ -3,13 +3,18 @@
 <mapper namespace="vmessageMapper">
 
 	<resultMap id="vmessageResultSet" type="Vmessage">
-		<id property="vmNo" column="vm_no"/>
+		<id property="vmNo" column="vm_no"/>		
+  		<result property="vNo" column="v_no"/>
   		<result property="sNo" column="s_no"/>
   		<result property="sName" column="s_name"/>
+  		<result property="pId" column="p_Id"/>
+  		<result property="pName" column="p_name"/>
   		<result property="vmTitle" column="vm_title"/>
   		<result property="vmContent" column="vm_content"/>
   		<result property="vmSendDate" column="vm_send_date"/>
   		<result property="vmCheckDate" column="vm_check_date"/>
+  		<result property="vmOriginalFileName" column="vm_original_filename"/> 		
+  		<result property="vmRenameFileName" column="vm_Rename_filename"/> 		
   		<result property="vmStatus" column="vm_status"/>
 	</resultMap>
 	
@@ -50,6 +55,15 @@
 		select *
 		from vmList
 		where vm_no=#{vmNo}
-	
 	</select>
+	<insert id="vmessageInsert" parameterType="Vmessage">
+	insert into vmessage
+	values(VMESSAGE_SEQ.nextval,#{vNo},#{sNo},#{pId},#{vmTitle},#{vmContent},sysdate,null,#{vmOriginalFileName},#{vmRenameFileName},default)
+	</insert>
+	
+	<update id="violateStatus" parameterType="_int">
+	update violate
+	set v_status='Y'
+	where v_no=#{vNo}
+	</update>
 </mapper>

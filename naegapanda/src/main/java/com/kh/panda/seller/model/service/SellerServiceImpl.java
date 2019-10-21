@@ -33,4 +33,9 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.idCheck(sId);
 	}
 
+	@Override
+	public String findsId(String sEmail) {
+		return sDao.findsId(sEmail);
+	}
+
 }

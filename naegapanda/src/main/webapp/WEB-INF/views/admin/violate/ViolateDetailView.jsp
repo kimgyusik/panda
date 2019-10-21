@@ -27,17 +27,23 @@
 	</div>
 	
 	<div class="bs-example">
-			<%-- <c:forEach items="${ list }" var="v"> --%>
+			
+			
+				<h3 style="font-weight:bold;">신고 게시글</h3><br>
+				<br>
 					<table class="table">
 					  
 						    <tr>
 						      <th scope="col" width="100px" align="center">신고 상품</th>
-						      <td width="500px">
-						       <h4>${ v.pId }</h4>
+						      <td width="400px">
+						       <h4>${ v.pName }</h4>
 						      </td>
 						      <th width="70px">판매자</th>
+						      <c:url value="vmessageInsertView.do" var="vmInsert">
+					 						<c:param name="vNo" value="${ v.vNo }"/>
+									</c:url>
 						      <td> <!-- 판매자 -->
-						      	 ${ v.sName }
+									<a href="${ vmInsert }">${ v.sName }</a>
 						      </td>
 						    </tr>
 						    <tr>
@@ -47,37 +53,65 @@
 						      </td>
 						    </tr>
 						    <tr>
-						      <th scope="row" height="300px">내용</th>
-						      <td colspan="3">
-						      	<div style="width:700px;height:300px;border:none;">${v.vContent}</div>
-						      </td>
+						      <th>첨부파일</th>
+								<td colspan="3">
+									<c:if test="${ !empty vm.vmOriginalFileName }">
+										<%-- <a href="${ contextPath }/resources/vmupload/${ v.vRenameFileName }">${v.vOriginalFileName }</a> --%>
+										<a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" data-target="#myModal" data-toggle="modal">${v.vRenameFileName }</a>
+									</c:if>
+								</td>
 						    </tr>
 						    <tr>
-						      <th scope="row">첨부 파일</th>
+						      <th scope="row" height="300px">내용</th>
 						      <td colspan="3">
-							      <div class="file" style="width:100px;height:100px;border:1px solid blue;"></div>
-							     <%--  <% for(int i=0; i<fileList.size(); i++){%>
-										<td colspan="2" class="photo">
-												<div class="file" style="width:100px;height:100px;">
-													<img width="100" height="100" src="src/main/webapp/resources/images/<%=fileList.get(i).getvFile()%>">
-												</div>
-										</td>
-					
-								<% } %> --%>
+						      	<div style="width:500px;height:300px;border:none;">${v.vContent}</div>
 						      </td>
 						    </tr>
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    		<button type="submit" class="btn btn-outline-primary" onclick="vmessageInsertView.do;">판매글 정지</button>
-						    		<button type="button" class="btn btn-outline-primary" onclick="violateView.do;">취소</button>
+						    		<!-- <button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button> -->
+						    		<button type="button" class="btn btn-outline-primary" onclick="location.href='violateView.do';">뒤로가기</button>
 						    	</td>
 						    </tr>
 				  	  	
 					</table>
 				<%-- </c:forEach> --%>
 	</div>
-
+	
+	<div class="col-lg-3 col-md-4 col-xs-6 thumb"  style="width:750px; height:550px;">
+        <%-- <img id="image-modal" class="img-responsive img-rounded" src="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" data-target="#myModal" data-toggle="modal" alt=""> --%>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width:730px; height:700px;">
+                    <div class="modal-header">
+                        ${ v.vTitle } <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-responsive" src="${ contextPath }/resources/vupload/${ v.vRenameFileName }" alt="" width="700px" height="500px">
+                    		<br><br>
+                    		<div style="align:center"><a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" download>${ v.vRenameFileName }</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script>
+	$(document).ready(function () {
+	    $('#myModal').on('show.bs.modal', function (e) {
+	        var img = $(e.relatedTarget).attr('src'); // get image
+	        $('#showimg').attr('src' , img); //load image in modal
+	    });
+	});
+	
+	$(document).ready(function () {
+	    $('#myModal').on('show.bs.modal', function (e) {
+	        var img = $(e.relatedTarget).attr('href'); // get image with <a> tag
+	        $('#showimg').attr('src' , img); //load image in modal
+	    });
+	});
 
 
 <c:import url="../../common/adminFooter.jsp"/> 

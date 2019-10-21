@@ -30,4 +30,9 @@ public class SellerDao {
 		return sqlSession.selectOne("sellerMapper.idCheck", sId);
 	}
 
+
+	public String findsId(String sEmail) {
+		return sqlSession.selectOne("sellerMapper.findsId", sEmail);
+	}
+
 }

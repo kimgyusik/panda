@@ -10,6 +10,9 @@ public interface SellerService {
 	// 2. 판매자 로그인
 	Seller loginSeller(Seller s);
 	
+	// 3. 아이디 중복체크
 	int idCheck(String sId);
+
+	String findsId(String sEmail);
 
 }

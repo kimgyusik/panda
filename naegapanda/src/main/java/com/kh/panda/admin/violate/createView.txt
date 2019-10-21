@@ -11,7 +11,8 @@ select  v.v_no as v_no,
         v.v_title as v_title,
         v.v_content as v_content,
         v.v_date as v_date,
-        v.v_photo as v_photo,
+        v.v_original_filename as v_original_filename,
+        v.v_rename_filename as v_rename_filename,
         v.v_status as v_status
 from violate v, member m, seller s, product p
 where   v.m_no = m.m_no  
@@ -28,7 +29,22 @@ order by v_no desc;
 
 create or replace view vmList
 as
-select vm_no,s_no,s_name,vm_title,vm_content,vm_photo,vm_send_date,vm_check_date,vm_status
-from vmessage
-join seller using(s_no)
+select  vm.vm_no,
+        v.v_no,
+        s.s_no,
+        s.s_name,
+        p.p_id,
+        p.p_name,
+        vm.vm_title,
+        vm.vm_content,
+        vm.vm_original_filename,
+        vm.vm_rename_filename,
+        vm.vm_send_date,
+        vm.vm_check_date,
+        vm.vm_status
+from vmessage vm, seller s, product p, violate v
+where   vm.s_no = s.s_no
+    and vm.p_id = p.p_id
+    and vm.v_no = v.v_no
+    -- and p.s_no = s.s_no
 order by vm_no desc;
