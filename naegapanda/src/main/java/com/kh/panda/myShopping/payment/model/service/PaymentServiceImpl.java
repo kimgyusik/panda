@@ -1,9 +1,15 @@
 package com.kh.panda.myShopping.payment.model.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.kh.panda.myShopping.basket.model.dao.BasketDao;
 import com.kh.panda.myShopping.basket.model.vo.Basket;
@@ -17,6 +23,11 @@ public class PaymentServiceImpl implements PaymentService{
 	private PaymentDao paDao;
 	@Autowired
 	private BasketDao baDao;
+	@Autowired
+	private DataSourceTransactionManager transactionManager;
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	
 	@Override
 	public ArrayList<Payment> myPaymentList(int mNo) {
@@ -25,7 +36,19 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Override
 	public int addPayment(Payment p) {
-
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
+		try {
+			sqlSession.getConnection().setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// 현재 내 장바구니 가져옴
 		ArrayList<Basket> list = baDao.selectbasketList(p.getmNo());
 		
@@ -42,12 +65,13 @@ public class PaymentServiceImpl implements PaymentService{
 			int result2 = baDao.deleteBasket(b);
 			
 			if(result == 0 || result2 == 0) {
+				transactionManager.rollback(status);
 				return 0;
 			}else {
 				count++;
 			}
 		}
-		
+		transactionManager.commit(status);
 		return count;
 	}
 
