@@ -49,15 +49,15 @@
 							
 									<c:forEach items="${ list }" var="vm"> 
 										<c:if test="${ empty loginSeller }">
-											<c:url value="vmDetail.do" var="vmdetail">
+											<c:url value="vmDetailView.do" var="vmdetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
 										</c:if>
-										<c:if test="${ !empty loginSeller }">
-											<c:url value="vmSellerDetail.do" var="vmSellerDetail">
+										<%-- <c:if test="${ !empty loginSeller }">
+											<c:url value="vmSellerDetailView.do" var="vmSellerDetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
-										</c:if>							
+										</c:if>	 --%>						
 									<tr>
 										<th scope="row">
 											<a href="${ vmdetail }">${vm.vmNo}</a>
