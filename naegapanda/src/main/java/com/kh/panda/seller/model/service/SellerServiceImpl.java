@@ -29,13 +29,18 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
-	public int idCheck(String sId) {
-		return sDao.idCheck(sId);
+	public int sIdCheck(String sId) {
+		return sDao.sIdCheck(sId);
 	}
 
 	@Override
 	public String findsId(String sEmail) {
 		return sDao.findsId(sEmail);
+	}
+
+	@Override
+	public int updateSeller(Seller s) {
+		return sDao.updateSeller(s);
 	}
 
 }

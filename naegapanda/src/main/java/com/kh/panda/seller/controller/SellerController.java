@@ -1,5 +1,6 @@
 package com.kh.panda.seller.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -46,8 +48,6 @@ return "seller/sellerJoinForm";
 								@RequestParam("sbAddress2") String sbAddress2
 								){
 
-		//System.out.println(post + "," + sAddress1 + "," + sAddress2);
-		//System.out.println(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		
 		String encPwd = bcryptPasswordEncoder.encode(s.getsPwd());
 		s.setsPwd(encPwd);
@@ -148,6 +148,57 @@ return "seller/sellerJoinForm";
 	  public String findsId(@RequestParam("sEmail") String sEmail, Model model) throws Exception{		
 		 model.addAttribute("sId", sService.findsId(sEmail));		
 		 return "seller/find_sId";  
+	  }
+	  
+	  
+	  @ResponseBody	// 자동으로 response에 담겨서 반환시켜줌(String 밖에 안됨)
+	  @RequestMapping("sIdCheck.do")
+		public String idCheck(String sId, HttpServletResponse response) {	
+			
+			int result = sService.sIdCheck(sId);
+			
+		  
+			
+			if(result > 0) {	// 존재하는 아이디 있음 --> 사용 불가능"fail"
+				return "fail";
+				
+			}else {	// 존재하는 아이디 없음 --> 사용 가능"ok" 
+				return "ok";
+			}
+			
+		}
+	  
+	  
+	  
+	  
+	  // 정보수정
+	  @RequestMapping("sUpdate.do")
+	  public String updateSeller(Seller s, Model model, @RequestParam("post") String post,
+									  				    @RequestParam("sAddress1") String sAddress1,
+													    @RequestParam("sAddress2") String sAddress2,
+													    @RequestParam("sbPost") String sbPost,
+													    @RequestParam("sbAddress1") String sbAddress1,
+													    @RequestParam("sbAddress2") String sbAddress2){
+		  
+		  String encPwd = bcryptPasswordEncoder.encode(s.getsPwd());
+			s.setsPwd(encPwd);
+		  
+		  if( !post.equals("")) {	// 주소 작성해서 값이 넘어왔을 경우
+				s.setsAddress(post+ ","+sAddress1+","+sAddress2);
+			}
+		  if(!sbPost.equals("")) {
+				s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
+			}
+			
+			int result = sService.updateSeller(s);
+			
+			if(result > 0) {
+				model.addAttribute("loginSeller", s);
+				return "redirect:sProduct.do";
+			}else {
+				model.addAttribute("msg", "회원 정보 수정 실패!!");
+				return "common/errorPage";
+			}
 	  }
 
 }

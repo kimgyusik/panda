@@ -54,24 +54,24 @@
 							
 								<c:forEach items="${ list }" var="vm"> 
 									
-											<c:url value="vmDetailView.do" var="vmdetail">
+											<c:url value="vmSellerDetailView.do" var="vmsellerdetail">
 					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
 											</c:url>
 									<tr>
 										<th scope="row">
-											<a href="${ vmdetail }">${vm.vmNo}</a>
+											<a href="${ vmsellerdetail }">${vm.vmNo}</a>
 										</th>
 										<td>
-											<a href="${ vmdetail }">${vm.vmTitle}</a>
+											<a href="${ vmsellerdetail }">${vm.vmTitle}</a>
 										</td>
 										<td>
-											<a href="${ vmdetail }">${vm.sName}</a>
+											<a href="${ vmsellerdetail }">${vm.sName}</a>
 										</td>
 										<td>
-											<a href="${ vmdetail }">${vm.vmSendDate}</a>
+											<a href="${ vmsellerdetail }">${vm.vmSendDate}</a>
 										</td>
 										<td>
-											<a href="${ vmdetail }">${vm.vmCheckDate}</a>
+											<a href="${ vmsellerdetail }">${vm.vmCheckDate}</a>
 										</td>
 						  
 								    </tr>

@@ -58,7 +58,10 @@
 				<input type="text" class="form-control" name="sName" placeholder="이름" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sId" placeholder="ID" required>
+				<input type="text" class="form-control" name="sId" id="sellerId" placeholder="ID" required>
+				<span class="ok guide">사용 가능</span>
+				<span class="error guide">사용 불가능</span>
+				<input type="hidden" id="sIdDuplicateCheck" value="0">
 			</div>
 			<div class="form-group col-md-6">
 				<input type="password" class="form-control" name="sPwd" placeholder="비밀번호" required>
@@ -143,6 +146,62 @@
 			$("#post_search_btn1").postcodifyPopUp({container: $("#ad1") });
 			
 			$("#post_search_btn2").postcodifyPopUp({container: $("#ad2") }); 			
+			
+			
+			
+			function validate(){
+				if($("#sIdDuplicateCheck").val() == 0){	
+				
+					alert("사용가능한 아이디를 입력해주세요!");
+					$("#sellerId").focus();
+					
+					return false;	
+				}else{	
+					return true;
+				}
+			}
+			
+			$(function(){
+				$("#sellerId").on("keyup", function(){	
+					
+					var sellerId = $(this).val();
+					
+					if(sellerId.length < 5){
+						
+						$(".guide").hide();
+						$("#sIdDuplicateCheck").val(0);
+						
+						return;
+					}
+				
+					//console.log(userId);
+					$.ajax({
+						url:"sIdCheck.do",
+						data:{sId:sellerId},
+						type:"post",
+						success:function(data){	// 매개변수 변수명 아무거나 지어도 됨 => 응답데이터가 매개변수에 담김
+							
+							if(data == "ok"){	// 사용 가능
+								$(".error").hide();
+								$(".ok").show();
+								$("#sIdDuplicateCheck").val(1);
+							}else{	// 사용 불가능
+								$(".ok").hide();
+								$(".error").show();
+								$("#sIdDuplicateCheck").val(0);
+							}
+						},
+						error:function(){
+							console.log("서버와의 통신 실패");
+						}
+					});
+					
+				});
+			});
+			
+			
+			
+			
 	</script>
 
 <br><br><br><br><br><br>
