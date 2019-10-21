@@ -1,4 +1,4 @@
-package com.kh.panda.admin.board.qna.model.dao;
+package com.kh.panda.admin.board.qna.user.model.dao;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.panda.admin.board.qna.model.vo.Qna;
+import com.kh.panda.admin.board.qna.user.model.vo.Qna;
 import com.kh.panda.common.PageInfo;
 
 @Repository("qDao")
@@ -29,5 +29,8 @@ public class QnaDao {
 		return (ArrayList)sqlSession.selectList("qnaMapper.selectList", null, rowBounds);
 	}
 	
+	public int insertQna(Qna q) {
+		return sqlSession.insert("qnaMapper.insertQna", q);
+	}
 	
 }

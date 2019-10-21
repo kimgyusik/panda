@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sqnaMapper">
+
+	<resultMap id="sqnaResultSet" type="sqna">
+		<id property="sqId" column="sq_id" />
+		<result property="sqTitle" column="sq_title" />
+		<result property="sqCategory" column="sq_category" />
+		<result property="sqContent" column="sq_content" />
+		<result property="sNo" column="s_no" />
+		<result property="sqCount" column="sq_count" />
+		<result property="sqCreateDate" column="sq_create_date" />
+		<result property="sqModifyDate" column="sq_modify_date" />
+		<result property="sqStatus" column="sq_status" />
+		<result property="sName" column="s_name" />
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from sqna
+		where sq_status='N'
+	</select>
+	
+	<select id="selectList" resultMap="sqnaResultSet">
+		select *
+		from sqlist
+	</select>
+
+</mapper>

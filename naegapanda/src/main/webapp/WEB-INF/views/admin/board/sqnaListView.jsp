@@ -54,7 +54,7 @@
 	
 	<div class="bs-example">
 		<table class="table table-hover" align="center" cellspacing="0" >
-			<h3 style="font-weight:bold;">PANDA 회원서비스문의</h3><br>
+			<h3 style="font-weight:bold;">PANDA 판매자문의</h3><br>
 				<thead align="center">
 					<tr>
 						<th>No.</th>
@@ -67,7 +67,7 @@
 				</thead>
 					<tbody>
 								
-						<c:forEach items="${ list }" var="q">
+						<c:forEach items="${ list }" var="sq">
 									
 										<tr>
 											<td align="center">${ q.uqId }</td>
