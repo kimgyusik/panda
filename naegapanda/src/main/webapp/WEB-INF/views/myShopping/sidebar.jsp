@@ -27,11 +27,13 @@ font-size: 19px;
 font-size: 16px;
 }
 .shop_sidebar{
-height: 60%;
-border: 1px solid red;
+height: 450px;
+border: 0px solid red;
+
 }
 .sidebar_section{
-padding-left: 30%;
+padding-left: 0;
+
 }
 
 
@@ -40,13 +42,13 @@ padding-left: 30%;
 </head>
 <body>
 
-	<div class="shop_sidebar">
+	<div class="shop_sidebar" style="width:200px;">
 		
 		<div class="sidebar_section">
 			<div class="sidebar_subtitle brands_subtitle">My쇼핑</div>
 			<ul class="brands_list">
 				<li class="brand"><a href="#">♡찜한 상품♡</a></li>
-				<li class="brand"><a href="#">장바구니</a></li>
+				<li class="brand"><a href="basketList.ba">장바구니</a></li>
 				<li class="brand"><a href="#">구매 내역</a></li>
 			</ul>
 		</div>

@@ -18,4 +18,7 @@ public interface BasketService {
 	// 장바구니에서 제외(다중)
 	int deleteBasketList(int mNo, String[] arr);
 	
+	// 상품 개수 수정
+	int updateAmount(Basket b);
+	
 }

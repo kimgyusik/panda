@@ -49,5 +49,10 @@ public class BasketServiceImpl implements BasketService{
 		
 		return result;
 	}
+	
+	@Override
+	public int updateAmount(Basket b) {
+		return baDao.updateAmount(b);
+	}
 
 }

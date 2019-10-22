@@ -32,5 +32,11 @@
 		where p_id = #{pId} and m_no = #{mNo}
 	</delete>
 	
+	<update id="updateAmount" parameterType="Basket">
+		update basket
+		set SB_AMOUNT = #{amount}
+		where p_id = #{pId} and m_no = #{mNo}
+	</update>
+	
 </mapper>
 	
