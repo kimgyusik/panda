@@ -59,6 +59,8 @@ public class SellerDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("sellerMapper.selectList", sNo, rowBounds);
+	}
+	
 	public int deleteSeller(Seller s) {
 		return sqlSession.update("sellerMapper.deleteSeller", s);
 	}
