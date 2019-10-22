@@ -43,4 +43,9 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.updateSeller(s);
 	}
 
+	@Override
+	public int deleteSeller(Seller s) {
+		return sDao.deleteSeller(s);
+	}
+
 }

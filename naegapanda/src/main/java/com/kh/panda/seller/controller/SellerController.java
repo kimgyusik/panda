@@ -182,19 +182,21 @@ return "seller/sellerJoinForm";
 													    @RequestParam("sbPost") String sbPost,
 													    @RequestParam("sbAddress1") String sbAddress1,
 													    @RequestParam("sbAddress2") String sbAddress2){
-		  
+		 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
 		 */
 		  
-		  if( !post.equals("")) {	// 주소 작성해서 값이 넘어왔을 경우
+		  if( !post.equals("")) {
 				s.setsAddress(post+ ","+sAddress1+","+sAddress2);
 			}
 		  if(!sbPost.equals("")) {
 				s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 			}
-		  System.out.println(s);
+		  	
 			int result = sService.updateSeller(s);
+			
+			System.out.println(s);
 			
 			if(result > 0) {
 				model.addAttribute("loginSeller", s);
@@ -204,5 +206,25 @@ return "seller/sellerJoinForm";
 				return "common/errorPage";
 			}
 	  }
+	  
+	  @RequestMapping("confirm.do")
+	  public String deleteSeller(Seller s, Model model) {
+		  
+		  int result = sService.deleteSeller(s);
+			  
+		  if(result > 0) {
+			return "redirect:sLogout.do";	    
+		  }else {
+			  model.addAttribute("msg", "회원 탈퇴 실패");
+			  return "common/errorPage";
+		  }
+		  
+	  }
+	  
+	  @RequestMapping("sDelete.do")
+	  public String deleteSellerPage() {
+		  return "seller/sellerDeleteForm";
+	  }
+	 
 
 }

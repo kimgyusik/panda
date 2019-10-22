@@ -13,8 +13,13 @@ public interface SellerService {
 	// 3. 아이디 중복체크
 	int sIdCheck(String sId);
 
+	// 4. 아이디찾기
 	String findsId(String sEmail);
 
+	// 5. 회원정보변경
 	int updateSeller(Seller s);
+
+	// 6. 회원탈퇴
+	int deleteSeller(Seller s);
 
 }
