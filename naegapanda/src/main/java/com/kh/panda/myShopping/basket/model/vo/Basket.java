@@ -3,11 +3,15 @@ package com.kh.panda.myShopping.basket.model.vo;
 public class Basket {
 	
 	private int pId;
+	private int oNo;
 	private int mNo;
 	private int amount;
+	private int oAmount;
 	private String pName;
+	private String oName;
 	private int price;
 	private String category2;
+	private String category;
 	private String storeName;
 	
 	public Basket() {
@@ -15,14 +19,19 @@ public class Basket {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Basket(int pId, int mNo, int amount, String pName, int price, String category2, String storeName) {
+	public Basket(int pId, int oNo, int mNo, int amount, int oAmount, String pName, String oName, int price,
+			String category2, String category, String storeName) {
 		super();
 		this.pId = pId;
+		this.oNo = oNo;
 		this.mNo = mNo;
 		this.amount = amount;
+		this.oAmount = oAmount;
 		this.pName = pName;
+		this.oName = oName;
 		this.price = price;
 		this.category2 = category2;
+		this.category = category;
 		this.storeName = storeName;
 	}
 
@@ -32,6 +41,14 @@ public class Basket {
 
 	public void setpId(int pId) {
 		this.pId = pId;
+	}
+
+	public int getoNo() {
+		return oNo;
+	}
+
+	public void setoNo(int oNo) {
+		this.oNo = oNo;
 	}
 
 	public int getmNo() {
@@ -50,12 +67,28 @@ public class Basket {
 		this.amount = amount;
 	}
 
+	public int getoAmount() {
+		return oAmount;
+	}
+
+	public void setoAmount(int oAmount) {
+		this.oAmount = oAmount;
+	}
+
 	public String getpName() {
 		return pName;
 	}
 
 	public void setpName(String pName) {
 		this.pName = pName;
+	}
+
+	public String getoName() {
+		return oName;
+	}
+
+	public void setoName(String oName) {
+		this.oName = oName;
 	}
 
 	public int getPrice() {
@@ -74,6 +107,14 @@ public class Basket {
 		this.category2 = category2;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getStoreName() {
 		return storeName;
 	}
@@ -84,9 +125,12 @@ public class Basket {
 
 	@Override
 	public String toString() {
-		return "Basket [pId=" + pId + ", mNo=" + mNo + ", amount=" + amount + ", pName=" + pName + ", price=" + price
-				+ ", category2=" + category2 + ", storeName=" + storeName + "]";
+		return "Basket [pId=" + pId + ", oNo=" + oNo + ", mNo=" + mNo + ", amount=" + amount + ", oAmount=" + oAmount
+				+ ", pName=" + pName + ", oName=" + oName + ", price=" + price + ", category2=" + category2
+				+ ", category=" + category + ", storeName=" + storeName + "]";
 	}
+
+	
 	
 	
 

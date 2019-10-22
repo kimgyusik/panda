@@ -46,6 +46,19 @@ public class GgimServiceImpl implements GgimService{
 		return ggDao.deleteGgim(ggim);
 	}
 
+	@Override
+	public int addGgim(Ggim ggim) {
+		
+		int count = ggDao.selectGgim(ggim);
+		
+		if(count > 0) {
+			return ggDao.addGgim(ggim);
+		}
+		
+		return 0;
+	}
+
+
 	
 
 }

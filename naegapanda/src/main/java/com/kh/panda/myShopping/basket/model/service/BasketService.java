@@ -21,4 +21,8 @@ public interface BasketService {
 	// 상품 개수 수정
 	int updateAmount(Basket b);
 	
+	// 장바구니 갯수,금액(메인메뉴바)
+	int[] currentBasket(int mNo);
+	
+	
 }

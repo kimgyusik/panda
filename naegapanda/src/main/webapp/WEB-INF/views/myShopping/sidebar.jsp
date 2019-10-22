@@ -33,9 +33,13 @@ border: 0px solid red;
 }
 .sidebar_section{
 padding-left: 0;
-
 }
-
+.brand{
+color:black;
+}
+.active a{
+color:#0e8ce4;
+}
 
 
 </style>
@@ -47,29 +51,50 @@ padding-left: 0;
 		<div class="sidebar_section">
 			<div class="sidebar_subtitle brands_subtitle">My쇼핑</div>
 			<ul class="brands_list">
-				<li class="brand"><a href="#">♡찜한 상품♡</a></li>
+				<li class="brand"><a href="ggimList.gg">♡찜한 상품♡</a></li>
 				<li class="brand"><a href="basketList.ba">장바구니</a></li>
-				<li class="brand"><a href="#">구매 내역</a></li>
+				<li class="brand"><a href="d">구매 내역</a></li>
 			</ul>
 		</div>
 	
 		<div class="sidebar_section">
 			<div class="sidebar_subtitle brands_subtitle">구매 리뷰</div>
 			<ul class="brands_list">
-				<li class="brand"><a href="#">작성 가능한 리뷰</a></li>
-				<li class="brand"><a href="#">내가 작성한 리뷰</a></li>
+				<li class="brand"><a href="c">작성 가능한 리뷰</a></li>
+				<li class="brand"><a href="d">내가 작성한 리뷰</a></li>
 			</ul>
 		</div>
 		
 		<div class="sidebar_section">
 			<div class="sidebar_subtitle brands_subtitle">궁금해요</div>
 			<ul class="brands_list">
-				<li class="brand"><a href="#">상품 문의</a></li>
-				<li class="brand"><a href="#">관리자 Q&A</a></li>
+				<li class="brand"><a href="b">상품 문의</a></li>
+				<li class="brand"><a href="a">관리자 Q&A</a></li>
 			</ul>
 		</div>
 	</div>
 	
+	<script>
+	
+		// 선택된 메뉴 활성화 처리
+		$(function(){
+			
+			var jspPath = $(location).attr('pathname');
+			
+			 $('.brand a').each(function(){
+		         if(this.pathname == jspPath){
+		        	 $(this).parent().addClass('active');
+		         }
+	         });
+			
+			
+		});
+			
+	
+			
+			
+		
+	</script>
 
 </body>
 </html>

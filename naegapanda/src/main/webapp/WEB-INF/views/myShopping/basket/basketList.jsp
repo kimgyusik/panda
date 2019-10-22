@@ -24,13 +24,14 @@ height:100px;
 border: 1px solid black;
 }
 .order_total_title{
-font-size: 17px;
+font-size: 13px;
 font-style: bold;
 color:black;
 }
+
 td{
 text-align: center;
-border: 1px solid gray;
+border: 2px solid #edeeef;
 border-left: 1px solid white;
 border-right: 1px solid white;
 font-size:12px;
@@ -44,22 +45,24 @@ margin:0 !important;
 
 }
 .cartinfo{
-border: 1px solid #edeeef;
-background-color: #f7f7f7;
-padding:20px;;
+
+background-color: #edeeef;
+padding:20px;
 margin-top:30px;
 margin-bottom:30px;
 font-size:13px;
 }
 .clearfix{
-padding: 20px;
+padding: 0px;
 }
 .removeCart{
-width:30px;
+width:auto;
+padding: 1px;
 font-size:9px;
 cursor: pointer;
 background-color: #f7f7f7;
 border: 1px solid #edeeef;
+box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
 }
 .removeCart2{
 width:100px;
@@ -69,9 +72,14 @@ margin-top:30px;
 background-color: #f7f7f7;
 border: 1px solid #edeeef;
 cursor: pointer;
+box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
 }
 .cartTb{
 cellspacing="0" 
+}
+.shop{
+padding-bottom: 0px !important;
+padding-top:50px  !important;
 }
 </style>
 </head>
@@ -79,7 +87,7 @@ cellspacing="0"
 
 	<div class="super_container">
 
-		<c:import url="../../common/menubar.jsp"/>
+	<c:import url="../../common/menubar.jsp"/>
 	
 	<!-- Shop -->
 
@@ -88,7 +96,7 @@ cellspacing="0"
 				<div class="row">
 					<div class="col-lg-1">
 	
-						<!-- Shop Sidebar -->
+						<!-- 사이드 메뉴바 -->
 						<c:import url="../sidebar.jsp"/>
 	
 					</div>
@@ -102,93 +110,110 @@ cellspacing="0"
 								<div class="row">
 									<div class="col-lg-10 offset-lg-1">
 										<div class="cart_container" style="width:120%;">
+										
 											<div class="cart_title">장바구니</div>
+											
 											<div class="cartinfo">
-											<ul>
-												<li>· 가격, 옵션등 상품정보가 변경된 경우 주문이 불가할 수 있습니다.</li>
-												<li>· 오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니, 주문 시 꼭 다시 확인해 주시기 바랍니다.</li>
-											</ul>
-											</div>
-											<div class="cart_items" >
-												<ul class="cart_list" >
-													<li class="cart_item clearfix" >
-														<table class="cartTb">
-															<tr class="tablehead">
-																<td style="display:none;">
-																</td>
-																<td style="width:100px;">
-																	<input class="allCheck" type="checkbox" checked="checked">
-																</td>
-																<td style="width:800px;" colspan="2">
-																	상품정보
-																</td>
-															
-																<td style="width:100px;">
-																	수량
-																</td>
-																<td style="width:200px;">
-																	개당 금액
-																</td>
-																<td style="width:200px;">
-																	판매자
-																</td>
-																<td style="width:200px;">
-																	주문 금액
-																</td>
-															</tr>
-															<c:forEach items="${ list }" var="b">
-																<tr class="tablebody" >
-																	<td id="test" style="display:none;">
-																		${b.pId}
-																	</td>
-																	<td>
-																		<input name="arr" class="checkCart" type="checkbox" checked="checked" value="${b.pId}">
-																	</td>
-																	<td style="width:200px;">
-																		이미지
-																	</td>
-																	<td style="text-align:left;width:600px;">
-																		<c:url value="상품조회url" var="p">
-																			<c:param name="pId" value="${ b.pId }"/>
-																		</c:url>
-																		<a href="${ p }">[${b.category2}] ${b.pName}</a>	
-																	</td>
-																	<td>
-																		<input class="amount" type="number" value="${b.amount }" min="1" style="width:50px; text-align:center; margin:auto;">
-																	</td>
-																	<td>
-																		${b.price }원
-																	</td>
-																	<td>
-																		${b.storeName }
-																	</td>
-																	<td>
-																		<span class="price2" style="color:#0e8ce4;font-weight:400px;" >${b.amount *b.price }</span><span>원</span>
-																		<br><button class="removeCart" value="상품번호" onclick="return removeCart(1);">삭제</button>
-																	</td>
-																</tr>
-															</c:forEach>
-														
-														</table>
-														
-													</li>
+												<ul>
+													<li>· 옵션, 가격 등 상품정보가 변경될 수 있으니 확인 후 진행하시기 바랍니다.</li>
+													<li>· 장바구니에서 제외시킨 상품은 원복되지 않습니다.</li>
 												</ul>
 											</div>
 											
-											<!-- Order Total -->
-											<div class="order_total">
-												<div class="order_total_content text-md-right">
-													<div class="order_total_title">결재 금액:</div>
-													<div class="order_total_amount">원</div>
+											<c:if test="${!empty list}">
+												<div style="text-align: center; margin-top:70px;">
+													<img src="resources/images/cart2.png" width="100px;">
+													<br><br>장바구니가 비어 있습니다.
 												</div>
-											</div>
+											</c:if>
 											
-											<button class="removeCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
+											<c:if test="${empty list}">
 											
-											<div class="cart_buttons">
-												<button type="button" class="button cart_button_checkout" onclick="return paymentPage();">결재하기</button>
-											</div>
+												<div class="cart_items" >
+													<ul class="cart_list" >
+														<li class="cart_item clearfix" >
+															<table class="cartTb">
+																<tr class="tablehead">
+																	<td style="display:none;">
+																	</td>
+																	<td style="width:100px;">
+																		<input class="allCheck" type="checkbox" >
+																	</td>
+																	<td style="width:700px;" colspan="2">
+																		상품정보
+																	</td>
+																
+																	<td style="width:100px;">
+																		수량
+																	</td>
+																	<td style="width:200px;">
+																		판매가
+																	</td>
+																	<td style="width:200px;">
+																		판매자
+																	</td>
+																	<td style="width:230px;">
+																		합계
+																	</td>
+																</tr>
+																<c:forEach items="${ list }" var="b">
+																	<tr class="tablebody" >
+																		<td id="test" style="display:none;">
+																			${b.oNo}
+																		</td>
+																		<td>
+																			<input name="arr" class="checkCart" type="checkbox" value="${b.oNo}">
+																		</td>
+																		<td style="width:200px;">
+																			<c:url value="상품조회url" var="product">
+																				<c:param name="pId" value="${ b.pId }"/>
+																			</c:url>
+																			<a href="${ product }"><img src="resources/images/best_3.png" width="70px;"></a>
+																		</td>
+																		<td style="text-align:left;width:600px;">
+																			
+																			[ ${b.category2} > ${b.category} ]<br>
+																			<a href="${ product }">${b.pName} :: ${b.oName}</a>	
+																		</td>
+																		<td>
+																			<input class="amount" type="number" value="${b.amount }" min="1" style="width:50px; text-align:center; margin:auto;">
+																		</td>
+																		<td>
+																			${b.price }원
+																		</td>
+																		<td>
+																			${b.storeName }
+																		</td>
+																		<td >
+																			<span class="price2" style="color:#0e8ce4;display:inline-block; width:50px; text-align: right; margin-right:5px;">${b.amount *b.price }</span><span>원</span>
+																			<br>
+																			<button class="removeCart" value="상품번호" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
+																			<button class="removeCart" value="상품번호" onclick="return removeCart(${b.oNo});">삭제</button>
+																		</td>
+																	</tr>
+																</c:forEach>
+															
+															</table>
+															
+														</li>
+													</ul>
+												</div>
+												
+												<!-- Order Total -->
+												<div class="order_total">
+													<div class="order_total_content text-md-right">
+														<div class="order_total_title">결재 금액:</div>
+														<div class="order_total_amount">원</div>
+													</div>
+												</div>
+												
+												<button class="removeCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
+												
+												<div class="cart_buttons">
+													<button type="button" class="button cart_button_checkout" onclick="return paymentPage();">결재하기</button>
+												</div>
 											
+											</c:if>
 										</div>
 									</div>
 								</div>
@@ -237,14 +262,14 @@ cellspacing="0"
 		// 상품 수량 비동기 수정
 		$(".amount").on("input", function() {
 			
-			var pId = $(this).parent().parent().children().eq(0).text();
+			var oNo = $(this).parent().parent().children().eq(0).text();
 			var amount = $(this).val();
 			var price = parseInt($(this).parent().parent().children().eq(5).text());
 			var price2 = $(this).parent().parent().children().eq(7).children().eq(0);
 
 			$.ajax({
 				url:"updateAmount.ba",
-				data:{pId:pId, amount:amount},
+				data:{oNo:oNo, amount:amount},
 				type:"post",
 				success:function(data){
 					if(data == "success"){
@@ -264,16 +289,35 @@ cellspacing="0"
 			
 		});
 		
+		// 상품 찜하기
+		function ggim(pId){
+			$.ajax({
+				url:"addGgim.gg",
+				data:{pId:pId},
+				type:"post",
+				success:function(data){
+					if(data == "success"){			
+						alert("찜한 상품으로 등록됐습니다.");
+					}else{
+						alert("처리실패");
+					}
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			});
+		}
+		
 		// 상품 제외(단일)
-		function removeCart(pId){
+		function removeCart(oNo){
 			
 			if(confirm("해당 상품을 장바구니에서 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteBasket.ba?pId='+pId;
+				location.href='<%=request.getContextPath()%>/deleteBasket.ba?oNo='+oNo;
 			}
 			return false;
 		}
 		
-		//
+		// 상품 제외(다중)
 		function removeCartLIst(){
 
 			var arr = new Array();
@@ -281,6 +325,11 @@ cellspacing="0"
 			$("input:checkbox[name=arr]:checked").each(function(){
 				arr.push($(this).val());
 			});
+			
+			if(arr.length == 0){
+				alert("삭제할 상품을 먼저 선택해주세요.");
+				return false;
+			}
 			
 			if(confirm("해당 상품들을 장바구니에서 삭제하시겠습니까?")){
 				location.href='<%=request.getContextPath()%>/deleteBasketList.ba?arr='+arr;

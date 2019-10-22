@@ -9,6 +9,7 @@
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PANDA</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
@@ -179,8 +180,8 @@
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="resources/images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="#">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
+									<div class="wishlist_text"><a href="ggimList.gg">Wishlist</a></div>
+									<div class="wishlist_count"><span>&nbsp;</span></div>
 								</div>
 							</div>
 
@@ -189,11 +190,11 @@
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="resources/images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span>&nbsp;</span></div>
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="basketList.ba">Cart</a></div>
-										<div class="cart_price">$85</div>
+										<div class="cart_price"><span>&nbsp;</span></div>
 									</div>
 								</div>
 							</div>
@@ -405,8 +406,45 @@
 			</div>
 		</div>
 		
-
 </header>
+
+<script>
+	$(function(){
+
+		// 메인메뉴 장바구니 비동기 처리
+		$.ajax({
+			url:"currentBasket.ba",
+			dataType:"json",
+			success:function(data){
+				if(data[0] == 0){
+					$('.cart_count').children().first().text(data[0]);
+					$('.cart_price').children().first().text("장바구니가 비었어요.");
+				}else{
+					$('.cart_count').children().first().text(data[0]);
+					$('.cart_price').children().first().text(data[1]+"원");
+				}
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+		
+		// 메인메뉴 찜하기 비동기 처리
+		$.ajax({
+			url:"currentGgim.gg",
+			dataType:"json",
+			success:function(data){
+					$('.wishlist_count').children().first().text(data);
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+		
+		
+	});
+
+</script>
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/style/bootstrap4/popper.js"></script>

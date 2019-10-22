@@ -20,6 +20,11 @@ public class GgimDao {
 		return sqlSession.selectOne("ggimMapper.getListCount", mNo);
 	}
 	
+	public int selectGgim(Ggim ggim){
+
+		return sqlSession.selectOne("ggimMapper.selectGgim", ggim);
+	}
+	
 	public ArrayList<Ggim> selectGgimList(PageInfo pi, int mNo){
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
