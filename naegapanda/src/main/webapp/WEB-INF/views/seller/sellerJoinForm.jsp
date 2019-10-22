@@ -162,6 +162,8 @@
 			}
 			
 			$(function(){
+				$(".guide").hide();
+				
 				$("#sellerId").on("keyup", function(){	
 					
 					var sellerId = $(this).val();

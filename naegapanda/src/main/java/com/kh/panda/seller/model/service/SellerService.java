@@ -1,5 +1,9 @@
 package com.kh.panda.seller.model.service;
 
+import java.util.ArrayList;
+
+import com.kh.panda.common.PageInfo;
+import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
 
 public interface SellerService {
@@ -16,5 +20,9 @@ public interface SellerService {
 	String findsId(String sEmail);
 
 	int updateSeller(Seller s);
+
+	int getListCount(int sNo);
+
+	ArrayList<ProductOption> selectList(PageInfo pi, int sNo);
 
 }

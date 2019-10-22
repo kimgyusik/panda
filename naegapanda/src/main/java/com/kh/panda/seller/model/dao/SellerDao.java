@@ -1,9 +1,14 @@
 package com.kh.panda.seller.model.dao;
 
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.panda.common.PageInfo;
+import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
 
 @Repository("sDao")
@@ -38,6 +43,22 @@ public class SellerDao {
 
 	public int updateSeller(Seller s) {
 		return sqlSession.update("sellerMapper.updateSeller", s);
+	}
+
+
+	public int getListCount(int sNo) {
+		int listCount = 0;
+		listCount = sqlSession.selectOne("sellerMapper.getListCount", sNo);
+		return listCount;
+	}
+
+
+	public ArrayList<ProductOption> selectList(PageInfo pi, int sNo) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit(); 
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("sellerMapper.selectList", sNo, rowBounds);
 	}
 
 }
