@@ -1,7 +1,8 @@
 package com.kh.panda.seller.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.panda.common.PageInfo;
+import com.kh.panda.common.Pagination;
+import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.Seller;
 
@@ -112,8 +117,18 @@ return "seller/sellerJoinForm";
 	  
 	  // 셀러상품관리페이지
 	  @RequestMapping("sProduct.do")
-	  public String sellerProduct() {
-		  return "seller/product/sellerProductForm";
+	  public ModelAndView sellerProduct(@RequestParam(value="currentPage", required=false, defaultValue = "1") int currentPage, @RequestParam(value="loginseller", required=true) Seller loginseller, ModelAndView mv) {
+		 int listCount = sService.getListCount(loginseller.getsNo());
+			
+		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+		 ArrayList<ProductOption> list = sService.selectList(pi, loginseller.getsNo());
+		  
+		  
+		  
+		 mv.addObject(list).addObject(pi).setViewName("seller/product/sellerProductForm");
+		  
+		 return mv;
 	  }
 	 
 	  // 셀러페이지(정보수정)

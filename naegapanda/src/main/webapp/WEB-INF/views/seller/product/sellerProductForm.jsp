@@ -55,12 +55,8 @@
 				<div class="col-lg-9">
 					<div class="shop_content">
 						<table>
-							<c:if test="${ empty list }" >
-							<tr><td>등록된 상품이 없습니다.</td ></tr>
-							</c:if>
-							
-							<c:if test="${ !empty list }">
 							<tr>
+								<th>상품사진<th>
 								<th>상품번호</th>
 								<th>상품명</th>
 								<th>옵션명</th>
@@ -70,16 +66,23 @@
 								<th>수정</th>
 								<th>삭제</th>
 							</tr>
-							<c:forEach begin="1" end="${ list.size -1 }" items="${list }" var="p">
-								<td>${ p.pId }</td>
-								<td>${ p.pName }</td>
-								<td>${ p.poName }</td>
-								<td>${ p.price }</td>
-								<td>${ p.amount }</td>
-								<td>${ p.purchase }</td>
-								<td><button>수정</button></td>
-								<td><button>삭제</button></td>
-							</c:forEach>
+							<c:if test="${ empty list }" >
+							<tr><td>등록된 상품이 없습니다.</td ></tr>
+							</c:if>
+							
+							<c:if test="${ !empty list }">
+							
+								<c:forEach begin="1" end="${ list.size -1 }" items="${list }" var="p">
+									<td><img src="${contextPath }/resources/product_uploadFiles/${p.getChangeName}"></td>    	
+									<td>${ p.pId }</td>
+									<td>${ p.pName }</td>
+									<td>${ p.poName }</td>
+									<td>${ p.price }</td>
+									<td>${ p.amount }</td>
+									<td>${ p.purchase }</td>
+									<td><button>수정</button></td>
+									<td><button>삭제</button></td>
+								</c:forEach>
 							</c:if>
 						</table>
 						

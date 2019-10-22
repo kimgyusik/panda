@@ -1,9 +1,13 @@
 package com.kh.panda.seller.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.panda.common.PageInfo;
 import com.kh.panda.member.model.dao.MemberDao;
+import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.dao.SellerDao;
 import com.kh.panda.seller.model.vo.Seller;
 
@@ -44,6 +48,14 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
+	public int getListCount(int sNo) {
+		
+		return sDao.getListCount(sNo);
+	}
+
+	@Override
+	public ArrayList<ProductOption> selectList(PageInfo pi, int sNo) {
+		return sDao.selectList(pi, sNo);
 	public int deleteSeller(Seller s) {
 		return sDao.deleteSeller(s);
 	}

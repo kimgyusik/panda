@@ -55,6 +55,15 @@
 		where s_id=#{sId}
 	</update>
 	
+	<select id="getListCount" resultType="_int" parameterType="_int">
+		select count(*)
+		from product_option
+		where s_id=#{sId}
+	</select>
+	
+	<select id="selectList" resultType="ProductOption" parameterType="_int">
+	
+	</select>
 	<update id="deleteSeller" parameterType="Seller">
 		update seller
 		set s_status='N'
