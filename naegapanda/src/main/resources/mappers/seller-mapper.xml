@@ -15,7 +15,6 @@
 		<result property="sbNum" column="s_bnum"/>
 		<result property="storeName" column="storename"/>
 		<result property="sCeoName" column="s_ceoname"/>
-		<result property="state" column="state"/>
 		<result property="sector" column="sector"/>
 		<result property="sbAddress" column="s_baddress"/>
 		<result property="sbPhone" column="s_bphone"/>
@@ -27,7 +26,7 @@
 	<!-- 가입 -->
 	<insert id="insertSeller" parameterType="Seller">
 		insert into seller values( seller_seq.nextval, #{sId}, #{sPwd}, #{sName}, #{sAddress}, #{sNum}, #{sEmail}, #{sPhone}, #{stNum}, #{sbNum},
-									#{storeName}, #{sCeoName}, #{state}, #{sector}, #{sbAddress}, #{sbPhone}, default, default)
+									#{storeName}, #{sCeoName}, #{sector}, #{sbAddress}, #{sbPhone}, default, default)
 	</insert>
 
 	<!-- 로그인 -->
