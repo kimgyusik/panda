@@ -62,8 +62,6 @@ public class SellerDao {
 		return (ArrayList)sqlSession.selectList("productMapper.selectList", sNo, rowBounds);
 	}
 	
-	
-	
 	public int deleteSeller(Seller s) {
 		return sqlSession.update("sellerMapper.deleteSeller", s);
 	}

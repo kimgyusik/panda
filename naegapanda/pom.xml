@@ -286,6 +286,14 @@
 		    <version>1.2.8.RELEASE</version>
 		    <scope>provided</scope>
 		</dependency>
+		
+		<!-- 메일인증위한 라이브러리 -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+		
       
 
 		
