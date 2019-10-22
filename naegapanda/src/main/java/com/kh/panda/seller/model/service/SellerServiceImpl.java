@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.member.model.dao.MemberDao;
+import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.dao.SellerDao;
 import com.kh.panda.seller.model.vo.Seller;
@@ -58,8 +59,14 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.selectList(pi, sNo);
 	}
 	
+	@Override
 	public int deleteSeller(Seller s) {
 		return sDao.deleteSeller(s);
+	}
+
+	@Override
+	public ArrayList<Category> selectcList() {
+		return sDao.selectcList();
 	}
 
 }

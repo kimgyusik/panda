@@ -21,6 +21,10 @@
 		<typeAlias type="com.kh.panda.seller.model.vo.Seller" alias="Seller"/>
 		<typeAlias type="com.kh.panda.admin.board.qna.user.model.vo.Qna" alias="Qna" />
 		<typeAlias type="com.kh.panda.admin.board.qna.seller.model.vo.SQna" alias="SQna" />
+		<typeAlias type="com.kh.panda.product.model.vo.Category" alias="Category"/>
+		<typeAlias type="com.kh.panda.product.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.kh.panda.product.model.vo.ProductAttachment" alias="ProductAttachment"/>
+		<typeAlias type="com.kh.panda.product.model.vo.ProductOption" alias="ProductOption"/>
 	</typeAliases>
 
 	<mappers>
@@ -35,5 +39,6 @@
 		<mapper resource="mappers/seller-mapper.xml"/>
 		<mapper resource="mappers/qna-mapper.xml" />
 		<mapper resource="mappers/sqna-mapper.xml" />
+		<mapper resource="mappers/product-mapper.xml"/>
 	</mappers>
 </configuration>

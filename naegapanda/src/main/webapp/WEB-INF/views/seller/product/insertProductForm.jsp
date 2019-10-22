@@ -10,7 +10,7 @@
 <body>
 
 	<c:import url="../../common/sellerMenubar.jsp"/>
-	
+	${cList[0].cName }
 	<h1>상품등록하는 페이지</h1>
 	
 	<c:import url="../../common/footer.jsp"/>

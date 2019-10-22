@@ -3,6 +3,7 @@ package com.kh.panda.seller.model.service;
 import java.util.ArrayList;
 
 import com.kh.panda.common.PageInfo;
+import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
 
@@ -28,5 +29,7 @@ public interface SellerService {
 	ArrayList<ProductOption> selectList(PageInfo pi, int sNo);
 	// 6. 회원탈퇴
 	int deleteSeller(Seller s);
+
+	ArrayList<Category> selectcList();
 
 }

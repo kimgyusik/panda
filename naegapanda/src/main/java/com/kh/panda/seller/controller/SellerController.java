@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
+import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.Seller;
@@ -139,8 +140,13 @@ return "seller/sellerJoinForm";
 	  
 	  // 상품등록페이지
 	  @RequestMapping("pInsert.do")
-	  public String insertProduct() {
-		  return "seller/product/insertProductForm";
+	  public ModelAndView insertProduct(@RequestParam(value="loginseller", required=true) Seller loginseller, ModelAndView mv) {
+		  
+		  ArrayList<Category> cList = sService.selectcList();
+		  
+		  mv.addObject(cList).setViewName("seller/product/insertProductForm");
+		  
+		  return mv;
 	  }
 	  
 	  // 주문들어온 상품페이지

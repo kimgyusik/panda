@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.panda.common.PageInfo;
+import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
 
@@ -63,6 +64,11 @@ public class SellerDao {
 	
 	public int deleteSeller(Seller s) {
 		return sqlSession.update("sellerMapper.deleteSeller", s);
+	}
+
+
+	public ArrayList<Category> selectcList() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectcList");
 	}
 
 }
