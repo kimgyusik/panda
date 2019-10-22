@@ -64,10 +64,10 @@
 				<input type="hidden" id="sIdDuplicateCheck" value="0">
 			</div>
 			<div class="form-group col-md-6">
-				<input type="password" class="form-control" name="sPwd" placeholder="비밀번호" required>
+				<input type="password" class="form-control" name="sPwd" id="sPwd" placeholder="비밀번호" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="password" class="form-control" name="sPwd2" placeholder="비밀번호확인" required>
+				<input type="password" class="form-control" name="sPwdConfirm" id="sPwdCheck" placeholder="비밀번호확인" required><font name="check"size="2" color="red"></font>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" name="sNum" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
@@ -105,19 +105,17 @@
 				<input type="text" class="form-control" name="sCeoName" placeholder="대표이름" required> 
 			</div>
 			<div class="form-group col-md-6">
-				<select class="form-control" id="exampleFormControlSelect1" name="state">
-			      <option>업종</option>
-			      <option value="2">2</option>
-			      <option value="3">3</option>
-			      <option value="4">4</option>
-			      <option value="5">5</option>
-			    </select>
-				<select class="form-control" id="exampleFormControlSelect2" name="sector">
+				<select class="form-control" id="exampleFormControlSelect1" name="sector">
 			      <option>업태</option>
-			      <option value="2">2</option>
-			      <option value="3">3</option>
-			      <option value="4">4</option>
-			      <option value="5">5</option>
+			      <option value="농업">농업</option>
+			      <option value="어업">어업</option>
+			      <option value="임업">임업</option>
+			      <option value="제조업">제조업</option>
+			      <option value="도매업">도매업</option>
+			      <option value="숙박업">숙박업</option>
+			      <option value="음식점업">음식점업</option>
+			      <option value="출판">출판</option>
+			      <option value="정보서비스">정보서비스</option>
 			    </select>
 			</div>
 			<div class="form-group col-md-6" id="ad2">
@@ -176,18 +174,18 @@
 						return;
 					}
 				
-					//console.log(userId);
+					
 					$.ajax({
 						url:"sIdCheck.do",
 						data:{sId:sellerId},
 						type:"post",
-						success:function(data){	// 매개변수 변수명 아무거나 지어도 됨 => 응답데이터가 매개변수에 담김
+						success:function(data){
 							
-							if(data == "ok"){	// 사용 가능
+							if(data == "ok"){	
 								$(".error").hide();
 								$(".ok").show();
 								$("#sIdDuplicateCheck").val(1);
-							}else{	// 사용 불가능
+							}else{	
 								$(".ok").hide();
 								$(".error").show();
 								$("#sIdDuplicateCheck").val(0);
@@ -202,6 +200,22 @@
 			});
 			
 			
+			// 비번체크
+			$(function() {
+				$('#sPwd').keyup(function() {
+					$('font[name=check]').text('');
+				});
+				console.log("${ loginSeller}");
+				$('#sPwdCheck').keyup(function() {
+					if ($('#sPwd').val() != $('#sPwdCheck').val()) {
+						$('font[name=check]').text('');
+						$('font[name=check]').html("암호틀림");
+					} else {
+						$('font[name=check]').text('');
+						$('font[name=check]').html("암호맞음");
+					}
+				});
+			});
 			
 			
 	</script>
