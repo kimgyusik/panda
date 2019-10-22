@@ -147,14 +147,9 @@
 					</div>
 				</div>
 			</div>
-
 	</div>
-</nav>
-
-
-
-
-
+</nav>			
+	
 
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
