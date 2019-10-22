@@ -56,6 +56,8 @@ public class SellerServiceImpl implements SellerService{
 	@Override
 	public ArrayList<ProductOption> selectList(PageInfo pi, int sNo) {
 		return sDao.selectList(pi, sNo);
+	public int deleteSeller(Seller s) {
+		return sDao.deleteSeller(s);
 	}
 
 }

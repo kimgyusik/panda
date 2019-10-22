@@ -14,7 +14,7 @@
 		<result property="stNum" column="s_tnum"/>
 		<result property="sbNum" column="s_bnum"/>
 		<result property="storeName" column="storename"/>
-		<result property="sCeoName" column="sceoname"/>
+		<result property="sCeoName" column="s_ceoname"/>
 		<result property="state" column="state"/>
 		<result property="sector" column="sector"/>
 		<result property="sbAddress" column="s_baddress"/>
@@ -51,7 +51,7 @@
 	
 	<update id="updateSeller" parameterType="Seller">
 		update seller
-		set s_pwd=#{sPwd}, s_phone=#{sPhone}, s_address=#{sAddress}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
+		set s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
 		where s_id=#{sId}
 	</update>
 	
@@ -64,6 +64,11 @@
 	<select id="selectList" resultType="ProductOption" parameterType="_int">
 	
 	</select>
+	<update id="deleteSeller" parameterType="Seller">
+		update seller
+		set s_status='N'
+		where s_name=#{sName} and s_id=#{sId}
+	</update>
 
 
 </mapper>
