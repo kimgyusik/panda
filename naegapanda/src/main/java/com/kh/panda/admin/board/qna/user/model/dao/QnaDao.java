@@ -33,4 +33,20 @@ public class QnaDao {
 		return sqlSession.insert("qnaMapper.insertQna", q);
 	}
 	
+	public int updateCount(int uqId) {
+		return sqlSession.update("qnaMapper.updateCount", uqId);
+	}
+	
+	public Qna qnaDetail(int uqId) {
+		return sqlSession.selectOne("qnaMapper.selectQna", uqId);
+	}
+	
+	public int updateQna(Qna q) {
+		return sqlSession.update("qnaMapper.updateQna", q);
+	}
+	
+	public int deleteQna(int uqId) {
+		return sqlSession.delete("qnaMapper.deleteQna", uqId);
+	}
+	
 }

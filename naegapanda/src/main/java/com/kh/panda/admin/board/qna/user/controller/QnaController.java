@@ -1,8 +1,11 @@
 package com.kh.panda.admin.board.qna.user.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +64,66 @@ public class QnaController {
 		}
 	}
 	
+	@RequestMapping("qdetail.do")
+	public ModelAndView qnaDetail(int uqId, ModelAndView mv) {
+		
+		Qna q = qService.qnaDetail(uqId);
+		
+		//System.out.println(q);
+		
+		if(q != null) {
+			mv.addObject("q",q).setViewName("admin/board/qnaDetailView");
+		}else {
+			mv.addObject("msg", "문의게시판 상세조회 실패!!").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
 	
+	
+	@RequestMapping("qupdateView.do")
+	public ModelAndView qnaUpdateView(Qna q, ModelAndView mv) {
+		
+		if(q != null) {
+			mv.addObject("q", q).setViewName("admin/board/qnaUpdateForm");
+		}else {
+			System.out.println("수정폼 불러오기 실패");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("qupdate.do")
+	public String qnaUpdate(Qna q, HttpServletRequest request, Model model) {
+		
+		System.out.println("수정하기 버튼 누르면"+q);
+		
+		int result = qService.updateQna(q);
+		
+		System.out.println(result);
+		
+		if(result > 0) {
+			return "redirect:qlist.do";
+		}else {
+			model.addAttribute("msg", "문의 게시판 수정 실패!!");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("qdelete.do")
+	public String deleteQna(int uqId, HttpServletRequest request){
+		
+		System.out.println(uqId);
+		
+		int result = qService.deleteQna(uqId);
+		
+		if(result > 0) {
+			return "redirect:qlist.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
 	
 	
 	

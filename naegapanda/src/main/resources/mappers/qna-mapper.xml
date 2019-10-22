@@ -32,4 +32,28 @@
 		values(qna_seq.nextval, #{uqCategory}, #{uqTitle}, #{uqContent}, #{mNo}, default, sysdate, sysdate, default )
 	</insert>
 	
+	<update id="updateCount" parameterType="_int">
+		update qna
+		set q_count = q_count +1
+		where q_id=#{uqId}
+	</update>
+	
+	<select id="selectQna" parameterType="_int" resultMap="qnaResultSet">
+		select * 
+		from qdetail
+		where q_id=#{q.uqId}
+	</select>
+	
+	<update id="updateQna" parameterType="Qna">
+		update qna
+		set q_category=#{uqCategory}, q_title=#{uqTitle}, q_content=#{uqContent}, q_modify_date=sysdate
+		where q_id=#{uqId}
+	</update>
+	
+	<delete id="deleteQna" parameterType="_int">
+		update qna
+		set q_status='Y'
+		where q_id=#{uqId}
+	</delete>
+	
 </mapper>
