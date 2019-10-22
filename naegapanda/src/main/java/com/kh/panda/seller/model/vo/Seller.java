@@ -14,7 +14,7 @@ public class Seller {
 	private String sbNum;	// 사업자번호
 	private String storeName;	// 상점명
 	private String sCeoName;	// 대표이름
-	private String state;	// 업태
+//	private String state;	// 업태
 	private String sector;	// 업종
 	private String sbAddress;	// 사업장주소
 	private String sbPhone;	// 사업장전화번호
@@ -26,7 +26,7 @@ public class Seller {
 	}
 
 	public Seller(int sNo, String sId, String sPwd, String sName, String sAddress, int sNum, String sEmail,
-			String sPhone, String stNum, String sbNum, String storeName, String sCeoName, String state, String sector,
+			String sPhone, String stNum, String sbNum, String storeName, String sCeoName, String sector,
 			String sbAddress, String sbPhone, String sOk, String sStatus) {
 		super();
 		this.sNo = sNo;
@@ -41,7 +41,6 @@ public class Seller {
 		this.sbNum = sbNum;
 		this.storeName = storeName;
 		this.sCeoName = sCeoName;
-		this.state = state;
 		this.sector = sector;
 		this.sbAddress = sbAddress;
 		this.sbPhone = sbPhone;
@@ -145,14 +144,6 @@ public class Seller {
 		this.sCeoName = sCeoName;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	public String getSector() {
 		return sector;
 	}
@@ -197,9 +188,9 @@ public class Seller {
 	public String toString() {
 		return "Seller [sNo=" + sNo + ", sId=" + sId + ", sPwd=" + sPwd + ", sName=" + sName + ", sAddress=" + sAddress
 				+ ", sNum=" + sNum + ", sEmail=" + sEmail + ", sPhone=" + sPhone + ", stNum=" + stNum + ", sbNum="
-				+ sbNum + ", storeName=" + storeName + ", sCeoName=" + sCeoName + ", state=" + state + ", sector="
-				+ sector + ", sbAddress=" + sbAddress + ", sbPhone=" + sbPhone + ", sOk=" + sOk + ", sStatus=" + sStatus
-				+ "]";
+				+ sbNum + ", storeName=" + storeName + ", sCeoName=" + sCeoName + ", sector=" + sector + ", sbAddress="
+				+ sbAddress + ", sbPhone=" + sbPhone + ", sOk=" + sOk + ", sStatus=" + sStatus + "]";
 	}
+
 	
 }

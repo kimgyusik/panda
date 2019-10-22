@@ -42,9 +42,18 @@
 		<result property="filePath" column="file_path"/>
 	</resultMap>
 	
-	<select id="selectcList" resultType="Category">
+	<select id="selectcList" resultMap="categoryResultSet">
 		select *
 		from category
+	</select>
+	
+	<select id="selectList" resultMap="poResultSet" parameterType="_int">
+		select o.*, pa.pa_change_name, pa.file_Path
+		from Product_option o
+		left join product p on p.p_id=o.p_Id
+		left join product_attachment pa on p.p_id=pa.p_id
+		where o_status='Y' and p.s_No = #{sNo}
+		order by o_No desc
 	</select>
 
 </mapper>

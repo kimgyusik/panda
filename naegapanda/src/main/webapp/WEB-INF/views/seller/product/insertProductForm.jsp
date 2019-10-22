@@ -10,7 +10,9 @@
 <body>
 
 	<c:import url="../../common/sellerMenubar.jsp"/>
-	${cList[0].cName }
+	<c:forEach items="${ cList }" var="c">
+		${c.cName }
+	</c:forEach>
 	<h1>상품등록하는 페이지</h1>
 	
 	<c:import url="../../common/footer.jsp"/>

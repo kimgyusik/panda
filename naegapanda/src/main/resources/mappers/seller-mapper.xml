@@ -15,7 +15,6 @@
 		<result property="sbNum" column="s_bnum"/>
 		<result property="storeName" column="storename"/>
 		<result property="sCeoName" column="s_ceoname"/>
-		<result property="state" column="state"/>
 		<result property="sector" column="sector"/>
 		<result property="sbAddress" column="s_baddress"/>
 		<result property="sbPhone" column="s_bphone"/>
@@ -27,7 +26,7 @@
 	<!-- 가입 -->
 	<insert id="insertSeller" parameterType="Seller">
 		insert into seller values( seller_seq.nextval, #{sId}, #{sPwd}, #{sName}, #{sAddress}, #{sNum}, #{sEmail}, #{sPhone}, #{stNum}, #{sbNum},
-									#{storeName}, #{sCeoName}, #{state}, #{sector}, #{sbAddress}, #{sbPhone}, default, default)
+									#{storeName}, #{sCeoName}, #{sector}, #{sbAddress}, #{sbPhone}, default, default)
 	</insert>
 
 	<!-- 로그인 -->
@@ -57,13 +56,10 @@
 	
 	<select id="getListCount" resultType="_int" parameterType="_int">
 		select count(*)
-		from product_option
-		where s_id=#{sId}
+		from product_option o
+		where o.p_Id = (select p.p_Id from product p where p.s_no=#{sNo} and p.p_status='Y')
 	</select>
 	
-	<select id="selectList" resultType="ProductOption" parameterType="_int">
-	
-	</select>
 	<update id="deleteSeller" parameterType="Seller">
 		update seller
 		set s_status='N'

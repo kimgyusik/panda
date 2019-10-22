@@ -59,7 +59,7 @@ public class SellerDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("sellerMapper.selectList", sNo, rowBounds);
+		return (ArrayList)sqlSession.selectList("productMapper.selectList", sNo, rowBounds);
 	}
 	
 	
