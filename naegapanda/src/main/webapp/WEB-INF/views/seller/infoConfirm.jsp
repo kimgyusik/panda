@@ -19,7 +19,7 @@
 	<h2>회원정보확인</h2>
 	<h5><label id="name">${ loginSeller.sName }</label>님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</h5>
 	<form action="sPage.do" method="post">
-		<label>아이디 : </label><input type="text" value="${ loginSeller.sId }" name="sId">
+		<label>아이디 : </label><input type="text" value="${ loginSeller.sId }" name="sId" style="border:none">
 		<label>비밀번호 : </label><input type="password" name="sPwd">
 		
 		<button type="submit">확인</button>

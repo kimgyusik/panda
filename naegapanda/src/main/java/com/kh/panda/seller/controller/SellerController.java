@@ -198,7 +198,7 @@ return "seller/sellerJoinForm";
 			  
 			  }else {
 			  
-			  model.addAttribute("msg", "로그인 실패"); return "common/errorPage"; }
+			  model.addAttribute("msg", "비밀번호가 틀립니다."); return "common/errorPage"; }
 			  
 			  }
 
