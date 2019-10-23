@@ -20,7 +20,7 @@ public class SviolateController {
 	private SviolateService svService;
 	
 	@RequestMapping("sViolateList.do")
-	public ModelAndView selectList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+	public ModelAndView selectSviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 	
 		int listCount = svService.getListCount();
 		
@@ -29,6 +29,22 @@ public class SviolateController {
 		ArrayList<Sviolate> list = svService.selectList(pi);
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/sViolateListView");
+		// 객체                                                                                         경로로반환한거당
+		return mv;
+		
+	}
+	
+	
+	@RequestMapping("pViolateList.do")
+	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		int listCount = svService.getSviolateListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Sviolate> list = svService.selectSviolateList(pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/pViolateListView");
 		// 객체                                                                                         경로로반환한거당
 		return mv;
 		

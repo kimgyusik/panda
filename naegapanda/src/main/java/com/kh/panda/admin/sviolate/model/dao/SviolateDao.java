@@ -21,7 +21,7 @@ public class SviolateDao {
 		return sqlSession.selectOne("sviolateMapper.getListCount");
 	}
 	
-	public ArrayList<Sviolate> selectList(PageInfo pi){
+	public ArrayList<Sviolate> selectSviolateList(PageInfo pi){
 		
 		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
@@ -29,4 +29,10 @@ public class SviolateDao {
 		
 		return (ArrayList)sqlSession.selectList("sviolateMapper.selectList", null, rowBounds);
 	}
+	
+	public int getSviolateListCount() {
+		return sqlSession.selectOne("sviolateMapper.getSviolateListCount");
+	}
+	
+	
 }

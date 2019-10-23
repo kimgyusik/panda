@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.kh.panda.admin.sviolate.model.dao.SviolateDao;
 import com.kh.panda.admin.sviolate.model.vo.Sviolate;
 import com.kh.panda.common.PageInfo;
-import com.kh.panda.seller.model.vo.Seller;
 
 @Service("svService")
 public class SviolateServiceImple implements SviolateService{
@@ -20,10 +19,15 @@ public class SviolateServiceImple implements SviolateService{
 	public int getListCount() {
 		return svDao.getListCount();
 	}
+	
+	@Override
+	public int getSviolateListCount() {
+		return svDao.getSviolateListCount();
+	}
 
 	@Override
 	public ArrayList<Sviolate> selectList(PageInfo pi) {
-		return svDao.selectList(pi);
+		return svDao.selectSviolateList(pi);
 	}
 	
 }

@@ -34,39 +34,35 @@ a:visited {
 <table class="table table-hover">
 					  	<thead>
 						    <tr>
-							      <td scope="col" width="90" align="center"><b>회원번호</b></td>
 							      <td scope="col" width="100" align="center"><b>판매자</b></td>
-							      <td scope="col" width="250" align="center"><b>스토어명</b></td>							 
+							      <td scope="col" width="90" align="center"><b>상품번호</b></td>
+							      <td scope="col" width="250" align="center"><b>상품명</b></td>
 							      <th scope="col" width="80">신고횟수</th>
-							      <td scope="col" width="120" align="center"><b>날짜</b></td>
 							      <th scope="col" width="80">회원상태</th>
 						    </tr>
 						</thead>
 						
 						<tbody>
 							
-									<c:forEach items="${ list }" var="sv"> 
-											<c:url value="pViolateList.do" var="pviolatelist">
-					 						    <c:param name="sNo" value="${ sv.sNo }"/>
+									<c:forEach items="${ list }" var="pv"> 
+											<c:url value="pvDetaiList.do" var="pvdetaillist">
+					 						    <c:param name="sNo" value="${ pv.sNo }"/>
 											</c:url>
 									<tr>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sNo}</a>
+											<a href="${ pvdetaillist }">${pv.sName}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sName}</a>
+											<a href="${ pvdetaillist }">${pv.pId}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.storeName}</a>
+											<a href="${ pvdetaillist }">${pv.pName}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sViolate}</a>
+											<a href="${ pvdetaillist }">${pv.pViolate}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.vDate}</a>
-										</td>
-										<td align="center">
-											<a href="${ pviolatelist }">${sv.sStatus}</a>
+											<a href="${ pvdetaillist }">${pv.pStatus}</a>
 										</td>
 							  			
 								    </tr>
@@ -98,7 +94,7 @@ a:visited {
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="pViolateList.do" var="page">
+										<c:url value="sViolateList.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
@@ -109,7 +105,7 @@ a:visited {
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="pViolateList.do" var="next">
+									<c:url value="sViolateList.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>

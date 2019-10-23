@@ -7,20 +7,29 @@ public class Sviolate {
 	private int sNo;				// 판매자 번호
 	private String sName;			// 판매자 이름
 	private String storeName;		// 스토어 이름
-	private int sViolate;			// 신고 횟수
+	private int pId;				// 상품 번호
+	private String pName;			// 상품 이름
+	private int sViolate;			// 판매자 신고 횟수
+	private int pViolate;			// 상품 신고 횟수
 	private Date vDate;				// 신고 날짜
-	private String sStatus;			// 상태
+	private String sStatus;			// 판매자 상태
+	private String pStatus;			// 상품 상태
 
 	public Sviolate() {}
 
-	public Sviolate(int sNo, String sName, String storeName, int sViolate, Date vDate, String sStatus) {
+	public Sviolate(int sNo, String sName, String storeName, int pId, String pName, int sViolate, int pViolate,
+			Date vDate, String sStatus, String pStatus) {
 		super();
 		this.sNo = sNo;
 		this.sName = sName;
 		this.storeName = storeName;
+		this.pId = pId;
+		this.pName = pName;
 		this.sViolate = sViolate;
+		this.pViolate = pViolate;
 		this.vDate = vDate;
 		this.sStatus = sStatus;
+		this.pStatus = pStatus;
 	}
 
 	public int getsNo() {
@@ -47,12 +56,36 @@ public class Sviolate {
 		this.storeName = storeName;
 	}
 
+	public int getpId() {
+		return pId;
+	}
+
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
 	public int getsViolate() {
 		return sViolate;
 	}
 
 	public void setsViolate(int sViolate) {
 		this.sViolate = sViolate;
+	}
+
+	public int getpViolate() {
+		return pViolate;
+	}
+
+	public void setpViolate(int pViolate) {
+		this.pViolate = pViolate;
 	}
 
 	public Date getvDate() {
@@ -71,11 +104,23 @@ public class Sviolate {
 		this.sStatus = sStatus;
 	}
 
+	public String getpStatus() {
+		return pStatus;
+	}
+
+	public void setpStatus(String pStatus) {
+		this.pStatus = pStatus;
+	}
+
 	@Override
 	public String toString() {
-		return "Sviolate [sNo=" + sNo + ", sName=" + sName + ", storeName=" + storeName + ", sViolate=" + sViolate
-				+ ", vDate=" + vDate + ", sStatus=" + sStatus + "]";
+		return "Sviolate [sNo=" + sNo + ", sName=" + sName + ", storeName=" + storeName + ", pId=" + pId + ", pName="
+				+ pName + ", sViolate=" + sViolate + ", pViolate=" + pViolate + ", vDate=" + vDate + ", sStatus="
+				+ sStatus + ", pStatus=" + pStatus + "]";
 	}
+
+	
+	
 	
 	
 	
