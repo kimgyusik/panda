@@ -58,14 +58,15 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label>상품 사진</label> <br>
+							<div>
+								<label>메인 사진</label>
+								<div class="productPic" id="productPicArea1">
+									<img id='pImg1' width='98px' height='98px'>
+								</div>
+							</div>
+							<label>다른 상품 사진</label> <br>
 							<table>
 								<tr>
-									<td>
-										<div class="productPic" id="productPicArea1">
-											<img id='pImg1' width='98px' height='98px'>
-										</div>
-									</td>
 									<td>
 										<div class="productPic" id="productPicArea2">
 											<img id='pImg2' width='98px' height='98px'>

@@ -87,7 +87,7 @@
 						</table>
 						
 						<div>
-							<button onclick="location.href='pInsert.do'">상품추가</button>
+							<button onclick="location.href='pInsertView.do'">상품추가</button>
 						</div>
 					
 					</div>
