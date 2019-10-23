@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.myShopping.payment.model.service.PaymentService;
 import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
 import com.kh.panda.myShopping.review.model.vo.Commend;
@@ -33,6 +34,8 @@ public class ReviewController {
 	
 	@Autowired
 	private ReviewService reService;
+	@Autowired
+	private PaymentService paService;
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
@@ -43,9 +46,38 @@ public class ReviewController {
 	@RequestMapping("myReviewList.re")
 	public ModelAndView selectMyReviewList(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
+		//ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
+		//ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
+		
+		ArrayList<Review> list = new ArrayList<>();
+		ArrayList<Payment> list2 = new ArrayList<>();
+		
+		Payment p = new Payment();
+		p.setmNo(1);
+		p.setpName("맛있는과자");
+		p.setoName("33박스");
+		p.setpId(11);
+		p.setPayId(13);
+		p.setStoreName("이지몰");
+		list2.add(p);
+		
+		Payment p2 = new Payment();
+		p2.setmNo(1);
+		p2.setpName("매운라면");
+		p2.setoName("24242개");
+		p2.setpId(22);
+		p2.setPayId(24);
+		p2.setStoreName("라면상점");
+		list2.add(p2);
+		
+		
+		
+		Date date = new Date();
+		list.add(new Review(1, "너무 잘 받엇어요", "진짜찐짜진자찌장", date, 12323, 1, "vjxmfwl", "N", 323, 13,"1"));
+		list.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "2"));
 		
 		mv.addObject("list", list);
+		mv.addObject("list2", list2);
 		mv.setViewName("myShopping/review/myReviewList");
 		
 		return mv;

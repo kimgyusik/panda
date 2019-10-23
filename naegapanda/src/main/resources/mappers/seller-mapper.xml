@@ -45,18 +45,21 @@
 		where s_id=#{sId} and s_status='Y'
 	</select>
 	
+	<!-- 회원가입시 아이디 중복여부 -->
 	<select id="sIdCheck" parameterType="string" resultType="_int">
 		select count(*)
 		from seller
 		where s_id=#{sId} and s_status='Y'
 	</select>
 	
+	<!-- 아이디 찾기 -->
 	<select id="findsId" parameterType="String" resultType="String">
 		select s_id 
 		from seller
 		where s_email = #{sEmail}
 	</select>
 	
+	<!-- 정보 수정 -->
 	<update id="updateSeller" parameterType="Seller">
 		update seller
 		set s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
@@ -66,7 +69,7 @@
 	<select id="getListCount" resultType="_int" parameterType="_int">
 		select count(*)
 		from product_option o
-		where o.p_Id = (select p.p_Id from product p where p.s_no=#{sNo} and p.p_status='Y')
+		where o.p_Id IN (select p.p_Id from product p where p.s_no=#{sNo})
 	</select>
 	
 	<update id="deleteSeller" parameterType="Seller">
@@ -75,11 +78,18 @@
 		where s_name=#{sName} and s_id=#{sId}
 	</update>
 	
+	<!-- 이메일 확인 -->
 	<update id="emailConfirm" parameterType="_int">
 		update seller
 		set email_key = 'Y'
 		where s_no=#{sNo}
 	</update>
-
+	
+	<!-- 정보바꾸기전 확인 -->
+	<select id="updateConfirm" parameterType="Seller" resultMap="sellerResultSet">
+		select *
+		from seller
+		where s_id=#{sId} and s_pwd=#{sPwd}
+	</select>
 
 </mapper>
