@@ -111,6 +111,16 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.emailConfirm(sNo);
 		
 	}
+
+	@Override
+	public Seller updateConfirm(Seller s) {
+		return sDao.updateConfirm(s);
+	}
+
+	
+
+
+	
 	
 
 

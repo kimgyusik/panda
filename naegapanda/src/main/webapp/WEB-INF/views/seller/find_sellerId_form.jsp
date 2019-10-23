@@ -14,7 +14,7 @@
 </style>
 <body>
 
-	<c:import url="../common/menubar.jsp"/>
+	<c:import url="../common/sellerMenubar.jsp"/>
 
 	<form action="findsId.do" method="post">
 		<div class="outer">

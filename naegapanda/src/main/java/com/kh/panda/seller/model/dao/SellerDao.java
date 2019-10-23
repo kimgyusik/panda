@@ -80,6 +80,15 @@ public class SellerDao {
 		
 		return sqlSession.update("sellerMapper.emailConfirm", sNo);
 	}
+
+
+	public Seller updateConfirm(Seller s) {
+		return sqlSession.selectOne("sellerMapper.updateConfirm", s);
+	}
+
+
+	
+	
 	
 	
 

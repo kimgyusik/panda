@@ -138,6 +138,7 @@ return "seller/sellerJoinForm";
 	  
 	  }
 	  
+	  // 로그인 페이지
 	  @RequestMapping("sellerLogin.do")
 	  public String sellerLogin() {
 		  
@@ -172,11 +173,37 @@ return "seller/sellerJoinForm";
 		 return mv;
 	  }
 	 
-	  // 셀러페이지(정보수정)
-	  @RequestMapping("sPage.do")
-	  public String sellerPage() {
-		  return "seller/sellerInfo";
+	  // 셀러페이지(정보수정 전 재로그인)
+	  @RequestMapping("sConfirm.do")
+	  public String sellerConfirm() {
+		  return "seller/infoConfirm";
 	  }
+	  
+	/*
+	 * // 셀러 정보 수정
+	 * 
+	 * @RequestMapping("sPage.do") public String sellerPage() { return
+	 * "seller/sellerInfo"; }
+	 */
+	  
+	  
+	  @RequestMapping(value="sPage.do", method=RequestMethod.POST) 
+	  public String updateConfirm(Seller s, Model model) {
+		  
+		  Seller reLoginSeller = sService.updateConfirm(s);
+		
+		  if(reLoginSeller != null && reLoginSeller.getsPwd().equals(s.getsPwd())) {
+			  
+			  model.addAttribute("reLoginSeller", reLoginSeller); return "seller/sellerInfo";
+			  
+			  }else {
+			  
+			  model.addAttribute("msg", "로그인 실패"); return "common/errorPage"; }
+			  
+			  }
+
+		 
+	  
 	  
 	  // 상품등록페이지
 	  @RequestMapping("pInsertView.do")
@@ -268,6 +295,7 @@ return "seller/sellerJoinForm";
 			}
 	  }
 	  
+	  // 탈퇴
 	  @RequestMapping("confirm.do")
 	  public String deleteSeller(Seller s, Model model) {
 		  
@@ -282,6 +310,7 @@ return "seller/sellerJoinForm";
 		  
 	  }
 	  
+	  // 탈퇴페이지
 	  @RequestMapping("sDelete.do")
 	  public String deleteSellerPage() {
 		  return "seller/sellerDeleteForm";
@@ -356,7 +385,7 @@ return "seller/sellerJoinForm";
 
 
 	  
-	   
+	  // 이메일 확인
 	  @RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
 	  public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
 		  
