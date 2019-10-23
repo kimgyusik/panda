@@ -48,3 +48,14 @@ where   vm.s_no = s.s_no
     and vm.v_no = v.v_no
     -- and p.s_no = s.s_no
 order by vm_no desc;
+
+
+
+create or replace view svList
+as
+select s.s_NO, s.s_Name, s.storeName, p.p_id, p.p_name, s.s_Violate, p.p_violate, v.v_Date, s.s_Status, p.p_status
+from violate v, seller s, product p
+where   v.s_no = s.s_no
+    and v.p_id = p.p_id
+    and p.s_no = s.s_no
+order by v_date desc;

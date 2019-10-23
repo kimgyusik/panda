@@ -30,7 +30,16 @@ public class ViolateDao {
 		return (ArrayList)sqlSession.selectList("violateMapper.selectList", null, rowBounds);
 	}
 	
-	public int insertViolate(Violate v) {
+	
+	public int updateSellerCount(int sNo) {
+		return sqlSession.update("violateMapper.updateSellerCount",sNo);
+	}
+	
+	public int updateProductCount(int pId) {
+		return sqlSession.update("violateMapper.updatProductCount",pId);
+	}
+	
+	public int insertViolate(Violate v) {	
 		return sqlSession.insert("violateMapper.insertViolate", v);
 	}
 	

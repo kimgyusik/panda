@@ -29,10 +29,22 @@
 		select *
 		from vList
 	</select>
-
+	
+	<update id="updateSellerCount">
+		update seller
+		set s_violate=s_violate+1 
+		where s_no=#{sNo}
+	</update>
+	
+	<update id="updateProductCount">
+		update product
+		set p_violate=p_violate+1 
+		where p_id=#{pId}
+	</update>
+		
 	<select id="insertViolate" parameterType="Violate">
-  	insert into violate
-  	values(violate_seq.nextval, #{sNO}, #{mNo}, #{pId}, 
+  		insert into violate
+  		values(violate_seq.nextval, #{sNO}, #{mNo}, #{pId}, 
   			#{stNo}, #{vTitle},  #{vContent},  sysdate,  #{vOriginalFileName}, #{vRenameFileName},  default)
   </select>
 
