@@ -47,10 +47,10 @@ public class GgimController {
 		Date date = new Date();
 		//sdf.format(date);
 			
-		list.add(new Ggim(1, 2, "좋은상품1", 20001, "대분류1", "이지몰", date));
-		list.add(new Ggim(2, 4, "좋은상품22", 11233, "대분류22", "슈퍼몰", date));
-		list.add(new Ggim(3, 64, "좋은상품333", 244, "대분류333", "또와", date));
-		list.add(new Ggim(5, 44, "좋은상품2444", 14444, "대분류22", "이마트", date));
+		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "소분류11", "대분류1", "이지몰", date));
+		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22222222", "대분류22", "슈퍼몰", date));
+		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류3333333", "대분류333", "또와", date));
+		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류444", "대분류22", "이마트", date));
 
 		
 		ArrayList<String> category = new ArrayList<>();

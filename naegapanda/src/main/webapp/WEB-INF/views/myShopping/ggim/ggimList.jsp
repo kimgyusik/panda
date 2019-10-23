@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,36 +45,11 @@ padding:0 !important;
 margin:0 !important;
 
 }
-.cartinfo{
 
-background-color: #edeeef;
-padding:20px;;
-margin-top:30px;
-margin-bottom:30px;
-font-size:13px;
-}
 .clearfix{
 padding: 0px;
 }
-.removeCart{
-width:auto;
-padding: 1px;
-font-size:9px;
-cursor: pointer;
-background-color: #f7f7f7;
-border: 1px solid #edeeef;
-box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
-}
-.removeCart2{
-width:100px;
-font-size:12px;
-height:30px;
-margin-top:30px;
-background-color: #f7f7f7;
-border: 1px solid #edeeef;
-cursor: pointer;
-box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
-}
+
 .cartTb{
 cellspacing="0" 
 }
@@ -115,7 +91,12 @@ color: #0e8ce4;
 font-style: bold;
 border-bottom-color: #0e8ce4;
 }
-
+.cancle{
+width:50px;
+color:gray;
+font-size: 15px;
+cursor: pointer;
+}
 
 </style>
 </head>
@@ -165,9 +146,30 @@ border-bottom-color: #0e8ce4;
 										
 										<!-- 찜 상품 리스트 -->
 										<div style="margin-top:50px;">
-											 <c:forEach items="${ list }" var="g">
-										  		  <div id="${g.category2 }" class="prodList" >${g.price}</div>
-										    </c:forEach>
+											 
+										 	<table>
+										 		<c:forEach items="${ list }" var="g">
+											 		<tr id="${g.category2 }" class="prodList" height="200px;">
+											 			<c:url value="상품조회url" var="product">
+															<c:param name="pId" value="${g.pId }"/>
+														</c:url>		
+											 			<td width="250px;">
+											 				<a href="${ product }"><img src="resources/images/best_${g.pId }.png" width="130px;"></a>
+											 			</td>
+											 			<td width="1000px;" style="text-align: left;">
+											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd." /></span><br><br>
+											 				[ ${g.category2} > ${g.category} ] <br>
+											 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${g.pName}</a></span><br>
+											 				<p style="color:black;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${g.price}" />원</p>
+											 				<span style="color:gray;">${g.storeName }</span>
+											 			</td>
+											 			<td style="vertical-align: top; padding:10px;"><span class="cancle" onclick="return cancle(${g.pId});">X</span></td>
+											 		</tr>
+										 		</c:forEach>
+										 	</table>
+						
+										  	<div id="${g.category2 }" class="prodList" >${g.price}</div>
+										    
 										</div>
 
 									</div>
@@ -186,6 +188,11 @@ border-bottom-color: #0e8ce4;
 	
 	
 	<script>
+	
+		$(function(){
+			var result = $(".price");
+			$(".price").html(result);	
+		});
 		
 		// 카테고리탭 액션 처리
 		$(".tab").on("change", function() {
@@ -196,13 +203,13 @@ border-bottom-color: #0e8ce4;
 			
 			if(tabId == "displayAll"){ // 전체 상품 출력
 				
-				$('.prodList').css("display","block");
+				$('.prodList').css("display","");
 			
 			}else{ // 선택된 탭에 해당하는 상품만 출력
 				
 				$.each(list, function(index, item){ 
 					if(tabId == "tab"+item.id){
-						$('#'+item.id).css("display","block");
+						$('#'+item.id).css("display","");
 					}else{
 						$('#'+item.id).css("display","none");
 					}
@@ -210,13 +217,14 @@ border-bottom-color: #0e8ce4;
 			}
 
 		});
-			
-		// 상품 제외(단일)
-		function removeCart(oNo){
-			
-			if(confirm("해당 상품을 장바구니에서 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteBasket.ba?oNo='+oNo;
+
+		// 찜 취소
+		function cancle(pId){
+
+			if(confirm("해당 상품을 찜 목록에서 삭제하시겠습니까?")){
+				location.href='<%=request.getContextPath()%>/deleteGgim.gg?pId='+pId;
 			}
+			
 			return false;
 		}
 

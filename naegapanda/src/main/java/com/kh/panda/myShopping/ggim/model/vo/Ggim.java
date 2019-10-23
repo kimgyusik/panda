@@ -8,6 +8,7 @@ public class Ggim {
 	private int mNo;
 	private String pName;
 	private int price;
+	private String category;
 	private String category2;
 	private String storeName;
 	private Date addDate;
@@ -17,12 +18,14 @@ public class Ggim {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ggim(int pId, int mNo, String pName, int price, String category2, String storeName, Date addDate) {
+	public Ggim(int pId, int mNo, String pName, int price, String category, String category2, String storeName,
+			Date addDate) {
 		super();
 		this.pId = pId;
 		this.mNo = mNo;
 		this.pName = pName;
 		this.price = price;
+		this.category = category;
 		this.category2 = category2;
 		this.storeName = storeName;
 		this.addDate = addDate;
@@ -60,6 +63,14 @@ public class Ggim {
 		this.price = price;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getCategory2() {
 		return category2;
 	}
@@ -86,9 +97,11 @@ public class Ggim {
 
 	@Override
 	public String toString() {
-		return "Ggim [pId=" + pId + ", mNo=" + mNo + ", pName=" + pName + ", price=" + price + ", category2="
-				+ category2 + ", storeName=" + storeName + ", addDate=" + addDate + "]";
+		return "Ggim [pId=" + pId + ", mNo=" + mNo + ", pName=" + pName + ", price=" + price + ", category=" + category
+				+ ", category2=" + category2 + ", storeName=" + storeName + ", addDate=" + addDate + "]";
 	}
+
+	
 	
 	
 }
