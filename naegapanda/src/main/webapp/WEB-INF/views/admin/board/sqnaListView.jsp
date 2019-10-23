@@ -67,29 +67,44 @@
 				</thead>
 					<tbody>
 								
-						<c:forEach items="${ list }" var="sq">
+						<c:forEach items="${ sqlist }" var="q">
 									
 										<tr>
-											<td align="center">${ q.uqId }</td>
-											<td style="font-size:11px;" align="center">[${ q.uqCategory }]</td>
+											<td align="center">${ q.sqId }</td>
+											<td style="font-size:11px;" align="center">[${ q.sqCategory }]</td>
 											<td align="center">
-												<c:if test="${ empty loginUser }">
-													${ q.uqTitle }
+												<c:if test="${ empty loginUser && empty loginSeller }">
+														${ q.sqTitle }
 												</c:if>
-												<c:if test="${ !empty loginUser }">
-													<c:url value="qdetail.do" var="qdetail">
-														<c:param name="qId" value="${ q.uqId }"/>
-													</c:url>
-													<a href="${ qdetail }">${ q.uqTitle }</a>
+												<c:if test="${ !empty loginUser || !empty loginSeller }">
+														<c:url value="sqdetail.do" var="sqdetail">
+															<c:param name="sqId" value="${ q.sqId }"/>
+														</c:url>
+														<a href="${ sqdetail }">${ q.sqTitle }</a>
+												
 												</c:if>
 											</td>
 											<td align="center">
-												${ q.mName }
+												${ q.sName }
 											</td>
-											<td align="center">${ q.uqModifyDate }</td>
-											<td align="center">${ q.uqCount }</td>
+											<td align="center">${ q.sqModifyDate }</td>
+											<td align="center">${ q.sqCount }</td>
 											
 										</tr>
+										
+										<c:forEach items="${ salist }" var="a">
+											<c:if test="${ q.sqId eq a.qId }">
+											<tr align="center" style="color:red;">
+												<td></td>
+												<td></td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;re: ${ a.saTitle }</td>
+												<td>${ a.saWriter }</td>
+												<td></td>
+												<td></td>
+											<tr>	
+											</c:if>
+										</c:forEach>
+										
 									</c:forEach>
 									
 					</tbody>					
@@ -104,7 +119,7 @@
 											[이전] 
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="qlist.do" var="before">
+											<c:url value="sqlist.do" var="before">
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
@@ -116,7 +131,7 @@
 												<font  size="4">[${ p }]</font>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="qlist.do" var="page">
+												<c:url value="sqlist.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
 												</c:url>
 												<a href="${ page }">${ p }</a>
@@ -128,7 +143,7 @@
 											 [다음]
 										</c:if>
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="qlist.do" var="next">
+											<c:url value="sqlist.do" var="next">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
@@ -136,9 +151,9 @@
 									</div>
 		
 		<div class="col-lg-11" align="right">
-			<c:if test="${ !empty sessionScope.loginUser}">
+			<c:if test="${ !empty sessionScope.loginSeller}">
 				<c:if test="${ sessionScope.loginUser.name ne '관리자' }">
-				<button onclick="location.href='qinsertView.do';" class="btn">글쓰기</button>
+				<button onclick="location.href='sqinsertView.do';" class="btn">글쓰기</button>
 				</c:if>
 			</c:if>
 		</div>

@@ -97,6 +97,7 @@
 									<option value="회원가입">회원가입</option>
 									<option value="회원정보">회원정보</option>
 									<option value="고객센터">고객센터</option>
+									<option value="상품/이벤트">상품/이벤트</option>
 									<option value="기타" selected>기타</option>
 								</select>	
 								

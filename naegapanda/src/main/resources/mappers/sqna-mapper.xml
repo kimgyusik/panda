@@ -15,6 +15,16 @@
 		<result property="sName" column="s_name" />
 	</resultMap>
 	
+	<resultMap  id="sanswerResultSet" type="sanswer">
+		<id property="saId" column="sa_id" />
+		<result property="qId" column="q_id" />
+		<result property="saTitle" column="sa_title" />
+		<result property="saContent" column="sa_content" />
+		<result property="saWriter" column="sa_writer" />
+		<result property="saCreateDate" column="sa_create_date" />
+		<result property="saStatus" column="sa_status" />
+	</resultMap>
+	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from sqna
@@ -22,8 +32,60 @@
 	</select>
 	
 	<select id="selectList" resultMap="sqnaResultSet">
-		select *
+		select * 
 		from sqlist
 	</select>
+	
+	<insert id="insertSQna" parameterType="SQna">
+		insert into sqna
+		values(sqna_seq.nextval, #{sqCategory}, #{sqTitle}, #{sqContent}, #{sNo}, default, sysdate, sysdate, default )
+	</insert>
+	
+	<update id="updateCount" parameterType="_int">
+		update sqna
+		set sq_count = sq_count +1
+		where q_id=#{sqId}
+	</update>
+	
+	<select id="selectSQna" parameterType="_int" resultMap="sqnaResultSet">
+		select * 
+		from sqdetail
+		where q_id=#{q.sqId}
+	</select>
+	
+	<update id="updateSQna" parameterType="SQna">
+		update sqna
+		set sq_category=#{sqCategory}, sq_title=#{sqTitle}, sq_content=#{sqContent}, sq_modify_date=sysdate
+		where q_id=#{sqId}
+	</update>
+	
+	<delete id="deleteSQna" parameterType="_int">
+		update sqna
+		set sq_status='Y'
+		where q_id=#{sqId}
+	</delete>
+	
+	<insert id="insertSAnswer" parameterType="SAnswer">
+		insert into sanswer
+		values(sanswer_seq.nextval, #{qId}, #{saTitle}, #{saContent}, #{saWriter}, sysdate, default)
+	</insert>
+	
+	<select id="selectSAList" resultMap="sanswerResultSet">
+		select *
+		from sanswer	
+		where sa_status='N'
+	</select>
+	
+	<select id="selectSAnswer" parameterType="_int" resultMap="sanswerResultSet">
+		select * 
+		from sanswer
+		where q_id=#{spId} and a_status='N'
+	</select>
+	
+	<update id="deleteSAnswer" parameterType="_int">
+		update sanswer
+		set sa_stauts='Y'
+		where q_id=#{sqId}
+	</update>
 
 </mapper>

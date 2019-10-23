@@ -162,32 +162,51 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("nupdate.do")
-	public String updateNotice(Notice n, HttpServletRequest request, Model model,
-							   @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+	public ModelAndView updateNotice(Notice n, HttpServletRequest request, ModelAndView mv,
+							   @RequestParam(name="reloadFile", required=false) MultipartFile file) {
 		
-		if(!file.getOriginalFilename().equals("")) { // 첨부파일을 추가한 경우에
+		/*
+		 * if(!file.getOriginalFilename().equals("")) { // 첨부파일을 추가한 경우에
+		 * 
+		 * // 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일명 돌려주는 savefile String
+		 * nRenameFileName = saveFile(file, request);
+		 * 
+		 * if(nRenameFileName != null) {
+		 * n.setnOriginalFileName(file.getOriginalFilename());
+		 * n.setnRenameFileName(nRenameFileName); } }
+		 * 
+		 * System.out.println("수정 notice n "+n);
+		 * 
+		 * int result = nService.updateNotice(n);
+		 * 
+		 * System.out.println(result);
+		 * 
+		 * if(result > 0) { return "redirect:nlist.do"; }else {
+		 * model.addAttribute("msg", "공지 수정 실패@@"); return "common/errorPage"; }
+		 */
+		
+		if(file != null && !file.isEmpty()) {
+			if(n.getnRenameFileName() != null) {
+				deleteFile(n.getnRenameFileName(), request);
+			}
 			
-			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일명 돌려주는 savefile 
-			String nRenameFileName = saveFile(file, request);
+			String renameFileName = saveFile(file, request);
 			
-			if(nRenameFileName != null) {
+			if(renameFileName != null) {
 				n.setnOriginalFileName(file.getOriginalFilename());
-				n.setnRenameFileName(nRenameFileName);
+				n.setnRenameFileName(renameFileName);
 			}
 		}
 		
-		System.out.println("수정 notice n "+n);
-		
 		int result = nService.updateNotice(n);
 		
-		System.out.println(result);
-		
 		if(result > 0) {
-			return "redirect:nlist.do";
+			mv.addObject("nId", n.getnId()).setViewName("redirect:ndetail.do");
 		}else {
-			model.addAttribute("msg", "공지 수정 실패@@");
-			return "common/errorPage";
+			mv.addObject("msg", "수정 실패").setViewName("common/errorPage");
 		}
+		
+		return mv;
 	}
 	
 	@ResponseBody

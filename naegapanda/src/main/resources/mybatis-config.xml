@@ -21,6 +21,8 @@
 		<typeAlias type="com.kh.panda.seller.model.vo.Seller" alias="Seller"/>
 		<typeAlias type="com.kh.panda.admin.board.qna.user.model.vo.Qna" alias="Qna" />
 		<typeAlias type="com.kh.panda.admin.board.qna.seller.model.vo.SQna" alias="SQna" />
+		<typeAlias type="com.kh.panda.admin.board.qna.user.model.vo.Answer" alias="Answer" />
+		<typeAlias type="com.kh.panda.admin.board.qna.seller.model.vo.SAnswer" alias="SAnswer" />
 	</typeAliases>
 
 	<mappers>
