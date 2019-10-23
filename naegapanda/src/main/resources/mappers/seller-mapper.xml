@@ -21,7 +21,7 @@
 		<result property="sOk" column="s_ok"/>
 		<result property="emailKey" column="email_key"/>
 		<result property="sStatus" column="s_status"/>
-		<result property="sVioldate" column="s_violate"/>
+		<result property="sViolate" column="s_violate"/>
 	</resultMap>
 
 
@@ -42,7 +42,7 @@
 	<select id="loginSeller" parameterType="Seller" resultMap="sellerResultSet">
 		select *
 		from seller
-		where s_id=#{sId} and s_status='Y'and s_emailKey='Y'
+		where s_id=#{sId} and s_status='Y'
 	</select>
 	
 	<select id="sIdCheck" parameterType="string" resultType="_int">
