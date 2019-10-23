@@ -20,6 +20,7 @@ public class Seller {
 	private String sOk;		// 승인여부
 	private String emailKey;
 	private String sStatus; // 탈퇴여부
+	private int sViolate; //신고횟수
 	
 	public Seller() {
 		
@@ -27,7 +28,7 @@ public class Seller {
 
 	public Seller(int sNo, String sId, String sPwd, String sName, String sAddress, int sNum, String sEmail,
 			String sPhone, String stNum, String sbNum, String storeName, String sCeoName, String sector,
-			String sbAddress, String sbPhone, String sOk, String emailKey, String sStatus) {
+			String sbAddress, String sbPhone, String sOk, String emailKey, String sStatus, int sViolate) {
 		super();
 		this.sNo = sNo;
 		this.sId = sId;
@@ -47,9 +48,9 @@ public class Seller {
 		this.sOk = sOk;
 		this.emailKey = emailKey;
 		this.sStatus = sStatus;
+		this.sViolate = sViolate;
 	}
 
-	
 	public int getsNo() {
 		return sNo;
 	}
@@ -194,14 +195,21 @@ public class Seller {
 		this.sStatus = sStatus;
 	}
 
+	public int getsViolate() {
+		return sViolate;
+	}
+
+	public void setsViolate(int sViolate) {
+		this.sViolate = sViolate;
+	}
+
 	@Override
 	public String toString() {
 		return "Seller [sNo=" + sNo + ", sId=" + sId + ", sPwd=" + sPwd + ", sName=" + sName + ", sAddress=" + sAddress
 				+ ", sNum=" + sNum + ", sEmail=" + sEmail + ", sPhone=" + sPhone + ", stNum=" + stNum + ", sbNum="
 				+ sbNum + ", storeName=" + storeName + ", sCeoName=" + sCeoName + ", sector=" + sector + ", sbAddress="
 				+ sbAddress + ", sbPhone=" + sbPhone + ", sOk=" + sOk + ", emailKey=" + emailKey + ", sStatus="
-				+ sStatus + "]";
+				+ sStatus + ", sViolate=" + sViolate + "]";
 	}
 
-	
 }

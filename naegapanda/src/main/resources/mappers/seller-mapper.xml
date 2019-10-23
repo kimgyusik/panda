@@ -21,13 +21,14 @@
 		<result property="sOk" column="s_ok"/>
 		<result property="emailKey" column="email_key"/>
 		<result property="sStatus" column="s_status"/>
+		<result property="sVioldate" column="s_violate"/>
 	</resultMap>
 
 
 	<!-- 가입 -->
 	<insert id="insertSeller" parameterType="Seller">
 		insert into seller values( seller_seq.nextval, #{sId}, #{sPwd}, #{sName}, #{sAddress}, #{sNum}, #{sEmail}, #{sPhone}, #{stNum}, #{sbNum},
-									#{storeName}, #{sCeoName}, #{sector}, #{sbAddress}, #{sbPhone}, default, default , 'N')
+									#{storeName}, #{sCeoName}, #{sector}, #{sbAddress}, #{sbPhone}, default, default , 'N' , 0)
 	</insert>
 	
 	<!-- 이메일인증 -->
@@ -41,7 +42,7 @@
 	<select id="loginSeller" parameterType="Seller" resultMap="sellerResultSet">
 		select *
 		from seller
-		where s_id=#{sId} and s_status='Y'
+		where s_id=#{sId} and s_status='Y'and s_emailKey='Y'
 	</select>
 	
 	<select id="sIdCheck" parameterType="string" resultType="_int">
