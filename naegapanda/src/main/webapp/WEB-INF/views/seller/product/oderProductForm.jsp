@@ -13,9 +13,7 @@
 	
 	<h1>구매자들이 주문한 내상품들 띄우는 페이지인데 깔끔한 이름 추천받아요~</h1>
 	
-	
 	<c:import url="../../common/footer.jsp"/>
-
 
 </body>
 </html>
