@@ -103,11 +103,10 @@ margin-right:5px;
 		<div class="shop">
 			<div class="container">
 				<div class="row">
+				
+					<!-- 사이드 메뉴바 -->
 					<div class="col-lg-1">
-	
-						<!-- 사이드 메뉴바 -->
 						<c:import url="../sidebar.jsp"/>
-	
 					</div>
 	
 					<div class="col-lg-10" >
@@ -201,8 +200,8 @@ margin-right:5px;
 																				<fmt:formatNumber type="number" maxFractionDigits="3" value="${p }" />
 																			</span><span>원</span>
 																			<br>
-																			<button class="removeCart" value="상품번호" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
-																			<button class="removeCart" value="상품번호" onclick="return removeCart(${b.oNo});">삭제</button>
+																			<button class="removeCart" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
+																			<button class="removeCart" onclick="return removeCart(${b.oNo});">삭제</button>
 																		</td>
 																	</tr>
 																</c:forEach>

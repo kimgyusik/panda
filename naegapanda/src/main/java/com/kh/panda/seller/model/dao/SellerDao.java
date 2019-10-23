@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.product.model.vo.Category;
+import com.kh.panda.product.model.vo.Product;
+import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
 import com.sun.media.jfxmedia.logging.Logger;
@@ -78,8 +80,32 @@ public class SellerDao {
 
 	public int emailConfirm(int sNo) {
 		
-		return sqlSession.update("sellerMapper.emailConfirm", sNo);
+		return sqlSession.update("productMapper.emailConfirm", sNo);
 	}
+
+
+	public int insertProduct(Product p) {
+		return sqlSession.insert("productMapper.insertProduct", p);
+	}
+
+
+	public int insertPaList(ProductAttachment pa) {
+		return sqlSession.insert("productMapper.insertPa", pa);
+	}
+
+
+	public int insertPoList(ProductOption po) {
+		return sqlSession.insert("productMapper.insertPo", po);
+	}
+
+
+	public Seller updateConfirm(Seller s) {
+		return sqlSession.selectOne("sellerMapper.updateConfirm", s);
+	}
+
+
+	
+	
 	
 	
 

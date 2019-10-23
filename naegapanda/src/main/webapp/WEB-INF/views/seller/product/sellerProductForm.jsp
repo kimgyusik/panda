@@ -28,6 +28,9 @@
         color:white;
 
     }
+    td{
+    	align:center;
+    }
 </style>
 <body>
 
@@ -44,7 +47,7 @@
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
 								<li><a href="sProduct.do">상품리스트</a></li>
-								<li><a href="pInsert.do">상품등록</a></li>
+								<li><a href="pInsertView.do">상품등록</a></li>
 								<li><a href="oderPage.do">주문목록관리</a></li>
 								<li><a href="streaming.do">방송관리</a></li>
 								<li><a href="sPage.do">정보수정?</a></li>
@@ -56,7 +59,7 @@
 					<div class="shop_content">
 						<table>
 							<tr>
-								<th>상품사진<th>
+								<th>상품사진</th>
 								<th>상품번호</th>
 								<th>상품명</th>
 								<th>옵션명</th>
@@ -66,22 +69,23 @@
 								<th>수정</th>
 								<th>삭제</th>
 							</tr>
-							<c:if test="${ empty list }" >
+							<c:if test="${empty list}" >
 							<tr><td>등록된 상품이 없습니다.</td ></tr>
 							</c:if>
 							
-							<c:if test="${ !empty list }">
-							
-								<c:forEach begin="1" end="${ list.size -1 }" items="${list }" var="p">
-									<td><img src="${contextPath }/resources/product_uploadFiles/${p.getChangeName}"></td>    	
-									<td>${ p.pId }</td>
-									<td>${ p.pName }</td>
-									<td>${ p.poName }</td>
-									<td>${ p.price }</td>
-									<td>${ p.amount }</td>
-									<td>${ p.purchase }</td>
+							<c:if test="${!empty list}">
+								<c:forEach items="${list }" var="p">
+								<tr>
+									<td><img src="resources/product_uploadFiles/${p.paChangeName}"></td>    	
+									<td>${ p.oNo }</td>
+									<td>aa</td>
+									<td>${ p.oName }</td>
+									<td>${ p.oPrice }</td>
+									<td>${ p.oAmount }</td>
+									<td>${ p.oPurchase }</td>
 									<td><button>수정</button></td>
 									<td><button>삭제</button></td>
+								</tr>
 								</c:forEach>
 							</c:if>
 						</table>
