@@ -43,17 +43,18 @@
 				<div class="panel-heading"><label style="text-size:30px;">상품 등록</label></div>
 				<br>
 				<div class="panel-body" width="500px">
-					<form action="pInsert.do">
+					<form action="pInsert.do" method="post" encType="multipart/form-data">
 						<div class="form-group">
-							<label for="Product_Name">상품명</label> 
-							<input type="text" class="form-control" id="pName" placeholder="상품명을 입력하세요." />
+							<label for="pName">상품명</label> 
+							<input type="text" class="form-control" id="pName" name="pName" placeholder="상품명을 입력하세요." />
 						</div>
 						<div class="form-group">
 							<label for="Product_Category">카테고리</label> 
 							<select
-								name="Category" id="category" class="form-control">
-								<option value="상품">상품</option>
-								<option value="상품">이모티콘</option>
+								name="cId" id="cId" class="form-control">
+								 <c:forEach items="${cList }" var="c">
+									<option value="${c.cId }">${c.cName2 } : ${c.cName }</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
@@ -147,7 +148,7 @@
 						<div class="form-group">
 							<label>상세 설명</label>
 							<div>
-								<textarea id="summernote"></textarea>
+								<textarea id="summernote" name="pContent"></textarea>
 							</div>
 						    <script>
 						      $('#summernote').summernote({
@@ -156,11 +157,10 @@
 						      });
 						    </script>
 						</div>
+						<div align=right>
+							<button type="submit" class="btn btn-default">상품 추가</button>
+						</div>
 					</form>
-					<div align=right>
-						<button type="submit" class="btn btn-default">상품 추가</button>
-					</div>
-					
 					<script>
 						function postForm() {
 							$('textarea[name="pContent"]').html($('.summernote').code());

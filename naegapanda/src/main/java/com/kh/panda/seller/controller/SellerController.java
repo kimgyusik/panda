@@ -179,7 +179,7 @@ return "seller/sellerJoinForm";
 	  }
 	  
 	  // 상품등록페이지
-	  @RequestMapping("pInsert.do")
+	  @RequestMapping("pInsertView.do")
 	  public ModelAndView insertProduct(ModelAndView mv) {
 		  
 		  ArrayList<Category> cList = sService.selectcList();
@@ -325,7 +325,7 @@ return "seller/sellerJoinForm";
 			//멀티파트를 사용하려면 관련 라이브러리를 추가해야함
 			// root-context.xml에 빈으로 등록해야함 이때 사이즈 지정 가능
 			// 서버에 업로드 할 때 HttpServletRequest도 있어야함
-		  System.out.println(p);
+		  System.out.println(p.getcId());
 		  ProductAttachment pa = new ProductAttachment();
 			
 			if(!file.getOriginalFilename().equals("")) {
