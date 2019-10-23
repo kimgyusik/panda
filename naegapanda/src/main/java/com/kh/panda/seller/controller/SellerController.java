@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -147,12 +148,12 @@ return "seller/sellerJoinForm";
 	  
 	  // 셀러상품관리페이지
 	  @RequestMapping("sProduct.do")
-	  public ModelAndView sellerProduct(@RequestParam(value="currentPage", required=false, defaultValue = "1") int currentPage, @RequestParam(value="loginseller", required=true) Seller loginseller, ModelAndView mv) {
-		 int listCount = sService.getListCount(loginseller.getsNo());
+	  public ModelAndView sellerProduct(@RequestParam(value="currentPage", required=false, defaultValue = "1") int currentPage, HttpSession session, ModelAndView mv) {
+		 int listCount = sService.getListCount(((Seller)session.getAttribute("loginSeller")).getsNo());
 			
 		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
-		 ArrayList<ProductOption> list = sService.selectList(pi, loginseller.getsNo());
+		 ArrayList<ProductOption> list = sService.selectList(pi, ((Seller)session.getAttribute("loginSeller")).getsNo());
 		  
 		  
 		  
@@ -169,11 +170,11 @@ return "seller/sellerJoinForm";
 	  
 	  // 상품등록페이지
 	  @RequestMapping("pInsert.do")
-	  public ModelAndView insertProduct(@RequestParam(value="loginseller", required=true) Seller loginseller, ModelAndView mv) {
+	  public ModelAndView insertProduct(ModelAndView mv) {
 		  
 		  ArrayList<Category> cList = sService.selectcList();
 		  
-		  mv.addObject(cList).setViewName("seller/product/insertProductForm");
+		  mv.addObject("cList", cList).setViewName("seller/product/insertProductForm");
 		  
 		  return mv;
 	  }

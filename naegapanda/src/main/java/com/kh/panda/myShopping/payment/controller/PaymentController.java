@@ -35,9 +35,9 @@ public class PaymentController {
 	@RequestMapping("paymentPage.pa")
 	public ModelAndView paymentPage(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
-		
-		mv.addObject("list", list);
+//		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
+//		
+//		mv.addObject("list", list);
 		mv.setViewName("myShopping/payment/paymentPage");
 		
 		return mv;

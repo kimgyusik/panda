@@ -202,5 +202,6 @@ public class Seller {
 				+ sbAddress + ", sbPhone=" + sbPhone + ", sOk=" + sOk + ", emailKey=" + emailKey + ", sStatus="
 				+ sStatus + "]";
 	}
+
 	
 }

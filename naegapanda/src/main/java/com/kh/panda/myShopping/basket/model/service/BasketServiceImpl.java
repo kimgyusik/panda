@@ -49,5 +49,29 @@ public class BasketServiceImpl implements BasketService{
 		
 		return result;
 	}
+	
+	@Override
+	public int updateAmount(Basket b) {
+		return baDao.updateAmount(b);
+	}
+
+	@Override
+	public int[] currentBasket(int mNo) {
+
+		int[] arr = new int[2];
+		arr[0] = 0;
+		arr[1] = 0;
+		
+		ArrayList<Basket> list = selectbasketList(mNo);
+		
+		if(list != null) {
+			for(Basket b : list) {
+				arr[0] += b.getAmount()*b.getPrice(); // 장바구니 총 금액
+			}
+			arr[1] = list.size(); // 장바구니 건 수
+		}
+		
+		return arr;
+	}
 
 }

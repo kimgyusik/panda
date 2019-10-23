@@ -6,7 +6,10 @@
 		<id property="payId" column="pay_id"/>
 		<result property="mNo" column="m_no"/>
 		<result property="pId" column="p_id"/>
-		<result property="price" column="price"/>
+		<result property="oNo" column="o_no"/>
+		<result property="oName" column="o_name"/>
+		<result property="oPrice" column="o_price"/>
+		<result property="oStatus" column="o_status"/>
 		<result property="pStatus" column="p_status"/>
 		<result property="deliverySpot" column="delivery_spot"/>
 		<result property="payRequest" column="pay_request"/>
@@ -27,18 +30,19 @@
 	</resultMap>
 
 	<select id="myPaymentList" parameterType="_int" resultMap="paymentResultSet">
-		select pay_id, m_no, p_id, price, p_status, delivery_spot, pay_request, pay_date, count, delivery_status
+		select pay_id, m_no, p_id, o_no, o_name, o_price, o_status, delivery_spot, pay_request, pay_date, count, delivery_status
 		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, store_name, s_baddress, s_bphone
 		from payment
+		join PRODUCT_OPTION using(o_no)
 		join product using(p_id)
 		join category using(c_id)
 		join seller using(s_no)
-		where m_no = #{mNo} and 
+		where m_no = #{mNo} and ??
 	</select>
 	
 	<insert id="addPayment" parameterType="Payment">
 		insert into payment
-		values (payment_seq.nextval, #{mNo}, #{pId}, #{price}, default, #{deliverySpot}, #{payRequest}, default, #{count}, default, #{recipient}, #{recipientPhone})
+		values (payment_seq.nextval, #{mNo}, #{oNo}, #{price}, default, #{deliverySpot}, #{payRequest}, default, #{count}, default, #{recipient}, #{recipientPhone})
 	</insert>
 	
 	<update id="fixPayment" parameterType="_int">

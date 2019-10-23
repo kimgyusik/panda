@@ -64,12 +64,8 @@
 	
 	<select id="getListCount" resultType="_int" parameterType="_int">
 		select count(*)
-		from product_option
-		where s_id=#{sId}
-	</select>
-	
-	<select id="selectList" resultType="ProductOption" parameterType="_int">
-	
+		from product_option o
+		where o.p_Id = (select p.p_Id from product p where p.s_no=#{sNo} and p.p_status='Y')
 	</select>
 	
 	<update id="deleteSeller" parameterType="Seller">

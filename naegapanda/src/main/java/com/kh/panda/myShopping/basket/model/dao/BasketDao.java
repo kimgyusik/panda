@@ -26,5 +26,9 @@ public class BasketDao {
 	public int deleteBasket(Basket b) {
 		return sqlSession.delete("basketMapper.deleteBasket", b);
 	}
+	
+	public int updateAmount(Basket b) {
+		return sqlSession.update("basketMapper.updateAmount", b);
+	}
 
 }

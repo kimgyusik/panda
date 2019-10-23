@@ -18,6 +18,12 @@
 		where m_no = #{mNo}
 	</select>
 	
+	<select id="selectGgim" parameterType="Ggim" resultType="_int">
+		select count(*)
+		from ggim
+		where m_no = #{mNo} and p_id = #{pId}
+	</select>
+	
 	<select id="selectGgimList" parameterType="_int" resultMap="ggimResultSet">
 		select p_id, m_no, add_date, p_name, p_price, c_name2, storeName
 		from ggim
