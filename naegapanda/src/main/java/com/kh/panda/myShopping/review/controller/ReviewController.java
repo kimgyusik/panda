@@ -74,7 +74,7 @@ public class ReviewController {
 		
 		Date date = new Date();
 		list.add(new Review(1, "너무 잘 받엇어요", "진짜찐짜진자찌장", date, 12323, 1, "vjxmfwl", "N", 323, 13,"1"));
-		list.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "2"));
+		list.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "2"));
 		
 		mv.addObject("list", list);
 		mv.addObject("list2", list2);
