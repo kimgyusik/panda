@@ -43,7 +43,7 @@
 				<div class="panel-heading"><label style="text-size:30px;">상품 등록</label></div>
 				<br>
 				<div class="panel-body" width="500px">
-					<form action="pInsert.do" method="post" encType="multipart/form-data">
+					<form action="pInsert.do" method="post" encType="multipart/form-data" >
 						<div class="form-group">
 							<label for="pName">상품명</label> 
 							<input type="text" class="form-control" id="pName" name="pName" placeholder="상품명을 입력하세요." />
@@ -80,11 +80,11 @@
 								</tr>
 							</table>
 							<div id='fileArea'>
-								<input type="file" multiple name='productImg1' id='productImg1'
+								<input type="file"  id='productImg1' name="uploadFile1"
 									onchange="loadImg(this, 1);"> <input type="file"
-									multiple name='productImg2' id='productImg2'
+								 	id='productImg2' name="uploadFile2"
 									onchange="loadImg(this, 2);"> <input type="file"
-									multiple name='productImg3' id='productImg3'
+									id='productImg3' name="uploadFile3"
 									onchange="loadImg(this, 3);">
 							</div>
 							<script>
@@ -126,26 +126,37 @@
                     }
                   </script>
 						</div>
-						<div style="border:3px solid blue;">
+						
+						<div style="border:2px solid blue;">
 							<div class="form-group">
 								<label for="optionName1">옵션명</label>
-								<input type="text" class="form-control" id="optionName1" placeholder="옵션 명을 입력하세요."/>
+								<input type="text" class="form-control" id="oName" name="oName" placeholder="옵션 명을 입력하세요."/>
 							</div>
 							<div class="form-group">
 								<label for="price1">가격</label> <input type="number"
-									class="form-control" id="price1" placeholder="상품 가격을 입력하세요." />
+									class="form-control" id="oPrice" name="oPrice" placeholder="상품 가격을 입력하세요." />
 							</div>
 							<div class="form-group">
 								<label for="amount1">수량</label> <input type="number"
-									class="form-control" id="amount1" placeholder="상품 가격을 입력하세요." />
+									class="form-control" id="oAmount" name="oAmount" placeholder="상품 가격을 입력하세요." />
 							</div>
-							
-						
+						</div>
+						<br>
+						<div id="optionTable">
 						</div>
 						<div style="margin:10px;">
-							<button type="button" >옵션추가</button>
-							<button type="button" >옵션삭제</button>
+							<button type="button" onclick="insertOption()">옵션추가</button>
+							<button type="button" onclick="deleteOption()" >옵션삭제</button>
 						</div>
+						<script>
+							function insertOption(){
+								$("#optionTable").append('<div><div style="border:2px solid blue;"><div class="form-group"><label for="optionName1">옵션명</label><input type="text" class="form-control" id="oName" name="oName" placeholder="옵션 명을 입력하세요."/></div><div class="form-group"><label for="price1">가격</label> <input type="number"class="form-control" id="oPrice" name="oPrice" placeholder="상품 가격을 입력하세요." /></div>	<div class="form-group"><label for="amount1">수량</label> <input type="number"class="form-control" id="oAmount" name="oAmount" placeholder="상품 가격을 입력하세요." />	</div></div><br><div>');
+							}
+							
+							function deleteOption(){
+								$("#optionTable").children().last().remove();
+							}
+						</script>
 						<div class="form-group">
 							<label>상세 설명</label>
 							<div>
@@ -160,6 +171,9 @@
 						</div>
 						<div align=right>
 							<button type="submit" class="btn btn-default">상품 추가</button>
+						</div>
+						<div>
+							<input type="hidden" value="${loginSeller.sNo }" name="sNo"/>
 						</div>
 					</form>
 					<script>

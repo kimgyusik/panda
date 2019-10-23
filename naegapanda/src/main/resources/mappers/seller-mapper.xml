@@ -66,7 +66,7 @@
 	<select id="getListCount" resultType="_int" parameterType="_int">
 		select count(*)
 		from product_option o
-		where o.p_Id = (select p.p_Id from product p where p.s_no=#{sNo} and p.p_status='Y')
+		where o.p_Id IN (select p.p_Id from product p where p.s_no=#{sNo})
 	</select>
 	
 	<update id="deleteSeller" parameterType="Seller">
