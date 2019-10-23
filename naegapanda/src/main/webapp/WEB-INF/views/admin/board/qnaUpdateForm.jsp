@@ -102,6 +102,7 @@
 									<option value="회원가입">회원가입</option>
 									<option value="회원정보">회원정보</option>
 									<option value="고객센터">고객센터</option>
+									<option value="상품/이벤트">상품/이벤트</option>
 									<option value="기타">기타</option>
 								</select>	
 								
@@ -151,125 +152,8 @@
 
 
 
-
-
-
-				</div>
-			</div>
-
-		</div>
-
-
-
-
-
-		<!-- Brands -->
-
-		<div class="brands">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="brands_slider_container">
-
-							<!-- Brands Slider -->
-
-							<div class="owl-carousel owl-theme brands_slider">
-
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_1.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_2.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_3.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_4.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_5.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_6.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_7.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_8.jpg" alt="">
-									</div>
-								</div>
-
-							</div>
-
-							<!-- Brands Slider Navigation -->
-							<div class="brands_nav brands_prev">
-								<i class="fas fa-chevron-left"></i>
-							</div>
-							<div class="brands_nav brands_next">
-								<i class="fas fa-chevron-right"></i>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
-<!-- 	
-	<script>
-		
-			$("#delfile").on("click", function(){
-				
-				var nId = ${ n.nId };
-				
-				$.ajax({
-					url:"nfiledel.do",
-					data:{nId:nId},
-					type:"get",
-					success:function(data){
-						if(data == ""){
-							
-						}else{
-							alert("파일 삭제 실패!");
-						}
-					},
-					error:function(){
-						console.log("서버와의 통신 실패");
-					}
-				});
-				
-			});
-		
-	
-	</script> -->
 
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>

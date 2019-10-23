@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.panda.admin.board.qna.user.model.dao.QnaDao;
+import com.kh.panda.admin.board.qna.user.model.vo.Answer;
 import com.kh.panda.admin.board.qna.user.model.vo.Qna;
 import com.kh.panda.common.PageInfo;
 
@@ -52,6 +53,26 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public int deleteQna(int uqId) {
 		return qDao.deleteQna(uqId);
+	}
+
+	@Override
+	public int insertAnswer(Answer a) {
+		return qDao.insertAnswer(a);
+	}
+
+	@Override
+	public ArrayList<Answer> selectAList() {
+		return qDao.selectAList();
+	}
+
+	@Override
+	public Answer answerDetail(int uqId) {
+		return qDao.answerDetail(uqId);
+	}
+
+	@Override
+	public int deleteAnswer(int uqId) {
+		return qDao.deleteAnswer(uqId);
 	}
 	
 	

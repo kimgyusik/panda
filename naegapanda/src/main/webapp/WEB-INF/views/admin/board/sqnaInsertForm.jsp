@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>PANDA 공지</title>
+<title>고객센터</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -58,17 +58,14 @@
 }
 
 .btn {
-	background:#0e8ce4;
-    border:#0e8ce4;
-    margin:5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius:5px;
-    color:white;
-	float:right;
+	background: #0e8ce4;
+	border: #0e8ce4;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	color: white;
 }
-
 </style>
 </head>
 
@@ -83,31 +80,37 @@
 	</div>
 
 
-		
-
 					<div class="col-lg-7">
 
-						<h2>PANDA 회원서비스문의</h2>
+						<h2>PANDA 판매자문의</h2>
 						<br><br>
 
-						<form method="post" action="qupdateView.do" >
+						<form method="post" action="sqinsert.do">
+						
+							<input type="hidden" >
+							<input type="hidden" name="sNo" value="${ loginSeller.sNo }">
 
-							<input type="hidden" name="uqId" value="${ q.uqId }" >
-							
-							<div class="mb-3">
+							<div class="a">
 
 								<label for="title">카테고리</label> 
-								<input type="text" class="form-control" name="uqCategory" id="category" value="${q.uqCategory }" style="width:75px; font-size:10px;" readonly>
+								<select id="cat" name="sqCategory">
+									<option value="회원정보">회원정보</option>
+									<option value="입점문의">입점문의</option>
+									<option value="제휴문의">제휴문의</option>
+									<option value="상품관련">상품관련</option>
+									<option value="프로모션">프로모션</option>
+									<option value="기타" selected>기타</option>
+								</select>	
 								
 								<!-- String qCategory = document.getElementBy('cat').options[document.getElementById('cat').selectedIndex].text; -->
 
 							</div>
-							
+
 							<div class="mb-3">
 
 								<label for="title">제목</label> 
-								<input type="text" class="form-control" name="uqTitle" id="title"
-									value="${ q.uqTitle }" readonly>
+								<input type="text" class="form-control" name="sqTitle" id="title"
+									placeholder="제목을 입력해 주세요">
 
 							</div>
 
@@ -116,102 +119,38 @@
 
 								<label for="content">내용</label>
 
-								<textarea class="form-control" rows="8" name="uqContent"
-									id="content"  style="resize:none;" readonly>${ q.uqContent }</textarea>
+								<textarea class="form-control" rows="8" name="sqContent"
+									id="content" placeholder="내용을 입력해 주세요" style="resize:none;"></textarea>
 
 							</div>
-							
-							<c:if test="${ a ne null }">
-								<div class="mb-3">
-
-								<label for="content">답변</label>
-
-								<textarea class="form-control" rows="8" name="aContent"
-									id="content"  style="resize:none;" readonly>${ a.aContent }</textarea>
-
-								</div>
-							</c:if>
-
-
-
-							
-						<c:choose>
-						<c:when test="${ loginUser.name eq q.mName  }">
-						
-						<div>
-						
-							<button type="button"  class="btn" onclick="location.href='qlist.do';">목록</button>
-							&nbsp; &nbsp;
-							<button type="submit" class="btn" id="btnSave">수정하기</button>
-							&nbsp; &nbsp;
-							<button type="button" class="btn" id="delete" onclick="location.href='qdelete.do?uqId=${ q.uqId }';">삭제하기</button>
-
-						</div>
-						</c:when>
-						<c:when test="${ loginUser.name ne q.mName && loginUser.name ne '관리자' }">
-							<button type="button"  class="btn" onclick="location.href='qlist.do';">목록</button>
-						</c:when>
-						</c:choose>
-						<c:choose>
-							<c:when test="${ loginUser.name eq '관리자' && a ne null }">
-							<div>
-						
-								<button type="button"  class="btn" onclick="location.href='qlist.do';">목록</button>
-								&nbsp; &nbsp;
-								<button type="button" class="btn" id="delete" onclick="location.href='adelete.do?uqId=${ a.qId}';">답변삭제</button>
-							
-							</div>
-							</c:when>
-							<c:when test="${ loginUser.name eq '관리자' && a eq null }">
-								<div>
-						
-								<button type="button"  class="btn" onclick="location.href='qlist.do';">목록</button>
-								&nbsp; &nbsp;
-								<button type="button" class="btn" onclick="location.href='ainsertView.do?uqId=${ q.uqId }';">답변달기</button>
-								&nbsp; &nbsp;
-								<button type="button" class="btn" id="delete" onclick="location.href='qdelete.do?uqId=${ q.uqId}';">삭제하기</button>
-							
-								</div>
-							</c:when>
-						</c:choose>
-
-
-						</form>
-						
-						
-						
-					</div>
-
-
-
-
-
-
-
-
-				
-
-
 
 
 
 	
+						<div align="center">
+
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+							&nbsp; &nbsp;
+							<button type="button" class="btn btn-sm btn-primary" onclick="location.href='sqlist.do'">목록</button>
+
+						</div>
+
+
+						</form>
+
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
 
 
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
-	
-	<!-- <script>
-		$("#delete").on("click", function(){
-			if(confirm("정말 삭제하시겠습니까?") == true){
-				document.onclc;
-			}else{
-				return;
-			}
-		});
-	</script> -->
-	
-
 
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>

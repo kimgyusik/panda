@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>공지 수정</title>
+<title>PANDA 공지</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -58,14 +58,17 @@
 }
 
 .btn {
-	background: #0e8ce4;
-	border: #0e8ce4;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-	color: white;
+	background:#0e8ce4;
+    border:#0e8ce4;
+    margin:5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius:5px;
+    color:white;
+	float:right;
 }
+
 </style>
 </head>
 
@@ -80,71 +83,79 @@
 	</div>
 
 
+		
+
 					<div class="col-lg-7">
 
-						<h2>PANDA 공지사항</h2>
+						<h2>PANDA 판매자문의</h2>
 						<br><br>
 
-						<form encType="multipart/form-data" method="post" action="nupdate.do">
+						<form encType="multipart/form-data" method="post" action="squpdate.do" >
 
+							<input type="hidden" name="sqId" value="${ q.sqId }" >
+							
+							
 							<div class="mb-3">
 
-								<label for="title">제목</label> 
-								<input type="text" class="form-control" name="nTitle" id="title"
-									value="${ n.nTitle }">
+								<label for="title">카테고리</label> 
+								<select id="cat" name="sqCategory" value="${ q.sqCategory }">
+									<option value="회원정보">회원정보</option>
+									<option value="입점문의">입점문의</option>
+									<option value="제휴문의">제휴문의</option>
+									<option value="상품관련">상품관련</option>
+									<option value="프로모션">프로모션</option>
+									<option value="기타" selected>기타</option>
+								</select>	
+								
+								<!-- String qCategory = document.getElementBy('cat').options[document.getElementById('cat').selectedIndex].text; -->
 
 							</div>
 							
+							<div class="mb-3">
+
+								<label for="title">제목</label> 
+								<input type="text" class="form-control" name="sqTitle" id="title"
+									value="${ q.sqTitle }">
+
+							</div>
+
 
 							<div class="mb-3">
 
 								<label for="content">내용</label>
 
-								<textarea class="form-control" rows="8" name="nContent"
-									id="content" style="resize:none;" >${ n.nContent }</textarea>
+								<textarea class="form-control" rows="8" name="sqContent"
+									id="content"  style="resize:none;">${ q.sqContent }</textarea>
 
 							</div>
 
 
 
-							<div class="mb-3">
+							
 
-								<label for="file">첨부파일</label> 
-								<c:if test="${!empty n.nOriginalFileName }">
-									<a href="${ contextPath }/resources/nupload/${ n.nRenameFileName}" download="${ n.nOriginalFileName }">${ n.nOriginalFileName }</a>
-									<input type="file" name="uploadFile">
-								</c:if>
-								<c:if test="${ empty n.nOriginalFileName }">
-									<input type="file" name="uploadFile">
-								</c:if>
-
-							</div>
-
-	
-						<div align="center">
-
-							<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+						<div>
+						
+							<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
 							&nbsp; &nbsp;
-							<button type="button" class="btn btn-sm btn-primary" onclick="location.href='nlist.do'">목록</button>
+							<button type="submit" class="btn" id="btnSave" >수정하기</button>
+							
 
 						</div>
 
 
 						</form>
-
-
+						
+						
+						
 					</div>
-
-				</div>
-			</div>
-
-		</div>
 
 
 
 
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
+
+
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
 	<script src="resources/style/bootstrap4/popper.js"></script>
