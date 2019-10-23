@@ -29,6 +29,13 @@ public class ViolateServiceImpl implements ViolateService{
 
 	@Override
 	public int insertViolate(Violate v) {
+		
+		int sNo = v.getsNo();
+		int pId = v.getpId();
+		
+		int update1 = vDao.updateSellerCount(sNo);
+		int update2 = vDao.updateProductCount(pId);
+		
 		return vDao.insertViolate(v);
 	}
 

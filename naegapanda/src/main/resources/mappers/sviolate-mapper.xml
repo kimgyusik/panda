@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sviolateMapper">
+
+	<resultMap id="sviolateResultSet" type="Sviolate">
+  		<id property="sNo" column="s_no"/>
+  		<result property="sName" column="s_name"/>
+  		<result property="storeName" column="storename"/>
+  		<result property="sViolate" column="s_Violate"/>
+  		<result property="vDate" column="v_Date"/>
+  		<result property="sStatus" column="s_Status"/>
+	</resultMap>
+	
+
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from svlist
+	</select>
+
+	<select id="selectList" resultMap="sviolateResultSet">
+		select *
+		from svlist
+	</select>
+	
+
+
+</mapper>
