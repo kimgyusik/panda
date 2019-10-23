@@ -7,6 +7,7 @@
 		<id property="mNo" column="m_no"/>
 		<result property="pName" column="p_name"/>
 		<result property="price" column="p_price"/>
+		<result property="category" column="c_name"/>
 		<result property="category2" column="c_name2"/>
 		<result property="storeName" column="storeName"/>
 		<result property="addDate" column="add_date"/>
@@ -25,7 +26,7 @@
 	</select>
 	
 	<select id="selectGgimList" parameterType="_int" resultMap="ggimResultSet">
-		select p_id, m_no, add_date, p_name, p_price, c_name2, storeName
+		select p_id, m_no, add_date, p_name, p_price, c_name, c_name2, storeName
 		from ggim
 		join product using(p_id)
 		join category using(c_id)

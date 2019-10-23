@@ -11,6 +11,7 @@ public class ProductAttachment {
 	private int paFileLevel;
 	private String paStatus;
 	private int pId;
+	private String filePath;
 	
 	public ProductAttachment() {}
 	
@@ -24,6 +25,20 @@ public class ProductAttachment {
 		this.paFileLevel = paFileLevel;
 		this.paStatus = paStatus;
 		this.pId = pId;
+	}
+	
+
+	public ProductAttachment(int paId, Date paCreateDate, String paOriginName, String paChangeName, int paFileLevel,
+			String paStatus, int pId, String filePath) {
+		super();
+		this.paId = paId;
+		this.paCreateDate = paCreateDate;
+		this.paOriginName = paOriginName;
+		this.paChangeName = paChangeName;
+		this.paFileLevel = paFileLevel;
+		this.paStatus = paStatus;
+		this.pId = pId;
+		this.filePath = filePath;
 	}
 
 	public int getPaId() {
@@ -82,11 +97,19 @@ public class ProductAttachment {
 		this.pId = pId;
 	}
 
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
 	@Override
 	public String toString() {
-		return "Product_Attachment [paId=" + paId + ", paCreateDate=" + paCreateDate + ", paOriginName=" + paOriginName
+		return "ProductAttachment [paId=" + paId + ", paCreateDate=" + paCreateDate + ", paOriginName=" + paOriginName
 				+ ", paChangeName=" + paChangeName + ", paFileLevel=" + paFileLevel + ", paStatus=" + paStatus
-				+ ", pId=" + pId + "]";
+				+ ", pId=" + pId + ", filePath=" + filePath + "]";
 	}
-	
+
 }

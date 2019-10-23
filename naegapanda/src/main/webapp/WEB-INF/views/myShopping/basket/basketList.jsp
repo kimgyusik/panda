@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
 .cart_section{
 height: auto;
 padding-top: 0;
+
 }
 .tablehead{
 height:40px;
@@ -81,6 +83,13 @@ cellspacing="0"
 padding-bottom: 0px !important;
 padding-top:50px  !important;
 }
+.price2{
+color:#0e8ce4;
+display:inline-block; 
+width:50px; 
+text-align: right; 
+margin-right:5px;
+}
 </style>
 </head>
 <body>
@@ -120,14 +129,14 @@ padding-top:50px  !important;
 												</ul>
 											</div>
 											
-											<c:if test="${!empty list}">
+											<c:if test="${empty list}">
 												<div style="text-align: center; margin-top:70px;">
 													<img src="resources/images/cart2.png" width="100px;">
 													<br><br>장바구니가 비어 있습니다.
 												</div>
 											</c:if>
 											
-											<c:if test="${empty list}">
+											<c:if test="${!empty list}">
 											
 												<div class="cart_items" >
 													<ul class="cart_list" >
@@ -168,7 +177,7 @@ padding-top:50px  !important;
 																			<c:url value="상품조회url" var="product">
 																				<c:param name="pId" value="${ b.pId }"/>
 																			</c:url>
-																			<a href="${ product }"><img src="resources/images/best_3.png" width="70px;"></a>
+																			<a href="${ product }"><img src="resources/images/best_${ b.pId }.png" width="70px;"></a>
 																		</td>
 																		<td style="text-align:left;width:600px;">
 																			
@@ -179,13 +188,18 @@ padding-top:50px  !important;
 																			<input class="amount" type="number" value="${b.amount }" min="1" style="width:50px; text-align:center; margin:auto;">
 																		</td>
 																		<td>
-																			${b.price }원
+																			<input type="hidden" value="${b.price}">
+																			<fmt:formatNumber type="number" maxFractionDigits="3" value="${b.price }" />원
 																		</td>
 																		<td>
 																			${b.storeName }
 																		</td>
 																		<td >
-																			<span class="price2" style="color:#0e8ce4;display:inline-block; width:50px; text-align: right; margin-right:5px;">${b.amount *b.price }</span><span>원</span>
+																			<c:set var="p" value="${b.amount *b.price }" />
+																			<input type="hidden" value="${p }">
+																			<span class="price2"  >
+																				<fmt:formatNumber type="number" maxFractionDigits="3" value="${p }" />
+																			</span><span>원</span>
 																			<br>
 																			<button class="removeCart" value="상품번호" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
 																			<button class="removeCart" value="상품번호" onclick="return removeCart(${b.oNo});">삭제</button>
@@ -203,13 +217,13 @@ padding-top:50px  !important;
 												<div class="order_total">
 													<div class="order_total_content text-md-right">
 														<div class="order_total_title">결재 금액:</div>
-														<div class="order_total_amount">원</div>
+														<div class="order_total_amount"></div><span>&nbsp; 원</span>
 													</div>
 												</div>
 												
 												<button class="removeCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
 												
-												<div class="cart_buttons">
+												<div class="cart_buttons" style="margin-top:30px;">
 													<button type="button" class="button cart_button_checkout" onclick="return paymentPage();">결재하기</button>
 												</div>
 											
@@ -241,15 +255,22 @@ padding-top:50px  !important;
 			var sum = parseInt(0);
 			
 		    $(".price2").each(function(){
-			    if(isNaN(parseInt($(this).text()))){
-			    	return 0;
-			    }
-		       sum = sum+ parseInt($(this).text());
+		    	
+		    	var p = parseInt($(this).parent().children().eq(0).val()); // hidden된 각 상품의 합계금액
+		    	
+		        sum = sum + p; 
+		        
 		    });
-
-			$(".order_total_amount").text(sum + "원");
+			
+			$(".order_total_amount").text(addComma(sum));
 			$(".order_total_amount").css("font-size","17px");
 
+		}
+		
+		// 숫자형 천 단위 처리
+		function addComma(num) {
+		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		  return num.toString().replace(regexp, ',');
 		}
 	
 		// 체크박스 전체  토글
@@ -264,8 +285,8 @@ padding-top:50px  !important;
 			
 			var oNo = $(this).parent().parent().children().eq(0).text();
 			var amount = $(this).val();
-			var price = parseInt($(this).parent().parent().children().eq(5).text());
-			var price2 = $(this).parent().parent().children().eq(7).children().eq(0);
+			var price = parseInt($(this).parent().parent().children().eq(5).children().eq(0).val());
+			var price2 = $(this).parent().parent().children().eq(7).children().eq(1);
 
 			$.ajax({
 				url:"updateAmount.ba",
@@ -274,7 +295,9 @@ padding-top:50px  !important;
 				success:function(data){
 					if(data == "success"){
 						
-						price2.text(price*amount); // 해당 상품의 갯수*단일금액
+						price2.text(addComma(price*amount)); // 해당 상품의 갯수*단일금액을 천 단위 콤마 형태로 출력
+						
+						price2.parent().children().eq(0).attr("value", price*amount); // 위 금액을 hidden에 숫자형으로 저장
 						
 						priceAll();
 						

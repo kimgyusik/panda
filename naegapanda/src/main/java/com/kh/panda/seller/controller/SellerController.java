@@ -1,5 +1,12 @@
 package com.kh.panda.seller.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -20,12 +27,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 import com.kh.panda.product.model.vo.Category;
+import com.kh.panda.product.model.vo.Product;
+import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.MailHandler;
@@ -88,7 +98,7 @@ return "seller/sellerJoinForm";
 		MailHandler sendMail = new MailHandler(mailSender);
 		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName="+s.getsName() + "&key=Y' target='_blenk'>이메일 인증 확인</a>";
 		
-		sendMail.setSubject("[ALMOM 서비스 이메일 인증]");
+		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
@@ -169,7 +179,7 @@ return "seller/sellerJoinForm";
 	  }
 	  
 	  // 상품등록페이지
-	  @RequestMapping("pInsert.do")
+	  @RequestMapping("pInsertView.do")
 	  public ModelAndView insertProduct(ModelAndView mv) {
 		  
 		  ArrayList<Category> cList = sService.selectcList();
@@ -276,6 +286,71 @@ return "seller/sellerJoinForm";
 	  public String deleteSellerPage() {
 		  return "seller/sellerDeleteForm";
 	  }
+	  
+	  public String saveFile(MultipartFile file, HttpServletRequest request) {
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			//resources 까지의 파일 위치를 나타냄
+			String savePath = root + "\\bupload";
+			// 그 뒤에 저장 경로
+			
+			File folder = new File(savePath);	// 저장될 폴더 (io를 import)
+			if(!folder.exists()) {
+				folder.mkdir();	//폴더가 없다면 폴더 생성 (make directory)
+			}
+			
+			String originalFileName = file.getOriginalFilename();	//원본명
+			
+			// 파일명 수정작업 -> 년월일시분초.확장자
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			
+			String renameFileName = sdf.format(new Date(System.currentTimeMillis())) // 년월일 시분초
+									+ originalFileName.substring(originalFileName.lastIndexOf("."));
+			
+			// 실제 저장될 경로 savePath + 저장하고자 하는 파일명 renameFileName
+			String renamePath = savePath + "\\" + renameFileName; // resources\bupload\201910041131.jpg
+			
+			try {
+				file.transferTo(new File(renamePath));
+			}catch(IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+			
+			return renameFileName;	// 수정명 반환
+		}
+	  
+	  @RequestMapping("pInsert.do")
+		public String insertProduct(Product p, HttpServletRequest request, Model model,
+								  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+//			System.out.println(b);
+			//멀티파트를 사용하려면 관련 라이브러리를 추가해야함
+			// root-context.xml에 빈으로 등록해야함 이때 사이즈 지정 가능
+			// 서버에 업로드 할 때 HttpServletRequest도 있어야함
+		  System.out.println(p.getpContent());
+		  ProductAttachment pa = new ProductAttachment();
+			
+			if(!file.getOriginalFilename().equals("")) {
+				// 서버에 파일 등록 ( 폴더에 저장 )
+				// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
+				String renameFileName = saveFile(file, request);
+				
+				if(renameFileName != null) {	//파일이 잘 저장된 경우
+					pa.setPaOriginName(file.getOriginalFilename());
+					pa.setPaChangeName(renameFileName);
+				}
+			}
+			
+//			int result = sService.insertProduct(p);
+			
+//			if(result > 0) {
+//				return "redirect:sProduct.do";
+//			} else {
+//				model.addAttribute("msg", "등록에 실패했습니다");
+//				return "common/errorPage";
+//			}
+			
+			return "redirect:sProduct.do";
+			
+		}
 	 
 	  
 
