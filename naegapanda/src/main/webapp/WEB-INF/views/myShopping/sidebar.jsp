@@ -62,7 +62,7 @@ color:#0e8ce4;
 			<div class="sidebar_subtitle brands_subtitle">구매 리뷰</div>
 			<ul class="brands_list">
 				<li class="brand"><a href="c">작성 가능한 리뷰</a></li>
-				<li class="brand"><a href="d">내가 작성한 리뷰</a></li>
+				<li class="brand"><a href="myReviewList.re">내가 작성한 리뷰</a></li>
 			</ul>
 		</div>
 		
