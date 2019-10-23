@@ -37,12 +37,16 @@ public interface SellerService {
 	
 	
 	// 이메일도전
-
-
 	int emailConfirm(int sNo);
+	
+	// 정보수정 전 재로그인
+	Seller updateConfirm(Seller s);
 
 	int insertProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
 
+	
+	
+	
 	
 	
 	

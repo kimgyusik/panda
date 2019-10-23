@@ -17,10 +17,10 @@
 				<form action="sUpdate.do" method="post">
 			<table>
 				<tr>
-					<td><label>아이디:</label><input type="text" value="${ loginSeller.sId }" name="sId" readonly></td>
+					<td><label>아이디:</label><input type="text" value="${ loginSeller.sId }" name="sId" readonly style="border:none"></td>
 				</tr>
 				<tr>
-					<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" name="sName" readonly></td>
+					<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" name="sName" readonly style="border:none"></td>
 				</tr>
 				<!-- <tr>
 					<td><label>비밀번호 :</label> <input type="password" name="sPwd"

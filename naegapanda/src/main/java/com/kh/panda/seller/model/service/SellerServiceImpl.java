@@ -141,6 +141,15 @@ public class SellerServiceImpl implements SellerService{
 		
 		return result;
 	}
+	public Seller updateConfirm(Seller s) {
+		return sDao.updateConfirm(s);
+	}
+
+	
+
+
+	
+	
 
 
 }

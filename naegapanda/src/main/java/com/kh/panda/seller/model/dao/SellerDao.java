@@ -97,6 +97,15 @@ public class SellerDao {
 	public int insertPoList(ProductOption po) {
 		return sqlSession.insert("productMapper.insertPo", po);
 	}
+
+
+	public Seller updateConfirm(Seller s) {
+		return sqlSession.selectOne("sellerMapper.updateConfirm", s);
+	}
+
+
+	
+	
 	
 	
 
