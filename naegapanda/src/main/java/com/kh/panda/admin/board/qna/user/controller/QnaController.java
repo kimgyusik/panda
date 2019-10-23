@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.admin.board.qna.user.model.service.QnaService;
+import com.kh.panda.admin.board.qna.user.model.vo.Answer;
 import com.kh.panda.admin.board.qna.user.model.vo.Qna;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
@@ -32,11 +33,13 @@ public class QnaController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Qna> list = qService.selectList(pi);
+		ArrayList<Qna> qlist = qService.selectList(pi);
+		ArrayList<Answer> alist = qService.selectAList(); 
 		
-		//System.out.println(list);
+		//System.out.println(qlist);
+		//System.out.println(alist);
 		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/board/qnaListView");
+		mv.addObject("pi", pi).addObject("qlist", qlist).addObject("alist", alist).setViewName("admin/board/qnaListView");
 		
 		return mv;
 	}
@@ -68,11 +71,14 @@ public class QnaController {
 	public ModelAndView qnaDetail(int uqId, ModelAndView mv) {
 		
 		Qna q = qService.qnaDetail(uqId);
+		Answer a = qService.answerDetail(uqId);
 		
 		//System.out.println(q);
+		//System.out.println(q.getmName());
+		//System.out.println("디테일"+a);
 		
 		if(q != null) {
-			mv.addObject("q",q).setViewName("admin/board/qnaDetailView");
+			mv.addObject("q",q).addObject("a",a).setViewName("admin/board/qnaDetailView");
 		}else {
 			mv.addObject("msg", "문의게시판 상세조회 실패!!").setViewName("common/errorPage");
 		}
@@ -96,11 +102,11 @@ public class QnaController {
 	@RequestMapping("qupdate.do")
 	public String qnaUpdate(Qna q, HttpServletRequest request, Model model) {
 		
-		System.out.println("수정하기 버튼 누르면"+q);
+		//System.out.println("수정하기 버튼 누르면"+q);
 		
 		int result = qService.updateQna(q);
 		
-		System.out.println(result);
+		//System.out.println(result);
 		
 		if(result > 0) {
 			return "redirect:qlist.do";
@@ -114,9 +120,56 @@ public class QnaController {
 	@RequestMapping("qdelete.do")
 	public String deleteQna(int uqId, HttpServletRequest request){
 		
-		System.out.println(uqId);
+		//System.out.println(uqId);
 		
 		int result = qService.deleteQna(uqId);
+		int result2 = qService.deleteAnswer(uqId);
+		
+		if(result > 0 && result2 > 0) {
+			return "redirect:qlist.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("ainsertView.do")
+	public ModelAndView answerInsertView(int uqId, ModelAndView mv ) {
+		
+		Qna q = qService.qnaDetail(uqId);
+		
+		//System.out.println("회원답변 "+q);
+		
+		if(q != null) {
+			mv.addObject("q", q).setViewName("admin/board/aInsertForm");
+		}else {
+			mv.addObject("msg", "회원 서비스 문의 조회 실패!").setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+		
+	}
+	
+	@RequestMapping("ainsert.do")
+	public String insertAnswer(Answer a, HttpServletRequest request, Model model) {
+		
+		System.out.println("인서트"+a);
+		
+		int result = qService.insertAnswer(a);
+		
+		if(result > 0) {
+			return "redirect:qlist.do";
+		}else {
+			model.addAttribute("msg", "회원 문의 답변 실패!!");
+			return "common/errorPage";
+		}
+	}
+	
+	
+	@RequestMapping("adelete.do")
+	public String deleteAnswer(int uqId, HttpServletRequest request) {
+		
+		int result = qService.deleteAnswer(uqId);
 		
 		if(result > 0) {
 			return "redirect:qlist.do";
@@ -124,10 +177,6 @@ public class QnaController {
 			return "common/errorPage";
 		}
 	}
-	
-	
-	
-	
 	
 
 }
