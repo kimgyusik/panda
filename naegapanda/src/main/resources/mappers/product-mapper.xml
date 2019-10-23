@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="productMapper">
+	<resultMap type="Product" id="productResultSet">
+		<id property="pId" column="p_id"/>
+		<result property="pName" column="p_name"/>
+		<result property="sNo" column="s_no"/>
+		<result property="pContent" column="p_content"/>
+		<result property="cId" column="c_id"/>
+		<result property="pCount" column="p_count"/>
+		<result property="pOk" column="p_ok"/>
+		<result property="pStatus" column="p_status"/>
+		<result property="pCreateDate" column="p_create_date"/>
+	</resultMap>
+	
+	<resultMap type="Category" id="categoryResultSet">
+		<id property="cId" column="c_id"/>
+		<result property="cName" column="c_name"/>
+		<result property="cName2" column="c_name2"/>
+	</resultMap>
+	
+	<resultMap type="ProductAttachment" id="paResultSet">
+		<id property="paId" column="pa_id"/>
+		<result property="paCreateDate" column="pa_create_date"/>
+		<result property="paOriginName" column="pa_origin_name"/>
+		<result property="paChangeName" column="pa_change_name"/>
+		<result property="paFileLevel" column="pa_file_level"/>
+		<result property="paStatus" column="pa_status"/>
+		<result property="pId" column="p_id"/>
+		<result property="filePath" column="file_path"/>
+	</resultMap>
+	
+	<resultMap type="ProductOption" id="poResultSet">
+		<id property="oNo" column="o_No"/>
+		<result property="pId" column="p_id"/>
+		<result property="oName" column="o_name"/>
+		<result property="oPrice" column="o_price"/>
+		<result property="oAmount" column="o_amount"/>
+		<result property="oStatus" column="o_status"/>
+		<result property="oPurchase" column="o_purchase"/>
+		<result property="paChangeName" column="pa_change_name"/>
+		<result property="filePath" column="file_path"/>
+	</resultMap>
+	
+	<select id="selectcList" resultMap="categoryResultSet">
+		select *
+		from category
+	</select>
+	
+	<select id="selectList" resultMap="poResultSet" parameterType="_int">
+		select o.*, pa.pa_change_name, pa.file_Path
+		from Product_option o
+		left join product p on p.p_id=o.p_Id
+		left join product_attachment pa on p.p_id=pa.p_id
+		where o_status='Y' and p.s_No = #{sNo}
+		order by o_No desc
+	</select>
+
+</mapper>

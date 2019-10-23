@@ -17,18 +17,23 @@
 				<form action="sUpdate.do" method="post">
 			<table>
 				<tr>
-					<td><label>아이디:</label><input type="text" value="${ loginSeller.sId }" readonly></td>
+					<td><label>아이디:</label><input type="text" value="${ loginSeller.sId }" name="sId" readonly></td>
 				</tr>
 				<tr>
-					<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" readonly></td>
+					<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" name="sName" readonly></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><label>비밀번호 :</label> <input type="password" name="sPwd"
 						id="sPwd"></td>
 				</tr>
 				<tr>
 					<td><label>비밀번호 확인:</label> <input type="password"
-						name="sPwdConfirm" id="sPwdCheck"> <font name="check"size="2" color="red"></font></td>
+name="sPwdConfirm" id="sPwdCheck"> <font name="check"size="2" color="red"></font></td>
+				</tr> -->
+				<tr>
+					<td>
+						<label>이메일:</label>${ loginSeller.sEmail }
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -85,10 +90,10 @@
 					</c:if>
 				</tr>
 				<tr>
-					<td><label>상점명:</label><input type="text" value="${ loginSeller.storeName }" readonly></td>
+					<td><label>상점명:</label><input type="text" value="${ loginSeller.storeName }" name="storeName"></td>
 				</tr>
 				<tr>
-					<td><label>CEO명:</label><input type="text" value="${ loginSeller.sCeoName }" readonly></td>
+					<td><label>CEO명:</label><input type="text" value="${ loginSeller.sCeoName }" name="sCeoName"></td>
 				</tr>
 				<tr>
 					<td><label>사업장전화번호:</label>
@@ -141,8 +146,12 @@
 						</c:forTokens>
 					</c:if>
 			</table>
+			<br>
 			<button type="submit">수정하기</button>
 		</form>
+		
+		<label>탈퇴를 원하시면</label><a href="sDelete.do">회원탈퇴</a><label>를 눌러주세요.</label>
+		
 			</div>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script>
@@ -150,7 +159,7 @@
 		$('#sPwd').keyup(function() {
 			$('font[name=check]').text('');
 		});
-
+		console.log("${ loginSeller}");
 		$('#sPwdCheck').keyup(function() {
 			if ($('#sPwd').val() != $('#sPwdCheck').val()) {
 				$('font[name=check]').text('');

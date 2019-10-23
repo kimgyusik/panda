@@ -286,6 +286,21 @@
 		    <version>1.2.8.RELEASE</version>
 		    <scope>provided</scope>
 		</dependency>
+		
+		<!-- 메일인증위한 라이브러리 -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.0</version>
+		</dependency>
+		
+		<!-- 메일인증 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
       
 
 		

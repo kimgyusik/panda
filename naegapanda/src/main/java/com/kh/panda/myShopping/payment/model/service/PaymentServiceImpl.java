@@ -58,7 +58,7 @@ public class PaymentServiceImpl implements PaymentService{
 		for(Basket b : list) {
 			
 			Payment addP = p; // input으로 받은 결재정보 복사
-			addP.setpId(b.getpId());
+			addP.setoNo(b.getoNo());
 			addP.setCount(b.getAmount());
 			
 			int result = paDao.addPayment(addP);

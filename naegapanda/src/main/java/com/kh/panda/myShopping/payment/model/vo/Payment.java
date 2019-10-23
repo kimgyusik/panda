@@ -7,7 +7,10 @@ public class Payment {
 	private int payId;
 	private int mNo;
 	private int pId;
-	private int price;
+	private int oNo;
+	private String oName;
+	private int oPrice;
+	private String oStatus;
 	private String pStatus;
 	private String deliverySpot;
 	private String payRequest;
@@ -31,15 +34,18 @@ public class Payment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Payment(int payId, int mNo, int pId, int price, String pStatus, String deliverySpot, String payRequest,
-			Date payDate, int count, String deliveryStatus, String recipient, String recipientPhone, String pName,
-			String pContent, int cId, String cName, String cName2, int sNo, String storeName, String sBaddress,
-			String sBphone) {
+	public Payment(int payId, int mNo, int pId, int oNo, String oName, int oPrice, String oStatus, String pStatus,
+			String deliverySpot, String payRequest, Date payDate, int count, String deliveryStatus, String recipient,
+			String recipientPhone, String pName, String pContent, int cId, String cName, String cName2, int sNo,
+			String storeName, String sBaddress, String sBphone) {
 		super();
 		this.payId = payId;
 		this.mNo = mNo;
 		this.pId = pId;
-		this.price = price;
+		this.oNo = oNo;
+		this.oName = oName;
+		this.oPrice = oPrice;
+		this.oStatus = oStatus;
 		this.pStatus = pStatus;
 		this.deliverySpot = deliverySpot;
 		this.payRequest = payRequest;
@@ -83,12 +89,36 @@ public class Payment {
 		this.pId = pId;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getoNo() {
+		return oNo;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setoNo(int oNo) {
+		this.oNo = oNo;
+	}
+
+	public String getoName() {
+		return oName;
+	}
+
+	public void setoName(String oName) {
+		this.oName = oName;
+	}
+
+	public int getoPrice() {
+		return oPrice;
+	}
+
+	public void setoPrice(int oPrice) {
+		this.oPrice = oPrice;
+	}
+
+	public String getoStatus() {
+		return oStatus;
+	}
+
+	public void setoStatus(String oStatus) {
+		this.oStatus = oStatus;
 	}
 
 	public String getpStatus() {
@@ -229,14 +259,16 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [payId=" + payId + ", mNo=" + mNo + ", pId=" + pId + ", price=" + price + ", pStatus=" + pStatus
-				+ ", deliverySpot=" + deliverySpot + ", payRequest=" + payRequest + ", payDate=" + payDate + ", count="
-				+ count + ", deliveryStatus=" + deliveryStatus + ", recipient=" + recipient + ", recipientPhone="
+		return "Payment [payId=" + payId + ", mNo=" + mNo + ", pId=" + pId + ", oNo=" + oNo + ", oName=" + oName
+				+ ", oPrice=" + oPrice + ", oStatus=" + oStatus + ", pStatus=" + pStatus + ", deliverySpot="
+				+ deliverySpot + ", payRequest=" + payRequest + ", payDate=" + payDate + ", count=" + count
+				+ ", deliveryStatus=" + deliveryStatus + ", recipient=" + recipient + ", recipientPhone="
 				+ recipientPhone + ", pName=" + pName + ", pContent=" + pContent + ", cId=" + cId + ", cName=" + cName
 				+ ", cName2=" + cName2 + ", sNo=" + sNo + ", storeName=" + storeName + ", sBaddress=" + sBaddress
 				+ ", sBphone=" + sBphone + "]";
 	}
 
+	
 	
 	
 	

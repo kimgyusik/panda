@@ -1,34 +1,32 @@
 package com.kh.panda.product.model.vo;
 
+import java.sql.Date;
+
 public class Product {
 	private int pId;
 	private String pName;
-	private int pPrice;
 	private int sNo;
-	private int pAmount;
 	private String pContent;
-	private int pPurchase;
 	private int cId;
 	private int pCount;
 	private String pOk;
 	private String pStatus;
+	private Date pCreateDate;
 	
 	public Product() {}
-	
-	public Product(int pId, String pName, int pPrice, int sNo, int pAmount, String pContent, int pPurchase, int cId,
-			int pCount, String pOk, String pStatus) {
+
+	public Product(int pId, String pName, int sNo, String pContent, int cId, int pCount, String pOk, String pStatus,
+			Date pCreateDate) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
-		this.pPrice = pPrice;
 		this.sNo = sNo;
-		this.pAmount = pAmount;
 		this.pContent = pContent;
-		this.pPurchase = pPurchase;
 		this.cId = cId;
 		this.pCount = pCount;
 		this.pOk = pOk;
 		this.pStatus = pStatus;
+		this.pCreateDate = pCreateDate;
 	}
 
 	public int getpId() {
@@ -47,14 +45,6 @@ public class Product {
 		this.pName = pName;
 	}
 
-	public int getpPrice() {
-		return pPrice;
-	}
-
-	public void setpPrice(int pPrice) {
-		this.pPrice = pPrice;
-	}
-
 	public int getsNo() {
 		return sNo;
 	}
@@ -63,28 +53,12 @@ public class Product {
 		this.sNo = sNo;
 	}
 
-	public int getpAmount() {
-		return pAmount;
-	}
-
-	public void setpAmount(int pAmount) {
-		this.pAmount = pAmount;
-	}
-
 	public String getpContent() {
 		return pContent;
 	}
 
 	public void setpContent(String pContent) {
 		this.pContent = pContent;
-	}
-
-	public int getpPurchase() {
-		return pPurchase;
-	}
-
-	public void setpPurchase(int pPurchase) {
-		this.pPurchase = pPurchase;
 	}
 
 	public int getcId() {
@@ -119,11 +93,18 @@ public class Product {
 		this.pStatus = pStatus;
 	}
 
+	public Date getpCreateDate() {
+		return pCreateDate;
+	}
+
+	public void setpCreateDate(Date pCreateDate) {
+		this.pCreateDate = pCreateDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [pId=" + pId + ", pName=" + pName + ", pPrice=" + pPrice + ", sNo=" + sNo + ", pAmount="
-				+ pAmount + ", pContent=" + pContent + ", pPurchase=" + pPurchase + ", cId=" + cId + ", pCount="
-				+ pCount + ", pOk=" + pOk + ", pStatus=" + pStatus + "]";
+		return "Product [pId=" + pId + ", pName=" + pName + ", sNo=" + sNo + ", pContent=" + pContent + ", cId=" + cId
+				+ ", pCount=" + pCount + ", pOk=" + pOk + ", pStatus=" + pStatus + ", pCreateDate=" + pCreateDate + "]";
 	}
 	
 }
