@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.panda.admin.board.qna.user.model.vo.Answer;
 import com.kh.panda.admin.board.qna.user.model.vo.Qna;
 import com.kh.panda.common.PageInfo;
 
@@ -49,4 +50,19 @@ public class QnaDao {
 		return sqlSession.delete("qnaMapper.deleteQna", uqId);
 	}
 	
+	public int insertAnswer(Answer a) {
+		return sqlSession.insert("qnaMapper.insertAnswer", a);
+	}
+	
+	public ArrayList<Answer> selectAList(){
+		return (ArrayList)sqlSession.selectList("qnaMapper.selectAList");
+	}
+	
+	public Answer answerDetail(int uqId) {
+		return sqlSession.selectOne("qnaMapper.selectAnswer", uqId);
+	}
+	
+	public int deleteAnswer(int uqId) {
+		return sqlSession.delete("qnaMapper.deleteAnswer", uqId);
+	}
 }

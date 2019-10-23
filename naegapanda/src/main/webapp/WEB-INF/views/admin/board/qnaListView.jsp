@@ -67,20 +67,21 @@
 				</thead>
 					<tbody>
 								
-						<c:forEach items="${ list }" var="q">
+						<c:forEach items="${ qlist }" var="q">
 									
 										<tr>
 											<td align="center">${ q.uqId }</td>
 											<td style="font-size:11px;" align="center">[${ q.uqCategory }]</td>
 											<td align="center">
-												<c:if test="${ empty loginUser }">
-													${ q.uqTitle }
+												<c:if test="${ empty loginUser && empty loginSeller }">
+														${ q.uqTitle }
 												</c:if>
-												<c:if test="${ !empty loginUser }">
-													<c:url value="qdetail.do" var="qdetail">
-														<c:param name="uqId" value="${ q.uqId }"/>
-													</c:url>
-													<a href="${ qdetail }">${ q.uqTitle }</a>
+												<c:if test="${ !empty loginUser || !empty loginSeller }">
+														<c:url value="qdetail.do" var="qdetail">
+															<c:param name="uqId" value="${ q.uqId }"/>
+														</c:url>
+														<a href="${ qdetail }">${ q.uqTitle }</a>
+												
 												</c:if>
 											</td>
 											<td align="center">
@@ -90,6 +91,20 @@
 											<td align="center">${ q.uqCount }</td>
 											
 										</tr>
+										
+										<c:forEach items="${ alist }" var="a">
+											<c:if test="${ q.uqId eq a.qId }">
+											<tr align="center" style="color:red;">
+												<td></td>
+												<td></td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;re: ${ a.aTitle }</td>
+												<td>${ a.aWriter }</td>
+												<td></td>
+												<td></td>
+											<tr>	
+											</c:if>
+										</c:forEach>
+										
 									</c:forEach>
 									
 					</tbody>					

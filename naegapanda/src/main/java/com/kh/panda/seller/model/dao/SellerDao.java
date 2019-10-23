@@ -11,6 +11,7 @@ import com.kh.panda.common.PageInfo;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
+import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository("sDao")
 public class SellerDao {
@@ -70,5 +71,16 @@ public class SellerDao {
 	public ArrayList<Category> selectcList() {
 		return (ArrayList)sqlSession.selectList("productMapper.selectcList");
 	}
+
+
+
+
+
+	public int emailConfirm(int sNo) {
+		
+		return sqlSession.update("sellerMapper.emailConfirm", sNo);
+	}
+	
+	
 
 }

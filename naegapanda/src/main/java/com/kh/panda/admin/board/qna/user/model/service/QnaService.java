@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.panda.admin.board.qna.user.model.vo.Answer;
 import com.kh.panda.admin.board.qna.user.model.vo.Qna;
 import com.kh.panda.common.PageInfo;
 
@@ -27,4 +28,16 @@ public interface QnaService {
 	
 	// 5. 회원 서비스 문의 삭제
 	int deleteQna(int uqId);
+	
+	// 6. 회원 서비스 문의 답변 작성
+	int insertAnswer(Answer a);
+	
+	// 7. 회원 서비스 문의 답변 리스트 조회
+	ArrayList<Answer> selectAList();
+	
+	// 8. 회원 서비스 문의 답변 상세 조회
+	Answer answerDetail(int uqId);
+	
+	// 9. 회원 서비스 문의 답변 삭제
+	int deleteAnswer(int uqId);
 }

@@ -15,6 +15,16 @@
 		<result property="mName" column="m_name" />
 	</resultMap>
 	
+	<resultMap  id="answerResultSet" type="answer">
+		<id property="aId" column="a_id" />
+		<result property="qId" column="q_id" />
+		<result property="aTitle" column="a_title" />
+		<result property="aContent" column="a_content" />
+		<result property="aWriter" column="a_writer" />
+		<result property="aCreateDate" column="a_create_date" />
+		<result property="aStatus" column="a_status" />
+	</resultMap>
+	
 
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -56,4 +66,26 @@
 		where q_id=#{uqId}
 	</delete>
 	
+	<insert id="insertAnswer" parameterType="Answer">
+		insert into answer
+		values(answer_seq.nextval, #{qId}, #{aTitle}, #{aContent}, #{aWriter}, sysdate, default)
+	</insert>
+	
+	<select id="selectAList" resultMap="answerResultSet">
+		select *
+		from answer	
+		where a_stauts='N'
+	</select>
+	
+	<select id="selectAnswer" parameterType="_int" resultMap="answerResultSet">
+		select * 
+		from answer
+		where q_id=#{upId} and a_stauts='N'
+	</select>
+	
+	<update id="deleteAnswer" parameterType="_int">
+		update answer
+		set a_stauts='Y'
+		where q_id=#{uqId}
+	</update>
 </mapper>

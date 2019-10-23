@@ -87,18 +87,27 @@
 
 					<div class="col-lg-7">
 
-						<h2>PANDA 공지사항</h2>
+						<h2>PANDA 판매자문의</h2>
 						<br><br>
 
-						<form encType="multipart/form-data" method="post" action="nupdate.do" >
+						<form method="post" action="squpdateView.do" >
 
-							<input type="hidden" name="nId" value="${ n.nId }" >
+							<input type="hidden" name="sqId" value="${ q.sqId }" >
+							
+							<div class="mb-3">
+
+								<label for="title">카테고리</label> 
+								<input type="text" class="form-control" name="sqCategory" id="category" value="${q.sqCategory }" style="width:75px; font-size:10px;" readonly>
+								
+								<!-- String qCategory = document.getElementBy('cat').options[document.getElementById('cat').selectedIndex].text; -->
+
+							</div>
 							
 							<div class="mb-3">
 
 								<label for="title">제목</label> 
-								<input type="text" class="form-control" name="nTitle" id="title"
-									value="${ n.nTitle }">
+								<input type="text" class="form-control" name="sqTitle" id="title"
+									value="${ q.sqTitle }" readonly>
 
 							</div>
 
@@ -107,33 +116,64 @@
 
 								<label for="content">내용</label>
 
-								<textarea class="form-control" rows="8" name="nContent"
-									id="content"  style="resize:none;">${ n.nContent }</textarea>
+								<textarea class="form-control" rows="8" name="sqContent"
+									id="content"  style="resize:none;" readonly>${ q.sqContent }</textarea>
 
 							</div>
+							
+							<c:if test="${ a ne null }">
+								<div class="mb-3">
+
+								<label for="content">답변</label>
+
+								<textarea class="form-control" rows="8" name="saContent"
+									id="content"  style="resize:none;" readonly>${ a.saContent }</textarea>
+
+								</div>
+							</c:if>
 
 
 
-							<div class="mb-3">
-
-								<label for="file" class="fUpload">첨부파일</label> 
-								<input type="file" name="reloadFile">
-								<c:if test="${!empty n.nOriginalFileName }">
-									<br>현재 업로드한 파일 :
-									<a href="${ contextPath }/resources/nupload/${ n.nRenameFileName}" download="${ n.nOriginalFileName }">${ n.nOriginalFileName }</a>
-								</c:if>
-
-							</div>
-
+							
+						<c:choose>
+						<c:when test="${ loginSeller.name eq q.sName  }">
+						
 						<div>
 						
-							<button type="button"  class="btn" onclick="location.href='nlist.do';">목록</button>
+							<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
 							&nbsp; &nbsp;
 							<button type="submit" class="btn" id="btnSave">수정하기</button>
 							&nbsp; &nbsp;
-							<button type="button" class="btn" onclick="location.href='ndelete.do?nId=${ n.nId }';">삭제하기</button>
+							<button type="button" class="btn" id="delete" onclick="location.href='sqdelete.do?sqId=${ q.sqId }';">삭제하기</button>
 
 						</div>
+						</c:when>
+						<c:when test="${ loginSeller.name ne q.sName && loginUser.name ne '관리자' }">
+							<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
+						</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${ loginUser.name eq '관리자' && a ne null }">
+							<div>
+						
+								<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
+								&nbsp; &nbsp;
+								<button type="button" class="btn" id="delete" onclick="location.href='sadelete.do?sqId=${ a.qId}';">답변삭제</button>
+							
+							</div>
+							</c:when>
+							<c:when test="${ loginUser.name eq '관리자' && a eq null }">
+								<div>
+						
+								<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
+								&nbsp; &nbsp;
+								<button type="button" class="btn" onclick="location.href='sainsertView.do?sqId=${ q.sqId }';">답변달기</button>
+								&nbsp; &nbsp;
+								<button type="button" class="btn" id="delete" onclick="location.href='sqdelete.do?sqId=${ q.sqId}';">삭제하기</button>
+							
+								</div>
+							</c:when>
+						</c:choose>
 
 
 						</form>
@@ -149,122 +189,29 @@
 
 
 
-				</div>
-			</div>
-
-		</div>
+				
 
 
 
 
 
-		<!-- Brands -->
-
-		<div class="brands">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="brands_slider_container">
-
-							<!-- Brands Slider -->
-
-							<div class="owl-carousel owl-theme brands_slider">
-
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_1.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_2.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_3.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_4.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_5.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_6.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_7.jpg" alt="">
-									</div>
-								</div>
-								<div class="owl-item">
-									<div
-										class="brands_item d-flex flex-column justify-content-center">
-										<img src="resources/images/brands_8.jpg" alt="">
-									</div>
-								</div>
-
-							</div>
-
-							<!-- Brands Slider Navigation -->
-							<div class="brands_nav brands_prev">
-								<i class="fas fa-chevron-left"></i>
-							</div>
-							<div class="brands_nav brands_next">
-								<i class="fas fa-chevron-right"></i>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	
 
 
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
-<!-- 	
-	<script>
-		
-			$("#delfile").on("click", function(){
-				
-				var nId = ${ n.nId };
-				
-				$.ajax({
-					url:"nfiledel.do",
-					data:{nId:nId},
-					type:"get",
-					success:function(data){
-						if(data == ""){
-							
-						}else{
-							alert("파일 삭제 실패!");
-						}
-					},
-					error:function(){
-						console.log("서버와의 통신 실패");
-					}
-				});
-				
-			});
-		
 	
+	<!-- <script>
+		$("#delete").on("click", function(){
+			if(confirm("정말 삭제하시겠습니까?") == true){
+				document.onclc;
+			}else{
+				return;
+			}
+		});
 	</script> -->
+	
+
 
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>

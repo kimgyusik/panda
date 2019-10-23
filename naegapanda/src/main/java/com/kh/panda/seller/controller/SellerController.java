@@ -7,12 +7,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+
+import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
@@ -30,12 +38,19 @@ import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
+import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
 
 @SessionAttributes("loginSeller")
 @Controller
 public class SellerController {
+	
 
+	
+	@Inject
+	private JavaMailSender mailSender;
+
+	
 	
 	@Autowired private SellerService sService;
 	  
@@ -61,7 +76,7 @@ return "seller/sellerJoinForm";
 								@RequestParam("sbPost") String sbPost,
 								@RequestParam("sbAddress1") String sbAddress1,
 								@RequestParam("sbAddress2") String sbAddress2
-								){
+								) throws MessagingException{
 
 		
 		/*
@@ -76,8 +91,24 @@ return "seller/sellerJoinForm";
 			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
 		
-		System.out.println(s);
 		int result = sService.insertSeller(s);
+		
+		int sNo = s.getsNo();
+		
+		MailHandler sendMail = new MailHandler(mailSender);
+		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName="+s.getsName() + "&key=Y' target='_blenk'>이메일 인증 확인</a>";
+		
+		sendMail.setSubject("[ALMOM 서비스 이메일 인증]");
+		sendMail.setText(html);
+		try {
+			sendMail.setFrom("dkj01043@gmail.com", "관리자");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sendMail.setTo(s.getsEmail());
+		sendMail.send();
+
 		if (result > 0) {	
 			
 			return "redirect:home.do";	
@@ -321,5 +352,21 @@ return "seller/sellerJoinForm";
 			
 		}
 	 
+	  
+
+
+	  
+	   
+	  @RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
+	  public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
+		  
+		  int result = sService.emailConfirm(sNo);
+		  model.addAttribute("sName", sName);
+
+	  	return "/seller/emailConfirm";
+	  }
+	  
+	  
+	  
 
 }

@@ -30,6 +30,17 @@ public interface SellerService {
 	// 6. 회원탈퇴
 	int deleteSeller(Seller s);
 
+	// 7.
 	ArrayList<Category> selectcList();
+	
+	
+	// 이메일도전
+
+
+	int emailConfirm(int sNo);
+
+	
+	
+	
 
 }
