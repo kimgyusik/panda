@@ -88,7 +88,7 @@ return "seller/sellerJoinForm";
 		MailHandler sendMail = new MailHandler(mailSender);
 		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName="+s.getsName() + "&key=Y' target='_blenk'>이메일 인증 확인</a>";
 		
-		sendMail.setSubject("[ALMOM 서비스 이메일 인증]");
+		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
