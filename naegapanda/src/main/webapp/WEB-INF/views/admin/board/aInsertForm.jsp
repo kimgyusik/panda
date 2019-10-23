@@ -191,17 +191,6 @@
 	<c:import url="../../common/adminFooter.jsp"/> 
 	<c:import url="../../common/footer.jsp"/>
 	
-	<!-- <script>
-		$("#delete").on("click", function(){
-			if(confirm("정말 삭제하시겠습니까?") == true){
-				document.onclc;
-			}else{
-				return;
-			}
-		});
-	</script> -->
-	
-
 
 
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
