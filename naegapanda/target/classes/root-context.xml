@@ -37,6 +37,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	
 	<!-- 이메일 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
@@ -54,7 +55,7 @@
 				<prop key="mail.debug">true</prop>
 			</props>
 		</property>
-	</bean>		
+	</bean>	
 	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
