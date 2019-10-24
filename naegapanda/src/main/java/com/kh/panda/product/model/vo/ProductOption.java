@@ -8,13 +8,13 @@ public class ProductOption {
 	private int oAmount;
 	private String oStatus;
 	private int oPurchase;
-	private String changeName;
+	private String paChangeName;
 	private String filePath;
 	
 	public ProductOption() {}
 	
 	public ProductOption(int pId, int oNo, String oName, int oPrice, int oAmount, String oStatus, int oPurchase,
-			String changeName) {
+			String paChangeName) {
 		super();
 		this.pId = pId;
 		this.oNo = oNo;
@@ -23,12 +23,12 @@ public class ProductOption {
 		this.oAmount = oAmount;
 		this.oStatus = oStatus;
 		this.oPurchase = oPurchase;
-		this.changeName = changeName;
+		this.paChangeName = paChangeName;
 	}
 	
 
 	public ProductOption(int pId, int oNo, String oName, int oPrice, int oAmount, String oStatus, int oPurchase,
-			String changeName, String filePath) {
+			String paChangeName, String filePath) {
 		super();
 		this.pId = pId;
 		this.oNo = oNo;
@@ -37,7 +37,7 @@ public class ProductOption {
 		this.oAmount = oAmount;
 		this.oStatus = oStatus;
 		this.oPurchase = oPurchase;
-		this.changeName = changeName;
+		this.paChangeName = paChangeName;
 		this.filePath = filePath;
 	}
 
@@ -97,12 +97,12 @@ public class ProductOption {
 		this.oPurchase = oPurchase;
 	}
 
-	public String getChangeName() {
-		return changeName;
+	public String getpaChangeName() {
+		return paChangeName;
 	}
 
-	public void setChangeName(String changeName) {
-		this.changeName = changeName;
+	public void setpaChangeName(String paChangeName) {
+		this.paChangeName = paChangeName;
 	}
 	
 	public String getFilePath() {
@@ -116,7 +116,7 @@ public class ProductOption {
 	@Override
 	public String toString() {
 		return "ProductOption [pId=" + pId + ", oNo=" + oNo + ", oName=" + oName + ", oPrice=" + oPrice + ", oAmount="
-				+ oAmount + ", oStatus=" + oStatus + ", oPurchase=" + oPurchase + ", changeName=" + changeName
+				+ oAmount + ", oStatus=" + oStatus + ", oPurchase=" + oPurchase + ", paChangeName=" + paChangeName
 				+ ", filePath=" + filePath + "]";
 	}
 

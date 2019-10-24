@@ -55,5 +55,17 @@
 		where o_status='Y' and p.s_No = #{sNo}
 		order by o_No desc
 	</select>
+	
+	<insert id="insertProduct" parameterType="Product">
+		insert into Product values(product_seq.nextval, #{pName}, #{sNo}, #{pContent}, #{cId}, default, default, default, default, default)
+	</insert>
+	
+	<insert id="insertPa" parameterType="ProductAttachment">
+		insert into Product_Attachment values(product_attachment_seq.nextval, default, #{paOriginName}, #{paChangeName}, #{paFileLevel}, default,product_seq.currval, #{filePath} )
+	</insert>
+	
+	<insert id="insertPo" parameterType="ProductOption">
+		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, product_seq.currval)
+	</insert>
 
 </mapper>

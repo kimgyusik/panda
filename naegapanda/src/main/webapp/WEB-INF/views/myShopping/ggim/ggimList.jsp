@@ -110,8 +110,8 @@ cursor: pointer;
 		<div class="container">
 			<div class="row">
 			
+				<!-- 사이드 메뉴바 -->
 				<div class="col-lg-1">
-					<!-- 사이드 메뉴바 -->
 					<c:import url="../sidebar.jsp"/>
 				</div>
 
@@ -157,7 +157,7 @@ cursor: pointer;
 											 				<a href="${ product }"><img src="resources/images/best_${g.pId }.png" width="130px;"></a>
 											 			</td>
 											 			<td width="1000px;" style="text-align: left;">
-											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd." /></span><br><br>
+											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd" /></span><br><br>
 											 				[ ${g.category2} > ${g.category} ] <br>
 											 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${g.pName}</a></span><br>
 											 				<p style="color:black;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${g.price}" />원</p>

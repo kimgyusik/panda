@@ -28,8 +28,6 @@ import com.sun.javafx.collections.MappingChange.Map;
 
 @Controller
 public class ViolateController {
-
-	private static Logger logger = LoggerFactory.getLogger(ViolateController.class);
 	
 	@Autowired
 	private ViolateService vService;

@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.member.model.dao.MemberDao;
 import com.kh.panda.product.model.vo.Category;
+import com.kh.panda.product.model.vo.Product;
+import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.dao.SellerDao;
 import com.kh.panda.seller.model.vo.MailHandler;
@@ -113,6 +115,32 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
+	public int insertProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList) {
+		int result1 = sDao.insertProduct(p);
+		int result2 = 0;
+		int result3 = 0;
+		int result = 0;
+		
+		for(int i=0; i<paList.size(); i++) {
+			result2 = sDao.insertPaList(paList.get(i));
+			if(result2 <1) {
+				break;
+			}
+		}
+		
+		for(int i=0; i<poList.size(); i++) {
+			result3 = sDao.insertPoList(poList.get(i));
+			if(result3<1) {
+				break;
+			}
+		}
+		
+		if(result1 >0 && result2 > 0 && result3 > 0) {
+			result = 1;
+		}
+		
+		return result;
+	}
 	public Seller updateConfirm(Seller s) {
 		return sDao.updateConfirm(s);
 	}
