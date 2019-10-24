@@ -134,7 +134,33 @@ public class ReviewController {
 	@RequestMapping("addAbleReview.re")
 	public ModelAndView addAbleReview(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Payment> list = reService.addAbleReview(getmNo(session));
+		//ArrayList<Payment> list = reService.addAbleReview(getmNo(session));
+		
+		ArrayList<Payment> list = new ArrayList<>();
+		
+		Date date = new Date();
+		
+		Payment p = new Payment();
+	
+		p.setpName("맛있는과자");
+		p.setoName("1kg x 10박스");
+		p.setpId(11);
+		p.setPayId(13);
+		p.setStoreName("이지몰");
+		p.setPayDate(date);
+		p.setPaChangeName("blog_1.jpg");
+		list.add(p);
+		
+		Payment p2 = new Payment();
+
+		p2.setpName("매운라면");
+		p2.setoName("24242개");
+		p2.setpId(22);
+		p2.setPayId(24);
+		p2.setPayDate(date);
+		p2.setStoreName("라면상점");
+		p2.setPaChangeName("view_5.jpg");
+		list.add(p2);
 		
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/review/addAbleReview");

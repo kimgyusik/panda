@@ -28,6 +28,8 @@
 		<result property="pName" column="p_name"/>
 		<result property="storeName" column="storename"/>
 		<result property="sBphone" column="s_bphone"/>
+		<result property="oNo" column="o_no"/>
+		<result property="oName" column="o_name"/>
 	</resultMap>
 	
 	<resultMap id="replyResultSet" type="Reply">
@@ -56,9 +58,10 @@
 	</select>
 	
 	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">
-		select pay_id, p_id, price, p_status, pay_request, pay_date, count, delevery_status, p_name, storename, s_bphone
+		select pay_id, p_id, price, p_status, pay_request, pay_date, count, delevery_status, p_name, storename, s_bphone, o_no, o_name
 		from payment
 		left join review using(pay_id)
+		join PRODUCT_OPTION using(o_no)
 		join product using(p_id)
 		join seller using(s_no)
 		where m_no = #{mNo} and DELIVERY_STATUS = '구매확정'

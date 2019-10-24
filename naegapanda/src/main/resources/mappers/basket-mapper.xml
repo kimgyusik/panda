@@ -21,9 +21,10 @@
 		from SHOPPING_BASKET
 		join PRODUCT_OPTION using(o_no)
 		join product using(p_id)
+		join PRODUCT_ATTACHMENT(p_id)
 		join category using(c_id)
 		join seller using(s_no)
-		where m_no = #{mNo}
+		where m_no = #{mNo} 
 	</select>
 	
 	<insert id="addBasket" parameterType="Basket">
