@@ -11,93 +11,8 @@
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_responsive.css">
+<link rel="stylesheet" type="text/css" href="resources/style/myShoppingCustom.css">
 <style>
-.cart_section{
-height: auto;
-padding-top: 0;
-}
-.tablehead{
-height:40px;
-border: 1px solid black;
-}
-.tablebody{
-height:100px;
-border: 1px solid black;
-}
-.order_total_title{
-font-size: 13px;
-font-style: bold;
-color:black;
-}
-
-td{
-text-align: center;
-border: 2px solid #edeeef;
-border-left: 1px solid white;
-border-right: 1px solid white;
-font-size:12px;
-}
-.cart_title{
-font-size: 20px !important;
-padding:0 !important;
-}
-.cart_items{
-margin:0 !important;
-
-}
-
-.clearfix{
-padding: 0px;
-}
-
-.cartTb{
-cellspacing="0" 
-}
-.shop{
-padding-bottom: 0px !important;
-padding-top:50px  !important;
-}
-
-
-ul{
-list-style:none;
-}
-.tabmenu{ 
-height:60px;
-margin-top:30px;
-display:block;
-border-top: 2px solid #edeeef;
-border-bottom: 2px solid #edeeef;
-}
-.tabmenu ul li{
-display:  inline-block;
-width:140px; 
-float:left;  
-text-align:center; 
-background :withe;
-padding: 10px;
-
-}
-.tabmenu label{
-display:block;
-width:100%; 
-height:40px;
-line-height:40px;
-}
-.tabmenu input{display:none;}
-
-.tabmenu input:checked ~ label{
-color: #0e8ce4;
-font-style: bold;
-border-bottom-color: #0e8ce4;
-}
-.cancle{
-width:50px;
-color:gray;
-font-size: 15px;
-cursor: pointer;
-}
-
 </style>
 </head>
 <body>
@@ -137,7 +52,7 @@ cursor: pointer;
 												<c:forEach items="${ category }" var="c">
 													<li id="tab${c}" class="tab">
 														<input type="radio"  name="tabmenu" id="tabmenu${c}">
-														<label for="tabmenu${c}">${c}</label>
+														<label class="categoryMenu" for="tabmenu${c}">${c}</label>
 													</li>
 												</c:forEach>
 										
@@ -153,10 +68,10 @@ cursor: pointer;
 											 			<c:url value="상품조회url" var="product">
 															<c:param name="pId" value="${g.pId }"/>
 														</c:url>		
-											 			<td width="250px;">
-											 				<a href="${ product }"><img src="resources/images/best_${g.pId }.png" width="130px;"></a>
+											 			<td width="400px;">
+											 				<a href="${ product }"><img src="resources/images/${g.paChangeName }" style="max-height:180px; width:auto; max-width:330px;" ></a>
 											 			</td>
-											 			<td width="1000px;" style="text-align: left;">
+											 			<td width="600px;" style="text-align: left;">
 											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd" /></span><br><br>
 											 				[ ${g.category2} > ${g.category} ] <br>
 											 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${g.pName}</a></span><br>

@@ -81,13 +81,13 @@ public class SellerController {
 			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
 		
-		System.out.println(s);
+		
 
 		int result = sService.insertSeller(s);
 
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + s.getsNo() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>이메일 인증 확인</a>";
+		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>이메일 인증 확인</a>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
@@ -112,9 +112,9 @@ public class SellerController {
 	
 	
 	@RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
-	public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
+	public String emailConfirm(String sId, String sName, Model model) throws Exception { // 이메일인증
 
-		int result = sService.emailConfirm(sNo);
+		int result = sService.emailConfirm(sId);
 		model.addAttribute("sName", sName);
 
 		return "/seller/emailConfirm";

@@ -93,7 +93,7 @@ public class QnaController {
 		if(q != null) {
 			mv.addObject("q", q).setViewName("admin/board/qnaUpdateForm");
 		}else {
-			System.out.println("수정폼 불러오기 실패");
+			mv.addObject("msg", "수정폼 불러오기 실패").setViewName("common/errorPage");
 		}
 		
 		return mv;

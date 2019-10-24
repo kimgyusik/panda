@@ -28,6 +28,7 @@ public class Payment {
 	private String storeName;
 	private String sBaddress;
 	private String sBphone;
+	private String paChangeName;
 	
 	public Payment() {
 		super();
@@ -37,7 +38,7 @@ public class Payment {
 	public Payment(int payId, int mNo, int pId, int oNo, String oName, int oPrice, String oStatus, String pStatus,
 			String deliverySpot, String payRequest, Date payDate, int count, String deliveryStatus, String recipient,
 			String recipientPhone, String pName, String pContent, int cId, String cName, String cName2, int sNo,
-			String storeName, String sBaddress, String sBphone) {
+			String storeName, String sBaddress, String sBphone, String paChangeName) {
 		super();
 		this.payId = payId;
 		this.mNo = mNo;
@@ -63,6 +64,7 @@ public class Payment {
 		this.storeName = storeName;
 		this.sBaddress = sBaddress;
 		this.sBphone = sBphone;
+		this.paChangeName = paChangeName;
 	}
 
 	public int getPayId() {
@@ -257,6 +259,14 @@ public class Payment {
 		this.sBphone = sBphone;
 	}
 
+	public String getPaChangeName() {
+		return paChangeName;
+	}
+
+	public void setPaChangeName(String paChangeName) {
+		this.paChangeName = paChangeName;
+	}
+
 	@Override
 	public String toString() {
 		return "Payment [payId=" + payId + ", mNo=" + mNo + ", pId=" + pId + ", oNo=" + oNo + ", oName=" + oName
@@ -265,9 +275,10 @@ public class Payment {
 				+ ", deliveryStatus=" + deliveryStatus + ", recipient=" + recipient + ", recipientPhone="
 				+ recipientPhone + ", pName=" + pName + ", pContent=" + pContent + ", cId=" + cId + ", cName=" + cName
 				+ ", cName2=" + cName2 + ", sNo=" + sNo + ", storeName=" + storeName + ", sBaddress=" + sBaddress
-				+ ", sBphone=" + sBphone + "]";
+				+ ", sBphone=" + sBphone + ", paChangeName=" + paChangeName + "]";
 	}
 
+	
 	
 	
 	

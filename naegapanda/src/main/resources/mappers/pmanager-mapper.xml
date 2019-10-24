@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmanagerMapper">
+
+	<resultMap type="Pmanager" id="pmanagerResultSet">
+		<id property="pId" column="p_id" />
+		<result property="pName" column="p_name" />
+		<result property="sNo" column="s_no" />
+		<result property="sName" column="s_name" />
+		<result property="cId" column="c_id" />
+		<result property="cName" column="c_name" />
+		<result property="cName2" column="c_name2" />
+		<result property="pStatus" column="p_status" />
+		<result property="pViolate" column="p_violate" />
+	</resultMap>
+
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from pmlist
+	</select>
+	
+	<select id="selectList" resultMap="pmanagerResultSet">
+		select *
+		from pmlist
+		where c_name2=#{cName2}
+	</select>
+</mapper>
