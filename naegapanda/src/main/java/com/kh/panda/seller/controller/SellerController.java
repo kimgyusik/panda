@@ -15,6 +15,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 import com.kh.panda.product.model.vo.Category;
@@ -57,6 +61,29 @@ public class SellerController {
 	// 가입화면
 	@RequestMapping("sJoin.do")
 	public String InsertSeller() {
+		
+        Document doc = null;
+        
+     String S_BNUM = "1108134859"; //2208110886
+     
+      try {
+        doc = Jsoup.connect("https://www.pps.go.kr/gpass/gpassCompany/selectCompanyInfo.do?bizNo="+S_BNUM).get();
+          System.out.println("회사명(한글)::"+doc.getElementById("corpNm").val());
+          System.out.println("회사명(한글)::"+doc.getElementById("suprAddr").val());
+     } catch (IOException e) {
+        e.printStackTrace();
+     }
+         
+//        <input id="corpNm" name="corpNm" type="hidden" value="주식회사 아프리카티비"/>
+//        <input id="engCorpNm" name="engCorpNm" type="hidden" value="AfreecaTV Co,.Ltd"/>
+//        <input id="estblshDt" name="estblshDt" type="hidden" value="1996-04-22"/>
+//        <input id="ordnrytmLbrerNum" name="ordnrytmLbrerNum" type="hidden" value="370"/>
+//        <input id="suprAddr" name="suprAddr" type="hidden" value="경기도 성남시 분당구 판교로228번길"/>
+//        <input id="suprDtlAddr" name="suprDtlAddr" type="hidden" value="15, 2동 2층(삼평동, 판교세븐밴처밸리 1단지)"/>
+//        <input id="hmpg" name="hmpg" type="hidden" value="www.afreecatv.com"/>
+//        <input id="ceoNm" name="ceoNm" type="hidden" value="서수길"/>
+//        <input id="ceoEmail" name="ceoEmail" type="hidden" value="zenith@afreecatv.com"/>
+//        <input id="ceoMtelNo" name="ceoMtelNo" type="hidden" value="010-7181-0524"/>
 
 		return "seller/sellerJoinForm";
 
@@ -65,9 +92,7 @@ public class SellerController {
 	// 가입하기
 	@RequestMapping("sinsert.do")
 	public String insertMember(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) throws MessagingException {
+			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2) throws MessagingException {
 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
@@ -77,10 +102,10 @@ public class SellerController {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
 		}
 
-		if (!sbPost.equals("")) {
-			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
-		}
-		
+		/*
+		 * if (!sbPost.equals("")) { s.setSbAddress(sbPost + "," + sbAddress1 + "," +
+		 * sbAddress2); }
+		 */
 		
 
 		int result = sService.insertSeller(s);
@@ -441,8 +466,51 @@ public class SellerController {
 
 
 	}
-
 	
+	
+	
+	
+	@RequestMapping("storeName.do")
+	   public void getReplyList(String S_BNUM, HttpServletResponse response) throws JsonIOException, IOException {
+	      
+	     
+	         Document doc = null;
+	      
+	     
+	      
+	       try {
+	         doc = Jsoup.connect("https://www.pps.go.kr/gpass/gpassCompany/selectCompanyInfo.do?bizNo="+S_BNUM).get();
+	           System.out.println("회사명(한글)::"+doc.getElementById("corpNm").val());
+	           System.out.println("회사명(한글)::"+doc.getElementById("suprAddr").val());
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	          Seller seller = new Seller();
+		seller.setStoreName(doc.getElementById("corpNm").val());
+		seller.setsCeoName(doc.getElementById("ceoNm").val());
+		seller.setSbPhone(doc.getElementById("ceoMtelNo").val());
+		seller.setSbAddress(doc.getElementById("suprAddr").val());
+
+//	         <input id="corpNm" name="corpNm" type="hidden" value="주식회사 아프리카티비"/>
+//	         <input id="engCorpNm" name="engCorpNm" type="hidden" value="AfreecaTV Co,.Ltd"/>
+//	         <input id="estblshDt" name="estblshDt" type="hidden" value="1996-04-22"/>
+//	         <input id="ordnrytmLbrerNum" name="ordnrytmLbrerNum" type="hidden" value="370"/>
+//	         <input id="suprAddr" name="suprAddr" type="hidden" value="경기도 성남시 분당구 판교로228번길"/>
+//	         <input id="suprDtlAddr" name="suprDtlAddr" type="hidden" value="15, 2동 2층(삼평동, 판교세븐밴처밸리 1단지)"/>
+//	         <input id="hmpg" name="hmpg" type="hidden" value="www.afreecatv.com"/>
+//	         <input id="ceoNm" name="ceoNm" type="hidden" value="서수길"/>
+//	         <input id="ceoEmail" name="ceoEmail" type="hidden" value="zenith@afreecatv.com"/>
+//	         <input id="ceoMtelNo" name="ceoMtelNo" type="hidden" value="010-7181-0524"/>
+
+	      
+	      response.setContentType("application/json; charset=utf-8");
+	      
+	      Gson gson = new Gson();
+	
+	      gson.toJson(seller, response.getWriter());
+	
+
+	}
 	
 	
 }
