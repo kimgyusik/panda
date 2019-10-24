@@ -297,6 +297,7 @@ background-color: #0e8ce4;
 }
 .modal-body{
 text-align: left !important;
+padding-bottom: 5px !important;
 }
 .modalLabel{
 font-size:12px;
@@ -325,16 +326,18 @@ vertical-align: middle;
 #file { display:none; } 
 
 #titleImg{
+max-width:280px;
+max-height:230px;
 width:auto;
 height:auto;
-max-width:280px;
-max-height:243px;
+
 }
 #contentLabel{
 color:gray; 
 display: block; 
 text-align: right; 
 margin-right:20px;
+margin-bottom: 0px;
 }
 .cart_section{
 height: auto;
@@ -439,12 +442,7 @@ vertical-align: middle;
 
 #file { display:none; } 
 
-#titleImg{
-width:auto;
-height:auto;
-max-width:280px;
-max-height:243px;
-}
+
 #contentLabel{
 color:gray; 
 display: block; 
