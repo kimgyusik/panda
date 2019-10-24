@@ -34,8 +34,8 @@
 	<!-- 이메일인증 -->
 	<update id="createAuthKey">
 		update seller
-		set email_key = #{emailKey} 
-		where s_email = #{sEmail}
+		set s_emailKey = #{email_key} 
+		where sEmail = #{sEmail}
 	</update>
 
 	<!-- 로그인 -->
@@ -79,7 +79,7 @@
 	</update>
 	
 	<!-- 이메일 확인 -->
-	<update id="emailConfirm" parameterType="seller">
+	<update id="emailConfirm" parameterType="_int">
 		update seller
 		set s_email_key = 'Y'
 		where s_Id=#{sId}

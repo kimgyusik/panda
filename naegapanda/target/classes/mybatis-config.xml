@@ -29,6 +29,7 @@
 		<typeAlias type="com.kh.panda.product.model.vo.Product" alias="Product"/>
 		<typeAlias type="com.kh.panda.product.model.vo.ProductAttachment" alias="ProductAttachment"/>
 		<typeAlias type="com.kh.panda.product.model.vo.ProductOption" alias="ProductOption"/>
+		<typeAlias type="com.kh.panda.admin.pmanager.model.vo.Pmanager" alias="Pmanager" />
 		
 	</typeAliases>
 
@@ -47,5 +48,6 @@
 		<mapper resource="mappers/qna-mapper.xml" />
 		<mapper resource="mappers/sqna-mapper.xml" />
 		<mapper resource="mappers/product-mapper.xml"/>
+		<mapper resource="mappers/pmanager-mapper.xml" />
 	</mappers>
 </configuration>

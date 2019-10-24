@@ -29,11 +29,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <style>
-	#cat{
+	.cat{
 		margin-bottom:150px;
+		/* margin-left:3px; */
+		display:inline-block;
 	}
 	.bs-example{
-    	margin: 20px;
     }
     #icon{
     	margin-bottom:15px;
@@ -53,41 +54,59 @@
 		<c:import url="../../common/admin.jsp"/> 
 		
 	</div>
-	
 		
-			<div class="row">
-				<div class="col-md-4" id="cat">
-					<a href="#">
+		
+			<div class="row" style="align:center;">
+				<div class="col-lg-4 cat">
+					<c:url value="pmlist.do" var="pmListView">
+						<c:param name="cName2" value="의류/잡화" />
+					</c:url>
+					<a href="${ pmListView }">
 						<i class="fas fa-female fa-7x" id="icon"></i>
 					</a>
 					<h5>의류/잡화</h5>
 				</div>
-				<div class="col-md-4" id="cat" >
-					<a href="#">
+				<div class="col-lg-4 cat"  >
+					<c:url value="pmlist.do" var="pmListView">
+						<c:param name="cName2" value="식품" />
+					</c:url>
+					<a href="${ pmListView }">
 						<i class="fa fa-utensils fa-7x" id="icon"></i>
 					</a>
 					<h5>식품</h5>
 				</div>
-				<div class="col-md-4" id="cat">
-					<a href="#">
+				<div class="col-lg-4 cat">
+					<c:url value="pmlist.do" var="pmListView">
+						<c:param name="cName2" value="가구/인테리어" />
+					</c:url>
+					<a href="${ pmListView }">
 						<i class="fa fa-bed fa-7x" id="icon"></i>
 					</a>
 					<h5>가구/인테리어</h5>
 				</div>
-				<div class="col-md-4" id="cat">
-					<a href="#">
+				<div class="col-lg-4 cat" >
+					<c:url value="pmlist.do" var="pmListView">
+						<c:param name="cName2" value="디지털/가전/컴퓨터" />
+					</c:url>
+					<a href="${ pmListView }">
 						<i class="fa fa-tv fa-7x" id="icon"></i>
 					</a>
 					<h5>디지털/가전/컴퓨터</h5>
 				</div>
-				<div class="col-md-4" id="cat">
-					<a href="#">
+				<div class="col-lg-4 cat">
+					<c:url value="pmlist.do" var="pmListView">
+						<c:param name="cName2" value="취미/반려동물" />
+					</c:url>
+					<a href="${ pmListView }">
 						<i class="fa fa-camera fa-7x" id="icon"></i>
 					</a>
 					<h5>취미/반려동물</h5>
 				</div>
-				<div class="col-md-4" id="cat">
-					<a href="#">
+				<div class="col-lg-4 cat">
+					<c:url value="pmlist.do" var="pmListView">
+						<c:param name="cName2" value="생활/건강/뷰티" />
+					</c:url>
+					<a href="${ pmListView }">
 						<i class="fa fa-futbol fa-7x" id="icon"></i>
 					</a>
 					<h5>생활/건강/뷰티</h5>
