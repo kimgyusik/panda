@@ -99,7 +99,7 @@
 		 <h1>2.스토어정보</h1>
 		 <div class="form-row" >		
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="storeName" id="storeName" placeholder="상점명" required>
+				<input type="text" class="form-control" name="storeName" id="storeName" placeholder="사업장명" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" name="sCeoName" id="ceoName" placeholder="대표이름" required> 
@@ -119,10 +119,10 @@
 			    </select>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sbPhone" id="sbPhone" placeholder="전화번호 (사업장)" required>
+				<input type="text" class="form-control" name="sbPhone" id="sbPhone" placeholder="사업장전화번호" required>
 			</div>
 			<div class="form-group col-md-6" id="ad2">
-				<input type="text" class="form-control postcodify_extra_info" name="sbPost" id="sbPost" placeholder="상세주소 (사업장)">
+				<input type="text" class="form-control" name="sbAddress" id="sbPost" placeholder="사업장주소">
 			</div>
 			
 			
@@ -149,11 +149,8 @@
 	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 	<script> 
 			$("#post_search_btn1").postcodifyPopUp({container: $("#ad1") });
-			
-			$("#post_search_btn2").postcodifyPopUp({container: $("#ad2") }); 			
-			
-			
-			
+					
+
 			function validate(){
 				if($("#sIdDuplicateCheck").val() == 0){	
 				

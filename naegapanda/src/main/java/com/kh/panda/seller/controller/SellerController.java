@@ -101,12 +101,7 @@ public class SellerController {
 		if (!post.equals("")) {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
 		}
-
-		/*
-		 * if (!sbPost.equals("")) { s.setSbAddress(sbPost + "," + sbAddress1 + "," +
-		 * sbAddress2); }
-		 */
-		
+	 		
 
 		int result = sService.insertSeller(s);
 
@@ -295,9 +290,7 @@ public class SellerController {
 	// 정보수정
 	@RequestMapping("sUpdate.do")
 	public String updateSeller(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) {
+			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2) {
 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
@@ -305,9 +298,6 @@ public class SellerController {
 
 		if (!post.equals("")) {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
-		}
-		if (!sbPost.equals("")) {
-			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
 
 		int result = sService.updateSeller(s);
