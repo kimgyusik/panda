@@ -80,7 +80,7 @@ public class SellerDao {
 
 	public int emailConfirm(int sNo) {
 		
-		return sqlSession.update("productMapper.emailConfirm", sNo);
+		return sqlSession.update("sellerMapper.emailConfirm", sNo);
 	}
 
 
