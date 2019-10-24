@@ -108,9 +108,9 @@ public class SellerServiceImpl implements SellerService{
 //	}
 
 	@Override
-	public int emailConfirm(int sNo) {
+	public int emailConfirm(String sId) {
 		
-		return sDao.emailConfirm(sNo);
+		return sDao.emailConfirm(sId);
 		
 	}
 
