@@ -134,22 +134,16 @@ public class SellerController {
 		 * if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
 		 * loginSeller.getsPwd())) {
 		 */
-		if(loginSeller != null && loginSeller.getEmailKey().equals("N")) {
 
-			if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
-	
-				model.addAttribute("loginSeller", loginSeller);
-				return "redirect:sProduct.do";
-	
-			} else {
-	
-				model.addAttribute("msg", "로그인 실패");
-				return "common/errorPage";
-			}
-		}else {
-			model.addAttribute("msg", "이메일 인증을 완료해주세요");
-			model.addAttribute("url", "errorAlert.jsp");
-			return "home";
+		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
+
+			model.addAttribute("loginSeller", loginSeller);
+			return "redirect:sProduct.do";
+
+		} else {
+
+			model.addAttribute("msg", "로그인 실패");
+			return "common/errorPage";
 		}
 
 	}
