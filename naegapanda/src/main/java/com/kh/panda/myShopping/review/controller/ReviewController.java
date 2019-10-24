@@ -179,8 +179,8 @@ public class ReviewController {
 	@RequestMapping("addReview.re")
 	public String addReview(Review r, HttpServletRequest request, Model model,
 							  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
-		
-		if(!file.getOriginalFilename().equals("")) {
+		System.out.println("로그로그");
+		if(file!= null && !file.getOriginalFilename().equals("")) {
 			
 			String renameFileName = saveFile(file, request);
 			
@@ -238,7 +238,7 @@ public class ReviewController {
 	public String updateReview(Review r, HttpServletRequest request, Model model,
 							  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
 		
-		if(!file.getOriginalFilename().equals("")) {
+		if(file!= null && !file.getOriginalFilename().equals("")) {
 			
 			// 기존에 저장된 사진이 있다면 삭제후 새로 저장하게 됨
 			Review rv = reService.selectReview(r.getrId());

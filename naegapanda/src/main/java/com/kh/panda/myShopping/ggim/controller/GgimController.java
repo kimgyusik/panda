@@ -136,7 +136,7 @@ public class GgimController {
 	public void currentGgim(HttpServletResponse response) throws JsonIOException, IOException {
 		
 		int count = 22;
-		
+ 
 		//int count = ggService.getListCount(getmNo(session));
 		
 		response.setContentType("application/json; charset=utf-8");

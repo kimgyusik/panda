@@ -118,7 +118,7 @@
 				<table>
 					<tr>
 						<td width="300px;" style="text-align: center; padding:0;">
-							<img id="titleImg" name="uploadFile">
+							<img id="titleImg" >
 						</td>
 						<td>
 							<div class="modal-body" style="padding-left:30px;">
@@ -133,7 +133,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="file" id="file" name="file" onchange="loadImg(this)"/>
+							<input type="file" name="uploadFile" id="file" onchange="loadImg(this)"/>
 							<button id="btn-upload" type="button" class="btn btn-outline-info" data-dismiss="modal" style="margin-left:20px;"><b>사진 업로드</b></button></td>
 						<td>
 							<div class="modal-footer">
@@ -154,6 +154,12 @@
 	<script>
 	
 		$(function () {
+			
+			// 모달 종료 시 input-area 초기화
+			$("#myModal").on('hide.bs.modal', function(e){
+				$("#file").val("");
+				e.stopImmediatePropagation();
+			});
 	
 			// 리뷰 수정 모달 호출
 			$('.updateReview').click(function(){
@@ -196,7 +202,7 @@
 			return false;
 		}
 		
-		// 수정 모달창으로 기존 리뷰 이미지 올리기
+		// 모달창 이미지 출력
 		function loadImg(value){
 			if(value.files && value.files[0]){
 

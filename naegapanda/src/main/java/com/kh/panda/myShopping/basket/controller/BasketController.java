@@ -40,6 +40,8 @@ public class BasketController {
 		
 		// 이미지 잘 가져오는지 체크
 		
+		
+		
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/basket/basketList");
 		
