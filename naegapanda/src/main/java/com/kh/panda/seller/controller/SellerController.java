@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
@@ -44,51 +42,60 @@ import com.kh.panda.seller.model.vo.Seller;
 @SessionAttributes("loginSeller")
 @Controller
 public class SellerController {
+	
 
+	
 	@Inject
 	private JavaMailSender mailSender;
 
-	@Autowired
-	private SellerService sService;
-
-	@Autowired
-	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	
+	@Autowired private SellerService sService;
+	  
+	@Autowired private BCryptPasswordEncoder bcryptPasswordEncoder;
+	 
+	
 
 	// 가입화면
 	@RequestMapping("sJoin.do")
 	public String InsertSeller() {
 
-		return "seller/sellerJoinForm";
+return "seller/sellerJoinForm";
 
 	}
-
+	
+	
 	// 가입하기
 	@RequestMapping("sinsert.do")
-	public String insertMember(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) throws MessagingException {
+	public String insertMember(Seller s, Model model,
+								@RequestParam("post") String post,
+								@RequestParam("sAddress1") String sAddress1,
+								@RequestParam("sAddress2") String sAddress2,
+								@RequestParam("sbPost") String sbPost,
+								@RequestParam("sbAddress1") String sbAddress1,
+								@RequestParam("sbAddress2") String sbAddress2
+								) throws MessagingException{
 
+		
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
 		 */
-
-		if (!post.equals("")) {
-			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
+		
+		if(!post.equals("")) {
+			s.setsAddress(post +"," + sAddress1 + "," + sAddress2);
 		}
-
-		if (!sbPost.equals("")) {
+		
+		if(!sbPost.equals("")) {
 			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
-
+		
 		int result = sService.insertSeller(s);
-
+		
 		int sNo = s.getsNo();
-
+		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName=" + s.getsName()
-				+ "&key=Y' target='_blenk'>이메일 인증 확인</a>";
-
+		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName="+s.getsName() + "&key=Y' target='_blenk'>이메일 인증 확인</a>";
+		
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
 		try {
@@ -100,34 +107,11 @@ public class SellerController {
 		sendMail.setTo(s.getsEmail());
 		sendMail.send();
 
-		if (result > 0) {
-
-			return "redirect:home.do";
-		} else {
-
-			return "common/errorPage";
-		}
-	}
-
-	// 로그인
-	@RequestMapping(value = "sLogin.do", method = RequestMethod.POST)
-	public String loginSeller(Seller s, Model model) {
-
-		Seller loginSeller = sService.loginSeller(s);
-
-		/*
-		 * if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
-		 * loginSeller.getsPwd())) {
-		 */
-
-		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
-
-			model.addAttribute("loginSeller", loginSeller);
-			return "redirect:sProduct.do";
-
-		} else {
-
-			model.addAttribute("msg", "로그인 실패");
+		if (result > 0) {	
+			
+			return "redirect:home.do";	
+		}else {	
+			
 			return "common/errorPage";
 		}
 
@@ -249,16 +233,19 @@ public class SellerController {
 			model.addAttribute("msg", "비밀번호가 틀립니다.");
 			return "common/errorPage";
 		}
-
-	}
-
-	// 정보수정
-	@RequestMapping("sUpdate.do")
-	public String updateSeller(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) {
-
+	  
+	  
+	  
+	  
+	  // 정보수정
+	  @RequestMapping("sUpdate.do")
+	  public String updateSeller(Seller s, Model model, @RequestParam("post") String post,
+									  				    @RequestParam("sAddress1") String sAddress1,
+													    @RequestParam("sAddress2") String sAddress2,
+													    @RequestParam("sbPost") String sbPost,
+													    @RequestParam("sbAddress1") String sbAddress1,
+													    @RequestParam("sbAddress2") String sbAddress2){
+		 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
 		 */
@@ -411,7 +398,6 @@ public class SellerController {
 				} else if (fileLevelCheck == 2) {
 					pa.setPaFileLevel(3);
 				}
-				paList.add(pa);
 			}
 		}
 
