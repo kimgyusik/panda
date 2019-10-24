@@ -12,6 +12,7 @@ public class Ggim {
 	private String category2;
 	private String storeName;
 	private Date addDate;
+	private String paChangeName;
 	
 	public Ggim() {
 		super();
@@ -19,7 +20,7 @@ public class Ggim {
 	}
 
 	public Ggim(int pId, int mNo, String pName, int price, String category, String category2, String storeName,
-			Date addDate) {
+			Date addDate, String paChangeName) {
 		super();
 		this.pId = pId;
 		this.mNo = mNo;
@@ -29,6 +30,7 @@ public class Ggim {
 		this.category2 = category2;
 		this.storeName = storeName;
 		this.addDate = addDate;
+		this.paChangeName = paChangeName;
 	}
 
 	public int getpId() {
@@ -95,12 +97,22 @@ public class Ggim {
 		this.addDate = addDate;
 	}
 
+	public String getPaChangeName() {
+		return paChangeName;
+	}
+
+	public void setPaChangeName(String paChangeName) {
+		this.paChangeName = paChangeName;
+	}
+
 	@Override
 	public String toString() {
 		return "Ggim [pId=" + pId + ", mNo=" + mNo + ", pName=" + pName + ", price=" + price + ", category=" + category
-				+ ", category2=" + category2 + ", storeName=" + storeName + ", addDate=" + addDate + "]";
+				+ ", category2=" + category2 + ", storeName=" + storeName + ", addDate=" + addDate + ", paChangeName="
+				+ paChangeName + "]";
 	}
 
+	
 	
 	
 	

@@ -11,85 +11,11 @@
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_responsive.css">
+<link rel="stylesheet" type="text/css" href="resources/style/myShoppingCustom.css">
 <style>
-.cart_section{
-height: auto;
-padding-top: 0;
 
-}
-.tablehead{
-height:40px;
-border: 1px solid black;
-}
-.tablebody{
-height:100px;
-border: 1px solid black;
-}
-.order_total_title{
-font-size: 13px;
-font-style: bold;
-color:black;
-}
 
-td{
-text-align: center;
-border: 2px solid #edeeef;
-border-left: 1px solid white;
-border-right: 1px solid white;
-font-size:12px;
-}
-.cart_title{
-font-size: 20px !important;
-padding:0 !important;
-}
-.cart_items{
-margin:0 !important;
 
-}
-.cartinfo{
-
-background-color: #edeeef;
-padding:20px;
-margin-top:30px;
-margin-bottom:30px;
-font-size:13px;
-}
-.clearfix{
-padding: 0px;
-}
-.removeCart{
-width:auto;
-padding: 1px;
-font-size:9px;
-cursor: pointer;
-background-color: #f7f7f7;
-border: 1px solid #edeeef;
-box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
-}
-.removeCart2{
-width:100px;
-font-size:12px;
-height:30px;
-margin-top:30px;
-background-color: #f7f7f7;
-border: 1px solid #edeeef;
-cursor: pointer;
-box-shadow: 0.5px 0.5px 0.5px 0.5px gray;
-}
-.cartTb{
-cellspacing="0" 
-}
-.shop{
-padding-bottom: 0px !important;
-padding-top:50px  !important;
-}
-.price2{
-color:#0e8ce4;
-display:inline-block; 
-width:50px; 
-text-align: right; 
-margin-right:5px;
-}
 </style>
 </head>
 <body>
@@ -176,7 +102,7 @@ margin-right:5px;
 																			<c:url value="상품조회url" var="product">
 																				<c:param name="pId" value="${ b.pId }"/>
 																			</c:url>
-																			<a href="${ product }"><img src="resources/images/best_${ b.pId }.png" width="70px;"></a>
+																			<a href="${ product }"><img src="resources/images/${b.paChangeName}" width="70px;"></a>
 																		</td>
 																		<td style="text-align:left;width:600px;">
 																			
@@ -200,8 +126,8 @@ margin-right:5px;
 																				<fmt:formatNumber type="number" maxFractionDigits="3" value="${p }" />
 																			</span><span>원</span>
 																			<br>
-																			<button class="removeCart" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
-																			<button class="removeCart" onclick="return removeCart(${b.oNo});">삭제</button>
+																			<button class="btnCart" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
+																			<button class="btnCart" onclick="return removeCart(${b.oNo});">삭제</button>
 																		</td>
 																	</tr>
 																</c:forEach>
@@ -220,10 +146,10 @@ margin-right:5px;
 													</div>
 												</div>
 												
-												<button class="removeCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
+												<button class="btnCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
 												
 												<div class="cart_buttons" style="margin-top:30px;">
-													<button type="button" class="button cart_button_checkout" onclick="return paymentPage();">결재하기</button>
+													<button type="button" class="cart_checkout" onclick="return paymentPage();">결재하기</button>
 												</div>
 											
 											</c:if>
