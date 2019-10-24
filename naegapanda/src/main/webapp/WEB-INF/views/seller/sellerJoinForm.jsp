@@ -118,15 +118,16 @@
 			      <option value="정보서비스">정보서비스</option>
 			    </select>
 			</div>
+			<div class="form-group col-md-6">
+				<input type="text" class="form-control" name="sbPhone" placeholder="전화번호 (사업장)" required>
+			</div>
 			<div class="form-group col-md-6" id="ad2">
 				<input type="text" name="sbPost" class="form-control postcodify_postcode5">
 				<button type="button" id="post_search_btn2" class="btn btn-light">주소찾기</button>				
 				<input type="text" class="form-control postcodify_address" name="sbAddress1" placeholder="도로명주소 (사업장)">
 				<input type="text" class="form-control postcodify_extra_info" name="sbAddress2" placeholder="상세주소 (사업장)">
 			</div>
-			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sbPhone" placeholder="전화번호 (사업장)" required>
-			</div>
+			
 		</div>
 
 		<hr>

@@ -80,14 +80,14 @@ public class SellerController {
 		if (!sbPost.equals("")) {
 			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
+		
+		System.out.println(s);
 
 		int result = sService.insertSeller(s);
 
-		int sNo = s.getsNo();
-
+		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName=" + s.getsName()
-				+ "&key=Y' target='_blenk'>이메일 인증 확인</a>";
+		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + s.getsNo() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>이메일 인증 확인</a>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
@@ -108,6 +108,21 @@ public class SellerController {
 			return "common/errorPage";
 		}
 	}
+	
+	
+	
+	@RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
+	public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
+
+		int result = sService.emailConfirm(sNo);
+		model.addAttribute("sName", sName);
+
+		return "/seller/emailConfirm";
+	}
+	
+	
+	
+	
 
 	// 로그인
 	@RequestMapping(value = "sLogin.do", method = RequestMethod.POST)
@@ -427,14 +442,7 @@ public class SellerController {
 
 	}
 
-	@RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
-	public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
-
-		int result = sService.emailConfirm(sNo);
-		model.addAttribute("sName", sName);
-
-		return "/seller/emailConfirm";
-	}
+	
 	
 	
 }
