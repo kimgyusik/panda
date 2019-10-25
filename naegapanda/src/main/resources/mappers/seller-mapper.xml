@@ -91,5 +91,11 @@
 		from seller
 		where s_id=#{sId} and s_pwd=#{sPwd}
 	</select>
+	
+	<update id="newPwd" parameterType="Seller">
+		update seller
+		set s_pwd=#{sPwd}
+		where s_id=#{sId} and s_email=#{sEmail}
+	</update>
 
 </mapper>

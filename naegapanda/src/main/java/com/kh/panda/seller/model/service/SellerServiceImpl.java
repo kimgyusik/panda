@@ -147,13 +147,19 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.updateConfirm(s);
 	}
 
+	@Override
+	public int newPaasword(Seller s) {
+		return sDao.newPassword(s);
+		
+	}
+
 	
 		
 		
 		
 		
 		
-	}
+	
 
 	
 

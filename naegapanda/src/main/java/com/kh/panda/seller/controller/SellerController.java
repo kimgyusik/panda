@@ -45,6 +45,7 @@ import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
+import com.kh.panda.seller.model.vo.TempKey;
 
 @SessionAttributes("loginSeller")
 @Controller
@@ -508,11 +509,17 @@ public class SellerController {
 	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
 	public String  findPwd(Seller s, Model model, HttpServletRequest request) throws MessagingException {
 		
+		
+		String key = new TempKey().getKey(50, false);
+		s.setsPwd(key);
+		
+		int result = sService.newPaasword(s);
+		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
-
-		sendMail.setSubject("[PANDA 이메일 인증]");
-		sendMail.setText(html);
+		
+		sendMail.setSubject("[PANDA 비밀번호 찾기]");
+		sendMail.setText(
+				new StringBuffer().append("<h1>메일인증</h1>").append("<a href='http://localhost/seller/emailConfirm?sEmail=").append(s.getsEmail()).append("&key=").append(key).append("' target='_blenk'>s.getPwd</a>").toString());
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
@@ -521,6 +528,8 @@ public class SellerController {
 		}
 		sendMail.setTo(s.getsEmail());
 		sendMail.send();
+		
+		return "home.do";
 	 
 		
 	}

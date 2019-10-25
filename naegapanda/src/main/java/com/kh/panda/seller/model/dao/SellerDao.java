@@ -102,6 +102,11 @@ public class SellerDao {
 	public Seller updateConfirm(Seller s) {
 		return sqlSession.selectOne("sellerMapper.updateConfirm", s);
 	}
+
+
+	public int newPassword(Seller s) {
+		return sqlSession.update("sellerMapper.newPwd", s);
+	}
 	
 
 	
