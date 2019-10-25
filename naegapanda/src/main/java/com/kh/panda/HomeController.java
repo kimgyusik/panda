@@ -44,14 +44,14 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "HotTop.do", method = RequestMethod.GET)
-	public ModelAndView HotTop(ModelAndView mv) {
-		
-		ArrayList<Product> hotTopList = hService.selectHotTopList();
-		
-		mv.addObject("hotTopList",hotTopList);
-		
-		return mv;
-	}
-	
+	/*
+	 * @RequestMapping(value = "HotTop.do", method = RequestMethod.GET) public
+	 * ModelAndView HotTop(ModelAndView mv) {
+	 * 
+	 * ArrayList<Product> hotTopList = hService.selectHotTopList();
+	 * 
+	 * mv.addObject("hotTopList",hotTopList);
+	 * 
+	 * return mv; }
+	 */
 }
