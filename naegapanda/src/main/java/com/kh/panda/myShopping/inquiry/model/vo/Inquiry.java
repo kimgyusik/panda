@@ -18,6 +18,7 @@ public class Inquiry {
 	private String pName;
 	private int sNo;
 	private String openYn;
+	private String paChangeName;
 	
 	public Inquiry() {
 		super();
@@ -25,7 +26,8 @@ public class Inquiry {
 	}
 
 	public Inquiry(int iId, String iTitle, String iContents, Date iDate, int mNo, String mId, String iAnswer,
-			Date iaDate, String iState, String iDel, int pId, String pName, int sNo, String openYn) {
+			Date iaDate, String iState, String iDel, int pId, String pName, int sNo, String openYn,
+			String paChangeName) {
 		super();
 		this.iId = iId;
 		this.iTitle = iTitle;
@@ -41,6 +43,7 @@ public class Inquiry {
 		this.pName = pName;
 		this.sNo = sNo;
 		this.openYn = openYn;
+		this.paChangeName = paChangeName;
 	}
 
 	public int getiId() {
@@ -155,14 +158,22 @@ public class Inquiry {
 		this.openYn = openYn;
 	}
 
+	public String getPaChangeName() {
+		return paChangeName;
+	}
+
+	public void setPaChangeName(String paChangeName) {
+		this.paChangeName = paChangeName;
+	}
+
 	@Override
 	public String toString() {
 		return "Inquiry [iId=" + iId + ", iTitle=" + iTitle + ", iContents=" + iContents + ", iDate=" + iDate + ", mNo="
 				+ mNo + ", mId=" + mId + ", iAnswer=" + iAnswer + ", iaDate=" + iaDate + ", iState=" + iState
-				+ ", iDel=" + iDel + ", pId=" + pId + ", pName=" + pName + ", sNo=" + sNo + ", openYn=" + openYn + "]";
+				+ ", iDel=" + iDel + ", pId=" + pId + ", pName=" + pName + ", sNo=" + sNo + ", openYn=" + openYn
+				+ ", paChangeName=" + paChangeName + "]";
 	}
 
-	
 	
 	
 	

@@ -64,12 +64,12 @@
 											 
 										 	<table>
 										 		<c:forEach items="${ list }" var="g">
-											 		<tr id="${g.category2 }" class="prodList" height="200px;">
+											 		<tr id="${g.category2 }" class="contentsList" height="200px;">
 											 			<c:url value="상품조회url" var="product">
 															<c:param name="pId" value="${g.pId }"/>
 														</c:url>		
 											 			<td width="400px;">
-											 				<a href="${ product }"><img src="resources/images/${g.paChangeName }" style="max-height:180px; width:auto; max-width:330px;" ></a>
+											 				<a href="${ product }"><img class="ggimImg" src="resources/images/${g.paChangeName }" ></a>
 											 			</td>
 											 			<td width="600px;" style="text-align: left;">
 											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd" /></span><br><br>
@@ -83,7 +83,7 @@
 										 		</c:forEach>
 										 	</table>
 						
-										  	<div id="${g.category2 }" class="prodList" >${g.price}</div>
+										  	<div id="${g.category2 }" class="contentsList" >${g.price}</div>
 										    
 										</div>
 
@@ -114,11 +114,11 @@
 			
 			var tabId = $(this).attr('id');
 			
-			var list = $('.prodList');
+			var list = $('.contentsList');
 			
 			if(tabId == "displayAll"){ // 전체 상품 출력
 				
-				$('.prodList').css("display","");
+				$('.contentsList').css("display","");
 			
 			}else{ // 선택된 탭에 해당하는 상품만 출력
 				

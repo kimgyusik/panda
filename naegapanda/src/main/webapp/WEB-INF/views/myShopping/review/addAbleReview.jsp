@@ -57,7 +57,7 @@
 										 		<c:if test="${!empty list}">
 											 		<c:forEach items="${ list }" var="r">	
 											 				
-														 		<tr class="prodList" height="180px;">
+														 		<tr class="contentsList" height="180px;">
 														 		
 														 			<c:url value="상품조회url" var="product">
 																		<c:param name="pId" value="${r.pId }"/>

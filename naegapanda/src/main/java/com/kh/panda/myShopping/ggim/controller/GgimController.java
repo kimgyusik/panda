@@ -48,7 +48,7 @@ public class GgimController {
 		//sdf.format(date);
 			
 		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "소분류11", "대분류1", "이지몰", date, "blog_5.jpg"));
-		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22222222", "대분류22", "슈퍼몰", date, "blog_2.jpg"));
+		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22222222", "대분류22", "슈퍼몰", date, "best_6.png"));
 		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류3333333", "대분류333", "또와", date, "blog_4.jpg"));
 		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류444", "대분류22", "이마트", date, "blog_9.jpg"));
 

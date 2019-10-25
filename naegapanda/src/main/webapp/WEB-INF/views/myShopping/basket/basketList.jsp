@@ -102,12 +102,12 @@
 																			<c:url value="상품조회url" var="product">
 																				<c:param name="pId" value="${ b.pId }"/>
 																			</c:url>
-																			<a href="${ product }"><img src="resources/images/${b.paChangeName}" width="70px;"></a>
+																			<a href="${ product }"><img class="basketImg" src="resources/images/${b.paChangeName}" ></a>
 																		</td>
-																		<td style="text-align:left;width:600px;">
+																		<td style="text-align:left;width:600px; ">
 																			
 																			[ ${b.category2} > ${b.category} ]<br>
-																			<a href="${ product }">${b.pName} :: ${b.oName}</a>	
+																			<a href="${ product }" style="font-size:13px;">${b.pName} :: ${b.oName}</a>	
 																		</td>
 																		<td>
 																			<input class="amount" type="number" value="${b.amount }" min="1" style="width:50px; text-align:center; margin:auto;">
