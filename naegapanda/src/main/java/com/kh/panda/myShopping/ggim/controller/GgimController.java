@@ -47,10 +47,10 @@ public class GgimController {
 		Date date = new Date();
 		//sdf.format(date);
 			
-		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "소분류11", "대분류1", "이지몰", date));
-		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22222222", "대분류22", "슈퍼몰", date));
-		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류3333333", "대분류333", "또와", date));
-		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류444", "대분류22", "이마트", date));
+		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "소분류11", "대분류1", "이지몰", date, "blog_5.jpg"));
+		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22222222", "대분류22", "슈퍼몰", date, "blog_2.jpg"));
+		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류3333333", "대분류333", "또와", date, "blog_4.jpg"));
+		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류444", "대분류22", "이마트", date, "blog_9.jpg"));
 
 		
 		ArrayList<String> category = new ArrayList<>();
@@ -68,7 +68,7 @@ public class GgimController {
             }
         }
 		
-		// 이미지 가져와야함
+		// 만약 조인 문제로 이미지 못 가져오면 따로 서비스 만들어야함
 		
 		mv.addObject("category", category);
 		mv.addObject("list", list);
@@ -136,7 +136,7 @@ public class GgimController {
 	public void currentGgim(HttpServletResponse response) throws JsonIOException, IOException {
 		
 		int count = 22;
-		
+ 
 		//int count = ggService.getListCount(getmNo(session));
 		
 		response.setContentType("application/json; charset=utf-8");

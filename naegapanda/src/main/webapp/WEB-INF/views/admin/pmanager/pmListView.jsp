@@ -54,71 +54,54 @@
 	
 	<div class="bs-example">
 		<table class="table table-hover" align="center" cellspacing="0" >
-			<h3 style="font-weight:bold;">PANDA 회원서비스문의</h3><br>
+			<h3 style="font-weight:bold;">판매품 관리</h3><br>
 				<thead align="center">
 					<tr>
 						<th>No.</th>
-						<th width="100"></th>
-						<th width="300">제목</th>
-						<th width="100">작성자</th>
-						<th>날짜</th>
-						<th>조회수</th>
+						<th width="100">Cat.</th>
+						<th width="100">Cat2.</th>
+						<th width="300">상품명</th>
+						<th width="100">판매자</th>
+						<th>신고횟수</th>
 					</tr>
 				</thead>
 					<tbody>
 								
-						<c:forEach items="${ qlist }" var="q">
+						<c:forEach items="${ pmlist }" var="pm">
 									
 										<tr>
-											<td align="center">${ q.uqId }</td>
-											<td style="font-size:11px;" align="center">[${ q.uqCategory }]</td>
+											<td align="center">${ pm.pId }</td>
+											<td style="font-size:11px;" align="center">[${ pm.cName2 }]</td>
+											<td style="font-size:11px;" align="center">[${ pm.cName }]</td>
 											<td align="center">
-												<c:if test="${ empty loginUser && empty loginSeller }">
-														${ q.uqTitle }
-												</c:if>
-												<c:if test="${ !empty loginUser || !empty loginSeller }">
-														<c:url value="qdetail.do" var="qdetail">
-															<c:param name="uqId" value="${ q.uqId }"/>
-														</c:url>
-														<a href="${ qdetail }">${ q.uqTitle }</a>
+													<c:url value="pmdetail.do" var="pmdetail">
+														<c:param name="pId" value="${ pm.pId }"/>
+													</c:url>
+													<a href="${ pmdetail }">${ pm.pName }</a>
 												
-												</c:if>
 											</td>
 											<td align="center">
-												${ q.mName }
+												${ pm.sName }
 											</td>
-											<td align="center">${ q.uqModifyDate }</td>
-											<td align="center">${ q.uqCount }</td>
-											
+											<td align="center">${ pm.pViolate }</td>
+					
 										</tr>
-										
-										<c:forEach items="${ alist }" var="a">
-											<c:if test="${ q.uqId eq a.qId }">
-											<tr align="center" style="color:red;">
-												<td></td>
-												<td></td>
-												<td>&nbsp;&nbsp;&nbsp;&nbsp;re: ${ a.aTitle }</td>
-												<td>${ a.aWriter }</td>
-												<td></td>
-												<td></td>
-											<tr>	
-											</c:if>
-										</c:forEach>
-										
+							
 									</c:forEach>
 									
 					</tbody>					
 				</table>
 			</div>
+		
 
-		<div align="center">
+		<div class="col-lg-12" align="center">
 					
 										<!-- [이전] -->	
 										<c:if test="${ pi.currentPage eq 1 }">
 											[이전] 
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="qlist.do" var="before">
+											<c:url value="pmlist.do" var="before">
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
@@ -130,7 +113,7 @@
 												<font  size="4">[${ p }]</font>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="qlist.do" var="page">
+												<c:url value="pmlist.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
 												</c:url>
 												<a href="${ page }">${ p }</a>
@@ -142,27 +125,15 @@
 											 [다음]
 										</c:if>
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="qlist.do" var="next">
+											<c:url value="pmlist.do" var="next">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
-									</div>
+								</div>
 		
-		<div class="col-lg-11" align="right">
-			<c:if test="${ !empty sessionScope.loginUser}">
-				<c:if test="${ sessionScope.loginUser.name ne '관리자' }">
-				<button onclick="location.href='qinsertView.do';" class="btn">글쓰기</button>
-				</c:if>
-			</c:if>
-		</div>
 		
-	</div>
 	
-
-
-
-
 <c:import url="../../common/adminFooter.jsp"/> 
 <c:import url="../../common/footer.jsp"/>
 

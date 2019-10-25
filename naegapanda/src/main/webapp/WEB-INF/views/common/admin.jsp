@@ -67,7 +67,7 @@
 								<li><a href="qlist.do">서비스문의</a></li>
 								<li><a href="sqlist.do">판매자문의</a></li>
 								<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
-									<li><a href="#">판매관리</a></li>
+									<li><a href="categoryView.do">판매관리</a></li>
 									<li><a href="violateView.do">신고관리</a></li>
 									<li><a href="sViolateList.do">판매자신고관리</a></li>
 									<li><a href="vmessage.do">신고메세지</a></li>

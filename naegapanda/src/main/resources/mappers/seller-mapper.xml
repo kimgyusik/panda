@@ -19,7 +19,7 @@
 		<result property="sbAddress" column="s_baddress"/>
 		<result property="sbPhone" column="s_bphone"/>
 		<result property="sOk" column="s_ok"/>
-		<result property="emailKey" column="email_key"/>
+		<result property="emailKey" column="s_email_key"/>
 		<result property="sStatus" column="s_status"/>
 		<result property="sViolate" column="s_violate"/>
 	</resultMap>
@@ -34,7 +34,7 @@
 	<!-- 이메일인증 -->
 	<update id="createAuthKey">
 		update seller
-		set emailKey = #{email_key} 
+		set s_emailKey = #{email_key} 
 		where sEmail = #{sEmail}
 	</update>
 
@@ -42,7 +42,7 @@
 	<select id="loginSeller" parameterType="Seller" resultMap="sellerResultSet">
 		select *
 		from seller
-		where s_id=#{sId} and s_status='Y'
+		where s_id=#{sId} and s_status='Y' and s_email_key='Y'
 	</select>
 	
 	<!-- 회원가입시 아이디 중복여부 -->
@@ -79,10 +79,10 @@
 	</update>
 	
 	<!-- 이메일 확인 -->
-	<update id="emailConfirm" parameterType="_int">
+	<update id="emailConfirm" parameterType="Seller">
 		update seller
-		set email_key = 'Y'
-		where s_no=#{sNo}
+		set s_email_key = 'Y'
+		where s_Id=#{sId}
 	</update>
 	
 	<!-- 정보바꾸기전 확인 -->

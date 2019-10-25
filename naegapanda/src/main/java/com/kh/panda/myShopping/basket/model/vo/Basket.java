@@ -13,6 +13,7 @@ public class Basket {
 	private String category2;
 	private String category;
 	private String storeName;
+	private String paChangeName;
 	
 	public Basket() {
 		super();
@@ -20,7 +21,7 @@ public class Basket {
 	}
 
 	public Basket(int pId, int oNo, int mNo, int amount, int oAmount, String pName, String oName, int price,
-			String category2, String category, String storeName) {
+			String category2, String category, String storeName, String paChangeName) {
 		super();
 		this.pId = pId;
 		this.oNo = oNo;
@@ -33,6 +34,7 @@ public class Basket {
 		this.category2 = category2;
 		this.category = category;
 		this.storeName = storeName;
+		this.paChangeName = paChangeName;
 	}
 
 	public int getpId() {
@@ -123,12 +125,22 @@ public class Basket {
 		this.storeName = storeName;
 	}
 
+	public String getPaChangeName() {
+		return paChangeName;
+	}
+
+	public void setPaChangeName(String paChangeName) {
+		this.paChangeName = paChangeName;
+	}
+
 	@Override
 	public String toString() {
 		return "Basket [pId=" + pId + ", oNo=" + oNo + ", mNo=" + mNo + ", amount=" + amount + ", oAmount=" + oAmount
 				+ ", pName=" + pName + ", oName=" + oName + ", price=" + price + ", category2=" + category2
-				+ ", category=" + category + ", storeName=" + storeName + "]";
+				+ ", category=" + category + ", storeName=" + storeName + ", paChangeName=" + paChangeName + "]";
 	}
+
+	
 
 	
 	

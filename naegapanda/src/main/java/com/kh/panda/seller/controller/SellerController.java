@@ -15,6 +15,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 import com.kh.panda.product.model.vo.Category;
@@ -57,6 +61,29 @@ public class SellerController {
 	// 가입화면
 	@RequestMapping("sJoin.do")
 	public String InsertSeller() {
+		
+        Document doc = null;
+        
+     String S_BNUM = "1108134859"; //2208110886
+     
+      try {
+        doc = Jsoup.connect("https://www.pps.go.kr/gpass/gpassCompany/selectCompanyInfo.do?bizNo="+S_BNUM).get();
+          System.out.println("회사명(한글)::"+doc.getElementById("corpNm").val());
+          System.out.println("회사명(한글)::"+doc.getElementById("suprAddr").val());
+     } catch (IOException e) {
+        e.printStackTrace();
+     }
+         
+//        <input id="corpNm" name="corpNm" type="hidden" value="주식회사 아프리카티비"/>
+//        <input id="engCorpNm" name="engCorpNm" type="hidden" value="AfreecaTV Co,.Ltd"/>
+//        <input id="estblshDt" name="estblshDt" type="hidden" value="1996-04-22"/>
+//        <input id="ordnrytmLbrerNum" name="ordnrytmLbrerNum" type="hidden" value="370"/>
+//        <input id="suprAddr" name="suprAddr" type="hidden" value="경기도 성남시 분당구 판교로228번길"/>
+//        <input id="suprDtlAddr" name="suprDtlAddr" type="hidden" value="15, 2동 2층(삼평동, 판교세븐밴처밸리 1단지)"/>
+//        <input id="hmpg" name="hmpg" type="hidden" value="www.afreecatv.com"/>
+//        <input id="ceoNm" name="ceoNm" type="hidden" value="서수길"/>
+//        <input id="ceoEmail" name="ceoEmail" type="hidden" value="zenith@afreecatv.com"/>
+//        <input id="ceoMtelNo" name="ceoMtelNo" type="hidden" value="010-7181-0524"/>
 
 		return "seller/sellerJoinForm";
 
@@ -65,9 +92,7 @@ public class SellerController {
 	// 가입하기
 	@RequestMapping("sinsert.do")
 	public String insertMember(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) throws MessagingException {
+			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2) throws MessagingException {
 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
@@ -76,18 +101,13 @@ public class SellerController {
 		if (!post.equals("")) {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
 		}
-
-		if (!sbPost.equals("")) {
-			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
-		}
+	 		
 
 		int result = sService.insertSeller(s);
 
-		int sNo = s.getsNo();
-
+		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sNo=" + sNo + "&sName=" + s.getsName()
-				+ "&key=Y' target='_blenk'>이메일 인증 확인</a>";
+		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4>아래 <label style='color:#0e8ce4'>'메일인증'</label>을 눌러 회원가입을 완료해주세요.</h4><button onclick=location.href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</button>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
@@ -108,6 +128,21 @@ public class SellerController {
 			return "common/errorPage";
 		}
 	}
+	
+	
+	
+	@RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
+	public String emailConfirm(String sId, String sName, Model model) throws Exception { // 이메일인증
+
+		int result = sService.emailConfirm(sId);
+		model.addAttribute("sName", sName);
+
+		return "/seller/emailConfirm";
+	}
+	
+	
+	
+	
 
 	// 로그인
 	@RequestMapping(value = "sLogin.do", method = RequestMethod.POST)
@@ -119,7 +154,7 @@ public class SellerController {
 		 * if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
 		 * loginSeller.getsPwd())) {
 		 */
-
+		
 		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
 
 			model.addAttribute("loginSeller", loginSeller);
@@ -155,12 +190,12 @@ public class SellerController {
 			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
 			HttpSession session, ModelAndView mv) {
 		int listCount = sService.getListCount(((Seller) session.getAttribute("loginSeller")).getsNo());
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		System.out.println(pi);
 		ArrayList<ProductOption> list = sService.selectList(pi,
 				((Seller) session.getAttribute("loginSeller")).getsNo());
-		mv.addObject("list",list).addObject(pi).setViewName("seller/product/sellerProductForm");
+		mv.addObject("list", list).addObject("pi",pi).setViewName("seller/product/sellerProductForm");
 
 		return mv;
 	}
@@ -218,146 +253,36 @@ public class SellerController {
 
 		} else { // 존재하는 아이디 없음 --> 사용 가능"ok"
 			return "ok";
-	
+		}
+	}
 
-	  // 로그인
-	  @RequestMapping(value="sLogin.do", method=RequestMethod.POST) 
-	  public String loginSeller(Seller s, Model model) {
+	// 셀러페이지(정보수정 전 재로그인)
+	@RequestMapping("sConfirm.do")
+	public String sellerConfirm() {
+		return "seller/infoConfirm";
+	}
 
-		  Seller loginSeller = sService.loginSeller(s);
-	  
-	  /*if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
-	  loginSeller.getsPwd())) {*/
-	
-	  if(loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
-	  
-	  model.addAttribute("loginSeller", loginSeller); return "redirect:sProduct.do";
-	  
-	  }else {
-	  
-	  model.addAttribute("msg", "로그인 실패"); return "common/errorPage"; }
-	  
-	  }
-	  
-	  // 로그인 페이지
-	  @RequestMapping("sellerLogin.do")
-	  public String sellerLogin() {
-		  
-		  return "seller/sellerLoginForm";
-	  }
-	  
-	  
-	  // 로그아웃
-	  @RequestMapping("sLogout.do")
-	  public String sellerLogout(SessionStatus status) {
-		  
-		  status.setComplete();
-		  
-		return "redirect:home.do";
-		  
-		  
-	  }
-	  
-	  // 셀러상품관리페이지
-	  @RequestMapping("sProduct.do")
-	  public ModelAndView sellerProduct(@RequestParam(value="currentPage", required=false, defaultValue = "1") int currentPage, HttpSession session, ModelAndView mv) {
-		 int listCount = sService.getListCount(((Seller)session.getAttribute("loginSeller")).getsNo());
-			
-		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-			
-		 ArrayList<ProductOption> list = sService.selectList(pi, ((Seller)session.getAttribute("loginSeller")).getsNo());
-		  
-		  
-		  
-		 mv.addObject(list).addObject(pi).setViewName("seller/product/sellerProductForm");
-		  
-		 return mv;
-	  }
-	 
-	  // 셀러페이지(정보수정 전 재로그인)
-	  @RequestMapping("sConfirm.do")
-	  public String sellerConfirm() {
-		  return "seller/infoConfirm";
-	  }
-	  
 	/*
 	 * // 셀러 정보 수정
 	 * 
 	 * @RequestMapping("sPage.do") public String sellerPage() { return
 	 * "seller/sellerInfo"; }
 	 */
-	  
-	  
-	  @RequestMapping(value="sPage.do", method=RequestMethod.POST) 
-	  public String updateConfirm(Seller s, Model model) {
-		  
-		  Seller reLoginSeller = sService.updateConfirm(s);
-		
-		  if(reLoginSeller != null && reLoginSeller.getsPwd().equals(s.getsPwd())) {
-			  
-			  model.addAttribute("reLoginSeller", reLoginSeller); return "seller/sellerInfo";
-			  
-			  }else {
-			  
-			  model.addAttribute("msg", "비밀번호가 틀립니다."); return "common/errorPage"; }
-			  
-			  }
 
-		 
-	  
-	  
-	  // 상품등록페이지
-	  @RequestMapping("pInsertView.do")
-	  public ModelAndView insertProduct(ModelAndView mv) {
-		  
-		  ArrayList<Category> cList = sService.selectcList();
-		  
-		  mv.addObject("cList", cList).setViewName("seller/product/insertProductForm");
-		  
-		  return mv;
-	  }
-	  
-	  // 주문들어온 상품페이지
-	  @RequestMapping("oderPage.do")
-	  public String oderProduct() {
-		  return "seller/product/oderProductForm";
-	  }
-	 
-	  // 방송관리
-	  @RequestMapping("streaming.do")
-	  public String sellerStreaming() {
-		  return "seller/sellerStreamingForm";
-	  }
-	  
-	  // 아이디/비번찾기 페이지
-	  @RequestMapping("findSeller.do")
-	  public String findSeller() {
-		  return "seller/find_sellerId_form";
-	  }
-	  
-	  // 아이디 찾기
-	  @RequestMapping(value="findsId.do", method = RequestMethod.POST)
-	  public String findsId(@RequestParam("sEmail") String sEmail, Model model) throws Exception{		
-		 model.addAttribute("sId", sService.findsId(sEmail));		
-		 return "seller/find_sId";  
-	  }
-	  
-	  
-	  @ResponseBody	// 자동으로 response에 담겨서 반환시켜줌(String 밖에 안됨)
-	  @RequestMapping("sIdCheck.do")
-		public String idCheck(String sId, HttpServletResponse response) {	
-			
-			int result = sService.sIdCheck(sId);
-			
-		  
-			
-			if(result > 0) {	// 존재하는 아이디 있음 --> 사용 불가능"fail"
-				return "fail";
-				
-			}else {	// 존재하는 아이디 없음 --> 사용 가능"ok" 
-				return "ok";
-			}
-			
+	@RequestMapping(value = "sPage.do", method = RequestMethod.POST)
+	public String updateConfirm(Seller s, Model model) {
+
+		Seller reLoginSeller = sService.updateConfirm(s);
+
+		if (reLoginSeller != null && reLoginSeller.getsPwd().equals(s.getsPwd())) {
+
+			model.addAttribute("reLoginSeller", reLoginSeller);
+			return "seller/sellerInfo";
+
+		} else {
+
+			model.addAttribute("msg", "비밀번호가 틀립니다.");
+			return "common/errorPage";
 		}
 
 	}
@@ -365,9 +290,7 @@ public class SellerController {
 	// 정보수정
 	@RequestMapping("sUpdate.do")
 	public String updateSeller(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) {
+			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2) {
 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
@@ -375,9 +298,6 @@ public class SellerController {
 
 		if (!post.equals("")) {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
-		}
-		if (!sbPost.equals("")) {
-			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
 
 		int result = sService.updateSeller(s);
@@ -393,6 +313,8 @@ public class SellerController {
 		}
 	}
 
+
+	// 탈퇴
 	@RequestMapping("confirm.do")
 	public String deleteSeller(Seller s, Model model) {
 
@@ -407,6 +329,7 @@ public class SellerController {
 
 	}
 
+	// 탈퇴페이지
 	@RequestMapping("sDelete.do")
 	public String deleteSellerPage() {
 		return "seller/sellerDeleteForm";
@@ -442,9 +365,10 @@ public class SellerController {
 
 		return renameFileName; // 수정명 반환
 	}
-
+	
+	
 	@RequestMapping(value = "pInsert.do", method = RequestMethod.POST)
-	public String insertProduct(Product p, HttpServletRequest request, ModelAndView mv, @RequestParam("oName") String[] oName,
+	public String insertProduct(Product p, HttpServletRequest request,Model model, ModelAndView mv, @RequestParam("oName") String[] oName,
 			 @RequestParam("oPrice") int[] oPrice, @RequestParam("oAmount") int[] oAmount,
 			@RequestParam(name = "uploadFile1", required = false) MultipartFile file1,
 			@RequestParam(name = "uploadFile2", required = false) MultipartFile file2,
@@ -469,57 +393,11 @@ public class SellerController {
 			po.setoPrice(oPrice[i]);
 			po.setoAmount(oAmount[i]);
 			poList.add(po);
-		  
-		  if( !post.equals("")) {
-				s.setsAddress(post+ ","+sAddress1+","+sAddress2);
-			}
-		  if(!sbPost.equals("")) {
-				s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
-			}
-		  	
-			int result = sService.updateSeller(s);
-			
-			System.out.println(s);
-			
-			if(result > 0) {
-				model.addAttribute("loginSeller", s);
-				return "redirect:sProduct.do";
-			}else {
-				model.addAttribute("msg", "회원 정보 수정 실패!!");
-				return "common/errorPage";
-			}
-	  }
-	  
-	  // 탈퇴
-	  @RequestMapping("confirm.do")
-	  public String deleteSeller(Seller s, Model model) {
-		  
-		  int result = sService.deleteSeller(s);
-			  
-		  if(result > 0) {
-			return "redirect:sLogout.do";	    
-		  }else {
-			  model.addAttribute("msg", "회원 탈퇴 실패");
-			  return "common/errorPage";
-		  }
-		  
-	  }
-	  
-	  // 탈퇴페이지
-	  @RequestMapping("sDelete.do")
-	  public String deleteSellerPage() {
-		  return "seller/sellerDeleteForm";
-	  }
-	  
-	  public String saveFile(MultipartFile file, HttpServletRequest request) {
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			//resources 까지의 파일 위치를 나타냄
-			String savePath = root + "\\bupload";
-			// 그 뒤에 저장 경로
-			
 		}
-		
-		if (!file1.getOriginalFilename().equals("")) {
+			
+		if(!file1.getOriginalFilename().equals(""))
+	
+		{
 			// 서버에 파일 등록 ( 폴더에 저장 )
 			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
 			String renameFileName = saveFile(file1, request);
@@ -532,8 +410,8 @@ public class SellerController {
 				pa.setFilePath(savePath);
 				paList.add(pa);
 			}
-		}
-		if (!file2.getOriginalFilename().equals("")) {
+		}if(!file2.getOriginalFilename().equals(""))
+		{
 			// 서버에 파일 등록 ( 폴더에 저장 )
 			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
 			String renameFileName = saveFile(file2, request);
@@ -547,8 +425,8 @@ public class SellerController {
 				fileLevelCheck = 2;
 				paList.add(pa);
 			}
-		}
-		if (!file3.getOriginalFilename().equals("")) {
+		}if(!file3.getOriginalFilename().equals(""))
+		{
 			// 서버에 파일 등록 ( 폴더에 저장 )
 			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
 			String renameFileName = saveFile(file3, request);
@@ -558,58 +436,71 @@ public class SellerController {
 				pa.setPaOriginName(file3.getOriginalFilename());
 				pa.setPaChangeName(renameFileName);
 				pa.setFilePath(savePath);
-				if(fileLevelCheck == 1) {
+				if (fileLevelCheck == 1) {
 					pa.setPaFileLevel(2);
-				} else if(fileLevelCheck == 2) {
+				} else if (fileLevelCheck == 2) {
 					pa.setPaFileLevel(3);
 				}
 				paList.add(pa);
 			}
 		}
-		
-		
 
 		int result = sService.insertProduct(p, paList, poList);
 
-//			if(result > 0) {
-//				return "redirect:sProduct.do";
-//			} else {
-//				model.addAttribute("msg", "등록에 실패했습니다");
-//				return "common/errorPage";
-//			}
-
-		return "redirect:sProduct.do";
-
-	}
-
-	@RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
-	public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
-
-		int result = sService.emailConfirm(sNo);
-		model.addAttribute("sName", sName);
-
-		return "/seller/emailConfirm";
-	}
-			
+		if(result > 0) {
 			return "redirect:sProduct.do";
-			
+		} else {
+			model.addAttribute("msg", "등록에 실패했습니다");
+			return "common/errorPage";
 		}
-	 
-	  
 
 
-	  
-	  // 이메일 확인
-	  @RequestMapping(value = "/emailConfirm.do", method = RequestMethod.GET)
-	  public String emailConfirm(int sNo, String sName, Model model) throws Exception { // 이메일인증
-		  
-		  int result = sService.emailConfirm(sNo);
-		  model.addAttribute("sName", sName);
+	}
+	
+	
+	
+	
+	@RequestMapping("storeName.do")
+	   public void getReplyList(String S_BNUM, HttpServletResponse response) throws JsonIOException, IOException {
+	      
+	     
+	         Document doc = null;
+	      
+	     
+	      
+	       try {
+	         doc = Jsoup.connect("https://www.pps.go.kr/gpass/gpassCompany/selectCompanyInfo.do?bizNo="+S_BNUM).get();
+	           System.out.println("회사명(한글)::"+doc.getElementById("corpNm").val());
+	           System.out.println("회사명(한글)::"+doc.getElementById("suprAddr").val());
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	          Seller seller = new Seller();
+		seller.setStoreName(doc.getElementById("corpNm").val());
+		seller.setsCeoName(doc.getElementById("ceoNm").val());
+		seller.setSbPhone(doc.getElementById("ceoMtelNo").val());
+		seller.setSbAddress(doc.getElementById("suprAddr").val());
 
-	  	return "/seller/emailConfirm";
-	  }
-	  
-	  
-	  
+//	         <input id="corpNm" name="corpNm" type="hidden" value="주식회사 아프리카티비"/>
+//	         <input id="engCorpNm" name="engCorpNm" type="hidden" value="AfreecaTV Co,.Ltd"/>
+//	         <input id="estblshDt" name="estblshDt" type="hidden" value="1996-04-22"/>
+//	         <input id="ordnrytmLbrerNum" name="ordnrytmLbrerNum" type="hidden" value="370"/>
+//	         <input id="suprAddr" name="suprAddr" type="hidden" value="경기도 성남시 분당구 판교로228번길"/>
+//	         <input id="suprDtlAddr" name="suprDtlAddr" type="hidden" value="15, 2동 2층(삼평동, 판교세븐밴처밸리 1단지)"/>
+//	         <input id="hmpg" name="hmpg" type="hidden" value="www.afreecatv.com"/>
+//	         <input id="ceoNm" name="ceoNm" type="hidden" value="서수길"/>
+//	         <input id="ceoEmail" name="ceoEmail" type="hidden" value="zenith@afreecatv.com"/>
+//	         <input id="ceoMtelNo" name="ceoMtelNo" type="hidden" value="010-7181-0524"/>
 
+	      
+	      response.setContentType("application/json; charset=utf-8");
+	      
+	      Gson gson = new Gson();
+	
+	      gson.toJson(seller, response.getWriter());
+	
+
+	}
+	
+	
 }

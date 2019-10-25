@@ -30,6 +30,7 @@
 		from ggim
 		join product using(p_id)
 		join category using(c_id)
+		join PRODUCT_ATTACHMENT using(p_id)
 		join seller using(s_no)
 		where m_no = #{mNo}
 		order by add_date desc

@@ -87,7 +87,7 @@
 					<input type="text" class="form-control postcodify_extra_info" name="sAddress2" placeholder="상세주소" >
 			</div>
 			<div class="form-group col-md-6" >
-				<input type="text" class="form-control" name="sbNum" placeholder="사업자번호" required>
+				<input type="text" class="form-control" name="sbNum" id="sbNum" placeholder="사업자번호" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" name="stNum" placeholder="전자통신등록번호" required>
@@ -99,10 +99,10 @@
 		 <h1>2.스토어정보</h1>
 		 <div class="form-row" >		
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="storeName" placeholder="상점명" required>
+				<input type="text" class="form-control" name="storeName" id="storeName" placeholder="사업장명" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sCeoName" placeholder="대표이름" required> 
+				<input type="text" class="form-control" name="sCeoName" id="ceoName" placeholder="대표이름" required> 
 			</div>
 			<div class="form-group col-md-6">
 				<select class="form-control" id="exampleFormControlSelect1" name="sector">
@@ -118,16 +118,18 @@
 			      <option value="정보서비스">정보서비스</option>
 			    </select>
 			</div>
-			<div class="form-group col-md-6" id="ad2">
-				<input type="text" name="sbPost" class="form-control postcodify_postcode5">
-				<button type="button" id="post_search_btn2" class="btn btn-light">주소찾기</button>				
-				<input type="text" class="form-control postcodify_address" name="sbAddress1" placeholder="도로명주소 (사업장)">
-				<input type="text" class="form-control postcodify_extra_info" name="sbAddress2" placeholder="상세주소 (사업장)">
-			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sbPhone" placeholder="전화번호 (사업장)" required>
+				<input type="text" class="form-control" name="sbPhone" id="sbPhone" placeholder="사업장전화번호" required>
 			</div>
+			<div class="form-group col-md-6" id="ad2">
+				<input type="text" class="form-control" name="sbAddress" id="sbPost" placeholder="사업장주소">
+			</div>
+			
+			
+			
 		</div>
+		
+		
 
 		<hr>
 		<br>
@@ -137,16 +139,18 @@
 		</div>
 	</form>
 	
+	<form name="frm1">
+<input name="wrkr_no" type="text" value="2208110886"/>
+<input type="button" value="팝업" onclick="onopen();"/>
+</form>
+	
 </div>
 
 	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 	<script> 
 			$("#post_search_btn1").postcodifyPopUp({container: $("#ad1") });
-			
-			$("#post_search_btn2").postcodifyPopUp({container: $("#ad2") }); 			
-			
-			
-			
+					
+
 			function validate(){
 				if($("#sIdDuplicateCheck").val() == 0){	
 				
@@ -217,6 +221,35 @@
 				});
 			});
 			
+			// 사업자번호부분
+			$('#sbNum').focusout(function() {
+				
+				var sbNum = $('#sbNum').val();
+	                  
+			$.ajax({
+		         url:"storeName.do",
+		         data: {S_BNUM:sbNum},
+		         dataType:"json",
+		         success:function(data){
+		               $('#storeName').val(data.storeName);
+		               $('#ceoName').val(data.sCeoName);
+		               $('#sbPhone').val(data.sbPhone);
+		               $('#sbPost').val(data.sbAddress);
+		         },
+		         error:function(){
+		            console.log("ajax 통신 실패");
+		         }
+		      });
+			});
+			
+			
+			// 통신판매
+			function onopen()
+			{
+			var url =
+			"http://www.ftc.go.kr/bizCommPop.do?wrkr_no="+frm1.wrkr_no.value;
+			window.open(url, "bizCommPop", "width=750, height=700;");
+			}
 			
 	</script>
 

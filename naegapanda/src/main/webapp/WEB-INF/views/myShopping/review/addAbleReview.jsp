@@ -33,61 +33,66 @@
 
 				<div class="col-lg-10" >
 				
-					<!-- 리뷰 섹션 -->
+					<!-- 작성 가능 리뷰 섹션 -->
 					<div class="cart_section">
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-10 offset-lg-1">
 									<div class="cart_container" style="width:120%;">
-										<div class="cart_title">내가 작성한 리뷰</div>
+										<div class="cart_title">작성 가능한 리뷰</div>
+										
+										<div class="cartinfo">
+											<ul>
+												<li>· 배송완료된 구매에 대해서만 리뷰 작성이 가능합니다.</li>
+												<li>· 작성하신 리뷰는 [내가 작성한 리뷰]메뉴에서 확인하실 수 있습니다</li>
+												<li>· 상품과 무관한 사진/동영상을 첨부한 리뷰는 통보없이 삭제 및 제재 대상이 될 수 있습니다.</li>
+											</ul>
+										</div>
 									
 									
-										<!-- 리뷰 리스트 -->
+										<!-- 작성 가능 리뷰 리스트 -->
 										<div style="margin-top:50px;">
 											 
 										 	<table>
-										 	
-										 		<c:forEach items="${ list }" var="r">
-										 			<c:forEach items="${ list2 }" var="p">
-										 				<c:if test="${r.payId eq p.payId }">
-										 				
-													 		<tr class="prodList" height="180px;">
-													 		
-													 			<c:url value="상품조회url" var="product">
-																	<c:param name="pId" value="${p.pId }"/>
-																</c:url>	
-																	
-													 			<td width="300px;">
-													 				<input type="hidden" class="rId" value="${r.rId}">
-													 				<a href="${ product }"><img src="resources/images/single_${r.rImage}.jpg" width="70px;"></a>
-													 				<br><br>
-													 				<span style="display: inline-block;font-size: 13px; height:30px;">
-													 					[${p.storeName }]
-													 					<br><a href="${ product }">${p.pName} :: ${p.oName }</a>
-													 				</span>
-													 			</td>
-													 			
-													 			<td width="600px;" style="text-align: left; ">
-													 				<span style="display: inline-block;font-size: 15px;">${r.rTitle } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-											 						<span style="color:gray;"><fmt:formatDate value="${r.rDate}" pattern="yyyy. MM. dd." /></span>
-											 						<br><br>
-											 						<span>&nbsp;&nbsp;${r.rContents }</span>
-													 			</td>
-													 			<td width="150px;" >
-													 				<img src="resources/images/eye.png" width="30px;"> ${r.rCount}
-													 				<br><br>
-													 				<img src="resources/images/hart.png" width="20px;"> ${r.rCommend }
-													 				<br><br>
-													 				<button  class="updateReview"  >수정하기</button>
-													 			</td>
-													 			<td style="vertical-align: top; padding:10px;">
-													 				<span class="removeReview" onclick="return removeReview(${r.rId});">X</span>
-													 			</td>
-											 				</tr>
-
-											 			</c:if>
-										 			</c:forEach>
-										 		</c:forEach>
+										 		<c:if test="${!empty list}">
+											 		<c:forEach items="${ list }" var="r">	
+											 				
+														 		<tr class="prodList" height="180px;">
+														 		
+														 			<c:url value="상품조회url" var="product">
+																		<c:param name="pId" value="${r.pId }"/>
+																	</c:url>	
+																		
+														 			<td width="300px;">
+														 				<input type="hidden" class="payId" value="${r.payId}">
+														 				<a href="${ product }"><img src="resources/images/${r.paChangeName}" style="max-height:180px; width:auto; max-width:200px;"></a>
+														 			</td>
+														 			
+														 			<td width="1000px;" style="text-align: left;">
+														 				<span style="color:gray;">구매일자: &nbsp; <fmt:formatDate value="${r.payDate}" pattern="yyyy. MM. dd" /></span><br><br>
+														 				
+														 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${r.pName} :: ${r.oName }</a></span><br>
+														 			
+														 				<span style="color:gray;">${r.storeName }</span>
+														 			</td>
+														 			
+														 			
+														 			<td width="250px;" >
+														 				<button  class="makeReview"  >리뷰 작성하기</button>
+														 			</td>
+														 		
+												 				</tr>
+	
+											 		</c:forEach>
+										 		</c:if>
+										 		
+										 		<c:if test="${empty list}">
+									 				<div style="text-align: center;">
+									 					<br>
+									 					<img src="resources/images/pandaImage.jpg" width="100px;">
+									 					<br>현재 작성 가능한 리뷰가 없습니다.
+									 				</div>
+									 			</c:if>
 										 		
 										 	</table>
 						
@@ -110,24 +115,24 @@
 			<div class="modal-content">
 			
 			<div class="modal-header">
-				<span style="color:white; "><b>리뷰 수정</b></span>
+				<span style="color:white; "><b>리뷰 등록</b></span>
 				<button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
 			</div>
 			
-			<form action="updateReview.re" method="post" encType="multipart/form-data">
+			<form action="addReview.re" method="post" encType="multipart/form-data">
 				<table>
 					<tr>
 						<td width="300px;" style="text-align: center; padding:0;">
-							<img id="titleImg" >
+							<img id="titleImg">
 						</td>
 						<td>
 							<div class="modal-body" style="padding-left:30px;">
-								<input type="hidden" id="rId" name="rId">
+								<input type="hidden" id="payId" name="payId"><br>
 								<label class="modalLabel">제목</label>
-								<br><input type="text" class="modal-title" id="title" name="rTitle" >
-								<br><br><label class="modalLabel">내용</label>
-								<br><textarea id="content" cols="35" name="rContents"></textarea>
-								<br><label id="contentLabel" ></label>
+								<input type="text" class="modal-title" id="title" name="rTitle" ><br><br>
+								<label class="modalLabel">내용</label><br>
+								<textarea id="content" cols="35" name="rContents"></textarea><br>
+								<label id="contentLabel" >0/500</label>
 							</div>
 						</td>
 					</tr>
@@ -137,7 +142,7 @@
 							<button id="btn-upload" type="button" class="btn btn-outline-info" data-dismiss="modal" style="margin-left:20px;"><b>사진 업로드</b></button></td>
 						<td>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-info" data-dismiss="modal"><b>수정하기</b></button>
+								<button id="submit" type="submit" class="btn btn-info" data-dismiss="modal"><b>작성완료</b></button>
 								<button type="button" class="btn btn-info" data-dismiss="modal"><b>취소</b></button>
 							</div>
 						</td>
@@ -157,31 +162,32 @@
 			
 			// 모달 종료 시 input-area 초기화
 			$("#myModal").on('hide.bs.modal', function(e){
+
+				$('#title').val('');
+				$('#content').val('');
 				$("#file").val("");
+				$("#titleImg").attr("src","");
 				e.stopImmediatePropagation();
+
 			});
 	
-			// 리뷰 수정 모달 호출
-			$('.updateReview').click(function(){
-				var title = $(this).parent().parent().children().eq(1).children().eq(0).text();
-				var contents = $(this).parent().parent().children().eq(1).children().eq(4).text();
-				var img = $(this).parent().parent().children().eq(0).find('img').attr('src');
+			// 리뷰 등록 모달 호출
+			$('.makeReview').click(function(){
 				var rId = $(this).parent().parent().children().eq(0).children().eq(0).val();
-				
-				$("#title").val(title);
-			    $("#content").text(contents);
-			    $("#titleImg").attr('src', img);
-			    $("#rId").val(rId);
-			    $('#contentLabel').html(contents.length+"/500");
-	
+				$("#payId").val(rId);
 				$("#myModal").modal('show');
 			});
 			
-			// 리뷰 수정 중 이미지 업로드에 필요
+			$('#submit').click(function (e) {
+				event.stopPropagation();
+				$('#submit').click();
+			});
+			
+			// 리뷰 등록 중 이미지 업로드에 필요
 			$('#btn-upload').click(function (e) {
 				event.stopPropagation();
 				$('#file').click();
-				});
+			});
 			
 			// 글자 수 제한
 		    $('#content').on('keyup', function() {
@@ -193,14 +199,6 @@
 	
 			
 		});
-	
-		// 리뷰 삭제 (단일)
-		function removeReview(rId){
-			if(confirm("삭제한 리뷰는 복구할 수 없습니다.\n정말 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteReview.re?rId='+rId;
-			}
-			return false;
-		}
 		
 		// 모달창 이미지 출력
 		function loadImg(value){
