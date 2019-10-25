@@ -28,23 +28,16 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<div class="logo"><a href="home.do">PANDA</a></div>
 						</div>
 						<div class="footer_title">Got Question? Call Us 24/7</div>
-						<div class="footer_phone">+38 068 005 3570</div>
+						<div class="footer_phone">010 2114 5520</div>
 						<div class="footer_contact_text">
-							<p>17 Princess Road, London</p>
-							<p>Grester London NW18JR, UK</p>
+							<p>서울특별시 강남구 테헤란로14길 6</p>
+							<p>남도빌딩 3F I강의실</p>
+							<p>책임자 : 최영근</p>
 						</div>
-						<div class="footer_social">
-							<ul>
-								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-								<li><a href="#"><i class="fab fa-google"></i></a></li>
-								<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-							</ul>
-						</div>
+						
 					</div>
 				</div>
 
@@ -52,27 +45,24 @@
 					<div class="footer_column">
 						<div class="footer_title">Find it Fast</div>
 						<ul class="footer_list">
-							<li><a href="#">Computers & Laptops</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Smartphones & Tablets</a></li>
-							<li><a href="#">TV & Audio</a></li>
-						</ul>
-						<div class="footer_subtitle">Gadgets</div>
-						<ul class="footer_list">
-							<li><a href="#">Car Electronics</a></li>
-						</ul>
+							<li><a href="#">농산물</a></li>
+							<li><a href="#">냉동/가공식품</a></li>
+							<li><a href="#">여성 의류</a></li>
+							<li><a href="#">남성 의류</a></li>
+							<li><a href="#">가구</a></li>
+							<li><a href="#">셀프 인테리어</a></li>
 					</div>
 				</div>
 
 				<div class="col-lg-2">
 					<div class="footer_column">
 						<ul class="footer_list footer_list_2">
-							<li><a href="#">Video Games & Consoles</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Computers & Laptops</a></li>
+							<li><a href="#">계절 가전</a></li>
+							<li><a href="#">주방 가전</a></li>
+							<li><a href="#">공연 티켓</a></li>
+							<li><a href="#">애완 용품</a></li>
+							<li><a href="#">메이크업</a></li>
+							<li><a href="#">다이어트</a></li>
 						</ul>
 					</div>
 				</div>
@@ -81,13 +71,11 @@
 					<div class="footer_column">
 						<div class="footer_title">Customer Care</div>
 						<ul class="footer_list">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Order Tracking</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Customer Services</a></li>
-							<li><a href="#">Returns / Exchange</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="#">Product Support</a></li>
+							<li><a href="nlist.do">판다 공지</a></li>
+							<li><a href="qlist.do">서비스 문의</a></li>
+							<li><a href="sqlist.do">판매자 문의</a></li>
+							<li><a href="ggimList.gg">찜 목록</a></li>
+							<li><a href="basketList.ba">장바구니</a></li>
 						</ul>
 					</div>
 				</div>

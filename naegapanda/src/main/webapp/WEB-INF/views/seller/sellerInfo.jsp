@@ -22,14 +22,12 @@
 				<tr>
 					<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" name="sName" readonly style="border:none"></td>
 				</tr>
-				<!-- <tr>
-					<td><label>비밀번호 :</label> <input type="password" name="sPwd"
-						id="sPwd"></td>
+				<tr>
+					<td><label>비밀번호 :</label> <input type="password" name="sPwd" id="sPwd" value="${ loginSeller.sPwd }"></td>
 				</tr>
 				<tr>
-					<td><label>비밀번호 확인:</label> <input type="password"
-name="sPwdConfirm" id="sPwdCheck"> <font name="check"size="2" color="red"></font></td>
-				</tr> -->
+					<td><label>비밀번호 확인:</label> <input type="password" name="sPwdConfirm" id="sPwdCheck" value="${ loginSeller.sPwd }"> <font name="check"size="2" color="red"></font></td>
+				</tr>
 				<tr>
 					<td>
 						<label>이메일:</label>${ loginSeller.sEmail }
@@ -117,34 +115,15 @@ name="sPwdConfirm" id="sPwdCheck"> <font name="check"size="2" color="red"></font
 						</tr>
 					</c:if>
 					<c:if test="${ !empty loginSeller.sbAddress }">
-						<c:forTokens items="${ loginSeller.sbAddress }" delims="," var="addr2" varStatus="status">		
-							
-							<c:if test="${ status.index eq 0 }">
-							
-								<tr>
-									<td>우편번호</td>
-									<td>
-										<div class="ad2">
-										<input type="text" name="sbPost" size="6" value="${ addr2 }" class="postcodify_postcode5">
-										<button type="button" id="post_search_btn2">검색</button>
-										</div>
-									</td>
-								</tr>
-							</c:if>
-							<c:if test="${ status.index eq 1 }">
-								<tr>
-									<td>도로명 주소</td>
-									<td><div class="ad2"><input type="text" name="sbAddress1" value="${ addr2 }" class="postcodify_address"></div></td>
-								</tr>
-							</c:if>
-							<c:if test="${ status.index eq 2 }">
-								<tr>
-									<td>상세주소</td>
-									<td><div class="ad2"><input type="text" name="sbAddress2" value="${ addr2 }"  class="postcodify_extra_info"></div></td>
-								</tr>
-							</c:if>
-						</c:forTokens>
-					</c:if>
+						<tr>
+							<td>사업장 주소 </td>
+								<td>
+									<div class="ad2">
+									<input type="text" name="sbAddress" value="${ loginSeller.sbAddress }">
+									</div>
+								</td>
+							</tr>
+						</c:if>
 			</table>
 			<br>
 			<button type="submit">수정하기</button>

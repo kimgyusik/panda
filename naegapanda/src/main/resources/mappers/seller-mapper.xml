@@ -42,7 +42,7 @@
 	<select id="loginSeller" parameterType="Seller" resultMap="sellerResultSet">
 		select *
 		from seller
-		where s_id=#{sId} and s_status='Y'
+		where s_id=#{sId} and s_status='Y' and s_email_key='Y'
 	</select>
 	
 	<!-- 회원가입시 아이디 중복여부 -->
@@ -62,7 +62,7 @@
 	<!-- 정보 수정 -->
 	<update id="updateSeller" parameterType="Seller">
 		update seller
-		set s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
+		set s_pwd=#{sPwd}, s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
 		where s_id=#{sId}
 	</update>
 	
@@ -79,10 +79,10 @@
 	</update>
 	
 	<!-- 이메일 확인 -->
-	<update id="emailConfirm" parameterType="_int">
+	<update id="emailConfirm" parameterType="Seller">
 		update seller
 		set s_email_key = 'Y'
-		where s_no=#{sNo}
+		where s_Id=#{sId}
 	</update>
 	
 	<!-- 정보바꾸기전 확인 -->
@@ -91,5 +91,11 @@
 		from seller
 		where s_id=#{sId} and s_pwd=#{sPwd}
 	</select>
+	
+	<update id="newPwd" parameterType="Seller">
+		update seller
+		set s_pwd=#{sPwd}
+		where s_id=#{sId} and s_email=#{sEmail}
+	</update>
 
 </mapper>

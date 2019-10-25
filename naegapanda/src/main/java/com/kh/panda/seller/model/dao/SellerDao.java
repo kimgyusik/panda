@@ -104,6 +104,18 @@ public class SellerDao {
 	}
 
 
+	public int newPassword(Seller s) {
+		return sqlSession.update("sellerMapper.newPwd", s);
+	}
+	
+
+	
+
+
+
+
+
+
 	
 	
 	

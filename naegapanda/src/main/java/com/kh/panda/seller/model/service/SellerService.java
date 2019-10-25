@@ -2,6 +2,8 @@ package com.kh.panda.seller.model.service;
 
 import java.util.ArrayList;
 
+import javax.mail.MessagingException;
+
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
@@ -44,6 +46,9 @@ public interface SellerService {
 
 	int insertProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
 
+	int newPaasword(Seller s); 
+
+	
 	
 	
 	

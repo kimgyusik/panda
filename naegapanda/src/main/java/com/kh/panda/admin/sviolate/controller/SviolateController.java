@@ -19,32 +19,32 @@ public class SviolateController {
 	@Autowired
 	private SviolateService svService;
 	
-	@RequestMapping("sViolateList.do")
+	@RequestMapping("sViolateAllList.do")
 	public ModelAndView selectSviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 	
-		int listCount = svService.getListCount();
+		int listCount = svService.getAllListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Sviolate> list = svService.selectList(pi);
+		ArrayList<Sviolate> list = svService.selectAllList(pi);
 		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/sViolateListView");
+		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/sViolateAllListView");
 		// 객체                                                                                         경로로반환한거당
 		return mv;
 		
 	}
 	
 	
-	@RequestMapping("pViolateList.do")
-	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+	@RequestMapping("sViolatePersonalList.do")
+	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo) {
 		
-		int listCount = svService.getSviolateListCount();
+		int listCount = svService.getPersonalListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Sviolate> list = svService.selectSviolateList(pi);
+		ArrayList<Sviolate> list = svService.selectPersonalList(pi, sNo);
 		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/pViolateListView");
+		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/sViolatePersonalListView");
 		// 객체                                                                                         경로로반환한거당
 		return mv;
 		

@@ -1,8 +1,10 @@
 package com.kh.panda.seller.model.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -144,6 +146,20 @@ public class SellerServiceImpl implements SellerService{
 	public Seller updateConfirm(Seller s) {
 		return sDao.updateConfirm(s);
 	}
+
+	@Override
+	public int newPaasword(Seller s) {
+		return sDao.newPassword(s);
+		
+	}
+
+	
+		
+		
+		
+		
+		
+	
 
 	
 
