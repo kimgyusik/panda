@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -51,6 +52,7 @@ public class SellerController {
 
 	@Inject
 	private JavaMailSender mailSender;
+	
 
 	@Autowired
 	private SellerService sService;
@@ -107,7 +109,7 @@ public class SellerController {
 
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4>아래 <label style='color:#0e8ce4'>'메일인증'</label>을 눌러 회원가입을 완료해주세요.</h4><br><button onclick=location.href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</button>";
+		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
@@ -502,5 +504,25 @@ public class SellerController {
 
 	}
 	
+	
+	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
+	public String  findPwd(Seller s, Model model, HttpServletRequest request) throws MessagingException {
+		
+		MailHandler sendMail = new MailHandler(mailSender);
+		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
+
+		sendMail.setSubject("[PANDA 이메일 인증]");
+		sendMail.setText(html);
+		try {
+			sendMail.setFrom("dkj01043@gmail.com", "관리자");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sendMail.setTo(s.getsEmail());
+		sendMail.send();
+	 
+		
+	}
 	
 }

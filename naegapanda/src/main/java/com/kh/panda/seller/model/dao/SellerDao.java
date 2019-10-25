@@ -102,6 +102,13 @@ public class SellerDao {
 	public Seller updateConfirm(Seller s) {
 		return sqlSession.selectOne("sellerMapper.updateConfirm", s);
 	}
+	
+
+	
+
+
+
+
 
 
 	
