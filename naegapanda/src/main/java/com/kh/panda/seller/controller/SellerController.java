@@ -510,7 +510,7 @@ public class SellerController {
 	public String  findPwd(Seller s, Model model, HttpServletRequest request) throws MessagingException {
 		
 		
-		String key = new TempKey().getKey(50, false);
+		String key = new TempKey().getKey(10, false);
 		s.setsPwd(key);
 		
 		int result = sService.newPaasword(s);
@@ -519,7 +519,7 @@ public class SellerController {
 		
 		sendMail.setSubject("[PANDA 비밀번호 찾기]");
 		sendMail.setText(
-				new StringBuffer().append("<h1>메일인증</h1>").append("<a href='http://localhost/seller/emailConfirm?sEmail=").append(s.getsEmail()).append("&key=").append(key).append("' target='_blenk'>s.getPwd</a>").toString());
+				new StringBuffer().append("<h1>메일인증</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
@@ -529,7 +529,7 @@ public class SellerController {
 		sendMail.setTo(s.getsEmail());
 		sendMail.send();
 		
-		return "home.do";
+		return "home";
 	 
 		
 	}
