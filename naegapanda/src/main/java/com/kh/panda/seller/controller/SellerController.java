@@ -107,7 +107,7 @@ public class SellerController {
 
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4>아래 <label style='color:#0e8ce4'>'메일인증'</label>을 눌러 회원가입을 완료해주세요.</h4><button onclick=location.href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</button>";
+		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4>아래 <label style='color:#0e8ce4'>'메일인증'</label>을 눌러 회원가입을 완료해주세요.</h4><br><button onclick=location.href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</button>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
