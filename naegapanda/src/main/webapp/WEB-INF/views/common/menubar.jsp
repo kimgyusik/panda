@@ -214,6 +214,7 @@
 						
 						<div class="main_nav_content d-flex flex-row">
 
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 							<!-- Categories Menu -->
 
 							<div class="cat_menu_container">
@@ -223,86 +224,206 @@
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
 									<li class="hassubs">
-										<a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
+										<a href="#">식품 <i class="fas fa-chevron-right ml-auto"></i></a>
 										<ul>
-											<li class="hassubs">
-												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">농산물<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">해산물<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">축산물<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">냉동/가공식품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">장/양념/조미료<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">김치/반창<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">면<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">생수/차/음료<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">제과/초콜릿<i class="fas fa-chevron-right"></i></a></li>
 										</ul>
 									</li>
-									<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+									
+									<li class="hassubs">
+										<a href="#">의류/잡화 <i class="fas fa-chevron-right ml-auto"></i></a>
+										<ul>
+											<li><a href="#">여성 의류<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">여성 신발<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">남성 의류<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">남성 신발<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">유아 의류<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">유아 신발<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">가방<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">지갑/벨트/시계<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">쥬얼리<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">패션 잡화<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									
+									<li class="hassubs">
+										<a href="#">가구/인테리어 <i class="fas fa-chevron-right ml-auto"></i></a>
+										<ul>
+											<li><a href="#">가구<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">수납/정리/침구<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">카페트/쿠션/거실화<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">커튼/블라인드<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">욕실 용품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">조명/스탠드<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">홈데코<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">원예/가드님<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">셀프 인테리어<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									
+									<li class="hassubs">
+										<a href="#">디지털/가전/컴퓨터 <i class="fas fa-chevron-right ml-auto"></i></a>
+										<ul>
+											<li><a href="#">TV<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">계절 가전<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">노트북<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">스마트 기기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">냉장고<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">카메라/주변기기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">세탁기/건조기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">데스크탑/PC부품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">음향가전<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">프린터/복합기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">주방 가전<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									
+									<li class="hassubs">
+										<a href="#">취미/반려동물 <i class="fas fa-chevron-right ml-auto"></i></a>
+										<ul>
+											<li><a href="#">스포츠<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">수집<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">도서<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">완구<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">예술<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">공연 티켓<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">애완 식품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">애완 용품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">애완 건강 관리<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">게임<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									
+									<li class="hassubs">
+										<a href="#">생활/건강/뷰티<i class="fas fa-chevron-right ml-auto"></i></a>
+										<ul>
+											<li><a href="#">스킨 케어<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">메이크업<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">헤어/바디<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">비타민/영양제<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">다이어트<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">헬스/요가<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">세탁/청소<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">수납/정리<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">생활 잡화<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
 								</ul>
 							</div>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 							<!-- Main Nav Menu -->
 
 							<div class="main_nav_menu ml-auto">
-								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+							
+							
+							
+							
+							
+							
+							
+							
+								<!-- <ul class="standard_dropdown main_nav_dropdown">
 									<li class="hassubs">
-										<a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
+										<a href="#">식품<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">농산물<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">해산물<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">축산물<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">냉동/가공식품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">장/양념/조미료<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">김치/반창<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">면<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">생수/차/음료<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">제과/초콜릿<i class="fas fa-chevron-right"></i></a></li>
 										</ul>
 									</li>
 									<li class="hassubs">
-										<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
+										<a href="#">의류<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">여성 의류<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">여성 신발<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">남성 의류<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">남성 신발<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">유아 의류<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">유아 신발<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">가방<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">지갑/벨트/시계<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">쥬얼리<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">패션 잡화<i class="fas fa-chevron-right"></i></a></li>
 										</ul>
 									</li>
 									<li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
+										<a href="#">가구<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">가구<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">수납/정리/침구<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">카페트/쿠션/거실화<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">커튼/블라인드<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">욕실 용품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">조명/스탠드<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">홈데코<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">원예/가드님<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">셀프 인테리어<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									<li class="hassubs">
+										<a href="#">디지털<i class="fas fa-chevron-down"></i></a>
+										<ul>
+											<li><a href="#">TV<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">계절 가전<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">노트북<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">스마트 기기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">냉장고<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">카메라/주변기기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">세탁기/건조기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">데스크탑/PC부품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">음향가전<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">프린터/복합기<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">주방 가전<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									<li class="hassubs">
+										<a href="#">취미/반려동물<i class="fas fa-chevron-down"></i></a>
+										<ul>
+											<li><a href="#">스포츠<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">수집<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">도서<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">완구<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">예술<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">공연 티켓<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">애완 식품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">애완 용품<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">애완 건강 관리<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">게임<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									<li class="hassubs">
+										<a href="#">생활<i class="fas fa-chevron-down"></i></a>
+										<ul>
+											<li><a href="#">스킨 케어<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">메이크업<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">헤어/바디<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">비타민/영양제<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">다이어트<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">헬스/요가<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">세탁/청소<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">수납/정리<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">생활 잡화<i class="fas fa-chevron-right"></i></a></li>
 										</ul>
 									</li>
 									<li><a href="chatMain.do">SoojinChat<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="vinsertView.do">Soojin<i class="fas fa-chevron-down"></i></a></li>
-								</ul>
+								</ul> -->
 							</div>
 							
 							<!-- Menu Trigger -->
