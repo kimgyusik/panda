@@ -63,6 +63,7 @@
 						<th width="300">상품명</th>
 						<th width="100">판매자</th>
 						<th>신고횟수</th>
+						<th>상태</th>
 					</tr>
 				</thead>
 					<tbody>
@@ -83,8 +84,20 @@
 											<td align="center">
 												${ pm.sName }
 											</td>
-											<td align="center">${ pm.pViolate }</td>
-					
+											<td align="center">
+												${ pm.pViolate }
+											</td>
+											<!-- <td>
+												<button type="button" class="btn btn-danger btn-xs-1x" id="popupBtn" >POPUP</button>
+											</td> -->
+											<td>
+												<c:if test="${ pm.pStatus eq 'N' }">
+													<h5 style="color:red; font-weight:bold">판매중</h5>
+												</c:if>
+												<c:if test="${ pm.pStatus eq 'Y' }">
+													<h5 style="color:blue; font-weight:bold">판매정지</h5>
+												</c:if>
+											</td>
 										</tr>
 							
 									</c:forEach>
@@ -151,6 +164,11 @@
 <script src="resources/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="resources/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="resources/js/shop_custom.js"></script>
+<script>
+	$('#popup').on('shown.bs.modal', function(){
+		$('#myInput').trigger('focus')
+	})
+</script>
 
 </body>
 

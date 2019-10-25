@@ -9,14 +9,14 @@ public class Pmanager {
 	private int cId;		// 카테고리
 	private String cName;
 	private String cName2;
-	private char pStatus;	// 상품 상태
+	private String pStatus;	// 상품 상태
 	private int pViolate;	// 상품 신고 횟수
 	
 	public Pmanager() {
 		
 	}
 
-	public Pmanager(int pId, String pName, int sNo, String sName, int cId, String cName, String cName2, char pStatus,
+	public Pmanager(int pId, String pName, int sNo, String sName, int cId, String cName, String cName2, String pStatus,
 			int pViolate) {
 		super();
 		this.pId = pId;
@@ -86,11 +86,11 @@ public class Pmanager {
 		this.cName2 = cName2;
 	}
 
-	public char getpStatus() {
+	public String getpStatus() {
 		return pStatus;
 	}
 
-	public void setpStatus(char pStatus) {
+	public void setpStatus(String pStatus) {
 		this.pStatus = pStatus;
 	}
 

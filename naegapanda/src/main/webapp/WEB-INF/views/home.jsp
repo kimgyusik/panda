@@ -57,8 +57,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="resources/images/char_1.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">당일배송</div>
+							<div class="char_subtitle">오후2시 전 결제</div>
 						</div>
 					</div>
 				</div>
@@ -81,8 +81,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="resources/images/char_3.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">무료 배송</div>
+							<div class="char_subtitle">5만원 부터~</div>
 						</div>
 					</div>
 				</div>
