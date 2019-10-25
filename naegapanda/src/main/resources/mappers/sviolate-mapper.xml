@@ -16,22 +16,27 @@
   		<result property="pStatus" column="p_Status"/>
 	</resultMap>
 
-	<select id="getListCount" resultType="_int">
+	<select id="getAllListCount" resultType="_int">
 		select count(*)
 		from svlist
 	</select>
 
-	<select id="selectList" resultMap="sviolateResultSet">
+	<select id="selectAllList" resultMap="sviolateResultSet">
 		select *
 		from svlist
 	</select>
 	
-	<select id="getSviolateListCount" parameterType="_int" resultType="_int">
+	<select id="getPersonalListCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from svlist
 		where s_no=#{sNo}
 	</select>
 	
+	<select id="selectPersonalList" parameterType="_int" resultMap="sviolateResultSet">
+		select *
+		from svlist
+		where s_no=#{sNo}
+	</select>
 
 
 </mapper>

@@ -46,24 +46,24 @@ a:visited {
 						<tbody>
 							
 									<c:forEach items="${ list }" var="sv"> 
-											<c:url value="pViolateList.do" var="pviolatelist">
+											<c:url value="sViolatePersonalList.do" var="sviolatelist">
 					 						    <c:param name="sNo" value="${ sv.sNo }"/>
 											</c:url>
 									<tr>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sNo}</a>
+											<a href="${ sviolatelist }">${sv.sNo}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sName}</a>
+											<a href="${ sviolatelist }">${sv.sName}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.storeName}</a>
+											<a href="${ sviolatelist }">${sv.storeName}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sViolate}</a>
+											<a href="${ sviolatelist }">${sv.sViolate}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.vDate}</a>
+											<a href="${ sviolatelist }">${sv.vDate}</a>
 										</td>
 										<td align="center">
 											<a href="${ pviolatelist }">${sv.sStatus}</a>
@@ -87,7 +87,7 @@ a:visited {
 									[◁]
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url value="pViolateList.do" var="before">
+									<c:url value="sViolateAllList.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
@@ -98,7 +98,7 @@ a:visited {
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="pViolateList.do" var="page">
+										<c:url value="sViolateAllList.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
@@ -109,7 +109,7 @@ a:visited {
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="pViolateList.do" var="next">
+									<c:url value="sViolateAllList.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>
