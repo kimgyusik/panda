@@ -2960,7 +2960,7 @@
 
 							<!-- Best Sellers Slider -->
 							<div class="bestsellers_slider slider">
-						<c:forEach var="hot" items="${ hotTopList }" begin="1" end="12" step="1">
+						<%-- <c:forEach var="hot" items="${ hotTopList }" begin="1" end="12" step="1">
 
 							<!-- Best Sellers Item -->
 								<div class="bestsellers_item discount">
@@ -2970,7 +2970,7 @@
 											<div class="bestsellers_category"><a href="#">카테고리</a></div>
 											<div class="bestsellers_name"><a href="product.html">${ hot.pName }</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">가격</div>
+											<div class="bestsellers_price discount">(hot.o)</div>
 										</div>
 									</div>
 									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
@@ -2980,7 +2980,7 @@
 									</ul>
 								</div>
 						
-						</c:forEach>
+						</c:forEach> --%>
 
 								
 
