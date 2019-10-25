@@ -17,22 +17,30 @@ public class SviolateDao {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	public int getListCount() {
-		return sqlSession.selectOne("sviolateMapper.getListCount");
+	public int getAllListCount() {
+		return sqlSession.selectOne("sviolateMapper.getAllListCount");
 	}
 	
-	public ArrayList<Sviolate> selectSviolateList(PageInfo pi){
+	public ArrayList<Sviolate> selectAllList(PageInfo pi){
 		
 		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		
 		
-		return (ArrayList)sqlSession.selectList("sviolateMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("sviolateMapper.selectAllList", null, rowBounds);
 	}
 	
 	public int getSviolateListCount() {
-		return sqlSession.selectOne("sviolateMapper.getSviolateListCount");
+		return sqlSession.selectOne("sviolateMapper.getPersonalListCount");
 	}
 	
+	public ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo){
+		
+		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		return (ArrayList)sqlSession.selectList("sviolateMapper.selectPersonalList", sNo, rowBounds);
+	}
 	
 }
