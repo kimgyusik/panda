@@ -269,17 +269,10 @@ cursor: pointer;
 color: #0e8ce4;
 }
 
-.updateReview{
-width:60%;
-padding: 1px;
-font-size:11px;
-cursor: pointer;
-background-color:white;
-border: 2px solid #edeeef;
-}
-.updateReview:hover{
-color: #0e8ce4;
-border: 2px solid #0e8ce4;
+
+.updateReview:hover, .makeReview:hover{
+
+border: 2px solid #a3ebff;
 }
 
 #content{
@@ -332,6 +325,31 @@ width:auto;
 height:auto;
 
 }
+.basketImg{
+max-width:110px;
+max-height:80px;
+width:auto;
+height:auto;
+}
+.ableReviewImg{
+max-width:170px;
+max-height:90px;
+width:auto;
+height:auto;
+}
+.ggimImg{
+max-width:320px;
+max-height:180px;
+width:auto;
+height:auto;
+}
+.inquiryImg{
+max-width:210px;
+max-height:130px;
+width:auto;
+height:auto;
+
+}
 #contentLabel{
 color:gray; 
 display: block; 
@@ -357,7 +375,7 @@ font-style: bold;
 color:black;
 }
 
-.prodList td{
+.contentsList td{
 text-align: center;
 border: 2px solid #edeeef;
 border-left: 1px solid white;
@@ -394,10 +412,10 @@ font-size:13px;
 }
 
 
-.updateReview{
+.updateReview, .makeReview{
 width:70%;
 padding: 1px;
-font-size:12px;
+font-size:13px;
 cursor: pointer;
 background-color:white;
 border: 2px solid #edeeef;
@@ -448,4 +466,13 @@ color:gray;
 display: block; 
 text-align: right; 
 margin-right:20px;
+}
+
+.answer{
+margin:5px;
+padding:3px;
+border-radius:3px;
+background-color: gray;
+color:white;
+	
 }

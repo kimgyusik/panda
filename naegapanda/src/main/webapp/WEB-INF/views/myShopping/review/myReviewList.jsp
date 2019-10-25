@@ -51,7 +51,7 @@
 										 			<c:forEach items="${ list2 }" var="p">
 										 				<c:if test="${r.payId eq p.payId }">
 										 				
-													 		<tr class="prodList" height="180px;">
+													 		<tr class="contentsList" height="180px;">
 													 		
 													 			<c:url value="상품조회url" var="product">
 																	<c:param name="pId" value="${p.pId }"/>
@@ -59,7 +59,7 @@
 																	
 													 			<td width="300px;">
 													 				<input type="hidden" class="rId" value="${r.rId}">
-													 				<a href="${ product }"><img src="resources/images/single_${r.rImage}.jpg" width="70px;"></a>
+													 				<a href="${ product }"><img class="ableReviewImg" src="resources/images/${r.rImage}" ></a>
 													 				<br><br>
 													 				<span style="display: inline-block;font-size: 13px; height:30px;">
 													 					[${p.storeName }]
@@ -74,9 +74,11 @@
 											 						<span>&nbsp;&nbsp;${r.rContents }</span>
 													 			</td>
 													 			<td width="150px;" >
-													 				<img src="resources/images/eye.png" width="30px;"> ${r.rCount}
+													 				<img src="resources/images/eye.png" width="30px;"  > 
+													 				<span style="padding-right:3px;" data-toggle="tooltip" data-placement="right" title="분이 리뷰를 읽었어요">${r.rCount}</span>
 													 				<br><br>
-													 				<img src="resources/images/hart.png" width="20px;"> ${r.rCommend }
+													 				<img src="resources/images/hart.png" width="20px;"> 
+													 				<span style="padding-right:3px;" data-toggle="tooltip" data-placement="right" title="분이 좋아요를 눌렀어요!">${r.rCommend }</span>
 													 				<br><br>
 													 				<button  class="updateReview"  >수정하기</button>
 													 			</td>
@@ -191,6 +193,7 @@
 				$('#contentLabel').html($(this).val().length+"/500");
 		    });
 	
+		    $('[data-toggle="tooltip"]').tooltip()
 			
 		});
 	
@@ -213,6 +216,8 @@
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
+
+
 
 
 	</script>
