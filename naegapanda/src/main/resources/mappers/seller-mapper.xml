@@ -62,7 +62,7 @@
 	<!-- 정보 수정 -->
 	<update id="updateSeller" parameterType="Seller">
 		update seller
-		set s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
+		set s_pwd=#{sPwd}, s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
 		where s_id=#{sId}
 	</update>
 	
