@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.panda.home.model.service.HomeService;
-import com.kh.panda.main.model.service.MainService;
 
 @Controller
 public class HomeControllerTest {
@@ -14,7 +13,7 @@ public class HomeControllerTest {
 	private HomeService hService;
 	
 	
-	@RequestMapping("")
+	/* @RequestMapping("") */
 	
 	
 }
