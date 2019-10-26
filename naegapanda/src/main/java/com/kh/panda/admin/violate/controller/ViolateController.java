@@ -24,6 +24,7 @@ import com.kh.panda.admin.violate.model.service.ViolateService;
 import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
+import com.kh.panda.product.model.vo.Product;
 import com.sun.javafx.collections.MappingChange.Map;
 
 @Controller
@@ -48,9 +49,17 @@ public class ViolateController {
 		
 	}
 	
-	@RequestMapping("vinsertView.do")
-	public String ViolateInsertView() {
-		return "admin/violate/ViolateInsertForm";
+	@RequestMapping("violateinsert.do")
+	public ModelAndView ViolateInsertView(ModelAndView mv, Product p) {
+		int pId = p.getpId();
+		System.out.print("pId:");
+		System.out.println(pId);
+		Violate v = vService.selectInfo(pId);
+		System.out.print("v:");		
+		System.out.println(v);
+		
+		mv.addObject("v",v).setViewName("admin/violate/ViolateInsertForm");
+		return mv;
 	}
 	
 	@RequestMapping("vinsert.do")

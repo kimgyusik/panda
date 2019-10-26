@@ -84,8 +84,6 @@ public class VmessageController {
 	public ModelAndView VmessageSellerDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
-		System.out.println(sNo);
-		System.out.println("11111111111111111111111111111111");
 
 		Vmessage vm = vmService.vmessageSellerDetail(vmNo, sNo);
 		System.out.println(vm);

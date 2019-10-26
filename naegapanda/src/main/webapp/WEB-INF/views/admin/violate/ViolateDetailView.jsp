@@ -70,7 +70,7 @@
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    		<!-- <button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button> -->
+						    		<button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button>
 						    		<button type="button" class="btn btn-outline-primary" onclick="location.href='violateView.do';">뒤로가기</button>
 						    	</td>
 						    </tr>

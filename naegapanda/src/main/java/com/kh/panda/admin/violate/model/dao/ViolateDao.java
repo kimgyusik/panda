@@ -46,6 +46,10 @@ public class ViolateDao {
 	public Violate violateDetail(int vNo) {
 		return sqlSession.selectOne("violateMapper.violateDetail", vNo);
 	}
+	
+	public Violate selectInfo(int pId) {
+		return sqlSession.selectOne("violateMapper.selectInfo",pId);
+	}
 
 	
 }

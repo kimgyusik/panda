@@ -19,4 +19,7 @@ public interface ViolateService {
 	// 게시판 상세 보기
 	Violate violateDetail(int vNo);
 	
+	// 상품 정보
+	Violate selectInfo(int pId);
+	
 }

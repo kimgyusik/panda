@@ -45,7 +45,12 @@
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
 							<div class="product_category">${p.cId }</div>
-							<div class="product_name">${p.pName }</div>
+							<div class="product_name">${p.pName }
+								<form>
+									<input type="text" name="pId" value="${ p.pId }">
+									<button type="submit" class="button cart_button" onclick="location.href='violateinsert.do';">신고하기</button>	
+								</form>
+							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
 								<form action="#">
@@ -96,7 +101,8 @@
 								</form>
 							</div>
 						</div>
-						
+						<br>
+								
 					</div>
 					
 				</div>

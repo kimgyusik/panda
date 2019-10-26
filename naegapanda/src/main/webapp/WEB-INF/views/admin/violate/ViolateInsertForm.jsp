@@ -59,9 +59,9 @@ $(function(){
 		  	<tbody>
 			    <tr>
 			      	<th scope="col" width="80px" align="center">신고 상품</th>
-			      	<td width="100px"> <h4>감자 1KG<%-- ${ p.pName } --%></h4> </td>
+			      	<td width="100px"> <h4>${ p.pName }</h4> </td>
 			      	<td scope="col" width="30px" align="right"><b>판매자</b></td>
-			      	<td width="50px"> <h4>김말똥<%-- ${ p.sName } --%></h4></td>
+			      	<td width="50px"> <h4>${ p.sName }</h4></td>
 			      	
 			    </tr>
 			    <tr>
