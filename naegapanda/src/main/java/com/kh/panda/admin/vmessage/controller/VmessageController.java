@@ -74,7 +74,6 @@ public class VmessageController {
 	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo) {
 
 		Vmessage vm = vmService.vmessageDetail(vmNo);
-		System.out.println("2222222222222222222222222222222");
 
 		mv.addObject("vm", vm).setViewName("admin/vmessage/VmessageDetailView");
 
