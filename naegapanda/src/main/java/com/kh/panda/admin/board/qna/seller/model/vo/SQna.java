@@ -13,14 +13,14 @@ public class SQna {
 	private Date sqCreateDate;
 	private Date sqModifyDate;
 	private String sqStatus;
-	private String sNmae;
+	private String sName;
 	
 	public SQna() {
 		
 	}
 
 	public SQna(int sqId, String sqCategory, String sqTitle, String sqContent, int sNo, int sqCount, Date sqCreateDate,
-			Date sqModifyDate, String sqStatus, String sNmae) {
+			Date sqModifyDate, String sqStatus, String sName) {
 		super();
 		this.sqId = sqId;
 		this.sqCategory = sqCategory;
@@ -31,7 +31,7 @@ public class SQna {
 		this.sqCreateDate = sqCreateDate;
 		this.sqModifyDate = sqModifyDate;
 		this.sqStatus = sqStatus;
-		this.sNmae = sNmae;
+		this.sName = sName;
 	}
 
 	public int getSqId() {
@@ -106,20 +106,22 @@ public class SQna {
 		this.sqStatus = sqStatus;
 	}
 
-	public String getsNmae() {
-		return sNmae;
+	public String getsName() {
+		return sName;
 	}
 
-	public void setsNmae(String sNmae) {
-		this.sNmae = sNmae;
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
 
 	@Override
 	public String toString() {
 		return "SQna [sqId=" + sqId + ", sqCategory=" + sqCategory + ", sqTitle=" + sqTitle + ", sqContent=" + sqContent
 				+ ", sNo=" + sNo + ", sqCount=" + sqCount + ", sqCreateDate=" + sqCreateDate + ", sqModifyDate="
-				+ sqModifyDate + ", sqStatus=" + sqStatus + ", sNmae=" + sNmae + "]";
+				+ sqModifyDate + ", sqStatus=" + sqStatus + ", sName=" + sName + "]";
 	}
+
+	
 	
 	
 

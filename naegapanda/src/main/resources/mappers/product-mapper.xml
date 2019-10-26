@@ -67,7 +67,24 @@
 	<insert id="insertPo" parameterType="ProductOption">
 		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, product_seq.currval)
 	</insert>
-
+	
+	<select id="selectProduct" parameterType="_int" resultMap="productResultSet">
+		select * from Product where p_Id = #{pId}
+	</select>
+	
+	<select id="selectPa" parameterType="Product" resultMap="paResultSet">
+		select * from product_attachment where p_Id=#{pId}
+	</select>
+	
+	<select id="selectPo" parameterType="Product" resultMap="poResultSet">
+		select * from product_option where p_Id=#{pId}
+	</select>
+	
+	<update id="updatepCount" parameterType="_int">
+		update product
+		set p_count = p_count + 1
+		where p_Id = #{pId}
+	</update>
 
 
 </mapper>

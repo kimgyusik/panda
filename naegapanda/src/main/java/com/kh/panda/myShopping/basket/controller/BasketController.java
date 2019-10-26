@@ -36,7 +36,7 @@ public class BasketController {
 		//ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
 		ArrayList<Basket> list = new ArrayList<>();
 		list.add(new Basket(1, 3, 2, 4, 44, "상품이름입니당", "옵션이름", 23000, "전자상품종류", "카테고리링", "이지몰", "review_1.jpg"));
-		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "new_3.jpg"));
+		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "blog_2.jpg"));
 		
 		// 이미지 잘 가져오는지 체크
 		

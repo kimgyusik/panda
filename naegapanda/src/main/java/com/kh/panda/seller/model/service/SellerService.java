@@ -46,6 +46,14 @@ public interface SellerService {
 
 	int insertProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
 
+	Product selectProduct(int pId);
+
+	ArrayList<ProductAttachment> selectPa(Product p);
+
+	ArrayList<ProductOption> selectPo(Product p);
+
+	int newPaasword(Seller s); 
+
 	
 	
 	

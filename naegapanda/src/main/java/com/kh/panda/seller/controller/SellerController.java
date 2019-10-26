@@ -2,17 +2,15 @@ package com.kh.panda.seller.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +29,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -45,6 +41,7 @@ import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
+import com.kh.panda.seller.model.vo.TempKey;
 
 @SessionAttributes("loginSeller")
 @Controller
@@ -339,6 +336,7 @@ public class SellerController {
 
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
+//		String root = "resources";
 		// resources 까지의 파일 위치를 나타냄
 		String savePath = root + "\\product_uploadFiles";
 		// 그 뒤에 저장 경로
@@ -455,8 +453,7 @@ public class SellerController {
 			model.addAttribute("msg", "등록에 실패했습니다");
 			return "common/errorPage";
 		}
-
-
+		
 	}
 	
 	
@@ -500,19 +497,36 @@ public class SellerController {
 	      Gson gson = new Gson();
 	
 	      gson.toJson(seller, response.getWriter());
-	
-
 	}
 	
+
+	@RequestMapping(value="pUpdateView.do")
+	public ModelAndView updateProductView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
+		System.out.println(pId);
+		Product p = sService.selectProduct(pId);
+		System.out.println(p);
+		ArrayList<ProductAttachment> paList = sService.selectPa(p);
+		ArrayList<ProductOption> poList = sService.selectPo(p);
+		ArrayList<Category> cList = sService.selectcList();
+		mv.addObject("cList", cList).addObject("p", p).addObject("paList", paList).addObject("poList", poList).setViewName("seller/product/updateProductForm");
+		
+		return mv;
+	}
 	
 	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
 	public String  findPwd(Seller s, Model model, HttpServletRequest request) throws MessagingException {
 		
+		
+		String key = new TempKey().getKey(10, false);
+		s.setsPwd(key);
+		
+		int result = sService.newPaasword(s);
+		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
-
-		sendMail.setSubject("[PANDA 이메일 인증]");
-		sendMail.setText(html);
+		
+		sendMail.setSubject("[PANDA 비밀번호 찾기]");
+		sendMail.setText(
+				new StringBuffer().append("<h1>메일인증</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
@@ -521,6 +535,8 @@ public class SellerController {
 		}
 		sendMail.setTo(s.getsEmail());
 		sendMail.send();
+		
+		return "home";
 	 
 		
 	}
