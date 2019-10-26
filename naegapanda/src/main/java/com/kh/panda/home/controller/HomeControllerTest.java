@@ -24,7 +24,8 @@ public class HomeControllerTest {
 	@RequestMapping("HotTopList.do")
 	public void HotTopList(HttpServletResponse response) throws JsonIOException, IOException {
 		ArrayList<Home> list = hService.selectHotTopList();
-		
+		System.out.println("list:");
+		System.out.println(list);
 		response.setContentType("application/json; charset=utf-8");
 		
 		
