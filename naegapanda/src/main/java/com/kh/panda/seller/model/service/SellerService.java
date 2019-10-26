@@ -44,6 +44,12 @@ public interface SellerService {
 
 	int insertProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
 
+	Product selectProduct(int getpId);
+
+	ArrayList<ProductAttachment> selectPa(Product p);
+
+	ArrayList<ProductOption> selectPo(Product p);
+
 	
 	
 	
