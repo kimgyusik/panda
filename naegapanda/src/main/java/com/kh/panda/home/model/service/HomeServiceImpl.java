@@ -16,8 +16,11 @@ public class HomeServiceImpl implements HomeService{
 	private HomeDao hDao;
 
 	@Override
-	public ArrayList<Home> selectHotTopList() {
-		return hDao.selectHotTopList();
+	public ArrayList<Product> search(String keyword) {
+		return hDao.search(keyword);
 	}
+
+	
+	
 	
 }

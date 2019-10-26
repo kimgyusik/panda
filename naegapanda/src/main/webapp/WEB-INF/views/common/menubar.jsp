@@ -154,7 +154,7 @@
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="search.do" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+										<input type="text" name="keyword" required="required" class="header_search_input" placeholder="Search for products...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>

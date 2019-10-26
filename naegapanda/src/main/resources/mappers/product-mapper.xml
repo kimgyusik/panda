@@ -87,4 +87,16 @@
 	</update>
 
 
+
+
+
+	<select id="search" parameterType="String" resultMap="productResultSet">
+	
+		select *
+		from product
+		where p_name like '%' ||  #{keyword} || '%' or p_content like '%' ||  #{keyword} || '%'
+	
+	</select>
+
+
 </mapper>
