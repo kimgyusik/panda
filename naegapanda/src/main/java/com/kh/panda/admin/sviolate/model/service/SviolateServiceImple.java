@@ -16,18 +16,23 @@ public class SviolateServiceImple implements SviolateService{
 	private SviolateDao svDao;
 
 	@Override
-	public int getListCount() {
-		return svDao.getListCount();
+	public int getAllListCount() {
+		return svDao.getAllListCount();
+	}
+
+	@Override
+	public ArrayList<Sviolate> selectAllList(PageInfo pi) {
+		return svDao.selectAllList(pi);
 	}
 	
 	@Override
-	public int getSviolateListCount() {
+	public int getPersonalListCount() {
 		return svDao.getSviolateListCount();
 	}
 
 	@Override
-	public ArrayList<Sviolate> selectList(PageInfo pi) {
-		return svDao.selectSviolateList(pi);
+	public ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo) {
+		return svDao.selectPersonalList(pi, sNo);
 	}
 	
 }

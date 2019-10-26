@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PANDA:판매자페이지</title>
 </head>
 <style>
 	#menu{

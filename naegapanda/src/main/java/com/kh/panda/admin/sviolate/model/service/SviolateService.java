@@ -7,10 +7,12 @@ import com.kh.panda.common.PageInfo;
 
 public interface SviolateService {
 
-	int getListCount();
+	int getAllListCount();
 	
-	int getSviolateListCount();
+	ArrayList<Sviolate> selectAllList(PageInfo pi);
 	
-	ArrayList<Sviolate> selectList(PageInfo pi);
+	int getPersonalListCount();
+	
+	ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo);
 
 }

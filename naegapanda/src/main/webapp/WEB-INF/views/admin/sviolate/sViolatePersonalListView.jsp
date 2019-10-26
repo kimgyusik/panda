@@ -44,25 +44,25 @@ a:visited {
 						
 						<tbody>
 							
-									<c:forEach items="${ list }" var="pv"> 
-											<c:url value="pvDetaiList.do" var="pvdetaillist">
-					 						    <c:param name="sNo" value="${ pv.sNo }"/>
+									<c:forEach items="${ list }" var="sv"> 
+											<c:url value="svDetaiList.do" var="svdetaillist">
+					 						    <c:param name="sNo" value="${ sv.sNo }"/>
 											</c:url>
 									<tr>
 										<td align="center">
-											<a href="${ pvdetaillist }">${pv.sName}</a>
+											<a href="${ svdetaillist }">${sv.sName}</a>
 										</td>
 										<td align="center">
-											<a href="${ pvdetaillist }">${pv.pId}</a>
+											<a href="${ svdetaillist }">${sv.pId}</a>
 										</td>
 										<td align="center">
-											<a href="${ pvdetaillist }">${pv.pName}</a>
+											<a href="${ svdetaillist }">${sv.pName}</a>
 										</td>
 										<td align="center">
-											<a href="${ pvdetaillist }">${pv.pViolate}</a>
+											<a href="${ svdetaillist }">${sv.pViolate}</a>
 										</td>
 										<td align="center">
-											<a href="${ pvdetaillist }">${pv.pStatus}</a>
+											<a href="${ svdetaillist }">${sv.pStatus}</a>
 										</td>
 							  			
 								    </tr>
@@ -83,7 +83,7 @@ a:visited {
 									[◁]
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url value="pViolateList.do" var="before">
+									<c:url value="sViolatePersonalList.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
@@ -94,7 +94,7 @@ a:visited {
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="sViolateList.do" var="page">
+										<c:url value="sViolatePersonalList.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
@@ -105,7 +105,7 @@ a:visited {
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="sViolateList.do" var="next">
+									<c:url value="sViolatePersonalList.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>

@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +30,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 import com.kh.panda.product.model.vo.Category;
@@ -36,6 +41,7 @@ import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
+import com.kh.panda.seller.model.vo.TempKey;
 
 @SessionAttributes("loginSeller")
 @Controller
@@ -43,6 +49,7 @@ public class SellerController {
 
 	@Inject
 	private JavaMailSender mailSender;
+	
 
 	@Autowired
 	private SellerService sService;
@@ -53,6 +60,29 @@ public class SellerController {
 	// 가입화면
 	@RequestMapping("sJoin.do")
 	public String InsertSeller() {
+		
+        Document doc = null;
+        
+     String S_BNUM = "1108134859"; //2208110886
+     
+      try {
+        doc = Jsoup.connect("https://www.pps.go.kr/gpass/gpassCompany/selectCompanyInfo.do?bizNo="+S_BNUM).get();
+          System.out.println("회사명(한글)::"+doc.getElementById("corpNm").val());
+          System.out.println("회사명(한글)::"+doc.getElementById("suprAddr").val());
+     } catch (IOException e) {
+        e.printStackTrace();
+     }
+         
+//        <input id="corpNm" name="corpNm" type="hidden" value="주식회사 아프리카티비"/>
+//        <input id="engCorpNm" name="engCorpNm" type="hidden" value="AfreecaTV Co,.Ltd"/>
+//        <input id="estblshDt" name="estblshDt" type="hidden" value="1996-04-22"/>
+//        <input id="ordnrytmLbrerNum" name="ordnrytmLbrerNum" type="hidden" value="370"/>
+//        <input id="suprAddr" name="suprAddr" type="hidden" value="경기도 성남시 분당구 판교로228번길"/>
+//        <input id="suprDtlAddr" name="suprDtlAddr" type="hidden" value="15, 2동 2층(삼평동, 판교세븐밴처밸리 1단지)"/>
+//        <input id="hmpg" name="hmpg" type="hidden" value="www.afreecatv.com"/>
+//        <input id="ceoNm" name="ceoNm" type="hidden" value="서수길"/>
+//        <input id="ceoEmail" name="ceoEmail" type="hidden" value="zenith@afreecatv.com"/>
+//        <input id="ceoMtelNo" name="ceoMtelNo" type="hidden" value="010-7181-0524"/>
 
 		return "seller/sellerJoinForm";
 
@@ -61,9 +91,7 @@ public class SellerController {
 	// 가입하기
 	@RequestMapping("sinsert.do")
 	public String insertMember(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) throws MessagingException {
+			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2) throws MessagingException {
 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
@@ -72,18 +100,13 @@ public class SellerController {
 		if (!post.equals("")) {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
 		}
-
-		if (!sbPost.equals("")) {
-			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
-		}
-		
-		
+	 		
 
 		int result = sService.insertSeller(s);
 
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1>메일인증</h1><a href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>이메일 인증 확인</a>";
+		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
@@ -130,7 +153,7 @@ public class SellerController {
 		 * if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
 		 * loginSeller.getsPwd())) {
 		 */
-
+		
 		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
 
 			model.addAttribute("loginSeller", loginSeller);
@@ -266,9 +289,7 @@ public class SellerController {
 	// 정보수정
 	@RequestMapping("sUpdate.do")
 	public String updateSeller(Seller s, Model model, @RequestParam("post") String post,
-			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2,
-			@RequestParam("sbPost") String sbPost, @RequestParam("sbAddress1") String sbAddress1,
-			@RequestParam("sbAddress2") String sbAddress2) {
+			@RequestParam("sAddress1") String sAddress1, @RequestParam("sAddress2") String sAddress2) {
 
 		/*
 		 * String encPwd = bcryptPasswordEncoder.encode(s.getsPwd()); s.setsPwd(encPwd);
@@ -276,9 +297,6 @@ public class SellerController {
 
 		if (!post.equals("")) {
 			s.setsAddress(post + "," + sAddress1 + "," + sAddress2);
-		}
-		if (!sbPost.equals("")) {
-			s.setSbAddress(sbPost + "," + sbAddress1 + "," + sbAddress2);
 		}
 
 		int result = sService.updateSeller(s);
@@ -437,6 +455,50 @@ public class SellerController {
 		}
 		
 	}
+	
+	
+	
+	
+	@RequestMapping("storeName.do")
+	   public void getReplyList(String S_BNUM, HttpServletResponse response) throws JsonIOException, IOException {
+	      
+	     
+	         Document doc = null;
+	      
+	     
+	      
+	       try {
+	         doc = Jsoup.connect("https://www.pps.go.kr/gpass/gpassCompany/selectCompanyInfo.do?bizNo="+S_BNUM).get();
+	           System.out.println("회사명(한글)::"+doc.getElementById("corpNm").val());
+	           System.out.println("회사명(한글)::"+doc.getElementById("suprAddr").val());
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	          Seller seller = new Seller();
+		seller.setStoreName(doc.getElementById("corpNm").val());
+		seller.setsCeoName(doc.getElementById("ceoNm").val());
+		seller.setSbPhone(doc.getElementById("ceoMtelNo").val());
+		seller.setSbAddress(doc.getElementById("suprAddr").val());
+
+//	         <input id="corpNm" name="corpNm" type="hidden" value="주식회사 아프리카티비"/>
+//	         <input id="engCorpNm" name="engCorpNm" type="hidden" value="AfreecaTV Co,.Ltd"/>
+//	         <input id="estblshDt" name="estblshDt" type="hidden" value="1996-04-22"/>
+//	         <input id="ordnrytmLbrerNum" name="ordnrytmLbrerNum" type="hidden" value="370"/>
+//	         <input id="suprAddr" name="suprAddr" type="hidden" value="경기도 성남시 분당구 판교로228번길"/>
+//	         <input id="suprDtlAddr" name="suprDtlAddr" type="hidden" value="15, 2동 2층(삼평동, 판교세븐밴처밸리 1단지)"/>
+//	         <input id="hmpg" name="hmpg" type="hidden" value="www.afreecatv.com"/>
+//	         <input id="ceoNm" name="ceoNm" type="hidden" value="서수길"/>
+//	         <input id="ceoEmail" name="ceoEmail" type="hidden" value="zenith@afreecatv.com"/>
+//	         <input id="ceoMtelNo" name="ceoMtelNo" type="hidden" value="010-7181-0524"/>
+
+	      
+	      response.setContentType("application/json; charset=utf-8");
+	      
+	      Gson gson = new Gson();
+	
+	      gson.toJson(seller, response.getWriter());
+	}
+	
 
 	@RequestMapping(value="pUpdateView.do")
 	public ModelAndView updateProductView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
@@ -451,5 +513,32 @@ public class SellerController {
 		return mv;
 	}
 	
+	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
+	public String  findPwd(Seller s, Model model, HttpServletRequest request) throws MessagingException {
+		
+		
+		String key = new TempKey().getKey(10, false);
+		s.setsPwd(key);
+		
+		int result = sService.newPaasword(s);
+		
+		MailHandler sendMail = new MailHandler(mailSender);
+		
+		sendMail.setSubject("[PANDA 비밀번호 찾기]");
+		sendMail.setText(
+				new StringBuffer().append("<h1>메일인증</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
+		try {
+			sendMail.setFrom("dkj01043@gmail.com", "관리자");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sendMail.setTo(s.getsEmail());
+		sendMail.send();
+		
+		return "home";
+	 
+		
+	}
 	
 }

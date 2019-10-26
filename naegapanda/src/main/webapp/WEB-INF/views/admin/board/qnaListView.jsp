@@ -110,9 +110,8 @@
 					</tbody>					
 				</table>
 			</div>
-		</div>
 
-		<div align="center">
+		<div class="col-lg-12" align="center">
 					
 										<!-- [이전] -->	
 										<c:if test="${ pi.currentPage eq 1 }">
@@ -150,7 +149,7 @@
 										</c:if>
 									</div>
 		
-		<div class="col-lg-11" align="right">
+		<div class="col-lg-12" align="right">
 			<c:if test="${ !empty sessionScope.loginUser}">
 				<c:if test="${ sessionScope.loginUser.name ne '관리자' }">
 				<button onclick="location.href='qinsertView.do';" class="btn">글쓰기</button>

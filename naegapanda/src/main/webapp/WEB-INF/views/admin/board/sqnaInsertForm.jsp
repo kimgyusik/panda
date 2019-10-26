@@ -110,7 +110,7 @@
 
 								<label for="title">제목</label> 
 								<input type="text" class="form-control" name="sqTitle" id="title"
-									placeholder="제목을 입력해 주세요">
+									placeholder="제목을 입력해 주세요" required>
 
 							</div>
 
@@ -120,7 +120,7 @@
 								<label for="content">내용</label>
 
 								<textarea class="form-control" rows="8" name="sqContent"
-									id="content" placeholder="내용을 입력해 주세요" style="resize:none;"></textarea>
+									id="content" placeholder="내용을 입력해 주세요" style="resize:none;" required></textarea>
 
 							</div>
 

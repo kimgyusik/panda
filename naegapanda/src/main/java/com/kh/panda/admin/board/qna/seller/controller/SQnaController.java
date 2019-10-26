@@ -33,13 +33,13 @@ public class SQnaController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<SQna> qlist = sqService.selectList(pi);
+		ArrayList<SQna> sqlist = sqService.selectList(pi);
 		ArrayList<SAnswer> alist = sqService.selectSAList(); 
 		
 		//System.out.println(qlist);
 		//System.out.println(alist);
 		
-		mv.addObject("pi", pi).addObject("qlist", qlist).addObject("alist", alist).setViewName("admin/board/sqnaListView");
+		mv.addObject("pi", pi).addObject("sqlist", sqlist).addObject("alist", alist).setViewName("admin/board/sqnaListView");
 		
 		return mv;
 	}
