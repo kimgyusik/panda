@@ -44,10 +44,13 @@ public class SviolateDao {
 		return (ArrayList)sqlSession.selectList("sviolateMapper.selectPersonalList", sNo, rowBounds);
 	}
 	
-	public Violate selectDetail(int sNo) {
-		return sqlSession.selectOne("violateMapper.sviolateDetail", sNo);
+	public Violate selectDetail(int vNo) {
+		return sqlSession.selectOne("violateMapper.violateDetail", vNo);
 	}
 	
+	public int sellerDelete(int sNo) {
+		return sqlSession.update("violateMapper.sellerDelete",sNo);
+	}
 	
 	
 }

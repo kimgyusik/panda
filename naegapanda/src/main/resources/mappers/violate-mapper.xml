@@ -37,13 +37,13 @@
 		from vList
 	</select>
 	
-	<update id="updateSellerCount">
+	<update id="updateSellerCount" parameterType="_int">
 		update seller
 		set s_violate=s_violate+1 
 		where s_no=#{sNo}
 	</update>
 	
-	<update id="updateProductCount">
+	<update id="updateProductCount" parameterType="_int">
 		update product
 		set p_violate=p_violate+1 
 		where p_id=#{pId}
@@ -51,8 +51,8 @@
 		
 	<select id="insertViolate" parameterType="Violate">
   		insert into violate
-  		values(violate_seq.nextval, #{sNO}, #{mNo}, #{pId}, 
-  			#{stNo}, #{vTitle},  #{vContent},  sysdate,  #{vOriginalFileName}, #{vRenameFileName},  default)
+  		values(violate_seq.nextval, #{sNo}, #{mNo}, #{pId}, 
+  			null , #{vTitle},  #{vContent},  sysdate,  #{vOriginalFileName}, #{vRenameFileName},  default)
   </select>
 
 	<select id="violateDetail" resultMap="violateResultSet" parameterType="_int">
@@ -65,14 +65,13 @@
 	<select id="sviolateDetail" resultMap="violateResultSet" parameterType="_int">
 		select *
 		from vList
-		where s_no=#{sNo}
+		where v_no=#{vNo}
 	</select>
 	
 	<select id="selectInfo" resultMap="productInfoResultSet" parameterType="_int">
 		select p_id, p_name, s_no, s_name
 		from product
         join seller using(s_no)
-        join product_option using(p_id)
 		where p_id=#{pId}
 	</select>
 

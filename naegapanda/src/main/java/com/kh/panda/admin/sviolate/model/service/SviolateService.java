@@ -16,6 +16,9 @@ public interface SviolateService {
 	
 	ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo);
 	
-	Violate violateDetail(int sNo);
+	Violate violateDetail(int vNo);
+	
+	int sellerDelete(int sNo);
+	
 
 }

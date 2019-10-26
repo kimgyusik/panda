@@ -153,7 +153,7 @@
 						<div class="header_search">
 							<div class="header_search_content">
 								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
+									<form action="search.do" class="header_search_form clearfix">
 										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
@@ -161,11 +161,12 @@
 												<i class="fas fa-chevron-down"></i>
 												<ul class="custom_list clc">
 													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
+													<li><a class="clc" href="#">식품</a></li>
+													<li><a class="clc" href="#">의류/잡화</a></li>
+													<li><a class="clc" href="#">가구/인테리어</a></li>
+													<li><a class="clc" href="#">디지털/가전/컴퓨터 </a></li>
+													<li><a class="clc" href="#">취미/애완동물</a></li>
+													<li><a class="clc" href="#">생활/건강/뷰티</a></li>
 												</ul>
 											</div>
 										</div>

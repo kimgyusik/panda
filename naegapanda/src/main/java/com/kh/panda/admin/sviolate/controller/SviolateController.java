@@ -38,23 +38,24 @@ public class SviolateController {
 	
 	
 	@RequestMapping("sViolatePersonalList.do")
-	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo) {
+	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo, String sName) {
 		
 		int listCount = svService.getPersonalListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Sviolate> list = svService.selectPersonalList(pi, sNo);
+		System.out.println(list);
 		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/sViolatePersonalListView");
+		mv.addObject("pi", pi).addObject("list", list).addObject("sName",sName).addObject("sNo",sNo).setViewName("admin/sviolate/sViolatePersonalListView");
 		// 객체                                                                                         경로로반환한거당
 		return mv;
 		
 	}
 	 @RequestMapping("svdetailView.do") 
-	 public ModelAndView ViolateDetailView(ModelAndView mv, int sNo) { 
+	 public ModelAndView ViolateDetailView(ModelAndView mv, int vNo) { 
 		 
-		 Violate v = svService.violateDetail(sNo);
+		 Violate v = svService.violateDetail(vNo);
 		 if(v != null) {
 			 mv.addObject("v",v).setViewName("admin/violate/ViolateDetailView");
 		 }else {
@@ -63,4 +64,11 @@ public class SviolateController {
 		 
 		 return mv;
 	}
+	 
+	 @RequestMapping("sellerDelete.do")
+	 public ModelAndView sellerDelete(ModelAndView mv, int sNo) {
+		 int result = svService.sellerDelete(sNo);
+		 System.out.println(sNo);
+		 return mv;
+	 }
 }

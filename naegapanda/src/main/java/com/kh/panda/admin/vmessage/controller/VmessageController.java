@@ -105,7 +105,7 @@ public class VmessageController {
 			}
 		
 		}
-		
+		System.out.println(vm);
 		int result = vmService.insertVmessage(vm);
 		
 		return "redirect:vmessage.do";

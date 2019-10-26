@@ -37,8 +37,13 @@ public class SviolateServiceImple implements SviolateService{
 	}
 
 	@Override
-	public Violate violateDetail(int sNo) {
-		return svDao.selectDetail(sNo);
+	public Violate violateDetail(int vNo) {
+		return svDao.selectDetail(vNo);
+	}
+
+	@Override
+	public int sellerDelete(int sNo) {
+		return svDao.sellerDelete(sNo);
 	}
 	
 }

@@ -36,7 +36,7 @@ public class ViolateDao {
 	}
 	
 	public int updateProductCount(int pId) {
-		return sqlSession.update("violateMapper.updatProductCount",pId);
+		return sqlSession.update("violateMapper.updateProductCount",pId);
 	}
 	
 	public int insertViolate(Violate v) {	
