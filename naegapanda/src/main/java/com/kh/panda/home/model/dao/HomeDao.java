@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.panda.home.model.vo.Home;
 import com.kh.panda.product.model.vo.Product;
 
 @Repository("hDao")
@@ -15,7 +16,7 @@ public class HomeDao {
 	private SqlSessionTemplate sqlsession;
 	
 	
-	public ArrayList<Product> selectHotTopList(){
-		return (ArrayList)sqlsession.selectList("productMapper.selectHotTopList");
+	public ArrayList<Home> selectHotTopList(){
+		return (ArrayList)sqlsession.selectList("homeMapper.selectHotTopList");
 	}
 }

@@ -70,34 +70,4 @@
 
 
 
-
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 경계선 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!-- To.. 조장님께  -->
-<!-- 안녕하세요 저는 main을 건들여 보고 있는 팀원 한수진입니다.... -->
-<!-- 다름이 아니오라 제가 home에 각 '카테고리들의 hot 상품들'과 'new 제품들'을 불러 오려는데 -->
-<!-- product가 필요해 이 곳에 은근슬쩍 탑승하게 되었습니다..... -->
-<!-- 혹시 제가 이 곳을 사용해도 된다면 경계선을 제외하고 편지를 지워주시면 경계선 밑으로만 조용히 사용하도록 하겠습니다. -->
-<!-- 만약 다른 의견이 있으시다면 따로 연락 부탁드립니다.... -->
-<!-- 그럼 이만.... 우리 모두 화이팅 합시다...  -->
-<!-- 아자 아자 화이팅    2019.10.25 수진 -->
-
-	<!-- <resultMap type="Home" id="homeResultSet">
-		<id property="pId" column="p_id"/>
-		<result property="pName" column="p_name"/>
-		<result property="cName" column="c_name"/>
-		<result property="cName2" column="c_name2"/>
-		<result property="paCreateDate" column="pa_create_date"/>
-		<result property="paOriginName" column="pa_origin_name"/>
-		<result property="oPrice" column="o_price"/>
-	</resultMap>
-
-	<select id="selectHotTopList" resultMap="homeResultSet">
-		select *
-		from product
-		
-		order by p_purchase
-	</select>
- -->
-
-
 </mapper>

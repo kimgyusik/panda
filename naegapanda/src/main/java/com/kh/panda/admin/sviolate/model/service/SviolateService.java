@@ -3,6 +3,7 @@ package com.kh.panda.admin.sviolate.model.service;
 import java.util.ArrayList;
 
 import com.kh.panda.admin.sviolate.model.vo.Sviolate;
+import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 
 public interface SviolateService {
@@ -14,5 +15,7 @@ public interface SviolateService {
 	int getPersonalListCount();
 	
 	ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo);
+	
+	Violate violateDetail(int sNo);
 
 }

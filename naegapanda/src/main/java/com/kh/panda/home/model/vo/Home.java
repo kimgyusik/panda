@@ -1,4 +1,4 @@
-package com.kh.panda.product.model.vo;
+package com.kh.panda.home.model.vo;
 
 public class Home {
 	

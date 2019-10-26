@@ -53,6 +53,13 @@
 		from vList
 		where v_no=#{vNo}
 	</select>
+	
+	
+	<select id="sviolateDetail" resultMap="violateResultSet" parameterType="_int">
+		select *
+		from vList
+		where s_no=#{sNo}
+	</select>
 
 <!-- 상태값 처리로 바꾸는 거 만들기  -->
 

@@ -2,10 +2,10 @@ package com.kh.panda.home.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.panda.product.model.vo.Product;
+import com.kh.panda.home.model.vo.Home;
 
 public interface HomeService {
 
-	ArrayList<Product> selectHotTopList();
+	ArrayList<Home> selectHotTopList();
 	
 }

@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.admin.sviolate.model.service.SviolateService;
 import com.kh.panda.admin.sviolate.model.vo.Sviolate;
+import com.kh.panda.admin.violate.model.service.ViolateService;
+import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 
@@ -48,5 +50,17 @@ public class SviolateController {
 		// 객체                                                                                         경로로반환한거당
 		return mv;
 		
+	}
+	 @RequestMapping("svdetailView.do") 
+	 public ModelAndView ViolateDetailView(ModelAndView mv, int sNo) { 
+		 
+		 Violate v = svService.violateDetail(sNo);
+		 if(v != null) {
+			 mv.addObject("v",v).setViewName("admin/violate/ViolateDetailView");
+		 }else {
+			/* mv.addObject("msg","글이 없습니다...").setViewName("common/errorPage");   흠 필요없어!!!!!!!!*/
+		 }
+		 
+		 return mv;
 	}
 }

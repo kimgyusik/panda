@@ -2935,26 +2935,6 @@
 		</div>		
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- Best Sellers -->
 
 	<div class="best_sellers">
@@ -2976,66 +2956,20 @@
 							<div class="tabs_line"><span></span></div>
 						</div>
 
-
-
-
-
-
-
-
-
-
-
 						<div class="bestsellers_panel panel active">
 
 							<!-- Best Sellers Slider -->
-							<div class="bestsellers_slider slider HotTopList">
-							
-							</div>
-							
-						</div>
+							<div class="bestsellers_slider slider">
 
 							<!-- Best Sellers Item -->
-							
-									<script>
-									function HotTopList(){
-										$.ajax({
-											url:'HotTopList.do',
-											type:'json',
-											success:function(data){
-												
-												var a = '';
-												$.each(data,function(index, value){
-													a += '<div class="bestsellers_item discount">';
-													a += '<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">';
-													a += '<div class="bestsellers_image"><img src="resources/images/'+best_1.png+'" alt=""></div>';
-													a += '<div class="bestsellers_content">';
-													a += '<div class="bestsellers_category"><a href="#">'+value.cName2'</a></div>';
-													a += '<div class="bestsellers_name"><a href="#">'+value.pName'</a></div>';
-													a += '<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>';
-													a += '<div class="bestsellers_price discount">'+value.oPrice'</div>';
-													a += '</div></div>';
-													a += '<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>';
-													a += '<ul class="bestsellers_marks">';
-													a += '<li class="bestsellers_mark bestsellers_discount">HOT</li>';
-													a += '<li class="bestsellers_mark bestsellers_new">NEW</li>';
-													a += '</ul>';
-													a += '</div>';
-												)};
-												
-												$(".HopTopList").html(a);
-												
-											}
-										});
-						
-									}
-									
-									</script>
-								<%-- <div class="bestsellers_item discount">
+							<c:forEach var="hot" items="${ hotTopList }" begin="1" end="12" step="1">
+								<c:url value="hotTopDetailView.do" var="hotTopdetail">
+					 				 <c:param name="pId" value="${ hot.pId }"/>
+								</c:url>
+								
+								<div class="bestsellers_item discount">
 									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image">
-											<img src="resources/images/best_1.png" alt="">
-										</div>
+										<div class="bestsellers_image"><img src="resources/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="${ vmsellerdetail }">${ hot.cName2}</a></div>
 											<div class="bestsellers_name"><a href="${ vmsellerdetail }">${ hot.pName }</a></div>
@@ -3048,30 +2982,12 @@
 										<li class="bestsellers_mark bestsellers_discount">HOT</li>
 										<li class="bestsellers_mark bestsellers_new">NEW</li>
 									</ul>
-								</div> 
+								</div>
 
+							</c:forEach>
 
 							</div>
-						</div> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+						</div>
 
 						<div class="bestsellers_panel panel active">
 

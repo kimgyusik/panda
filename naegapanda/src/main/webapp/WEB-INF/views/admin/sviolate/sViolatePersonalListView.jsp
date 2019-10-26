@@ -38,14 +38,14 @@ a:visited {
 							      <td scope="col" width="90" align="center"><b>상품번호</b></td>
 							      <td scope="col" width="250" align="center"><b>상품명</b></td>
 							      <th scope="col" width="80">신고횟수</th>
-							      <th scope="col" width="80">회원상태</th>
+							      <th scope="col" width="80">제품정지</th>
 						    </tr>
 						</thead>
 						
 						<tbody>
 							
 									<c:forEach items="${ list }" var="sv"> 
-											<c:url value="svDetaiList.do" var="svdetaillist">
+											<c:url value="svdetailView.do" var="svdetaillist">
 					 						    <c:param name="sNo" value="${ sv.sNo }"/>
 											</c:url>
 									<tr>
