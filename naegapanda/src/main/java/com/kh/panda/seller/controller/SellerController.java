@@ -382,7 +382,6 @@ public class SellerController {
 		String savePath = root + "\\product_uploadFiles";
 		
 		
-		System.out.println(p.getsNo());
 		ArrayList<ProductAttachment> paList = new ArrayList<>();
 		ArrayList<ProductOption> poList = new ArrayList<>();
 		int fileLevelCheck = 1;
@@ -502,9 +501,7 @@ public class SellerController {
 
 	@RequestMapping(value="pUpdateView.do")
 	public ModelAndView updateProductView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
-		System.out.println(pId);
 		Product p = sService.selectProduct(pId);
-		System.out.println(p);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
 		ArrayList<Category> cList = sService.selectcList();

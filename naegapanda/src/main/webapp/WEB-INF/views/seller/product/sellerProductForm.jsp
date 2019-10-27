@@ -77,7 +77,7 @@
 								<c:forEach items="${list }" var="p">
 								<tr>
 									<td><img src="resources/product_uploadFiles/${p.paChangeName}" style="width:100px; height:100px;"></td>    	
-									<td>${ p.oNo }</td>
+									<td>${ p.pId }</td>
 									<td>aa</td>
 									<td>${ p.oName }</td>
 									<td>${ p.oPrice }</td>
