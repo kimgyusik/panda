@@ -14,11 +14,14 @@ public class Sviolate {
 	private Date vDate;				// 신고 날짜
 	private String sStatus;			// 판매자 상태
 	private String pStatus;			// 상품 상태
+	private int vNo;				// 신고번호
+	private String vTitle;			// 신고제목
+	private String vStatus;			// 신고상태
 
 	public Sviolate() {}
 
 	public Sviolate(int sNo, String sName, String storeName, int pId, String pName, int sViolate, int pViolate,
-			Date vDate, String sStatus, String pStatus) {
+			Date vDate, String sStatus, String pStatus, int vNo, String vTitle, String vStatus) {
 		super();
 		this.sNo = sNo;
 		this.sName = sName;
@@ -30,6 +33,9 @@ public class Sviolate {
 		this.vDate = vDate;
 		this.sStatus = sStatus;
 		this.pStatus = pStatus;
+		this.vNo = vNo;
+		this.vTitle = vTitle;
+		this.vStatus = vStatus;
 	}
 
 	public int getsNo() {
@@ -112,16 +118,40 @@ public class Sviolate {
 		this.pStatus = pStatus;
 	}
 
+	public int getvNo() {
+		return vNo;
+	}
+
+	public void setvNo(int vNo) {
+		this.vNo = vNo;
+	}
+
+	public String getvTitle() {
+		return vTitle;
+	}
+
+	public void setvTitle(String vTitle) {
+		this.vTitle = vTitle;
+	}
+
+	public String getvStatus() {
+		return vStatus;
+	}
+
+	public void setvStatus(String vStatus) {
+		this.vStatus = vStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Sviolate [sNo=" + sNo + ", sName=" + sName + ", storeName=" + storeName + ", pId=" + pId + ", pName="
 				+ pName + ", sViolate=" + sViolate + ", pViolate=" + pViolate + ", vDate=" + vDate + ", sStatus="
-				+ sStatus + ", pStatus=" + pStatus + "]";
+				+ sStatus + ", pStatus=" + pStatus + ", vNo=" + vNo + ", vTitle=" + vTitle + ", vStatus=" + vStatus
+				+ "]";
 	}
 
 	
-	
-	
+
 	
 	
 }

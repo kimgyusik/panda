@@ -38,7 +38,6 @@ a:visited {
 							      <td scope="col" width="100" align="center"><b>판매자</b></td>
 							      <td scope="col" width="250" align="center"><b>스토어명</b></td>							 
 							      <th scope="col" width="80">신고횟수</th>
-							      <td scope="col" width="120" align="center"><b>날짜</b></td>
 							      <th scope="col" width="80">회원상태</th>
 						    </tr>
 						</thead>
@@ -48,6 +47,7 @@ a:visited {
 									<c:forEach items="${ list }" var="sv"> 
 											<c:url value="sViolatePersonalList.do" var="sviolatelist">
 					 						    <c:param name="sNo" value="${ sv.sNo }"/>
+					 						    <c:param name="sName" value="${ sv.sName }"/>
 											</c:url>
 									<tr>
 										<td align="center">
@@ -61,9 +61,6 @@ a:visited {
 										</td>
 										<td align="center">
 											<a href="${ sviolatelist }">${sv.sViolate}</a>
-										</td>
-										<td align="center">
-											<a href="${ sviolatelist }">${sv.vDate}</a>
 										</td>
 										<td align="center">
 											<a href="${ pviolatelist }">${sv.sStatus}</a>

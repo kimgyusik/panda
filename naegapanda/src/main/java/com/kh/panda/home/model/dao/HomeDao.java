@@ -14,9 +14,10 @@ public class HomeDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlsession;
+
 	
-	
-	public ArrayList<Home> selectHotTopList(){
-		return (ArrayList)sqlsession.selectList("homeMapper.selectHotTopList");
+	public ArrayList<Product> search(String keyword){
+		return (ArrayList)sqlsession.selectList("productMapper.search",keyword);
 	}
+	
 }

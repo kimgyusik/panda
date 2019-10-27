@@ -44,10 +44,11 @@ public class Violate {
 
 	
 
-	public Violate(int sNo, String sName, int pId, String pName) {
+	public Violate(int sNo, String sName, int mNo, int pId, String pName) {
 		super();
 		this.sNo = sNo;
 		this.sName = sName;
+		this.mNo = mNo;
 		this.pId = pId;
 		this.pName = pName;
 	}

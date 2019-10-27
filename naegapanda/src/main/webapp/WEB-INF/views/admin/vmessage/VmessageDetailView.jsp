@@ -49,8 +49,8 @@
 						      </td>
 						    </tr>
 						    <tr>
-						      <th scope="row">제목</th>
-						      <td colspan="2"> ${ vm.vmTitle } </td>
+						      <th scope="row">제품</th>
+						      <td colspan="2"> ${ vm.pName } </td>
 						      <td>
 						      <c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 							      <c:if test="${ empty vm.vmCheckDate }">
@@ -73,6 +73,10 @@
 										<a  href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" data-target="#myModal" data-toggle="modal">${vm.vmRenameFileName }</a>
 									</c:if>
 								</td>
+						    </tr>
+						    <tr>
+						    	<th scope="row">제목</th>
+						      	<td colspan="2"> ${ vm.vmTitle } </td>
 						    </tr>
 						    <tr>
 						      <th scope="row" height="300px">내용</th>

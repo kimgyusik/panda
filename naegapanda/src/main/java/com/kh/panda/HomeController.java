@@ -33,21 +33,16 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
-	public ModelAndView home(ModelAndView mv, Locale locale, Model model) {
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		ArrayList<Home> hottop = hService.selectHotTopList();
-		System.out.println("hottop");
-		System.out.println(hottop);
-		
-		mv.addObject("hottop",hottop).setViewName("home");
-		return mv;
+		public String home(Locale locale, Model model) {
+			
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+			
+			String formattedDate = dateFormat.format(date);
+			
+			model.addAttribute("serverTime", formattedDate );
+			
+			return "home";
 	}
 	
 	

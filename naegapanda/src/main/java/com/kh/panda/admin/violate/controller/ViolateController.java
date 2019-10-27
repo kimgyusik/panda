@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,9 @@ import com.kh.panda.admin.violate.model.service.ViolateService;
 import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
+import com.kh.panda.member.model.vo.Member;
 import com.kh.panda.product.model.vo.Product;
+import com.kh.panda.seller.model.vo.Seller;
 import com.sun.javafx.collections.MappingChange.Map;
 
 @Controller
@@ -50,21 +53,23 @@ public class ViolateController {
 	}
 	
 	@RequestMapping("violateinsert.do")
-	public ModelAndView ViolateInsertView(ModelAndView mv, Product p) {
-		int pId = p.getpId();
+	public ModelAndView ViolateInsertView(ModelAndView mv, int pId, HttpSession session) {
 		System.out.print("pId:");
 		System.out.println(pId);
 		Violate v = vService.selectInfo(pId);
 		System.out.print("v:");		
 		System.out.println(v);
+		int mNo = ((Member) (session.getAttribute("loginUser"))).getmNo();
+		System.out.println(mNo);
 		
-		mv.addObject("v",v).setViewName("admin/violate/ViolateInsertForm");
+		mv.addObject("v",v).addObject("mNo", mNo).setViewName("admin/violate/ViolateInsertForm");
 		return mv;
 	}
 	
 	@RequestMapping("vinsert.do")
 	public String insertViolate(Violate v, HttpServletRequest request, Model model, 
-			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
+			@RequestParam(name="uploadFile", required=false) MultipartFile file, HttpSession session) {
+		
 		
 		if(!file.getOriginalFilename().equals("")){
 			String renameFileName = saveFile(file,request);
@@ -75,6 +80,7 @@ public class ViolateController {
 			}
 		}
 		
+			System.out.println(v);
 		int result = vService.insertViolate(v);
 
 		return "redirect:finishViolate.do";
