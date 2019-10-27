@@ -149,7 +149,8 @@ public class SellerController {
 
 		Seller loginSeller = sService.loginSeller(s);
 		
-		System.out.println(loginSeller.getsStatus());
+		System.out.println(loginSeller);
+		System.out.println(s);
 		
 		
 		/*
@@ -165,7 +166,7 @@ public class SellerController {
 		 *
 		 */
 		
-		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())  && loginSeller.getsStatus() == "Y" && loginSeller.getsEmail() == "Y") {
+		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())  && loginSeller.getsStatus().equals("Y")) {
 
 			model.addAttribute("loginSeller", loginSeller);
 			return "redirect:sProduct.do";

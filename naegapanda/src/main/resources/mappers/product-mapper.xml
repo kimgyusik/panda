@@ -85,6 +85,12 @@
 		set p_count = p_count + 1
 		where p_Id = #{pId}
 	</update>
+	
+	<update id="deleteOption" parameterType="_int">
+		update product_option
+		set o_Status = 'N'
+		where o_no = #{oNo}
+	</update>
 
 
 
