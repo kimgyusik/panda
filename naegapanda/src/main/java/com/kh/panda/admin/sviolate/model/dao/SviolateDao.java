@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.panda.admin.sviolate.model.vo.Sviolate;
+import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 
 @Repository("svDao")
@@ -42,5 +43,14 @@ public class SviolateDao {
 		
 		return (ArrayList)sqlSession.selectList("sviolateMapper.selectPersonalList", sNo, rowBounds);
 	}
+	
+	public Violate selectDetail(int vNo) {
+		return sqlSession.selectOne("violateMapper.violateDetail", vNo);
+	}
+	
+	public int sellerDelete(int sNo) {
+		return sqlSession.update("violateMapper.sellerDelete",sNo);
+	}
+	
 	
 }

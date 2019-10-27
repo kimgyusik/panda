@@ -59,3 +59,13 @@ where   v.s_no = s.s_no
     and v.p_id = p.p_id
     and p.s_no = s.s_no
 order by v_date desc;
+
+create or replace view hList 
+as
+select p_id, p_name, c_name, c_name2, pa_origin_name, pa_change_name, o_price, o_purchase
+from product
+join category using(c_id)
+join product_attachment using(p_id)
+join product_option using(p_id)
+where o_status = 'Y'
+order by o_purchase desc;

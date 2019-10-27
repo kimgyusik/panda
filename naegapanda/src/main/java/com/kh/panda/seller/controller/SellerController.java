@@ -2,17 +2,15 @@ package com.kh.panda.seller.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +29,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -340,6 +336,7 @@ public class SellerController {
 
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
+//		String root = "resources";
 		// resources 까지의 파일 위치를 나타냄
 		String savePath = root + "\\product_uploadFiles";
 		// 그 뒤에 저장 경로
@@ -456,8 +453,7 @@ public class SellerController {
 			model.addAttribute("msg", "등록에 실패했습니다");
 			return "common/errorPage";
 		}
-
-
+		
 	}
 	
 	
@@ -501,10 +497,21 @@ public class SellerController {
 	      Gson gson = new Gson();
 	
 	      gson.toJson(seller, response.getWriter());
-	
-
 	}
 	
+
+	@RequestMapping(value="pUpdateView.do")
+	public ModelAndView updateProductView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
+		System.out.println(pId);
+		Product p = sService.selectProduct(pId);
+		System.out.println(p);
+		ArrayList<ProductAttachment> paList = sService.selectPa(p);
+		ArrayList<ProductOption> poList = sService.selectPo(p);
+		ArrayList<Category> cList = sService.selectcList();
+		mv.addObject("cList", cList).addObject("p", p).addObject("paList", paList).addObject("poList", poList).setViewName("seller/product/updateProductForm");
+		
+		return mv;
+	}
 	
 	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
 	public String  findPwd(Seller s, Model model, HttpServletRequest request) throws MessagingException {

@@ -269,7 +269,12 @@ cursor: pointer;
 color: #0e8ce4;
 }
 
-
+.amount{
+width:40px; 
+text-align:center; 
+margin:auto; 
+border:1px solid gray;
+}
 .updateReview:hover, .makeReview:hover{
 
 border: 2px solid #a3ebff;

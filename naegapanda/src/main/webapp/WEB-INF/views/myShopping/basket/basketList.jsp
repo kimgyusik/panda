@@ -110,7 +110,7 @@
 																			<a href="${ product }" style="font-size:13px;">${b.pName} :: ${b.oName}</a>	
 																		</td>
 																		<td>
-																			<input class="amount" type="number" value="${b.amount }" min="1" style="width:50px; text-align:center; margin:auto;">
+																			<input class="amount" type="number" value="${b.amount }" min="1" onKeyup="this.value=this.value.replace(/[^1-9]/g,'');" >
 																		</td>
 																		<td>
 																			<input type="hidden" value="${b.price}">
@@ -173,6 +173,8 @@
 		$(function(){
 			priceAll();
 		});
+		
+
 		
 		// 장바구니 총 결재금액 계산 함수
 		function priceAll(){
