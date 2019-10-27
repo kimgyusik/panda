@@ -17,4 +17,9 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.increasepCount(pId);
 	}
 
+	@Override
+	public int deleteOption(int oNo) {
+		return pDao.deleteOption(oNo);
+	}
+
 }

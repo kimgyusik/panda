@@ -6,4 +6,6 @@ public interface ProductService {
 
 	int increasepCount(int pId);
 
+	int deleteOption(int oNo);
+
 }

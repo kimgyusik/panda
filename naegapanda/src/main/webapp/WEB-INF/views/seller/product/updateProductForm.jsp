@@ -70,7 +70,7 @@
 								<div class="productPic" id="productPicArea1">
 									<c:forEach items="${paList}" var="pa">
 										<c:if test="${pa.paFileLevel eq 1}">
-									<img id='pImg1' width='98px' height='98px' src="${pa.filePath}/${pa.paChangeName}">
+									<img id='pImg1' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 										</c:if>
 									</c:forEach>
 									
@@ -83,7 +83,7 @@
 										<div class="productPic" id="productPicArea2">
 										<c:forEach items="${paList}" var="pa" >
 											<c:if test="${pa.paFileLevel eq 2}">
-										<img id='pImg2' width='98px' height='98px' src="${pa.filePath}/${pa.paChangeName}">
+										<img id='pImg2' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 											</c:if>
 										</c:forEach>
 										<c:if test="${fn:length(cList) eq 1}">
@@ -95,7 +95,7 @@
 										<div class="productPic" id="productPicArea3">
 										<c:forEach items="${paList}" var="pa">
 											<c:if test="${pa.paFileLevel eq 3}">
-										<img id='pImg3' width='98px' height='98px' src="${pa.filePath}/${pa.paChangeName}">
+										<img id='pImg3' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 											</c:if>
 										</c:forEach>
 										<c:if test="${fn:length(cList) eq 1 or fn:length(cList) eq 2}">
@@ -156,20 +156,38 @@
 						<div style="border:2px solid blue;">
 							<div class="form-group">
 								<label for="optionName1">옵션명</label>
-								<input type="text" class="form-control" id="oName" name="oName" placeholder="옵션 명을 입력하세요."/>
+								<input type="text" class="form-control" id="oName" name="oName" value="${poList[0].oName}" placeholder="옵션 명을 입력하세요."/>
 							</div>
 							<div class="form-group">
 								<label for="price1">가격</label> <input type="number"
-									class="form-control" id="oPrice" name="oPrice" placeholder="상품 가격을 입력하세요." />
+									class="form-control" id="oPrice" name="oPrice" value="${poList[0].oPrice }" placeholder="상품 가격을 입력하세요." />
 							</div>
 							<div class="form-group">
 								<label for="amount1">수량</label> <input type="number"
-									class="form-control" id="oAmount" name="oAmount" placeholder="상품 가격을 입력하세요." />
+									class="form-control" id="oAmount" name="oAmount" value="${poList[0].oAmount }" placeholder="상품 가격을 입력하세요." />
 							</div>
 						</div>
+						
 						<br>
 						<div id="optionTable">
-						
+						<c:forEach items="${poList }" var="po" varStatus="vs">
+						<c:if test="${vs.index ne 0 }">
+						<div style="border:2px solid blue;">
+							<div class="form-group">
+								<label for="optionName1">옵션명</label>
+								<input type="text" class="form-control" id="oName" name="oName" value="${po.oName}" placeholder="옵션 명을 입력하세요."/>
+							</div>
+							<div class="form-group">
+								<label for="price1">가격</label> <input type="number"
+									class="form-control" id="oPrice" name="oPrice" value="${po.oPrice }" placeholder="상품 가격을 입력하세요." />
+							</div>
+							<div class="form-group">
+								<label for="amount1">수량</label> <input type="number"
+									class="form-control" id="oAmount" name="oAmount" value="${po.oAmount }" placeholder="상품 가격을 입력하세요." />
+							</div>
+						</div>
+						</c:if>
+						</c:forEach>
 						</div>
 						<div style="margin:10px;">
 							<button type="button" onclick="insertOption()">옵션추가</button>

@@ -62,4 +62,16 @@ public class ProductController {
 		return mv;
 	}
 	
+	@RequestMapping("pDelete.do")
+	public String pDelete(@RequestParam(name="oNo") int oNo, @RequestParam(name="currentPage", required = false, defaultValue = "1") int currentPage ) {
+		int result = pService.deleteOption(oNo);
+		
+		if(result > 0) {
+			return "redirect:sProduct.do?currentPage="+currentPage;
+		} else {
+			
+			return "common/errorPage";
+		}
+		
+	}
 }

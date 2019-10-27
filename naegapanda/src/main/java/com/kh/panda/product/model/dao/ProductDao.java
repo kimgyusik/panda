@@ -16,4 +16,8 @@ public class ProductDao {
 		return sqlSession.update("productMapper.updatepCount", pId);
 	}
 
+	public int deleteOption(int oNo) {
+		return sqlSession.update("productMapper.deleteOption", oNo);
+	}
+
 }

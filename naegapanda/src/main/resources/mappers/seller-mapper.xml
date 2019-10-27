@@ -42,7 +42,7 @@
 	<select id="loginSeller" parameterType="Seller" resultMap="sellerResultSet">
 		select *
 		from seller
-		where s_id=#{sId} and s_status='Y' and s_email_key='Y'
+		where s_id=#{sId}
 	</select>
 	
 	<!-- 회원가입시 아이디 중복여부 -->
