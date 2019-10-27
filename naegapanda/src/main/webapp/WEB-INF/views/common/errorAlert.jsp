@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text.javascript">
-var message = '${msg}'
+<script type="text/javascript">
+var message = '${msg}';
 var returnUrl = '${url}';
 alert(msg);
-document.location.href = returnUrl;
+document.location.href = url;
 </script>
 
 </body>

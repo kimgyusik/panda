@@ -58,19 +58,19 @@
 				<input type="text" class="form-control" name="sName" id="sName" placeholder="이름" required>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sId" id="sId" placeholder="ID" required>
+				<input type="text" class="form-control" name="sId" id="sId" placeholder="ID(4~12자리의 영문 대소문자와 숫자로만 입력)" required>
 				<span class="ok guide">사용 가능</span>
 				<span class="error guide">사용 불가능</span>
 				<input type="hidden" id="sIdDuplicateCheck" value="0">
 			</div>
 			<div class="form-group col-md-6">
-				<input type="password" class="form-control" name="sPwd" id="sPwd" placeholder="비밀번호" required>
+				<input type="password" class="form-control" name="sPwd" id="sPwd" placeholder="비밀번호(4~12자리의 영문 대소문자와 숫자로만 입력)" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="password" class="form-control" name="sPwdConfirm" id="sPwdCheck" placeholder="비밀번호확인" required><font name="check"size="2" color="red"></font>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" name="sNum" id="sNum" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
+				<input type="text" class="form-control" name="sNum" id="sNum" placeholder="생년월일을 입력해주세요(예 19990101)" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" name="sPhone" id="sPhone" placeholder="핸드폰번호(-미포함)" required>
@@ -139,9 +139,11 @@
 		</div>
 	</form>
 	
+	<br><br><br><br>
+	통신판매검색(임시)
 	<form name="frm1">
-<input name="wrkr_no" type="text" value="2208110886"/>
-<input type="button" value="팝업" onclick="onopen();"/>
+<input name="wrkr_no" type="text" />
+<input type="button" value="팝업" class="btn btn-primary" onclick="onopen();"/>
 </form>
 	
 </div>
@@ -171,7 +173,7 @@
 				
 				// 아이디 유효성 검사
 				if(!getCheck.test($("#sId").val())){
-					alert("형식에 맞게 입력해주세요");
+					alert("아이디형식에 맞게 입력해주세요");
 					$("#sId").val("");
 					$("#sId").focus();
 					return false;
@@ -179,16 +181,23 @@
 				
 				// 비밀번호 공백 확인
 				if($("#sPwd").val() == ""){
-					alert("패스워드를  입력해주세요");
+					alert("비밀번호를  입력해주세요");
 					$("#sPwd").focus();
 					return false;
 				}
 				
 				if(!getCheck.test($("#sPwd").val())){
-					alert("형식에 맞게 입력해주세요");
+					alert("비밀번호 형식에 맞게 입력해주세요");
 					$("#sPwd").val("");
 					$("#sPwd").focus();
+					return false;
 					
+				}
+				
+				if($("#sPwd").val() !== $("#sPwdCheck").val()){
+					alert("비밀번호가 서로 일치하지 않습니다.")
+					$("#sPwd").focus();
+					return false;
 				}
 				
 				// 이메일 공백확인
@@ -282,6 +291,11 @@
 								$(".ok").hide();
 								$(".error").show();
 								$("#sIdDuplicateCheck").val(0);
+								alert("이미 존재하는 아이디 입니다.");
+								$("#sId").focus;
+								$("#sId").val("");
+								$(".error").hide();
+								
 							}
 						},
 						error:function(){
