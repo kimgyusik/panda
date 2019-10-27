@@ -51,10 +51,12 @@
 	</select>
 	
 	<select id="selectProdReviewList" parameterType="_int" resultMap="reviewResultSet">
-		select r_id, r_title, r_contents, r_date, r_count, m_no, m_id, r_del, r_commed, pay_id, r_image
-		from REVIEW
-		join member using(m_no)
-		where p_id = #{pId} and r_del = 'N'
+		select r_id, r_title, r_contents, r_date, r_count, a.m_no, m_id, r_del, r_commend, c.pay_id, r_image
+		from REVIEW A, member B, payment C, product_option D
+		where a.m_no = b.m_no
+		and a.pay_id = c.pay_id
+		and c.o_no = d.o_no
+		AND p_id = 4 and r_del = 'N';
 	</select>
 	
 	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">

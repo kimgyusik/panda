@@ -411,4 +411,119 @@ $(document).ready(function()
 			});
 		});
 	}
+	
+	// 리뷰 상세 on-off
+	$('.reviewDetail').css('display','none');
+	$('.reviewTop').click(function(){
+		if(!$(this).hasClass('more')){
+			getReplyList($(this).next().children().eq(0).children().eq(0).val(), $(this).next().children().eq(0).children().eq(1).val());
+			$(this).css('border-bottom','none');
+			$(this).find('.reviewImg').css('display','none');
+			$(this).next().css('display','table-row');
+			$(this).addClass('more');
+		}else{
+			$(this).find('.reviewImg').css('display','inline-table');
+			$(this).next().css('display','none');
+			$(this).removeClass('more');
+		}
+	});
+	
 });
+
+// 리뷰 댓글 불러오기
+function getReplyList(rId, mNo){
+
+	$.ajax({
+		url:"replyList.re",
+		data:{rId:rId},
+		dataType:"json",
+		success:function(data){
+			
+			$("#rCount"+rId).html(data.length);
+			
+			var $replyBody = $("#replyTable"+rId);	
+				$replyBody.html("");
+			
+			if(data.length > 0){
+				
+				$.each(data, function(index, value){ // value == data[index]
+					
+					var $tr = $("<tr class='reply'>");
+					
+					// 날짜 포맷팅
+					var date = new Date(value.rrDate),
+				    yr      = date.getFullYear(),
+				    month   = date.getMonth()+1 < 10 ? '0' + date.getMonth()+1 : date.getMonth()+1,
+				    day     = date.getDate()  < 10 ? '0' + date.getDate()  : date.getDate(),
+				    hours	= date.getHours(),
+				    minutes	= date.getMinutes(),
+				    newDate = yr + '.' + month + '.' + day + '&nbsp;&nbsp;' + hours + ':' + minutes;
+				   
+					$tr.append(
+							"<td>"+value.mId +":"	
+							+ "<td >"+value.rrContents
+							+ "<td class='reviewGray dated'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("+newDate+")"
+					);
+
+					if(value.mNo == mNo){
+						$tr.append("<td style='border-bottom:none;'>" +
+								"<input type='hidden' value='"+value.rrId+"'>" +
+									"<span class='update'>수정</span>" +
+									"<span class='delete'>삭제</span>");
+					}	
+					$replyBody.append($tr);
+				});
+			}
+		},
+		error:function(){
+			console.log("ajax 통신 실패");
+		}
+	});
+}
+
+
+// 장바구니 담기 처리
+function addCart(t){
+	
+	if(t == null || t == ""){
+		alert('일반회원으로 로그인 이후 이용 가능합니다.');
+		return;
+	}else{
+		// 선택된 옵션과 수량을 변수로 잡아줘야함
+		$.ajax({
+			url:"addBasket.ba",
+			data: {oNo:oNo, amount:amount},
+			dataType:"json",
+			success:function(data){
+				alert(data);
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
+	
+}
+
+// 찜하기 처리
+function addGgim(t){
+	
+	if(t == null || t == ""){
+		alert('일반회원으로 로그인 이후 이용 가능합니다.');
+		return;
+	}else{
+		// 버튼으로 1회성 처리 할 것인지 / on-off 처리할 것인지 결정 후 진행 
+		$.ajax({
+			url:"addGgim.gg",
+			data: {pId:pId},
+			dataType:"json",
+			success:function(data){
+				alert(data);
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
+	
+}
