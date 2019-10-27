@@ -48,7 +48,7 @@
 							<div class="product_name">${ p.pName }
 								<form action="violateinsert.do">
 									<input type="hidden" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">ï¿½Å°ï¿½ï¿½Ï±ï¿½</button>	
+									<button type="submit" class="button cart_button">½Å°íÇÏ±â</button>	
 								</form>
 							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
@@ -69,11 +69,11 @@
 										<div>
 											<table>
 												<tr>
-													<th>ï¿½É¼Ç¹ï¿½È£</th>
-													<th>ï¿½É¼Ç¸ï¿½</th>
-													<th>ï¿½É¼Ç°ï¿½ï¿½ï¿½</th>
-													<th>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</th>
-													<th>ï¿½ï¿½ï¿½ï¿½</th>
+													<th>¿É¼Ç¹øÈ£</th>
+													<th>¿É¼ÇÀÌ¸§</th>
+													<th>¿É¼Ç°¡°Ý</th>
+													<th>¿É¼Ç¼ö·®</th>
+													<th>¼±ÅÃ</th>
 												</tr>
 											<c:forEach items="${poList }" var="po">
 												<tr>
@@ -81,7 +81,7 @@
 													<td>${po.oName }</td>
 													<td>${po.oPrice }</td>
 													<td>${po.oAmount }</td>
-													<td><button type="button">ï¿½ï¿½ï¿½ï¿½</button></td>
+													<td><button type="button">¼±ÅÃ</button></td>
 												</tr>
 											</c:forEach>
 											</table>
@@ -94,7 +94,7 @@
 	
 									<div class="button_container">
 										<button type="button" class="button cart_button">Add to Cart</button>
-										<button type="button" class="button cart_button">ï¿½ï¿½ï¿½Ï±ï¿½</button>
+										<button type="button" class="button cart_button">ÂòÇÏ±â</button>
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
@@ -113,7 +113,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="col-lg-5">
-							<h3>ï¿½ó¼¼ºï¿½ï¿½ï¿½</h3>
+							<h3>»ó¼¼³»¿ë</h3>
 							<div id="detail_contents">
 								${p.pContent }
 							</div>
@@ -123,7 +123,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>ï¿½ï¿½Ç° ï¿½Ä±ï¿½</h3>
+							<h3>»óÇ°¸®ºä</h3>
 							<div id="review">
 								
 							</div>
@@ -133,7 +133,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½</h3>
+							<h3>»óÇ°¹®ÀÇ</h3>
 							<div id="inquiry">
 								
 							</div>
