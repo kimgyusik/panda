@@ -103,10 +103,10 @@
 
 			<table id="loginTable" style="text-algin: center">
 				<tr>
-					<td style="display:block"><input type="text" name="sId" placeholder="아이디" required></td>
+					<td style="display:block"><input type="text" name="sId" id="sId" placeholder="아이디" required></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="sPwd" placeholder="비밀번호" required></td>
+					<td><input type="password" name="sPwd" placeholder="비밀번호" id="sPwd" required></td>
 						
 				</tr>
 				<tr>
@@ -138,6 +138,22 @@
     <script>
     	$(document).ready(function(){
     		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+    	});
+    	
+    	
+    	$("#loginBtn").click(function(){
+    		
+    		if($("#sId").val() == ""){
+    			alert("아이디를 입력해주세요")
+    			$("#sId").focus();
+    			return false;
+    		}
+    		
+    		if($("#sPwd").val() == ""){
+    			alert("비밀번호를 입력해주세요")
+    			$("#sPwd").focus();
+    			return false;
+    		}
     	});
     	    	
     </script>
