@@ -46,9 +46,9 @@
 						<div class="product_description">
 							<div class="product_category">${p.cId }</div>
 							<div class="product_name">${p.pName }
-								<form>
+								<form action="violateinsert.do" method="post">
 									<input type="text" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button" onclick="location.href='violateinsert.do';">신고하기</button>	
+									<button type="submit" class="button cart_button">신고하기</button>	
 								</form>
 							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
