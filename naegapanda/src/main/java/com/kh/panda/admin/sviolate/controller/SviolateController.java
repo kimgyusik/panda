@@ -45,7 +45,6 @@ public class SviolateController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Sviolate> list = svService.selectPersonalList(pi, sNo);
-		System.out.println(list);
 		
 		mv.addObject("pi", pi).addObject("list", list).addObject("sName",sName).addObject("sNo",sNo).setViewName("admin/sviolate/sViolatePersonalListView");
 		// 객체                                                                                         경로로반환한거당
