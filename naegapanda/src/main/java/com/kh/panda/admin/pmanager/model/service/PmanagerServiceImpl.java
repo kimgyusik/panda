@@ -24,4 +24,16 @@ public class PmanagerServiceImpl implements PmanagerService{
 	public ArrayList<Pmanager> selectList(PageInfo pi, String cName2) {
 		return pmDao.selectList(pi, cName2);
 	}
+
+	@Override
+	public ArrayList<Pmanager> pmViolateList(PageInfo pi, int pId) {
+		return pmDao.pmViolateList(pi, pId);
+	}
+
+	@Override
+	public int pmStop(int pId) {
+		return pmDao.pmStop(pId);
+	}
+
+	
 }
