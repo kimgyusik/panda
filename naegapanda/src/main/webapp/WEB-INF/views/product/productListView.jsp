@@ -95,13 +95,13 @@
 
 							<!-- Product Item -->
 							<c:forEach items="${pList }" var="p">
-							<div class="product_item" style="width:175px; padding:10px;">
+							<div class="product_item" style="width:220px; padding:10px;">
 								<div class="product_border"></div>
 								<div class="product_image d-flex flex-column align-items-center justify-content-center" style="width:115px;"><img src="resources/product_uploadFiles/${p.paChangeName }" width="115" height="115" alt=""></div>
 								<div class="product_content">
 									<input type="hidden" value="${p.pId }" class="pId">
 									<div class="product_price">${p.pPrice }</div>
-									<div class="product_name"><div><a href="#" tabindex="0">${p.pName }</a></div></div>
+									<div class="product_name" height="30px"><div>${p.pName }</div></div>
 								</div>
 								<div class="product_fav"><i class="fas fa-heart"></i></div>
 								<ul class="product_marks">
@@ -114,7 +114,16 @@
 								</ul> -->
 							</div>
 							</c:forEach>
-							
+							<script>
+								$(function(){
+									
+								});
+								
+								$(".product_item").click(function(){
+									var pId = $(this).children().eq(2).children().eq(0).val();
+									location.href="pDetailView.do?pId="+pId;	
+								});
+							</script>
 						</div>
 
 						<!-- Shop Page Navigation -->
