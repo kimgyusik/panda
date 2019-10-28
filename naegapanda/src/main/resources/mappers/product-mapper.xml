@@ -120,11 +120,18 @@
 		from product p
 		where p.p_status='Y' and c_id between #{startNum} and #{endNum}
 	</select>
+	
+	<select id="searchListCount" parameterType="CategoryNumber" resultType="_int">
+		select count(*)
+		from product p
+		where p.p_status='Y' and p_name like '%' ||  #{keyword} || '%' and c_id between #{startNum} and #{endNum}
+	</select>
 
-	<select id="search" parameterType="String" resultMap="productResultSet">
-		select *
-		from product
-		where p_name like '%' ||  #{keyword} || '%' or p_content like '%' ||  #{keyword} || '%'
+	<select id="search" parameterType="CategoryNumber" resultMap="productResultSet2">
+		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price
+		from product p
+		join product_attachment pa on(p.p_Id = pa.p_Id)
+		where p.p_status='Y' and p_name like '%' ||  #{keyword} || '%' and c_id between #{startNum} and #{endNum}
 	
 	</select>
 

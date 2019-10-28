@@ -10,8 +10,9 @@ public interface ProductService {
 	int increasepCount(int pId);
 
 	int deleteOption(int oNo);
-
-	ArrayList<Product> search(String keyword);
+	int getListCount(String keyword, int category);
+	
+	ArrayList<Product> search(String keyword, PageInfo pi, int category);
 
 	ArrayList<Product> selectpList(PageInfo pi, int category);
 

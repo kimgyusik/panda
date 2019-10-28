@@ -17,12 +17,12 @@ public class HomeControllerTest {
 	private HomeService hService;
 	
 	
-	@RequestMapping("search.do")
+	
 	public ModelAndView search(ModelAndView mv, String keyword) {
 		
 		ArrayList<Product> list = hService.search(keyword); 
-		
-		mv.addObject("list",list).setViewName("product/soojinTest");
+		System.out.println(list);
+		mv.addObject("list",list).setViewName("product/productListView");
 		
 		return mv;
 	}

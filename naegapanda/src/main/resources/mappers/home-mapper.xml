@@ -15,8 +15,9 @@
 		<![CDATA[
 		  	select *
 		  	from (select *
-				  from hList)
-		  	where rownum<= 5
+				  from hList
+				  order by o_purchase desc))
+		  	where rownum<=12
 	  	]]>		
 	</select>
 
