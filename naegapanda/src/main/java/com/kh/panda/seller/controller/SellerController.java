@@ -106,7 +106,7 @@ public class SellerController {
 
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
+		String html = "<h1><label style='color:#0e8ce4'>메일인증</label>안내입니다.</h1><br><br><h4>안녕하세요</h4><h4>내가판다를 이용해주셔서 진심으로 감사합니다.</h4><h4 style='display:inline-block'>여기</h4><a style='display:inline-block' href='localhost:8012/panda/emailConfirm.do?sId=" + s.getsId() + "&sName=" + s.getsName()+ "&s_email_key=Y' target='_blank'>메일 인증</a><h4 style='display:inline-block'>을 눌러 이메일을 인증해주세요</h4>";
 
 		sendMail.setSubject("[PANDA 이메일 인증]");
 		sendMail.setText(html);
@@ -171,11 +171,11 @@ public class SellerController {
 			model.addAttribute("loginSeller", loginSeller);
 			return "redirect:sProduct.do";
 
-		} else if(loginSeller.getsEmail() == "N"){
+		} else if(loginSeller.getsEmailKey().equals("N")){
 			model.addAttribute("msg", "이메일 인증을 완료해주세요.");
 			return "common/errorPage";
 
-		} else if(loginSeller.getsStatus() == "N"){
+		} else if(loginSeller.getsStatus().equals("N")){
 			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
 			return "common/errorPage";
 			 
