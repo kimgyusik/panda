@@ -105,6 +105,8 @@ public class ProductController {
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
 		ArrayList<Product> pList = pService.search(keyword,pi,category); 
+		System.out.println(keyword);
+		System.out.println(category);
 		System.out.println(pList);
 		
 		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).setViewName("product/productListView");

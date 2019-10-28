@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class SAnswer {
 
-	private int saId;
+	private int sqId;
 	private int qId;
 	private String saTitle;
 	private String saContent;
@@ -16,10 +16,10 @@ public class SAnswer {
 		
 	}
 
-	public SAnswer(int saId, int qId, String saTitle, String saContent, String saWriter, Date saCreateDate,
+	public SAnswer(int sqId, int qId, String saTitle, String saContent, String saWriter, Date saCreateDate,
 			String saStatus) {
 		super();
-		this.saId = saId;
+		this.sqId = sqId;
 		this.qId = qId;
 		this.saTitle = saTitle;
 		this.saContent = saContent;
@@ -28,12 +28,12 @@ public class SAnswer {
 		this.saStatus = saStatus;
 	}
 
-	public int getSaId() {
-		return saId;
+	public int getSqId() {
+		return sqId;
 	}
 
-	public void setSaId(int saId) {
-		this.saId = saId;
+	public void setSqId(int sqId) {
+		this.sqId = sqId;
 	}
 
 	public int getqId() {
@@ -86,7 +86,7 @@ public class SAnswer {
 
 	@Override
 	public String toString() {
-		return "SAnswer [saId=" + saId + ", qId=" + qId + ", saTitle=" + saTitle + ", saContent=" + saContent
+		return "SAnswer [sqId=" + sqId + ", qId=" + qId + ", saTitle=" + saTitle + ", saContent=" + saContent
 				+ ", saWriter=" + saWriter + ", saCreateDate=" + saCreateDate + ", saStatus=" + saStatus + "]";
 	}
 	

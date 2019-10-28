@@ -23,11 +23,14 @@
 	<c:import url="../common/menubar.jsp"/>
 	<div class="super_container"> 
 	<!-- Single Product -->
-
-		<div class="single_product">
+		
+		<div class="single_product" style="padding-top:0px;">
+			
 			<div class="container">
+				<div class="col-lg-2 order-lg-2 order-1">
+					<video id="localStream" width="800" controls></video>
+				</div>
 				<div class="row">
-	
 					<!-- Images -->
 					<div class="col-lg-2 order-lg-1 order-2">
 						<ul class="image_list">

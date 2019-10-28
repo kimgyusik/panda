@@ -130,11 +130,11 @@
 	</select>
 
 	<select id="search" parameterType="CategoryNumber" resultMap="productResultSet2">
-		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price
+		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price, c_name2
 		from product p
 		join product_attachment pa on(p.p_Id = pa.p_Id)
-		where p.p_status='Y' and p_name like '%' ||  #{keyword} || '%' and c_id between #{startNum} and #{endNum}
-	
+		join category c on (p.c_id=c.c_id)
+		where p.p_status='Y' and pa.pa_file_level=1 and p_name like '%' ||#{keyword} || '%' and p.c_id between #{startNum} and #{endNum}
 	</select>
 
 
