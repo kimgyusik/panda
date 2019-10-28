@@ -27,4 +27,14 @@ public class PmanagerDao {
 		return (ArrayList)sqlSession.selectList("pmanagerMapper.selectList", cName2, rowBounds);
 	}
 	
+	public ArrayList<Pmanager> pmViolateList(PageInfo pi, int pId){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("pmanagerMapper.pmViolateList", pId, rowBounds);
+	}
+	
+	public int pmStop(int pId) {
+		return sqlSession.update("pmanagerMapper.pmStop", pId);
+	}
 }

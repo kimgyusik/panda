@@ -12,6 +12,10 @@
 		<result property="cName2" column="c_name2" />
 		<result property="pStatus" column="p_status" />
 		<result property="pViolate" column="p_violate" />
+		<result property="vNo" column="v_no" />
+		<result property="mNo" column="m_no" />
+		<result property="vContent" column="v_contet" />
+		<result property="vDate" column="v_date" />
 	</resultMap>
 
 	<select id="getListCount" resultType="_int">
@@ -24,4 +28,16 @@
 		from pmlist
 		where c_name2=#{cName2}
 	</select>
+	
+	<select id="pmViolateList" resultMap="pmanagerResultSet">
+		select *
+		from pmvlist
+		where p_id=#{pId}
+	</select>
+	
+	<update id="pmStop" parameterType="_int">
+		update pmlist
+		set pStatus='Y'
+		where p_id=#{pId}
+	</update>
 </mapper>

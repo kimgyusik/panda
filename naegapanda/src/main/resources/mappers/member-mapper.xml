@@ -17,6 +17,7 @@
 		<result property="joinDate" column="join_date"/>
 		<result property="dropYn" column="drop_yn"/>
 		<result property="blackCode" column="black_code"/>
+		<result property="emailKey" column="s_email_key"/>
 	</resultMap>
 
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
@@ -58,11 +59,22 @@
 
 	
 	
-	<!-- 비밀번호 변경 -->
-	<update id="update_pw" parameterType="member">
-		update member set m_pwd = #{pwd} where id = #{id}
+	<!-- 이메일 -->
+	<update id="newPwd2" parameterType="Member">
+		update member
+		set m_pwd = #{pwd}
+		where m_id = #{id} and email = #{email}
 	</update>
 	
+	
+	
+	
+		<!-- 이메일인증 
+	<update id="createAuthKey">
+		update member
+		set emailKey = #{email_key} 
+		where email = #{email}
+	</update>-->
 
 </mapper>
 

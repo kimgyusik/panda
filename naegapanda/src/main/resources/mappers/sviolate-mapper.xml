@@ -23,10 +23,43 @@
 		select count(*)
 		from svlist
 	</select>
+	
+	<select id="getScListCount" resultType="_int">
+		select count(*)
+		from svlist
+		where s_violate >= 0
+		<if test="sName != null">
+			and s_name LIKE '%' || #{sName} || '%'
+		</if>
+		<if test="storeName != null">
+			and storename LIKE '%' || #{storeName} || '%'
+		</if>
+		<if test="sStatus != null">
+			and s_Status LIKE '%' || #{sStatus} || '%'
+		</if>
+	</select>
 
 	<select id="selectAllList" resultMap="sviolateResultSet">
 		select s_NO, s_Name, storeName, s_Violate, s_Status
 		from seller
+	</select>
+		<!-- where s_violate>=20 -->
+		
+	<select id="selectScList" resultMap="sviolateResultSet">
+		select s_NO, s_Name, storeName, s_Violate, s_Status
+		from seller
+		where
+		<choose>
+			<when test="sName != null">
+				s_name LIKE '%' || #{sName} || '%'
+			</when>
+			<when test="storeName != null">
+				storename LIKE '%' || #{storeName} || '%'
+			</when>
+			<otherwise>
+				s_Status LIKE '%' || #{sStatus} || '%'
+			</otherwise>
+		</choose>
 	</select>
 		<!-- where s_violate>=20 -->
 	

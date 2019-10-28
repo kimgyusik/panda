@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.panda.admin.sviolate.model.service.SviolateService;
 import com.kh.panda.admin.sviolate.model.vo.Sviolate;
 import com.kh.panda.admin.violate.model.service.ViolateService;
+import com.kh.panda.admin.violate.model.vo.SearchCondition;
 import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
@@ -66,8 +67,44 @@ public class SviolateController {
 	 
 	 @RequestMapping("sellerDelete.do")
 	 public ModelAndView sellerDelete(ModelAndView mv, int sNo) {
-		 int result = svService.sellerDelete(sNo);
 		 System.out.println(sNo);
+		 int result = svService.sellerDelete(sNo);
+		 System.out.println(result);
+		 mv.setViewName("admin/sviolate/sViolateAllListView");
 		 return mv;
+	 }
+	 
+	 @RequestMapping("sviolateSearch.do")
+	 public ModelAndView sviolateSearch(ModelAndView mv, String condition, String keyword, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		 System.out.print("keyword:");
+		 System.out.println(keyword);
+		 
+		 SearchCondition sc = new SearchCondition();
+		 
+			if(condition.equals("sName")) {
+				System.out.println("sName");
+				sc.setsName(keyword);
+			}else if(condition.equals("storeName")) {
+				System.out.println("storeName");	
+				sc.setStoreName(keyword);
+			}else {
+				System.out.println("sStatus");	
+				sc.setsStatus(keyword);
+			}
+			
+			System.out.println(sc);
+			
+			
+			int listCount = svService.getAllListCount(sc);
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			ArrayList<Sviolate> list = svService.selectAllList(sc,pi);
+			
+			
+			
+			
+			mv.addObject("pi", pi).addObject("list", list).addObject("condition",condition).addObject("keyword",keyword).addObject("sc",sc).setViewName("admin/sviolate/sViolateAllListView");
+			// 객체                                                                                         경로로반환한거당
+			return mv;
 	 }
 }

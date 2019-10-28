@@ -5,159 +5,194 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	.guide{
-		display:none;
-		font-size:12px;
-		top:12px;
-		right:10px;
-	}
-	.ok{color:green}
-	.error{color:red}
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<title>회원가입</title>
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<title>PANDA : 회원가입</title>
+<style>
+	.form-row{
+		display: inline-block !important;
+		margin-left: 290px !important;
+		width:600px !important;
+	}
+	.outer{
+		width:900px;
+		height: 1250px;
+		margin-left: 300px;
+		margin-top:5px; 
+	}
+	.form-control{
+		width:400px !important; 
+	}
+	#exampleFormControlSelect1 , #exampleFormControlSelect2{
+		width:130px !important;
+		color:black !important;
+		display: inline-block;
+	}
+	.postcodify_postcode5{
+		width:120px !important;
+		display:inline !important;
+	}
+	
+	#post_search_btn{
+		margin-left:10px;
+		width:100px !important;
+		display:inline !important;
+	}
+	
+</style>
 </head>
+
 <body>
 
-	<h1 align="center">회원가입</h1>
-	
-	<div class="outer" align="center">
-		<form action="minsert.do" method="post">
-			<table width="600" cellspacing="5">
-				<tr>
-					<td width="150">* 아이디</td>
-					<td>
-						<input type="text" name="id" id="userId" required>
-						<span class="ok guide">사용 가능</span>
-						<span class="error guide">사용 불가능</span>
-						<input type="hidden" id="idDuplicateCheck" value="0">
-					</td>
-				</tr>
-				<tr>
-					<td>* 비밀번호</td>
-					<td><input type="password" name="pwd" required></td>
-				</tr>
-				<tr>
-					<td>* 비밀번호 확인</td>
-					<td><input type="password" name="pwd2" required></td>
-				</tr>
-				<tr>
-					<td>* 이름</td>
-					<td><input type="text" name="name" required></td>
-				</tr>
-				<tr>
-					<td>성별</td>
-					<td>
+<c:import url="../common/menubar.jsp"/>
+
+<div style="margin-left:290px"><img src="resources/images/joinba.jpg"></div>
+		
+<div class="outer">
+	<hr>
+	<form class="joinForm" action="minsert.do" method="post">
+		<div class="form-row" >
+			<div class="form-group col-md-6">
+				<input type="text" class="form-control" name="id" id="userId" placeholder="ID" required>
+				<span class="ok guide">사용 가능</span>
+				<span class="error guide">사용 불가능</span>
+				<input type="hidden" id="idDuplicateCheck" value="0">
+			</div>
+			<div class="form-group col-md-6">
+				<input type="password" class="form-control" name="Pwd" id="Pwd" placeholder="비밀번호" required>
+			</div>
+			<div class="form-group col-md-6">
+				<input type="password" class="form-control" name="PwdConfirm" id="PwdCheck" placeholder="비밀번호확인" required><font name="check"size="2" color="red"></font>
+			</div>
+			<div class="form-group col-md-6">
+				<input type="text" class="form-control" name="name" placeholder="이름" required>
+			</div>
+			<div class="form-group col-md-6">
+					성별
 						<input type="radio" name="gender" value="M"> 남 
 						<input type="radio" name="gender" value="F"> 여
-					</td>
-				</tr>
-				<tr>
-					<td>생일</td>
-					<td><input type="text" min="20" max="100" name="birthDate"></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type="email" name="email"></td>
-				</tr>
-				<tr>
-					<td>전화번호</td>
-					<td><input type="tel" name="phone"></td>
-				</tr>
-				<tr>
-					<td>우편번호</td>
-					<td>
-						<input type="text" name="post" size="6" class="postcodify_postcode5">
-						<button type="button" id="post_search_btn">검색</button>
-					</td>
-				</tr>
-				<tr>
-					<td>도로명 주소</td>
-					<td><input type="text" name="address1" class="postcodify_address"></td>
-				</tr>
-				<tr>
-					<td>상세 주소</td>
-					<td><input type="text" name="address2" class="postcodify_extra_info"></td>
-				</tr>
-				
-				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+			</div>
+			<div class="form-group col-md-6">
+				<input type="text" class="form-control" min="20" max="100" name="birthDate" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
+			</div>
+			<div class="form-group col-md-6">
+				<input type="Email" class="form-control" name="email" placeholder="Email" required>
+				<br>
+				<label for="email_yn"><input name="email_yn" type="checkbox" id="email_yn" value="Y" /> 이벤트/쇼핑정보 이메일 수신에 동의합니다.</label>
+			</div>
+			<div class="form-group col-md-6">
+				<input type="tel" class="form-control" name="phone" placeholder="핸드폰번호(-미포함)" required>
+			</div>
+			<div class="form-group col-md-6" id="ad1">
+					<input type="text" name="post" class="form-control postcodify_postcode5">
+					<button type="button" id="post_search_btn" class="btn btn-light">주소찾기</button>				
+					<input type="text" class="form-control postcodify_address" name="address1" placeholder="도로명주소" >
+					<input type="text" class="form-control postcodify_extra_info" name="address2" placeholder="상세주소" >
+			</div>
+			
+		 </div> 
+
+		 <br><hr>
 				<script>
 					$(function(){
 						// 검색 버튼 누르면 팝업 레이어가 열리도록 설정
 						$("#post_search_btn").postcodifyPopUp();
 					});
 				</script>
-				
-				<tr>
-					<td colspan="2" align="center">
-						<button type="submit" onclick="return validate();">가입하기</button>
-						<button type="reset">취소하기</button>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	
-	<script>
-		function validate(){
-			// 아이디 중복체크 여부
-			if($("#idDuplicateCheck").val() == 0){ // 현재 아이디 사용 불가능
-				
-				alert("사용가능한 아이디를 입력해주세요!");
-				$("#userId").focus();
-				
-				return false; // submit 기능 안되게 
-			}else{ // 사용 가능
-				return true;
-			}
-		}
 		
-		$(function(){
-			$("#userId").on("keyup", function(){
+		
+
+		<div align="center">
+			<button type="submit" class="btn btn-primary" onclick="return validate();">가입하기</button>
+			<button type="reset" class="btn btn-primary">취소하기</button>
+		</div>
+	</form>
+	
+	<c:import url="../common/footer.jsp"/>
+	
+</div>
+
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script> 
+			$("#post_search_btn").postcodifyPopUp({container: $("#ad1") });
+	function validate(){
+		// 아이디 중복체크 여부
+		if($("#idDuplicateCheck").val() == 0){ // 현재 아이디 사용 불가능
+			
+			alert("사용가능한 아이디를 입력해주세요!");
+			$("#userId").focus();
+			
+			return false; // submit 기능 안되게 
+		}else{ // 사용 가능
+			return true;
+		}
+	}
+	
+	$(function(){
+		$(".guide").hide();
+		
+		$("#userId").on("keyup", function(){
+			
+			var userId = $(this).val();
+			
+			if(userId.length < 5){
 				
-				var userId = $(this).val();
+				$(".guide").hide();
+				$("#idDuplicateCheck").val(0);
 				
-				if(userId.length < 5){
+				return;
+			}
+			
+			//console.log(userId);
+			$.ajax({
+				url:"idCheck.do",
+				data:{id:userId},
+				type:"post",
+				success:function(data){ // data에는 응답데이터 담김
 					
-					$(".guide").hide();
-					$("#idDuplicateCheck").val(0);
-					
-					return;
-				}
-				
-				//console.log(userId);
-				$.ajax({
-					url:"idCheck.do",
-					data:{id:userId},
-					type:"post",
-					success:function(data){ // data에는 응답데이터 담김
+					if(data == "ok"){ // 사용가능
+						$(".error").hide();
+						$(".ok").show();
+						$("#idDuplicateCheck").val(1);
 						
-						if(data == "ok"){ // 사용가능
-							$(".error").hide();
-							$(".ok").show();
-							$("#idDuplicateCheck").val(1);
-							
-						}else{ // 사용불가능
-							$(".ok").hide();
-							$(".error").show();
-							$("#idDuplicateCheck").val(0);
-						}
-					},
-					error:function(){
-						console.log("서버와의 통신 실패");
+					}else{ // 사용불가능
+						$(".ok").hide();
+						$(".error").show();
+						$("#idDuplicateCheck").val(0);
+					}
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			});
+			
+		});
+	});
+	
+	
+			
+			// 비번체크
+			$(function() {
+				$('#Pwd').keyup(function() {
+					$('font[name=check]').text('');
+				});
+				console.log("${ loginSeller}");
+				$('#PwdCheck').keyup(function() {
+					if ($('#Pwd').val() != $('#PwdCheck').val()) {
+						$('font[name=check]').text('');
+						$('font[name=check]').html("암호틀림");
+					} else {
+						$('font[name=check]').text('');
+						$('font[name=check]').html("암호맞음");
 					}
 				});
-				
 			});
-		});
-		
+			
 	</script>
+
+
+
 	
 </body>
 </html>
-
-
-
-

@@ -33,10 +33,32 @@ a:visited {
 
 		<form action="sellerDelete.do">
 		<input type = "hidden" name = "sNo" value = "${ sNo }" >
-   		<h3 style="font-weight:bold;" onclick="removeCheck()"> ${sName} 님의 신고 회원 관리</h3>
-   		<script>
-   			function removeCheck() {
-
+   		<h3 style="font-weight:bold;" id="deleteSeller"> ${sName} 님의 신고 회원 관리</h3>
+   	<script>
+   	$("#deleteSeller").click(function(){
+   		var sNo = $(this).prev().val();
+			swal({
+			  title: "정말 중지 시키시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				location.href="sellerDelete.do?sNo=" +sNo;
+			    swal("판매자 중지 되었습니다!", {
+			      icon: "success",
+			    });
+			  } else {
+			    swal("취소되었습니다.");
+			  }
+			});
+   	});
+   		
+   		
+   	/* 	<!--  onclick="removeCheck()" -->
+   	function removeCheck() {
+				id.click $this.prev().val()
    				swal({
    				  title: "정말 중지 시키시겠습니까?",
    				  icon: "warning",
@@ -53,7 +75,7 @@ a:visited {
    				    swal("취소되었습니다.");
    				  }
    				});
-   			}
+   			} */
    		</script>
 		</form>
    		
