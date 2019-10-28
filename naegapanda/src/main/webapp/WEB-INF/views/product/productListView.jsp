@@ -148,11 +148,16 @@
 						<table align="center" style="margin-left:auto; margin-right:auto;">
 							<tr align="center" height="20">
 								<td colspan="6">
-									<c:url value="pListView.do" var="first">
-										<c:param name="currentPage" value="1"/>
-										<c:param name="category" value="${category }"/>
-									</c:url>
-									<a href="${first }">[처음으로]</a>&nbsp;
+									<c:if test="${pi.currentPage eq 1}">
+										[처음으로]
+									</c:if>
+									<c:if test="${pi.currentPage ne 1}">
+										<c:url value="pListView.do" var="first">
+											<c:param name="currentPage" value="1"/>
+											<c:param name="category" value="${category }"/>
+										</c:url>
+										<a href="${first }">[처음으로]</a>&nbsp;
+									</c:if>
 									<!-- 이전 -->
 									<c:if test="${pi.currentPage eq 1}">
 										[이전]
@@ -192,11 +197,16 @@
 										</c:url>
 										<a href="${next }">[다음]&nbsp;</a>
 									</c:if>
+									<c:if test="${pi.currentPage eq pi.maxPage}">
+										[끝으로]
+									</c:if>
+									<c:if test="${pi.currentPage ne pi.maxPage}">
 									<c:url value="pListView.do" var="last">
 										<c:param name="currentPage" value="${pi.maxPage }"/>
 										<c:param name="category" value="${category }"/>
 									</c:url>
 									<a href="${last }">[끝으로]&nbsp;</a>
+									</c:if>
 								</td>
 							</tr>
 						</table>
