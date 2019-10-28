@@ -19,7 +19,7 @@
 		<result property="sbAddress" column="s_baddress"/>
 		<result property="sbPhone" column="s_bphone"/>
 		<result property="sOk" column="s_ok"/>
-		<result property="emailKey" column="s_email_key"/>
+		<result property="sEmailKey" column="s_email_key"/>
 		<result property="sStatus" column="s_status"/>
 		<result property="sViolate" column="s_violate"/>
 	</resultMap>
@@ -34,7 +34,7 @@
 	<!-- 이메일인증 -->
 	<update id="createAuthKey">
 		update seller
-		set s_emailKey = #{email_key} 
+		set s_emailKey = #{sEmail_key} 
 		where sEmail = #{sEmail}
 	</update>
 
