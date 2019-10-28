@@ -28,7 +28,8 @@ public class GgimController {
 	private GgimService ggService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getmNo();
+		//return ((Member)session.getAttribute("loginUser")).getmNo();
+		return 2;
 	}
 	
 	// 내 찜 리스트 조회
@@ -41,16 +42,16 @@ public class GgimController {
 //		mv.addObject("pi", pi);
 		
 		
-		//ArrayList<Ggim> list = ggService.selectGgimList(getmNo(session)); 결과 처리 size 0이상 조건 넣어야함
-		ArrayList<Ggim> list = new ArrayList<>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		//sdf.format(date);
-			
-		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "소분류11", "대분류1", "이지몰", date, "blog_5.jpg"));
-		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22222222", "대분류22", "슈퍼몰", date, "best_6.png"));
-		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류3333333", "대분류333", "또와", date, "blog_4.jpg"));
-		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류444", "대분류22", "이마트", date, "blog_9.jpg"));
+		ArrayList<Ggim> list = ggService.selectGgimList(getmNo(session));
+		
+//		ArrayList<Ggim> list = new ArrayList<>();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = new Date();
+//			
+//		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "df", "의류/잡화", "이지몰", date, "blog_5.jpg"));
+//		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22/222222", "대분류/22", "슈퍼몰", date, "best_6.png"));
+//		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류33|33333", "대분류3|33", "또와", date, "blog_4.jpg"));
+//		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류|444", "대분류2|2", "이마트", date, "blog_9.jpg"));
 
 		
 		ArrayList<String> category = new ArrayList<>();
@@ -67,8 +68,6 @@ public class GgimController {
                 }
             }
         }
-		
-		// 만약 조인 문제로 이미지 못 가져오면 따로 서비스 만들어야함
 		
 		mv.addObject("category", category);
 		mv.addObject("list", list);
@@ -133,11 +132,9 @@ public class GgimController {
 	
 	// 찜 갯수(메인메뉴바)
 	@RequestMapping("currentGgim.gg")
-	public void currentGgim(HttpServletResponse response) throws JsonIOException, IOException {
-		
-		int count = 22;
- 
-		//int count = ggService.getListCount(getmNo(session));
+	public void currentGgim(HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+
+		int count = ggService.getListCount(getmNo(session));
 		
 		response.setContentType("application/json; charset=utf-8");
 		

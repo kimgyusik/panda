@@ -91,18 +91,18 @@
 																	</td>
 																</tr>
 																<c:forEach items="${ list }" var="b">
-																	<tr class="tablebody" >
-																		<td id="test" style="display:none;">
+																	<tr class="tablebody">
+																		<td id ="${b.oNo}" class="test" style="display:none;">
 																			${b.oNo}
 																		</td>
 																		<td>
 																			<input name="arr" class="checkCart" type="checkbox" value="${b.oNo}">
 																		</td>
 																		<td style="width:200px;">
-																			<c:url value="상품조회url" var="product">
+																			<c:url value="pDetailView.do" var="product">
 																				<c:param name="pId" value="${ b.pId }"/>
 																			</c:url>
-																			<a href="${ product }"><img class="basketImg" src="resources/images/${b.paChangeName}" ></a>
+																			<a href="${ product }"><img class="basketImg" src="resources/product_uploadFiles/${b.paChangeName}" ></a>
 																		</td>
 																		<td style="text-align:left;width:600px; ">
 																			
@@ -126,7 +126,7 @@
 																				<fmt:formatNumber type="number" maxFractionDigits="3" value="${p }" />
 																			</span><span>원</span>
 																			<br>
-																			<button class="btnCart" onclick="ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
+																			<button class="btnCart" onclick="return ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
 																			<button class="btnCart" onclick="return removeCart(${b.oNo});">삭제</button>
 																		</td>
 																	</tr>
@@ -173,8 +173,6 @@
 		$(function(){
 			priceAll();
 		});
-		
-
 		
 		// 장바구니 총 결재금액 계산 함수
 		function priceAll(){
@@ -241,6 +239,7 @@
 		
 		// 상품 찜하기
 		function ggim(pId){
+			
 			$.ajax({
 				url:"addGgim.gg",
 				data:{pId:pId},
@@ -262,7 +261,24 @@
 		function removeCart(oNo){
 			
 			if(confirm("해당 상품을 장바구니에서 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteBasket.ba?oNo='+oNo;
+				$.ajax({
+					url:"deleteBasket.ba",
+					data:{oNo:oNo},
+					type:"post",
+					success:function(data){
+						
+						if(data == "success"){
+							$('#'+oNo).parent().children().eq(7).children().eq(0).attr('value', 0);
+							$('#'+oNo).parent().css('display','none');
+							priceAll();
+						}else{
+							alert("처리실패");
+						}
+					},
+					error:function(){
+						console.log("서버와의 통신 실패");
+					}
+				});
 			}
 			return false;
 		}

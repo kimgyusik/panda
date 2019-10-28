@@ -12,19 +12,21 @@
 		<result property="category2" column="c_name2"/>
 		<result property="category" column="c_name"/>
 		<result property="storeName" column="storeName"/>
-		<result property="amount" column="ab_amount"/>
+		<result property="amount" column="sb_amount"/>
 		<result property="oAmount" column="o_amount"/>
+		<result property="paChangeName" column="PA_CHANGE_NAME"/>
+		<result property="oNo" column="o_no"/>
 	</resultMap>
 
 	<select id="selectbasketList" parameterType="_int" resultMap="basketResultSet">
-		select p_id, m_no, p_name, o_amount, o_name, o_price, c_name, c_name2, storeName, ab_amount
+		select p_id, m_no, p_name, o_amount, o_name, o_price, c_name, c_name2, storeName, sb_amount, PA_CHANGE_NAME, o_no
 		from SHOPPING_BASKET
 		join PRODUCT_OPTION using(o_no)
 		join product using(p_id)
-		join PRODUCT_ATTACHMENT(p_id)
+		join PRODUCT_ATTACHMENT using(p_id)
 		join category using(c_id)
 		join seller using(s_no)
-		where m_no = #{mNo} 
+		where m_no = #{mNo} and PA_FILE_LEVEL = 1
 	</select>
 	
 	<select id="selectbasket" parameterType="Basket" resultType="_int">
@@ -34,18 +36,18 @@
 	</select>
 	
 	<insert id="addBasket" parameterType="Basket">
-		insert into basket
+		insert into SHOPPING_BASKET
 		values (#{oNo}, #{mNo}, #{amount})
 	</insert>
 	
 	<delete id="deleteBasket" parameterType="Basket">
 		delete
-		from basket
+		from SHOPPING_BASKET
 		where o_no = #{oNo} and m_no = #{mNo}
 	</delete>
 	
 	<update id="updateAmount" parameterType="Basket">
-		update basket
+		update SHOPPING_BASKET
 		set SB_AMOUNT = #{amount}
 		where o_no = #{oNo} and m_no = #{mNo}
 	</update>

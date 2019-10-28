@@ -3,6 +3,7 @@ package com.kh.panda.myShopping.basket.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -26,21 +27,19 @@ public class BasketController {
 	private BasketService baService;
 	
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getmNo();
+		return 2;
+		//return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 장바구니 조회
 	@RequestMapping("basketList.ba")
 	public ModelAndView selectbasketList(ModelAndView mv, HttpSession session) {
 		
-		//ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
-		ArrayList<Basket> list = new ArrayList<>();
-		list.add(new Basket(1, 3, 2, 4, 44, "상품이름입니당", "옵션이름", 23000, "전자상품종류", "카테고리링", "이지몰", "review_1.jpg"));
-		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "blog_2.jpg"));
+		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
 		
-		// 이미지 잘 가져오는지 체크
-		
-		
+//		ArrayList<Basket> list = new ArrayList<>();
+//		list.add(new Basket(1, 3, 2, 4, 44, "상품이름입니당", "옵션이름", 23000, "전자상품종류", "카테고리링", "이지몰", "review_1.jpg"));
+//		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "blog_2.jpg"));
 		
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/basket/basketList");
@@ -107,15 +106,14 @@ public class BasketController {
 		int result = baService.deleteBasket(b);
 		
 		if(result > 0 ) {
-			return "redirect:basketList.ba";
+			return "success";
 		}else {
-			return "common/errorPage";
+			return "fail";
 		}
 		
 	}
 	
 	// 장바구니 삭제 처리(다중)
-	@ResponseBody
 	@RequestMapping("deleteBasketList.ba")
 	public String deleteBasketList(HttpSession session, @RequestParam("arr") String[] arr) {
 		
@@ -131,13 +129,9 @@ public class BasketController {
 	
 	// 장바구니 갯수,금액(메인메뉴바)
 	@RequestMapping("currentBasket.ba")
-	public void currentBasket(HttpServletResponse response) throws JsonIOException, IOException {
+	public void currentBasket(HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 		
-		int[] arr = new int[2];
-		arr[0] = 2;
-		arr[1] = 34444;
-		
-		//int[] arr = baService.currentBasket(getmNo(session));
+		int[] arr = baService.currentBasket(getmNo(session));
 		
 		response.setContentType("application/json; charset=utf-8");
 		
