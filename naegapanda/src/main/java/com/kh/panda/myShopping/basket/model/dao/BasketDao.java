@@ -19,6 +19,10 @@ public class BasketDao {
 		return (ArrayList)sqlSession.selectList("basketMapper.selectbasketList", mNo);
 	}
 	
+	public int selectbasket(Basket b){
+		return sqlSession.selectOne("basketMapper.selectbasketList", b);
+	}
+	
 	public int addBasket(Basket b) {
 		return sqlSession.insert("basketMapper.addBasket", b);
 	}

@@ -36,7 +36,7 @@ public class ViolateDao {
 	}
 	
 	public int updateProductCount(int pId) {
-		return sqlSession.update("violateMapper.updatProductCount",pId);
+		return sqlSession.update("violateMapper.updateProductCount",pId);
 	}
 	
 	public int insertViolate(Violate v) {	
@@ -45,6 +45,10 @@ public class ViolateDao {
 	
 	public Violate violateDetail(int vNo) {
 		return sqlSession.selectOne("violateMapper.violateDetail", vNo);
+	}
+	
+	public Violate selectInfo(int pId) {
+		return sqlSession.selectOne("violateMapper.selectInfo",pId);
 	}
 
 	

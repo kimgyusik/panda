@@ -2114,3 +2114,81 @@ select option
 {
 	margin-right: 0px;
 }
+
+#review{
+	width: 1170px;
+}
+#review td{
+	height:auto;
+	
+}
+#review tr{
+	height: 90px;
+	
+}
+.reviewTitle{
+	display: inline-block;
+	font-size: 16px;
+}
+.reviewContents{
+	font-size:15px;
+}
+.reviewWriter{
+	width:140px;
+	text-align: left;
+	font-size:13px;
+}
+.reviewGray{
+	font-size:13px;
+	color:gray;
+}
+.reviewImg{
+max-height:50px;
+ max-width:100px;
+ width:auto;
+ height:auto;
+}
+.reviewImg2{
+max-height:500px;
+ max-width:430px;
+ width:auto;
+ height:auto;
+ margin-top:30px;
+ margin-bottom:30px;
+}
+.reviewTop{
+	height:70px !important;
+	background-color: #e6eeff;
+}
+.reviewTop:hover{
+	cursor: pointer;
+	background-color: #ccdcff;
+}
+.replyCount{
+	margin-bottom:5px;
+padding:3px;
+border-radius:3px;
+background-color: gray;
+font-size:12px;
+color:white;
+}
+.reply{
+	height:40px !important;
+	font-size:13px;
+}
+.reply td{
+	padding-right:10px;
+	border-bottom: 2px solid #ced3e4;
+}
+.update, .delete{
+	font-size:10px;
+	border: 1px solid #ced3e4;
+	padding:5px;
+	margin-left:6px;
+	border-radius: 5px;
+}
+.update:hover, .delete:hover{
+	cursor: pointer;
+	background-color: #ccdcff;
+	
+}

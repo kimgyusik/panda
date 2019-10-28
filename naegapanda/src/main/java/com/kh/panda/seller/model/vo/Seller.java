@@ -18,7 +18,7 @@ public class Seller {
 	private String sbAddress;	// 사업장주소
 	private String sbPhone;	// 사업장전화번호
 	private String sOk;		// 승인여부
-	private String emailKey;
+	private String sEmailKey;
 	private String sStatus; // 탈퇴여부
 	private int sViolate; //신고횟수
 	
@@ -28,7 +28,7 @@ public class Seller {
 
 	public Seller(int sNo, String sId, String sPwd, String sName, String sAddress, int sNum, String sEmail,
 			String sPhone, String stNum, String sbNum, String storeName, String sCeoName, String sector,
-			String sbAddress, String sbPhone, String sOk, String emailKey, String sStatus, int sViolate) {
+			String sbAddress, String sbPhone, String sOk, String sEmailKey, String sStatus, int sViolate) {
 		super();
 		this.sNo = sNo;
 		this.sId = sId;
@@ -46,7 +46,7 @@ public class Seller {
 		this.sbAddress = sbAddress;
 		this.sbPhone = sbPhone;
 		this.sOk = sOk;
-		this.emailKey = emailKey;
+		this.sEmailKey = sEmailKey;
 		this.sStatus = sStatus;
 		this.sViolate = sViolate;
 	}
@@ -179,12 +179,12 @@ public class Seller {
 		this.sOk = sOk;
 	}
 
-	public String getEmailKey() {
-		return emailKey;
+	public String getsEmailKey() {
+		return sEmailKey;
 	}
 
-	public void setEmailKey(String emailKey) {
-		this.emailKey = emailKey;
+	public void setsEmailKey(String sEmailKey) {
+		this.sEmailKey = sEmailKey;
 	}
 
 	public String getsStatus() {
@@ -208,7 +208,7 @@ public class Seller {
 		return "Seller [sNo=" + sNo + ", sId=" + sId + ", sPwd=" + sPwd + ", sName=" + sName + ", sAddress=" + sAddress
 				+ ", sNum=" + sNum + ", sEmail=" + sEmail + ", sPhone=" + sPhone + ", stNum=" + stNum + ", sbNum="
 				+ sbNum + ", storeName=" + storeName + ", sCeoName=" + sCeoName + ", sector=" + sector + ", sbAddress="
-				+ sbAddress + ", sbPhone=" + sbPhone + ", sOk=" + sOk + ", emailKey=" + emailKey + ", sStatus="
+				+ sbAddress + ", sbPhone=" + sbPhone + ", sOk=" + sOk + ", sEmailKey=" + sEmailKey + ", sStatus="
 				+ sStatus + ", sViolate=" + sViolate + "]";
 	}
 

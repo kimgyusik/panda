@@ -58,7 +58,7 @@
 	</select>
 	<insert id="vmessageInsert" parameterType="Vmessage">
 	insert into vmessage
-	values(VMESSAGE_SEQ.nextval,#{vNo},#{sNo},#{pId},#{vmTitle},#{vmContent},sysdate,null,#{vmOriginalFileName},#{vmRenameFileName},default)
+	values(VMESSAGE_SEQ.nextval,#{vNo},#{pId},#{sNo},#{vmTitle},#{vmContent},sysdate,null,#{vmOriginalFileName},#{vmRenameFileName},default)
 	</insert>
 	
 	<update id="violateStatus" parameterType="_int">

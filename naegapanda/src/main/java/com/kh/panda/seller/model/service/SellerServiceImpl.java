@@ -148,6 +148,19 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
+	public Product selectProduct(int pId) {
+		return sDao.selectProduct(pId);
+	}
+
+	@Override
+	public ArrayList<ProductAttachment> selectPa(Product p) {
+		return sDao.selectPa(p);
+	}
+
+	@Override
+	public ArrayList<ProductOption> selectPo(Product p) {
+		return sDao.selectPo(p);
+	}
 	public int newPaasword(Seller s) {
 		return sDao.newPassword(s);
 		

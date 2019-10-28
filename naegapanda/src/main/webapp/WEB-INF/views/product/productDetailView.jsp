@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +11,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/product_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
+<link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
+<link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/style/product_styles.css">
+<link rel="stylesheet" type="text/css" href="resources/style/product_responsive.css">
 </head>
 <body>
-	<c:import url="common/menubar.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
 	<div class="super_container"> 
 	<!-- Single Product -->
 
@@ -29,24 +31,28 @@
 					<!-- Images -->
 					<div class="col-lg-2 order-lg-1 order-2">
 						<ul class="image_list">
-							<li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-							<li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-							<li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
+							<c:forEach items="${paList }" var="pa">
+							<li data-image="resources/product_uploadFiles/${ pa.paChangeName }"><img src="resources/product_uploadFiles/${ pa.paChangeName }" alt=""></li>
+							</c:forEach>
 						</ul>
 					</div>
 	
 					<!-- Selected Image -->
 					<div class="col-lg-5 order-lg-2 order-1">
-						<div class="image_selected"><img src="images/single_4.jpg" alt=""></div>
+						<div class="image_selected"><img src="resources/product_uploadFiles/${ paList[0].paChangeName }" alt=""></div>
 					</div>
 	
 					<!-- Description -->
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
-							<div class="product_category">Laptops</div>
-							<div class="product_name">MacBook Air 13</div>
-							<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-							<div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
+							<div class="product_category">${p.cId }</div>
+							<div class="product_name">${ p.pName }
+								<form action="violateinsert.do">
+									<input type="hidden" name="pId" value="${ p.pId }">
+									<button type="submit" class="button cart_button">신고하기</button>	
+								</form>
+							</div>
+							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
 								<form action="#">
 									<div class="clearfix" style="z-index: 1000;">	
@@ -60,54 +66,139 @@
 											</div>
 										</div>
 	
-										<!-- Product Color -->
-										<ul class="product_color">
-											<li>
-												<span>Color: </span>
-												<div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
-												<div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
-	
-												<ul class="color_list">
-													<li><div class="color_mark" style="background: #999999;"></div></li>
-													<li><div class="color_mark" style="background: #b19c83;"></div></li>
-													<li><div class="color_mark" style="background: #000000;"></div></li>
-												</ul>
-											</li>
-										</ul>
-	
+										<!-- Product option -->
+										<div>
+											<table>
+												<tr>
+													<th>옵션번호</th>
+													<th>옵션이름</th>
+													<th>옵션가격</th>
+													<th>옵션수량</th>
+													<th>선택</th>
+												</tr>
+											<c:forEach items="${poList }" var="po">
+												<tr>
+													<td>${po.oNo }</td>
+													<td>${po.oName }</td>
+													<td>${po.oPrice }</td>
+													<td>${po.oAmount }</td>
+													<td><button type="button">선택</button></td>
+												</tr>
+											</c:forEach>
+											</table>
+										</div>
+									</div>
+									
+									<div id="chooseProduct">
+									
 									</div>
 	
-									<div class="product_price">$2000</div>
 									<div class="button_container">
-										<button type="button" class="button cart_button">Add to Cart</button>
+										<!-- 찜,장바구니(규식) -->
+										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">장바구니</button>
+										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">찜하기</button> 
+										<!-- 찜,장바구니(규식) -->
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
 								</form>
-								
-								
 							</div>
-							<br>
-							<br>
-							<br>
-	
-							<div>
-								<h3>상세보기</h3>
-								<div id="detail_contents"></div>
-							</div>
-							
-	
 						</div>
+						<br>
+								
 					</div>
-	
+					
 				</div>
 			</div>
-	
 		</div>
-	
-		
-	
-		
+		<div >
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="col-lg-5">
+							<h3>상세내용</h3>
+							<div id="detail_contents">
+								${p.pContent }
+							</div>
+						</div>
+						<br>
+						<div class="col-lg-5">
+							<br>
+							<br>
+							<br>
+							<h3>상품리뷰 ${ reList.size() }건</h3>
+							<div id="review">
+							
+								<!-- 리뷰 리스트(규식) -->
+								<c:if test="${!empty reList}">
+								 	<table>
+								 		<c:forEach items="${ reList }" var="re">
+									 		<tr class="reviewTop" >
+									 			<td width="50px;"></td>
+									 			<td width="630px;" style="text-align: left;">
+									 				<span class="reviewTitle">${re.rTitle }</span>
+									 				<span class="reviewGray">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${re.rDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
+									 			</td>
+									 			<td class="reviewWriter">
+									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
+									 			</td>
+									 			<td width="200px;" style="text-align: center;">
+									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
+									 			</td>
+									 			<td width="100px;" >
+									 				<img src="resources/images/hart.png" width="20px;"> 
+									 				<span style="font-size:13px;">${re.rCommend }</span>
+									 			</td>
+							 				</tr>
+							 				<tr class="reviewDetail">
+							 					<td>
+							 						<input id="replyId${re.rId}" type="hidden" value="${re.rId}">
+							 						<input type="hidden" value="${sessionScope.loginUser.mNo}">
+							 					</td>
+							 					<td width="630px;">
+							 						<div style="padding-top:10px;">
+							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
+							 						</div>
+							 						<div >
+							 							<br>┕  <span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> <br>
+										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
+										 				<table id="replyTable${re.rId}" style="margin-left:30px;">
+										 					
+							 							</table>
+							 						</div>
+							 					</td>
+							 					<td colspan="3" style="text-align: center;">
+							 						<img class="reviewImg2" src="resources/images/${re.rImage}" >
+							 					</td>
+							 				</tr>
+								 		</c:forEach>
+								 	</table>
+							 	</c:if>
+							 	<c:if test="${empty reList}">
+				 					<div style="text-align: left;">
+					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
+					 					<br>등록된 리뷰가 없습니다.
+					 				</div>
+				 				</c:if>
+								<!-- 리뷰 리스트(규식) --> 
+								
+							</div>
+						</div>
+						<br>
+						<div class="col-lg-5">
+							<br>
+							<br>
+							<br>
+							<h3>상품문의</h3>
+							<div id="inquiry">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					
 	
 		<!-- Recently Viewed -->
 	
@@ -132,7 +223,7 @@
 								<!-- Recently Viewed Item -->
 								<div class="owl-item">
 									<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="images/view_1.jpg" alt=""></div>
+										<div class="viewed_image"><img src="resources/images/view_1.jpg" alt=""></div>
 										<div class="viewed_content text-center">
 											<div class="viewed_price">$225<span>$300</span></div>
 											<div class="viewed_name"><a href="#">Beoplay H7</a></div>
@@ -147,7 +238,7 @@
 								<!-- Recently Viewed Item -->
 								<div class="owl-item">
 									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="images/view_2.jpg" alt=""></div>
+										<div class="viewed_image"><img src="resources/images/view_2.jpg" alt=""></div>
 										<div class="viewed_content text-center">
 											<div class="viewed_price">$379</div>
 											<div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
@@ -162,7 +253,7 @@
 								<!-- Recently Viewed Item -->
 								<div class="owl-item">
 									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="images/view_3.jpg" alt=""></div>
+										<div class="viewed_image"><img src="resources/images/view_3.jpg" alt=""></div>
 										<div class="viewed_content text-center">
 											<div class="viewed_price">$225</div>
 											<div class="viewed_name"><a href="#">Samsung J730F...</a></div>
@@ -177,7 +268,7 @@
 								<!-- Recently Viewed Item -->
 								<div class="owl-item">
 									<div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="images/view_4.jpg" alt=""></div>
+										<div class="viewed_image"><img src="resources/images/view_4.jpg" alt=""></div>
 										<div class="viewed_content text-center">
 											<div class="viewed_price">$379</div>
 											<div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
@@ -192,7 +283,7 @@
 								<!-- Recently Viewed Item -->
 								<div class="owl-item">
 									<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="images/view_5.jpg" alt=""></div>
+										<div class="viewed_image"><img src="resources/images/view_5.jpg" alt=""></div>
 										<div class="viewed_content text-center">
 											<div class="viewed_price">$225<span>$300</span></div>
 											<div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
@@ -207,7 +298,7 @@
 								<!-- Recently Viewed Item -->
 								<div class="owl-item">
 									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="images/view_6.jpg" alt=""></div>
+										<div class="viewed_image"><img src="resources/images/view_6.jpg" alt=""></div>
 										<div class="viewed_content text-center">
 											<div class="viewed_price">$375</div>
 											<div class="viewed_name"><a href="#">Speedlink...</a></div>
@@ -238,14 +329,14 @@
 	
 							<div class="owl-carousel owl-theme brands_slider">
 								
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_1.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_2.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_3.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_4.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_5.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_6.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_7.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_8.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_1.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_2.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_3.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_4.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_5.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_6.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_7.jpg" alt=""></div></div>
+								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_8.jpg" alt=""></div></div>
 	
 							</div>
 							
@@ -260,16 +351,18 @@
 		</div>
 	</div>
 	
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="styles/bootstrap4/popper.js"></script>
-	<script src="styles/bootstrap4/bootstrap.min.js"></script>
-	<script src="plugins/greensock/TweenMax.min.js"></script>
-	<script src="plugins/greensock/TimelineMax.min.js"></script>
-	<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-	<script src="plugins/greensock/animation.gsap.min.js"></script>
-	<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-	<script src="plugins/easing/easing.js"></script>
-	<script src="js/product_custom.js"></script>
+	<script src="resources/js/jquery-3.3.1.min.js"></script>
+	<script src="resources/style/bootstrap4/popper.js"></script>
+	<script src="resources/style/bootstrap4/bootstrap.min.js"></script>
+	<script src="resources/plugins/greensock/TweenMax.min.js"></script>
+	<script src="resources/plugins/greensock/TimelineMax.min.js"></script>
+	<script src="resources/plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="resources/plugins/greensock/animation.gsap.min.js"></script>
+	<script src="resources/plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="resources/plugins/easing/easing.js"></script>
+	<script src="resources/js/product_custom.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 a:visited { 
 		color: black; 
@@ -27,33 +28,85 @@ a:visited {
 
 	<div class="bs-example">
 
-   
-   	<h3 style="font-weight:bold;">신고 회원 관리</h3><br>
+
+
+
+		<form action="sellerDelete.do">
+		<input type = "hidden" name = "sNo" value = "${ sNo }" >
+   		<h3 style="font-weight:bold;" id="deleteSeller"> ${sName} 님의 신고 회원 관리</h3>
+   	<script>
+   	$("#deleteSeller").click(function(){
+   		var sNo = $(this).prev().val();
+			swal({
+			  title: "정말 중지 시키시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				location.href="sellerDelete.do?sNo=" +sNo;
+			    swal("판매자 중지 되었습니다!", {
+			      icon: "success",
+			    });
+			  } else {
+			    swal("취소되었습니다.");
+			  }
+			});
+   	});
+   		
+   		
+   	/* 	<!--  onclick="removeCheck()" -->
+   	function removeCheck() {
+				id.click $this.prev().val()
+   				swal({
+   				  title: "정말 중지 시키시겠습니까?",
+   				  icon: "warning",
+   				  buttons: true,
+   				  dangerMode: true,
+   				})
+   				.then((willDelete) => {
+   				  if (willDelete) {
+   					location.href="sellerDelete.do";
+   				    swal("판매자 중지 되었습니다!", {
+   				      icon: "success",
+   				    });
+   				  } else {
+   				    swal("취소되었습니다.");
+   				  }
+   				});
+   			} */
+   		</script>
+		</form>
+   		
+   		<br> 
+   		
+
 				<br>
 
 <table class="table table-hover">
 					  	<thead>
 						    <tr>
-							      <td scope="col" width="100" align="center"><b>판매자</b></td>
-							      <td scope="col" width="90" align="center"><b>상품번호</b></td>
-							      <td scope="col" width="250" align="center"><b>상품명</b></td>
+							      <td scope="col" width="90" align="center"><b>신고번호</b></td>
+							      <td scope="col" width="200" align="center"><b>제목</b></td>
+							      <td scope="col" width="200" align="center"><b>상품명</b></td>
 							      <th scope="col" width="80">신고횟수</th>
-							      <th scope="col" width="80">회원상태</th>
+							      <th scope="col" width="80">메세지</th>
 						    </tr>
 						</thead>
 						
 						<tbody>
 							
 									<c:forEach items="${ list }" var="sv"> 
-											<c:url value="svDetaiList.do" var="svdetaillist">
-					 						    <c:param name="sNo" value="${ sv.sNo }"/>
+											<c:url value="svdetailView.do" var="svdetaillist">
+					 						    <c:param name="vNo" value="${ sv.vNo }"/>
 											</c:url>
 									<tr>
 										<td align="center">
-											<a href="${ svdetaillist }">${sv.sName}</a>
+											<a href="${ svdetaillist }">${sv.vNo}</a>
 										</td>
 										<td align="center">
-											<a href="${ svdetaillist }">${sv.pId}</a>
+											<a href="${ svdetaillist }">${sv.vTitle}</a>
 										</td>
 										<td align="center">
 											<a href="${ svdetaillist }">${sv.pName}</a>
@@ -62,7 +115,7 @@ a:visited {
 											<a href="${ svdetaillist }">${sv.pViolate}</a>
 										</td>
 										<td align="center">
-											<a href="${ svdetaillist }">${sv.pStatus}</a>
+											<a href="${ svdetaillist }">${sv.vStatus}</a>
 										</td>
 							  			
 								    </tr>

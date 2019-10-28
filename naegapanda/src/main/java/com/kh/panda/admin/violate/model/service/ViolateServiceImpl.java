@@ -43,6 +43,11 @@ public class ViolateServiceImpl implements ViolateService{
 	public Violate violateDetail(int vNo) {
 		return vDao.violateDetail(vNo);
 	}
+
+	@Override
+	public Violate selectInfo(int pId) {
+		return vDao.selectInfo(pId);
+	}
 	
 	
 	

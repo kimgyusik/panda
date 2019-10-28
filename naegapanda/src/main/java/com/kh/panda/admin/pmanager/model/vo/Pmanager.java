@@ -1,5 +1,7 @@
 package com.kh.panda.admin.pmanager.model.vo;
 
+import java.sql.Date;
+
 public class Pmanager {
 
 	private int pId;		// 상품 번호
@@ -9,15 +11,19 @@ public class Pmanager {
 	private int cId;		// 카테고리
 	private String cName;
 	private String cName2;
-	private char pStatus;	// 상품 상태
+	private String pStatus;	// 상품 상태
 	private int pViolate;	// 상품 신고 횟수
+	private int vNo;
+	private int mNo;
+	private String vContent;
+	private Date vDate;
 	
 	public Pmanager() {
 		
 	}
 
-	public Pmanager(int pId, String pName, int sNo, String sName, int cId, String cName, String cName2, char pStatus,
-			int pViolate) {
+	public Pmanager(int pId, String pName, int sNo, String sName, int cId, String cName, String cName2, String pStatus,
+			int pViolate, int vNo, int mNo, String vContent, Date vDate) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
@@ -28,6 +34,10 @@ public class Pmanager {
 		this.cName2 = cName2;
 		this.pStatus = pStatus;
 		this.pViolate = pViolate;
+		this.vNo = vNo;
+		this.mNo = mNo;
+		this.vContent = vContent;
+		this.vDate = vDate;
 	}
 
 	public int getpId() {
@@ -86,11 +96,11 @@ public class Pmanager {
 		this.cName2 = cName2;
 	}
 
-	public char getpStatus() {
+	public String getpStatus() {
 		return pStatus;
 	}
 
-	public void setpStatus(char pStatus) {
+	public void setpStatus(String pStatus) {
 		this.pStatus = pStatus;
 	}
 
@@ -102,12 +112,46 @@ public class Pmanager {
 		this.pViolate = pViolate;
 	}
 
+	public int getvNo() {
+		return vNo;
+	}
+
+	public void setvNo(int vNo) {
+		this.vNo = vNo;
+	}
+
+	public int getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+
+	public String getvContent() {
+		return vContent;
+	}
+
+	public void setvContent(String vContent) {
+		this.vContent = vContent;
+	}
+
+	public Date getvDate() {
+		return vDate;
+	}
+
+	public void setvDate(Date vDate) {
+		this.vDate = vDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Pmanager [pId=" + pId + ", pName=" + pName + ", sNo=" + sNo + ", sName=" + sName + ", cId=" + cId
-				+ ", cName=" + cName + ", cName2=" + cName2 + ", pStatus=" + pStatus + ", pViolate=" + pViolate + "]";
+				+ ", cName=" + cName + ", cName2=" + cName2 + ", pStatus=" + pStatus + ", pViolate=" + pViolate
+				+ ", vNo=" + vNo + ", mNo=" + mNo + ", vContent=" + vContent + ", vDate=" + vDate + "]";
 	}
-
+	
+	
 	
 
 	

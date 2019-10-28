@@ -104,6 +104,19 @@ public class SellerDao {
 	}
 
 
+	public Product selectProduct(int pId) {
+		return sqlSession.selectOne("productMapper.selectProduct", pId);
+	}
+
+
+	public ArrayList<ProductAttachment> selectPa(Product p) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPa", p);
+	}
+
+
+	public ArrayList<ProductOption> selectPo(Product p) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPo", p);
+	}
 	public int newPassword(Seller s) {
 		return sqlSession.update("sellerMapper.newPwd", s);
 	}

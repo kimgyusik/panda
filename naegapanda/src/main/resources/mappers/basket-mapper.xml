@@ -27,6 +27,12 @@
 		where m_no = #{mNo} 
 	</select>
 	
+	<select id="selectbasket" parameterType="Basket" resultType="_int">
+	select count(oNo)
+	from SHOPPING_BASKET
+	where o_no = #{oNo} and m_no = #{mNo}
+	</select>
+	
 	<insert id="addBasket" parameterType="Basket">
 		insert into basket
 		values (#{oNo}, #{mNo}, #{amount})

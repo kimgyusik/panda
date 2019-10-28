@@ -6,6 +6,6 @@ import com.kh.panda.product.model.vo.Product;
 
 public interface HomeService {
 
-	ArrayList<Product> selectHotTopList();
+	ArrayList<Product> search(String keyword);
 	
 }

@@ -52,17 +52,26 @@ public class BasketController {
 	// 장바구니 추가 처리
 	@ResponseBody
 	@RequestMapping("addBasket.ba")
-	public String addBasket(Basket b, HttpSession session) {
+	public void addBasket(Basket b, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException {
 		
 		b.setmNo(getmNo(session));
 		
+		String msg = "";
+		
 		int result = baService.addBasket(b);
-		// 삭제는 ajax로 처리하는게 좋은지 뷰단까지 만들어봐야 앎. 
-		if(result > 0 ) {
-			return "success";
+		
+		if(result == 1 ) {
+			msg = "상품을 장바구니에 추가했습니다.";
+		}else if(result == 2){
+			msg = "이미 장바구니에 담은 상품입니다.";
 		}else {
-			return "fail";
+			msg = "나며 안 된는 오류";
 		}
+
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(msg, response.getWriter());
 		
 	}
 	

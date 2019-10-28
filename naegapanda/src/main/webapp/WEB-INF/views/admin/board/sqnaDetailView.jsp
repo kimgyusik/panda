@@ -136,8 +136,7 @@
 
 							
 						<c:choose>
-						<c:when test="${ loginSeller.name eq q.sName  }">
-						
+						<c:when test="${ loginSeller.sName eq q.sName  }">
 						<div>
 						
 							<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
@@ -148,7 +147,7 @@
 
 						</div>
 						</c:when>
-						<c:when test="${ loginSeller.name ne q.sName && loginUser.name ne '관리자' }">
+						<c:when test="${ loginSeller.sName ne q.sName && loginUser.name ne '관리자' }">
 							<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
 						</c:when>
 						</c:choose>
