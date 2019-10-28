@@ -29,28 +29,32 @@ public class ProductDao {
 	public ArrayList<Product> selectpList(PageInfo pi, int category) {
 		int num1 = 0;
 		int num2 = 0;
+		int num3 = category;
 		
 		switch(category) {
-		case 0:
+		case 1000:
 			num1=1; num2=58;
 			break;
-		case 1:
+		case 1001:
 			num1=1; num2=9;
 			break;
-		case 2:
+		case 1002:
 			num1=10; num2=19;
 			break;
-		case 3:
+		case 1003:
 			num1=20; num2=28;
 			break;
-		case 4:
+		case 1004:
 			num1=29; num2=39;
 			break;
-		case 5:
+		case 1005:
 			num1=40; num2=49;
 			break;
-		case 6:
+		case 1006:
 			num1=50; num2=58;
+			break;
+		default:
+			num1= num3; num2=num3;
 			break;
 		}
 		
@@ -65,28 +69,32 @@ public class ProductDao {
 	public int getListCount(int category) {
 		int num1 = 0;
 		int num2 = 0;
+		int num3 = category;
 		
 		switch(category) {
-		case 0:
+		case 1000:
 			num1=1; num2=58;
 			break;
-		case 1:
+		case 1001:
 			num1=1; num2=9;
 			break;
-		case 2:
+		case 1002:
 			num1=10; num2=19;
 			break;
-		case 3:
+		case 1003:
 			num1=20; num2=28;
 			break;
-		case 4:
+		case 1004:
 			num1=29; num2=39;
 			break;
-		case 5:
+		case 1005:
 			num1=40; num2=49;
 			break;
-		case 6:
+		case 1006:
 			num1=50; num2=58;
+			break;
+		default:
+			num1= num3; num2=num3;
 			break;
 		}
 		

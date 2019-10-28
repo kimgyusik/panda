@@ -15,6 +15,7 @@ public class Product {
 	private int pPrice;
 	private String paChangeName;
 	private String filePath;
+	private String cName2;
 	
 	public Product() {}
 
@@ -47,6 +48,25 @@ public class Product {
 		this.pPrice = pPrice;
 		this.paChangeName = paChangeName;
 		this.filePath = filePath;
+	}
+	
+
+	public Product(int pId, String pName, int sNo, String pContent, int cId, int pCount, String pOk, String pStatus,
+			Date pCreateDate, int pPrice, String paChangeName, String filePath, String cName2) {
+		super();
+		this.pId = pId;
+		this.pName = pName;
+		this.sNo = sNo;
+		this.pContent = pContent;
+		this.cId = cId;
+		this.pCount = pCount;
+		this.pOk = pOk;
+		this.pStatus = pStatus;
+		this.pCreateDate = pCreateDate;
+		this.pPrice = pPrice;
+		this.paChangeName = paChangeName;
+		this.filePath = filePath;
+		this.cName2 = cName2;
 	}
 
 	public int getpId() {
@@ -143,6 +163,14 @@ public class Product {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+	
+	public String getcName2() {
+		return cName2;
+	}
+
+	public void setcName2(String cName2) {
+		this.cName2 = cName2;
 	}
 
 	@Override

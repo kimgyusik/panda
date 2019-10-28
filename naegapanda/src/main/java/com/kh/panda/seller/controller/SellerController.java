@@ -149,8 +149,9 @@ public class SellerController {
 
 		Seller loginSeller = sService.loginSeller(s);
 		
-		System.out.println(loginSeller);
-		System.out.println(s);
+		/*
+		 * System.out.println(loginSeller); System.out.println(s);
+		 */
 		
 		
 		/*
