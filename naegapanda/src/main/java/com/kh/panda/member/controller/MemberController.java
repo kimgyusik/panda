@@ -1,8 +1,7 @@
 package com.kh.panda.member.controller;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +37,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String loginMember(Member m, Model model) {
+	public String loginMember(Member m, Model model, HttpSession session) {
 
 		Member loginUser = mService.loginMember(m);
 
 		logger.debug(loginUser.toString());
 
 		if (loginUser != null && loginUser.getPwd().equals(m.getPwd())) {
+			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("loginUser", loginUser);
 			return "redirect:home.do";
 		} else {

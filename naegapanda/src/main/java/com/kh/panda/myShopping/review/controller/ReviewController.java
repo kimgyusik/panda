@@ -110,7 +110,7 @@ public class ReviewController {
 //	}
 	
 	
-	// 리뷰 상세 조회
+	// 리뷰 상세 조회(디컴일듯)
 	@RequestMapping("selectReview.re")
 	public ModelAndView selectReview(int rId, ModelAndView mv) {
 		
@@ -130,7 +130,7 @@ public class ReviewController {
 	}
 	
 	
-	// 리뷰 작성 가능 뷰 호출
+	// 작성 가능 리뷰 리스트
 	@RequestMapping("addAbleReview.re")
 	public ModelAndView addAbleReview(ModelAndView mv, HttpSession session) {
 		
@@ -169,7 +169,7 @@ public class ReviewController {
 	}
 	
 	
-	// 리뷰 추가폼 뷰 호출
+	// 리뷰 추가폼 뷰 호출(디컴)
 	@RequestMapping("addReviewForm.re")
 	public String addReviewForm() {
 		return "myShopping/review/addReviewForm";
@@ -321,7 +321,28 @@ public class ReviewController {
 	@RequestMapping("replyList.re")
 	public void getReplyList(int rId, HttpServletResponse response) throws JsonIOException, IOException {
 		
-		ArrayList<Reply> list = reService.getReplyList(rId);
+		//ArrayList<Reply> list = reService.getReplyList(rId);
+		ArrayList<Reply> list = new ArrayList<>();
+		Date d = new Date();
+		
+		if(rId == 1) {
+			Reply r = new Reply(1, 3, "test01", "헐 대박", d, "N", 1);
+			Reply r2 = new Reply(2, 5, "test033", "님 알바세요?", d, "N", 1);
+			Reply r3 = new Reply(3, 4, "test022222", "위에 머라노", d, "N", 1);
+			
+			list.add(r);
+			list.add(r2);
+			list.add(r3);
+		}else {
+			Reply r = new Reply(1, 3, "테스트1", "마저마저", d, "N", 2);
+			Reply r2 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
+			Reply r3 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
+			
+			list.add(r);
+			list.add(r2);
+			list.add(r3);
+		}
+		
 		
 		response.setContentType("application/json; charset=utf-8");
 		

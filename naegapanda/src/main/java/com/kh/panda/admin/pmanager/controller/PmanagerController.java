@@ -2,6 +2,8 @@ package com.kh.panda.admin.pmanager.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +49,31 @@ public class PmanagerController {
 		
 	}
 	
+	@RequestMapping("pmViolateList.do")
+	public ModelAndView pmViolateList(ModelAndView mv, int pId, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
+		
+		int listCount = pmService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+		
+		ArrayList <Pmanager> pmVlist = pmService.pmViolateList(pi, pId);
+		
+		
+		
+		mv.addObject("pmVlist", pmVlist).setViewName("admin/pmanager/pmViolateListView");
+		
+		return mv;
+	}
 	
+	@RequestMapping("pmstop.do")
+	public String pmStop(int pId, HttpServletRequest request) {
+		
+		int result = pmService.pmStop(pId);
+		
+		if(result > 0) {
+			return "redirect:pmlist.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
 }

@@ -54,7 +54,7 @@
 	
 	<div class="bs-example">
 		<table class="table table-hover" align="center" cellspacing="0" >
-			<h3 style="font-weight:bold;">판매품 관리</h3><br>
+			<h4 style="font-weight:bold;">판매품 관리</h4><br>
 				<thead align="center">
 					<tr>
 						<th>No.</th>
@@ -75,39 +75,43 @@
 											<td style="font-size:11px;" align="center">[${ pm.cName2 }]</td>
 											<td style="font-size:11px;" align="center">[${ pm.cName }]</td>
 											<td align="center">
-													<c:url value="pmdetail.do" var="pmdetail">
+													<c:url value="pDetailView.do" var="pDetailView">
 														<c:param name="pId" value="${ pm.pId }"/>
 													</c:url>
-													<a href="${ pmdetail }">${ pm.pName }</a>
+													<a href="${ pDetailView }">${ pm.pName }</a>
 												
 											</td>
 											<td align="center">
 												${ pm.sName }
 											</td>
 											<td align="center">
-												${ pm.pViolate }
+												<c:url value="pmViolateList.do" var="pmViolateList">
+														<c:param name="pId" value="${ pm.pId }"/>
+														<input type="hidden" name="pName" value="${ pm.pName }">
+												</c:url>
+												<c:if test="${ pm.pViolate ne 0 } " >
+													<a href="${ pmViolateList }">${ pm.pViolate }</a>
+												</c:if>
+												<c:if test="${ pm.pViolate eq 0 }">
+													0
+												</c:if>
 											</td>
-											<!-- <td>
-												<button type="button" class="btn btn-danger btn-xs-1x" id="popupBtn" >POPUP</button>
-											</td> -->
+											
 											<td>
 												<c:if test="${ pm.pStatus eq 'N' }">
 													<h5 style="color:red; font-weight:bold">판매중</h5>
 												</c:if>
-												<c:if test="${ pm.pStatus eq 'Y' }">
-													<h5 style="color:blue; font-weight:bold">판매정지</h5>
-												</c:if>
 											</td>
+											
+											
 										</tr>
 							
 									</c:forEach>
 									
 					</tbody>					
 				</table>
-			</div>
-		
-
-		<div class="col-lg-12" align="center">
+				
+				<div class="col-lg-12" align="center">
 					
 										<!-- [이전] -->	
 										<c:if test="${ pi.currentPage eq 1 }">
@@ -144,7 +148,103 @@
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
 								</div>
+										
+			</div>
 		
+		<div class="col-lg-3"></div>
+		<div class="bs-example">
+		<table class="table table-hover" align="center" cellspacing="0" >
+			<h4 style="font-weight:bold;">판매정지</h4><br>
+				<thead align="center">
+					<tr>
+						<th>No.</th>
+						<th width="100">Cat.</th>
+						<th width="100">Cat2.</th>
+						<th width="300">상품명</th>
+						<th width="100">판매자</th>
+						<th>신고횟수</th>
+						<th>상태</th>
+					</tr>
+				</thead>
+					<tbody>
+								
+						<c:forEach items="${ pmxlist }" var="pmx">
+									
+										<tr>
+											<td align="center">${ pmx.pId }</td>
+											<td style="font-size:11px;" align="center">[${ pmx.cName2 }]</td>
+											<td style="font-size:11px;" align="center">[${ pmx.cName }]</td>
+											<td align="center">
+													<c:url value="pDetailView.do" var="pDetailView">
+														<c:param name="pId" value="${ pmx.pId }"/>
+													</c:url>
+													<a href="${ pDetailView }">${ pmx.pName }</a>
+												
+											</td>
+											<td align="center">
+												${ pmx.sName }
+											</td>
+											<td align="center">
+												<c:url value="pmViolateList.do" var="pmViolateList">
+														<c:param name="pId" value="${ pmx.pId }"/>
+												</c:url>
+												<a href="${ pmViolateList }">${ pmx.pViolate }</a>
+											</td>
+											
+											<td>
+												<c:if test="${ pmx.pStatus eq 'Y' }">
+													<h5 style="color:blue; font-weight:bold">판매정지</h5>
+												</c:if>
+											</td>
+										</tr>
+							
+									</c:forEach>
+									
+					</tbody>					
+				</table>
+				<div class="col-lg-12" align="center">
+					
+										<!-- [이전] -->	
+										<c:if test="${ pi.currentPage eq 1 }">
+											[이전] 
+										</c:if>
+										<c:if test="${ pi.currentPage ne 1 }">
+											<c:url value="pmxlist.do" var="before">
+												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+											</c:url>
+											<a class="atag" href="${ before }">[이전] </a> 
+										</c:if>		
+										
+										<!-- 번호  -->
+										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+											<c:if test="${ p eq pi.currentPage }">
+												<font  size="4">[${ p }]</font>
+											</c:if>
+											<c:if test="${ p ne pi.currentPage }">
+												<c:url value="pmxlist.do" var="page">
+													<c:param name="currentPage" value="${ p }"/>
+												</c:url>
+												<a href="${ page }">${ p }</a>
+											</c:if>
+										</c:forEach>
+										
+										<!-- [다음] -->
+										<c:if test="${ pi.currentPage eq pi.maxPage }">
+											 [다음]
+										</c:if>
+										<c:if test="${ pi.currentPage ne pi.maxPage }">
+											<c:url value="pmxlist.do" var="next">
+												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+											</c:url>
+											<a class="atag" href="${ next }" > [다음]</a>
+										</c:if>
+								</div>
+		<div class="col-lg-12" align="right">
+			<button onclick="location.href='pmrestart.do?pId=${ pm.pId }';" class="btn">판매재개</button>
+		</div>
+			</div>
+			
+			
 		
 	
 <c:import url="../../common/adminFooter.jsp"/> 
@@ -164,11 +264,7 @@
 <script src="resources/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="resources/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="resources/js/shop_custom.js"></script>
-<script>
-	$('#popup').on('shown.bs.modal', function(){
-		$('#myInput').trigger('focus')
-	})
-</script>
+
 
 </body>
 

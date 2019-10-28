@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,8 +94,10 @@
 									</div>
 	
 									<div class="button_container">
-										<button type="button" class="button cart_button">Add to Cart</button>
-										<button type="button" class="button cart_button">ÂòÇÏ±â</button>
+										<!-- Âò,Àå¹Ù±¸´Ï(±Ô½Ä) -->
+										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">Àå¹Ù±¸´Ï</button>
+										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">ÂòÇÏ±â</button> 
+										<!-- Âò,Àå¹Ù±¸´Ï(±Ô½Ä) -->
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
@@ -123,8 +126,61 @@
 							<br>
 							<br>
 							<br>
-							<h3>»óÇ°¸®ºä</h3>
+							<h3>»óÇ°¸®ºä ${ reList.size() }°Ç</h3>
 							<div id="review">
+							
+								<!-- ¸®ºä ¸®½ºÆ®(±Ô½Ä) -->
+								<c:if test="${!empty reList}">
+								 	<table>
+								 		<c:forEach items="${ reList }" var="re">
+									 		<tr class="reviewTop" >
+									 			<td width="50px;"></td>
+									 			<td width="630px;" style="text-align: left;">
+									 				<span class="reviewTitle">${re.rTitle }</span>
+									 				<span class="reviewGray">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${re.rDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
+									 			</td>
+									 			<td class="reviewWriter">
+									 				<span >&nbsp;&nbsp;ÀÛ¼ºÀÚ: ${re.mId }</span>
+									 			</td>
+									 			<td width="200px;" style="text-align: center;">
+									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
+									 			</td>
+									 			<td width="100px;" >
+									 				<img src="resources/images/hart.png" width="20px;"> 
+									 				<span style="font-size:13px;">${re.rCommend }</span>
+									 			</td>
+							 				</tr>
+							 				<tr class="reviewDetail">
+							 					<td>
+							 						<input id="replyId${re.rId}" type="hidden" value="${re.rId}">
+							 						<input type="hidden" value="${sessionScope.loginUser.mNo}">
+							 					</td>
+							 					<td width="630px;">
+							 						<div style="padding-top:10px;">
+							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
+							 						</div>
+							 						<div >
+							 							<br>¦Æ  <span class="replyCount">´ñ±Û(<span id="rCount${re.rId}"></span>)</span> <br>
+										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
+										 				<table id="replyTable${re.rId}" style="margin-left:30px;">
+										 					
+							 							</table>
+							 						</div>
+							 					</td>
+							 					<td colspan="3" style="text-align: center;">
+							 						<img class="reviewImg2" src="resources/images/${re.rImage}" >
+							 					</td>
+							 				</tr>
+								 		</c:forEach>
+								 	</table>
+							 	</c:if>
+							 	<c:if test="${empty reList}">
+				 					<div style="text-align: left;">
+					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
+					 					<br>µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.
+					 				</div>
+				 				</c:if>
+								<!-- ¸®ºä ¸®½ºÆ®(±Ô½Ä) --> 
 								
 							</div>
 						</div>
@@ -306,5 +362,7 @@
 	<script src="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="resources/plugins/easing/easing.js"></script>
 	<script src="resources/js/product_custom.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 </body>
 </html>

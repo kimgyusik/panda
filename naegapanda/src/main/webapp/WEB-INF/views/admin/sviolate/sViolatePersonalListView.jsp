@@ -31,8 +31,8 @@ a:visited {
 
 
 
-
-		<input type = "hidden" id = "sNo" value = "${ sNo }" >
+		<form action="sellerDelete.do">
+		<input type = "hidden" name = "sNo" value = "${ sNo }" >
    		<h3 style="font-weight:bold;" onclick="removeCheck()"> ${sName} 님의 신고 회원 관리</h3>
    		<script>
    			function removeCheck() {
@@ -55,6 +55,7 @@ a:visited {
    				});
    			}
    		</script>
+		</form>
    		
    		<br> 
    		
