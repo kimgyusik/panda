@@ -55,10 +55,12 @@
 						<div class="product_description">
 							<div class="product_category">${p.cId }</div>
 							<div class="product_name">${ p.pName }
+									<c:if test="${ !empty loginUser }">  
 								<form action="violateinsert.do">
 									<input type="hidden" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">신고하기</button>	
+									<button type="submit" class="button cart_button">신고하기</button>
 								</form>
+									</c:if>	
 							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">

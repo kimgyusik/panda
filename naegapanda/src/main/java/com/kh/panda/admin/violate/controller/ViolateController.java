@@ -67,7 +67,7 @@ public class ViolateController {
 	}
 	
 	@RequestMapping("vinsert.do")
-	public String insertViolate(Violate v, HttpServletRequest request, Model model, 
+	public ModelAndView insertViolate(ModelAndView mv, Violate v, HttpServletRequest request, Model model, 
 			@RequestParam(name="uploadFile", required=false) MultipartFile file, HttpSession session) {
 		
 		
@@ -82,8 +82,12 @@ public class ViolateController {
 		
 			System.out.println(v);
 		int result = vService.insertViolate(v);
-
-		return "redirect:finishViolate.do";
+		
+		int pId = v.getpId();
+		
+		mv.addObject("pId",pId).setViewName("admin/violate/FinishViolateView");
+		
+		return mv;
 		
 		
 	}
@@ -136,8 +140,11 @@ public class ViolateController {
 	}
 	 
 	 @RequestMapping("finishViolate.do")
-	 public String FinishViolateView() {
-		 return "admin/violate/FinishViolateView";
+	 public ModelAndView FinishViolateView(ModelAndView mv, int pId) {
+		 
+		 mv.addObject("pId",pId).setViewName("FinishViolateView");
+		 
+		 return mv;
 	 }
 	
 	 
