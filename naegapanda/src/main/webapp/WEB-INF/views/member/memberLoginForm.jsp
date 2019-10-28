@@ -70,16 +70,16 @@
 	}
 		
 </style>
-<script>
+<!-- <script>
 	$(function(){
 		$("#find_id_btn").click(function(){
 			location.href="find_id_form.do";
 		});
 	$("#find_pw_btn").click(function(){
-			location.href="find_pw_form.do";
+			location.href="find_pwd_form.do";
 		});
 	})
-</script>
+</script> -->
 </head>
 <body>
 
@@ -132,11 +132,12 @@
 				<tr>
 					<td colspan="3">
 						<p>
-							<a href="join.do">회원가입</a><!--  <a href="">아이디/비밀번호찾기</a> -->
-							<a id="find_id_btn">아이디 찾기</a>
-							<a id="find_pw_btn">비밀번호 찾기</a>
+							<a href="join.do">회원가입</a>
+							<a href="find_id_form.do">아이디 찾기</a>
+							<a href="find_pwd_form.do">비밀번호 찾기</a>
 						</p>
 						<button type="submit" id="loginBtn">로그인</button>
+						<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>
 					</td>
 				</tr>
 			</table>
@@ -146,7 +147,7 @@
 
 
 			<div id="indexBtn" class="center">
-				<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>
+				
 			</div>
 		</div>
 

@@ -25,6 +25,7 @@ public class Member {
 	private Date joinDate;
 	private String dropYn;
 	private String blackCode;
+	private String emailKey;
 	
 	
 	public Member() {}
@@ -150,8 +151,18 @@ public class Member {
 	}
 
 
+	public String getEmailKey() {
+		return emailKey;
+	}
+
+
+	public void setEmailKey(String emailKey) {
+		this.emailKey = emailKey;
+	}
+
+
 	public Member(int mNo, String id, String pwd, String name, String birthDate, String gender, String email,
-			String phone, String address, Date joinDate, String dropYn, String blackCode) {
+			String phone, String address, Date joinDate, String dropYn, String blackCode, String emailKey) {
 		super();
 		this.mNo = mNo;
 		this.id = id;
@@ -165,6 +176,7 @@ public class Member {
 		this.joinDate = joinDate;
 		this.dropYn = dropYn;
 		this.blackCode = blackCode;
+		this.emailKey = emailKey;
 	}
 
 
@@ -172,12 +184,9 @@ public class Member {
 	public String toString() {
 		return "Member [mNo=" + mNo + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", birthDate=" + birthDate
 				+ ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", joinDate=" + joinDate + ", dropYn=" + dropYn + ", blackCode=" + blackCode + "]";
+				+ ", joinDate=" + joinDate + ", dropYn=" + dropYn + ", blackCode=" + blackCode + ", emailKey="
+				+ emailKey + "]";
 	}
 
-	
 
-	
-	
-	
 }

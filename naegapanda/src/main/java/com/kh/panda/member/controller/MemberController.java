@@ -1,11 +1,17 @@
 package com.kh.panda.member.controller;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +24,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.kh.panda.member.model.service.MemberService;
 import com.kh.panda.member.model.vo.Member;
 import com.kh.panda.seller.model.service.SellerService;
+import com.kh.panda.seller.model.vo.MailHandler;
+import com.kh.panda.seller.model.vo.Seller;
+import com.kh.panda.seller.model.vo.TempKey;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -62,13 +71,6 @@ public class MemberController {
 		return "member/find_id_form";
 	}
 
-
-	// 비밀번호 찾기 폼
-		@RequestMapping(value = "/find_pw_form.do")
-		public String find_pw_form(){
-			return "member/find_pw_form";
-	}
-	
 	
 
 	
@@ -173,11 +175,59 @@ public class MemberController {
 		if (result > 0) { // 존재하는 아이디 있음 --> 사용 불가능 "fail"
 			return "fail";
 		} else { // 존재하는 아이디 없음 --> 사용 가능 "ok"
-			if (sService.sIdCheck(id) <= 0) {
+			if (mService.idCheck(id) <= 0) {
 				return "ok";
 			}
 			return "fail";
 		}
+	}
+	
+	
+	
+	
+	
+	@Inject
+	private JavaMailSender mailSender;
+	
+	
+	
+
+	
+	
+	// 아이디/비번찾기 페이지
+	@RequestMapping("find_pwd_form.do")
+	public String findMember() {
+		return "member/find_pwd_form";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value="find_Pwd.do", method=RequestMethod.POST)
+	public String  findPwd(Member m, Model model, HttpServletRequest request) throws MessagingException {
+		
+		
+		String key = new TempKey().getKey(10, false);
+		m.setPwd(key);
+		
+		int result = mService.newPassword(m);
+		
+		MailHandler sendMail = new MailHandler(mailSender);
+		
+		sendMail.setSubject("[PANDA 비밀번호 찾기]");
+		sendMail.setText(
+				new StringBuffer().append("<h1>메일인증</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(m.getPwd()).toString());
+		try {
+			sendMail.setFrom("dkj01043@gmail.com", "관리자");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sendMail.setTo(m.getEmail());
+		sendMail.send();
+		
+		return "home";
 	}
 
 }
