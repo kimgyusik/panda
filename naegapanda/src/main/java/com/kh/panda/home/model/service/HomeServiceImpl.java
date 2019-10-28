@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.panda.home.model.dao.HomeDao;
+import com.kh.panda.home.model.vo.Home;
 import com.kh.panda.product.model.vo.Product;
 
 @Service("hService")
@@ -15,8 +16,11 @@ public class HomeServiceImpl implements HomeService{
 	private HomeDao hDao;
 
 	@Override
-	public ArrayList<Product> selectHotTopList() {
-		return hDao.selectHotTopList();
+	public ArrayList<Product> search(String keyword) {
+		return hDao.search(keyword);
 	}
+
+	
+	
 	
 }

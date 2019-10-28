@@ -55,9 +55,8 @@
 						    <tr>
 						      <th>첨부파일</th>
 								<td colspan="3">
-									<c:if test="${ !empty vm.vmOriginalFileName }">
-										<%-- <a href="${ contextPath }/resources/vmupload/${ v.vRenameFileName }">${v.vOriginalFileName }</a> --%>
-										<a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" data-target="#myModal" data-toggle="modal">${v.vRenameFileName }</a>
+									<c:if test="${ !empty v.vOriginalFileName }">
+										<a  href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" data-target="#myModal" data-toggle="modal">${v.vRenameFileName }</a>
 									</c:if>
 								</td>
 						    </tr>
@@ -70,8 +69,13 @@
 						    
 						    <tr>
 						    	<td colspan="3" align="center">
-						    		<!-- <button type="submit" class="btn btn-outline-primary" onclick="location.href='vmessageInsertView.do';">판매자에게</button> -->
+						    		<form action="vmessageInsertView.do">
+						    	 	<input type="hidden" name="vNo" value="${ v.vNo }">
+						    	 	<input type="hidden" name="sName" value="${ v.sName }">
+						    	 	<input type="hidden" name="sNo" value="${ v.sNo }">
+						    		<button type="submit" class="btn btn-outline-primary">판매자에게</button>
 						    		<button type="button" class="btn btn-outline-primary" onclick="location.href='violateView.do';">뒤로가기</button>
+						    		</form>
 						    	</td>
 						    </tr>
 				  	  	
@@ -112,6 +116,7 @@
 	        $('#showimg').attr('src' , img); //load image in modal
 	    });
 	});
+	</script>
 
 
 <c:import url="../../common/adminFooter.jsp"/> 

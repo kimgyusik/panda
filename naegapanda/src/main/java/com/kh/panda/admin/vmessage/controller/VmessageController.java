@@ -74,7 +74,6 @@ public class VmessageController {
 	public ModelAndView VmessageDetailView(ModelAndView mv, int vmNo) {
 
 		Vmessage vm = vmService.vmessageDetail(vmNo);
-		System.out.println("2222222222222222222222222222222");
 
 		mv.addObject("vm", vm).setViewName("admin/vmessage/VmessageDetailView");
 
@@ -85,8 +84,6 @@ public class VmessageController {
 	public ModelAndView VmessageSellerDetailView(ModelAndView mv, int vmNo, HttpSession session) {
 
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
-		System.out.println(sNo);
-		System.out.println("11111111111111111111111111111111");
 
 		Vmessage vm = vmService.vmessageSellerDetail(vmNo, sNo);
 		System.out.println(vm);
@@ -108,7 +105,7 @@ public class VmessageController {
 			}
 		
 		}
-		
+		System.out.println(vm);
 		int result = vmService.insertVmessage(vm);
 		
 		return "redirect:vmessage.do";

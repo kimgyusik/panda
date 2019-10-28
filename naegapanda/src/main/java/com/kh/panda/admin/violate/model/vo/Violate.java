@@ -22,7 +22,6 @@ public class Violate {
 	
 	public Violate() {}
 
-
 	public Violate(int vNo, int sNo, String sName, int mNo, String mName, int pId, String pName, int stNo,
 			String vTitle, String vContent, Date vDate, String vOriginalFileName, String vRenameFileName,
 			String vStatus) {
@@ -43,6 +42,16 @@ public class Violate {
 		this.vStatus = vStatus;
 	}
 
+	
+
+	public Violate(int sNo, String sName, int mNo, int pId, String pName) {
+		super();
+		this.sNo = sNo;
+		this.sName = sName;
+		this.mNo = mNo;
+		this.pId = pId;
+		this.pName = pName;
+	}
 
 	public int getvNo() {
 		return vNo;

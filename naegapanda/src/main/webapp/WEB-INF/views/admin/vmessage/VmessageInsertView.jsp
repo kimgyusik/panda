@@ -76,8 +76,8 @@ $(document).ready(function() {
 			    		<input type="hidden" name="vNo" value="${ v.vNo }">
 				    	<input type="hidden" name="sNo" value="${ v.sNo }"> 
 				    	<input type="hidden" name="pId" value="${ v.pId }"> 
-			    		<button type="submit" class="btn btn-outline-primary" onclick="locatioin.href='vmIsert.do';">보내기</button>
-			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='violateView';">취소</button>
+			    		<button type="submit" class="btn btn-outline-primary" onclick="locatioin.href='vmInsert.do';">보내기</button>
+			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='violateView.do';">취소</button>
 			    	</td>
 			    </tr>
 	  	  	</tbody>

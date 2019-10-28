@@ -19,6 +19,13 @@
   		<result property="vStatus" column="v_status"/>
 	</resultMap>
 	
+	<resultMap id="productInfoResultSet" type="Violate">
+		<id property="pId" column="p_id"/>
+		<result property="pName" column="p_name"/>
+		<result property="sNo" column="s_no"/>
+		<result property="sName" column="s_name"/>
+	</resultMap>
+	
 
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -30,13 +37,13 @@
 		from vList
 	</select>
 	
-	<update id="updateSellerCount">
+	<update id="updateSellerCount" parameterType="_int">
 		update seller
 		set s_violate=s_violate+1 
 		where s_no=#{sNo}
 	</update>
 	
-	<update id="updateProductCount">
+	<update id="updateProductCount" parameterType="_int">
 		update product
 		set p_violate=p_violate+1 
 		where p_id=#{pId}
@@ -44,14 +51,28 @@
 		
 	<select id="insertViolate" parameterType="Violate">
   		insert into violate
-  		values(violate_seq.nextval, #{sNO}, #{mNo}, #{pId}, 
-  			#{stNo}, #{vTitle},  #{vContent},  sysdate,  #{vOriginalFileName}, #{vRenameFileName},  default)
+  		values(violate_seq.nextval, #{sNo}, #{mNo}, #{pId}, 
+  			null , #{vTitle},  #{vContent},  sysdate,  #{vOriginalFileName}, #{vRenameFileName},  default)
   </select>
 
 	<select id="violateDetail" resultMap="violateResultSet" parameterType="_int">
 		select *
 		from vList
 		where v_no=#{vNo}
+	</select>
+	
+	
+	<select id="sviolateDetail" resultMap="violateResultSet" parameterType="_int">
+		select *
+		from vList
+		where v_no=#{vNo}
+	</select>
+	
+	<select id="selectInfo" resultMap="productInfoResultSet" parameterType="_int">
+		select p_id, p_name, s_no, s_name
+		from product
+        join seller using(s_no)
+		where p_id=#{pId}
 	</select>
 
 <!-- 상태값 처리로 바꾸는 거 만들기  -->

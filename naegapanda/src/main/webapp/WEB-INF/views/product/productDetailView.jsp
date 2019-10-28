@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,12 @@
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
 							<div class="product_category">${p.cId }</div>
-							<div class="product_name">${p.pName }</div>
+							<div class="product_name">${ p.pName }
+								<form action="violateinsert.do">
+									<input type="hidden" name="pId" value="${ p.pId }">
+									<button type="submit" class="button cart_button">신고하기</button>	
+								</form>
+							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
 								<form action="#">
@@ -65,9 +71,9 @@
 											<table>
 												<tr>
 													<th>옵션번호</th>
-													<th>옵션명</th>
+													<th>옵션이름</th>
 													<th>옵션가격</th>
-													<th>남은수량</th>
+													<th>옵션수량</th>
 													<th>선택</th>
 												</tr>
 											<c:forEach items="${poList }" var="po">
@@ -88,15 +94,18 @@
 									</div>
 	
 									<div class="button_container">
-										<button type="button" class="button cart_button">Add to Cart</button>
-										<button type="button" class="button cart_button">찜하기</button>
+										<!-- 찜,장바구니(규식) -->
+										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">장바구니</button>
+										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">찜하기</button> 
+										<!-- 찜,장바구니(규식) -->
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
 								</form>
 							</div>
 						</div>
-						
+						<br>
+								
 					</div>
 					
 				</div>
@@ -107,7 +116,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="col-lg-5">
-							<h3>상세보기</h3>
+							<h3>상세내용</h3>
 							<div id="detail_contents">
 								${p.pContent }
 							</div>
@@ -117,8 +126,61 @@
 							<br>
 							<br>
 							<br>
-							<h3>상품 후기</h3>
+							<h3>상품리뷰 ${ reList.size() }건</h3>
 							<div id="review">
+							
+								<!-- 리뷰 리스트(규식) -->
+								<c:if test="${!empty reList}">
+								 	<table>
+								 		<c:forEach items="${ reList }" var="re">
+									 		<tr class="reviewTop" >
+									 			<td width="50px;"></td>
+									 			<td width="630px;" style="text-align: left;">
+									 				<span class="reviewTitle">${re.rTitle }</span>
+									 				<span class="reviewGray">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${re.rDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
+									 			</td>
+									 			<td class="reviewWriter">
+									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
+									 			</td>
+									 			<td width="200px;" style="text-align: center;">
+									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
+									 			</td>
+									 			<td width="100px;" >
+									 				<img src="resources/images/hart.png" width="20px;"> 
+									 				<span style="font-size:13px;">${re.rCommend }</span>
+									 			</td>
+							 				</tr>
+							 				<tr class="reviewDetail">
+							 					<td>
+							 						<input id="replyId${re.rId}" type="hidden" value="${re.rId}">
+							 						<input type="hidden" value="${sessionScope.loginUser.mNo}">
+							 					</td>
+							 					<td width="630px;">
+							 						<div style="padding-top:10px;">
+							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
+							 						</div>
+							 						<div >
+							 							<br>┕  <span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> <br>
+										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
+										 				<table id="replyTable${re.rId}" style="margin-left:30px;">
+										 					
+							 							</table>
+							 						</div>
+							 					</td>
+							 					<td colspan="3" style="text-align: center;">
+							 						<img class="reviewImg2" src="resources/images/${re.rImage}" >
+							 					</td>
+							 				</tr>
+								 		</c:forEach>
+								 	</table>
+							 	</c:if>
+							 	<c:if test="${empty reList}">
+				 					<div style="text-align: left;">
+					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
+					 					<br>등록된 리뷰가 없습니다.
+					 				</div>
+				 				</c:if>
+								<!-- 리뷰 리스트(규식) --> 
 								
 							</div>
 						</div>
@@ -127,7 +189,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>상품 문의</h3>
+							<h3>상품문의</h3>
 							<div id="inquiry">
 								
 							</div>
@@ -300,5 +362,7 @@
 	<script src="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="resources/plugins/easing/easing.js"></script>
 	<script src="resources/js/product_custom.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 </body>
 </html>

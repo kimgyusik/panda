@@ -148,20 +148,39 @@ public class SellerController {
 	public String loginSeller(Seller s, Model model) {
 
 		Seller loginSeller = sService.loginSeller(s);
-
+		
+		System.out.println(loginSeller);
+		System.out.println(s);
+		
+		
 		/*
 		 * if(loginSeller != null && bcryptPasswordEncoder.matches(s.getsPwd(),
 		 * loginSeller.getsPwd())) {
 		 */
 		
-		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
+		/*
+		 * if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())) {
+		 * 
+		 * model.addAttribute("loginSeller", loginSeller); return
+		 * "redirect:sProduct.do";
+		 *
+		 */
+		
+		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())  && loginSeller.getsStatus().equals("Y")) {
 
 			model.addAttribute("loginSeller", loginSeller);
 			return "redirect:sProduct.do";
 
-		} else {
+		} else if(loginSeller.getsEmail() == "N"){
+			model.addAttribute("msg", "이메일 인증을 완료해주세요.");
+			return "common/errorPage";
 
-			model.addAttribute("msg", "로그인 실패");
+		} else if(loginSeller.getsStatus() == "N"){
+			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
+			return "common/errorPage";
+			 
+		} else {
+			model.addAttribute("msg", "아이디 혹은 비밀번호가 틀립니다.");
 			return "common/errorPage";
 		}
 
@@ -382,7 +401,6 @@ public class SellerController {
 		String savePath = root + "\\product_uploadFiles";
 		
 		
-		System.out.println(p.getsNo());
 		ArrayList<ProductAttachment> paList = new ArrayList<>();
 		ArrayList<ProductOption> poList = new ArrayList<>();
 		int fileLevelCheck = 1;
@@ -502,9 +520,7 @@ public class SellerController {
 
 	@RequestMapping(value="pUpdateView.do")
 	public ModelAndView updateProductView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
-		System.out.println(pId);
 		Product p = sService.selectProduct(pId);
-		System.out.println(p);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
 		ArrayList<Category> cList = sService.selectcList();

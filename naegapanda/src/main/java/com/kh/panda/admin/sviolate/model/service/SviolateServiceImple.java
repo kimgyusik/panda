@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.panda.admin.sviolate.model.dao.SviolateDao;
 import com.kh.panda.admin.sviolate.model.vo.Sviolate;
+import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 
 @Service("svService")
@@ -33,6 +34,16 @@ public class SviolateServiceImple implements SviolateService{
 	@Override
 	public ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo) {
 		return svDao.selectPersonalList(pi, sNo);
+	}
+
+	@Override
+	public Violate violateDetail(int vNo) {
+		return svDao.selectDetail(vNo);
+	}
+
+	@Override
+	public int sellerDelete(int sNo) {
+		return svDao.sellerDelete(sNo);
 	}
 	
 }
