@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#data{
+		display:inline-block;
+	}
+</style>
 
 <!-- 제이쿼리 cdn -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -15,8 +20,8 @@
 
 </head>
 <body>
-
-<div id="data" style="width:300px;height:300px;border:1px solid blue;">
+<div>
+<div id="data" style="width:200px;height:300px;border:1px solid blue;">
 
 
 </div>
@@ -25,6 +30,7 @@
 <button id="sendBtn">전송</button>
 </div>
 
+</div>
 
 <script>
 
@@ -91,11 +97,11 @@ function onMessage(evt) {
     var data = evt.data;
   
     $("#data").append(data + "<br/>");
-    document.body.scrollIntoView(false);   // 스크롤을 제일 아래로
+    /* document.body.scrollIntoView(false); */   // 스크롤을 제일 아래로
     //sock.close();
 
 }
-s
+
 
 function onClose(evt) {
   

@@ -28,7 +28,12 @@
 			
 			<div class="container">
 				<div class="col-lg-2 order-lg-2 order-1">
-					<video id="localStream" width="800" controls></video>
+					<div style="display:inline-block;">
+						<video id="localStream" width="800" controls></video>
+					</div>
+					<div>
+						<c:import url="../chat/chatMain.jsp"/> 
+					</div>
 				</div>
 				<div class="row">
 					<!-- Images -->
