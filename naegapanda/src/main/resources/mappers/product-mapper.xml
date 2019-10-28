@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="productMapper">
+
+
 	<resultMap type="Product" id="productResultSet">
 		<id property="pId" column="p_id"/>
 		<result property="pName" column="p_name"/>
@@ -11,6 +13,20 @@
 		<result property="pOk" column="p_ok"/>
 		<result property="pStatus" column="p_status"/>
 		<result property="pCreateDate" column="p_create_date"/>
+	</resultMap>
+	
+	<resultMap type="Product" id="productResultSet2">
+		<id property="pId" column="p_id"/>
+		<result property="pName" column="p_name"/>
+		<result property="sNo" column="s_no"/>
+		<result property="pContent" column="p_content"/>
+		<result property="cId" column="c_id"/>
+		<result property="pCount" column="p_count"/>
+		<result property="pOk" column="p_ok"/>
+		<result property="pStatus" column="p_status"/>
+		<result property="pCreateDate" column="p_create_date"/>
+		<result property="pPrice" column="p_price"/>
+		<result property="paChangeName" column="pa_change_name"/>
 	</resultMap>
 	
 	<resultMap type="Category" id="categoryResultSet">
@@ -91,13 +107,21 @@
 		set o_Status = 'N'
 		where o_no = #{oNo}
 	</update>
-
-
-
-
+	
+	<select id="selectpList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price
+		from product p
+		join product_attachment pa on(p.p_Id = pa.p_Id)
+		where p.p_status='Y' and pa.pa_file_level=1 and c_id between #{startNum} and #{endNum}
+	</select>
+	
+	<select id="listCount" parameterType="CategoryNumber" resultType="_int">
+		select count(*)
+		from product p
+		where p.p_status='Y' and c_id between #{startNum} and #{endNum}
+	</select>
 
 	<select id="search" parameterType="String" resultMap="productResultSet">
-	
 		select *
 		from product
 		where p_name like '%' ||  #{keyword} || '%' or p_content like '%' ||  #{keyword} || '%'

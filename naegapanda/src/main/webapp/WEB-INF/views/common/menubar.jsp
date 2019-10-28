@@ -160,13 +160,13 @@
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
 												<i class="fas fa-chevron-down"></i>
 												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">식품</a></li>
-													<li><a class="clc" href="#">의류/잡화</a></li>
-													<li><a class="clc" href="#">가구/인테리어</a></li>
-													<li><a class="clc" href="#">디지털/가전/컴퓨터 </a></li>
-													<li><a class="clc" href="#">취미/애완동물</a></li>
-													<li><a class="clc" href="#">생활/건강/뷰티</a></li>
+													<li><a class="clc" href="pListView.do?category=0">All Categories</a></li>
+													<li><a class="clc" href="pListView.do?category=1">식품</a></li>
+													<li><a class="clc" href="pListView.do?category=2">의류/잡화</a></li>
+													<li><a class="clc" href="pListView.do?category=3">가구/인테리어</a></li>
+													<li><a class="clc" href="pListView.do?category=4">디지털/가전/컴퓨터 </a></li>
+													<li><a class="clc" href="pListView.do?category=5">취미/애완동물</a></li>
+													<li><a class="clc" href="pListView.do?category=6">생활/건강/뷰티</a></li>
 												</ul>
 											</div>
 										</div>

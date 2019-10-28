@@ -3,6 +3,8 @@ package com.kh.panda.product.controller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.panda.common.PageInfo;
+import com.kh.panda.common.Pagination;
 import com.kh.panda.member.model.service.MemberService;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
 import com.kh.panda.myShopping.review.model.vo.Review;
@@ -18,6 +22,7 @@ import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
+import com.kh.panda.seller.model.vo.Seller;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -73,5 +78,21 @@ public class ProductController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	@RequestMapping("pListView.do")
+	public ModelAndView pListView(@RequestParam(name="keyword", required=false, defaultValue = "*")String keyword,
+								@RequestParam(name="currentPage", required=false, defaultValue = "1") int currentPage,
+								@RequestParam(name="category", required=false, defaultValue = "0") int category,
+								ModelAndView mv, HttpSession session) {
+		
+		int listCount = pService.getListCount(category);
+		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
+		
+		ArrayList<Product> pList = pService.selectpList(pi, category);
+		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).setViewName("product/productListView");
+		
+		return mv;
 	}
 }
