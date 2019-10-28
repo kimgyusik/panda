@@ -52,7 +52,7 @@
 		from Product_option o
 		left join product p on p.p_id=o.p_Id
 		left join product_attachment pa on p.p_id=pa.p_id
-		where o_status='Y' and p.s_No = #{sNo}
+		where o_status='Y' and p.s_No = #{sNo} and p.p_status = 'Y' and pa.pa_file_level=1
 		order by o_No desc
 	</select>
 	
