@@ -29,7 +29,35 @@
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="resources/images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">Smartphones & Tablets</h2>
+			<h2 class="home_title">
+				<c:if test="${category eq 1000}">ALL PRODUCTS</c:if>
+				<c:if test="${category eq 1001}">식품</c:if>
+				<c:if test="${category eq 1002}">의류/잡화</c:if>
+				<c:if test="${category eq 1003}">가구/인테리어</c:if>
+				<c:if test="${category eq 1004}">디지털/가전/컴퓨터</c:if>
+				<c:if test="${category eq 1005}">취미/애완동물</c:if>
+				<c:if test="${category eq 1006}">생활/건강/뷰티</c:if>
+				<c:choose>
+		         	<c:when test = "${category<=9}">
+		            	식품
+		         	</c:when>
+		         	<c:when test = "${category<=19}">
+		           		의류/잡화
+		         	</c:when>
+		         	<c:when test = "${category<=28}">
+		           		가구/인테리어
+		         	</c:when>
+		         	<c:when test = "${category<=39}">
+		           		디지털/가전/컴퓨터
+		         	</c:when>
+		         	<c:when test = "${category<=49}">
+		           		취미/애완동물
+		         	</c:when>
+		         	<c:when test = "${category<=58}">
+		           		생활/건강/뷰티
+		         	</c:when>
+		      	</c:choose>
+			</h2>
 		</div>
 	</div>
 
@@ -45,23 +73,14 @@
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
-								<li><a href="pListView.do?category=0">All Categories</a></li>
-								<li><a href="pListView.do?category=1">식품</a></li>
-								<li><a href="pListView.do?category=2">의류/잡화</a></li>
-								<li><a href="pListView.do?category=3">가구/인테리어</a></li>
-								<li><a href="pListView.do?category=4">디지털/가전/컴퓨터</a></li>
-								<li><a href="pListView.do?category=5">취미/애완동물</a></li>
-								<li><a href="pListView.do?category=6">생활/건강/뷰티</a></li>
+								<li><a href="pListView.do?category=1000">All Categories</a></li>
+								<li><a href="pListView.do?category=1001">식품</a></li>
+								<li><a href="pListView.do?category=1002">의류/잡화</a></li>
+								<li><a href="pListView.do?category=1003">가구/인테리어</a></li>
+								<li><a href="pListView.do?category=1004">디지털/가전/컴퓨터</a></li>
+								<li><a href="pListView.do?category=1005">취미/애완동물</a></li>
+								<li><a href="pListView.do?category=1006">생활/건강/뷰티</a></li>
 							</ul>
-						</div>
-						<div class="sidebar_section filter_by_section">
-							<div class="sidebar_title">Filter By</div>
-							<div class="sidebar_subtitle">Price</div>
-							<div class="filter_price">
-								<div id="slider-range" class="slider_range"></div>
-								<p>Range: </p>
-								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
-							</div>
 						</div>
 						
 					</div>
@@ -125,11 +144,20 @@
 								});
 							</script>
 						</div>
-
-						<!-- Shop Page Navigation -->
-						<table>
+						<br>
+						<table align="center" style="margin-left:auto; margin-right:auto;">
 							<tr align="center" height="20">
 								<td colspan="6">
+									<c:if test="${pi.currentPage eq 1}">
+										[처음으로]
+									</c:if>
+									<c:if test="${pi.currentPage ne 1}">
+										<c:url value="pListView.do" var="first">
+											<c:param name="currentPage" value="1"/>
+											<c:param name="category" value="${category }"/>
+										</c:url>
+										<a href="${first }">[처음으로]</a>&nbsp;
+									</c:if>
 									<!-- 이전 -->
 									<c:if test="${pi.currentPage eq 1}">
 										[이전]
@@ -139,7 +167,7 @@
 											<c:param name="currentPage" value="${pi.currentPage -1 }"/>
 											<c:param name="category" value="${category }"/>
 										</c:url>
-										<a href="${before }">이전</a>
+										<a href="${before }">[이전]</a>&nbsp;
 									</c:if>
 									
 									<!-- 페이지 -->
@@ -167,9 +195,18 @@
 											<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 											<c:param name="category" value="${category }"/>
 										</c:url>
-										<a href="${next }">다음</a>
+										<a href="${next }">[다음]&nbsp;</a>
 									</c:if>
-								
+									<c:if test="${pi.currentPage eq pi.maxPage}">
+										[끝으로]
+									</c:if>
+									<c:if test="${pi.currentPage ne pi.maxPage}">
+									<c:url value="pListView.do" var="last">
+										<c:param name="currentPage" value="${pi.maxPage }"/>
+										<c:param name="category" value="${category }"/>
+									</c:url>
+									<a href="${last }">[끝으로]&nbsp;</a>
+									</c:if>
 								</td>
 							</tr>
 						</table>
