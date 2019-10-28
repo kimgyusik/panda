@@ -64,6 +64,8 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
     private JavaMailSender mailSender;
 
+	
+	
 	@Override
 	public int newPassword(Member m) {
 		return mDao.newPassword(m);
