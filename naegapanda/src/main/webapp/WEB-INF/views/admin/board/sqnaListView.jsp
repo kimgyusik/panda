@@ -91,7 +91,7 @@
 											<td align="center">${ q.sqCount }</td>
 											
 										</tr>
-										
+									
 										<c:forEach items="${ salist }" var="a">
 											<c:if test="${ q.sqId eq a.qId }">
 											<tr align="center" style="color:red;">

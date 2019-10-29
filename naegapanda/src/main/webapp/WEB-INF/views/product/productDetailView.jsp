@@ -28,7 +28,25 @@
 			
 			<div class="container">
 				<div class="col-lg-2 order-lg-2 order-1">
-					<video id="localStream" width="800" controls></video>
+					<div style="display:inline-block;">
+						<video id="localStream" width="800" controls></video>
+					</div>
+					<div>
+						<c:import url="../chat/chatMain.jsp"/> 
+					</div>
+					<script>
+						navigator.mediaDevices.getUserMedia({audio:true, video:{width: 800, height: 500}})
+						.then(stream => {
+							const video = document.getElementById('localStream');
+							video.srcObject = stream;
+							video.onloadedmetadata = function(){
+								video.play();
+							};
+						})
+						.catch(err => console.log(err));
+					</script>
+					<script src="resources/js/bundle.js"></script>
+					
 				</div>
 				<div class="row">
 					<!-- Images -->
@@ -50,10 +68,12 @@
 						<div class="product_description">
 							<div class="product_category">${p.cId }</div>
 							<div class="product_name">${ p.pName }
+									<c:if test="${ !empty loginUser }">  
 								<form action="violateinsert.do">
 									<input type="hidden" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">½Å°íÇÏ±â</button>	
+									<button type="submit" class="button cart_button">ï¿½Å°ï¿½ï¿½Ï±ï¿½</button>
 								</form>
+									</c:if>	
 							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
@@ -73,11 +93,11 @@
 										<div>
 											<table>
 												<tr>
-													<th>¿É¼Ç¹øÈ£</th>
-													<th>¿É¼ÇÀÌ¸§</th>
-													<th>¿É¼Ç°¡°Ý</th>
-													<th>¿É¼Ç¼ö·®</th>
-													<th>¼±ÅÃ</th>
+													<th>ï¿½É¼Ç¹ï¿½È£</th>
+													<th>ï¿½É¼ï¿½ï¿½Ì¸ï¿½</th>
+													<th>ï¿½É¼Ç°ï¿½ï¿½ï¿½</th>
+													<th>ï¿½É¼Ç¼ï¿½ï¿½ï¿½</th>
+													<th>ï¿½ï¿½ï¿½ï¿½</th>
 												</tr>
 											<c:forEach items="${poList }" var="po">
 												<tr>
@@ -85,7 +105,7 @@
 													<td>${po.oName }</td>
 													<td>${po.oPrice }</td>
 													<td>${po.oAmount }</td>
-													<td><button type="button">¼±ÅÃ</button></td>
+													<td><button type="button">ï¿½ï¿½ï¿½ï¿½</button></td>
 												</tr>
 											</c:forEach>
 											</table>
@@ -97,10 +117,10 @@
 									</div>
 	
 									<div class="button_container">
-										<!-- Âò,Àå¹Ù±¸´Ï(±Ô½Ä) -->
-										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">Àå¹Ù±¸´Ï</button>
-										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">ÂòÇÏ±â</button> 
-										<!-- Âò,Àå¹Ù±¸´Ï(±Ô½Ä) -->
+										<!-- ï¿½ï¿½,ï¿½ï¿½Ù±ï¿½ï¿½ï¿½(ï¿½Ô½ï¿½) -->
+										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">ï¿½ï¿½Ù±ï¿½ï¿½ï¿½</button>
+										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">ï¿½ï¿½ï¿½Ï±ï¿½</button> 
+										<!-- ï¿½ï¿½,ï¿½ï¿½Ù±ï¿½ï¿½ï¿½(ï¿½Ô½ï¿½) -->
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
@@ -119,7 +139,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="col-lg-5">
-							<h3>»ó¼¼³»¿ë</h3>
+							<h3>ï¿½ó¼¼³ï¿½ï¿½ï¿½</h3>
 							<div id="detail_contents">
 								${p.pContent }
 							</div>
@@ -129,10 +149,10 @@
 							<br>
 							<br>
 							<br>
-							<h3>»óÇ°¸®ºä ${ reList.size() }°Ç</h3>
+							<h3>ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ ${ reList.size() }ï¿½ï¿½</h3>
 							<div id="review">
 							
-								<!-- ¸®ºä ¸®½ºÆ®(±Ô½Ä) -->
+								<!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®(ï¿½Ô½ï¿½) -->
 								<c:if test="${!empty reList}">
 								 	<table>
 								 		<c:forEach items="${ reList }" var="re">
@@ -143,7 +163,7 @@
 									 				<span class="reviewGray">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${re.rDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
 									 			</td>
 									 			<td class="reviewWriter">
-									 				<span >&nbsp;&nbsp;ÀÛ¼ºÀÚ: ${re.mId }</span>
+									 				<span >&nbsp;&nbsp;ï¿½Û¼ï¿½ï¿½ï¿½: ${re.mId }</span>
 									 			</td>
 									 			<td width="200px;" style="text-align: center;">
 									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
@@ -163,7 +183,7 @@
 							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
 							 						</div>
 							 						<div >
-							 							<br>¦Æ  <span class="replyCount">´ñ±Û(<span id="rCount${re.rId}"></span>)</span> <br>
+							 							<br>ï¿½ï¿½  <span class="replyCount">ï¿½ï¿½ï¿½(<span id="rCount${re.rId}"></span>)</span> <br>
 										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
 										 				<table id="replyTable${re.rId}" style="margin-left:30px;">
 										 					
@@ -180,10 +200,10 @@
 							 	<c:if test="${empty reList}">
 				 					<div style="text-align: left;">
 					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
-					 					<br>µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.
+					 					<br>ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ä°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 					 				</div>
 				 				</c:if>
-								<!-- ¸®ºä ¸®½ºÆ®(±Ô½Ä) --> 
+								<!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®(ï¿½Ô½ï¿½) --> 
 								
 							</div>
 						</div>
@@ -192,7 +212,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>»óÇ°¹®ÀÇ</h3>
+							<h3>ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½</h3>
 							<div id="inquiry">
 								
 							</div>

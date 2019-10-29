@@ -60,7 +60,7 @@ a:visited {
    	function removeCheck() {
 				id.click $this.prev().val()
    				swal({
-   				  title: "정말 중지 시키시겠습니까?",
+   				  title: "정말 삭제 시키시겠습니까?",
    				  icon: "warning",
    				  buttons: true,
    				  dangerMode: true,
@@ -68,7 +68,7 @@ a:visited {
    				.then((willDelete) => {
    				  if (willDelete) {
    					location.href="sellerDelete.do";
-   				    swal("판매자 중지 되었습니다!", {
+   				    swal("삭제 되었습니다!", {
    				      icon: "success",
    				    });
    				  } else {
