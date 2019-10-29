@@ -83,7 +83,7 @@ public class ProductController {
 	@RequestMapping("pListView.do")
 	public ModelAndView pListView(@RequestParam(name="keyword", required=false, defaultValue = "*")String keyword,
 								@RequestParam(name="currentPage", required=false, defaultValue = "1") int currentPage,
-								@RequestParam(name="category", required=false, defaultValue = "0") int category,
+								@RequestParam(name="category", required=false, defaultValue = "1000") int category,
 								ModelAndView mv, HttpSession session) {
 		
 		int listCount = pService.getListCount(category);
@@ -99,7 +99,7 @@ public class ProductController {
 	@RequestMapping("search.do")
 	public ModelAndView search(@RequestParam(name="keyword", required=false, defaultValue = "*")String keyword,
 								@RequestParam(name="currentPage", required=false, defaultValue = "1") int currentPage,
-								@RequestParam(name="category", required=false, defaultValue = "0") int category,
+								@RequestParam(name="category", required=false, defaultValue = "1000") int category,
 								ModelAndView mv, HttpSession session) {
 		int listCount = pService.getListCount(keyword, category);
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
