@@ -23,8 +23,6 @@
 	<div class="super_container">
 
 	<c:import url="../../common/menubar.jsp"/>
-	
-	<!-- Shop -->
 
 		<div class="shop">
 			<div class="container">
@@ -45,7 +43,7 @@
 									<div class="col-lg-10 offset-lg-1">
 										<div class="cart_container" style="width:120%;">
 										
-											<div class="cart_title">장바구니</div>
+											<div class="cart_title subTitle">장바구니</div>
 											
 											<div class="cartinfo">
 												<ul>
@@ -107,7 +105,7 @@
 																		<td style="text-align:left;width:600px; ">
 																			
 																			[ ${b.category2} > ${b.category} ]<br>
-																			<a href="${ product }" style="font-size:13px;">${b.pName} :: ${b.oName}</a>	
+																			<a href="${ product }" style="font-size:13px;"><b>${b.pName}</b> <br>${b.oName}</a>	
 																		</td>
 																		<td>
 																			<input class="amount" type="number" value="${b.amount }" min="1" onKeyup="this.value=this.value.replace(/[^1-9]/g,'');" >
