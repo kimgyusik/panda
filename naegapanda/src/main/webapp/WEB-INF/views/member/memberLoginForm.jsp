@@ -17,6 +17,12 @@
 <script src="https://tistory3.daumcdn.net/tistory/941717/skin/images/snowfall.jquery.js" type="text/javascript"></script>
 
 <style>
+	table{
+	font-size: 1.1em;
+	}
+	a{
+	font-size : larger;
+	}
 	 p{
 	        text-align: center;
 	    }
@@ -68,18 +74,68 @@
 	  min-height: 200px;
 	  background: #3498db;
 	}
-		
+	
+	/* #loginTable{
+	font-size: inherit ;
+	} */
+	
+		#visual-btn {
+		z-index: 50;
+		color: #fff;
+		font-size: 20px;
+		border: 2px solid #fff;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0);
+	}
+	
+	#visual-btn:hover {
+		color: #ff6868;
+		font-size: 30px;
+		border: 2px solid #ff6868;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+
+
+
+
+
+
+
+
+	#loginBtn{
+		z-index: 50;
+		color: #fff;
+		font-size: 40px;
+		border: 2px solid #fff;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0);
+	}
+	
+	#loginBtn:hover {
+		color: #ff6868;
+		font-size: 50px;
+		border: 2px solid #ff6868;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	
+	
+	
 </style>
-<!-- <script>
-	$(function(){
-		$("#find_id_btn").click(function(){
-			location.href="find_id_form.do";
-		});
-	$("#find_pw_btn").click(function(){
-			location.href="find_pwd_form.do";
-		});
-	})
-</script> -->
+<style type="text/css">
+ a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+</style>
 </head>
 <body>
 
@@ -108,7 +164,7 @@
         </svg>
 
 
-		<div class="container">
+		
 <script>
 	$("input:radio[name=user]").click(function(){
 			if($("input[name=radio]:checked").val() == "user"){
@@ -119,38 +175,25 @@
 
 
 </script>
-			<table id="loginTable" style="text-algin: center">
+			<table id="loginTable" style="text-algin:center">
 				<tr>
-					<td><input type="radio" id="radio1" name="user" value="user">유저 <input type="radio" id="radio2" name="user" value="seller">판매자</td>
+					<td style="text-algin:center"><input type="text" name="id" placeholder="아이디" required></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="id" placeholder="아이디" required></td>
-				</tr>
-				<tr>
-					<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
+					<td style="text-algin:center"><input type="password" name="pwd" placeholder="비밀번호" required></td>
 				</tr>
 				<tr>
 					<td colspan="3">
 						<p>
 							<a href="join.do">회원가입</a>
 							<a href="find_id_form.do">아이디 찾기</a>
-							<a href="find_pwd_form.do">비밀번호 찾기</a>
+							<a href="find_pwd_form.do" id="loginBtn2">비밀번호 찾기</a>
 						</p>
 						<button type="submit" id="loginBtn">로그인</button>
 						<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>
 					</td>
 				</tr>
 			</table>
-
-
-
-
-
-			<div id="indexBtn" class="center">
-				
-			</div>
-		</div>
-
 
 
 
