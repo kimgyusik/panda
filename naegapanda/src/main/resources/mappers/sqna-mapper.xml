@@ -17,7 +17,7 @@
 	
 	<resultMap  id="sanswerResultSet" type="sanswer">
 		<id property="saId" column="sa_id" />
-		<result property="qId" column="q_id" />
+		<result property="qId" column="sq_id" />
 		<result property="saTitle" column="sa_title" />
 		<result property="saContent" column="sa_content" />
 		<result property="saWriter" column="sa_writer" />
@@ -67,7 +67,7 @@
 	
 	<insert id="insertSAnswer" parameterType="SAnswer">
 		insert into sanswer
-		values(sanswer_seq.nextval, #{sqId}, #{saTitle}, #{saContent}, #{saWriter}, sysdate, default)
+		values(sanswer_seq.nextval, #{qId}, #{saTitle}, #{saContent}, #{saWriter}, sysdate, default)
 	</insert>
 	
 	<select id="selectSAList" resultMap="sanswerResultSet">
@@ -84,8 +84,8 @@
 	
 	<update id="deleteSAnswer" parameterType="_int">
 		update sanswer
-		set sa_stauts='Y'
-		where q_id=#{sqId}
+		set sa_status='Y'
+		where sq_id=#{sqId}
 	</update>
 
 </mapper>
