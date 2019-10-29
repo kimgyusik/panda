@@ -65,4 +65,16 @@ public class VmessageDao {
 	public int violateStatus(int vNo) {
 		return sqlsession.insert("vmessageMapper.violateStatus",vNo);
 	}
+	
+	public int vmessageStatusY(Vmessage vm) {
+		return sqlsession.insert("vmessageMapper.vmessageStatusY",vm);
+	}
+	
+	public int vmessageStatusN(Vmessage vm) {
+		return sqlsession.insert("vmessageMapper.vmessageStatusY",vm);
+	}
+	
+	public int vmessageOkY(Vmessage vm) {
+		return sqlsession.insert("vmessageMapper.vmessageStatusY",vm);
+	}
 }

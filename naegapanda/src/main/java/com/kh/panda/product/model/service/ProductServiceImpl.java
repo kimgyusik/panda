@@ -45,4 +45,22 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.getListCount(keyword,category);
 	}
 
+	
+	
+	
+	
+	
+	@Override
+	public ArrayList<Product> HotTopList(int category) {
+		return pDao.HotTopList(category);
+	}
+	@Override
+	public ArrayList<Product> NewTopList(int category) {
+		return pDao.NewTopList(category);
+	}
+	@Override
+	public ArrayList<Product> Newest() {
+		return pDao.Newest();
+	}
+
 }

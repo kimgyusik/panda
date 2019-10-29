@@ -12,8 +12,8 @@
 	n a e g a p a n d a
 
 	<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
-	
-	<jsp:forward page="WEB-INF/views/home.jsp" />
+	<c:redirect url="home.do"/>
+	<%-- <jsp:forward page="WEB-INF/views/home.jsp" /> --%>
 
 </body>
 </html>

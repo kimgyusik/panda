@@ -17,5 +17,13 @@ public interface ProductService {
 	ArrayList<Product> selectpList(PageInfo pi, int category);
 
 	int getListCount(int category);
+	
+	
+	
+	
+	
+	ArrayList<Product> HotTopList(int category);
+	ArrayList<Product> NewTopList(int category);
+	ArrayList<Product> Newest();
 
 }
