@@ -34,12 +34,12 @@ public class SQnaController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<SQna> sqlist = sqService.selectList(pi);
-		ArrayList<SAnswer> alist = sqService.selectSAList(); 
+		ArrayList<SAnswer> salist = sqService.selectSAList(); 
 		
-		//System.out.println(qlist);
-		//System.out.println(alist);
+		System.out.println(sqlist);
+		System.out.println(salist);
 		
-		mv.addObject("pi", pi).addObject("sqlist", sqlist).addObject("alist", alist).setViewName("admin/board/sqnaListView");
+		mv.addObject("pi", pi).addObject("sqlist", sqlist).addObject("salist", salist).setViewName("admin/board/sqnaListView");
 		
 		return mv;
 	}
@@ -153,9 +153,9 @@ public class SQnaController {
 	@RequestMapping("sainsert.do")
 	public String insertSAnswer(SAnswer a, HttpServletRequest request, Model model) {
 		
-		System.out.println("인서트"+a);
 		
 		int result = sqService.insertSAnswer(a);
+		System.out.println("인서트"+a);
 		
 		if(result > 0) {
 			return "redirect:sqlist.do";

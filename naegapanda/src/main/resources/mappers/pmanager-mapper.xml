@@ -14,19 +14,29 @@
 		<result property="pViolate" column="p_violate" />
 		<result property="vNo" column="v_no" />
 		<result property="mNo" column="m_no" />
-		<result property="vContent" column="v_contet" />
+		<result property="mName" column="m_name" />
+		<result property="vContent" column="v_content" />
+		<result property="vTitle" column="v_title" />
 		<result property="vDate" column="v_date" />
+		<result property="pOk" column="p_ok" />
 	</resultMap>
 
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from pmlist
+		where p_ok='Y' and p_status='N'
 	</select>
 	
 	<select id="selectList" resultMap="pmanagerResultSet">
 		select *
 		from pmlist
-		where c_name2=#{cName2}
+		where c_name2=#{cName2} and p_ok='Y' and p_status='N'
+	</select>
+	
+	<select id="selectxList" resultMap="pmanagerResultSet">
+		select *
+		from pmlist
+		where c_name2=#{cName2} and p_status='Y'
 	</select>
 	
 	<select id="pmViolateList" resultMap="pmanagerResultSet">
@@ -37,7 +47,25 @@
 	
 	<update id="pmStop" parameterType="_int">
 		update pmlist
-		set pStatus='Y'
+		set p_status='Y'
+		where p_id=#{pId}
+	</update>
+	
+	<update id="pmrestart" parameterType="_int">
+		update pmlist
+		set p_status='N'
+		where p_id=#{pId}
+	</update>
+	
+	<select id="approvalList" resultMap="pmanagerResultSet">
+		select *
+		from pmlist
+		where p_ok='N'
+	</select>
+	
+	<update id="approval" parameterType="_int">
+		update product
+		set p_ok = 'Y'
 		where p_id=#{pId}
 	</update>
 </mapper>

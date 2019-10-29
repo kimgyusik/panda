@@ -84,7 +84,7 @@
 												<li>
 													<a href="#" id="page">My Page<i class="fas fa-chevron-down"></i></a>
 													<ul>
-														<li><a href="#">회원쪽에서 설정해주세요</a></li>
+														<li><a href="basketList.ba">장바구니</a></li>
 														<li><a href="myInfo.do">정보수정</a></li>
 													</ul>
 												</li>
