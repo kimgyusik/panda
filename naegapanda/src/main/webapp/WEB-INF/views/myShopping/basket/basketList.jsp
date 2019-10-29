@@ -304,7 +304,7 @@
 		// 결재하러가기
 		function paymentPage(){
 			
-			if(confirm("이대로 결재를 진행하시겠습니까?")){
+			if(confirm("결제 페이지로 이동하시겠습니까?")){
 				location.href='<%=request.getContextPath()%>/paymentPage.pa';
 			}
 			return false;

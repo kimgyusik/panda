@@ -41,7 +41,7 @@
 											
 											<div class="cartinfo">
 												<ul>
-													<li>. 주의사항</li>
+													<li>. 구매하신 상품 배송 및 주문처리를 위해 판매자에게 개인정보를 제공합니다.</li>
 													<li>· 장바구니에서 제외시킨 상품은 원복되지 않습니다.</li>
 												</ul>
 											</div>
@@ -81,7 +81,7 @@
 																		<a href="${ product }" style="font-size:13px;"><b>${p.pName}</b> <br>${p.oName}</a>	
 																	</td>
 																	<td>
-																		<span><input type="number" value="${p.amount }"></span>
+																		<span>${p.amount }</span>
 																	</td>
 																	<td>
 																		<input type="hidden" value="${p.price}">
@@ -120,26 +120,43 @@
 															<label class="deliveryLabel" for="r2">신규배송지</label>
 														</div>
 													</div>
+													
 													<div class="deliverySpot1">
-														${m.name} (집)<br>
-														${m.phone}<br>
+														${m.name} <br>
+														${m.phone} (개인소득공제용)<br>
 														${m.address}<br>
+														개인정보수정버튼
+													</div>
+													<div class="deliverySpot2">
+														<input type="hidden" name="flag" value="1"> <!-- 1:기본 2:신규 -->
+														수령인 <input type="text" class="recipient" name="recipient" placeholder="20자 이내 입력"> <br>
+														연락처 <input type="text" class="recipient" name="recipientPhone" placeholder="ex) 010-1234-5678"> <br>
+														배송지 주소<br>
 														
 													</div>
+													
+													
 													<div>
 														<input type="text" style="width:300px;" placeholder="배송 시 요청사항을 적어주세요." >
 													</div>
 												</div>
 												<div style="float:right;">
-													<div class="order_total_content text-md-right">
-														<div class="order_total_title">결재 금액:</div>
+													<div>
+														
+														결재금액<br>
 														<div class="order_total_amount"></div><span>&nbsp; 원</span>
+														<button type="button" onclick="return paymentConfirm();">z</button>
 													</div>
 												</div>
 											</div>
 											
-
+											<div>
+												<input type="checkbox" id="check"> 위 상품의 구매조건 확인 및 결제진행 동의
 											장바구니로
+											아임포트
+											</div>
+	
+											
 											
 
 										</div>
@@ -161,9 +178,11 @@
 		
 		$(function(){
 			priceAll();
+			
+			
 		});
 		
-		// 장바구니 총 결재금액 계산 함수
+		// 총 결재금액 계산 함수
 		function priceAll(){
 			
 			var sum = parseInt(0);
@@ -187,114 +206,15 @@
 		  return num.toString().replace(regexp, ',');
 		}
 	
-		// 체크박스 전체  토글
-		$('.allCheck').click(function(){
-		    $('.checkCart').prop('checked',function(){
-		        return !$(this).prop('checked');
-		    });
-		});
+	
 		
-		// 상품 수량 비동기 수정
-		$(".amount").on("input", function() {
-			
-			var oNo = $(this).parent().parent().children().eq(0).text();
-			var amount = $(this).val();
-			var price = parseInt($(this).parent().parent().children().eq(5).children().eq(0).val());
-			var price2 = $(this).parent().parent().children().eq(7).children().eq(1);
-
-			$.ajax({
-				url:"updateAmount.ba",
-				data:{oNo:oNo, amount:amount},
-				type:"post",
-				success:function(data){
-					if(data == "success"){
-						
-						price2.text(addComma(price*amount)); // 해당 상품의 갯수*단일금액을 천 단위 콤마 형태로 출력
-						
-						price2.parent().children().eq(0).attr("value", price*amount); // 위 금액을 hidden에 숫자형으로 저장
-						
-						priceAll();
-						
-					}else{
-						alert("처리실패");
-					}
-				},
-				error:function(){
-					console.log("서버와의 통신 실패");
-				}
-			});
-			
-		});
-		
-		// 상품 찜하기
-		function ggim(pId){
-			
-			$.ajax({
-				url:"addGgim.gg",
-				data:{pId:pId},
-				type:"post",
-				success:function(data){
-					if(data == "success"){			
-						alert("찜한 상품으로 등록됐습니다.");
-					}else{
-						alert("처리실패");
-					}
-				},
-				error:function(){
-					console.log("서버와의 통신 실패");
-				}
-			});
-		}
-		
-		// 상품 제외(단일)
-		function removeCart(oNo){
-			
-			if(confirm("해당 상품을 장바구니에서 삭제하시겠습니까?")){
-				$.ajax({
-					url:"deleteBasket.ba",
-					data:{oNo:oNo},
-					type:"post",
-					success:function(data){
-						
-						if(data == "success"){
-							$('#'+oNo).parent().children().eq(7).children().eq(0).attr('value', 0);
-							$('#'+oNo).parent().css('display','none');
-							priceAll();
-						}else{
-							alert("처리실패");
-						}
-					},
-					error:function(){
-						console.log("서버와의 통신 실패");
-					}
-				});
-			}
-			return false;
-		}
-		
-		// 상품 제외(다중)
-		function removeCartLIst(){
-
-			var arr = new Array();
-			
-			$("input:checkbox[name=arr]:checked").each(function(){
-				arr.push($(this).val());
-			});
-			
-			if(arr.length == 0){
-				alert("삭제할 상품을 먼저 선택해주세요.");
-				return false;
-			}
-			
-			if(confirm("해당 상품들을 장바구니에서 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteBasketList.ba?arr='+arr;
-			}
-			return false;
-		}
 		
 		// 결재하러가기
-		function paymentPage(){
+		function paymentConfirm(){
 			
+			if($("input:checkbox[id='check']").is(":checked"){
+				alert('결제 동의에 체크해주세요.');
+			}
 			if(confirm("이대로 결재를 진행하시겠습니까?")){
 				location.href='<%=request.getContextPath()%>/paymentPage.pa';
 			}
