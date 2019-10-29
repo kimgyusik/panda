@@ -141,7 +141,7 @@
 
 							<input type="hidden" name="qId" value="${ q.sqId }" >
 							<input type="hidden" name="saTitle" value="${ q.sqTitle }" />
-							<input type="hidden" name="saWriter" value="${ loginSeller.name }" />
+							<input type="hidden" name="saWriter" value="${ loginUser.name }" />
 
 
 							<div class="mb-3">
@@ -150,7 +150,6 @@
 
 								<textarea class="form-control" rows="8" name="saContent"
 									id="content"  style="resize:none;"></textarea>
-
 							</div>
 
 
@@ -162,8 +161,8 @@
 						
 							<button type="button"  class="btn" onclick="location.href='sqlist.do';">목록</button>
 							&nbsp; &nbsp;
-							<button type="submit" class="btn" onclick="location.href='sainsert.do';">답변달기</button>
-							
+							<button type="submit" class="btn">답변달기</button>
+						
 
 						</div>
 						</c:if>

@@ -19,8 +19,6 @@
 <body>
 
 	<c:import url="../../common/menubar.jsp"/>
-	
-	<!-- contents -->
 
 	<div class="shop">
 		<div class="container">
@@ -39,7 +37,7 @@
 							<div class="row">
 								<div class="col-lg-10 offset-lg-1">
 									<div class="cart_container" style="width:120%;">
-										<div class="cart_title">작성 가능한 리뷰</div>
+										<div class="cart_title subTitle">작성 가능한 리뷰</div>
 										
 										<div class="cartinfo">
 											<ul>
@@ -71,7 +69,7 @@
 														 			<td width="1000px;" style="text-align: left;">
 														 				<span style="color:gray;">구매일자: &nbsp; <fmt:formatDate value="${r.payDate}" pattern="yyyy. MM. dd" /></span><br><br>
 														 				
-														 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${r.pName} :: ${r.oName }</a></span><br>
+														 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }"><b>${r.pName} :: ${r.oName }</b></a></span><br>
 														 			
 														 				<span style="color:gray;">${r.storeName }</span>
 														 			</td>

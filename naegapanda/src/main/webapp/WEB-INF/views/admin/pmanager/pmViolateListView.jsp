@@ -23,6 +23,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+   			function approval() {
+
+   				swal({
+   				  title: "정말 중지 시키시겠습니까?",
+   				  icon: "warning",
+   				  buttons: true,
+   				  dangerMode: true,
+   				})
+   				.then((willDelete) => {
+   				  if (willDelete) {
+   					location.href="pmstop.do";
+   				    swal("판매 중지 되었습니다!", {
+   				      icon: "success",
+   				    });
+   				  } else {
+   				    swal("취소되었습니다.");
+   				  }
+   				});
+   			}
+   		</script>
 <style type="text/css">
     .bs-example{
     	margin: 20px;
@@ -53,39 +74,45 @@
 	
 	
 	<div class="bs-example">
+		<form>
+		<input type="hidden" name="pId" value="${pId}">
 		<table class="table table-hover" align="center" cellspacing="0" >
-			<h3 style="font-weight:bold;">신고리스트</h3><br>
+			
 				<thead align="center">
 					<tr>
 						<th width="100">신고번호</th>
 						<th width="100">신고회원</th>
-						<th width="400">신고내용</th>
+						<th width="300">신고제목</th>
 						<th width="100">신고일자</th>
-					</tr>
+					</tr>	
 				</thead>
 					<tbody>
 								
-						<c:forEach items="${ pmlist }" var="pm">
+						<c:forEach items="${ pmVlist }" var="pmv">
+							<h3 style="font-weight:bold;" onclick="approval()">${ pmv.pName } 제품 신고리스트</h3><br>
 									
 										<tr>
-											<td align="center">${ pm.vNo }</td>
-											<td align="center">${ pm.mNo }</td>
+											<td align="center">${ pmv.vNo }</td>
+											<td align="center">${ pmv.mName }</td>
 											<td align="center">
-													${ pm.vContent }
+												<c:url value="pmvdetailView.do" var="pmvdetailView">
+													<c:param name="vNo" value="${ pmv.vNo }" />
+												</c:url>
+													<a href="pmvdetailView">${ pmv.vTitle }</a>
+													
 											</td>
 											<td align="center">
-												${ pm.vDate }
+												${ pmv.vDate }
 											</td>
 											
 										</tr>
 							
-									</c:forEach>
 									
+									</c:forEach>
 					</tbody>					
 				</table>
 				
 				<div class="col-lg-12" align="center">
-					
 										<!-- [이전] -->	
 										<c:if test="${ pi.currentPage eq 1 }">
 											[이전] 
@@ -121,13 +148,15 @@
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
 								</div>
-								
+							
 								<div class="col-lg-12" align="right">
-									<button onclick="location.href='pmstop.do?pId=${ pm.pId }';" class="btn">판매정지</button>
-									<button onclick="location.href='pmrestart.do?pId=${ pm.pId }';" class="btn">판매재개</button>
+								${pId} 
+									<button onclick="location.href='pmstop.do?pId=${pId}';" class="btn">판매정지</button>
+									<button onclick="location.href='pmrestart.do?pId=${pId}';" class="btn">판매재개</button>
 								</div>
+						</form>		
 			</div>
-			</div>
+		
 		
 
 		

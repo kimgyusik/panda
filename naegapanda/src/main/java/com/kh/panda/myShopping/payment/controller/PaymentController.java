@@ -29,24 +29,22 @@ public class PaymentController {
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getmNo();
+		return 2;
+		//return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 결재 진행 화면
 	@RequestMapping("paymentPage.pa")
 	public ModelAndView paymentPage(ModelAndView mv, HttpSession session) {
 		
-//		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
+		Member m = ((Member)session.getAttribute("loginUser"));
+		
+		ArrayList<Basket> list = baService.selectbasketList(m.getmNo());
 
-		ArrayList<Basket> list = new ArrayList<>();
-		list.add(new Basket(1, 3, 2, 4, 44, "상품이름입니당", "옵션이름", 23000, "전자상품종류", "카테고리링", "이지몰", "review_1.jpg"));
-		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "blog_2.jpg"));
-		
-		Date d = new Date(0);
-		Member m = new Member(1, "vjxmflwk", "kim", "기뮤식", "19900101", "M", "324@NAVER.COM", "010-5659-1360", "경기도 성남시 정자로 115 현대아파트 101동 1001호 우리집", d, "N", "N");
+//		ArrayList<Basket> list = new ArrayList<>();
+//		list.add(new Basket(1, 3, 2, 4, 44, "상품이름입니당", "옵션이름", 23000, "전자상품종류", "카테고리링", "이지몰", "review_1.jpg"));
+//		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "blog_2.jpg"));
 
-		
-		
 		//mv.addObject((Member)session.getAttribute("loginUser"));
 		mv.addObject("m", m);
 		mv.addObject("list", list);
