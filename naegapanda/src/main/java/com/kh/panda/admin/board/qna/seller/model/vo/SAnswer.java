@@ -16,10 +16,10 @@ public class SAnswer {
 		
 	}
 
-	public SAnswer(int sqId, int qId, String saTitle, String saContent, String saWriter, Date saCreateDate,
+	public SAnswer(int saId, int qId, String saTitle, String saContent, String saWriter, Date saCreateDate,
 			String saStatus) {
 		super();
-		this.saId = sqId;
+		this.saId = saId;
 		this.qId = qId;
 		this.saTitle = saTitle;
 		this.saContent = saContent;
@@ -28,12 +28,12 @@ public class SAnswer {
 		this.saStatus = saStatus;
 	}
 
-	public int getSqId() {
+	public int getSaId() {
 		return saId;
 	}
 
-	public void setSqId(int sqId) {
-		this.saId = sqId;
+	public void setSaId(int saId) {
+		this.saId = saId;
 	}
 
 	public int getqId() {
@@ -90,6 +90,7 @@ public class SAnswer {
 				+ ", saWriter=" + saWriter + ", saCreateDate=" + saCreateDate + ", saStatus=" + saStatus + "]";
 	}
 
+	
 	
 	
 	

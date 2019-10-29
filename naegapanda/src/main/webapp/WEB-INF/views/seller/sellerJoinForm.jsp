@@ -107,15 +107,18 @@
 			<div class="form-group col-md-6">
 				<select class="form-control" id="exampleFormControlSelect1" name="sector"id="sector">
 			      <option>업태</option>
+			      <option value="금속광업">금속광업</option>
 			      <option value="농업">농업</option>
+			      <option value="도매업">도매업</option>
+			      <option value="소매업">소매업</option>
+			      <option value="숙박업">숙박업</option>
+			      <option value="서비스">서비스</option>
 			      <option value="어업">어업</option>
 			      <option value="임업">임업</option>
-			      <option value="제조업">제조업</option>
-			      <option value="도매업">도매업</option>
-			      <option value="숙박업">숙박업</option>
 			      <option value="음식점업">음식점업</option>
-			      <option value="출판">출판</option>
-			      <option value="정보서비스">정보서비스</option>
+			      <option value="정보서비스업">정보서비스업</option>
+			      <option value="제조업">제조업</option>
+			      <option value="출판업">출판업</option>
 			    </select>
 			</div>
 			<div class="form-group col-md-6">

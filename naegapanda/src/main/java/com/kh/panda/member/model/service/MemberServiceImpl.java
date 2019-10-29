@@ -1,8 +1,10 @@
 package com.kh.panda.member.model.service;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.kh.panda.member.model.dao.MemberDao;
@@ -59,6 +61,15 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+	@Inject
+    private JavaMailSender mailSender;
+
+	
+	
+	@Override
+	public int newPassword(Member m) {
+		return mDao.newPassword(m);
+	}
 	
 	
 	

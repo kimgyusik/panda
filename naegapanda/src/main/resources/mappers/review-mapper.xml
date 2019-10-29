@@ -11,7 +11,7 @@
 		<result property="mNo" column="m_no"/>
 		<result property="mId" column="m_id"/>
 		<result property="rDel" column="r_del"/>
-		<result property="rCommend" column="r_commed"/>
+		<result property="rCommend" column="r_commend"/>
 		<result property="payId" column="pay_id"/>
 		<result property="rImage" column="r_image"/>
 	</resultMap>
@@ -44,7 +44,7 @@
 	</resultMap>
 
 	<select id="selectMyReviewList" parameterType="_int" resultMap="reviewResultSet">
-		select r_id, r_title, r_contents, r_date, r_count, m_no, m_id, r_del, r_commed, pay_id, r_image
+		select r_id, r_title, r_contents, r_date, r_count, m_no, m_id, r_del, r_commend, pay_id, r_image
 		from REVIEW
 		join member using(m_no)
 		where m_no = #{mNo} and r_del = 'N'

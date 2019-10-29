@@ -11,6 +11,10 @@ a:visited {
 		color: black; 
 		text-decoration: none;
 	}
+	.searchButton{
+		color : blue;
+		background : white;
+	}
 </style>
 
 </head>
@@ -117,6 +121,42 @@ a:visited {
 					
 					</table>
 				</div> 
+				
+				<c:if test="${ !empty sc.sName }">
+				<c:set var="sNameSelected" value="selected"/>
+			</c:if>
+			<c:if test="${ !empty sc.storeName }">
+				<c:set var="storeNameSelected" value="selected"/>
+			</c:if>
+			<c:if test="${ !empty sc.sStatus }">
+				<c:set var="sStatusSelected" value="selected"/>
+			</c:if>
+			
+			<div id="searchArea" align="center">
+				<form action="sviolateSearch.do" method="get">
+					<select id="searchCondition" name="condition">
+						<option>-----</option>
+						<option value="sName" ${sNameSelected}>판매자</option>
+						<option value="storeName" ${storeNameSelected}>스토어명</option>
+						<option value="sStatus" ${sStatusSelected}>회원상태</option>
+					</select>
+					
+					<input type="search" name="keyword" value="${ keyword }">
+					<button type="submit" class="searchButton" onclick="return validate();">검색하기</button>
+				</form>
+			</div>
+			<script>
+				function validate(){
+					//console.log($("option:selected").val());
+					
+					if($("option:selected").val() == "-----"){
+						alert("검색조건을 체크해주세요");
+						return false;
+					}
+				}
+			</script>
+			
+			<br><br>
    </div>
 
 

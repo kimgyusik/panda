@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,11 +47,11 @@
 											
 												<li id="displayAll" class="tab">
 													<input type="radio" checked name="tabmenu" id="tabmenu">
-													<label for="tabmenu">전체</label>
+													<label class="categoryMenu" for="tabmenu">전체</label>
 											    </li>
 												    	  
 												<c:forEach items="${ category }" var="c">
-													<li id="tab${c}" class="tab">
+													<li id="tab${fn:substring(c,0,1)}" class="tab">
 														<input type="radio"  name="tabmenu" id="tabmenu${c}">
 														<label class="categoryMenu" for="tabmenu${c}">${c}</label>
 													</li>
@@ -64,16 +65,16 @@
 											 
 										 	<table>
 										 		<c:forEach items="${ list }" var="g">
-											 		<tr id="${g.category2 }" class="contentsList" height="200px;">
-											 			<c:url value="상품조회url" var="product">
+											 		<tr id="${fn:substring(g.category2,0,1)}" class="contentsList" height="200px;">
+											 			<c:url value="pDetailView.do" var="product">
 															<c:param name="pId" value="${g.pId }"/>
 														</c:url>		
-											 			<td width="400px;">
-											 				<a href="${ product }"><img class="ggimImg" src="resources/images/${g.paChangeName }" ></a>
+											 			<td width="250px;">
+											 				<a href="${ product }"><img class="ggimImg" src="resources/product_uploadFiles/${g.paChangeName }" ></a>
 											 			</td>
 											 			<td width="600px;" style="text-align: left;">
 											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd" /></span><br><br>
-											 				[ ${g.category2} > ${g.category} ] <br>
+											 				[&nbsp;&nbsp;${g.category2}&nbsp;&nbsp;>&nbsp;&nbsp;${g.category}&nbsp;&nbsp;] <br>
 											 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${g.pName}</a></span><br>
 											 				<p style="color:black;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${g.price}" />원</p>
 											 				<span style="color:gray;">${g.storeName }</span>
@@ -83,7 +84,7 @@
 										 		</c:forEach>
 										 	</table>
 						
-										  	<div id="${g.category2 }" class="contentsList" >${g.price}</div>
+										  
 										    
 										</div>
 
@@ -123,10 +124,13 @@
 			}else{ // 선택된 탭에 해당하는 상품만 출력
 				
 				$.each(list, function(index, item){ 
+
 					if(tabId == "tab"+item.id){
-						$('#'+item.id).css("display","");
+						
+						$('#'+ item.id).css("display","");
+						
 					}else{
-						$('#'+item.id).css("display","none");
+						$('#'+ item.id).css("display","none");
 					}
 				});
 			}

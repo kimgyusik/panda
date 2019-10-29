@@ -26,7 +26,14 @@ public interface MemberService {
 	
 	// 6. 아이디를 찾기 위한 메소드
 	String find_id(String email);
+
 	
+	int newPassword(Member m);
+	
+	
+	/*
+	 * // 이메일도전 int emailConfirm(String sId);
+	 */
 	
 	
 }

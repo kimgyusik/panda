@@ -40,6 +40,11 @@ public class MemberDao {
 	}
 
 	
+	public int newPassword(Member m) {
+		return sqlSession.update("memberMapper.newPwd2", m);
+	}
+
+	
 	
 	
 }

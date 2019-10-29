@@ -23,9 +23,9 @@
 
 <div class="outer"> 
 	<img src="resources/images/violate.JPG">
-	
+
 	<div align="center">
-		<button type="button" class="btn btn-outline-primary" onclick="location.href='home.do';">홈으로</button>
+		<button type="button" class="btn btn-outline-primary" onclick="location.href='pDetailView.do?pId=${pId}';">상품으로 되돌아가기</button>
 	</div>
 </div>
 	<c:import url="../../common/footer.jsp"/>

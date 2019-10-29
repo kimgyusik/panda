@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String msg = (String)session.getAttribute("msg");
+	
+	String contextPath = request.getContextPath();
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -154,6 +159,19 @@
     			$("#sPwd").focus();
     			return false;
     		}
+    	});
+    	
+    	// 세션에 담긴 메세지 출력
+    	var msg = "<%= msg %>";
+    	
+    	$(function(){
+    		if(msg != "null"){
+    			alert(msg);
+    			
+    			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
+    			<% session.removeAttribute("msg"); %>
+    		}
+    		
     	});
     	    	
     </script>

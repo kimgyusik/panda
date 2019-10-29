@@ -70,7 +70,7 @@ color:#0e8ce4;
 			<div class="sidebar_subtitle brands_subtitle">궁금해요</div>
 			<ul class="brands_list">
 				<li class="brand"><a href="myInquiryList.in">상품 문의</a></li>
-				<li class="brand"><a href="a">관리자 Q&A</a></li>
+				<li class="brand"><a href="qlist.do">관리자 Q&A</a></li>
 			</ul>
 		</div>
 	</div>

@@ -23,11 +23,19 @@
 	<c:import url="../common/menubar.jsp"/>
 	<div class="super_container"> 
 	<!-- Single Product -->
-
-		<div class="single_product">
+		
+		<div class="single_product" style="padding-top:0px;">
+			
 			<div class="container">
+				<div class="col-lg-2 order-lg-2 order-1">
+					<div style="display:inline-block;">
+						<video id="localStream" width="800" controls></video>
+					</div>
+					<div>
+						<c:import url="../chat/chatMain.jsp"/> 
+					</div>
+				</div>
 				<div class="row">
-	
 					<!-- Images -->
 					<div class="col-lg-2 order-lg-1 order-2">
 						<ul class="image_list">
@@ -47,10 +55,12 @@
 						<div class="product_description">
 							<div class="product_category">${p.cId }</div>
 							<div class="product_name">${ p.pName }
+									<c:if test="${ !empty loginUser }">  
 								<form action="violateinsert.do">
 									<input type="hidden" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">신고하기</button>	
+									<button type="submit" class="button cart_button">신고하기</button>
 								</form>
+									</c:if>	
 							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
