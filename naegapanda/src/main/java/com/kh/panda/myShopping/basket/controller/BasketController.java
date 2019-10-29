@@ -80,12 +80,12 @@ public class BasketController {
 	public String updateAmount(HttpSession session, int oNo, int amount) {
 		
 		Basket b = new Basket();
-		//b.setmNo(getmNo(session));
+		b.setmNo(getmNo(session));
 		b.setoNo(oNo);
 		b.setAmount(amount);
 		
-		// int result = baService.updateAmount(b);
-		int result = 1;
+		int result = baService.updateAmount(b);
+		//int result = 1;
 		if(result > 0 ) {
 			return "success";
 		}else {

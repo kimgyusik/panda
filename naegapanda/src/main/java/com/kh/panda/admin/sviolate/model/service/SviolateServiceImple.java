@@ -28,8 +28,8 @@ public class SviolateServiceImple implements SviolateService{
 	}
 	
 	@Override
-	public int getPersonalListCount() {
-		return svDao.getSviolateListCount();
+	public int getPersonalListCount(int sNo) {
+		return svDao.getPersonalListCount(sNo);
 	}
 
 	@Override

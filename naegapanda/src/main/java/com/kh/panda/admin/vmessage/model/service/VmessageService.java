@@ -18,5 +18,11 @@ public interface VmessageService {
 	Vmessage vmessageSellerDetail(int vmNo, int sNo);
 	
 	int insertVmessage(Vmessage vm);
+	
+	int vmessageStautsY(Vmessage vm);
+	
+	int vmessageStautsN(Vmessage vm);
+	
+	int vmessageOkY(Vmessage vm);
 
 }

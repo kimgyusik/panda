@@ -19,8 +19,6 @@
 <body>
 
 	<c:import url="../../common/menubar.jsp"/>
-	
-	<!-- contents -->
 
 	<div class="shop">
 		<div class="container">
@@ -39,7 +37,7 @@
 							<div class="row">
 								<div class="col-lg-10 offset-lg-1">
 									<div class="cart_container" style="width:120%;">
-										<div class="cart_title">찜한 상품</div>
+										<div class="cart_title subTitle">찜한 상품</div>
 										
 										<!-- 카테고리 탭 -->
 										<div class="tabmenu" >
@@ -75,7 +73,7 @@
 											 			<td width="600px;" style="text-align: left;">
 											 				<span style="color:gray;"><fmt:formatDate value="${g.addDate}" pattern="yyyy. MM. dd" /></span><br><br>
 											 				[&nbsp;&nbsp;${g.category2}&nbsp;&nbsp;>&nbsp;&nbsp;${g.category}&nbsp;&nbsp;] <br>
-											 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }">${g.pName}</a></span><br>
+											 				<span style="display: inline-block;font-size: 15px; height:30px;"><a  href="${ product }"><b>${g.pName}</b></a></span><br>
 											 				<p style="color:black;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${g.price}" />원</p>
 											 				<span style="color:gray;">${g.storeName }</span>
 											 			</td>

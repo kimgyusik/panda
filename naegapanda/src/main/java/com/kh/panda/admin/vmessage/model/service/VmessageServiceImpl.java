@@ -67,6 +67,19 @@ public class VmessageServiceImpl implements VmessageService{
 		
 		return vmDao.vmessageInsert(vm);
 	}
+	
+	@Override
+	public int vmessageStautsY(Vmessage vm) {
+		return vmDao.vmessageStatusY(vm);
+	}
+	@Override
+	public int vmessageStautsN(Vmessage vm) {
+		return vmDao.vmessageStatusN(vm);
+	}
+	@Override
+	public int vmessageOkY(Vmessage vm) {
+		return vmDao.vmessageOkY(vm);
+	}
 
 
 	

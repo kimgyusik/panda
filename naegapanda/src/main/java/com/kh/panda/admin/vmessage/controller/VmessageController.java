@@ -59,11 +59,22 @@ public class VmessageController {
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
 
 		int listCount = vmService.getSellerListCount(sNo);
+		System.out.print("sNo:");
+		System.out.println(sNo);
+		System.out.print("listCount:");
+		System.out.println(listCount);
+		
+		if(listCount == 0) {
+			listCount = 1;
+		}
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Vmessage> list = vmService.selectSellerList(pi, sNo);
-
+		System.out.print("list:");
+		System.out.println(list);
+		
+		
 		mv.addObject("pi", pi).addObject("list", list).addObject("sNo", sNo)
 				.setViewName("admin/vmessage/SellerVmessageListView");
 
@@ -138,6 +149,31 @@ public class VmessageController {
 		
 		return renameFileName;
 		
+	}
+	
+	@RequestMapping("vmessageStatusY.do")
+	public ModelAndView vmessageStatusY(ModelAndView mv, Vmessage vm) {
+		int result = vmService.vmessageStautsY(vm);
+		
+		mv.setViewName("");
+		
+		return mv;
+	}
+	@RequestMapping("vmessageStatusN.do")
+	public ModelAndView vmessageStatusN(ModelAndView mv, Vmessage vm) {
+		int result = vmService.vmessageStautsN(vm);
+		
+		mv.setViewName("");
+		
+		return mv;
+	}
+	@RequestMapping("vmessageOkY.do")
+	public ModelAndView vmessageOkY(ModelAndView mv, Vmessage vm) {
+		int result = vmService.vmessageOkY(vm);
+		
+		mv.setViewName("");
+		
+		return mv;
 	}
 
 

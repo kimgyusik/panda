@@ -51,32 +51,39 @@
 						</thead>
 						
 						<tbody>
-							
-								<c:forEach items="${ list }" var="vm"> 
-									
-											<c:url value="vmSellerDetailView.do" var="vmsellerdetail">
-					 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
-											</c:url>
+								<c:if test="${ !empty list }">
+									<c:forEach items="${ list }" var="vm"> 
+										
+												<c:url value="vmSellerDetailView.do" var="vmsellerdetail">
+						 						    <c:param name="vmNo" value="${ vm.vmNo }"/>
+												</c:url>
+										<tr>
+											<th scope="row">
+												<a href="${ vmsellerdetail }">${vm.vmNo}</a>
+											</th>
+											<td>
+												<a href="${ vmsellerdetail }">${vm.vmTitle}</a>
+											</td>
+											<td>
+												<a href="${ vmsellerdetail }">${vm.sName}</a>
+											</td>
+											<td>
+												<a href="${ vmsellerdetail }">${vm.vmSendDate}</a>
+											</td>
+											<td>
+												<a href="${ vmsellerdetail }">${vm.vmCheckDate}</a>
+											</td>
+							  
+									    </tr>
+		 						    </c:forEach> 
+								</c:if>
+								<c:if test="${ empty list }">
 									<tr>
-										<th scope="row">
-											<a href="${ vmsellerdetail }">${vm.vmNo}</a>
-										</th>
-										<td>
-											<a href="${ vmsellerdetail }">${vm.vmTitle}</a>
+										<td colspan="5" align="center">
+											받은 메세지가 없습니다.
 										</td>
-										<td>
-											<a href="${ vmsellerdetail }">${vm.sName}</a>
-										</td>
-										<td>
-											<a href="${ vmsellerdetail }">${vm.vmSendDate}</a>
-										</td>
-										<td>
-											<a href="${ vmsellerdetail }">${vm.vmCheckDate}</a>
-										</td>
-						  
-								    </tr>
-								    
-	 						    </c:forEach> 
+									</tr>
+								</c:if>
 					  </tbody>
 					  
 				</table>
@@ -94,6 +101,7 @@
 								<c:if test="${ pi.currentPage ne 1 }">
 									<c:url value="sellervmessage.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+										<c:param name="sNo" value="${ sNo }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
 								</c:if>					
@@ -105,6 +113,7 @@
 									<c:if test="${ p ne pi.currentPage }">
 										<c:url value="sellervmessage.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
+											<c:param name="sNo" value="${ sNo }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
 									</c:if>
@@ -116,6 +125,7 @@
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
 									<c:url value="sellervmessage.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										<c:param name="sNo" value="${ sNo }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>
 								</c:if>	

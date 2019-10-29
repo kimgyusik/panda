@@ -32,13 +32,13 @@
 
 				<div class="col-lg-10" >
 				
-					<!-- 컨텐츠 -->
+					<!-- 문의 섹션 -->
 					<div class="cart_section">
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-10 offset-lg-1">
 									<div class="cart_container" style="width:120%;">
-										<div class="cart_title">상품 문의<span style="margin-left:20px; color:gray; font-size:13px;">최근 3개월동안의 내역이 제공 됩니다.</span></div>
+										<div class="cart_title subTitle">상품 문의<span style="margin-left:20px; color:gray; font-size:13px;">최근 3개월동안의 내역이 제공 됩니다.</span></div>
 										
 										
 
@@ -60,7 +60,7 @@
 												 				<input type="hidden" class="rId" value="${i.iId}">
 												 				<a href="${ product }"><img class="inquiryImg" src="resources/images/${i.paChangeName}" ></a>
 												 				<span style="display: block;font-size: 13px; height:30px;">
-												 					<br><a href="${ product }">${i.pName}</a>
+												 					<br><a href="${ product }"><b>${i.pName}</b></a>
 												 				</span>
 												 			</td>
 												 			
