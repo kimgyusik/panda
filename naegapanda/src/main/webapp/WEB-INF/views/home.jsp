@@ -45,7 +45,7 @@
 				<div class="banner_product_image"><img src="resources/images/banner_product.png" alt=""></div>
 				<div class="col-lg-5 offset-lg-4 fill_height">
 					<div class="banner_content">
-						<h1 class="banner_text">new era of smartphones</h1>
+						<h1 class="banner_text">Hot of PandaMall</h1>
 						<div class="banner_price"><span>$530</span>$460</div>
 						<div class="banner_product_name">Apple Iphone 6s</div>
 						<div class="button banner_button"><a href="#">Shop Now</a></div>
@@ -1696,11 +1696,15 @@
 				<div class="col">
 					<div class="tabbed_container">
 						<div class="tabs clearfix tabs-right">
-							<div class="new_arrivals_title">Hot New Arrivals</div>
+							<div class="new_arrivals_title">New Arrivals</div>
 							<ul class="clearfix">
-								<li class="active">Featured</li>
-								<li>Audio & Video</li>
-								<li>Laptops & Computers</li>
+								<li class="active">Top 12</li>
+								<li>식품</li>
+								<li>의류</li>
+								<li>가구</li>
+								<li>디지털</li>
+								<li>취미</li>
+								<li>생활</li>
 							</ul>
 							<div class="tabs_line"><span></span></div>
 						</div>
