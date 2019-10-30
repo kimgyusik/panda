@@ -256,5 +256,13 @@ public class ProductDao {
 	public ArrayList<Product> Newest(){
 		return (ArrayList)sqlSession.selectList("productMapper.Newest");
 	}
+
+	public int oCount(int pId) {
+		return sqlSession.selectOne("productMapper.oCount", pId);
+	}
+
+	public int deleteProduct(int pId) {
+		return sqlSession.update("productMapper.deleteProduct", pId);
+	}
 	
 }

@@ -488,6 +488,99 @@ public class SellerController {
 		
 	}
 	
+	@RequestMapping(value = "pUpdate.do", method = RequestMethod.POST)
+	public String updateProduct(Product p, HttpServletRequest request,Model model, ModelAndView mv, @RequestParam("oName") String[] oName,
+			 @RequestParam("oPrice") int[] oPrice, @RequestParam("oAmount") int[] oAmount,
+			@RequestParam(name = "uploadFile1", required = false) MultipartFile file1,
+			@RequestParam(name = "uploadFile2", required = false) MultipartFile file2,
+			@RequestParam(name = "uploadFile3", required = false) MultipartFile file3) {
+//			System.out.println(b);
+		// 멀티파트를 사용하려면 관련 라이브러리를 추가해야함
+		// root-context.xml에 빈으로 등록해야함 이때 사이즈 지정 가능
+		// 서버에 업로드 할 때 HttpServletRequest도 있어야함
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		// resources 까지의 파일 위치를 나타냄
+		String savePath = root + "\\product_uploadFiles";
+		
+		
+		ArrayList<ProductAttachment> paList = new ArrayList<>();
+		ArrayList<ProductOption> poList = new ArrayList<>();
+		int fileLevelCheck = 1;
+		
+		for(int i=0; i<oName.length; i++) {
+			ProductOption po = new ProductOption();
+			po.setoName(oName[i]);
+			po.setoPrice(oPrice[i]);
+			po.setoAmount(oAmount[i]);
+			po.setpId(p.getpId());
+			poList.add(po);
+		}
+			
+		if(!file1.getOriginalFilename().equals(""))
+	
+		{
+			// 서버에 파일 등록 ( 폴더에 저장 )
+			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
+			String renameFileName = saveFile(file1, request);
+			System.out.println(renameFileName);
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				ProductAttachment pa = new ProductAttachment();
+				pa.setPaOriginName(file1.getOriginalFilename());
+				pa.setPaChangeName(renameFileName);
+				pa.setPaFileLevel(1);
+				pa.setFilePath(savePath);
+				pa.setpId(p.getpId());
+				paList.add(pa);
+			}
+		}if(!file2.getOriginalFilename().equals(""))
+		{
+			// 서버에 파일 등록 ( 폴더에 저장 )
+			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
+			String renameFileName = saveFile(file2, request);
+			System.out.println(renameFileName);
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				ProductAttachment pa = new ProductAttachment();
+				pa.setPaOriginName(file2.getOriginalFilename());
+				pa.setPaChangeName(renameFileName);
+				pa.setPaFileLevel(2);
+				pa.setpId(p.getpId());
+				pa.setFilePath(savePath);
+				paList.add(pa);
+			}
+		}if(!file3.getOriginalFilename().equals(""))
+		{
+			// 서버에 파일 등록 ( 폴더에 저장 )
+			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
+			String renameFileName = saveFile(file3, request);
+			System.out.println(renameFileName);
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				ProductAttachment pa = new ProductAttachment();
+				pa.setPaOriginName(file3.getOriginalFilename());
+				pa.setPaChangeName(renameFileName);
+				pa.setFilePath(savePath);
+				pa.setpId(p.getpId());
+				pa.setPaFileLevel(3);
+				paList.add(pa);
+			}
+		}
+		
+		System.out.println(p);
+		for(int i=0; i<paList.size(); i++) {
+			System.out.println(paList.get(i));
+		}
+		for(int i=0; i<poList.size(); i++) {
+			System.out.println(poList.get(i));
+		}
+		int result = sService.updateProduct(p, paList, poList);
+
+		if(result > 0) {
+			return "redirect:sProduct.do";
+		} else {
+			model.addAttribute("msg", "수정에 실패했습니다");
+			return "common/errorPage";
+		}
+	}
+	
 	
 	
 	
@@ -506,7 +599,7 @@ public class SellerController {
 	      } catch (IOException e) {
 	         e.printStackTrace();
 	      }
-	          Seller seller = new Seller();
+	    Seller seller = new Seller();
 		seller.setStoreName(doc.getElementById("corpNm").val());
 		seller.setsCeoName(doc.getElementById("ceoNm").val());
 		seller.setSbPhone(doc.getElementById("ceoMtelNo").val());

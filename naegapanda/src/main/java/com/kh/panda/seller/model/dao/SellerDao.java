@@ -136,6 +136,32 @@ public class SellerDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("paymentMapper.selectoList", sNo, rowBounds);
+	public int updateProduct(Product p) {
+		return sqlSession.update("productMapper.updateProduct", p);
+	}
+
+
+	public int updatePaList(ProductAttachment pa) {
+		return sqlSession.update("productMapper.updatePa", pa);
+	}
+
+
+	public int deleteOption(int pId) {
+		return sqlSession.update("productMapper.deleteOp", pId);
+	}
+
+
+	public int insertPoList2(ProductOption po) {
+		return sqlSession.insert("productMapper.insertPo2", po);
+	}
+
+
+	public int deletePa(int pId) {
+		return sqlSession.update("productMapper.deletePa", pId);
+	}
+	
+	public int insertPaList2(ProductAttachment pa) {
+		return sqlSession.insert("productMapper.insertPa2", pa);
 	}
 	
 

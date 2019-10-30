@@ -16,6 +16,7 @@ public class Product {
 	private String paChangeName;
 	private String filePath;
 	private String cName2;
+	private int pPurchase;
 	
 	public Product() {}
 
@@ -67,6 +68,34 @@ public class Product {
 		this.paChangeName = paChangeName;
 		this.filePath = filePath;
 		this.cName2 = cName2;
+	}
+	
+
+	public Product(int pId, String pName, int sNo, String pContent, int cId, int pCount, String pOk, String pStatus,
+			Date pCreateDate, int pPrice, String paChangeName, String filePath, String cName2, int pPurchase) {
+		super();
+		this.pId = pId;
+		this.pName = pName;
+		this.sNo = sNo;
+		this.pContent = pContent;
+		this.cId = cId;
+		this.pCount = pCount;
+		this.pOk = pOk;
+		this.pStatus = pStatus;
+		this.pCreateDate = pCreateDate;
+		this.pPrice = pPrice;
+		this.paChangeName = paChangeName;
+		this.filePath = filePath;
+		this.cName2 = cName2;
+		this.pPurchase = pPurchase;
+	}
+
+	public int getpPurchase() {
+		return pPurchase;
+	}
+
+	public void setpPurchase(int pPurchase) {
+		this.pPurchase = pPurchase;
 	}
 
 	public int getpId() {
@@ -177,7 +206,8 @@ public class Product {
 	public String toString() {
 		return "Product [pId=" + pId + ", pName=" + pName + ", sNo=" + sNo + ", pContent=" + pContent + ", cId=" + cId
 				+ ", pCount=" + pCount + ", pOk=" + pOk + ", pStatus=" + pStatus + ", pCreateDate=" + pCreateDate
-				+ ", pPrice=" + pPrice + ", paChangeName=" + paChangeName + ", filePath=" + filePath + "]";
+				+ ", pPrice=" + pPrice + ", paChangeName=" + paChangeName + ", filePath=" + filePath + ", cName2="
+				+ cName2 + ", pPurchase=" + pPurchase + "]";
 	}
 
 }
