@@ -88,6 +88,7 @@
 												<c:url value="pmViolateList.do" var="pmViolateList">
 														<c:param name="pId" value="${ pm.pId }" />
 														<input type="hidden" name="sName" value="${ pm.sName }">
+														
 												</c:url>
 												<c:if test="${ pm.pViolate == 0 }">
 													0
@@ -239,9 +240,7 @@
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
 								</div>
-		<div class="col-lg-12" align="right">
-			<button onclick="location.href='pmrestart.do?pId=${ pm.pId }';" class="btn">판매재개</button>
-		</div>
+		
 			</div>
 			
 			

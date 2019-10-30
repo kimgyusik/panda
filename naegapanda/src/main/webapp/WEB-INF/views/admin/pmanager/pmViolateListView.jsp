@@ -23,27 +23,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-   			function approval() {
-
-   				swal({
-   				  title: "정말 중지 시키시겠습니까?",
-   				  icon: "warning",
-   				  buttons: true,
-   				  dangerMode: true,
-   				})
-   				.then((willDelete) => {
-   				  if (willDelete) {
-   					location.href="pmstop.do";
-   				    swal("판매 중지 되었습니다!", {
-   				      icon: "success",
-   				    });
-   				  } else {
-   				    swal("취소되었습니다.");
-   				  }
-   				});
-   			}
-   		</script>
 <style type="text/css">
     .bs-example{
     	margin: 20px;
@@ -89,8 +68,8 @@
 					<tbody>
 								
 						<c:forEach items="${ pmVlist }" var="pmv">
-							<h3 style="font-weight:bold;" onclick="approval()">${ pmv.pName } 제품 신고리스트</h3><br>
-									
+							<h3 style="font-weight:bold;">${ pmv.pName } 제품 신고리스트</h3><br>
+										
 										<tr>
 											<td align="center">${ pmv.vNo }</td>
 											<td align="center">${ pmv.mName }</td>
@@ -98,8 +77,7 @@
 												<c:url value="pmvdetailView.do" var="pmvdetailView">
 													<c:param name="vNo" value="${ pmv.vNo }" />
 												</c:url>
-													<a href="pmvdetailView">${ pmv.vTitle }</a>
-													
+													<a href="${ pmvdetailView }">${ pmv.vTitle }</a>	
 											</td>
 											<td align="center">
 												${ pmv.vDate }
@@ -111,7 +89,6 @@
 									</c:forEach>
 					</tbody>					
 				</table>
-				
 				<div class="col-lg-12" align="center">
 										<!-- [이전] -->	
 										<c:if test="${ pi.currentPage eq 1 }">
@@ -150,12 +127,22 @@
 								</div>
 							
 								<div class="col-lg-12" align="right">
-								${pId} 
-									<button onclick="location.href='pmstop.do?pId=${pId}';" class="btn">판매정지</button>
-									<button onclick="location.href='pmrestart.do?pId=${pId}';" class="btn">판매재개</button>
+									<c:choose>
+										<c:when test="${ pmVlist.get(0).pStatus eq 'N' }">
+											상품이 판매중입니다.<br>
+											<button onclick="location.href='pmstop.do?pId=${pId}&vNo=${ pmVlist.get(0).vNo}&sNo=${ pmVlist.get(0).sNo }';" class="btn">판매정지</button>
+										</c:when>
+										<c:when test="${ pmVlist.get(0).pStatus eq 'Y' }">
+											상품이 판매정지 상태입니다.<br>
+											<button onclick="location.href='pmrestart.do?pId=${pId}&vNo=${ pmVlist.get(0).vNo}&sNo=${ pmVlist.get(0).sNo }';" class="btn">판매재개</button>
+										</c:when>
+									</c:choose>
+									<button type="button" class="btn" onclick="location.href='categoryView.do';" class="btn">목록으로</button>
+									
 								</div>
 						</form>		
 			</div>
+			
 		
 		
 

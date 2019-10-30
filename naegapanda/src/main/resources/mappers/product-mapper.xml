@@ -136,6 +136,29 @@
 		join category c on (p.c_id=c.c_id)
 		where p.p_status='Y' and pa.pa_file_level=1 and p_name like '%' ||#{keyword} || '%' and p.c_id between #{startNum} and #{endNum}
 	</select>
+	
+	<select id="HotTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from HotTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 16
+		]]>
+	</select>
+	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from NewTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 20
+		]]>
+	</select>
+	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from NewTopList 
+		where rownum = 1
+		]]>
+	</select>
+	
 
 
 </mapper>

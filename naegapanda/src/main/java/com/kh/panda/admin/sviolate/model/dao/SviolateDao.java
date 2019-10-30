@@ -41,12 +41,11 @@ public class SviolateDao {
 		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		
-		
 		return (ArrayList)sqlSession.selectList("sviolateMapper.selectScList", sc, rowBounds);
 	}
 	
-	public int getSviolateListCount() {
-		return sqlSession.selectOne("sviolateMapper.getPersonalListCount");
+	public int getPersonalListCount(int sNo) {
+		return sqlSession.selectOne("sviolateMapper.getPersonalListCount",sNo);
 	}
 	
 	public ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo){

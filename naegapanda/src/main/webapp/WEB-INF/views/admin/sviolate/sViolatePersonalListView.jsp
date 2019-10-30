@@ -138,6 +138,7 @@ a:visited {
 								<c:if test="${ pi.currentPage ne 1 }">
 									<c:url value="sViolatePersonalList.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+										<c:param name="sNo" value="${ sNo }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
 								</c:if>					
@@ -149,6 +150,7 @@ a:visited {
 									<c:if test="${ p ne pi.currentPage }">
 										<c:url value="sViolatePersonalList.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
+											<c:param name="sNo" value="${ sNo }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
 									</c:if>
@@ -160,6 +162,7 @@ a:visited {
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
 									<c:url value="sViolatePersonalList.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										<c:param name="sNo" value="${ sNo }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>
 								</c:if>	
@@ -167,7 +170,9 @@ a:visited {
 							</td>
 						</tr>
 					
+					
 					</table>
+					<button type="button" class="btn btn-outline-primary" onclick="history.back(-1);">뒤로가기</button>
 				</div> 
    </div>
 
