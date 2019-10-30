@@ -29,6 +29,17 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-9">
+					<div class="shop_content">
+						<table>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</table>
 				
 				
 				</div>
