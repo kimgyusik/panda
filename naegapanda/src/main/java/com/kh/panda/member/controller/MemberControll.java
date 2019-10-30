@@ -38,4 +38,10 @@ public class MemberControll {
 		return "member/memberJoinForm";
 	}
 
+	
+	// 회원가입 때 일반회원,판매자 선택하는 화면
+		@RequestMapping("change.do")
+		public String pwdChangebeFore() {
+			return "member/pwdChangebeFore";
+		}
 }
