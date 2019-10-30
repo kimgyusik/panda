@@ -28,6 +28,8 @@ import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
 import com.kh.panda.seller.model.vo.TempKey;
 
+
+
 @SessionAttributes("loginUser")
 @Controller
 public class MemberController {
@@ -163,9 +165,16 @@ public class MemberController {
 			return "common/errorPage";
 
 		}
-
+		
+		
 	}
+		
+		
+	
+	
 
+	
+	
 	
 	@ResponseBody
 	@RequestMapping("idCheck.do")
@@ -230,5 +239,69 @@ public class MemberController {
 		
 		return "home";
 	}
+	
+	
+	
+	 /**
+	    * 비번 변경 전 재확인
+	    * @param pwd
+	    * @param model
+	    * @return
+	    */
+	   @RequestMapping("pwdChange.do")
+	   public String pwdChange(HttpSession session, @RequestParam("pwd") String pwd) {
+		   
+		   
+		   
+		   
+		   Member mp = (Member)session.getAttribute("loginUser");
+	      
+		   
+	     
+	      
+	      if(pwd != null && pwd.equals(mp.getPwd())) { 
+	         Member loginUser = mService.loginMember(mp);
+	         session.setAttribute("loginUser", loginUser);
+	         return "member/pwdChangeAfter";
+	      }else {
+	         return "member/pwdChangebeFore";
+	              
+	      }
+	      
+	   }
+	   
+	   
+	   
+	   
+	   /**
+	    * 비번 수정
+	    * @param model
+	    * @param pwd
+	    * @return
+	    */
+	   @RequestMapping("pwdChange2.do")
+	   public String changePwd(HttpSession session, @RequestParam("pwd") String pwd) {
+	      
+		   System.out.println(pwd);
+		   
+		   Member mp = (Member)session.getAttribute("loginUser");
+		   
+	   
+		   mp.setPwd(pwd);
+		   
+		   System.out.println(mp);
+		   
+		   
+	      int result = mService.pwdUpdate(mp);      
+	      if(result > 0) {
+	         return "home";
+	      }else {
+	         
+	         return "member/pwdCangeAfter";
+	      }
+	      
+	   }
+	   
+	
 
 }
