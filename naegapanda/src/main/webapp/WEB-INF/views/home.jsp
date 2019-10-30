@@ -1731,7 +1731,11 @@
 															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
 														</div>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
+													<c:if test="${!empty loginUser }">
+														<input type="hidden" value="${p.pId}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														
+													</c:if>
 													<ul class="product_marks">
 														<li class="product_mark product_discount">-25%</li>
 														<li class="product_mark product_new">new</li>
@@ -1739,6 +1743,32 @@
 												</div>
 											</div>
 										</c:forEach>
+										
+										<script>
+											$(function(){
+												
+												var favPid = $(".favPid");
+												
+												$(".favPid").off().on("click", function(){
+													var pId = $(this).prev().val();
+													alert(pId);
+													$.ajax({
+														url:"changeGgim.gg",
+														data:{pId:pId},
+														type:"post",
+														success:function(data){
+															
+														
+																alert("됨");
+						
+														},
+														error:function(){
+															console.log("서버와의 통신 실패");
+														}
+													});
+												});
+											});
+										</script>
 
 									</div>
 									<div class="arrivals_slider_dots_cover"></div>
@@ -2587,10 +2617,12 @@
 											</div>
 											<form action="#"><button class="arrivals_single_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button></form>
 										</div>
-										<div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i></div>
-										<ul class="arrivals_single_marks product_marks">
-											<li class="arrivals_single_mark product_mark product_new">new</li>
-										</ul>
+								
+											<div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i></div>
+											<ul class="arrivals_single_marks product_marks">
+												<li class="arrivals_single_mark product_mark product_new">new</li>
+											</ul>
+									
 									</div>
 								</div>
 							</div>
@@ -2686,6 +2718,7 @@
 													<div class="bestsellers_price discount">￦ ${p.pPrice } ~</div>
 												</div>
 											</div>
+											
 											<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
 											<!-- <ul class="bestsellers_marks">
 												<li class="bestsellers_mark bestsellers_discount">-25%</li>

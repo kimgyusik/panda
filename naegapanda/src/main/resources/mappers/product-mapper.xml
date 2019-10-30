@@ -159,6 +159,20 @@
 		]]>
 	</select>
 	
+	<update id="increasePpurchase" parameterType="Payment" >
+		update product
+		set p_purchase = p_purchase + #{count}
+		where p_id = (
+		select p_id
+		from product_option
+		where o_no = ${oNo}
+		)
+	</update>
+	<update id="increaseOpurchase" parameterType="Payment" >
+		update product_option
+		set o_purchase = o_purchase + #{count}
+		where o_no = #{oNo}
+	</update>
 
 
 </mapper>

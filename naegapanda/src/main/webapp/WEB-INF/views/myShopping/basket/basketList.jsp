@@ -48,6 +48,7 @@
 											<div class="cartinfo">
 												<ul>
 													<li>· 옵션, 가격 등 상품정보가 변경될 수 있으니 확인 후 진행하시기 바랍니다.</li>
+													<li>· 판매 취소 및 종료 된 상품은 회원님의 장바구니에서 자동으로 삭제됩니다.</li>
 													<li>· 장바구니에서 제외시킨 상품은 원복되지 않습니다.</li>
 												</ul>
 											</div>
@@ -139,7 +140,7 @@
 												<!-- Order Total -->
 												<div class="order_total">
 													<div class="order_total_content text-md-right">
-														<div class="order_total_title">결재 금액:</div>
+														<div class="order_total_title">결제 금액:</div>
 														<div class="order_total_amount"></div><span>&nbsp; 원</span>
 													</div>
 												</div>
@@ -147,7 +148,7 @@
 												<button class="btnCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
 												
 												<div class="cart_buttons" style="margin-top:30px;">
-													<button type="button" class="cart_checkout" onclick="return paymentPage();">결재하기</button>
+													<button type="button" class="cart_checkout" onclick="return paymentPage();">주문하기</button>
 												</div>
 											
 											</c:if>

@@ -162,6 +162,16 @@ cursor: pointer;
 background-color: #f7f7f7;
 border: 1px solid #edeeef;
 }
+.btnSearch{
+	cursor: pointer;
+	background-color: #0e8ce4;
+	color:white ;
+	border: 1px solid #edeeef;
+	padding: 3px;
+font-size:12px;
+border-radius: 4px;
+	
+}
 .btnCart:hover, .btnSearch:hover{
 	background-color: #99c2ff;
 
@@ -193,18 +203,31 @@ width:50px;
 text-align: right; 
 margin-right:5px;
 }
-
+.btnBack2{
+	background:#0e8ce4;
+  color:#fff;
+  border:none;
+  height:50px;
+  font-size:1.1em;
+  cursor:pointer;
+  border-radius: 3px;
+  padding:0 2em;
+  width:auto;
+  font-weight: bold;
+}
 .cart_checkout{
   background:#0e8ce4;
   color:#fff;
   border:none;
   position:relative;
   height:50px;
-  font-size:1.2em;
+  font-size:1.1em;
   padding:0 2em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
+  border-radius: 3px;
+  font-weight: bold;
 }
 .cart_checkout:hover{
   background:#fff;
@@ -519,7 +542,7 @@ color:white;
 	font-weight: bold;
 }
 .delivery{
-	height: 450px;
+	height: 400px;
 	padding-top:50px;
 	padding-left:70px;
 	padding-right:80px;
@@ -528,15 +551,19 @@ color:white;
 	background-color: #fafafa;
 }
 .orderTotal{
-	width:75%;
+	width:auto;
 	margin-left:auto;
 	margin-right: auto;
-	border-bottom: 2px solid gray;
 }
 .orderTotal span{
 	font-size:16px;
 	font-weight: bold;
 	
+}
+.orderCost{
+	border-bottom: 2px solid gray; 
+	width:auto;
+	padding-bottom:5px;
 }
 .deliveryLabel{
 	font-size:12px;
@@ -556,7 +583,7 @@ color:white;
 }
 .recipient{
 border:1px solid #b5b3b3;
-height:30px;
+height:25px;
 border-radius: 2px;
 }
 .deliveryTable{
@@ -581,7 +608,8 @@ border-radius: 2px;
 	text-align: center !important;
 }
 .pen{
-	text-shadow:  3px 0px 3px #b4e7f8, -3px 0px 3px #b4e7f8,  6px 0px 6px #b4e7f8, -6px 0px 6px #b4e7f8;
+	text-shadow:  3px 0px 3px #b4e7f8, -3px 0px 3px #b4e7f8,  6px 0px 6px #b4e7f8, -6px 0px 6px #8bb8f7;
+	font-weight: bold;
 }
 input[type="radio"], input[type="checkbox"]{
 	width:13px;
@@ -593,3 +621,7 @@ input[type="radio"], input[type="checkbox"]{
 	 background-color: $white-color;
   border: 2px solid $font-color-3;
 	}
+.checkoutArae{
+	text-align: center;
+	margin:30px;
+}
