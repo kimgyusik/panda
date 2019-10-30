@@ -1379,6 +1379,7 @@
 											$(function(){
 												
 												var favPid = $(".favPid");
+												console.log(favPid);
 												
 												$(".favPid").off().on("click", function(){
 													var pId = $(this).prev().val();

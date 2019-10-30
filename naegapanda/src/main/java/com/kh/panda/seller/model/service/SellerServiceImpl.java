@@ -175,6 +175,7 @@ public class SellerServiceImpl implements SellerService{
 	@Override
 	public ArrayList<Payment> selectoList(PageInfo pi, int sNo) {
 		return sDao.selectoList(pi, sNo);
+	}
 	public int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList) {
 		int result1 = sDao.updateProduct(p);
 		int result2 = 1;

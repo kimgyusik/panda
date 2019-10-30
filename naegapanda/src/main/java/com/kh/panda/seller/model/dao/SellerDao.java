@@ -136,6 +136,7 @@ public class SellerDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("paymentMapper.selectoList", sNo, rowBounds);
+	}
 	public int updateProduct(Product p) {
 		return sqlSession.update("productMapper.updateProduct", p);
 	}
