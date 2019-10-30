@@ -105,7 +105,7 @@
 													<td style="margin:10px;">${po.oName }</td>
 													<td style="margin:10px;">${po.oPrice }</td>
 													<td style="margin:10px;">${po.oAmount }</td>
-													<td style="margin:10px;"><button type="button">선택</button></td>
+													<td style="margin:10px;"><button type="button" onclick="addOp()">선택</button></td>
 												</tr>
 											</c:forEach>
 											</table>
@@ -113,8 +113,33 @@
 									</div>
 									
 									<div id="chooseProduct">
-									
+										<table id="chooseOp">
+										
+										</table>
 									</div>
+									<script>
+									 	function addOp(){
+									 		console.log(this.val());
+									 		var $tb = $("#chooseOp");
+									 		var max = $(this).parent().parent().children().eq(3).val();
+									 		var $tr = $("<tr>");
+									 		var $oNo = $("<td>").text($(this).parent().parent().children().eq(0).val());
+									 		var $oName = $("<td>").text($(this).parent().parent().children().eq(1).val());
+									 		var $oPrice = $("<td>").text($(this).parent().parent().children().eq(2).val());
+									 		var $amount = "<input type='number' min='1' max='"+max+"'>";
+									 		var $delete = "<button type='button' onclick='deleteOp();'>삭제</button>";
+									 		
+									 		$tr.append($tr);
+									 		$tr.append($oNo);
+									 		$tr.append($oName);
+									 		$tr.append($oPrice);
+									 		$tr.append($amount);
+									 		$tr.append($delete);
+									 		$tb.append($tr);
+									 	}
+									
+									</script>
+									
 	
 									<div class="button_container">
 										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->

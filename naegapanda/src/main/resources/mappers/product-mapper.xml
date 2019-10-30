@@ -74,7 +74,7 @@
 	</select>
 	
 	<insert id="insertProduct" parameterType="Product">
-		insert into Product values(product_seq.nextval, #{pName}, #{sNo}, #{pContent}, #{cId}, default, default, default, default, default)
+		insert into Product values(product_seq.nextval, #{pName}, #{sNo}, #{pContent}, #{cId}, default, default, 'Y', default, default)
 	</insert>
 	
 	<insert id="insertPa" parameterType="ProductAttachment">
