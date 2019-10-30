@@ -44,6 +44,7 @@ public class PmanagerController {
 		ArrayList<Pmanager> pmxlist = pmService.selectxList(pi, cName2);
 		
 		//System.out.println("판매관리 리스트"+pmlist);
+		//System.out.println("판매중지 리스트"+pmxlist);
 		
 		mv.addObject("pi", pi).addObject("pmlist", pmlist).addObject("pmxlist", pmxlist).setViewName("admin/pmanager/pmListView");
 		
@@ -60,7 +61,8 @@ public class PmanagerController {
 		
 		ArrayList <Pmanager> pmVlist = pmService.pmViolateList(pi, pId);
 		
-		//System.out.println("피엠븨리스트" + pmVlist);
+		System.out.println("피엠븨리스트" + pmVlist);
+
 		
 		mv.addObject("pi", pi).addObject("pmVlist", pmVlist).addObject("pId", pId).setViewName("admin/pmanager/pmViolateListView");
 		
@@ -72,7 +74,7 @@ public class PmanagerController {
 		
 		int result = pmService.pmStop(pId);
 		
-		System.out.println("판매정지"+result);
+		//System.out.println("판매정지"+result);
 		
 		if(result > 0) {
 			return "redirect:categoryView.do";
@@ -86,7 +88,7 @@ public class PmanagerController {
 		
 		int result = pmService.pmrestart(pId);
 		
-		System.out.println("판매재개"+result);
+		//System.out.println("판매재개"+result);
 		
 		if(result > 0) {
 			return "redirect:categoryView.do";
@@ -99,9 +101,11 @@ public class PmanagerController {
 	@RequestMapping("pmvdetailView.do")
 	public ModelAndView violateDetailView(ModelAndView mv, int vNo) {
 		
-		System.out.println(vNo);
+		System.out.println("신고디테일"+vNo);
 		
 		Violate v = pmService.violateDetailView(vNo);
+		
+		System.out.println("신고디테일"+v);
 		
 		if(v != null) {
 			mv.addObject("v", v).setViewName("admin/violate/ViolateDetailView");
@@ -134,10 +138,10 @@ public class PmanagerController {
 		
 		int result = pmService.approval(pId);
 		
-		System.out.println(result);
+		//System.out.println(result);
 		
 		if(result > 0) {
-			return "redirect: approvallist.do";
+			return "redirect:approvalList.do";
 		}else {
 			return "common/errorPage";
 		}

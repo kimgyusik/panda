@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -35,6 +36,9 @@
         border-top-right-radius: 5px;
         border-bottom-right-radius:5px;
         color:white;
+    }
+    .test{
+    	color:red;	
     }
    
 	.atag { text-decoration:none ; color:black; }
@@ -85,7 +89,7 @@
 											</td>
 											<td align="center">
 												<input type="hidden" name="pId" value="${ ap.pId }">
-												<a href="javascript:void(0);" onclick="approval();">${ ap.pOk }</a>
+												<a href="javascript:void(0);" id="approval">${ ap.pOk }</a>
 											</td>
 											
 											
@@ -145,17 +149,19 @@
 <c:import url="../../common/footer.jsp"/>
 
 <script>
-	function approval(){
-		
+
+	$("#approval").click(function(){
+		var pId = $(this).prev().val();
+		console.log(pId);
 			swal({
-				  title: "승인 하시겠습니까?",
+				  title: "판매 허가 하시겠습니까?",
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
 				})
 				.then((willDelete) => {
 				  if (willDelete) {
-					location.href="approval.do";
+					location.href="approval.do?pId=" + pId;
 				    swal("승인 완료!", {
 				      icon: "success",
 				    });
@@ -164,7 +170,7 @@
 				  }
 				});
 		
-	}
+	});
 </script>
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/style/bootstrap4/popper.js"></script>

@@ -74,6 +74,7 @@
 						    	 	<input type="hidden" name="sName" value="${ v.sName }">
 						    	 	<input type="hidden" name="sNo" value="${ v.sNo }">
 						    		<button type="submit" class="btn btn-outline-primary">판매자에게</button>
+						    		<!--  onclick="location.href='violateView.do';" -->
 						    		<button type="button" class="btn btn-outline-primary" onclick="history.back(-1);">뒤로가기</button>
 						    		</form>
 						    	</td>

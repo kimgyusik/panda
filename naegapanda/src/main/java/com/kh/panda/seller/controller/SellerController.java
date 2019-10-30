@@ -174,15 +174,18 @@ public class SellerController {
 
 		} else if(loginSeller.getsEmailKey().equals("N")){
 			model.addAttribute("msg", "이메일 인증을 완료해주세요.");
-			return "common/errorPage";
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
 
 		} else if(loginSeller.getsStatus().equals("N")){
 			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
-			return "common/errorPage";
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
 			 
 		} else {
 			model.addAttribute("msg", "아이디 혹은 비밀번호가 틀립니다.");
-			return "common/errorPage";
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
 		}
 
 	}
