@@ -29,6 +29,12 @@ public interface MemberService {
 
 	
 	int newPassword(Member m);
+
+	
+	int pwdUpdate(Member mp);
+	
+
+	
 	
 	
 	/*
