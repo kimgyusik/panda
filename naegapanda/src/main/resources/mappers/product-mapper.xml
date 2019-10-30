@@ -141,7 +141,7 @@
 		<![CDATA[
 		select * 
 		from HotTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 12
+		where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
 	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
