@@ -257,6 +257,10 @@ public class ProductDao {
 	public ArrayList<Product> Newest(){
 		return (ArrayList)sqlSession.selectList("productMapper.Newest");
 	}
+	
+	public ArrayList<Product> random(){
+		return (ArrayList) sqlSession.selectList("productMapper.random");
+	}
 
 	public int oCount(int pId) {
 		return sqlSession.selectOne("productMapper.oCount", pId);
@@ -273,5 +277,13 @@ public class ProductDao {
 	public int increaseOpurchase(Payment p) {
 		return sqlSession.update("productMapper.increaseOpurchase", p);
 	}
+	
+	public ArrayList<Product> NewList(CategoryNumber cn){
+		return (ArrayList)sqlSession.selectList("productMapper.NewList",cn);
+	}
+	public ArrayList<Product> HotList(CategoryNumber cn){
+		return (ArrayList)sqlSession.selectList("productMapper.HotList",cn);
+	}
+	
 	
 }
