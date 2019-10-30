@@ -17,7 +17,7 @@ public interface SviolateService {
 	
 	ArrayList<Sviolate> selectAllList(SearchCondition sc, PageInfo pi);
 	
-	int getPersonalListCount();
+	int getPersonalListCount(int sNo);
 	
 	ArrayList<Sviolate> selectPersonalList(PageInfo pi, int sNo);
 	

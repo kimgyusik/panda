@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
@@ -71,7 +71,7 @@
 									<c:if test="${ !empty loginUser }">  
 								<form action="violateinsert.do">
 									<input type="hidden" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">�Ű��ϱ�</button>
+									<button type="submit" class="button cart_button">신고하기</button>
 								</form>
 									</c:if>	
 							</div>
@@ -80,32 +80,32 @@
 								<form action="#">
 									<div class="clearfix" style="z-index: 1000;">	
 										<!-- Product Quantity -->
-										<div class="product_quantity clearfix">
+										<!-- <div class="product_quantity clearfix">
 											<span>Quantity: </span>
 											<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
 											<div class="quantity_buttons">
 												<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 												<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
-											</div>
-										</div>
+											</div> 
+										</div> -->
 	
 										<!-- Product option -->
 										<div>
-											<table>
+											<table style="text-align:center;border:solid 2px blue">
 												<tr>
-													<th>�ɼǹ�ȣ</th>
-													<th>�ɼ��̸�</th>
-													<th>�ɼǰ���</th>
-													<th>�ɼǼ���</th>
-													<th>����</th>
+													<th style="margin:10px;">옵션번호</th>
+													<th style="margin:10px;">옵션명</th>
+													<th style="margin:10px;">옵션가격</th>
+													<th style="margin:10px;">남은갯수</th>
+													<th style="margin:10px;">선택</th>
 												</tr>
 											<c:forEach items="${poList }" var="po">
 												<tr>
-													<td>${po.oNo }</td>
-													<td>${po.oName }</td>
-													<td>${po.oPrice }</td>
-													<td>${po.oAmount }</td>
-													<td><button type="button">����</button></td>
+													<td style="margin:10px;">${po.oNo }</td>
+													<td style="margin:10px;">${po.oName }</td>
+													<td style="margin:10px;">${po.oPrice }</td>
+													<td style="margin:10px;">${po.oAmount }</td>
+													<td style="margin:10px;"><button type="button" onclick="addOp()">선택</button></td>
 												</tr>
 											</c:forEach>
 											</table>
@@ -113,14 +113,39 @@
 									</div>
 									
 									<div id="chooseProduct">
-									
+										<table id="chooseOp">
+										
+										</table>
 									</div>
+									<script>
+									 	function addOp(){
+									 		console.log(this.val());
+									 		var $tb = $("#chooseOp");
+									 		var max = $(this).parent().parent().children().eq(3).val();
+									 		var $tr = $("<tr>");
+									 		var $oNo = $("<td>").text($(this).parent().parent().children().eq(0).val());
+									 		var $oName = $("<td>").text($(this).parent().parent().children().eq(1).val());
+									 		var $oPrice = $("<td>").text($(this).parent().parent().children().eq(2).val());
+									 		var $amount = "<input type='number' min='1' max='"+max+"'>";
+									 		var $delete = "<button type='button' onclick='deleteOp();'>삭제</button>";
+									 		
+									 		$tr.append($tr);
+									 		$tr.append($oNo);
+									 		$tr.append($oName);
+									 		$tr.append($oPrice);
+									 		$tr.append($amount);
+									 		$tr.append($delete);
+									 		$tb.append($tr);
+									 	}
+									
+									</script>
+									
 	
 									<div class="button_container">
-										<!-- ��,��ٱ���(�Խ�) -->
-										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">��ٱ���</button>
-										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">���ϱ�</button> 
-										<!-- ��,��ٱ���(�Խ�) -->
+										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
+										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">장바구니로</button>
+										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">찜하기</button> 
+										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
@@ -139,7 +164,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="col-lg-5">
-							<h3>�󼼳���</h3>
+							<h3>상세내용</h3>
 							<div id="detail_contents">
 								${p.pContent }
 							</div>
@@ -149,10 +174,10 @@
 							<br>
 							<br>
 							<br>
-							<h3>��ǰ���� ${ reList.size() }��</h3>
+							<h3>리뷰 ${ reList.size() }개</h3>
 							<div id="review">
 							
-								<!-- ���� ����Ʈ(�Խ�) -->
+								<!-- 占쏙옙占쏙옙 占쏙옙占쏙옙트(占쌉쏙옙) -->
 								<c:if test="${!empty reList}">
 								 	<table>
 								 		<c:forEach items="${ reList }" var="re">
@@ -163,7 +188,7 @@
 									 				<span class="reviewGray">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${re.rDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
 									 			</td>
 									 			<td class="reviewWriter">
-									 				<span >&nbsp;&nbsp;�ۼ���: ${re.mId }</span>
+									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
 									 			</td>
 									 			<td width="200px;" style="text-align: center;">
 									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
@@ -183,7 +208,7 @@
 							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
 							 						</div>
 							 						<div >
-							 							<br>��  <span class="replyCount">���(<span id="rCount${re.rId}"></span>)</span> <br>
+							 							<br>댓글  <span class="replyCount">댓글개수(<span id="rCount${re.rId}"></span>)</span> <br>
 										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
 										 				<table id="replyTable${re.rId}" style="margin-left:30px;">
 										 					
@@ -200,10 +225,10 @@
 							 	<c:if test="${empty reList}">
 				 					<div style="text-align: left;">
 					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
-					 					<br>��ϵ� ���䰡 �����ϴ�.
+					 					<br>
 					 				</div>
 				 				</c:if>
-								<!-- ���� ����Ʈ(�Խ�) --> 
+								<!-- 占쏙옙占쏙옙 占쏙옙占쏙옙트(占쌉쏙옙) --> 
 								
 							</div>
 						</div>
@@ -212,7 +237,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>��ǰ����</h3>
+							<h3>문의하기</h3>
 							<div id="inquiry">
 								
 							</div>

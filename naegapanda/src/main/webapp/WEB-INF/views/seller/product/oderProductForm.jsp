@@ -11,7 +11,40 @@
 
 	<c:import url="../../common/sellerMenubar.jsp"/>
 	
-	<h1>구매자들이 주문한 내상품들 띄우는 페이지인데 깔끔한 이름 추천받아요~</h1>
+		<div class="shop">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3">
+					<!-- Shop Sidebar -->
+					<div class="shop_sidebar" style="width:100px;margin:0;'">
+						<div class="sidebar_section">
+							<div class="sidebar_title">Categories</div>
+							<ul class="sidebar_categories">
+								<li><a href="sProduct.do">상품리스트</a></li>
+								<li><a href="pInsertView.do">상품등록</a></li>
+								<li><a href="oderPage.do">주문목록관리</a></li>
+								<li><a href="streaming.do">방송관리</a></li>
+								<li><a href="sPage.do">정보수정?</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="shop_content">
+						<table>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</table>
+				
+				
+				</div>
+			</div>
+		</div>
 	
 	<c:import url="../../common/footer.jsp"/>
 

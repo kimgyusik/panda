@@ -138,7 +138,7 @@
 							</div>
 							<div class="form-group">
 								<label for="amount1">수량</label> <input type="number"
-									class="form-control" id="oAmount" name="oAmount" placeholder="상품 가격을 입력하세요." />
+									class="form-control" id="oAmount" name="oAmount" placeholder="상품 수량을 입력해주세요." />
 							</div>
 						</div>
 						<br>
