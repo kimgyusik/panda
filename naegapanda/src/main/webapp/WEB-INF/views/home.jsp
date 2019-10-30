@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -306,7 +307,25 @@
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
 												
 											</div>
 										</div>
@@ -1362,11 +1381,26 @@
 															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
 														</div>
 													</div>
+												
 													<c:if test="${!empty loginUser }">
-														<input type="hidden" value="${p.pId}">
-														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
-														
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
 													</c:if>
+													
 													<ul class="product_marks">
 														<li class="product_mark product_discount">-25%</li>
 														<li class="product_mark product_new">new</li>
@@ -1375,32 +1409,7 @@
 											</div>
 										</c:forEach>
 										
-										<script>
-											$(function(){
-												
-												var favPid = $(".favPid");
-												console.log(favPid);
-												
-												$(".favPid").off().on("click", function(){
-													var pId = $(this).prev().val();
-													alert(pId);
-													$.ajax({
-														url:"changeGgim.gg",
-														data:{pId:pId},
-														type:"post",
-														success:function(data){
-															
-														
-																alert("됨");
-						
-														},
-														error:function(){
-															console.log("서버와의 통신 실패");
-														}
-													});
-												});
-											});
-										</script>
+										
 
 									</div>
 									<div class="arrivals_slider_dots_cover"></div>
@@ -3054,6 +3063,68 @@
 </div>
 
 <c:import url="common/footer.jsp"/>
+<script>
+	$(function(){
+		
+		// 찜 토글 처리
+		$(".favPid").off().on("click", function(){
+			
+			var flag = 0;
+			if($(this).hasClass("active") == true) {
+				flag = 1; // class 변경 처리가 더 빠르므로, 이 분기가 찜 추가하는 케이스임
+			}else{
+				flag = 0; // 찜 삭제
+			}
+			var pId = $(this).parent().find('.pId').val();
+
+			$.ajax({
+				url:"changeGgim.gg",
+				data:{pId:pId, flag:flag},
+				type:"post",
+				success:function(data){
+					getGgim();
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			});
+		});
+	});
+	
+	// 메인메뉴 장바구니 비동기 처리
+	function getCart(){
+		$.ajax({
+			url:"currentBasket.ba",
+			dataType:"json",
+			success:function(data){
+				if(data[0] == 0){
+					$('.cart_count').children().first().text(data[0]);
+					$('.cart_price').children().first().text("장바구니가 비었어요.");
+				}else{
+					$('.cart_count').children().first().text(data[0]);
+					$('.cart_price').children().first().text(data[1]+"원");
+				}
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
+	
+	// 메인메뉴 찜하기 비동기 처리
+	function getGgim(){
+		$.ajax({
+			url:"currentGgim.gg",
+			dataType:"json",
+			success:function(data){
+					$('.wishlist_count').children().first().text(data);
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
+</script>
 
 
 </body>

@@ -30,8 +30,7 @@ public class PaymentController {
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
-		return 2;
-		//return ((Member)session.getAttribute("loginUser")).getmNo();
+		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 결재 진행 화면
@@ -42,11 +41,6 @@ public class PaymentController {
 		
 		ArrayList<Basket> list = baService.selectbasketList(m.getmNo());
 
-//		ArrayList<Basket> list = new ArrayList<>();
-//		list.add(new Basket(1, 3, 2, 4, 44, "상품이름입니당", "옵션이름", 23000, "전자상품종류", "카테고리링", "이지몰", "review_1.jpg"));
-//		list.add(new Basket(2, 7, 2, 5, 33, "상품222", "옵션이름22", 1111, "과자", "나또한카테고리", "물건가게", "blog_2.jpg"));
-
-		//mv.addObject((Member)session.getAttribute("loginUser"));
 		mv.addObject("m", m);
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/payment/paymentPage");
@@ -57,13 +51,8 @@ public class PaymentController {
 	// 내 결재 리스트 조회(마이쇼핑의 메인페이지)
 	@RequestMapping("myPaymentList.pa")
 	public ModelAndView myPaymentList(ModelAndView mv, HttpSession session) {
-		
-
-		// ArrayList<Payment> list = paService.myPaymentList(getmNo(session));
-		ArrayList<Payment> list = new ArrayList<>();
-		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-//		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) //년월일시분초
+	
+		ArrayList<Payment> list = paService.myPaymentList(getmNo(session));
 		
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/payment/myPaymentList");

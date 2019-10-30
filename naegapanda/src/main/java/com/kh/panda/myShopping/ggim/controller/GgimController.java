@@ -40,23 +40,14 @@ public class GgimController {
 //		ArrayList<Ggim> list = gService.selectList(pi, getmNo(session));
 //		mv.addObject("pi", pi);
 		
-		
 		ArrayList<Ggim> list = ggService.selectGgimList(getmNo(session));
 		
-		ArrayList<String> category = new ArrayList<>();
-		
-		for(Ggim g : list) {
-			category.add(g.getCategory2());
-		}
-		
-		for (int i =0; i < category.size(); i++) {
-            for (int j =0; j < category.size(); j++) {
-                if (i == j) {
-                }else if (category.get(j).equals(category.get(i))) {
-                	category.remove(j);
-                }
-            }
-        }
+		ArrayList<String> category = new ArrayList<String>();
+       for (int i = 0; i < list.size(); i++) {
+           if (!category.contains(list.get(i).getCategory2())) {
+        	   category.add(list.get(i).getCategory2());
+           }
+       }
 		
 		mv.addObject("category", category);
 		mv.addObject("list", list);
@@ -65,12 +56,10 @@ public class GgimController {
 		return mv;
 	}
 	
-	// 찜하기/취소 토글 처리
+	// 찜하기 토글 처리
 	@ResponseBody
 	@RequestMapping(value="changeGgim.gg")
 	public String changeGgim(String pId, int flag, HttpSession session /*, HttpServletResponse response*/) throws IOException {
-		
-		// flag 0이나 1로 넘길건지 선택해야함
 		
 		Ggim ggim = new Ggim();
 		
@@ -99,7 +88,7 @@ public class GgimController {
 		if(result > 0) {
 			return "redirect:ggimList.gg";
 		}else {
-			return "common/errorPage"; // 에러페이지 설정
+			return "common/errorPage";
 		}
 	}
 	

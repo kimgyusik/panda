@@ -56,6 +56,8 @@ public class HomeController {
 			ArrayList<Product> HotTopList = pService.HotTopList(category);
 			ArrayList<Product> NewTopList = pService.NewTopList(category);
 			ArrayList<Product> Newest = pService.Newest();
+			
+			// 로그인회원에 대한 찜리스트 반환
 			ArrayList<Ggim> gglist = new ArrayList<>();
 			
 			Member m = (Member)session.getAttribute("loginUser");
@@ -64,6 +66,7 @@ public class HomeController {
 				gglist = ggService.selectGgimList(m.getmNo());
 			}
 
+			
 			mv.addObject("HotTopList",HotTopList).addObject("NewTopList",NewTopList).addObject("Newest",Newest).addObject("gglist",gglist).setViewName("home");
 			
 			return mv;
