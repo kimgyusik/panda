@@ -3,6 +3,7 @@ package com.kh.panda.admin.pmanager.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.panda.admin.pmanager.model.service.PmanagerService;
 import com.kh.panda.admin.pmanager.model.vo.Pmanager;
 import com.kh.panda.admin.violate.model.vo.Violate;
+import com.kh.panda.admin.vmessage.model.service.VmessageService;
+import com.kh.panda.admin.vmessage.model.vo.Vmessage;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 
@@ -21,6 +24,11 @@ public class PmanagerController {
 
 	@Autowired
 	private PmanagerService pmService;
+	
+	@Autowired
+	private VmessageService vmService;
+	
+	
 	
 	@RequestMapping("categoryView.do")
 	public ModelAndView categoryView(ModelAndView mv, Pmanager pm) {
@@ -62,6 +70,8 @@ public class PmanagerController {
 		ArrayList <Pmanager> pmVlist = pmService.pmViolateList(pi, pId);
 		
 		System.out.println("피엠븨리스트" + pmVlist);
+		
+
 
 		
 		mv.addObject("pi", pi).addObject("pmVlist", pmVlist).addObject("pId", pId).setViewName("admin/pmanager/pmViolateListView");
@@ -70,9 +80,19 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmstop.do")
-	public String pmStop(int pId, HttpServletRequest request) {
+	public String pmStop(int pId, int vNo, int sNo, HttpServletRequest request) {
 		
 		int result = pmService.pmStop(pId);
+		
+		Vmessage vm = new Vmessage();
+		
+		vm.setvNo(vNo);
+		vm.setpId(pId);
+		vm.setsNo(sNo);
+		
+		int result2 = vmService.vmessageStautsY(vm);
+		
+		
 		
 		//System.out.println("판매정지"+result);
 		
@@ -84,11 +104,21 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmrestart.do")
-	public String pmrestart(int pId, HttpServletRequest request) {
+	public String pmrestart(int pId, int sNo, int vNo, HttpServletRequest request) {
 		
 		int result = pmService.pmrestart(pId);
 		
 		//System.out.println("판매재개"+result);
+		
+		Vmessage vm = new Vmessage();
+		
+		vm.setvNo(vNo);
+		vm.setpId(pId);
+		vm.setsNo(sNo);
+		
+		int result2 = vmService.vmessageStautsN(vm);
+		
+		
 		
 		if(result > 0) {
 			return "redirect:categoryView.do";
