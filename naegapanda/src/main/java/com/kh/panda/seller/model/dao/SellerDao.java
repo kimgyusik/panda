@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.panda.common.PageInfo;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
@@ -119,6 +120,22 @@ public class SellerDao {
 	}
 	public int newPassword(Seller s) {
 		return sqlSession.update("sellerMapper.newPwd", s);
+	}
+
+
+	public int oListCount(int sNo) {
+		int oListCount = 0;
+		oListCount = sqlSession.selectOne("sellerMapper.oListCount", sNo);
+		return oListCount;
+	}
+
+
+	public ArrayList<Payment> selectoList(PageInfo pi, int sNo) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit(); 
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("paymentMapper.selectoList", sNo, rowBounds);
 	}
 	
 

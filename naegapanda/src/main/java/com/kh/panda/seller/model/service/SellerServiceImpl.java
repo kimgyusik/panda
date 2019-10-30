@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.member.model.dao.MemberDao;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
@@ -166,7 +167,18 @@ public class SellerServiceImpl implements SellerService{
 		
 	}
 
+	@Override
+	public int oListCount(int sNo) {
+		return sDao.oListCount(sNo);
+	}
+
+	@Override
+	public ArrayList<Payment> selectoList(PageInfo pi, int sNo) {
+		return sDao.selectoList(pi, sNo);
+	}
+
 	
+	//
 		
 		
 		

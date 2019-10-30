@@ -34,6 +34,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
@@ -222,13 +223,8 @@ public class SellerController {
 		return mv;
 	}
 
-	// 셀러페이지(정보수정)
-	@RequestMapping("sPage.do")
-	public String sellerPage() {
-		return "seller/sellerInfo";
-	}
 
-	// 상품등록페이지
+	// 상품등록페이지m
 	@RequestMapping("pInsertView.do")
 	public ModelAndView insertProduct(ModelAndView mv) {
 
@@ -241,8 +237,16 @@ public class SellerController {
 
 	// 주문들어온 상품페이지
 	@RequestMapping("oderPage.do")
-	public String oderProduct() {
-		return "seller/product/oderProductForm";
+	public ModelAndView oderProduct(@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+			HttpSession session, ModelAndView mv) {
+		int oListCount = sService.oListCount(((Seller) session.getAttribute("loginSeller")).getsNo());
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, oListCount);
+		System.out.println(pi);
+		ArrayList<Payment> oList = sService.selectoList(pi, ((Seller) session.getAttribute("loginSeller")).getsNo());
+		mv.addObject("oList", oList).addObject("pi", pi).setViewName("seller/product/oderProductForm");
+		
+		return mv;
 	}
 
 	// 방송관리
@@ -250,6 +254,12 @@ public class SellerController {
 	public String sellerStreaming() {
 		return "seller/sellerStreamingForm";
 	}
+	
+	// 셀러페이지(정보수정)
+		@RequestMapping("sPage.do")
+		public String sellerPage() {
+			return "seller/sellerInfo";
+		}
 
 	// 아이디/비번찾기 페이지
 	@RequestMapping("findSeller.do")

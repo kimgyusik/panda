@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.mail.MessagingException;
 
 import com.kh.panda.common.PageInfo;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
@@ -52,7 +53,12 @@ public interface SellerService {
 
 	ArrayList<ProductOption> selectPo(Product p);
 
-	int newPaasword(Seller s); 
+	int newPaasword(Seller s);
+
+	
+	int oListCount(int sNo);
+
+	ArrayList<Payment> selectoList(PageInfo pi, int sNo); 
 
 	
 	
