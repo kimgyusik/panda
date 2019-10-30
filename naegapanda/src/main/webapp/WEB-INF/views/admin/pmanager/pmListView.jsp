@@ -86,15 +86,16 @@
 											</td>
 											<td align="center">
 												<c:url value="pmViolateList.do" var="pmViolateList">
-														<c:param name="pId" value="${ pm.pId }"/>
-														<input type="hidden" name="pName" value="${ pm.pName }">
+														<c:param name="pId" value="${ pm.pId }" />
+														<input type="hidden" name="sName" value="${ pm.sName }">
+														
 												</c:url>
-												<c:if test="${ pm.pViolate ne 0 } " >
-													<a href="${ pmViolateList }">${ pm.pViolate }</a>
-												</c:if>
-												<c:if test="${ pm.pViolate eq 0 }">
+												<c:if test="${ pm.pViolate == 0 }">
 													0
 												</c:if>
+												<c:if test="${ pm.pViolate > 0 }">
+													<a href="${ pmViolateList }">${ pm.pViolate }</a>
+												</c:if>	
 											</td>
 											
 											<td>
@@ -239,9 +240,7 @@
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
 								</div>
-		<div class="col-lg-12" align="right">
-			<button onclick="location.href='pmrestart.do?pId=${ pm.pId }';" class="btn">판매재개</button>
-		</div>
+		
 			</div>
 			
 			

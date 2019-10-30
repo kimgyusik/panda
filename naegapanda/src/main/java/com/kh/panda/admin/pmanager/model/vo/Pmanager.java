@@ -15,15 +15,18 @@ public class Pmanager {
 	private int pViolate;	// 상품 신고 횟수
 	private int vNo;
 	private int mNo;
+	private String mName;
 	private String vContent;
+	private String vTitle;
 	private Date vDate;
+	private String pOk;
 	
 	public Pmanager() {
 		
 	}
 
 	public Pmanager(int pId, String pName, int sNo, String sName, int cId, String cName, String cName2, String pStatus,
-			int pViolate, int vNo, int mNo, String vContent, Date vDate) {
+			int pViolate, int vNo, int mNo, String mName, String vContent, String vTitle, Date vDate, String pOk) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
@@ -36,8 +39,11 @@ public class Pmanager {
 		this.pViolate = pViolate;
 		this.vNo = vNo;
 		this.mNo = mNo;
+		this.mName = mName;
 		this.vContent = vContent;
+		this.vTitle = vTitle;
 		this.vDate = vDate;
+		this.pOk = pOk;
 	}
 
 	public int getpId() {
@@ -128,12 +134,28 @@ public class Pmanager {
 		this.mNo = mNo;
 	}
 
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
 	public String getvContent() {
 		return vContent;
 	}
 
 	public void setvContent(String vContent) {
 		this.vContent = vContent;
+	}
+
+	public String getvTitle() {
+		return vTitle;
+	}
+
+	public void setvTitle(String vTitle) {
+		this.vTitle = vTitle;
 	}
 
 	public Date getvDate() {
@@ -144,18 +166,23 @@ public class Pmanager {
 		this.vDate = vDate;
 	}
 
+	public String getpOk() {
+		return pOk;
+	}
+
+	public void setpOk(String pOk) {
+		this.pOk = pOk;
+	}
+
 	@Override
 	public String toString() {
 		return "Pmanager [pId=" + pId + ", pName=" + pName + ", sNo=" + sNo + ", sName=" + sName + ", cId=" + cId
 				+ ", cName=" + cName + ", cName2=" + cName2 + ", pStatus=" + pStatus + ", pViolate=" + pViolate
-				+ ", vNo=" + vNo + ", mNo=" + mNo + ", vContent=" + vContent + ", vDate=" + vDate + "]";
+				+ ", vNo=" + vNo + ", mNo=" + mNo + ", mName=" + mName + ", vContent=" + vContent + ", vTitle=" + vTitle
+				+ ", vDate=" + vDate + ", pOk=" + pOk + "]";
 	}
-	
-	
-	
 
 	
-	
-	
+
 	
 }

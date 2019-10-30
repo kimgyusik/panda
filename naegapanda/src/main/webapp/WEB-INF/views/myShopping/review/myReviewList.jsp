@@ -19,8 +19,6 @@
 <body>
 
 	<c:import url="../../common/menubar.jsp"/>
-	
-	<!-- contents -->
 
 	<div class="shop">
 		<div class="container">
@@ -39,7 +37,7 @@
 							<div class="row">
 								<div class="col-lg-10 offset-lg-1">
 									<div class="cart_container" style="width:120%;">
-										<div class="cart_title">내가 작성한 리뷰</div>
+										<div class="cart_title subTitle">내가 작성한 리뷰</div>
 									
 									
 										<!-- 리뷰 리스트 -->
@@ -53,7 +51,7 @@
 										 				
 													 		<tr class="contentsList" height="180px;">
 													 		
-													 			<c:url value="상품조회url" var="product">
+													 			<c:url value="pDetailView.do" var="product">
 																	<c:param name="pId" value="${p.pId }"/>
 																</c:url>	
 																	
@@ -63,7 +61,7 @@
 													 				<br><br>
 													 				<span style="display: inline-block;font-size: 13px; height:30px;">
 													 					[${p.storeName }]
-													 					<br><a href="${ product }">${p.pName} :: ${p.oName }</a>
+													 					<br><a href="${ product }"><b>${p.pName} :: ${p.oName }</b></a>
 													 				</span>
 													 			</td>
 													 			

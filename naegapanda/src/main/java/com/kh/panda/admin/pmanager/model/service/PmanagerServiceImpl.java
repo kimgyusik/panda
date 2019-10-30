@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.panda.admin.pmanager.model.dao.PmanagerDao;
 import com.kh.panda.admin.pmanager.model.vo.Pmanager;
+import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 
 @Service("pmService")
@@ -34,6 +35,33 @@ public class PmanagerServiceImpl implements PmanagerService{
 	public int pmStop(int pId) {
 		return pmDao.pmStop(pId);
 	}
+
+	@Override
+	public Violate violateDetailView(int vNo) {
+		return pmDao.violateDetailView(vNo);
+	}
+
+	@Override
+	public ArrayList<Pmanager> approvalList(PageInfo pi) {
+		return pmDao.approvalList(pi);
+	}
+
+	@Override
+	public int approval(int pId) {
+		return pmDao.approval(pId);
+	}
+
+	@Override
+	public ArrayList<Pmanager> selectxList(PageInfo pi, String cName2) {
+		return pmDao.selectxList(pi, cName2);
+	}
+
+	@Override
+	public int pmrestart(int pId) {
+		return pmDao.pmrestart(pId);
+	}
+	
+
 
 	
 }

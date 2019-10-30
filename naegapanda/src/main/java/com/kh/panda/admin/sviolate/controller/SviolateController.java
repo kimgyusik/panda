@@ -41,11 +41,13 @@ public class SviolateController {
 	@RequestMapping("sViolatePersonalList.do")
 	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo, String sName) {
 		
-		int listCount = svService.getPersonalListCount();
-		
+		int listCount = svService.getPersonalListCount(sNo);
+		System.out.println("Personal:");
+		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Sviolate> list = svService.selectPersonalList(pi, sNo);
+		System.out.println(list);
 		
 		mv.addObject("pi", pi).addObject("list", list).addObject("sName",sName).addObject("sNo",sNo).setViewName("admin/sviolate/sViolatePersonalListView");
 		// 객체                                                                                         경로로반환한거당

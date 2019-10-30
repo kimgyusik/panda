@@ -89,6 +89,9 @@ public class SAnswer {
 		return "SAnswer [saId=" + saId + ", qId=" + qId + ", saTitle=" + saTitle + ", saContent=" + saContent
 				+ ", saWriter=" + saWriter + ", saCreateDate=" + saCreateDate + ", saStatus=" + saStatus + "]";
 	}
+
+	
+	
 	
 	
 }

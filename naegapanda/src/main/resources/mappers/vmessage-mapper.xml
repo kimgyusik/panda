@@ -66,4 +66,17 @@
 	set v_status='Y'
 	where v_no=#{vNo}
 	</update>
+	
+	<insert id="vmessageStatusY" parameterType="Vmessage">
+		insert into vmessage
+		values(VMESSAGE_SEQ.nextval,#{vNo},#{pId},#{sNo},'상품 판매 정지 해체','해당 상품 판매 정지 해체되었습니다.',sysdate, null, null, null,default)
+	</insert>
+	<insert id="vmessageStatusN" parameterType="Vmessage">
+		insert into vmessage
+		values(VMESSAGE_SEQ.nextval,#{vNo},#{pId},#{sNo},'상품 판매 정지','신고 횟수 누적으로 해당 상품 일시 정지되었습니다. 자세한 문의 사항은 고객센터로 문의 주세요.',sysdate, null, null, null,default)
+	</insert>
+	<insert id="vmessageOkY" parameterType="Vmessage">
+		insert into vmessage
+		values(VMESSAGE_SEQ.nextval,#{vNo},#{pId},#{sNo},'상품 등록 승인','해당 상품 승인 완료되었습니다.',sysdate, null, null, null,default)
+	</insert>
 </mapper>

@@ -83,13 +83,31 @@ public class ProductController {
 	@RequestMapping("pListView.do")
 	public ModelAndView pListView(@RequestParam(name="keyword", required=false, defaultValue = "*")String keyword,
 								@RequestParam(name="currentPage", required=false, defaultValue = "1") int currentPage,
-								@RequestParam(name="category", required=false, defaultValue = "0") int category,
+								@RequestParam(name="category", required=false, defaultValue = "1000") int category,
 								ModelAndView mv, HttpSession session) {
 		
 		int listCount = pService.getListCount(category);
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
 		ArrayList<Product> pList = pService.selectpList(pi, category);
+		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).setViewName("product/productListView");
+		
+		return mv;
+	}
+	
+	@RequestMapping("search.do")
+	public ModelAndView search(@RequestParam(name="keyword", required=false, defaultValue = "*")String keyword,
+								@RequestParam(name="currentPage", required=false, defaultValue = "1") int currentPage,
+								@RequestParam(name="category", required=false, defaultValue = "1000") int category,
+								ModelAndView mv, HttpSession session) {
+		int listCount = pService.getListCount(keyword, category);
+		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
+		
+		ArrayList<Product> pList = pService.search(keyword,pi,category); 
+		System.out.println(keyword);
+		System.out.println(category);
+		System.out.println(pList);
 		
 		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).setViewName("product/productListView");
 		

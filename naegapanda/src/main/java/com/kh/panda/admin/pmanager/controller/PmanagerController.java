@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.admin.pmanager.model.service.PmanagerService;
 import com.kh.panda.admin.pmanager.model.vo.Pmanager;
+import com.kh.panda.admin.violate.model.vo.Violate;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 
@@ -40,10 +41,12 @@ public class PmanagerController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Pmanager> pmlist = pmService.selectList(pi, cName2);
+		ArrayList<Pmanager> pmxlist = pmService.selectxList(pi, cName2);
 		
-		//System.out.println(pmlist);
+		//System.out.println("판매관리 리스트"+pmlist);
+		//System.out.println("판매중지 리스트"+pmxlist);
 		
-		mv.addObject("pi", pi).addObject("pmlist", pmlist).setViewName("admin/pmanager/pmListView");
+		mv.addObject("pi", pi).addObject("pmlist", pmlist).addObject("pmxlist", pmxlist).setViewName("admin/pmanager/pmListView");
 		
 		return mv;
 		
@@ -54,13 +57,14 @@ public class PmanagerController {
 		
 		int listCount = pmService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList <Pmanager> pmVlist = pmService.pmViolateList(pi, pId);
 		
+		System.out.println("피엠븨리스트" + pmVlist);
+
 		
-		
-		mv.addObject("pmVlist", pmVlist).setViewName("admin/pmanager/pmViolateListView");
+		mv.addObject("pi", pi).addObject("pmVlist", pmVlist).addObject("pId", pId).setViewName("admin/pmanager/pmViolateListView");
 		
 		return mv;
 	}
@@ -70,10 +74,79 @@ public class PmanagerController {
 		
 		int result = pmService.pmStop(pId);
 		
+		//System.out.println("판매정지"+result);
+		
 		if(result > 0) {
-			return "redirect:pmlist.do";
+			return "redirect:categoryView.do";
 		}else {
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("pmrestart.do")
+	public String pmrestart(int pId, HttpServletRequest request) {
+		
+		int result = pmService.pmrestart(pId);
+		
+		//System.out.println("판매재개"+result);
+		
+		if(result > 0) {
+			return "redirect:categoryView.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("pmvdetailView.do")
+	public ModelAndView violateDetailView(ModelAndView mv, int vNo) {
+		
+		System.out.println("신고디테일"+vNo);
+		
+		Violate v = pmService.violateDetailView(vNo);
+		
+		System.out.println("신고디테일"+v);
+		
+		if(v != null) {
+			mv.addObject("v", v).setViewName("admin/violate/ViolateDetailView");
+		}else {
+			mv.addObject("msg", "신고 상세조회 실패@@").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("approvalList.do")
+	public ModelAndView approvalList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		int listCount = pmService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList <Pmanager> aplist = pmService.approvalList(pi);
+		
+		//System.out.println(aplist);
+		
+		mv.addObject("pi", pi).addObject("aplist", aplist).setViewName("admin/pmanager/approvalListView");
+		return mv;
+	}
+	
+	@RequestMapping("approval.do")
+	public String approval(int pId, HttpServletRequest request) {
+		
+		System.out.println(pId);
+		
+		int result = pmService.approval(pId);
+		
+		//System.out.println(result);
+		
+		if(result > 0) {
+			return "redirect:approvalList.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+		
+		
 	}
 }

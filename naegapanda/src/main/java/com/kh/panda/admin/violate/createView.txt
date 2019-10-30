@@ -53,12 +53,17 @@ order by vm_no desc;
 
 create or replace view svList
 as
-select s.s_NO, s.s_Name, s.storeName, p.p_id, p.p_name, s.s_Violate, p.p_violate, v.v_Date, s.s_Status, p.p_status
+select s.s_NO, s.s_Name, s.storeName, p.p_id, p.p_name, s.s_Violate, p.p_violate, v.v_Date, s.s_Status, p.p_status, v.v_No, v.v_title, v.v_status
 from violate v, seller s, product p
 where   v.s_no = s.s_no
     and v.p_id = p.p_id
     and p.s_no = s.s_no
 order by v_date desc;
+
+
+
+
+
 
 create or replace view hList 
 as
@@ -69,3 +74,51 @@ join product_attachment using(p_id)
 join product_option using(p_id)
 where o_status = 'Y'
 order by o_purchase desc;
+
+
+
+
+
+
+create or replace view HotList
+as
+select p.*, (select sum(o_purchase) from product_option po1 where p.p_id=po1.p_id and o_status='Y') as o_purchase,(select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y') as p_price, c_name2, pa_change_name
+			 from product p
+             left join product_attachment pa on(p.p_id=pa.p_id) 
+			 join category c on (p.c_id=c.c_id)
+             where pa.pa_file_level = 1
+			 order by o_purchase desc;
+             
+             
+             
+             
+             
+create or replace view NewList
+as
+select p.*, (select sum(o_purchase) from product_option po1 where p.p_id=po1.p_id and o_status='Y') as o_purchase,(select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y') as p_price, c_name2, pa_change_name
+			 from product p
+             left join product_attachment pa on(p.p_id=pa.p_id) 
+			 join category c on (p.c_id=c.c_id)
+             where pa.pa_file_level = 1
+			 order by p.p_create_date desc, p.p_id desc;
+
+
+
+
+
+
+create or replace view HotTopList
+as
+select * 
+from( select rownum, HotList.*
+      from HotList);
+
+
+
+
+
+create or replace view NewTopList
+as
+select * 
+from( select rownum, NewList.*
+      from NewList);

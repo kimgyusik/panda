@@ -104,7 +104,7 @@
 									<option value="제휴문의">제휴문의</option>
 									<option value="상품관련">상품관련</option>
 									<option value="프로모션">프로모션</option>
-									<option value="기타" selected>기타</option>
+									<option value="기타">기타</option>
 								</select>	
 								
 								<!-- String qCategory = document.getElementBy('cat').options[document.getElementById('cat').selectedIndex].text; -->

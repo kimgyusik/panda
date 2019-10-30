@@ -24,7 +24,7 @@
 		<result property="cName" column="c_name"/>
 		<result property="cName2" column="c_name2"/>
 		<result property="sNo" column="s_no"/>
-		<result property="storeName" column="store_name"/>
+		<result property="storeName" column="storename"/>
 		<result property="sBaddress" column="s_baddress"/>
 		<result property="sBphone" column="s_bphone"/>
 	</resultMap>

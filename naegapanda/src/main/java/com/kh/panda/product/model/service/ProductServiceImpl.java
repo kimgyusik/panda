@@ -26,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ArrayList<Product> search(String keyword) {
-		return null;
+	public ArrayList<Product> search(String keyword, PageInfo pi, int category) {
+		return pDao.search(keyword, pi, category);
 	}
 
 	@Override
@@ -38,6 +38,29 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ArrayList<Product> selectpList(PageInfo pi, int category) {
 		return pDao.selectpList(pi, category);
+	}
+
+	@Override
+	public int getListCount(String keyword, int category) {
+		return pDao.getListCount(keyword,category);
+	}
+
+	
+	
+	
+	
+	
+	@Override
+	public ArrayList<Product> HotTopList(int category) {
+		return pDao.HotTopList(category);
+	}
+	@Override
+	public ArrayList<Product> NewTopList(int category) {
+		return pDao.NewTopList(category);
+	}
+	@Override
+	public ArrayList<Product> Newest() {
+		return pDao.Newest();
 	}
 
 }

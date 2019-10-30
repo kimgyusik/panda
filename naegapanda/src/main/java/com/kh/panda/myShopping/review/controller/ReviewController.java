@@ -39,15 +39,16 @@ public class ReviewController {
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
-		return ((Member)session.getAttribute("loginUser")).getmNo();
+		return 2;
+		//return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 리뷰 리스트 조회
 	@RequestMapping("myReviewList.re")
 	public ModelAndView selectMyReviewList(ModelAndView mv, HttpSession session) {
 		
-		//ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
-		//ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
+//		ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
+//		ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
 		
 		ArrayList<Review> list = new ArrayList<>();
 		ArrayList<Payment> list2 = new ArrayList<>();

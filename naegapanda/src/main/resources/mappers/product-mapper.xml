@@ -27,6 +27,7 @@
 		<result property="pCreateDate" column="p_create_date"/>
 		<result property="pPrice" column="p_price"/>
 		<result property="paChangeName" column="pa_change_name"/>
+		<result property="cName2" column="c_name2"/>
 	</resultMap>
 	
 	<resultMap type="Category" id="categoryResultSet">
@@ -109,10 +110,11 @@
 	</update>
 	
 	<select id="selectpList" parameterType="CategoryNumber" resultMap="productResultSet2">
-		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price
+		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price, c_name2
 		from product p
 		join product_attachment pa on(p.p_Id = pa.p_Id)
-		where p.p_status='Y' and pa.pa_file_level=1 and c_id between #{startNum} and #{endNum}
+		join category c on (p.c_id=c.c_id)
+		where p.p_status='Y' and pa.pa_file_level=1 and p.c_id between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="listCount" parameterType="CategoryNumber" resultType="_int">
@@ -120,13 +122,43 @@
 		from product p
 		where p.p_status='Y' and c_id between #{startNum} and #{endNum}
 	</select>
-
-	<select id="search" parameterType="String" resultMap="productResultSet">
-		select *
-		from product
-		where p_name like '%' ||  #{keyword} || '%' or p_content like '%' ||  #{keyword} || '%'
 	
+	<select id="searchListCount" parameterType="CategoryNumber" resultType="_int">
+		select count(*)
+		from product p
+		where p.p_status='Y' and p_name like '%' ||  #{keyword} || '%' and c_id between #{startNum} and #{endNum}
 	</select>
+
+	<select id="search" parameterType="CategoryNumber" resultMap="productResultSet2">
+		select  p.*, pa.pa_change_name, (select min(o_price) from product_option po1 where p.p_id=po1.p_id and o_status='Y')p_price, c_name2
+		from product p
+		join product_attachment pa on(p.p_Id = pa.p_Id)
+		join category c on (p.c_id=c.c_id)
+		where p.p_status='Y' and pa.pa_file_level=1 and p_name like '%' ||#{keyword} || '%' and p.c_id between #{startNum} and #{endNum}
+	</select>
+	
+	<select id="HotTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from HotTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 12
+		]]>
+	</select>
+	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from NewTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 20
+		]]>
+	</select>
+	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from NewTopList 
+		where rownum = 1
+		]]>
+	</select>
+	
 
 
 </mapper>
