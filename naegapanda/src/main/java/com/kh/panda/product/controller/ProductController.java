@@ -1,17 +1,22 @@
 package com.kh.panda.product.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 import com.kh.panda.member.model.service.MemberService;
@@ -22,7 +27,6 @@ import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.service.SellerService;
-import com.kh.panda.seller.model.vo.Seller;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -39,6 +43,26 @@ public class ProductController {
 	
 	@Autowired
 	private ReviewService reService;
+	
+	
+	@RequestMapping("test11.do")
+	public String test11(@RequestParam(value="category", defaultValue="1000") int category, HttpServletResponse response, Model model) throws JsonIOException, IOException{
+		
+		System.out.println(category);
+		ArrayList<Product> HotTopList = pService.HotTopList(category);
+		
+	      response.setContentType("application/json; charset=utf-8"); 
+	      
+		
+		  Gson gson = new Gson(); gson.toJson(HotTopList, response.getWriter());
+		 
+	      
+	      model.addAttribute("HotTopList", HotTopList);
+	      
+	      return "home";
+		
+		
+	}
 	
 	@RequestMapping("pDetailView.do")
 	public ModelAndView loginView(@RequestParam(name="pId") int pId, ModelAndView mv) {

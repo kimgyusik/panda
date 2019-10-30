@@ -257,4 +257,12 @@ public class ProductDao {
 		return (ArrayList)sqlSession.selectList("productMapper.Newest");
 	}
 	
+	public ArrayList<Product> NewList(CategoryNumber cn){
+		return (ArrayList)sqlSession.selectList("productMapper.NewList",cn);
+	}
+	public ArrayList<Product> HotList(CategoryNumber cn){
+		return (ArrayList)sqlSession.selectList("productMapper.HotList",cn);
+	}
+	
+	
 }

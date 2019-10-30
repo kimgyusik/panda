@@ -45,11 +45,35 @@ public class HomeController {
 			String formattedDate = dateFormat.format(date);
 			
 			model.addAttribute("serverTime", formattedDate );
-			ArrayList<Product> HotTopList = pService.HotTopList(category);
+			
+			
+			
+			
+			ArrayList<Product> HotTopList = pService.HotTopList(category);  	
+			ArrayList<Product> Hot1List = pService.Hot1List();  	
+			ArrayList<Product> Hot2List = pService.Hot2List();  	
+			ArrayList<Product> Hot3List = pService.Hot3List();  	
+			ArrayList<Product> Hot4List = pService.Hot4List();  	
+			ArrayList<Product> Hot5List = pService.Hot5List();  	
+			ArrayList<Product> Hot6List = pService.Hot6List();  	
+			mv.addObject("HotTopList",HotTopList).addObject("Hot1List",Hot1List).addObject("Hot2List",Hot2List).addObject("Hot3List",Hot3List).addObject("Hot4List",Hot4List).addObject("Hot5List",Hot5List).addObject("Hot6List",Hot6List);
+			
+			
+			
 			ArrayList<Product> NewTopList = pService.NewTopList(category);
+			ArrayList<Product> New1List = pService.New1List();
+			ArrayList<Product> New2List = pService.New2List();
+			ArrayList<Product> New3List = pService.New3List();
+			ArrayList<Product> New4List = pService.New4List();
+			ArrayList<Product> New5List = pService.New5List();
+			ArrayList<Product> New6List = pService.New6List();
 			ArrayList<Product> Newest = pService.Newest();
+			
+			mv.addObject("Newest",Newest).addObject("NewTopList",NewTopList).addObject("New1List",New1List).addObject("New2List",New2List).addObject("New3List",New3List).addObject("New4List",New4List).addObject("New5List",New5List).addObject("New6List",New6List);
 
-			mv.addObject("HotTopList",HotTopList).addObject("NewTopList",NewTopList).addObject("Newest",Newest).setViewName("home");
+			
+			
+			mv.setViewName("home");
 			
 			return mv;
 	}

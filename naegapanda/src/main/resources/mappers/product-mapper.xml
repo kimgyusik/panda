@@ -144,11 +144,11 @@
 		where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
-	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+	<select id="HotList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 		select * 
-		from NewTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 20
+		from HotTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
 	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
@@ -156,6 +156,20 @@
 		select * 
 		from NewTopList 
 		where rownum = 1
+		]]>
+	</select>
+	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from NewTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 20
+		]]>
+	</select>
+	<select id="NewList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+		select * 
+		from NewTopList 
+		where c_id between #{startNum} and #{endNum} and rownum <= 20
 		]]>
 	</select>
 	
