@@ -28,8 +28,7 @@ public class GgimController {
 	private GgimService ggService;
 	
 	private int getmNo(HttpSession session) {
-		//return ((Member)session.getAttribute("loginUser")).getmNo();
-		return 2;
+		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 찜 리스트 조회
@@ -43,16 +42,6 @@ public class GgimController {
 		
 		
 		ArrayList<Ggim> list = ggService.selectGgimList(getmNo(session));
-		
-//		ArrayList<Ggim> list = new ArrayList<>();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date date = new Date();
-//			
-//		list.add(new Ggim(1, 2, "좋은상품11111111111111", 20001, "df", "의류/잡화", "이지몰", date, "blog_5.jpg"));
-//		list.add(new Ggim(2, 4, "좋은상품22222222222", 11233, "소분류22/222222", "대분류/22", "슈퍼몰", date, "best_6.png"));
-//		list.add(new Ggim(3, 64, "좋은상품333333333333", 244, "소분류33|33333", "대분류3|33", "또와", date, "blog_4.jpg"));
-//		list.add(new Ggim(5, 44, "좋은상품244444444", 14444, "소분류|444", "대분류2|2", "이마트", date, "blog_9.jpg"));
-
 		
 		ArrayList<String> category = new ArrayList<>();
 		
@@ -79,13 +68,14 @@ public class GgimController {
 	// 찜하기/취소 토글 처리
 	@ResponseBody
 	@RequestMapping(value="changeGgim.gg")
-	public String changeGgim(int pId, int flag, HttpSession session /*, HttpServletResponse response*/) throws IOException {
+	public String changeGgim(String pId, int flag, HttpSession session /*, HttpServletResponse response*/) throws IOException {
 		
 		// flag 0이나 1로 넘길건지 선택해야함
 		
 		Ggim ggim = new Ggim();
+		
 		ggim.setmNo(getmNo(session));
-		ggim.setpId(pId);
+		ggim.setpId(Integer.parseInt(pId));
 		
 		int result = ggService.changeGgim(ggim, flag);
 		

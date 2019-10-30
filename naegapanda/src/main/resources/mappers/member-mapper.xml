@@ -67,14 +67,14 @@
 	</update>
 	
 	
-	
-	
-		<!-- 이메일인증 
-	<update id="createAuthKey">
+	<update id="upDatePwd" parameterType="Member">
 		update member
-		set emailKey = #{email_key} 
-		where email = #{email}
-	</update>-->
+		set m_pwd = #{pwd}
+		where m_id = #{id}
+	</update>
+	
+
+
 
 </mapper>
 

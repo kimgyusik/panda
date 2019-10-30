@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -74,16 +75,26 @@ public class PaymentController {
 	
 	// 결재 추가 처리
 	@RequestMapping("addPayment.pa")
-	public String addPayment(Payment p, Model model, HttpSession session) {
+	public String addPayment(Payment p, Model model, HttpSession session, @RequestParam("flag") int flag) {
 		
-		p.setmNo(getmNo(session));
-
-		int result = paService.addPayment(p);
+		int result = 0;
+		
+		Member m = ((Member)session.getAttribute("loginUser"));
+		p.setmNo(m.getmNo());
+		
+		if(flag == 1) { // 기본 배송지
+			p.setDeliverySpot(m.getAddress());
+			p.setRecipient(m.getName());
+			p.setRecipientPhone(m.getPhone());
+			result = paService.addPayment(p);
+		}else { // 신규 배송지
+			result = paService.addPayment(p);
+		}
 		
 		if(result > 0) {
 			return "redirect:myPaymentList.pa";
 		}else {
-			model.addAttribute("msg", "?????????????");
+			model.addAttribute("msg", "결제 실패?");
 			return "common/errorPage";
 		}
 		

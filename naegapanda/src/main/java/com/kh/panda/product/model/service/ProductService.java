@@ -17,11 +17,7 @@ public interface ProductService {
 	ArrayList<Product> selectpList(PageInfo pi, int category);
 
 	int getListCount(int category);
-	
-	
-	
-	
-	
+
 	ArrayList<Product> HotTopList(int category);
 	ArrayList<Product> Hot1List();
 	ArrayList<Product> Hot2List();
@@ -40,5 +36,9 @@ public interface ProductService {
 	ArrayList<Product> New4List();
 	ArrayList<Product> New5List();
 	ArrayList<Product> New6List();
+
+	int oCount(int pId);
+
+	int deleteProduct(int pId);
 
 }

@@ -49,7 +49,7 @@
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td><input type="number" min="20" max="100" name="birthDate" value="${ loginUser.birthDate }"></td>
+					<td><input type="date" max="9999-12-31" name="birthDate" value="${ loginUser.birthDate }"></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
@@ -118,7 +118,7 @@
 						<c:url var="mdelete" value="mdelete.do">
 							<c:param name="id" value="${ loginUser.id }"/>
 						</c:url>
-					
+						<button type="button" onclick="location.href='change.do';">비밀번호 변경</button> 
 						<button type="button" onclick="location.href='${mdelete}';">탈퇴하기</button> 
 						<button type="reset">취소하기</button>
 					</td>

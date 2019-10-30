@@ -131,4 +131,14 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 
+	@Override
+	public int oCount(int pId) {
+		return pDao.oCount(pId);
+	}
+
+	@Override
+	public int deleteProduct(int pId) {
+		return pDao.deleteProduct(pId);
+	}
+
 }

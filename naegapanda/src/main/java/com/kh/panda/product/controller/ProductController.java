@@ -92,10 +92,22 @@ public class ProductController {
 	}
 	
 	@RequestMapping("pDelete.do")
-	public String pDelete(@RequestParam(name="oNo") int oNo, @RequestParam(name="currentPage", required = false, defaultValue = "1") int currentPage ) {
+	public String pDelete(@RequestParam(name="oNo") int oNo,@RequestParam(name="pId") int pId, @RequestParam(name="currentPage", required = false, defaultValue = "1") int currentPage ) {
 		int result = pService.deleteOption(oNo);
-		
+		int result2 = 0;
 		if(result > 0) {
+			int count = pService.oCount(pId);
+			
+			if(count == 0) {
+				result2 = pService.deleteProduct(pId);
+				
+				if(result2>0) {
+					return "redirect:sProduct.do?currentPage="+currentPage;
+				} else {
+					return "common/errorPage";
+				}
+			}
+			
 			return "redirect:sProduct.do?currentPage="+currentPage;
 		} else {
 			

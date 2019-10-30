@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.panda.common.PageInfo;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.product.model.vo.CategoryNumber;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.SearchCondition;
@@ -255,6 +256,22 @@ public class ProductDao {
 	}
 	public ArrayList<Product> Newest(){
 		return (ArrayList)sqlSession.selectList("productMapper.Newest");
+	}
+
+	public int oCount(int pId) {
+		return sqlSession.selectOne("productMapper.oCount", pId);
+	}
+
+	public int deleteProduct(int pId) {
+		return sqlSession.update("productMapper.deleteProduct", pId);
+	}
+	
+	public int increasePpurchase(Payment p) {
+		return sqlSession.update("productMapper.increasePpurchase", p);
+	}
+	
+	public int increaseOpurchase(Payment p) {
+		return sqlSession.update("productMapper.increaseOpurchase", p);
 	}
 	
 	public ArrayList<Product> NewList(CategoryNumber cn){

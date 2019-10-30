@@ -15,6 +15,7 @@ import com.kh.panda.myShopping.basket.model.dao.BasketDao;
 import com.kh.panda.myShopping.basket.model.vo.Basket;
 import com.kh.panda.myShopping.payment.model.dao.PaymentDao;
 import com.kh.panda.myShopping.payment.model.vo.Payment;
+import com.kh.panda.product.model.dao.ProductDao;
 
 @Service("paService")
 public class PaymentServiceImpl implements PaymentService{
@@ -27,7 +28,8 @@ public class PaymentServiceImpl implements PaymentService{
 	private DataSourceTransactionManager transactionManager;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+	@Autowired
+	private ProductDao pDao;
 	
 	@Override
 	public ArrayList<Payment> myPaymentList(int mNo) {
@@ -45,7 +47,6 @@ public class PaymentServiceImpl implements PaymentService{
 		try {
 			sqlSession.getConnection().setAutoCommit(false);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -54,15 +55,22 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		int count = 0;
 		
+		Payment addP = new Payment();
+		
 		// 장바구니에 담긴 각 상품을 결제 태이블에 등록하고 장바구니에서는 삭제하는 로직
 		for(Basket b : list) {
 			
-			Payment addP = p; // input으로 받은 결재정보 복사
+			addP = p; // input으로 받은 결재정보 복사
+			
 			addP.setoNo(b.getoNo());
 			addP.setCount(b.getAmount());
+			addP.setPrice(b.getAmount() * b.getPrice());
 			
 			int result = paDao.addPayment(addP);
 			int result2 = baDao.deleteBasket(b);
+			
+			pDao.increaseOpurchase(addP);
+			pDao.increasePpurchase(addP);
 			
 			if(result == 0 || result2 == 0) {
 				transactionManager.rollback(status);

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.panda.home.model.service.HomeService;
 import com.kh.panda.home.model.vo.Home;
+import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.myShopping.ggim.model.service.GgimService;
+import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 import com.kh.panda.product.model.service.ProductService;
 import com.kh.panda.product.model.vo.Product;
 
@@ -33,11 +38,14 @@ public class HomeController {
 	
 	@Autowired
 	private ProductService pService;
+	
+	@Autowired
+	private GgimService ggService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
-		public ModelAndView home(@RequestParam(name="category", required=false, defaultValue = "1000") int category, ModelAndView mv, Locale locale, Model model) {
+		public ModelAndView home(@RequestParam(name="category", required=false, defaultValue = "1000") int category, ModelAndView mv, Locale locale, Model model,HttpSession session) {
 			
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -74,6 +82,15 @@ public class HomeController {
 			
 			
 			mv.setViewName("home");
+			ArrayList<Ggim> gglist = new ArrayList<>();
+			
+			Member m = (Member)session.getAttribute("loginUser");
+		
+			if(m != null) {
+				gglist = ggService.selectGgimList(m.getmNo());
+			}
+
+			mv.addObject("gglist",gglist).setViewName("home");
 			
 			return mv;
 	}
