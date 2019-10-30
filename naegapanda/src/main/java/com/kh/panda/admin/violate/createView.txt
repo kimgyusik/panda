@@ -122,3 +122,10 @@ as
 select * 
 from( select rownum, NewList.*
       from NewList);
+      
+      
+      create or replace view randompid
+as
+select rownum as num, p_id
+from product
+order by num desc;

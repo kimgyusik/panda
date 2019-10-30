@@ -37,6 +37,8 @@ public interface ProductService {
 	ArrayList<Product> New5List();
 	ArrayList<Product> New6List();
 
+	ArrayList<Product> random();
+	
 	int oCount(int pId);
 
 	int deleteProduct(int pId);

@@ -130,6 +130,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	
+	@Override
+	public ArrayList<Product> random() {
+		return pDao.random();
+	}
 
 	@Override
 	public int oCount(int pId) {
@@ -140,5 +144,6 @@ public class ProductServiceImpl implements ProductService {
 	public int deleteProduct(int pId) {
 		return pDao.deleteProduct(pId);
 	}
+
 
 }

@@ -67,7 +67,7 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="resources/images/char_1.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">당일배송</div>
+							<div class="char_title">당일 배송</div>
 							<div class="char_subtitle">오후2시 전 결제</div>
 						</div>
 					</div>
@@ -79,8 +79,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="resources/images/char_2.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">실시간 업데이트</div>
+							<div class="char_subtitle">신상품을 확인해보세요!</div>
 						</div>
 					</div>
 				</div>
@@ -103,8 +103,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="resources/images/char_4.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">품질 보장</div>
+							<div class="char_subtitle">인증 받은 스토어</div>
 						</div>
 					</div>
 				</div>
@@ -587,74 +587,7 @@
 		</div>
 	</div>
 
-	<!-- Popular Categories -->
 
-	<div class="popular_categories">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="popular_categories_content">
-						<div class="popular_categories_title">Popular Categories</div>
-						<div class="popular_categories_slider_nav">
-							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
-							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
-						</div>
-						<div class="popular_categories_link"><a href="#">full catalog</a></div>
-					</div>
-				</div>
-				
-				<!-- Popular Categories Slider -->
-
-				<div class="col-lg-9">
-					<div class="popular_categories_slider_container">
-						<div class="owl-carousel owl-theme popular_categories_slider">
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_1.png" alt=""></div>
-									<div class="popular_category_text">Smartphones & Tablets</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_2.png" alt=""></div>
-									<div class="popular_category_text">Computers & Laptops</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_3.png" alt=""></div>
-									<div class="popular_category_text">Gadgets</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_4.png" alt=""></div>
-									<div class="popular_category_text">Video Games & Consoles</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_5.png" alt=""></div>
-									<div class="popular_category_text">Accessories</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Banner -->
 
@@ -1058,9 +991,9 @@
 									<div class="d-flex flex-column align-items-center justify-content-center">
 										<div class="arrivals_single_image"><img src="resources/product_uploadFiles/${p.paChangeName }" width="200px" height="200px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 										<div class="arrivals_single_content">
-											<div class="arrivals_single_category"><a href="#">${ p.cName2 }</a></div>
+											<div class="arrivals_single_category">${ p.cName2 }</a></div>
 											<div class="arrivals_single_name_container clearfix">
-												<div class="arrivals_single_name"><a href="#">${ p.pName }</a></div>
+												<div class="arrivals_single_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
 												<div class="arrivals_single_price text-right">￦ ${ p.pPrice } ~</div>
 											</div>
 											<form action="#"><button class="arrivals_single_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button></form>
@@ -1092,57 +1025,6 @@
 
 <!-- HotBestSeller -->
 
-
-	<!-- Adverts -->
-
-	<div class="adverts">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-4 advert_col">
-					
-					<!-- Advert Item -->
-
-					<div class="advert d-flex flex-row align-items-center justify-content-start">
-						<div class="advert_content">
-							<div class="advert_title"><a href="#">Trends 2018</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</div>
-						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="resources/images/adv_1.png" alt=""></div></div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 advert_col">
-					
-					<!-- Advert Item -->
-
-					<div class="advert d-flex flex-row align-items-center justify-content-start">
-						<div class="advert_content">
-							<div class="advert_subtitle">Trends 2018</div>
-							<div class="advert_title_2"><a href="#">Sale -45%</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur.</div>
-						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="resources/images/adv_2.png" alt=""></div></div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 advert_col">
-					
-					<!-- Advert Item -->
-
-					<div class="advert d-flex flex-row align-items-center justify-content-start">
-						<div class="advert_content">
-							<div class="advert_title"><a href="#">Trends 2018</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur.</div>
-						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="resources/images/adv_3.png" alt=""></div></div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
 	<!-- Trends -->
 
 	<div class="trends">
@@ -1154,8 +1036,8 @@
 				<!-- Trends Content -->
 				<div class="col-lg-3">
 					<div class="trends_container">
-						<h2 class="trends_title">Trends 2018</h2>
-						<div class="trends_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</p></div>
+						<h2 class="trends_title">How About This?</h2>
+						<div class="trends_text"><p>PANDA hope you like it. <br>  Have a nice shopping!:) </p></div>
 						<div class="trends_slider_nav">
 							<div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
 							<div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
@@ -1172,118 +1054,27 @@
 						<div class="owl-carousel owl-theme trends_slider">
 
 							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/images/trends_1.jpg" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
+							<c:forEach items="${ random }" var="r">
+								<div class="owl-item">
+									<div class="trends_item discount">
+										<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${r.paChangeName }" width="150px" height="180px" alt="" onclick="location.href='pDetailView.do?pId=${ r.pId }';"></div>
+										<div class="trends_content">
+											<div class="trends_category"><a href="#">${ r.cName2 }</a></div>
+											<div class="trends_info clearfix">
+												<div class="trends_name" style="margin-bottom:10px"><a href="pDetailView.do?pId=${ r.pId }">${ r.pName }</a></div>
+												<div class="trends_price" style="margin-top:10px">￦ ${r.pPrice } ~ </div>
+											</div>
 										</div>
+										<ul class="trends_marks">
+											<li class="trends_mark trends_discount">Tip!</li>
+											<li class="trends_mark trends_new">Hot</li>
+										</ul>
+										<div class="trends_fav"><i class="fas fa-heart"></i></div>
 									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
 								</div>
-							</div>
+							</c:forEach>
 
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/images/trends_2.jpg" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Samsung Charm...</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/images/trends_3.jpg" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">DJI Phantom 3...</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/images/trends_1.jpg" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/images/trends_2.jpg" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/images/trends_3.jpg" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
+							
 
 						</div>
 					</div>
@@ -1294,7 +1085,74 @@
 	</div>
 
 
+	<!-- Popular Categories -->
 
+	<div class="popular_categories">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="popular_categories_content">
+						<div class="popular_categories_title">Popular Categories</div>
+						<div class="popular_categories_slider_nav">
+							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
+							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+						</div>
+						<div class="popular_categories_link"><a href="#">full catalog</a></div>
+					</div>
+				</div>
+				
+				<!-- Popular Categories Slider -->
+
+				<div class="col-lg-9">
+					<div class="popular_categories_slider_container">
+						<div class="owl-carousel owl-theme popular_categories_slider">
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="resources/images/popular_1.png" alt=""></div>
+									<div class="popular_category_text">Smartphones & Tablets</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="resources/images/popular_2.png" alt=""></div>
+									<div class="popular_category_text">Computers & Laptops</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="resources/images/popular_3.png" alt=""></div>
+									<div class="popular_category_text">Gadgets</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="resources/images/popular_4.png" alt=""></div>
+									<div class="popular_category_text">Video Games & Consoles</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="resources/images/popular_5.png" alt=""></div>
+									<div class="popular_category_text">Accessories</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 
 

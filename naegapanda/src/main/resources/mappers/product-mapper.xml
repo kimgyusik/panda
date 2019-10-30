@@ -179,32 +179,43 @@
 	</select>
 	<select id="HotList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from HotTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 16
+			select * 
+			from HotTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
 	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where rownum = 1
+			select * 
+			from NewTopList 
+			where rownum = 1
 		]]>
 	</select>
 	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 20
+			select * 
+			from NewTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 20
 		]]>
 	</select>
 	<select id="NewList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 20
+			select * 
+			from NewTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 20
 		]]>
 	</select>
+	
+	<select id="random" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from  (select * 
+	        from prettypList
+	        order by dbms_random.value)
+	 		where rownum <= 10
+ 		]]>
+	</select>
+	
 	
 
 	<update id="increasePpurchase" parameterType="Payment" >
@@ -233,6 +244,8 @@
 		where p_id=#{pId}
 
 	</update>
+	
+
 
 
 </mapper>

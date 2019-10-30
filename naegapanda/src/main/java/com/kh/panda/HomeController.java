@@ -79,7 +79,9 @@ public class HomeController {
 			
 			mv.addObject("Newest",Newest).addObject("NewTopList",NewTopList).addObject("New1List",New1List).addObject("New2List",New2List).addObject("New3List",New3List).addObject("New4List",New4List).addObject("New5List",New5List).addObject("New6List",New6List);
 
+			ArrayList<Product> random = pService.random();
 			
+			mv.addObject("random",random);
 			
 			mv.setViewName("home");
 			ArrayList<Ggim> gglist = new ArrayList<>();
@@ -90,6 +92,8 @@ public class HomeController {
 				gglist = ggService.selectGgimList(m.getmNo());
 			}
 
+			
+			
 			mv.addObject("gglist",gglist).setViewName("home");
 			
 			return mv;
