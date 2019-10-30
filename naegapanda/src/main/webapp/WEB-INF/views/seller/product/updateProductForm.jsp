@@ -42,10 +42,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="panel-heading"><label style="text-size:30px;">상품 등록</label></div>
+				<div class="panel-heading"><label style="text-size:30px;">상품 수정</label></div>
 				<br>
 				<div class="panel-body" width="500px">
-					<form action="pInsert.do" method="post" encType="multipart/form-data" >
+					<form action="pUpdate.do?pId=${p.pId }" method="post" encType="multipart/form-data" >
 						<div class="form-group">
 							<label for="pName">상품명</label> 
 							<input type="text" class="form-control" id="pName" name="pName" value="${p.pName}" placeholder="상품명을 입력하세요." />
@@ -86,7 +86,7 @@
 										<img id='pImg2' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 											</c:if>
 										</c:forEach>
-										<c:if test="${fn:length(cList) eq 1}">
+										<c:if test="${fn:length(paList) eq 1}">
 										<img id='pImg2' width='98px' height='98px'>
 										</c:if>	
 										</div>
@@ -98,7 +98,7 @@
 										<img id='pImg3' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 											</c:if>
 										</c:forEach>
-										<c:if test="${fn:length(cList) eq 1 or fn:length(cList) eq 2}">
+										<c:if test="${fn:length(paList) eq 1 or fn:length(paList) eq 2}">
 										<img id='pImg3' width='98px' height='98px'>
 										</c:if>	
 										</div>
@@ -214,7 +214,7 @@
 						    </script>
 						</div>
 						<div align=right>
-							<button type="submit" class="btn btn-default">상품 추가</button>
+							<button type="submit" class="btn btn-default">상품 수정</button>
 						</div>
 						<div>
 							<input type="hidden" value="${loginSeller.sNo }" name="sNo"/>

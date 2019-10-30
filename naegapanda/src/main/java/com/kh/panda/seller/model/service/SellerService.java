@@ -52,7 +52,9 @@ public interface SellerService {
 
 	ArrayList<ProductOption> selectPo(Product p);
 
-	int newPaasword(Seller s); 
+	int newPaasword(Seller s);
+
+	int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList); 
 
 	
 	
