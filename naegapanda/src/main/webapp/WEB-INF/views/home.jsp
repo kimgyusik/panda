@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
+
+
 <meta charset="UTF-8">
 <title>PANDA</title>
 <style>
@@ -17,6 +20,10 @@
 	color:#000000;
 	}
 </style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body>
 
@@ -626,10 +633,10 @@
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
 										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_title">MacBook Air</div>
+										<div class="banner_2_text"><h4>다시 한 번 가볍게 앞서다.<br> Retina 디스플레이 찬란한 등장.<br> Touch ID 당신의 지문이 비밀번호.</h4></div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#" >쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -650,17 +657,17 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_category">뺴뺴로</div>
+										<div class="banner_2_title">Happy Sweet day!</div>
+										<div class="banner_2_text">11월 11일 빼빼로 데이 <br> 뺴빼로 할인 최대 31%</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="search.do?keyword=빼빼로" >쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/banner_2_product.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/pepelo.png" alt=""></div>
 									</div>
 								</div>
 							</div>
@@ -675,17 +682,17 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">output</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_category">반려동물 용품</div>
+										<div class="banner_2_title">소중한 나의 반려동물</div>
+										<div class="banner_2_text">야옹아 멍멍해봐!! <br> 프리미엄 반려동물 용품 쇼핑</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/banner_2_product.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/cattoy.png" alt=""></div>
 									</div>
 								</div>
 							</div>
@@ -1048,8 +1055,8 @@
 						<h2 class="trends_title">How About This?</h2>
 						<div class="trends_text"><p>PANDA hope you like it. <br>  Have a nice shopping!:) </p></div>
 						<div class="trends_slider_nav">
-							<div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
-							<div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+							<div class="trends_prev trends_nav"><i class="fas fa-chevron-left fa-10x ml-auto"></i></div>
+							<div class="trends_next trends_nav"><i class="fas fa-chevron-right fa-10x ml-auto"></i></div>
 						</div>
 					</div>
 				</div>
@@ -1103,8 +1110,8 @@
 					<div class="popular_categories_content">
 						<div class="popular_categories_title">Popular Categories</div>
 						<div class="popular_categories_slider_nav">
-							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
-							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-chevron-left fa-10x ml-auto"></i></div>
+							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-chevron-right fa-10x ml-auto"></i></div>
 						</div>
 						<div class="popular_categories_link"><a href="#">full catalog</a></div>
 					</div>
@@ -1119,7 +1126,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_1.png" alt="" onclick="location.href='pListView.do?category=1001';"></div>
+									<div class="popular_category_image"><i class="fa fa-utensils fa-5x" onclick="location.href='pListView.do?category=1001';"></i></div>
 									<div class="popular_category_text">food</div>
 								</div>
 							</div>
@@ -1127,7 +1134,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_2.png" onclick="location.href='pListView.do?category=1002';"  alt=""></div>
+									<div class="popular_category_image"><i class="fas fa-female fa-5x" onclick="location.href='pListView.do?category=1002';"></i></div>
 									<div class="popular_category_text">Clothing & Accessories</div>
 								</div>
 							</div>
@@ -1135,7 +1142,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_3.png" onclick="location.href='pListView.do?category=1003';" alt=""></div>
+									<div class="popular_category_image"><i class="fas fa-bed fa-5x" onclick="location.href='pListView.do?category=1003';"></i></div>
 									<div class="popular_category_text">Furniture & Interior</div>
 								</div>
 							</div>
@@ -1143,15 +1150,15 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_4.png" onclick="location.href='pListView.do?category=1004';" alt=""></div>
-									<div class="popular_category_text">Digital & Home Appliances & Computers</div>
+									<div class="popular_category_image"><i class="fas fa-tv fa-5x" onclick="location.href='pListView.do?category=1004';"></i></div>
+									<div class="popular_category_text">Digital & Computers</div>
 								</div>
 							</div>
 
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_5.png" onclick="location.href='pListView.do?category=1005';" alt=""></div>
+									<div class="popular_category_image"><i class="fas fa-camera fa-5x" onclick="location.href='pListView.do?category=1005';"></i></div>
 									<div class="popular_category_text">Hobbies & Pets</div>
 								</div>
 							</div>
@@ -1159,7 +1166,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_5.png" onclick="location.href='pListView.do?category=1006';" alt=""></div>
+									<div class="popular_category_image"><i class="fa fa-futbol fa-5x" onclick="location.href='pListView.do?category=1006';"></i> </div>
 									<div class="popular_category_text">Life & Health & Beauty</div>
 								</div>
 							</div>

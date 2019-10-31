@@ -53,7 +53,7 @@ public class MemberController {
 
 		Member loginUser = mService.loginMember(m);
 
-		logger.debug(loginUser.toString());
+		/* logger.debug(loginUser.toString()); */
 
 		if (loginUser != null && loginUser.getPwd().equals(m.getPwd())) {
 			session.setAttribute("loginUser", loginUser);
@@ -61,12 +61,12 @@ public class MemberController {
 			return "redirect:home.do";
 		} else {
 			model.addAttribute("msg", "로그인 실패!!");
-			return "common/errorPage";
+			return "member/memberLoginForm";
 		}
 
 	}
 
-	
+	// MSG는 메시지
 	
 	// 아이디 찾기 폼 
 	@RequestMapping(value = "find_id_form.do")

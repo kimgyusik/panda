@@ -96,8 +96,8 @@
 
 		 <br><hr>
 
-		 <h1>2.스토어정보</h1>
-		 <div class="form-row" >		
+		 <h1 style="display:none" class="storeInfo">2.스토어정보</h1>
+		 <div class="form-row storeInfo" style="display:none !important;">		
 			<div class="form-group col-md-6">
 				<input type="text" class="form-control" name="storeName" id="storeName" placeholder="사업장명" required>
 			</div>
@@ -127,16 +127,10 @@
 			<div class="form-group col-md-6" id="ad2">
 				<input type="text" class="form-control" name="sbAddress" id="sbPost" placeholder="사업장주소">
 			</div>
-			
-			
-			
 		</div>
-		
-		
-
-		<hr>
+		<hr class="storeInfo" style="display:none">
 		<br>
-		<div align="center">
+		<div align="center" class="storeInfo" style="display:none">
 			<button type="submit" class="btn btn-primary" id="joinBtn">가입하기</button>
 			<button type="button" class="btn btn-primary">취소하기</button>
 		</div>
@@ -245,8 +239,7 @@
 					return false;
 				}
 				
-				
-				
+				alert("회원가입 완료.이메일 인증을 완료한후 로그인이 가능합니다.");
 				
 			});
 						
@@ -329,7 +322,7 @@
 			
 			// 사업자번호부분
 			$('#sbNum').focusout(function() {
-				
+			
 				var sbNum = $('#sbNum').val();
 	                  
 			$.ajax({
@@ -337,16 +330,24 @@
 		         data: {S_BNUM:sbNum},
 		         dataType:"json",
 		         success:function(data){
+		        	 if(data == ""){
+		        	   $(".storeInfo").hide();
+		        	 }else{
+		        	   $(".storeInfo").show();
 		               $('#storeName').val(data.storeName);
 		               $('#ceoName').val(data.sCeoName);
 		               $('#sbPhone').val(data.sbPhone);
 		               $('#sbPost').val(data.sbAddress);
+		        	 }
 		         },
 		         error:function(){
 		            console.log("ajax 통신 실패");
 		         }
+			
 		      });
 			});
+			
+			
 			
 			
 			// 통신판매

@@ -21,13 +21,13 @@ public class PmanagerServiceImpl implements PmanagerService{
 		return pmDao.getListCount();
 	}
 	@Override
-	public int getListCount1() {
-		return pmDao.getListCount1();
+	public int getListCount1(String cName2) {
+		return pmDao.getListCount1(cName2);
 	}
 	
 	@Override
-	public int getListCount2() {
-		return pmDao.getListCount2();
+	public int getListCount2(String cName2) {
+		return pmDao.getListCount2(cName2);
 	}
 
 	

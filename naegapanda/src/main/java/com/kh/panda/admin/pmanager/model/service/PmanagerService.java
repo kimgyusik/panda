@@ -13,8 +13,8 @@ public interface PmanagerService {
 	
 	// 리스트 총 갯수 조회
 	int getListCount();
-	int getListCount1();
-	int getListCount2();
+	int getListCount1(String cName2);
+	int getListCount2(String cName2);
 	int getListCount3();
 	// 리스트 조회
 	ArrayList<Pmanager> selectList(PageInfo pi, String cName2);
