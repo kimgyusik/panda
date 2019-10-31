@@ -71,10 +71,10 @@ public class VmessageDao {
 	}
 	
 	public int vmessageStatusN(Vmessage vm) {
-		return sqlsession.insert("vmessageMapper.vmessageStatusY",vm);
+		return sqlsession.insert("vmessageMapper.vmessageStatusN",vm);
 	}
 	
 	public int vmessageOkY(Vmessage vm) {
-		return sqlsession.insert("vmessageMapper.vmessageStatusY",vm);
+		return sqlsession.insert("vmessageMapper.vmessageOkY",vm);
 	}
 }

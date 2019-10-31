@@ -25,9 +25,9 @@ public class PmanagerController {
 	@Autowired
 	private PmanagerService pmService;
 	
-	/*
-	 * @Autowired private VmessageService vmService;
-	 */
+	
+	 @Autowired private VmessageService vmService;
+	
 	
 	
 	
@@ -88,17 +88,17 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmstop.do")
-	public String pmStop(int pId/*, int vNo , int sNo, HttpServletRequest request */) {
+	public String pmStop(int pId, int vNo , int sNo, HttpServletRequest request) {
 		
 		int result = pmService.pmStop(pId);
 		
-		/*
-		 * Vmessage vm = new Vmessage();
-		 * 
-		 * vm.setvNo(vNo); vm.setpId(pId); vm.setsNo(sNo);
-		 * 
-		 * int result2 = vmService.vmessageStautsY(vm);
-		 */
+		
+		  Vmessage vm = new Vmessage();
+		  
+		  vm.setvNo(vNo); vm.setpId(pId); vm.setsNo(sNo);
+		 
+		  int result2 = vmService.vmessageStautsY(vm);
+		 
 		
 		
 		
@@ -112,19 +112,17 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmrestart.do")
-	public String pmrestart(int pId/*, int sNo , int vNo, HttpServletRequest request */) {
+	public String pmrestart(int pId, int sNo , int vNo, HttpServletRequest request) {
 		
 		int result = pmService.pmrestart(pId);
 		
 		//System.out.println("판매재개"+result);
 		
-		/*
-		 * Vmessage vm = new Vmessage();
-		 * 
-		 * vm.setvNo(vNo); vm.setpId(pId); vm.setsNo(sNo);
-		 * 
-		 * int result2 = vmService.vmessageStautsN(vm);
-		 */
+		
+		  Vmessage vm = new Vmessage();
+		  vm.setvNo(vNo); vm.setpId(pId); vm.setsNo(sNo);
+		  int result2 = vmService.vmessageStautsN(vm);
+		 
 		
 		
 		

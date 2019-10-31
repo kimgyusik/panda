@@ -52,12 +52,14 @@
 		where s_id=#{sId} and s_status='Y'
 	</select>
 	
+	
 	<!-- 아이디 찾기 -->
 	<select id="findsId" parameterType="String" resultType="String">
 		select s_id 
 		from seller
-		where s_email = #{sEmail}
+		where s_email = #{sEmail} and s_name = #{sName}
 	</select>
+	
 	
 	<!-- 정보 수정 -->
 	<update id="updateSeller" parameterType="Seller">

@@ -14,12 +14,10 @@
 </head>
 <body>
 
-	<c:import url="../common/menubar.jsp"/>
 		<p>회원님의 아이디는 <label>${sId}</label> 입니다</p>
 		
-		<a href="findSeller.do">비밀번호 찾기</a>
+		<button onclick="location.href='findSeller.do';">비밀번호 찾기</button>
 	
-	<c:import url="../common/footer.jsp"/>
 	
 </body>
 </html>
