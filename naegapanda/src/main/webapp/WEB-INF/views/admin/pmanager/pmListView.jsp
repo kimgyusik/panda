@@ -99,7 +99,7 @@
 											</td>
 											
 											<td>
-												<c:if test="${ pm.pStatus eq 'N' }">
+												<c:if test="${ pm.pStatus eq 'Y' }">
 													<h5 style="color:red; font-weight:bold">판매중</h5>
 												</c:if>
 											</td>
@@ -120,7 +120,7 @@
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
 											<c:url value="pmlist.do" var="before">
-												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+												<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
 										</c:if>		
@@ -133,6 +133,7 @@
 											<c:if test="${ p ne pi.currentPage }">
 												<c:url value="pmlist.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
+													<c:param name="cName2" value="${ pmlist.get(0).cName2 }" />
 												</c:url>
 												<a href="${ page }">${ p }</a>
 											</c:if>
@@ -193,7 +194,7 @@
 											</td>
 											
 											<td>
-												<c:if test="${ pmx.pStatus eq 'Y' }">
+												<c:if test="${ pmx.pStatus eq 'N' }">
 													<h5 style="color:blue; font-weight:bold">판매정지</h5>
 												</c:if>
 											</td>
@@ -206,36 +207,37 @@
 				<div class="col-lg-12" align="center">
 					
 										<!-- [이전] -->	
-										<c:if test="${ pi.currentPage eq 1 }">
+										<c:if test="${ pi2.currentPage eq 1 }">
 											[이전] 
 										</c:if>
-										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="pmxlist.do" var="before">
-												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+										<c:if test="${ pi2.currentPage ne 1 }">
+											<c:url value="pmlist.do" var="before">
+												<c:param name="currentPage2" value="${ pi2.currentPage -1 }"/>
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
 										</c:if>		
 										
 										<!-- 번호  -->
-										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-											<c:if test="${ p eq pi.currentPage }">
+										<c:forEach begin="${ pi2.startPage }" end="${ pi2.endPage }" var="p">
+											<c:if test="${ p eq pi2.currentPage }">
 												<font  size="4">[${ p }]</font>
 											</c:if>
-											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="pmxlist.do" var="page">
-													<c:param name="currentPage" value="${ p }"/>
+											<c:if test="${ p ne pi2.currentPage }">
+												<c:url value="pmlist.do" var="page">
+													<c:param name="currentPage2" value="${ p }"/>
+													<c:param name="cName2" value="${ pmlist.get(0).cName2 }" />
 												</c:url>
 												<a href="${ page }">${ p }</a>
 											</c:if>
 										</c:forEach>
 										
 										<!-- [다음] -->
-										<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<c:if test="${ pi2.currentPage eq pi2.maxPage }">
 											 [다음]
 										</c:if>
-										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="pmxlist.do" var="next">
-												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										<c:if test="${ pi2.currentPage ne pi2.maxPage }">
+											<c:url value="pmlist.do" var="next">
+												<c:param name="currentPage2" value="${ pi2.currentPage + 1 }"/>
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
