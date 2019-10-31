@@ -682,17 +682,17 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">output</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_category">반려동물 용품</div>
+										<div class="banner_2_title">소중한 나의 반려동물</div>
+										<div class="banner_2_text">야옹아 멍멍해봐!! <br> 프리미엄 반려동물 용품 쇼핑</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/banner_2_product.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/cattoy.png" alt=""></div>
 									</div>
 								</div>
 							</div>
