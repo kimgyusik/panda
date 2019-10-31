@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +18,10 @@
 	color:#000000;
 	}
 </style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body>
 
@@ -1039,8 +1045,8 @@
 						<h2 class="trends_title">How About This?</h2>
 						<div class="trends_text"><p>PANDA hope you like it. <br>  Have a nice shopping!:) </p></div>
 						<div class="trends_slider_nav">
-							<div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
-							<div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+							<div class="trends_prev trends_nav"><i class="fas fa-chevron-left fa-10x ml-auto"></i></div>
+							<div class="trends_next trends_nav"><i class="fas fa-chevron-right fa-10x ml-auto"></i></div>
 						</div>
 					</div>
 				</div>
@@ -1094,8 +1100,8 @@
 					<div class="popular_categories_content">
 						<div class="popular_categories_title">Popular Categories</div>
 						<div class="popular_categories_slider_nav">
-							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
-							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-chevron-left fa-10x ml-auto"></i></div>
+							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-chevron-right fa-10x ml-auto"></i></div>
 						</div>
 						<div class="popular_categories_link"><a href="#">full catalog</a></div>
 					</div>
@@ -1110,7 +1116,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_1.png" alt="" onclick="location.href='pListView.do?category=1001';"></div>
+									<div class="popular_category_image"><i class="fa fa-utensils fa-5x" onclick="location.href='pListView.do?category=1001';"></i></div>
 									<div class="popular_category_text">food</div>
 								</div>
 							</div>
@@ -1118,7 +1124,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_2.png" onclick="location.href='pListView.do?category=1002';"  alt=""></div>
+									<div class="popular_category_image"><i class="fas fa-female fa-5x" onclick="location.href='pListView.do?category=1002';"></i></div>
 									<div class="popular_category_text">Clothing & Accessories</div>
 								</div>
 							</div>
@@ -1126,7 +1132,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_3.png" onclick="location.href='pListView.do?category=1003';" alt=""></div>
+									<div class="popular_category_image"><i class="fas fa-bed fa-5x" onclick="location.href='pListView.do?category=1003';"></i></div>
 									<div class="popular_category_text">Furniture & Interior</div>
 								</div>
 							</div>
@@ -1134,15 +1140,15 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_4.png" onclick="location.href='pListView.do?category=1004';" alt=""></div>
-									<div class="popular_category_text">Digital & Home Appliances & Computers</div>
+									<div class="popular_category_image"><i class="fas fa-tv fa-5x" onclick="location.href='pListView.do?category=1004';"></i></div>
+									<div class="popular_category_text">Digital & Computers</div>
 								</div>
 							</div>
 
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_5.png" onclick="location.href='pListView.do?category=1005';" alt=""></div>
+									<div class="popular_category_image"><i class="fas fa-camera fa-5x" onclick="location.href='pListView.do?category=1005';"></i></div>
 									<div class="popular_category_text">Hobbies & Pets</div>
 								</div>
 							</div>
@@ -1150,7 +1156,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="resources/images/popular_5.png" onclick="location.href='pListView.do?category=1006';" alt=""></div>
+									<div class="popular_category_image"><i class="fa fa-futbol fa-5x" onclick="location.href='pListView.do?category=1006';"></i> </div>
 									<div class="popular_category_text">Life & Health & Beauty</div>
 								</div>
 							</div>
