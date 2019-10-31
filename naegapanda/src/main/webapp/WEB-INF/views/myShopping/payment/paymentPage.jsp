@@ -106,120 +106,128 @@
 												</ul>
 											</div>
 											
-											<!-- 배송지 정보 -->
-											<div class="delivery">
-												<div style="float:left; width:70%;">
-												
-													<h4 style="margin-bottom:20px;">
-														<strong class="subTitle" >배송지 정보</strong>
-													</h4><br>
+											<form id="payForm"action="addPayment.pa" method="post">
+											
+												<!-- 배송지 정보 -->
+												<div class="delivery">
+													<div style="float:left; width:70%;">
 													
-													<div>
-														<strong class="subTitle pen" style="margin-right:40px;">배송지 선택</strong>
-														<div class="checks" style="display: inline-block;">
-															<input id="r1" type="radio" name="rr" checked="checked" >
-															<label class="deliveryLabel" for="r1">기본배송지</label> &nbsp;&nbsp;
-															<input id="r2" type="radio" name="rr">
-															<label class="deliveryLabel" for="r2">신규배송지</label>
-														</div>
-													</div><br>
-													
-													<script>
-													$(function(){
-														$("#r1").on("click", function(){
-															$(".deliverySpot1").css("display","");
-															$(".deliverySpot2").css("display","none");
-														});
-														$("#r2").on("click", function(){
-															$(".deliverySpot1").css("display","none");
-															$(".deliverySpot2").css("display","block");
-														});
-													});	
-													
-													</script>
-													
-													<div class="deliverySpot1">
-														<div style="width:70%; float:left;">
-															<p>성함 :: ${m.name}</p> 
-															<p>연락처 :: ${m.phone} (개인소득공제용)</p>
-															<p>배송지 주소 :: ${m.address}</p> 
-														</div >
-														<div style="width:30%;">
-															<span class="btnSearch"><a href="myInfo.do" style="color:#2e263c;">개인정보 수정</a></span>
-														</div>
-													</div>
-													
-													<div class="deliverySpot2">
-														<input type="hidden" name="flag" value="1"> <!-- 1:기본 2:신규 -->
-														<table class="deliveryTable">
-															<tr>
-																<td width="20%;" class="pen">수령인</td>
-																<td width="80%;">
-																	<input type="text" class="recipient" name="recipient" style="width:100px;" placeholder="20자 이내 입력">
-																</td>
-															</tr>
-															<tr>
-																<td class="pen">연락처</td>
-																<td>
-																	<input type="text" class="recipient phone" id="phone1" maxlength="3"> - 
-																	<input type="text" class="recipient phone" id="phone2" maxlength="4"> - 
-																	<input type="text" class="recipient phone" id="phone3" maxlength="4">
-																</td>
-															</tr>
-															<tr>
-																<td class="pen">배송지 주소</td>
-																<td>
-																	<input type="text"  class="postcodify_postcode5 recipient address" value="" />&nbsp;&nbsp;
-																	<button class="btnSearch" id="postcodify_search_button">검색</button><br />
-																</td>
-															</tr>
-															<tr>
-																<td></td>
-																<td>
-																	<input type="text" id="address1" class="postcodify_address recipient address" value=""> &nbsp;&nbsp;
-																	<input type="text" id="address2" class="postcodify_details recipient address" value="" /><br />
-																</td>
-															</tr>
-														</table>
-													
+														<h4 style="margin-bottom:20px;">
+															<strong class="subTitle" >배송지 정보</strong>
+														</h4>
 														
+														<div>
+															<strong class="subTitle pen" style="margin-right:40px;">배송지 선택</strong>
+															<div class="checks" style="display: inline-block;">
+																<input id="r1" type="radio" name="rr" checked="checked" >
+																<label class="deliveryLabel" for="r1">기본배송지</label> &nbsp;&nbsp;
+																<input id="r2" type="radio" name="rr">
+																<label class="deliveryLabel" for="r2">신규배송지</label>
+															</div>
+														</div><br>
+														
+														<script>
+														$(function(){
+															$("#r1").on("click", function(){
+																$(".deliverySpot1").css("display","");
+																$(".deliverySpot2").css("display","none");
+																$("#flag").val(1);
+															});
+															$("#r2").on("click", function(){
+																$(".deliverySpot1").css("display","none");
+																$(".deliverySpot2").css("display","block");
+																$("#flag").val(2);
+															});
+														});	
+														</script>
+														
+														<div class="deliverySpot1">
+															<div style="width:70%; float:left;">
+																<p>성함 :: ${m.name}</p> 
+																<p>연락처 :: ${m.phone} (개인소득공제용)</p>
+																<p>배송지 주소 :: ${m.address}</p> 
+															</div >
+															<div style="width:30%;">
+																<span class="btnSearch"><a href="myInfo.do" style="color:white">개인정보 수정</a></span>
+															</div>
+														</div>
+														
+														<div class="deliverySpot2">
+															<input id="flag" type="hidden" name="flag" value="1"> <!-- 1:기본 2:신규 -->
+															<table class="deliveryTable">
+																<tr>
+																	<td width="20%;" class="pen" >수령인</td>
+																	<td width="80%;">
+																		<input type="text" class="recipient" name="recipient" style="width:100px;" placeholder="20자 이내 입력">
+																	</td>
+																</tr>
+																<tr>
+																	<td class="pen">연락처</td>
+																	<td>
+																		<input id="recipientPhone" type="hidden" name="recipientPhone"> 
+																		<input type="text" class="recipient phone" id="phone1" maxlength="3"> - 
+																		<input type="text" class="recipient phone" id="phone2" maxlength="4"> - 
+																		<input type="text" class="recipient phone" id="phone3" maxlength="4">
+																	</td>
+																</tr>
+																<tr>
+																	<td class="pen">배송지 주소</td>
+																	<td>
+																		<input type="text"  class="postcodify_postcode5 recipient address" value="" />&nbsp;&nbsp;
+																		<button type="button" class="btnSearch" id="postcodify_search_button">검색</button><br />
+																	</td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td>
+																		<input type="hidden" id="deliverySpot" name="deliverySpot">
+																		<input type="text" id="address1" class="postcodify_address recipient address" value=""> &nbsp;&nbsp;
+																		<input type="text" id="address2" class="postcodify_details recipient address" value="" /><br />
+																	</td>
+																</tr>
+															</table>
+														
+															
+														</div>
+														
+														<br><br>
+														<div>
+															<span class="memo">배송 메모</span> &nbsp;&nbsp;&nbsp;
+															<input type="text" id="payRequest" name="payRequest" style="width:300px;" placeholder="배송 시 요청사항을 적어주세요." >
+														</div>
 													</div>
 													
-													<br><br>
-													<div>
-														<span class="memo">배송 메모</span> &nbsp;&nbsp;&nbsp;
-														<input type="text" style="width:300px;" placeholder="배송 시 요청사항을 적어주세요." >
+													<div style="float:right; width:30%;">
+														<div class="orderTotal" >
+															<span id="totalCost" style="display:block;">결제금액</span>
+															<span class="orderCost">
+																<div class="order_total_amount" style="margin:0;"></div>
+																<span >&nbsp; 원</span>
+															</span>
+														</div>
+														
+														<div style="margin-top:70%;">								
+															<input type="checkbox" id="check">
+															<span class="pen subTitle" >동의하기</span>
+															<p>위 상품의 구매조건 확인 및 결제 동의	</p>					
+														</div><br>
+														<div>
+															
+														</div>
+														
 													</div>
 												</div>
-												
-												<div style="float:right; width:30%; ">
-													<div class="orderTotal" >
-														
-														<span style="display:block;">결재금액</span>
-														<div class="order_total_amount" style="margin:0;"></div>
-														<span >&nbsp; 원</span>
-														
-													</div>
-													<br>
-													<div>
-														<button type="button" onclick="return paymentConfirm();">결재해보리기</button>
-													</div>
+											
+												<div class="checkoutArae">
+													<button class="btnBack2" type="button" onclick="location.href='basketList.ba';">장바구니로</button>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+													
+													<button type="button"  id="paymentDone" class="cart_checkout" onclick="return paymentConfirm();">결제하기</button>
+													
 												</div>
-											</div>
+												
+											</form>
 											
-											<div>
-											
-												<input type="checkbox" id="check">
-												<span class="pen subTitle" >동의하기</span><br>
-												위 상품의 구매조건 확인 및 결제진행 동의
-											
-								
-											</div>
-											<span class="btnBack">장바구니로</span>
-		
-											
-											
-
 										</div>
 									</div>
 								</div>
@@ -241,6 +249,9 @@
 			priceAll();
 			
 			$("#postcodify_search_button").postcodifyPopUp();
+			
+			var IMP = window.IMP;
+			IMP.init('imp34384562');	
 		});
 		
 		// 총 결재금액 계산 함수
@@ -249,16 +260,12 @@
 			var sum = parseInt(0);
 			
 		    $(".price2").each(function(){
-		    	
 		    	var p = parseInt($(this).parent().children().eq(0).val()); // hidden된 각 상품의 합계금액
-		    	
 		        sum = sum + p; 
-		        
 		    });
 			
 			$(".order_total_amount").text(addComma(sum));
 			$(".order_total_amount").css("font-size","30px");
-
 		}
 		
 		// 숫자형 천 단위 처리
@@ -267,25 +274,66 @@
 		  return num.toString().replace(regexp, ',');
 		}
 	
-	
-		
-		
-		// 결재 확인
+
+		// 결재 확인 
 		function paymentConfirm(){
 			
-	
 			if(!$("input:checkbox[id='check']").is(":checked")){
 				alert('결제 동의에 체크해주세요.');
 				return false
 			}
 			
-			if(confirm("이대로 결재를 진행하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/paymentPage.pa';
+			if(confirm("이대로 결제를 진행하시겠습니까?")){
+				
+				$("#recipientPhone").val($('#phone1').val()+'-'+$('#phone2').val()+'-'+$('#phone3').val()); // 전화번호
+				$("#deliverySpot").val($('#address1').val()+' '+$('#address2').val()); // 주소
+				
+				if($("#payRequest").val() == null){
+					$("#payRequest").val("없음");
+				}
+				
+				requestImport(); // 아임포트api 호출
+				return false;
 			}
-			return false;
+		}
+		
+		// 아임포트api
+		function requestImport(){
+
+			IMP.request_pay({
+			    pg : 'kakaopay', // version 1.1.0부터 지원.
+			    pay_method : 'vbank',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문하기 테스트',
+			    amount : $(".order_total_amount").text(),
+			    buyer_email : "${m.email}",
+			    buyer_name : "${m.name}",
+			    buyer_tel : "${m.phone}",
+			    buyer_addr : "${m.address}",
+			    buyer_postcode : '123-456',
+			    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+			}, function(rsp) {
+				
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        //msg += '고유ID : ' + rsp.imp_uid;
+			        //msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        //msg += '결제 금액 : ' + rsp.paid_amount;
+			        //msg += '카드 승인번호 : ' + rsp.apply_num;
+			        alert(msg);
+			        $("#payForm").submit();
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        alert(msg);
+			    }
+			    
+			});
+			
 		}
 	</script>
 
 	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </body>
 </html>

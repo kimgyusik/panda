@@ -177,21 +177,61 @@
 		where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
-	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+	<select id="HotList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 20
+			select * 
+			from HotTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
 	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where rownum = 1
+			select * 
+			from NewTopList 
+			where rownum = 1
+		]]>
+	</select>
+	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from NewTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 20
+		]]>
+	</select>
+	<select id="NewList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from NewTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 20
 		]]>
 	</select>
 	
+	<select id="random" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from  (select * 
+	        from prettypList
+	        order by dbms_random.value)
+	 		where rownum <= 10
+ 		]]>
+	</select>
+	
+	
+
+	<update id="increasePpurchase" parameterType="Payment" >
+		update product
+		set p_purchase = p_purchase + #{count}
+		where p_id = (
+		select p_id
+		from product_option
+		where o_no = ${oNo}
+		)
+	</update>
+	<update id="increaseOpurchase" parameterType="Payment" >
+		update product_option
+		set o_purchase = o_purchase + #{count}
+		where o_no = #{oNo}
+	</update>
 	<select id="oCount" parameterType="_int">
 		select count(*)
 		from product_option
@@ -202,7 +242,10 @@
 		update product
 		set p_status = 'N'
 		where p_id=#{pId}
+
 	</update>
+	
+
 
 
 </mapper>

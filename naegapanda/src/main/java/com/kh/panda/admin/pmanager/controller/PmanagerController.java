@@ -25,8 +25,9 @@ public class PmanagerController {
 	@Autowired
 	private PmanagerService pmService;
 	
-	@Autowired
-	private VmessageService vmService;
+	/*
+	 * @Autowired private VmessageService vmService;
+	 */
 	
 	
 	
@@ -42,19 +43,26 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmlist.do")
-	public ModelAndView selectList(ModelAndView mv, String cName2, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage ) {
+	public ModelAndView selectList(ModelAndView mv, String cName2, 
+								   @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
+								   @RequestParam(value="currentPage2", required=false, defaultValue="1") int currentPage2) {
 		
-		int listCount = pmService.getListCount();
+		int listCount1 = pmService.getListCount1(cName2);
+		int listCount2 = pmService.getListCount2(cName2);
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo3(currentPage, listCount1);
+		PageInfo pi2 = Pagination.getPageInfo4(currentPage2, listCount2);
 		
 		ArrayList<Pmanager> pmlist = pmService.selectList(pi, cName2);
-		ArrayList<Pmanager> pmxlist = pmService.selectxList(pi, cName2);
+		ArrayList<Pmanager> pmxlist = pmService.selectxList(pi2, cName2);
+		
+		//System.out.println(pi);
+		System.out.println(pi2);
 		
 		//System.out.println("판매관리 리스트"+pmlist);
-		//System.out.println("판매중지 리스트"+pmxlist);
+		System.out.println("판매중지 리스트"+pmxlist);
 		
-		mv.addObject("pi", pi).addObject("pmlist", pmlist).addObject("pmxlist", pmxlist).setViewName("admin/pmanager/pmListView");
+		mv.addObject("pi", pi).addObject("pi2", pi2).addObject("pmlist", pmlist).addObject("pmxlist", pmxlist).setViewName("admin/pmanager/pmListView");
 		
 		return mv;
 		
@@ -63,16 +71,16 @@ public class PmanagerController {
 	@RequestMapping("pmViolateList.do")
 	public ModelAndView pmViolateList(ModelAndView mv, int pId, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
 		
-		int listCount = pmService.getListCount();
+		int listCount3 = pmService.getListCount3();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo5(currentPage, listCount3);
+		
+		//System.out.println(pi);
 		
 		ArrayList <Pmanager> pmVlist = pmService.pmViolateList(pi, pId);
 		
-		System.out.println("피엠븨리스트" + pmVlist);
+		//System.out.println("피엠븨리스트" + pmVlist);
 		
-
-
 		
 		mv.addObject("pi", pi).addObject("pmVlist", pmVlist).addObject("pId", pId).setViewName("admin/pmanager/pmViolateListView");
 		
@@ -80,21 +88,21 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmstop.do")
-	public String pmStop(int pId, int vNo, int sNo, HttpServletRequest request) {
+	public String pmStop(int pId/*, int vNo , int sNo, HttpServletRequest request */) {
 		
 		int result = pmService.pmStop(pId);
 		
-		Vmessage vm = new Vmessage();
+		/*
+		 * Vmessage vm = new Vmessage();
+		 * 
+		 * vm.setvNo(vNo); vm.setpId(pId); vm.setsNo(sNo);
+		 * 
+		 * int result2 = vmService.vmessageStautsY(vm);
+		 */
 		
-		vm.setvNo(vNo);
-		vm.setpId(pId);
-		vm.setsNo(sNo);
-		
-		int result2 = vmService.vmessageStautsY(vm);
 		
 		
-		
-		//System.out.println("판매정지"+result);
+		System.out.println("판매정지"+result);
 		
 		if(result > 0) {
 			return "redirect:categoryView.do";
@@ -104,19 +112,19 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmrestart.do")
-	public String pmrestart(int pId, int sNo, int vNo, HttpServletRequest request) {
+	public String pmrestart(int pId/*, int sNo , int vNo, HttpServletRequest request */) {
 		
 		int result = pmService.pmrestart(pId);
 		
 		//System.out.println("판매재개"+result);
 		
-		Vmessage vm = new Vmessage();
-		
-		vm.setvNo(vNo);
-		vm.setpId(pId);
-		vm.setsNo(sNo);
-		
-		int result2 = vmService.vmessageStautsN(vm);
+		/*
+		 * Vmessage vm = new Vmessage();
+		 * 
+		 * vm.setvNo(vNo); vm.setpId(pId); vm.setsNo(sNo);
+		 * 
+		 * int result2 = vmService.vmessageStautsN(vm);
+		 */
 		
 		
 		

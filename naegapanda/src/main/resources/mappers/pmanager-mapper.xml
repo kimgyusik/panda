@@ -24,19 +24,37 @@
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from pmlist
+		where p_ok='N'
+	</select>
+
+	<select id="getListCount1" resultType="_int">
+		select count(*)
+		from pmlist
+		where p_ok='Y' and c_name2=#{cName2}
+	</select>
+	
+	<select id="getListCount2" resultType="_int">
+		select count(*)
+		from pmlist
 		where p_ok='Y' and p_status='N'
+	</select>
+	
+	<select id="getListCount3" resultType="_int">
+		select count(*)
+		from pmvlist
 	</select>
 	
 	<select id="selectList" resultMap="pmanagerResultSet">
 		select *
 		from pmlist
-		where c_name2=#{cName2} and p_ok='Y' and p_status='N'
+		where c_name2=#{cName2} and p_ok='Y' and p_status='Y'
+		order by p_violate desc
 	</select>
 	
 	<select id="selectxList" resultMap="pmanagerResultSet">
 		select *
 		from pmlist
-		where c_name2=#{cName2} and p_status='Y'
+		where c_name2=#{cName2} and p_status='N'
 	</select>
 	
 	<select id="pmViolateList" resultMap="pmanagerResultSet">
@@ -47,13 +65,13 @@
 	
 	<update id="pmStop" parameterType="_int">
 		update pmlist
-		set p_status='Y'
+		set p_status='N'
 		where p_id=#{pId}
 	</update>
 	
 	<update id="pmrestart" parameterType="_int">
 		update pmlist
-		set p_status='N'
+		set p_status='Y'
 		where p_id=#{pId}
 	</update>
 	

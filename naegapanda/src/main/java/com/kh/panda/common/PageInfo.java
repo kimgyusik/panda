@@ -3,8 +3,8 @@ package com.kh.panda.common;
 public class PageInfo {
 	
 	private int currentPage;
-	private int listCount;
 	private int pageLimit;
+	private int listCount;
 	private int maxPage;
 	private int startPage;
 	private int endPage;
@@ -12,19 +12,22 @@ public class PageInfo {
 	
 	public PageInfo() {
 		
-	}
+	}	
+	
 
-	public PageInfo(int currentPage, int listCount, int pageLimit, int maxPage, int startPage, int endPage,
+	public PageInfo(int currentPage, int pageLimit, int listCount, int maxPage, int startPage, int endPage,
 			int boardLimit) {
 		super();
 		this.currentPage = currentPage;
-		this.listCount = listCount;
 		this.pageLimit = pageLimit;
+		this.listCount = listCount;
 		this.maxPage = maxPage;
 		this.startPage = startPage;
 		this.endPage = endPage;
 		this.boardLimit = boardLimit;
 	}
+
+
 
 	public int getCurrentPage() {
 		return currentPage;
@@ -82,13 +85,14 @@ public class PageInfo {
 		this.boardLimit = boardLimit;
 	}
 
+
 	@Override
 	public String toString() {
-		return "PageInfo [currentPage=" + currentPage + ", listCount=" + listCount + ", pageLimit=" + pageLimit
+		return "PageInfo [currentPage=" + currentPage + ", pageLimit=" + pageLimit + ", listCount=" + listCount
 				+ ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage=" + endPage + ", boardLimit="
 				+ boardLimit + "]";
 	}
 	
-	
+
 	
 }
