@@ -2001,7 +2001,7 @@ section
 .popular_categories_nav i
 {
 	line-height: 36px;
-	color: #e5e5e5;
+	color: gray;
 	font-size: 18px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -2845,7 +2845,7 @@ section
 .trends_nav i
 {
 	line-height: 36px;
-	color: #e5e5e5;
+	color: gray;
 	font-size: 18px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -2884,15 +2884,16 @@ section
 }
 .trends_content
 {
-	margin-top: 24px;
+	margin-top: 10px;
 }
 .trends_name
 {
-	float: left;
+	height:60px;
+	text-align: center;
 }
 .trends_name a
 {
-	font-size: 16px;
+	font-size: 14px ;
 	color: #000000;
 }
 .trends_name a:hover
@@ -2900,10 +2901,11 @@ section
 	color: #0e8ce4;
 }
 .trends_price
-{
-	font-size: 16px;
+{	
+	margin-bottom:5px;
+	font-size: 15px;
 	font-weight: 500;
-	float: right;
+	text-align: center;
 }
 .trends_fav
 {
@@ -3635,4 +3637,7 @@ section
 .logos_list li:last-child
 {
 	margin-right: 0px;
+}
+.imgHover:hover{
+	cursor: pointer;
 }

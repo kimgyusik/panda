@@ -497,7 +497,9 @@ function getReplyList(rId, mNo){
 				    newDate = yr + '.' + month + '.' + day + '&nbsp;&nbsp;' + hours + ':' + minutes;
 				   
 					$tr.append(
-							"<td>"+value.mId +":"	
+							"<td style='width:20%; text-align:right;'>" + value.mId 	
+							+ "<td style='width:2%; '>"
+							+ "<div style='height:15px; border: 2px solid #ced3e4;'>"
 							+ "<td >"+value.rrContents
 							+ "<span class='reviewGray dated'>&nbsp;&nbsp;&nbsp;("+newDate+")"
 					);

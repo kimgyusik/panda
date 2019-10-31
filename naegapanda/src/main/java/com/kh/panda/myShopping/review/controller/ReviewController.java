@@ -315,14 +315,18 @@ public class ReviewController {
 			list.add(r);
 			list.add(r2);
 			list.add(r3);
-		}else {
-			Reply r = new Reply(1, 3, "테스트1", "마저마저", d, "N", 2);
+		}else if(rId ==2){
+			Reply r = new Reply(1, 3, "테스트1", "마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저", d, "N", 2);
 			Reply r2 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
 			Reply r3 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
+			Reply r4 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
+			Reply r5 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
 			
 			list.add(r);
 			list.add(r2);
 			list.add(r3);
+			list.add(r4);
+			list.add(r5);
 		}
 		
 		
