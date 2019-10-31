@@ -20,6 +20,9 @@ import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
 import com.kh.panda.member.model.service.MemberService;
+import com.kh.panda.member.model.vo.Member;
+import com.kh.panda.myShopping.ggim.model.service.GgimService;
+import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
 import com.kh.panda.myShopping.review.model.vo.Review;
 import com.kh.panda.product.model.service.ProductService;
@@ -43,6 +46,9 @@ public class ProductController {
 	
 	@Autowired
 	private ReviewService reService;
+	
+	@Autowired
+	private GgimService ggService;
 	
 	
 	@RequestMapping("test11.do")
@@ -127,7 +133,9 @@ public class ProductController {
 		
 		ArrayList<Product> pList = pService.selectpList(pi, category);
 		
-		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).setViewName("product/productListView");
+		ArrayList<Ggim> gglist = getGgimList(session);
+		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
 		
 		return mv;
 	}
@@ -145,8 +153,21 @@ public class ProductController {
 		System.out.println(category);
 		System.out.println(pList);
 		
-		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).setViewName("product/productListView");
+		ArrayList<Ggim> gglist = getGgimList(session);
+		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
 		
 		return mv;
+	}
+	
+	// 로그인회원에 대한 찜리스트 반환
+	public ArrayList<Ggim> getGgimList(HttpSession session){
+		
+		ArrayList<Ggim> gglist = new ArrayList<>();
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		if(m != null) {gglist = ggService.selectGgimList(m.getmNo());}
+		
+		return gglist;
 	}
 }

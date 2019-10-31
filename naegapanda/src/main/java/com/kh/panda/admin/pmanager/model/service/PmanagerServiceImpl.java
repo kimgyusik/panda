@@ -20,6 +20,21 @@ public class PmanagerServiceImpl implements PmanagerService{
 	public int getListCount() {
 		return pmDao.getListCount();
 	}
+	@Override
+	public int getListCount1(String cName2) {
+		return pmDao.getListCount1(cName2);
+	}
+	
+	@Override
+	public int getListCount2(String cName2) {
+		return pmDao.getListCount2(cName2);
+	}
+
+	
+	@Override
+	public int getListCount3() {
+		return pmDao.getListCount3();
+	}
 
 	@Override
 	public ArrayList<Pmanager> selectList(PageInfo pi, String cName2) {
@@ -52,14 +67,16 @@ public class PmanagerServiceImpl implements PmanagerService{
 	}
 
 	@Override
-	public ArrayList<Pmanager> selectxList(PageInfo pi, String cName2) {
-		return pmDao.selectxList(pi, cName2);
+	public ArrayList<Pmanager> selectxList(PageInfo pi2, String cName2) {
+		return pmDao.selectxList(pi2, cName2);
 	}
 
 	@Override
 	public int pmrestart(int pId) {
 		return pmDao.pmrestart(pId);
 	}
+
+
 	
 
 

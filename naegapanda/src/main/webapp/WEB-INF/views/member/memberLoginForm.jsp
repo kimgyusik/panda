@@ -169,13 +169,21 @@
 
 		
 <script>
-	$("input:radio[name=user]").click(function(){
+/* 	$("input:radio[name=user]").click(function(){
 			if($("input[name=radio]:checked").val() == "user"){
 			console.log($('input:radio[name=user]').val());
 				
 		}
-	});
+	}); */
 
+	
+ 	$(function(){
+ 		if(${!empty msg}){
+ 			alert("${msg}");
+ 		}
+ 		
+ 	});
+ 	
 
 </script>
 			<table id="loginTable" style="text-algin:center">
@@ -205,11 +213,16 @@
 		<script src="script.js"></script>
     <script src="resources/js/memberLoginForm.js"></script>
     <script>
-    	$(document).ready(function(){
+     	$(document).ready(function(){
     		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
-    	});  	
+    	});   	
     	
     </script>
+   <!--   <script>
+    	$(document).ready(function(){
+    		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+    	});    	    	
+    </script> -->
 </form> 
 </body>
 </html>

@@ -13,10 +13,13 @@ public interface PmanagerService {
 	
 	// 리스트 총 갯수 조회
 	int getListCount();
+	int getListCount1(String cName2);
+	int getListCount2(String cName2);
+	int getListCount3();
 	// 리스트 조회
 	ArrayList<Pmanager> selectList(PageInfo pi, String cName2);
 	// 리스트(판매중지) 조회
-	ArrayList<Pmanager> selectxList(PageInfo pi, String cName2);
+	ArrayList<Pmanager> selectxList(PageInfo pi2, String cName2);
 	
 	// 신고 리스트 조회
 	ArrayList<Pmanager> pmViolateList(PageInfo pi, int pId);

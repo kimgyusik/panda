@@ -21,6 +21,18 @@ public class PmanagerDao {
 		return sqlSession.selectOne("pmanagerMapper.getListCount");
 	}
 	
+	public int getListCount1(String cName2) {
+		return sqlSession.selectOne("pmanagerMapper.getListCount1", cName2);
+	}
+	
+	public int getListCount2(String cName2) {
+		return sqlSession.selectOne("pmanagerMapper.getListCount2", cName2);
+	}
+	
+	public int getListCount3() {
+		return sqlSession.selectOne("pmanagerMapper.getListCount");
+	}
+	
 	public ArrayList<Pmanager> selectList(PageInfo pi, String cName2){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
@@ -59,10 +71,10 @@ public class PmanagerDao {
 		return sqlSession.update("pmanagerMapper.approval", pId);
 	}
 	
-	public ArrayList<Pmanager> selectxList(PageInfo pi, String cName2){
+	public ArrayList<Pmanager> selectxList(PageInfo pi2, String cName2){
 		
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		int offset = (pi2.getCurrentPage() - 1) * pi2.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi2.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("pmanagerMapper.selectxList", cName2, rowBounds);
 	}

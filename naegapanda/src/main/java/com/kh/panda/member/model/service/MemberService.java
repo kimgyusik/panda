@@ -32,9 +32,8 @@ public interface MemberService {
 
 	
 	int pwdUpdate(Member mp);
-	
 
-	
+
 	
 	
 	/*

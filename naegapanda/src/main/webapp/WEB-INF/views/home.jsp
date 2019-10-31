@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
 <meta charset="UTF-8">
 <title>PANDA</title>
 <style>
@@ -315,7 +317,25 @@
 														<button class="product_cart_button">Add to Cart</button>
 													</div>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
 												
 											</div>
 										</div>
@@ -613,10 +633,10 @@
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
 										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_title">MacBook Air</div>
+										<div class="banner_2_text"><h4>다시 한 번 가볍게 앞서다.<br> Retina 디스플레이 찬란한 등장.<br> Touch ID 당신의 지문이 비밀번호.</h4></div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -637,17 +657,17 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_category">뺴뺴로</div>
+										<div class="banner_2_title">Happy Sweet day!</div>
+										<div class="banner_2_text">11월 11일 빼빼로 데이 <br> 뺴빼로 할인 최대 31%</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/banner_2_product.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/pepelo.png" alt=""></div>
 									</div>
 								</div>
 							</div>
@@ -662,7 +682,7 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
+										<div class="banner_2_category">output</div>
 										<div class="banner_2_title">MacBook Air 13</div>
 										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
@@ -774,11 +794,26 @@
 															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
 														</div>
 													</div>
+												
 													<c:if test="${!empty loginUser }">
-														<input type="hidden" value="${p.pId}">
-														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
-														
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
 													</c:if>
+													
 													<ul class="product_marks">
 														<li class="product_mark product_discount">-25%</li>
 														<li class="product_mark product_new">new</li>
@@ -787,32 +822,7 @@
 											</div>
 										</c:forEach>
 										
-										<script>
-											$(function(){
-												
-												var favPid = $(".favPid");
-												console.log(favPid);
-												
-												$(".favPid").off().on("click", function(){
-													var pId = $(this).prev().val();
-													alert(pId);
-													$.ajax({
-														url:"changeGgim.gg",
-														data:{pId:pId},
-														type:"post",
-														success:function(data){
-															
-														
-																alert("됨");
-						
-														},
-														error:function(){
-															console.log("서버와의 통신 실패");
-														}
-													});
-												});
-											});
-										</script>
+										
 
 									</div>
 									<div class="arrivals_slider_dots_cover"></div>
@@ -1185,6 +1195,70 @@
 </div>
 
 <c:import url="common/footer.jsp"/>
+<script>
+	$(function(){
+		
+		// 찜 토글 처리
+		$(".favPid").off().on("click", function(){
+			
+			var flag = 0;
+			if($(this).hasClass("active") == true) {
+				flag = 1; // class 변경 처리가 더 빠르므로, 이 분기가 찜 추가하는 케이스임
+			}else{
+				flag = 0; // 찜 삭제
+			}
+			var pId = $(this).parent().find('.pId').val();
+
+			$.ajax({
+				url:"changeGgim.gg",
+				data:{pId:pId, flag:flag},
+				type:"post",
+				success:function(data){
+					getGgim();
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			});
+		});
+	});
+	
+	// 메인메뉴 장바구니 비동기 처리
+	function getCart(){
+		$.ajax({
+			url:"currentBasket.ba",
+			dataType:"json",
+			success:function(data){
+				if(data[0] == 0){
+					$('.cart_count').children().first().text(data[0]);
+					$('.cart_price').children().first().text("장바구니가 비었어요.");
+				}else{
+					$('.cart_count').children().first().text(data[0]);
+					$('.cart_price').children().first().text(data[1]+"원");
+				}
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
+	
+	// 메인메뉴 찜하기 비동기 처리
+	function getGgim(){
+		$.ajax({
+			url:"currentGgim.gg",
+			dataType:"json",
+			success:function(data){
+					$('.wishlist_count').children().first().text(data);
+					$('#'+ item.id).css("display","none");
+
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
+</script>
 
 
 </body>

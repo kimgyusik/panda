@@ -77,13 +77,7 @@ public class HomeController {
 			ArrayList<Product> New6List = pService.New6List();
 			ArrayList<Product> Newest = pService.Newest();
 			
-			mv.addObject("Newest",Newest).addObject("NewTopList",NewTopList).addObject("New1List",New1List).addObject("New2List",New2List).addObject("New3List",New3List).addObject("New4List",New4List).addObject("New5List",New5List).addObject("New6List",New6List);
-
-			ArrayList<Product> random = pService.random();
-			
-			mv.addObject("random",random);
-			
-			mv.setViewName("home");
+			// 로그인회원에 대한 찜리스트 반환
 			ArrayList<Ggim> gglist = new ArrayList<>();
 			
 			Member m = (Member)session.getAttribute("loginUser");
@@ -93,8 +87,17 @@ public class HomeController {
 			}
 
 			
+
+			mv.addObject("Newest",Newest).addObject("NewTopList",NewTopList).addObject("gglist",gglist).addObject("New1List",New1List).addObject("New2List",New2List).addObject("New3List",New3List).addObject("New4List",New4List).addObject("New5List",New5List).addObject("New6List",New6List);
+
+			ArrayList<Product> random = pService.random();
 			
-			mv.addObject("gglist",gglist).setViewName("home");
+			mv.addObject("random",random);
+			
+			mv.setViewName("home");
+			
+			
+
 			
 			return mv;
 	}

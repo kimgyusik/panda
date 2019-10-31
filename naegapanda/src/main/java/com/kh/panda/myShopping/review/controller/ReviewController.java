@@ -98,18 +98,6 @@ public class ReviewController {
 		
 	}
 	
-//	상품 리뷰 mv로 반환하는 방식
-//	@RequestMapping("prodReviewList.in")
-//	public ModelAndView selectProdReviewList(ModelAndView mv, HttpSession session, int pId) {
-//		
-//		ArrayList<Inquiry> list = reService.selectProdReviewList(pId);
-//		
-//		mv.addObject("list", list);
-//		mv.setViewName("상품리뷰뷰");
-//		
-//		return mv;
-//	}
-	
 	
 	// 리뷰 상세 조회(디컴일듯)
 	@RequestMapping("selectReview.re")
@@ -169,12 +157,6 @@ public class ReviewController {
 		return mv;
 	}
 	
-	
-	// 리뷰 추가폼 뷰 호출(디컴)
-	@RequestMapping("addReviewForm.re")
-	public String addReviewForm() {
-		return "myShopping/review/addReviewForm";
-	}
 	
 	// 리뷰 추가 처리
 	@RequestMapping("addReview.re")

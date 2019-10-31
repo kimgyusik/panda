@@ -17,9 +17,14 @@ font-size: 13px;
 font-style: bold;
 color:black;
 }
+.categoryMenu{
+	color:#2e263c;
+	font-weight: bold;
+}
 .categoryMenu:hover{
 cursor: pointer;
-width:140px;
+
+color: #0e8ce4;
 }
 table a{
 	color: #327bfa !important;
@@ -68,7 +73,7 @@ border-bottom: 2px solid #edeeef;
 }
 .tabmenu ul li{
 display:  inline-block;
-width:160px; 
+width:170px; 
 float:left;  
 text-align:center; 
 background :withe;
@@ -87,6 +92,13 @@ line-height:40px;
 color: #0e8ce4;
 font-style: bold;
 border-bottom-color: #0e8ce4;
+}
+.ggimTd1{
+	width:250px;
+}
+.ggimTd2{
+	width:600px;
+	text-align: left !important;
 }
 .cancle{
 width:50px;
