@@ -36,7 +36,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-10 offset-lg-1">
-									<div class="cart_container" style="width:120%;">
+									<div class="cart_container" style="width:115%;">
 										<div class="cart_title subTitle">찜한 상품</div>
 										
 										<c:if test="${!empty list}">
