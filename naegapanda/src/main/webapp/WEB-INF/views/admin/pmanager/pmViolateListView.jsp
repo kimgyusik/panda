@@ -133,11 +133,11 @@
 									<c:choose>
 										<c:when test="${ pmVlist.get(0).pStatus eq 'Y' }">
 											상품이 판매중입니다.<br>
-											<button onclick="location.href='pmstop.do?pId=${pId}';" class="btn">판매정지</button>
+											<button onclick="location.href='pmstop.do?pId=${pId}&sNo=${pmVlist.get(0).sNo}&vNo=${pmVlist.get(0).vNo}';" class="btn">판매정지</button>
 										</c:when>
 										<c:when test="${ pmVlist.get(0).pStatus eq 'N' }">
 											상품이 판매정지 상태입니다.<br>
-											<button onclick="location.href='pmrestart.do?pId=${pId}';" class="btn">판매재개</button>
+											<button onclick="location.href='pmrestart.do?pId=${pId}&sNo=${pmVlist.get(0).sNo}&vNo=${pmVlist.get(0).vNo}';" class="btn">판매재개</button>
 										</c:when>
 									</c:choose>
 									<button type="button" class="btn" onclick="location.href='categoryView.do';" class="btn">목록으로</button>
