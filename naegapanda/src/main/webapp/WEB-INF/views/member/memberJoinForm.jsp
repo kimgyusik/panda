@@ -73,7 +73,7 @@
 						<input type="radio" name="gender" value="F"> 여
 			</div>
 			<div class="form-group col-md-6">
-				<input type="date" class="form-control" name="birthDate" max="9999-12-31" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
+				<input type="date" class="form-control" name="birthDate" max="today" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="Email" class="form-control" name="email" placeholder="Email" required>
