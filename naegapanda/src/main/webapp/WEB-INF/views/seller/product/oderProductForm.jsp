@@ -31,6 +31,7 @@
 				</div>
 				<div class="col-lg-9">
 					<div class="shop_content">
+					
 						<table>
 							<tr>
 								<th>사진</th>
@@ -44,12 +45,73 @@
 							<c:if test="${ empty oList }">
 								<tr><td>주문된 상품이 없습니다.</td></tr>
 							</c:if>
+							
+							<c:if test="${!empty oList}">
+								<c:forEach items="${ oList }" var="o">
+								<tr>
+									
+									<td><img src="resources/product_uploadFiles/${o.paChangeName}" style="width:100px; height:100px;"></td> 
+									<td>${ o.oName }</td>
+									<td>${ o.pName }</td>
+									<td>${ o.count }</td>
+									<td>${ o.oPrice }</td>
+									<td>${ o.payDate }</td>
+									<td><select>
+										<option>${ o.deliveryStatus }</option>
+										<option>배송중</option>
+									</select></td>
+									
+								</tr>
+								</c:forEach>
+							</c:if>
+							
+							<tr align="center" height="20">
+							<td colspan="6">
+								<!-- 이전 -->
+								<c:if test="${pi.currentPage eq 1}">
+									[이전]
+								</c:if>
+								<c:if test="${pi.currentPage ne 1}">
+									<c:url value="sProduct.do" var="before">
+										<c:param name="currentPage" value="${pi.currentPage -1 }"/>
+									</c:url>
+									<a href="${before }">이전</a>
+								</c:if>
+								
+								<!-- 페이지 -->
+								<c:forEach begin="${pi.startPage }" end="${pi.endPage }" var="p">
+									<c:if test="${pi.currentPage eq p }">
+										<font color="red" size="4">[${p }]</font>
+									</c:if>
+									<c:if test="${pi.currentPage ne p }">
+										<font color="black" size="4">
+											<c:url value="sProduct.do" var="page">
+												<c:param name="currentPage" value="${p }"/>
+											</c:url>
+											<a href="${page }">${p }</a>
+										</font>
+									</c:if>
+								</c:forEach>
+								
+								<!-- 다음 -->
+								<c:if test="${pi.currentPage eq pi.maxPage}">
+									[다음]
+								</c:if>
+								<c:if test="${pi.currentPage ne pi.maxPage}">
+									<c:url value="sProduct.do" var="next">
+										<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+									</c:url>
+									<a href="${next }">다음</a>
+								</c:if>
+							
+							</td>
+						</tr>
 						</table>
-				
-				
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	
 	<c:import url="../../common/footer.jsp"/>
 

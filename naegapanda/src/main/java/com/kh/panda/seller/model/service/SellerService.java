@@ -59,7 +59,10 @@ public interface SellerService {
 	int oListCount(int sNo);
 
 	ArrayList<Payment> selectoList(PageInfo pi, int sNo); 
-	int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList); 
+	
+	int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
+
+	
 
 	
 	
