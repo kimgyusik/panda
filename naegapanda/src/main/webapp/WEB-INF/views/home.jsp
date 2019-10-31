@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
 <meta charset="UTF-8">
 <title>PANDA</title>
 <style>
@@ -675,7 +677,7 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
+										<div class="banner_2_category">output</div>
 										<div class="banner_2_title">MacBook Air 13</div>
 										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
@@ -1243,6 +1245,8 @@
 			dataType:"json",
 			success:function(data){
 					$('.wishlist_count').children().first().text(data);
+					$('#'+ item.id).css("display","none");
+
 			},
 			error:function(){
 				console.log("ajax 통신 실패");

@@ -7,6 +7,29 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(function(){
+		if(${msg ne null}){
+			alert('${msg}');
+		};
+		
+		if($("#pwForm").submit(function(){
+			if($("#pw").val() !== $("#pw2").val()){
+				alert("비밀번호가 다릅니다.");
+				$("#pw").val("").focus();
+				$("#pw2").val("");
+				return false;
+			}else if ($("#pw").val().length < 8) {
+				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+				$("#pw").val("").focus();
+				return false;
+			}else if($.trim($("#pw").val()) !== $("#pw").val()){
+				alert("공백은 입력이 불가능합니다.");
+				return false;
+			}
+		}));
+	})
+</script>
 </head>
 <body>
 	
@@ -111,6 +134,9 @@
 					});
 			</script>
 				
+				
+			
+				
 		
 				<tr>
 					<td colspan="2" align="center">
@@ -118,7 +144,7 @@
 						<c:url var="mdelete" value="mdelete.do">
 							<c:param name="id" value="${ loginUser.id }"/>
 						</c:url>
-						<button type="button" onclick="location.href='change.do';">비밀번호 변경</button> 
+						<button type="button" onclick="location.href='change.do';">비밀번호 변경</button>
 						<button type="button" onclick="location.href='${mdelete}';">탈퇴하기</button> 
 						<button type="reset">취소하기</button>
 					</td>

@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,30 +32,30 @@
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
 			<h2 class="home_title">
 				<c:if test="${category eq 1000}">ALL PRODUCTS</c:if>
-				<c:if test="${category eq 1001}">½ÄÇ°</c:if>
-				<c:if test="${category eq 1002}">ÀÇ·ù/ÀâÈ­</c:if>
-				<c:if test="${category eq 1003}">°¡±¸/ÀÎÅ×¸®¾î</c:if>
-				<c:if test="${category eq 1004}">µğÁöÅĞ/°¡Àü/ÄÄÇ»ÅÍ</c:if>
-				<c:if test="${category eq 1005}">Ãë¹Ì/¾Ö¿Ïµ¿¹°</c:if>
-				<c:if test="${category eq 1006}">»ıÈ°/°Ç°­/ºäÆ¼</c:if>
+				<c:if test="${category eq 1001}">ì‹í’ˆ</c:if>
+				<c:if test="${category eq 1002}">ì˜ë¥˜/ì¡í™”</c:if>
+				<c:if test="${category eq 1003}">ê°€êµ¬/ì¸í…Œë¦¬ì–´</c:if>
+				<c:if test="${category eq 1004}">ë””ì§€í„¸/ê°€ì „/ì»´í“¨í„°</c:if>
+				<c:if test="${category eq 1005}">ì·¨ë¯¸/ì• ì™„ë™ë¬¼</c:if>
+				<c:if test="${category eq 1006}">ìƒí™œ/ê±´ê°•/ë·°í‹°</c:if>
 				<c:choose>
 		         	<c:when test = "${category<=9}">
-		            	½ÄÇ°
+		            	ì‹í’ˆ
 		         	</c:when>
 		         	<c:when test = "${category<=19}">
-		           		ÀÇ·ù/ÀâÈ­
+		           		ì˜ë¥˜/ì¡í™”
 		         	</c:when>
 		         	<c:when test = "${category<=28}">
-		           		°¡±¸/ÀÎÅ×¸®¾î
+		           		ê°€êµ¬/ì¸í…Œë¦¬ì–´
 		         	</c:when>
 		         	<c:when test = "${category<=39}">
-		           		µğÁöÅĞ/°¡Àü/ÄÄÇ»ÅÍ
+		           		ë””ì§€í„¸/ê°€ì „/ì»´í“¨í„°
 		         	</c:when>
 		         	<c:when test = "${category<=49}">
-		           		Ãë¹Ì/¾Ö¿Ïµ¿¹°
+		           		ì·¨ë¯¸/ì• ì™„ë™ë¬¼
 		         	</c:when>
 		         	<c:when test = "${category<=58}">
-		           		»ıÈ°/°Ç°­/ºäÆ¼
+		           		ìƒí™œ/ê±´ê°•/ë·°í‹°
 		         	</c:when>
 		      	</c:choose>
 			</h2>
@@ -74,12 +75,12 @@
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
 								<li><a href="pListView.do?category=1000">All Categories</a></li>
-								<li><a href="pListView.do?category=1001">½ÄÇ°</a></li>
-								<li><a href="pListView.do?category=1002">ÀÇ·ù/ÀâÈ­</a></li>
-								<li><a href="pListView.do?category=1003">°¡±¸/ÀÎÅ×¸®¾î</a></li>
-								<li><a href="pListView.do?category=1004">µğÁöÅĞ/°¡Àü/ÄÄÇ»ÅÍ</a></li>
-								<li><a href="pListView.do?category=1005">Ãë¹Ì/¾Ö¿Ïµ¿¹°</a></li>
-								<li><a href="pListView.do?category=1006">»ıÈ°/°Ç°­/ºäÆ¼</a></li>
+								<li><a href="pListView.do?category=1001">ì‹í’ˆ</a></li>
+								<li><a href="pListView.do?category=1002">ì˜ë¥˜/ì¡í™”</a></li>
+								<li><a href="pListView.do?category=1003">ê°€êµ¬/ì¸í…Œë¦¬ì–´</a></li>
+								<li><a href="pListView.do?category=1004">ë””ì§€í„¸/ê°€ì „/ì»´í“¨í„°</a></li>
+								<li><a href="pListView.do?category=1005">ì·¨ë¯¸/ì• ì™„ë™ë¬¼</a></li>
+								<li><a href="pListView.do?category=1006">ìƒí™œ/ê±´ê°•/ë·°í‹°</a></li>
 							</ul>
 						</div>
 						
@@ -122,7 +123,24 @@
 									<div class="product_price">${p.pPrice }</div>
 									<div class="product_name" height="30px"><div>${p.pName }</div></div>
 								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
+								<c:if test="${!empty loginUser }">
+									<input class="pId" type="hidden" value="${p.pId}">
+									<c:set var="doneLoop" value="false"/> 
+									<c:if test="${fn:length(gglist) == 0}">
+										<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+									</c:if>
+									<c:forEach items="${gglist}" var="g">
+										<c:if test="${not doneLoop}"> 
+											<c:if test = "${g.pId eq p.pId}">
+												<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+												<c:set var="doneLoop" value="true"/> 
+											</c:if>
+											<c:if test = "${g.pId ne p.pId}">
+												<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+											</c:if>
+										</c:if>
+									</c:forEach>
+								</c:if>
 								<ul class="product_marks">
 									<li class="product_mark product_discount">-25%</li>
 									<li class="product_mark product_new">new</li>
@@ -149,28 +167,28 @@
 							<tr align="center" height="20">
 								<td colspan="6">
 									<c:if test="${pi.currentPage eq 1}">
-										[Ã³À½À¸·Î]
+										[ì²˜ìŒìœ¼ë¡œ]
 									</c:if>
 									<c:if test="${pi.currentPage ne 1}">
 										<c:url value="pListView.do" var="first">
 											<c:param name="currentPage" value="1"/>
 											<c:param name="category" value="${category }"/>
 										</c:url>
-										<a href="${first }">[Ã³À½À¸·Î]</a>&nbsp;
+										<a href="${first }">[ì²˜ìŒìœ¼ë¡œ]</a>&nbsp;
 									</c:if>
-									<!-- ÀÌÀü -->
+									<!-- ì´ì „ -->
 									<c:if test="${pi.currentPage eq 1}">
-										[ÀÌÀü]
+										[ì´ì „]
 									</c:if>
 									<c:if test="${pi.currentPage ne 1}">
 										<c:url value="pListView.do" var="before">
 											<c:param name="currentPage" value="${pi.currentPage -1 }"/>
 											<c:param name="category" value="${category }"/>
 										</c:url>
-										<a href="${before }">[ÀÌÀü]</a>&nbsp;
+										<a href="${before }">[ì´ì „]</a>&nbsp;
 									</c:if>
 									
-									<!-- ÆäÀÌÁö -->
+									<!-- í˜ì´ì§€ -->
 									<c:forEach begin="${pi.startPage }" end="${pi.endPage }" var="p">
 										<c:if test="${pi.currentPage eq p }">
 											<font color="red" size="4">[${p }]</font>
@@ -186,26 +204,26 @@
 										</c:if>
 									</c:forEach>
 									
-									<!-- ´ÙÀ½ -->
+									<!-- ë‹¤ìŒ -->
 									<c:if test="${pi.currentPage eq pi.maxPage}">
-										[´ÙÀ½]
+										[ë‹¤ìŒ]
 									</c:if>
 									<c:if test="${pi.currentPage ne pi.maxPage}">
 										<c:url value="pListView.do" var="next">
 											<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 											<c:param name="category" value="${category }"/>
 										</c:url>
-										<a href="${next }">[´ÙÀ½]&nbsp;</a>
+										<a href="${next }">[ë‹¤ìŒ]&nbsp;</a>
 									</c:if>
 									<c:if test="${pi.currentPage eq pi.maxPage}">
-										[³¡À¸·Î]
+										[ëìœ¼ë¡œ]
 									</c:if>
 									<c:if test="${pi.currentPage ne pi.maxPage}">
 									<c:url value="pListView.do" var="last">
 										<c:param name="currentPage" value="${pi.maxPage }"/>
 										<c:param name="category" value="${category }"/>
 									</c:url>
-									<a href="${last }">[³¡À¸·Î]&nbsp;</a>
+									<a href="${last }">[ëìœ¼ë¡œ]&nbsp;</a>
 									</c:if>
 								</td>
 							</tr>
@@ -362,6 +380,50 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 </div>
+
+<script>
+	$(function(){
+		
+		// ì°œ í† ê¸€ ì²˜ë¦¬
+		$(".favPid").off().on("click", function(e){
+			e.stopImmediatePropagation();
+			var flag = 0;
+			if($(this).hasClass("active") == true) {
+				flag = 1; // class ë³€ê²½ ì²˜ë¦¬ê°€ ë” ë¹ ë¥´ë¯€ë¡œ, ì´ ë¶„ê¸°ê°€ ì°œ ì¶”ê°€í•˜ëŠ” ì¼€ì´ìŠ¤ì„
+			}else{
+				flag = 0; // ì°œ ì‚­ì œ
+			}
+			var pId = $(this).parent().find('.pId').val();
+
+			$.ajax({
+				url:"changeGgim.gg",
+				data:{pId:pId, flag:flag},
+				type:"post",
+				success:function(data){
+					getGgim();
+				},
+				error:function(){
+					console.log("ì„œë²„ì™€ì˜ í†µì‹  ì‹¤íŒ¨");
+				}
+			});
+		});
+	});
+	
+	// ë©”ì¸ë©”ë‰´ ì°œí•˜ê¸° ë¹„ë™ê¸° ì²˜ë¦¬
+	function getGgim(){
+		$.ajax({
+			url:"currentGgim.gg",
+			dataType:"json",
+			success:function(data){
+					$('.wishlist_count').children().first().text(data);
+					$('#'+ item.id).css("display","none");
+			},
+			error:function(){
+				console.log("ajax í†µì‹  ì‹¤íŒ¨");
+			}
+		});
+	}
+</script>
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/style/bootstrap4/popper.js"></script>
