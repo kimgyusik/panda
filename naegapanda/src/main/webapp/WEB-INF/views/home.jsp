@@ -626,10 +626,10 @@
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
 										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_title">MacBook Air</div>
+										<div class="banner_2_text"><h4>다시 한 번 가볍게 앞서다.<br> Retina 디스플레이 찬란한 등장.<br> Touch ID 당신의 지문이 비밀번호.</h4></div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -650,17 +650,17 @@
 							<div class="row fill_height">
 								<div class="col-lg-4 col-md-6 fill_height">
 									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+										<div class="banner_2_category">뺴뺴로</div>
+										<div class="banner_2_title">Happy Sweet day!</div>
+										<div class="banner_2_text">11월 11일 빼빼로 데이 <br> 뺴빼로 할인 최대 31%</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
+										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/banner_2_product.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/pepelo.png" alt=""></div>
 									</div>
 								</div>
 							</div>

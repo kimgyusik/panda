@@ -97,6 +97,7 @@
 										<c:if test="${ pi.currentPage ne 1 }">
 											<c:url value="pmViolateList.do" var="before">
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+												<c:param name="pId" value="${ pId }" />
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
 										</c:if>		
@@ -109,6 +110,7 @@
 											<c:if test="${ p ne pi.currentPage }">
 												<c:url value="pmViolateList.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
+													<c:param name="pId" value="${ pId }" />
 												</c:url>
 												<a href="${ page }">${ p }</a>
 											</c:if>
@@ -121,6 +123,7 @@
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
 											<c:url value="pmViolateList.do" var="next">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+												<c:param name="pId" value="${ pId }" />
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
@@ -128,11 +131,11 @@
 							
 								<div class="col-lg-12" align="right">
 									<c:choose>
-										<c:when test="${ pmVlist.get(0).pStatus eq 'N' }">
+										<c:when test="${ pmVlist.get(0).pStatus eq 'Y' }">
 											상품이 판매중입니다.<br>
 											<button onclick="location.href='pmstop.do?pId=${pId}';" class="btn">판매정지</button>
 										</c:when>
-										<c:when test="${ pmVlist.get(0).pStatus eq 'Y' }">
+										<c:when test="${ pmVlist.get(0).pStatus eq 'N' }">
 											상품이 판매정지 상태입니다.<br>
 											<button onclick="location.href='pmrestart.do?pId=${pId}';" class="btn">판매재개</button>
 										</c:when>

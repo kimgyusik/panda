@@ -21,12 +21,12 @@ public class PmanagerDao {
 		return sqlSession.selectOne("pmanagerMapper.getListCount");
 	}
 	
-	public int getListCount1() {
-		return sqlSession.selectOne("pmanagerMapper.getListCount1");
+	public int getListCount1(String cName2) {
+		return sqlSession.selectOne("pmanagerMapper.getListCount1", cName2);
 	}
 	
-	public int getListCount2() {
-		return sqlSession.selectOne("pmanagerMapper.getListCount2");
+	public int getListCount2(String cName2) {
+		return sqlSession.selectOne("pmanagerMapper.getListCount2", cName2);
 	}
 	
 	public int getListCount3() {
