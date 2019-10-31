@@ -21,6 +21,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -114,7 +115,6 @@ public class SellerController {
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sendMail.setTo(s.getsEmail());
@@ -268,11 +268,13 @@ public class SellerController {
 	}
 
 	// 아이디 찾기
-	@RequestMapping(value = "findsId.do", method = RequestMethod.POST)
-	public String findsId(@RequestParam("sEmail") String sEmail, Model model) throws Exception {
-		model.addAttribute("sId", sService.findsId(sEmail));
-		return "seller/find_sId";
-	}
+    @RequestMapping(value = "findsId.do", method =  RequestMethod.POST) public
+    String findsId(@RequestParam("sEmail") String sEmail, Model model) throws
+    Exception { model.addAttribute("sId", sService.findsId(sEmail)); return
+    "seller/find_sId"; }
+	 
+	
+	
 
 	@ResponseBody // 자동으로 response에 담겨서 반환시켜줌(String 밖에 안됨)
 	@RequestMapping("sIdCheck.do")

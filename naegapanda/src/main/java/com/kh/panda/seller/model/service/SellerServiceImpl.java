@@ -2,6 +2,7 @@ package com.kh.panda.seller.model.service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -22,6 +23,7 @@ import com.kh.panda.seller.model.dao.SellerDao;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
 import com.kh.panda.seller.model.vo.TempKey;
+import com.sun.media.jfxmedia.logging.Logger;
 
 @Service("sService")
 public class SellerServiceImpl implements SellerService{
@@ -52,10 +54,11 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.sIdCheck(sId);
 	}
 
-	@Override
-	public String findsId(String sEmail) {
-		return sDao.findsId(sEmail);
+	
+	@Override public String findsId(String sEmail) { return sDao.findsId(sEmail);
+	
 	}
+	 
 
 	@Override
 	public int updateSeller(Seller s) {
@@ -175,6 +178,8 @@ public class SellerServiceImpl implements SellerService{
 	@Override
 	public ArrayList<Payment> selectoList(PageInfo pi, int sNo) {
 		return sDao.selectoList(pi, sNo);
+	}
+	
 	public int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList) {
 		int result1 = sDao.updateProduct(p);
 		int result2 = 1;
@@ -209,8 +214,9 @@ public class SellerServiceImpl implements SellerService{
 		return result;
 	}
 
+
 	
-	//
+	
 		
 		
 		

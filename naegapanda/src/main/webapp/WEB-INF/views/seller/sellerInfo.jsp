@@ -6,55 +6,62 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<style>
+	.outer{
+		width:1000px;
+		border:1px solid black;
+	}
+</style>
 </head>
 <body>
 	
 	<c:import url="../common/sellerMenubar.jsp"/>
 	
-		<h3 align="center">판매자 ${ loginSeller.sName }님의 정보 수정</h3>
+		<h3 >판매자 ${ loginSeller.sName }님의 정보 수정</h3>
 		
-			<div class="outer">
+			<div class="outer" align="center">
 				<form action="sUpdate.do" method="post">
-			<table>
-				<tr>
-					<td><label>아이디:</label><input type="text" value="${ loginSeller.sId }" name="sId" readonly style="border:none"></td>
-				</tr>
-				<tr>
-					<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" name="sName" readonly style="border:none"></td>
-				</tr>
-				<tr>
-					<td><label>비밀번호 :</label> <input type="password" name="sPwd" id="sPwd" value="${ loginSeller.sPwd }"></td>
-				</tr>
-				<tr>
-					<td><label>비밀번호 확인:</label> <input type="password" name="sPwdConfirm" id="sPwdCheck" value="${ loginSeller.sPwd }"> <font name="check"size="2" color="red"></font></td>
-				</tr>
-				<tr>
-					<td>
-						<label>이메일:</label>${ loginSeller.sEmail }
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>전화번호:</label>
-						<input type="tel" value="${loginSeller.sPhone }" name="sPhone">
-					</td>
-				</tr>
-				<tr>
-					<c:if test="${ empty loginSeller.sAddress }">
+					<table>
 						<tr>
-							<td>우편번호</td>
+							<td><label>아이디:</label><input type="text" value="${ loginSeller.sId }" name="sId" readonly style="border:none"></td>
+						</tr>
+						<tr>
+							<td><label>이름:</label><input type="text" value="${ loginSeller.sName }" name="sName" readonly style="border:none"></td>
+						</tr>
+						<tr>
+							<td><label style="float: left;">비밀번호 :</label> <input type="password" class="form-control" name="sPwd" id="sPwd" value="${ loginSeller.sPwd }" ></td>
+						</tr>
+						<tr>
+							<td><label>비밀번호 확인:</label> <input type="password" class="form-control" name="sPwdConfirm" id="sPwdCheck" value="${ loginSeller.sPwd }"> <font name="check"size="2" color="red"></font></td>
+						</tr>
+						<tr>
 							<td>
-								<input type="text" name="post" size="6" class="postcodify_postcode5">
-								<button type="button" id="post_search_btn">검색</button>
+								<label>이메일:</label><input type="text" value="${ loginSeller.sEmail }" readonly style="border:none">
 							</td>
 						</tr>
 						<tr>
+							<td>
+								<label>전화번호:</label>
+								<input type="tel" class="form-control" value="${loginSeller.sPhone }" name="sPhone">
+							</td>
+						</tr>
+						<tr>
+							<c:if test="${ empty loginSeller.sAddress }">
+								<tr>
+									<td>우편번호</td>
+									<td>
+										<input type="text" name="post" size="6" class="postcodify_postcode5 form-control">
+										<button type="button" id="post_search_btn">검색</button>
+									</td>
+								</tr>
+							<tr>
 							<td>도로명 주소</td>
-							<td><input type="text" name="sAddress1" class="postcodify_address"></td>
+							<td><input type="text" class="form-control" name="sAddress1" class="postcodify_address form-control"></td>
 						</tr>
 						<tr>
 							<td>상세주소</td>
-							<td><input type="text" name="sAddress2" class="postcodify_extra_info"></td>
+							<td><input type="text" class="form-control" name="sAddress2" class="postcodify_extra_info form-control"></td>
 						</tr>
 					</c:if>
 					<c:if test="${ !empty loginSeller.sAddress }">
@@ -65,7 +72,7 @@
 									<td>우편번호</td>
 									<td>
 										<div class="ad1">
-										<input type="text" name="post" size="6" value="${ addr }" class="postcodify_postcode5">
+										<input type="text" name="post" size="6" value="${ addr }" class="postcodify_postcode5 form-control">
 										<button type="button" id="post_search_btn1">검색</button>
 										</div>
 									</td>
@@ -74,13 +81,13 @@
 							<c:if test="${ status.index eq 1 }">
 								<tr>
 									<td>도로명 주소</td>
-									<td><div class="ad1"><input type="text" name="sAddress1" value="${ addr }" class="postcodify_address"></div></td>
+									<td><div class="ad1"><input type="text" name="sAddress1" value="${ addr }" class="postcodify_address form-control"></div></td>
 								</tr>
 							</c:if>
 							<c:if test="${ status.index eq 2 }">
 								<tr>
 									<td>상세주소</td>
-									<td><div class="ad1"><input type="text" name="sAddress2" value="${ addr }"  class="postcodify_extra_info"></div></td>
+									<td><div class="ad1"><input type="text" name="sAddress2" value="${ addr }"  class="postcodify_extra_info form-control"></div></td>
 								</tr>
 							</c:if>
 							
@@ -88,14 +95,14 @@
 					</c:if>
 				</tr>
 				<tr>
-					<td><label>상점명:</label><input type="text" value="${ loginSeller.storeName }" name="storeName"></td>
+					<td><label>상점명:</label><input type="text" class="form-control" value="${ loginSeller.storeName }" name="storeName"></td>
 				</tr>
 				<tr>
-					<td><label>CEO명:</label><input type="text" value="${ loginSeller.sCeoName }" name="sCeoName"></td>
+					<td><label>CEO명:</label><input type="text" class="form-control" value="${ loginSeller.sCeoName }" name="sCeoName"></td>
 				</tr>
 				<tr>
 					<td><label>사업장전화번호:</label>
-					<input type="tel" value="${ loginSeller.sbPhone }" name="sbPhone"></td>
+					<input type="tel" value="${ loginSeller.sbPhone }" class="form-control" name="sbPhone"></td>
 				</tr>
 				<c:if test="${ empty loginSeller.sbAddress }">
 						<tr>
@@ -119,7 +126,7 @@
 							<td>사업장 주소 </td>
 								<td>
 									<div class="ad2">
-									<input type="text" name="sbAddress" value="${ loginSeller.sbAddress }">
+									<input type="text" class="form-control" name="sbAddress" value="${ loginSeller.sbAddress }">
 									</div>
 								</td>
 							</tr>
@@ -142,10 +149,10 @@
 		$('#sPwdCheck').keyup(function() {
 			if ($('#sPwd').val() != $('#sPwdCheck').val()) {
 				$('font[name=check]').text('');
-				$('font[name=check]').html("암호틀림");
+				$('font[name=check]').html("비밀번호가 틀립니다.");
 			} else {
 				$('font[name=check]').text('');
-				$('font[name=check]').html("암호맞음");
+				$('font[name=check]').html("비밀번호가 일치합니다.");
 			}
 		});
 	});
