@@ -33,12 +33,17 @@
 					<div class="shop_content">
 						<table>
 							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
+								<th>사진</th>
+								<th>이름</th>
+								<th>요청사항</th>
+								<th>주문갯수</th>
+								<th>가격</th>
+								<th>주문날짜</th>
+								<th>배송상태</th>
 							</tr>
+							<c:if test="${ empty oList }">
+								<tr><td>주문된 상품이 없습니다.</td></tr>
+							</c:if>
 						</table>
 				
 				

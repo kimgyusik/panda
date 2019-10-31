@@ -54,7 +54,7 @@ color:#0e8ce4;
 			<ul class="brands_list">
 				<li class="brand"><a href="ggimList.gg">♡찜한 상품♡</a></li>
 				<li class="brand"><a href="basketList.ba">장바구니</a></li>
-				<li class="brand"><a href="d">구매 내역</a></li>
+				<li class="brand"><a href="myPaymentList.pa">구매 내역</a></li>
 			</ul>
 		</div>
 	

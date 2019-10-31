@@ -84,7 +84,7 @@
 									<td>${ p.oAmount }</td>
 									<td>${ p.oPurchase }</td>
 									<td><button onclick="location.href='pUpdateView.do?pId=${p.pId}'">수정</button></td>
-									<td><button onclick="location.href='pDelete.do?oNo=${p.oNo}'">삭제</button></td>
+									<td><button onclick="location.href='pDelete.do?oNo=${p.oNo}&pId=${p.pId }'">삭제</button></td>
 								</tr>
 								</c:forEach>
 							</c:if>

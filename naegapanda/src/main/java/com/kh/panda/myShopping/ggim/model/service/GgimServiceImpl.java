@@ -34,9 +34,9 @@ public class GgimServiceImpl implements GgimService{
 	public int changeGgim(Ggim ggim, int flag) {
 		
 		if(flag == 0) {
-			return ggDao.addGgim(ggim);
-		}else {
 			return ggDao.deleteGgim(ggim);
+		}else {
+			return ggDao.addGgim(ggim);
 		}
 		
 	}

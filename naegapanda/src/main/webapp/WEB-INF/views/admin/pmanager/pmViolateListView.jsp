@@ -56,6 +56,7 @@
 		<form>
 		<input type="hidden" name="pId" value="${pId}">
 		<table class="table table-hover" align="center" cellspacing="0" >
+			<h3 style="font-weight:bold;">'${ pmVlist.get(0).pName }' 제품 신고리스트</h3><br>
 			
 				<thead align="center">
 					<tr>
@@ -68,7 +69,6 @@
 					<tbody>
 								
 						<c:forEach items="${ pmVlist }" var="pmv">
-							<h3 style="font-weight:bold;">${ pmv.pName } 제품 신고리스트</h3><br>
 										
 										<tr>
 											<td align="center">${ pmv.vNo }</td>
@@ -130,11 +130,11 @@
 									<c:choose>
 										<c:when test="${ pmVlist.get(0).pStatus eq 'N' }">
 											상품이 판매중입니다.<br>
-											<button onclick="location.href='pmstop.do?pId=${pId}&vNo=${ pmVlist.get(0).vNo}&sNo=${ pmVlist.get(0).sNo }';" class="btn">판매정지</button>
+											<button onclick="location.href='pmstop.do?pId=${pId}';" class="btn">판매정지</button>
 										</c:when>
 										<c:when test="${ pmVlist.get(0).pStatus eq 'Y' }">
 											상품이 판매정지 상태입니다.<br>
-											<button onclick="location.href='pmrestart.do?pId=${pId}&vNo=${ pmVlist.get(0).vNo}&sNo=${ pmVlist.get(0).sNo }';" class="btn">판매재개</button>
+											<button onclick="location.href='pmrestart.do?pId=${pId}';" class="btn">판매재개</button>
 										</c:when>
 									</c:choose>
 									<button type="button" class="btn" onclick="location.href='categoryView.do';" class="btn">목록으로</button>

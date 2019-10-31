@@ -13,6 +13,7 @@
 		<result property="pOk" column="p_ok"/>
 		<result property="pStatus" column="p_status"/>
 		<result property="pCreateDate" column="p_create_date"/>
+		<result property="pPurchase" column="p_purchase"/>
 	</resultMap>
 	
 	<resultMap type="Product" id="productResultSet2">
@@ -28,6 +29,7 @@
 		<result property="pPrice" column="p_price"/>
 		<result property="paChangeName" column="pa_change_name"/>
 		<result property="cName2" column="c_name2"/>
+		<result property="pPurchase" column="p_purchase"/>
 	</resultMap>
 	
 	<resultMap type="Category" id="categoryResultSet">
@@ -69,7 +71,7 @@
 		from Product_option o
 		left join product p on p.p_id=o.p_Id
 		left join product_attachment pa on p.p_id=pa.p_id
-		where o_status='Y' and p.s_No = #{sNo} and p.p_status = 'Y' and pa.pa_file_level=1
+		where o_status='Y' and p.s_No = #{sNo} and p.p_status = 'Y' and pa.pa_file_level=1 and pa.pa_status='Y'
 		order by o_No desc
 	</select>
 	
@@ -80,9 +82,16 @@
 	<insert id="insertPa" parameterType="ProductAttachment">
 		insert into Product_Attachment values(product_attachment_seq.nextval, default, #{paOriginName}, #{paChangeName}, #{paFileLevel}, default,product_seq.currval, #{filePath} )
 	</insert>
+	<insert id="insertPa2" parameterType="ProductAttachment">
+		insert into Product_Attachment values(product_attachment_seq.nextval, default, #{paOriginName}, #{paChangeName}, #{paFileLevel}, default,#{pId}, #{filePath} )
+	</insert>
 	
 	<insert id="insertPo" parameterType="ProductOption">
 		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, product_seq.currval)
+	</insert>
+	
+	<insert id="insertPo2" parameterType="ProductOption">
+		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, #{pId})
 	</insert>
 	
 	<select id="selectProduct" parameterType="_int" resultMap="productResultSet">
@@ -90,11 +99,11 @@
 	</select>
 	
 	<select id="selectPa" parameterType="Product" resultMap="paResultSet">
-		select * from product_attachment where p_Id=#{pId}
+		select * from product_attachment where p_Id=#{pId} and pa_status='Y'
 	</select>
 	
 	<select id="selectPo" parameterType="Product" resultMap="poResultSet">
-		select * from product_option where p_Id=#{pId}
+		select * from product_option where p_Id=#{pId} and o_status='Y'
 	</select>
 	
 	<update id="updatepCount" parameterType="_int">
@@ -107,6 +116,30 @@
 		update product_option
 		set o_Status = 'N'
 		where o_no = #{oNo}
+	</update>
+	
+	<update id="deleteOp" parameterType="_int">
+		update product_option
+		set o_Status = 'N'
+		where p_id = #{pId}
+	</update>
+	
+	<update id="deletePa" parameterType="_int">
+		update product_Attachment
+		set pa_Status = 'N'
+		where p_id = #{pId}
+	</update>
+	
+	<update id="updateProduct" parameterType="Product">
+		update product
+		set p_name=#{pName}, c_id=#{cId}, p_content=#{pContent}
+		where p_id=#{pId}
+	</update>
+	
+	<update id="updatePa" parameterType="ProductAttachment">
+		update product_attachment
+		set pa_create_date=SYSDATE, pa_origin_name=#{paOriginName}, pa_change_name=#{paChangeName}
+		where p_id=#{pId} and pa_file_level = #{paFileLevel}
 	</update>
 	
 	<select id="selectpList" parameterType="CategoryNumber" resultMap="productResultSet2">
@@ -144,21 +177,75 @@
 		where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
-	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+	<select id="HotList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 20
+			select * 
+			from HotTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 16
 		]]>
 	</select>
 	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
-		select * 
-		from NewTopList 
-		where rownum = 1
+			select * 
+			from NewTopList 
+			where rownum = 1
+		]]>
+	</select>
+	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from NewTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 20
+		]]>
+	</select>
+	<select id="NewList" parameterType="CategoryNumber" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from NewTopList 
+			where c_id between #{startNum} and #{endNum} and rownum <= 20
 		]]>
 	</select>
 	
+	<select id="random" resultMap="productResultSet2">
+		<![CDATA[
+			select * 
+			from  (select * 
+	        from prettypList
+	        order by dbms_random.value)
+	 		where rownum <= 10
+ 		]]>
+	</select>
+	
+	
+
+	<update id="increasePpurchase" parameterType="Payment" >
+		update product
+		set p_purchase = p_purchase + #{count}
+		where p_id = (
+		select p_id
+		from product_option
+		where o_no = ${oNo}
+		)
+	</update>
+	<update id="increaseOpurchase" parameterType="Payment" >
+		update product_option
+		set o_purchase = o_purchase + #{count}
+		where o_no = #{oNo}
+	</update>
+	<select id="oCount" parameterType="_int">
+		select count(*)
+		from product_option
+		where p_id=#{pId} and o_status='Y'
+	</select>
+	
+	<update id="deleteProduct">
+		update product
+		set p_status = 'N'
+		where p_id=#{pId}
+
+	</update>
+	
+
 
 
 </mapper>

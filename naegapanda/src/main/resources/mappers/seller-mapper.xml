@@ -97,5 +97,11 @@
 		set s_pwd=#{sPwd}
 		where s_id=#{sId} and s_email=#{sEmail}
 	</update>
+	
+	<!-- 주문확인 -->
+	<select id="oListCount" resultType="_int" parameterType="_int">
+		select count(*)
+		from payment
+	</select>
 
 </mapper>
