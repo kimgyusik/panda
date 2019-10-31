@@ -50,6 +50,10 @@ public class ReviewDao {
 		return sqlSession.update("reviewMapper.deleteReview", rId);
 	}
 	
+	public int selectDupleCommend(Commend c){
+		return sqlSession.selectOne("reviewMapper.selectDupleCommend", c);
+	}
+	
 	public ArrayList<Commend> selectCommendList(int mNo){
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectCommendList", mNo);
 	}

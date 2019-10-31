@@ -61,6 +61,7 @@
 		and a.pay_id = c.pay_id
 		and c.o_no = d.o_no
 		AND p_id = #{pId} and r_del = 'N'
+		order by r_commend desc
 	</select>
 	
 	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">
@@ -107,6 +108,12 @@
 		select *
 		from review_commend
 		where m_no = #{mNo}
+	</select>
+	
+	<select id="selectDupleCommend" parameterType="_int" resultType="_int">
+		select count(*)
+		from review_commend
+		where m_no = #{mNo} and r_id = #{rId}
 	</select>
 	
 	<delete id="cancleCommend" parameterType="Commend">

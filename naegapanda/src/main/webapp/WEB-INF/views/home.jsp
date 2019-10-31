@@ -310,12 +310,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												
 												<c:if test="${!empty loginUser }">
@@ -440,12 +442,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="product_fav"><i class="fas fa-heart"></i></div>
 												
@@ -460,6 +464,7 @@
 							<!-- Product Panel -->
 							<div class="product_panel panel">
 								<div class="featured_slider slider">
+								<c:import url="common/menubar.jsp"/>
 
 									<!-- Slider Item -->
 									<c:forEach items="${ Hot2List }" var="p"> 
@@ -470,12 +475,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="product_fav"><i class="fas fa-heart"></i></div>
 												
@@ -498,12 +505,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="product_fav"><i class="fas fa-heart"></i></div>
 												
@@ -526,12 +535,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="product_fav"><i class="fas fa-heart"></i></div>
 												
@@ -554,12 +565,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="product_fav"><i class="fas fa-heart"></i></div>
 												
@@ -582,12 +595,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="product_fav"><i class="fas fa-heart"></i></div>
 												
@@ -716,7 +731,7 @@
 
 
 
-<aaaaa>
+
 
 	<!-- Hot New Arrivals -->
 
@@ -751,13 +766,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
+														<c:if test="${!empty loginUser }">
 														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
 														</div>
+													</c:if>
 													</div>
 													<div class="product_fav"><i class="fas fa-heart"></i></div>
 													<ul class="product_marks">
@@ -786,13 +802,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 												
 													<c:if test="${!empty loginUser }">
@@ -849,13 +866,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 													<div class="product_fav"><i class="fas fa-heart"></i></div>
 													<ul class="product_marks">
@@ -880,13 +898,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 													<div class="product_fav"><i class="fas fa-heart"></i></div>
 													<ul class="product_marks">
@@ -912,13 +931,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 													<div class="product_fav"><i class="fas fa-heart"></i></div>
 													<ul class="product_marks">
@@ -944,13 +964,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 													<div class="product_fav"><i class="fas fa-heart"></i></div>
 													<ul class="product_marks">
@@ -976,13 +997,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 													<div class="product_fav"><i class="fas fa-heart"></i></div>
 													<ul class="product_marks">
@@ -1007,10 +1029,10 @@
 									<div class="d-flex flex-column align-items-center justify-content-center">
 										<div class="arrivals_single_image"><img src="resources/product_uploadFiles/${p.paChangeName }" width="200px" height="200px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 										<div class="arrivals_single_content">
-											<div class="arrivals_single_category">${ p.cName2 }</a></div>
+											<div class="arrivals_single_category">${ p.cName2 }</div>
 											<div class="arrivals_single_name_container clearfix">
 												<div class="arrivals_single_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-												<div class="arrivals_single_price text-right">￦ ${ p.pPrice } ~</div>
+												<div class="arrivals_single_price text-right">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 											</div>
 											<form action="#"><button class="arrivals_single_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button></form>
 										</div>
@@ -1078,7 +1100,7 @@
 											<div class="trends_category"><a href="#">${ r.cName2 }</a></div>
 											<div class="trends_info clearfix">
 												<div class="trends_name" style="margin-bottom:10px"><a href="pDetailView.do?pId=${ r.pId }">${ r.pName }</a></div>
-												<div class="trends_price" style="margin-top:10px">￦ ${r.pPrice } ~ </div>
+												<div class="trends_price" style="margin-top:10px">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.pPrice }" /> ~ </div>
 											</div>
 										</div>
 										<ul class="trends_marks">
@@ -1222,6 +1244,22 @@
 			});
 		});
 	});
+	
+	// 장바구니 추가
+	function addCart(pId){
+		$.ajax({
+			url:"addBasket.ba",
+			data:{pId:pId, amount:1},
+			dataType:"json",
+			success:function(data){
+				alert(data);
+				getCart()
+			},
+			error:function(){
+				console.log("ajax 통신 실패");
+			}
+		});
+	}
 	
 	// 메인메뉴 장바구니 비동기 처리
 	function getCart(){

@@ -70,7 +70,7 @@
 							<div class="product_name">${ p.pName }
 									<c:if test="${ !empty loginUser }">  
 								<form action="violateinsert.do">
-									<input type="hidden" name="pId" value="${ p.pId }">
+									<input type="hidden" id="pId" name="pId" value="${ p.pId }">
 									<button type="submit" class="button cart_button">신고하기</button>
 								</form>
 									</c:if>	
@@ -144,8 +144,7 @@
 									<div class="button_container">
 										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
 										<button type="button" class="button cart_button" onclick="addCart(${loginUser.mNo});">장바구니로</button>
-										<button type="button" class="button cart_button" onclick="addGgim(${loginUser.mNo}, ${p.pId}) ;">찜하기</button> 
-										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
+										<button type="button" class="button cart_button" onclick="addGgim(${loginUser.mNo}) ;">찜하기</button> 
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
@@ -199,13 +198,13 @@
 										 					<span class="reviewHart" >♡</span>
 										 				</c:if>
 										 				<c:set var="doneLoop" value="false"/> 
-										 				<c:forEach items="${rcList }" var="rc">
+										 				<c:forEach items="${rcList }" var="rc" varStatus="status">
 										 					<c:if test="${not doneLoop}"> 
 											 					<c:if test="${re.rId eq rc.rId}">
 																	<span class="reviewHart" >♥</span>
 																	<c:set var="doneLoop" value="true"/> 
 												 				</c:if>
-												 				<c:if test="${re.rId ne rc.rId}">
+												 				<c:if test="${re.rId ne rc.rId && stauts.last}">
 																	<span class="reviewHart" >♡</span>
 												 				</c:if>
 											 				</c:if>

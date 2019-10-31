@@ -543,12 +543,15 @@ function addCart(t){
 }
 
 // 찜하기 처리
-function addGgim(t, pId){
+function addGgim(t){
 	
 	if(t == null || t == ""){
 		alert('일반회원으로 로그인 이후 이용 가능합니다.');
 		return;
 	}else{
+		
+		var pId = $("#pId").val();
+		
 		$.ajax({
 			url:"addGgim.gg",
 			data: {pId:pId},

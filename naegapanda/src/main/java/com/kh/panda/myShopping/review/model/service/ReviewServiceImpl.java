@@ -58,9 +58,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public int changeCommend(Commend c) {
 		
-		ArrayList<Commend> list = reDao.selectCommendList(c.getmNo());
+		int count = reDao.selectDupleCommend(c);
 		
-		if(list.size() == 0) {
+		if(count == 0) {
 			return reDao.addCommend(c);
 		}else {
 			return reDao.cancleCommend(c);

@@ -20,11 +20,19 @@ public class BasketDao {
 	}
 	
 	public int selectbasket(Basket b){
-		return sqlSession.selectOne("basketMapper.selectbasketList", b);
+		return sqlSession.selectOne("basketMapper.selectbasket", b);
+	}
+	
+	public int selectoNo(int pId){
+		return sqlSession.selectOne("basketMapper.selectoNo",pId);
 	}
 	
 	public int addBasket(Basket b) {
 		return sqlSession.insert("basketMapper.addBasket", b);
+	}
+	
+	public int addBasket2(Basket b) {
+		return sqlSession.insert("basketMapper.addBasket2", b);
 	}
 	
 	public int deleteBasket(Basket b) {

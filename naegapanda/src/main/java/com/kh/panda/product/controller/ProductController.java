@@ -78,21 +78,16 @@ public class ProductController {
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
 		
-		// 리뷰 좋아요 데이터
+		// 해당 상품 리뷰 리스트
+		ArrayList<Review> reList = reService.selectProdReviewList(pId);	
+		
+		// 세션유저가 좋아요 한 리뷰 리스트
 		ArrayList<Commend> rcList = new ArrayList<>();
 		Member m = (Member)session.getAttribute("loginUser");
 		
 		if(m != null) {
 			rcList = reService.selectCommendList(m.getmNo());
 		}
-		
-		ArrayList<Review> reList = reService.selectProdReviewList(pId);
-//		// 리뷰 데스트 데이터 생성
-//		ArrayList<Review> reList = new ArrayList<>();
-//		Date date = new Date();
-//		reList.add(new Review(1, "너무 잘 받엇어요", "배송도 빠르고 물건도 좋고 다음에 또 살 거 같아요.", date, 12323, 1, "vjxmfwl", "N", 323, 13,"blog_2.jpg"));
-//		reList.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "best_6.png"));
-		
 		
 		int result = pService.increasepCount(pId);
 		
