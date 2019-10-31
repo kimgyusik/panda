@@ -37,7 +37,7 @@
 		join product using(p_id)
 		join category using(c_id)
 		join seller using(s_no)
-		where m_no = #{mNo} and ??
+		where m_no = #{mNo} 
 	</select>
 	
 	<insert id="addPayment" parameterType="Payment">

@@ -56,14 +56,20 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int changeCommend(Commend c, int flag) {
+	public int changeCommend(Commend c) {
 		
-		if(flag == 0) { // 취소
-			return reDao.cancleCommend(c);
-		}else { // 좋아요
+		ArrayList<Commend> list = reDao.selectCommendList(c.getmNo());
+		
+		if(list.size() == 0) {
 			return reDao.addCommend(c);
+		}else {
+			return reDao.cancleCommend(c);
 		}
 		
+	}
+	@Override
+	public ArrayList<Commend> selectCommendList(int mNo){
+		return reDao.selectCommendList(mNo);
 	}
 
 	@Override

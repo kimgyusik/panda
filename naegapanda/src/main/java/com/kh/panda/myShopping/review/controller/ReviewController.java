@@ -39,8 +39,7 @@ public class ReviewController {
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
-		return 2;
-		//return ((Member)session.getAttribute("loginUser")).getmNo();
+		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 리뷰 리스트 조회
@@ -284,13 +283,13 @@ public class ReviewController {
 	// 리뷰 좋아요/취소 토글 처리(비동기)
 	@ResponseBody
 	@RequestMapping(value="changeCommend.re")
-	public String changeCommend(int rId, int flag, HttpSession session) throws IOException {
+	public String changeCommend(int rId, HttpSession session) throws IOException {
 				
 		Commend c = new Commend();
 		c.setmNo(getmNo(session));
 		c.setrId(rId);
 		
-		int result = reService.changeCommend(c, flag);
+		int result = reService.changeCommend(c);
 		
 		if(result > 0) {
 			return "success";

@@ -1244,7 +1244,6 @@
 			success:function(data){
 					$('.wishlist_count').children().first().text(data);
 					$('#'+ item.id).css("display","none");
-
 			},
 			error:function(){
 				console.log("ajax 통신 실패");

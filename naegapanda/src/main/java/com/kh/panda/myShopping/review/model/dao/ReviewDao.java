@@ -50,11 +50,17 @@ public class ReviewDao {
 		return sqlSession.update("reviewMapper.deleteReview", rId);
 	}
 	
+	public ArrayList<Commend> selectCommendList(int mNo){
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectCommendList", mNo);
+	}
+	
 	public int cancleCommend(Commend c) {
+		sqlSession.update("reviewMapper.decreaseCommend", c.getrId());
 		return sqlSession.delete("reviewMapper.cancleCommend", c);
 	}
 	
 	public int addCommend(Commend c) {
+		sqlSession.update("reviewMapper.increaseCommend", c.getrId());
 		return sqlSession.insert("reviewMapper.addCommend", c);
 	}
 	

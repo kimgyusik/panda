@@ -40,7 +40,11 @@
 		<result property="rrDate" column="r_r_date"/>
 		<result property="rrDel" column="r_r_del"/>
 		<result property="rId" column="r_id"/>
+	</resultMap>
 	
+	<resultMap id="commendResultSet" type="Commend">
+		<id property="mNo" column="m_no" />
+		<id property="rId" column="r_id" />
 	</resultMap>
 
 	<select id="selectMyReviewList" parameterType="_int" resultMap="reviewResultSet">
@@ -51,12 +55,12 @@
 	</select>
 	
 	<select id="selectProdReviewList" parameterType="_int" resultMap="reviewResultSet">
-		select r_id, r_title, r_contents, r_date, r_count, a.m_no, m_id, r_del, r_commend, c.pay_id, r_image
+		select r_id, r_title, r_contents, to_date(r_date, 'YYYY-MM-DD') as r_date, r_count, a.m_no, m_id, r_del, r_commend, c.pay_id, r_image
 		from REVIEW A, member B, payment C, product_option D
 		where a.m_no = b.m_no
 		and a.pay_id = c.pay_id
 		and c.o_no = d.o_no
-		AND p_id = 4 and r_del = 'N';
+		AND p_id = #{pId} and r_del = 'N'
 	</select>
 	
 	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">
@@ -67,7 +71,7 @@
 		join product using(p_id)
 		join seller using(s_no)
 		where m_no = #{mNo} and DELIVERY_STATUS = '구매확정'
-		and r_id is null;
+		and r_id is null
 	</select>
 	
 	<select id="selectReview" parameterType="_int" resultMap="reviewResultSet">
@@ -99,15 +103,33 @@
 		where r_id = #{rId}
 	</update>
 	
+	<select id="selectCommendList" parameterType="_int" resultMap="commendResultSet">
+		select *
+		from review_commend
+		where m_no = #{mNo}
+	</select>
+	
 	<delete id="cancleCommend" parameterType="Commend">
 		delete from REVIEW_COMMEND
 		where r_id = #{rId} and m_no = #{mNo}
 	</delete>
 	
+	<update id="decreaseCommend">
+		update review
+		set r_commend = r_commend - 1
+		where r_id = #{rId}
+	</update>
+	
 	<insert id="addCommend" parameterType="Commend">
-		insert into commend
+		insert into REVIEW_COMMEND
 		values (#{rId}, #{mNo})
 	</insert>
+	
+	<update id="increaseCommend">
+		update review
+		set r_commend = r_commend + 1
+		where r_id = #{rId}
+	</update>
 	
 	<select id="getReplyList" parameterType="_int" resultMap="replyResultSet">
 		select r_r_id, m_no, m_id, r_r_contents, r_r_date, r_r_del, r_id

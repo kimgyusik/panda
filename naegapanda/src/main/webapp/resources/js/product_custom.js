@@ -428,6 +428,43 @@ $(document).ready(function()
 		}
 	});
 	
+	// 리뷰 좋아요 토글
+	$(".reviewHart").off().on("click", function(e){
+		
+		e.stopImmediatePropagation();
+		
+		if($("#loginUser").val() == null || $("#loginUser").val() == ""){
+			return;
+		}else{
+			
+			var rId =$(this).parent().children().eq(0).val();
+			var thisHart = $(this);
+			
+			$.ajax({
+				url:"changeCommend.re",
+				data:{rId:rId},
+				type:"post",
+				success:function(data){
+					if(data == "success"){
+						if(thisHart.text() == "♡"){
+							thisHart.html("♥");
+							thisHart.next().html(parseInt(thisHart.next().text())+1);
+						}else{
+							thisHart.html("♡");
+							thisHart.next().html(parseInt(thisHart.next().text())-1);
+						}
+						
+					}else{
+						alert("처리실패");
+					}
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			});
+		}
+	});
+	
 });
 
 // 리뷰 댓글 불러오기
@@ -462,7 +499,7 @@ function getReplyList(rId, mNo){
 					$tr.append(
 							"<td>"+value.mId +":"	
 							+ "<td >"+value.rrContents
-							+ "<td class='reviewGray dated'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("+newDate+")"
+							+ "<span class='reviewGray dated'>&nbsp;&nbsp;&nbsp;("+newDate+")"
 					);
 
 					if(value.mNo == mNo){
@@ -506,19 +543,19 @@ function addCart(t){
 }
 
 // 찜하기 처리
-function addGgim(t){
+function addGgim(t, pId){
 	
 	if(t == null || t == ""){
 		alert('일반회원으로 로그인 이후 이용 가능합니다.');
 		return;
 	}else{
-		// 버튼으로 1회성 처리 할 것인지 / on-off 처리할 것인지 결정 후 진행 
 		$.ajax({
 			url:"addGgim.gg",
 			data: {pId:pId},
 			dataType:"json",
 			success:function(data){
 				alert(data);
+				getGgim();
 			},
 			error:function(){
 				console.log("ajax 통신 실패");
@@ -526,4 +563,18 @@ function addGgim(t){
 		});
 	}
 	
+}
+
+//메인메뉴 찜하기 비동기 처리
+function getGgim(){
+	$.ajax({
+		url:"currentGgim.gg",
+		dataType:"json",
+		success:function(data){
+				$('.wishlist_count').children().first().text(data);
+		},
+		error:function(){
+			console.log("ajax 통신 실패");
+		}
+	});
 }
