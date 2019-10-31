@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.member.model.dao.MemberDao;
+import com.kh.panda.myShopping.payment.model.vo.Payment;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
@@ -166,7 +167,51 @@ public class SellerServiceImpl implements SellerService{
 		
 	}
 
+	@Override
+	public int oListCount(int sNo) {
+		return sDao.oListCount(sNo);
+	}
+
+	@Override
+	public ArrayList<Payment> selectoList(PageInfo pi, int sNo) {
+		return sDao.selectoList(pi, sNo);
+	}
+	public int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList) {
+		int result1 = sDao.updateProduct(p);
+		int result2 = 1;
+		int result3 = 1;
+		int result = 1;
+		int result4 = 1;
+		int result5 = 1;
+				
+		if(!paList.isEmpty()) {
+			result5 = sDao.deletePa(p.getpId());
+		}
+		for(int i=0; i<paList.size(); i++) {
+			result2 = sDao.insertPaList2(paList.get(i));
+			if(result2 <1) {
+				break;
+			}
+		}
+		result4 = sDao.deleteOption(p.getpId());
+		
+		for(int i=0; i<poList.size(); i++) {
+			
+			result3 = sDao.insertPoList2(poList.get(i));
+			if(result3<1) {
+				break;
+			}
+		}
+		
+		if(result1 >0 && result2 > 0 && result3 > 0 && result4 > 0 && result5 > 0) {
+			result = 1;
+		}
+		
+		return result;
+	}
+
 	
+	//
 		
 		
 		

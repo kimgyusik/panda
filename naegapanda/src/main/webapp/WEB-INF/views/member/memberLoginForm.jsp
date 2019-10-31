@@ -19,6 +19,9 @@
 <style>
 	table{
 	font-size: 1.1em;
+	margin-left:auto;
+	margin-right:auto;
+	margin:auto;
 	}
 	a{
 	font-size : larger;
@@ -177,10 +180,10 @@
 </script>
 			<table id="loginTable" style="text-algin:center">
 				<tr>
-					<td style="text-algin:center"><input type="text" name="id" placeholder="아이디" required></td>
+					<td><input type="text" name="id" placeholder="아이디" required></td>
 				</tr>
 				<tr>
-					<td style="text-algin:center"><input type="password" name="pwd" placeholder="비밀번호" required></td>
+					<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
 				</tr>
 				<tr>
 					<td colspan="3">

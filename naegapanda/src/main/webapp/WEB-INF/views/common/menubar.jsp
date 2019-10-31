@@ -177,32 +177,37 @@
 							</div>
 						</div>
 					</div>
-					<!-- Wishlist -->
-					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist_icon"><img src="resources/images/heart.png" alt=""></div>
-								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="ggimList.gg">Wishlist</a></div>
-									<div class="wishlist_count"><span>&nbsp;</span></div>
-								</div>
-							</div>
-
-							<!-- Cart -->
-							<div class="cart">
-								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
-									<div class="cart_icon">
-										<img src="resources/images/cart.png" alt="">
-										<div class="cart_count"><span>&nbsp;</span></div>
+					
+					<c:if test="${!empty loginUser }">
+					<input id="sessionUser" type="hidden" value="${loginUser}">
+						<!-- Wishlist -->
+						<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+							<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+								<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+									<div class="wishlist_icon"><img src="resources/images/heart.png" alt=""></div>
+									<div class="wishlist_content">
+										<div class="wishlist_text"><a href="ggimList.gg">Wishlist</a></div>
+										<div class="wishlist_count"><span>&nbsp;</span></div>
 									</div>
-									<div class="cart_content">
-										<div class="cart_text"><a href="basketList.ba">Cart</a></div>
-										<div class="cart_price"><span>&nbsp;</span></div>
+								</div>
+	
+								<!-- Cart -->
+								<div class="cart">
+									<div class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_icon">
+											<img src="resources/images/cart.png" alt="">
+											<div class="cart_count"><span>&nbsp;</span></div>
+										</div>
+										<div class="cart_content">
+											<div class="cart_text"><a href="basketList.ba">Cart</a></div>
+											<div class="cart_price"><span>&nbsp;</span></div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>
+					
 				</div>
 			</div>
 		</div>
@@ -534,37 +539,38 @@
 
 <script>
 	$(function(){
-
-		// 메인메뉴 장바구니 비동기 처리
-		$.ajax({
-			url:"currentBasket.ba",
-			dataType:"json",
-			success:function(data){
-				if(data[0] == 0){
-					$('.cart_count').children().first().text(data[0]);
-					$('.cart_price').children().first().text("장바구니가 비었어요.");
-				}else{
-					$('.cart_count').children().first().text(data[0]);
-					$('.cart_price').children().first().text(data[1]+"원");
+		
+		if($("#sessionUser").val() != null){
+			// 메인메뉴 장바구니 비동기 처리
+			$.ajax({
+				url:"currentBasket.ba",
+				dataType:"json",
+				success:function(data){
+					if(data[0] == 0){
+						$('.cart_count').children().first().text(data[0]);
+						$('.cart_price').children().first().text("장바구니가 비었어요.");
+					}else{
+						$('.cart_count').children().first().text(data[0]);
+						$('.cart_price').children().first().text(data[1]+"원");
+					}
+				},
+				error:function(){
+					console.log("ajax 통신 실패");
 				}
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-		});
-		
-		// 메인메뉴 찜하기 비동기 처리
-		$.ajax({
-			url:"currentGgim.gg",
-			dataType:"json",
-			success:function(data){
-					$('.wishlist_count').children().first().text(data);
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-		});
-		
+			});
+			
+			// 메인메뉴 찜하기 비동기 처리
+			$.ajax({
+				url:"currentGgim.gg",
+				dataType:"json",
+				success:function(data){
+						$('.wishlist_count').children().first().text(data);
+				},
+				error:function(){
+					console.log("ajax 통신 실패");
+				}
+			});
+		}
 		
 	});
 

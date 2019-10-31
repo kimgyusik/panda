@@ -70,6 +70,11 @@ public class MemberServiceImpl implements MemberService {
 	public int newPassword(Member m) {
 		return mDao.newPassword(m);
 	}
+
+	@Override
+	public int pwdUpdate(Member mp) {
+		return mDao.pwdUpdate(mp);
+	}
 	
 	
 	

@@ -44,6 +44,10 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.newPwd2", m);
 	}
 
+	public int pwdUpdate(Member mp) {
+		return sqlSession.update("memberMapper.upDatePwd", mp);
+	}
+
 	
 	
 	
