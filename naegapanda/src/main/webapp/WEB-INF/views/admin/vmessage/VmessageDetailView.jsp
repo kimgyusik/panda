@@ -66,14 +66,14 @@
 						      </td>
 						    </tr>
 						    <tr>
+									<c:if test="${ !empty vm.vmOriginalFileName }">
 						    <th>첨부파일</th>
 								<td colspan="3">
-									<c:if test="${ !empty vm.vmOriginalFileName }">
 										<%-- <a href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }">${vm.vmOriginalFileName }</a> --%>
 										<a  href="${ contextPath }/resources/vmupload/${ vm.vmRenameFileName }" data-target="#myModal" data-toggle="modal">${vm.vmRenameFileName }</a>
-									</c:if>
 								</td>
 						    </tr>
+									</c:if>
 						    <tr>
 						    	<th scope="row">제목</th>
 						      	<td colspan="2"> ${ vm.vmTitle } </td>
