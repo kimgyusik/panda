@@ -283,7 +283,7 @@
 						<div class="tabbed_container">
 							<div class="tabs">
 								<ul class="clearfix">
-									<li class="active">Top 12</li>
+									<li class="active">Top 16</li>
 								<li>식품</li>
 								<li>의류</li>
 								<li>가구</li>
@@ -636,7 +636,7 @@
 										<div class="banner_2_title">MacBook Air</div>
 										<div class="banner_2_text"><h4>다시 한 번 가볍게 앞서다.<br> Retina 디스플레이 찬란한 등장.<br> Touch ID 당신의 지문이 비밀번호.</h4></div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#" >쇼핑하기 ▷</a></div>
+										<div class="button banner_2_button"><a href="search.do?keyword=노트북" >쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -686,7 +686,7 @@
 										<div class="banner_2_title">소중한 나의 반려동물</div>
 										<div class="banner_2_text">야옹아 멍멍해봐!! <br> 프리미엄 반려동물 용품 쇼핑</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
+										<div class="button banner_2_button"><a href="pListView.do?category=1005">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -728,7 +728,7 @@
 						<div class="tabs clearfix tabs-right">
 							<div class="new_arrivals_title">New Arrivals</div>
 							<ul class="clearfix">
-								<li class="active">Top 12</li>
+								<li class="active">Top 20</li>
 								<li>식품</li>
 								<li>의류</li>
 								<li>가구</li>
