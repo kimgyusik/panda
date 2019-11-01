@@ -94,7 +94,7 @@
 		        <!-- Wrapper for carousel items -->
 		        <div class="carousel-inner">
 		            <div class="carousel-item active">
-		                <img src="resources/images/paddi.jpg" alt="First Slide">
+		                <img src="resources/images/paddd.jpg" alt="First Slide">
 		            </div>
 		            <div class="carousel-item">
 		                <img src="resources/images/carpet.jpg" alt="Second Slide">
