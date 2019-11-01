@@ -31,8 +31,11 @@ public interface ReviewService {
 	// 리뷰 삭제
 	int deleteReview(int rId);
 	
+	// 내 리뷰 좋아요 조회
+	ArrayList<Commend> selectCommendList(int mNo);
+	
 	// 리뷰 좋아요/취소
-	int changeCommend(Commend c, int flag);
+	int changeCommend(Commend c);
 	
 	// 리플 리스트 조회
 	ArrayList<Reply> getReplyList(int rId);
@@ -42,5 +45,6 @@ public interface ReviewService {
 	
 	// 리플 삭제
 	int deleteReply(int rrId);
+
 
 }

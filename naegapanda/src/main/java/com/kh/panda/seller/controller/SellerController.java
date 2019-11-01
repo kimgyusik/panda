@@ -244,6 +244,7 @@ public class SellerController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, oListCount);
 		System.out.println(pi);
 		ArrayList<Payment> oList = sService.selectoList(pi, ((Seller) session.getAttribute("loginSeller")).getsNo());
+		System.out.println(oList);
 		mv.addObject("oList", oList).addObject("pi", pi).setViewName("seller/product/oderProductForm");
 		
 		return mv;
@@ -636,6 +637,41 @@ public class SellerController {
 		mv.addObject("cList", cList).addObject("p", p).addObject("paList", paList).addObject("poList", poList).setViewName("seller/product/updateProductForm");
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="pStreamingView.do")
+	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
+		Product p = sService.selectProduct(pId);
+		ArrayList<ProductAttachment> paList = sService.selectPa(p);
+		ArrayList<ProductOption> poList = sService.selectPo(p);
+		ArrayList<Category> cList = sService.selectcList();
+		mv.addObject("cList", cList).addObject("p", p).addObject("paList", paList).addObject("poList", poList).setViewName("seller/product/updateProductForm");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "pStreaming.do", method = RequestMethod.POST)
+	public String insertStreaming(Product p, HttpServletRequest request,Model model, ModelAndView mv, @RequestParam("oNo") int[] oNo,
+			 @RequestParam("oPrice") int[] oPrice, @RequestParam("spTitle") String spTitle) {
+		
+		ArrayList<ProductAttachment> paList = new ArrayList<>();
+		ArrayList<ProductOption> poList = new ArrayList<>();
+			
+		for(int i=0; i<paList.size(); i++) {
+			System.out.println(paList.get(i));
+		}
+		for(int i=0; i<poList.size(); i++) {
+			System.out.println(poList.get(i));
+		}
+		
+		int result = sService.updateProduct(p, paList, poList);
+
+		if(result > 0) {
+			return "redirect:sProduct.do";
+		} else {
+			model.addAttribute("msg", "수정에 실패했습니다");
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)

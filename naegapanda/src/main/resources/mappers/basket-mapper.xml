@@ -30,9 +30,16 @@
 	</select>
 	
 	<select id="selectbasket" parameterType="Basket" resultType="_int">
-	select count(oNo)
+	select count(o_No)
 	from SHOPPING_BASKET
 	where o_no = #{oNo} and m_no = #{mNo}
+	</select>
+	
+	<select id="selectoNo" parameterType="_int" resultType="_int">
+	select o_No
+	from product
+    join product_option using(p_id)
+	where p_id = #{pId} and rownum = 1
 	</select>
 	
 	<insert id="addBasket" parameterType="Basket">

@@ -40,7 +40,11 @@
 		<result property="rrDate" column="r_r_date"/>
 		<result property="rrDel" column="r_r_del"/>
 		<result property="rId" column="r_id"/>
+	</resultMap>
 	
+	<resultMap id="commendResultSet" type="Commend">
+		<id property="mNo" column="m_no" />
+		<id property="rId" column="r_id" />
 	</resultMap>
 
 	<select id="selectMyReviewList" parameterType="_int" resultMap="reviewResultSet">
@@ -56,7 +60,8 @@
 		where a.m_no = b.m_no
 		and a.pay_id = c.pay_id
 		and c.o_no = d.o_no
-		AND p_id = 4 and r_del = 'N';
+		AND p_id = #{pId} and r_del = 'N'
+		order by r_commend desc
 	</select>
 	
 	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">
@@ -67,7 +72,7 @@
 		join product using(p_id)
 		join seller using(s_no)
 		where m_no = #{mNo} and DELIVERY_STATUS = '구매확정'
-		and r_id is null;
+		and r_id is null
 	</select>
 	
 	<select id="selectReview" parameterType="_int" resultMap="reviewResultSet">
@@ -99,21 +104,45 @@
 		where r_id = #{rId}
 	</update>
 	
+	<select id="selectCommendList" parameterType="_int" resultMap="commendResultSet">
+		select *
+		from review_commend
+		where m_no = #{mNo}
+	</select>
+	
+	<select id="selectDupleCommend" parameterType="_int" resultType="_int">
+		select count(*)
+		from review_commend
+		where m_no = #{mNo} and r_id = #{rId}
+	</select>
+	
 	<delete id="cancleCommend" parameterType="Commend">
 		delete from REVIEW_COMMEND
 		where r_id = #{rId} and m_no = #{mNo}
 	</delete>
 	
+	<update id="decreaseCommend">
+		update review
+		set r_commend = r_commend - 1
+		where r_id = #{rId}
+	</update>
+	
 	<insert id="addCommend" parameterType="Commend">
-		insert into commend
+		insert into REVIEW_COMMEND
 		values (#{rId}, #{mNo})
 	</insert>
+	
+	<update id="increaseCommend">
+		update review
+		set r_commend = r_commend + 1
+		where r_id = #{rId}
+	</update>
 	
 	<select id="getReplyList" parameterType="_int" resultMap="replyResultSet">
 		select r_r_id, m_no, m_id, r_r_contents, r_r_date, r_r_del, r_id
 		from REVIEW_REPLY
 		join member using(m_no)
-		where r_r_id = #{rrId} and R_R_DEL = 'N'
+		where r_id = #{rId} and R_R_DEL = 'N'
 		order by r_r_date
 	</select>
 	

@@ -31,13 +31,13 @@
 
 	<select id="myPaymentList" parameterType="_int" resultMap="paymentResultSet">
 		select pay_id, m_no, p_id, o_no, o_name, o_price, o_status, delivery_spot, pay_request, pay_date, count, delivery_status
-		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, store_name, s_baddress, s_bphone
+		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, storename, s_baddress, s_bphone
 		from payment
 		join PRODUCT_OPTION using(o_no)
 		join product using(p_id)
 		join category using(c_id)
 		join seller using(s_no)
-		where m_no = #{mNo} and ??
+		where m_no = #{mNo} 
 	</select>
 	
 	<insert id="addPayment" parameterType="Payment">
@@ -52,11 +52,13 @@
 	</update>
 	
 	<select id="selectoList" resultMap="paymentResultSet" parameterType="_int">
-	<!-- 	select pa_change_name, pay_request, p_name, count, price, pay_date, delivery_status
-		from payment
-		join product on o_no=p_id
-		join product_attachment using(p_id) -->
-		
+		select pm.*, p.p_name, po.o_name, pa.pa_change_name, s.s_no
+		from payment pm
+		left join product_option po on pm.o_no=po.o_no
+		left join product p on p.p_id=po.p_id
+		left join product_attachment pa on pa.p_id=p.p_id
+		left join seller s on s.s_no = p.s_no
+		where pa.pa_file_level = 1 and s.s_no=#{sNo}
 	</select>
 	
 </mapper>

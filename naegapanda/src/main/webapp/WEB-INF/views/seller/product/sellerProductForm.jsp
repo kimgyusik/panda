@@ -57,8 +57,8 @@
 				</div>
 				<div class="col-lg-9">
 					<div class="shop_content">
-						<table>
-							<tr>
+						<table style="width:750px; margin-top:40px;" >
+							<tr style="background-color:#0e8ce4; color:white; height:50px" align=center>
 								<th>상품사진</th>
 								<th>상품번호</th>
 								<th>상품명</th>
@@ -66,16 +66,18 @@
 								<th>가격</th>
 								<th>재고</th>
 								<th>판매개수</th>
+								<th>방송하기<th>
 								<th>수정</th>
 								<th>삭제</th>
 							</tr>
+							
 							<c:if test="${empty list}" >
-							<tr><td>등록된 상품이 없습니다.</td ></tr>
+							<tr><td><h4>등록된 상품이 없습니다.</h4></td ></tr>
 							</c:if>
 							
 							<c:if test="${!empty list}">
 								<c:forEach items="${list }" var="p">
-								<tr>
+								<tr align=center>
 									<td><img src="resources/product_uploadFiles/${p.paChangeName}" style="width:100px; height:100px;"></td>    	
 									<td>${ p.pId }</td>
 									<td>aa</td>
@@ -83,14 +85,16 @@
 									<td>${ p.oPrice }</td>
 									<td>${ p.oAmount }</td>
 									<td>${ p.oPurchase }</td>
+									<td><button onclick="location.href='pStreamingView.do?pId=${p.pId}'">방송하기</button></td>
 									<td><button onclick="location.href='pUpdateView.do?pId=${p.pId}'">수정</button></td>
 									<td><button onclick="location.href='pDelete.do?oNo=${p.oNo}&pId=${p.pId }'">삭제</button></td>
 								</tr>
 								</c:forEach>
 							</c:if>
 							
-							<tr align="center" height="20">
-							<td colspan="6">
+							
+							<tr align=center height="20">
+							<td colspan="9">
 								<!-- 이전 -->
 								<c:if test="${pi.currentPage eq 1}">
 									[이전]

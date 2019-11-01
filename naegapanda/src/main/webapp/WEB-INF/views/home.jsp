@@ -6,9 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>PANDA</title>
 <style>
 	.product_name{
@@ -19,7 +23,23 @@
 	text-decoration:none;
 	color:#000000;
 	}
+	
+	.carousel{
+	    /* background: #cedaed; */
+	    /* margin-top: 20px; */
+	}
+	.carousel-item{
+	    text-align: center;
+	    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+	}
+	.bs-example{
+		/* margin: 20px; */
+	}
+	#myCarousel{
+		height:448px;
+	}
 </style>
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -41,12 +61,12 @@
 			}
 		});
 	</script>
-
-							
+	
+	
 	
 	<!-- Banner -->
 
-	<div class="banner">
+	<!-- <div class="banner">
 		<div class="banner_background" style="background-image:url(resources/images/banner_background.jpg)"></div>
 		<div class="container fill_height">
 			<div class="row fill_height">
@@ -60,6 +80,37 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div> -->
+	<div class="banner">
+		<div class="bs-example">
+		    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		        <!-- Carousel indicators -->
+		        <ol class="carousel-indicators">
+		            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		            <li data-target="#myCarousel" data-slide-to="1"></li>
+		            <li data-target="#myCarousel" data-slide-to="2"></li>
+		        </ol>
+		        <!-- Wrapper for carousel items -->
+		        <div class="carousel-inner">
+		            <div class="carousel-item active">
+		                <img src="resources/images/paddd.jpg" alt="First Slide">
+		            </div>
+		            <div class="carousel-item">
+		                <img src="resources/images/carpet.jpg" alt="Second Slide">
+		            </div>
+		            <div class="carousel-item">
+		                <img src="resources/images/misemu.jpg" alt="Third Slide">
+		            </div>
+		        </div>
+		        <!-- Carousel controls -->
+		        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+		            <span class="carousel-control-prev-icon"></span>
+		        </a>
+		        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+		            <span class="carousel-control-next-icon"></span>
+		        </a>
+		    </div>
 		</div>
 	</div>
 
@@ -281,9 +332,10 @@
 					<!-- Featured -->
 					<div class="featured">
 						<div class="tabbed_container">
+						
 							<div class="tabs">
 								<ul class="clearfix">
-									<li class="active">Top 12</li>
+									<li class="active">Top 16</li>
 								<li>식품</li>
 								<li>의류</li>
 								<li>가구</li>
@@ -298,9 +350,9 @@
 
 
 							<!-- Product Panel -->
+							
 							<div class="product_panel panel active">
 								<div class="featured_slider slider">
-
 									<!-- Slider Item -->
 									<c:forEach items="${ HotTopList }" var="p"> 
 										<div class="featured_slider_item">
@@ -310,12 +362,14 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
 												
 												<c:if test="${!empty loginUser }">
@@ -324,13 +378,13 @@
 													<c:if test="${fn:length(gglist) == 0}">
 														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
 													</c:if>
-													<c:forEach items="${gglist}" var="g">
+													<c:forEach items="${gglist}" var="g" varStatus="status">
 														<c:if test="${not doneLoop}"> 
 															<c:if test = "${g.pId eq p.pId}">
 																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
 																<c:set var="doneLoop" value="true"/> 
 															</c:if>
-															<c:if test = "${g.pId ne p.pId}">
+															<c:if test = "${g.pId ne p.pId && status.last}">
 																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
 															</c:if>
 														</c:if>
@@ -344,90 +398,9 @@
 								</div>
 								<div class="featured_slider_dots_cover"></div>
 							</div>
-
-
-<!-- 						<script>
-						
-						$(function() {
-							categoryId(1000);
-						});
-						  $(document).ready( function() {
-						        $('.temp').click( function() {
-						          $('#temp').scrollTop(0);
-						        } );
-						      } );
-						
-							function categoryId(category) {
-								$.ajax({
-									url:'test11.do',
-									data:{category:category}, 
-									type:"post",
-									dataType:"JSON",
-									success:function(data) {
-										if(data != null) {
-											$.each(data, function(index, value){
-												var price = value.pPrice;
-												
-												
-												var photo = value.paChangeName;
-												var pId = value.pId;
-												var pName = value.pName;
-												var text = 
-													'<div class="featured_slider_item">' +
-														'<div class="border_active"></div>' + 
-														'<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">' + 
-															'<div class="product_image d-flex flex-column align-items-center justify-content-center">'+
-																'<img src="resources/product_uploadFiles/'+photo+' " width="100px" height="100px" alt="" onclick="loaction.href=' + "'pDetailView.do?pId='" +pId+';">'+
-															'</div>' + 
-															'<div class="product_content">' + 
-																'<div class="product_price discount">' + price +'</span>' +
-															'</div>' + 
-															'<div class="product_name">'
-																+'<div><a href="pDetailView.do?pId='+pId+'">'+pName+'</a></div>'+
-															'</div>' + 
-															'<div class="product_extras">' + 
-																'<button class="product_cart_button">Add to Cart</button>' + 
-															'</div>' + 
-														'</div>' + 
-														'<div class="product_fav"><i class="fas fa-heart"></i></div>' + 
-													'</div>';								
-													
-													
-													$('HotTopBox').append(text);
-													
-												
-													/* if(category==1000){
-														$('#HotTopBox').append(text);
-													}else if(category==1001){
-														$('#Hot1Box').append(text);														
-													}else if(category==1002){														
-														$('#Hot2Box').append(text);														
-													}else if(category==1003){
-														$('#Hot3Box').append(text);																												
-													}else if(category==1004){
-														$('#Hot4Box').append(text);
-													}else if(category==1005){
-														$('#Hot5Box').append(text);
-													}else if(category==1006){
-														$('#Hot6Box').append(text);
-													} */
-												
-												
-											})
-											
-										}
-									},
-									error:function() {
-										console.log('통신 실패');
-									}
-									
-									
-								});
-							}
 							
-						</script> -->
+							
 
-<!-- Product Panel -->
 							<div class="product_panel panel">
 								<div class="featured_slider slider">
 
@@ -440,14 +413,137 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g" varStatus="status">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId && status.last}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
+
+											</div>
+										</div>
+										
+									</c:forEach>
+									
+									<script src="resources/js/home_custom.js"></script>
+						
+								</div>
+								<div class="featured_slider_dots_cover"></div>
+							</div>
+							
+							<div class="product_panel panel">
+								<div class="featured_slider slider">
+								
+
+									<!-- Slider Item -->
+									<c:forEach items="${ Hot2List }" var="p"> 
+										<div class="featured_slider_item">
+											<div class="border_active"></div>
+											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+												<div class="product_image d-flex flex-column align-items-center justify-content-center"> 
+													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
+												</div>
+												<div class="product_content">
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
+													
+													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
+												</div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g" varStatus="status">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId && status.last}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
+
+											</div>
+										</div>
+									</c:forEach>
+						
+								</div>
+								<div class="featured_slider_dots_cover"></div>
+							</div>
+							
+							<!-- Product Panel -->
+							<div class="product_panel panel">
+								<div class="featured_slider slider">
+
+									<!-- Slider Item -->
+									<c:forEach items="${ Hot3List }" var="p"> 
+										<div class="featured_slider_item">
+											<div class="border_active"></div>
+											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+												<div class="product_image d-flex flex-column align-items-center justify-content-center"> 
+													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
+												</div>
+												<div class="product_content">
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
+													
+													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
+												</div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g" varStatus="status">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId && status.last}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
 												
 											</div>
 										</div>
@@ -462,62 +558,6 @@
 								<div class="featured_slider slider">
 
 									<!-- Slider Item -->
-									<c:forEach items="${ Hot2List }" var="p"> 
-										<div class="featured_slider_item">
-											<div class="border_active"></div>
-											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-												<div class="product_image d-flex flex-column align-items-center justify-content-center"> 
-													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
-												</div>
-												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
-													
-													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
-												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
-												
-											</div>
-										</div>
-									</c:forEach>
-						
-								</div>
-								<div class="featured_slider_dots_cover"></div>
-							</div><!-- Product Panel -->
-							<div class="product_panel panel">
-								<div class="featured_slider slider">
-
-									<!-- Slider Item -->
-									<c:forEach items="${ Hot3List }" var="p"> 
-										<div class="featured_slider_item">
-											<div class="border_active"></div>
-											<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-												<div class="product_image d-flex flex-column align-items-center justify-content-center"> 
-													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
-												</div>
-												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
-													
-													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
-												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
-												
-											</div>
-										</div>
-									</c:forEach>
-						
-								</div>
-								<div class="featured_slider_dots_cover"></div>
-							</div><!-- Product Panel -->
-							<div class="product_panel panel">
-								<div class="featured_slider slider">
-
-									<!-- Slider Item -->
 									<c:forEach items="${ Hot4List }" var="p"> 
 										<div class="featured_slider_item">
 											<div class="border_active"></div>
@@ -526,14 +566,34 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g" varStatus="status">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId && status.last}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
 												
 											</div>
 										</div>
@@ -541,7 +601,9 @@
 						
 								</div>
 								<div class="featured_slider_dots_cover"></div>
-							</div><!-- Product Panel -->
+							</div>
+							
+							<!-- Product Panel -->
 							<div class="product_panel panel">
 								<div class="featured_slider slider">
 
@@ -554,14 +616,34 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g" varStatus="status">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId && status.last}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
 												
 											</div>
 										</div>
@@ -569,7 +651,9 @@
 						
 								</div>
 								<div class="featured_slider_dots_cover"></div>
-							</div><!-- Product Panel -->
+							</div>
+							
+							<!-- Product Panel -->
 							<div class="product_panel panel">
 								<div class="featured_slider slider">
 
@@ -582,14 +666,34 @@
 													<img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" onclick="location.href='pDetailView.do?pId=${p.pId }';">
 												</div>
 												<div class="product_content">
-													<div class="product_price discount">￦ ${p.pPrice } ~</span></div>
+													<div class="product_price discount">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 													
 													<div class="product_name"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
-													<div class="product_extras">
-														<button class="product_cart_button">Add to Cart</button>
-													</div>
+													<c:if test="${!empty loginUser }">
+														<div class="product_extras">
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+														</div>
+													</c:if>
 												</div>
-												<div class="product_fav"><i class="fas fa-heart"></i></div>
+												
+												<c:if test="${!empty loginUser }">
+													<input class="pId" type="hidden" value="${p.pId}">
+													<c:set var="doneLoop" value="false"/> 
+													<c:if test="${fn:length(gglist) == 0}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+													<c:forEach items="${gglist}" var="g" varStatus="status">
+														<c:if test="${not doneLoop}"> 
+															<c:if test = "${g.pId eq p.pId}">
+																<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																<c:set var="doneLoop" value="true"/> 
+															</c:if>
+															<c:if test = "${g.pId ne p.pId && status.last}">
+																<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+															</c:if>
+														</c:if>
+													</c:forEach>
+												</c:if>
 												
 											</div>
 										</div>
@@ -599,7 +703,7 @@
 								<div class="featured_slider_dots_cover"></div>
 							</div>
 
-
+							
 
 
 
@@ -636,7 +740,7 @@
 										<div class="banner_2_title">MacBook Air</div>
 										<div class="banner_2_text"><h4>다시 한 번 가볍게 앞서다.<br> Retina 디스플레이 찬란한 등장.<br> Touch ID 당신의 지문이 비밀번호.</h4></div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#" >쇼핑하기 ▷</a></div>
+										<div class="button banner_2_button"><a href="search.do?keyword=노트북" >쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -667,7 +771,7 @@
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/pepelo.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/pepero.png" alt=""></div>
 									</div>
 								</div>
 							</div>
@@ -686,7 +790,7 @@
 										<div class="banner_2_title">소중한 나의 반려동물</div>
 										<div class="banner_2_text">야옹아 멍멍해봐!! <br> 프리미엄 반려동물 용품 쇼핑</div>
 										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">쇼핑하기 ▷</a></div>
+										<div class="button banner_2_button"><a href="pListView.do?category=1005">쇼핑하기 ▷</a></div>
 									</div>
 									
 								</div>
@@ -716,7 +820,7 @@
 
 
 
-<aaaaa>
+
 
 	<!-- Hot New Arrivals -->
 
@@ -728,7 +832,7 @@
 						<div class="tabs clearfix tabs-right">
 							<div class="new_arrivals_title">New Arrivals</div>
 							<ul class="clearfix">
-								<li class="active">Top 12</li>
+								<li class="active">Top 20</li>
 								<li>식품</li>
 								<li>의류</li>
 								<li>가구</li>
@@ -741,7 +845,6 @@
 						<div class="row">
 							<div class="col-lg-9" style="z-index:1;">
 
-								<!-- Product Panel -->
 								<div class="product_panel panel active">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -751,19 +854,35 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
+														<c:if test="${!empty loginUser }">
 														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
+															<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
 														</div>
+													</c:if>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+													
+													<c:if test="${!empty loginUser }">
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g" varStatus="status">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId && status.last}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</c:if>
+													
 												</div>
 											</div>
 										</c:forEach>
@@ -772,11 +891,6 @@
 									<div class="arrivals_slider_dots_cover"></div>
 								</div>
 
-
-
-
-
-<!-- Product Panel -->
 								<div class="product_panel panel">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -786,13 +900,14 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
 												
 													<c:if test="${!empty loginUser }">
@@ -801,45 +916,29 @@
 														<c:if test="${fn:length(gglist) == 0}">
 															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
 														</c:if>
-														<c:forEach items="${gglist}" var="g">
+														<c:forEach items="${gglist}" var="g" varStatus="status">
 															<c:if test="${not doneLoop}"> 
 																<c:if test = "${g.pId eq p.pId}">
 																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
 																	<c:set var="doneLoop" value="true"/> 
 																</c:if>
-																<c:if test = "${g.pId ne p.pId}">
+																<c:if test = "${g.pId ne p.pId && status.last}">
 																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
 																</c:if>
 															</c:if>
 														</c:forEach>
 													</c:if>
-													
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+												
 												</div>
 											</div>
 										</c:forEach>
 										
-										
+										<script src="resources/js/home_custom.js"></script>
 
 									</div>
 									<div class="arrivals_slider_dots_cover"></div>
 								</div>
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- Product Panel -->
 								<div class="product_panel panel">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -849,19 +948,35 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+													
+													<c:if test="${!empty loginUser }">
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g" varStatus="status">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId && status.last}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</c:if>
+												
 												</div>
 											</div>
 										</c:forEach>
@@ -870,7 +985,6 @@
 									<div class="arrivals_slider_dots_cover"></div>
 								</div>
 								
-<!-- Product Panel -->
 								<div class="product_panel panel">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -880,19 +994,35 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+													
+													<c:if test="${!empty loginUser }">
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g" varStatus="status">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId && status.last}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</c:if>
+												
 												</div>
 											</div>
 										</c:forEach>
@@ -901,8 +1031,6 @@
 									<div class="arrivals_slider_dots_cover"></div>
 								</div>								
 
-
-<!-- Product Panel -->
 								<div class="product_panel panel">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -912,19 +1040,35 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+													
+													<c:if test="${!empty loginUser }">
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g" varStatus="status">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId && status.last}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</c:if>
+												
 												</div>
 											</div>
 										</c:forEach>
@@ -934,7 +1078,6 @@
 								</div>
 
 
-<!-- Product Panel -->
 								<div class="product_panel panel">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -944,19 +1087,33 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+													<c:if test="${!empty loginUser }">
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g" varStatus="status">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId && status.last}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</c:if>
 												</div>
 											</div>
 										</c:forEach>
@@ -965,8 +1122,6 @@
 									<div class="arrivals_slider_dots_cover"></div>
 								</div>
 
-
-<!-- Product Panel -->
 								<div class="product_panel panel">
 									<div class="arrivals_slider slider">
 										<!-- Slider Item -->
@@ -976,19 +1131,34 @@
 												<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 													<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${p.paChangeName }" width="100px" height="100px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 													<div class="product_content">
-														<div class="product_price">￦ ${ p.pPrice } ~</div>
+														<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 														
 														<div class="product_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-														<div class="product_extras">
-															
-															<button class="product_cart_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button>
-														</div>
+														<c:if test="${!empty loginUser }">
+															<div class="product_extras">
+																<button class="product_cart_button" onclick="addCart(${p.pId });">Add to Cart</button>
+															</div>
+														</c:if>
 													</div>
-													<div class="product_fav"><i class="fas fa-heart"></i></div>
-													<ul class="product_marks">
-														<li class="product_mark product_discount">-25%</li>
-														<li class="product_mark product_new">new</li>
-													</ul>
+													<c:if test="${!empty loginUser }">
+														<input class="pId" type="hidden" value="${p.pId}">
+														<c:set var="doneLoop" value="false"/> 
+														<c:if test="${fn:length(gglist) == 0}">
+															<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+														</c:if>
+														<c:forEach items="${gglist}" var="g" varStatus="status">
+															<c:if test="${not doneLoop}"> 
+																<c:if test = "${g.pId eq p.pId}">
+																	<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+																	<c:set var="doneLoop" value="true"/> 
+																</c:if>
+																<c:if test = "${g.pId ne p.pId && status.last}">
+																	<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</c:if>
+													
 												</div>
 											</div>
 										</c:forEach>
@@ -1007,10 +1177,10 @@
 									<div class="d-flex flex-column align-items-center justify-content-center">
 										<div class="arrivals_single_image"><img src="resources/product_uploadFiles/${p.paChangeName }" width="200px" height="200px" alt="" onclick="location.href='pDetailView.do?pId=${ p.pId }';"></div>
 										<div class="arrivals_single_content">
-											<div class="arrivals_single_category">${ p.cName2 }</a></div>
+											<div class="arrivals_single_category">${ p.cName2 }</div>
 											<div class="arrivals_single_name_container clearfix">
 												<div class="arrivals_single_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
-												<div class="arrivals_single_price text-right">￦ ${ p.pPrice } ~</div>
+												<div class="arrivals_single_price text-right">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 											</div>
 											<form action="#"><button class="arrivals_single_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button></form>
 										</div>
@@ -1073,24 +1243,25 @@
 							<c:forEach items="${ random }" var="r">
 								<div class="owl-item">
 									<div class="trends_item discount">
-										<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="resources/product_uploadFiles/${r.paChangeName }" width="150px" height="180px" alt="" onclick="location.href='pDetailView.do?pId=${ r.pId }';"></div>
+										<div class="trends_image d-flex flex-column align-items-center justify-content-center">
+											<img src="resources/product_uploadFiles/${r.paChangeName }" class="imgHover"width="150px" height="180px" alt="" onclick="location.href='pDetailView.do?pId=${ r.pId }';">
+										</div>
 										<div class="trends_content">
 											<div class="trends_category"><a href="#">${ r.cName2 }</a></div>
 											<div class="trends_info clearfix">
-												<div class="trends_name" style="margin-bottom:10px"><a href="pDetailView.do?pId=${ r.pId }">${ r.pName }</a></div>
-												<div class="trends_price" style="margin-top:10px">￦ ${r.pPrice } ~ </div>
+												<div class="trends_price" >￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.pPrice }" /> ~ </div>
+												<div class="trends_name" ><a href="pDetailView.do?pId=${ r.pId }">${ r.pName }</a></div>
 											</div>
 										</div>
 										<ul class="trends_marks">
 											<li class="trends_mark trends_discount">Tip!</li>
 											<li class="trends_mark trends_new">Hot</li>
 										</ul>
-										<div class="trends_fav"><i class="fas fa-heart"></i></div>
+										
 									</div>
 								</div>
 							</c:forEach>
 
-							
 
 						</div>
 					</div>
@@ -1113,7 +1284,7 @@
 							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-chevron-left fa-10x ml-auto"></i></div>
 							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-chevron-right fa-10x ml-auto"></i></div>
 						</div>
-						<div class="popular_categories_link"><a href="#">full catalog</a></div>
+						
 					</div>
 				</div>
 				
@@ -1124,15 +1295,15 @@
 						<div class="owl-carousel owl-theme popular_categories_slider">
 
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
+							<div class="owl-item imgHover">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><i class="fa fa-utensils fa-5x" onclick="location.href='pListView.do?category=1001';"></i></div>
+									<div class="popular_category_image"><i class="fa fa-utensils fa-5x " onclick="location.href='pListView.do?category=1001';"></i></div>
 									<div class="popular_category_text">food</div>
 								</div>
 							</div>
 
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
+							<div class="owl-item imgHover">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><i class="fas fa-female fa-5x" onclick="location.href='pListView.do?category=1002';"></i></div>
 									<div class="popular_category_text">Clothing & Accessories</div>
@@ -1140,7 +1311,7 @@
 							</div>
 
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
+							<div class="owl-item imgHover">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><i class="fas fa-bed fa-5x" onclick="location.href='pListView.do?category=1003';"></i></div>
 									<div class="popular_category_text">Furniture & Interior</div>
@@ -1148,7 +1319,7 @@
 							</div>
 
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
+							<div class="owl-item imgHover">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><i class="fas fa-tv fa-5x" onclick="location.href='pListView.do?category=1004';"></i></div>
 									<div class="popular_category_text">Digital & Computers</div>
@@ -1156,7 +1327,7 @@
 							</div>
 
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
+							<div class="owl-item imgHover">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><i class="fas fa-camera fa-5x" onclick="location.href='pListView.do?category=1005';"></i></div>
 									<div class="popular_category_text">Hobbies & Pets</div>
@@ -1164,7 +1335,7 @@
 							</div>
 							
 							<!-- Popular Categories Item -->
-							<div class="owl-item">
+							<div class="owl-item imgHover">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><i class="fa fa-futbol fa-5x" onclick="location.href='pListView.do?category=1006';"></i> </div>
 									<div class="popular_category_text">Life & Health & Beauty</div>
@@ -1195,70 +1366,6 @@
 </div>
 
 <c:import url="common/footer.jsp"/>
-<script>
-	$(function(){
-		
-		// 찜 토글 처리
-		$(".favPid").off().on("click", function(){
-			
-			var flag = 0;
-			if($(this).hasClass("active") == true) {
-				flag = 1; // class 변경 처리가 더 빠르므로, 이 분기가 찜 추가하는 케이스임
-			}else{
-				flag = 0; // 찜 삭제
-			}
-			var pId = $(this).parent().find('.pId').val();
-
-			$.ajax({
-				url:"changeGgim.gg",
-				data:{pId:pId, flag:flag},
-				type:"post",
-				success:function(data){
-					getGgim();
-				},
-				error:function(){
-					console.log("서버와의 통신 실패");
-				}
-			});
-		});
-	});
-	
-	// 메인메뉴 장바구니 비동기 처리
-	function getCart(){
-		$.ajax({
-			url:"currentBasket.ba",
-			dataType:"json",
-			success:function(data){
-				if(data[0] == 0){
-					$('.cart_count').children().first().text(data[0]);
-					$('.cart_price').children().first().text("장바구니가 비었어요.");
-				}else{
-					$('.cart_count').children().first().text(data[0]);
-					$('.cart_price').children().first().text(data[1]+"원");
-				}
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-		});
-	}
-	
-	// 메인메뉴 찜하기 비동기 처리
-	function getGgim(){
-		$.ajax({
-			url:"currentGgim.gg",
-			dataType:"json",
-			success:function(data){
-					$('.wishlist_count').children().first().text(data);
-					$('#'+ item.id).css("display","none");
-
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-		});
-	}
-</script>
 
 
 </body>

@@ -12,6 +12,9 @@ public interface BasketService {
 	// 장바구니에 추가
 	int addBasket(Basket b);
 	
+	// 장바구니에 추가
+	int addBasket2(Basket b);
+	
 	// 장바구니에서 제외(단일)
 	int deleteBasket(Basket b);
 	

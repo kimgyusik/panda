@@ -93,8 +93,8 @@ public class GgimController {
 	}
 	
 	// 찜 추가
-	@RequestMapping("addGgim.gg") // ajax로 처리하려면 리턴 void로 
-	public String addGgim(int pId, HttpServletRequest request, HttpSession session) {
+	@RequestMapping("addGgim.gg")
+	public void addGgim(int pId, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 		
 		Ggim ggim = new Ggim();
 		ggim.setmNo(getmNo(session));
@@ -102,11 +102,17 @@ public class GgimController {
 		
 		int result = ggService.addGgim(ggim);
 		
-		if(result > 0) {
-			return "success";
+		String msg = "";
+		
+		if(result == 0) {
+			msg = "이미 찜한 상품입니다.";
 		}else {
-			return "fail";
+			msg = "해당 상품을 찜했습니다.";
 		}
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(msg, response.getWriter());
 	}
 	
 	// 찜 갯수(메인메뉴바)
