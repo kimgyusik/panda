@@ -16,7 +16,7 @@
 		<div class="shop">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3">
+					<div class="col-lg-1">
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar" style="width:100px;margin:0;'">
 						<div class="sidebar_section">
@@ -25,8 +25,7 @@
 								<li><a href="sProduct.do">상품리스트</a></li>
 								<li><a href="pInsertView.do">상품등록</a></li>
 								<li><a href="oderPage.do">주문목록관리</a></li>
-								<li><a href="streaming.do">방송관리</a></li>
-								<li><a href="sPage.do">정보수정?</a></li>
+								<li><a href="sPage.do">정보수정</a></li>
 							</ul>
 						</div>
 					</div>
@@ -45,6 +44,7 @@
 									<th>주문날짜</th>
 									<th>배송지</th>
 									<th>배송상태</th>
+									<th>주문번호</th>
 								</tr>
 								<c:if test="${ empty oList }">
 									<tr><td>주문된 상품이 없습니다.</td></tr>
@@ -62,10 +62,17 @@
 										<td>${ o.price*o.count }</td>
 										<td><fmt:formatDate var="resultRegDt" value="${o.payDate}" pattern="yyyy-MM-dd"/>${resultRegDt}</td>
 										<td style="width:200px">${ o.deliverySpot }</td>
-										<td><select>
-											<option>${ o.deliveryStatus }</option>
-											<option>배송중</option>
+										<td><select name="deliveryStatus">
+											<c:if test="${ o.deliveryStatus eq '배송전'}">
+												<option value="배송전">${ o.deliveryStatus }</option>
+												<option value="배송중">배송중</option>
+											</c:if>
+											<c:if test="${ o.deliveryStatus ne '배송전'}">
+												<option value="배송중">${ o.deliveryStatus }</option>
+												<option value="배송전">배송전</option>
+											</c:if>
 										</select></td>
+										<td><input value="${ o.payId }" name="payId" style="width:20px; border:none"></td>
 										
 									</tr>
 									</c:forEach>
@@ -94,7 +101,7 @@
 												<c:url value="sProduct.do" var="page">
 													<c:param name="currentPage" value="${p }"/>
 												</c:url>
-												<a href="${page }">${p }</a>
+												<a href="${ page }">${ p }</a>
 											</font>
 										</c:if>
 									</c:forEach>
@@ -107,13 +114,13 @@
 										<c:url value="sProduct.do" var="next">
 											<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 										</c:url>
-										<a href="${next }">다음</a>
+										<a href="${ next }">다음</a>
 									</c:if>
 								
 								</td>
 							</tr>
 							</table>
-							<button type="submit">배송상태수정</button>
+							<button type="submit" id="updateBtn">배송상태수정</button>
 						</form>
 					</div>
 				</div>
@@ -122,7 +129,9 @@
 	</div>
 	
 	<script>
-	
+		$("#updateBtn").click(function(){
+			
+		});
 	</script>
 	
 	<c:import url="../../common/footer.jsp"/>

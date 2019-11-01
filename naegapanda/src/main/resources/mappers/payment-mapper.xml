@@ -62,6 +62,12 @@
 		where pa.pa_file_level = 1 and s.s_no=#{sNo}
 	</select>
 	
+	<update id="delUpdate" parameterType="Payment">
+		update payment
+		set delivery_status = #{deliveryStatus}
+		where pay_id=#{payId}
+	</update>
+	
 </mapper>
 	
 	

@@ -157,21 +157,6 @@
 								<div class="header_search_form_container">
 									<form action="search.do" class="header_search_form clearfix">
 										<input type="text" name="keyword" required="required" class="header_search_input" placeholder="Search for products...">
-										<div class="custom_dropdown">
-											<div class="custom_dropdown_list">
-												<span class="custom_dropdown_placeholder clc">All Categories</span>
-												<i class="fas fa-chevron-down"></i>
-												<ul class="custom_list clc">
-													<li><a class="clc" href="pListView.do?category=1000">All Categories</a></li>
-													<li><a class="clc" href="pListView.do?category=1001">식품</a></li>
-													<li><a class="clc" href="pListView.do?category=1002">의류/잡화</a></li>
-													<li><a class="clc" href="pListView.do?category=1003">가구/인테리어</a></li>
-													<li><a class="clc" href="pListView.do?category=1004">디지털/가전/컴퓨터 </a></li>
-													<li><a class="clc" href="pListView.do?category=1005">취미/애완동물</a></li>
-													<li><a class="clc" href="pListView.do?category=1006">생활/건강/뷰티</a></li>
-												</ul>
-											</div>
-										</div>
 										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="resources/images/search.png" alt=""></button>
 									</form>
 								</div>
