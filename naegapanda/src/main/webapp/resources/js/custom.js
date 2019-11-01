@@ -955,7 +955,7 @@ $(document).ready(function()
 
 	*/
 
-	function initTimer2()
+	function initTimer()
     {
     	if($('.deals_timer_box').length)
     	{

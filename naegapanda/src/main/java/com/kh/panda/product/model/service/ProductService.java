@@ -36,6 +36,8 @@ public interface ProductService {
 	ArrayList<Product> New4List();
 	ArrayList<Product> New5List();
 	ArrayList<Product> New6List();
+	
+	ArrayList<Product> LiveList();
 
 	ArrayList<Product> random();
 	

@@ -80,5 +80,7 @@ public class ReviewDao {
 		return sqlSession.update("reviewMapper.deleteReply", rrId);
 	}
 	
-
+	public int increaserCount(int rId) {
+		return sqlSession.update("reviewMapper.increaserCount", rId);
+	}
 }

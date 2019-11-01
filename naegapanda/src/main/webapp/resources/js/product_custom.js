@@ -416,7 +416,10 @@ $(document).ready(function()
 	$('.reviewDetail').css('display','none');
 	$('.reviewTop').click(function(){
 		if(!$(this).hasClass('more')){
-			getReplyList($(this).next().children().eq(0).children().eq(0).val(), $(this).next().children().eq(0).children().eq(1).val());
+			
+			var rId = $(this).next().children().eq(0).children().eq(0).val();
+			increaserCount(rId);
+			getReplyList(rId, $(this).next().children().eq(0).children().eq(1).val());
 			$(this).css('border-bottom','none');
 			$(this).find('.reviewImg').css('display','none');
 			$(this).next().css('display','table-row');
@@ -465,6 +468,31 @@ $(document).ready(function()
 		}
 	});
 	
+	// 리플 추가
+	$(".add").on("click", function(){
+		
+		var rId =$(this).parent().parent().parent().children().eq(0).children().eq(0).val();
+		var rrContents = $(this).prev().val();
+		var mNo = $(this).parent().parent().parent().children().eq(0).children().eq(1).val();
+		
+		$.ajax({
+			url:"addReply.re",
+			data:{rId:rId, rrContents:rrContents},
+			type:"post",
+			success:function(data){
+				if(data == "success"){
+					getReplyList(rId, mNo)
+				}else{
+					alert("처리실패");
+				}
+			},
+			error:function(){
+				console.log("서버와의 통신 실패");
+			}
+		});
+		
+	});
+	
 });
 
 // 리뷰 댓글 불러오기
@@ -501,16 +529,16 @@ function getReplyList(rId, mNo){
 							+ "<td style='width:2%; '>"
 							+ "<div style='height:15px; border: 2px solid #ced3e4;'>"
 							+ "<td >"+value.rrContents
-							+ "<span class='reviewGray dated'>&nbsp;&nbsp;&nbsp;("+newDate+")"
+							+ "<span class='reviewGray dated'>&nbsp;&nbsp;&nbsp;("+newDate+")&nbsp;&nbsp;	"
+							+ "<span class='delete "+value.mNo+"' onclick='deleteReply("+value.rrId+","+rId+","+mNo+");'>삭제</span>"
 					);
-
-					if(value.mNo == mNo){
-						$tr.append("<td style='border-bottom:none;'>" +
-								"<input type='hidden' value='"+value.rrId+"'>" +
-									"<span class='update'>수정</span>" +
-									"<span class='delete'>삭제</span>");
-					}	
+					
 					$replyBody.append($tr);
+					
+					if(value.mNo != mNo){
+					//$tr.append("<td id = 'rrId"+value.rrId+"'style='border-bottom:none; width:24%'>" +
+					//		"<input type='hidden' value='"+value.rrId+"'>" );
+					$('.'+value.mNo).remove();}
 				});
 			}
 		},
@@ -520,6 +548,41 @@ function getReplyList(rId, mNo){
 	});
 }
 
+function increaserCount(rId){
+	
+	$.ajax({
+		url:"increaserCount.re",
+		data:{rId:rId},
+		type:"post",
+		success:function(){
+			
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+}
+
+// 리플 삭제
+function deleteReply(rrId,rId,mNo){
+	$.ajax({
+		url:"deleteReply.re",
+		data:{rrId:rrId},
+		type:"post",
+		success:function(data){
+			if(data == "success"){
+				//$('#rrId'+rrId).parent().remove();
+				getReplyList(rId, mNo);
+			}else{
+				alert("처리실패");
+			}
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+	
+}
 
 // 장바구니 담기 처리
 function addCart(t){

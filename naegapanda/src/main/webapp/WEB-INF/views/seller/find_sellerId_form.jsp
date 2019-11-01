@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PANDA:판매자 아이디 찾기</title>
+<title>PANDA:아이디/비밀번호 찾기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 </head>

@@ -217,6 +217,12 @@
  		]]>
 	</select>
 	
+	<select id="LiveList" resultMap="productResultSet2">
+		select p.* , st_no, st_status
+		from prettypList p
+		left outer join streaming s on(p.p_id = s.p_id)
+		where st_status='Y'
+	</select>
 	
 
 	<update id="increasePpurchase" parameterType="Payment" >

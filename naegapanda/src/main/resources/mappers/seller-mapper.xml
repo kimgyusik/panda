@@ -129,5 +129,14 @@
 		from Streaming
 		where st_no = #{stNo} and st_status = 'Y'
 	</select>
+	<!-- <select id="selectoList" resultMap="paymentsResultSet" parameterType="_int">
+		select pm.*, p.p_name, po.o_name, pa.pa_change_name, s.s_no
+		from payment pm
+		left join product_option po on pm.o_no=po.o_no
+		left join product p on p.p_id=po.p_id
+		left join product_attachment pa on pa.p_id=p.p_id
+		left join seller s on s.s_no = p.s_no
+		where pa.pa_file_level = 1 and s.s_no=#{sNo}
+	</select> -->
 
 </mapper>

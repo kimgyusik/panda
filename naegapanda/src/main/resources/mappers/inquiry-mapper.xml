@@ -17,15 +17,16 @@
 		<result property="pName" column="p_name"/>
 		<result property="sNo" column="s_no"/>
 		<result property="openYn" column="open_yn"/>
-		
+		<result property="paChangeName" column="pa_change_name"/>
 	</resultMap>
 	
 	<select id="selectMyInquiryList" parameterType="_int" resultMap="inquiryResultSet">
-		select i_id, i_title, i_contents, i_date, m_no, i_answer, i_a_date, i_state, i_del, p_id, open_yn, m_id, p_name, s_no 
+		select i_id, i_title, i_contents, i_date, m_no, i_answer, i_a_date, i_state, i_del, p_id, open_yn, m_id, p_name, s_no, pa_change_name
 		from inquiry
 		join product using(p_id)
+        join product_attachment using(p_id)
 		join member using(m_no)
-		where m_no = #{mNo} and i_del = 'N'
+		where m_no = 3 and i_del = 'N'
 		order by i_date desc
 	</select>
 	

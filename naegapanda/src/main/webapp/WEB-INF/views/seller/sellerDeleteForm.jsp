@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PANDA:회원탈퇴</title>
 <style>
 	.outer{
 		width:1000px;
@@ -54,8 +54,8 @@
 		<form action="confirm.do" method="post">
 			<div id="id">
 				<p>보안을 위해 회원님의 이름과 계정과 비밀번호를 확인 합니다.</p>
-				<label>이름 : </label><input type="text" name="sName" value="${ loginSeller.sName }" readonly>
-				<label>아이디 : </label><input type="text" name="sId" value="${ loginSeller.sId }" readonly>
+				<label>이름 : </label><input type="text" name="sName" value="${ loginSeller.sName }" style="border:none;" readonly>
+				<label>아이디 : </label><input type="text" name="sId" value="${ loginSeller.sId }" style="border:none;" readonly>
 				<label>비밀번호 : </label><input type="password" name="sPwd">
 				<button type="submit" style="margin-left:10px;">본인확인</button>
 			</div>
