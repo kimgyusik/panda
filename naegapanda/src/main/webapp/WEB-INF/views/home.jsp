@@ -24,16 +24,9 @@
 	color:#000000;
 	}
 	
-	.carousel{
-	    /* background: #cedaed; */
-	    /* margin-top: 20px; */
-	}
 	.carousel-item{
 	    text-align: center;
 	    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
-	}
-	.bs-example{
-		/* margin: 20px; */
 	}
 	#myCarousel{
 		height:448px;
@@ -93,14 +86,14 @@
 		        </ol>
 		        <!-- Wrapper for carousel items -->
 		        <div class="carousel-inner">
-		            <div class="carousel-item active">
-		                <img src="resources/images/paddd.jpg" alt="First Slide">
+		            <div class="carousel-item active" onclick="location.href='pListView.do?category=30'" style="cursor:pointer;">
+		                <img src="resources/images/misemungi.jpg" alt="First Slide" style="width:100%; height:450px;">
 		            </div>
-		            <div class="carousel-item">
-		                <img src="resources/images/carpet.jpg" alt="Second Slide">
+		            <div class="carousel-item" onclick="location.href='pListView.do?category=1002'" style="cursor:pointer;">
+		                <img src="resources/images/zipup.jpg" alt="Second Slide" style="width:100%; height:450px;">
 		            </div>
-		            <div class="carousel-item">
-		                <img src="resources/images/misemu.jpg" alt="Third Slide">
+		            <div class="carousel-item" onclick="location.href='pListView.do?category=1004'" style="cursor:pointer;">
+		                <img src="resources/images/friday.jpg" alt="Third Slide" style="width:100%; height:450px;">
 		            </div>
 		        </div>
 		        <!-- Carousel controls -->
