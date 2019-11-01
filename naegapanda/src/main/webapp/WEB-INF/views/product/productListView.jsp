@@ -198,7 +198,7 @@
 									<c:forEach begin="${pi.startPage }" end="${pi.endPage }" var="p">
 										<c:if test="${pi.currentPage eq p }">
 											<font color="red" size="4">[${p }]</font>
-										</c:if>
+										</c:if> 
 											<font color="black" size="4">
 												<c:url value="pListView.do" var="page">
 													<c:param name="currentPage" value="${p }"/>
@@ -206,7 +206,7 @@
 												</c:url>
 												<a href="${page }">${p }</a>
 											</font>
-										</c:if>
+									
 									</c:forEach>
 									
 									<!-- 다음 -->
