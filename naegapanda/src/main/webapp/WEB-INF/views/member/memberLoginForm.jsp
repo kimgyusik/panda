@@ -196,9 +196,9 @@
 				<tr>
 					<td colspan="3">
 						<p>
-							<a href="join.do">회원가입</a>
-							<a href="find_id_form.do">아이디 찾기</a>
-							<a href="find_pwd_form.do" id="loginBtn2">비밀번호 찾기</a>
+							<a href="join.do" style="color:white;">회원가입  l</a>
+							<a href="find_id_form.do" style="color:white;">아이디 찾기 l</a>
+							<a href="find_pwd_form.do" id="loginBtn2" style="color:white;">비밀번호 찾기</a>
 						</p>
 						<button type="submit" id="loginBtn">로그인</button>
 						<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>

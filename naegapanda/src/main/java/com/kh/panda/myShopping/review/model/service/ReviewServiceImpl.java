@@ -87,4 +87,8 @@ public class ReviewServiceImpl implements ReviewService{
 		return reDao.deleteReply(rrId);
 	}
 
+	@Override
+	public int increaserCount(int rId) {
+		return reDao.increaserCount(rId);
+	}
 }

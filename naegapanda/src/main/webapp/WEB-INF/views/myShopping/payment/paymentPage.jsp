@@ -246,6 +246,7 @@
 	<script>
 		
 		$(function(){
+			alert("z");
 			priceAll();
 			
 			$("#postcodify_search_button").postcodifyPopUp();
@@ -263,7 +264,7 @@
 		    	var p = parseInt($(this).parent().children().eq(0).val()); // hidden된 각 상품의 합계금액
 		        sum = sum + p; 
 		    });
-			
+			alert(sum);
 			$(".order_total_amount").text(addComma(sum));
 			$(".order_total_amount").css("font-size","30px");
 		}
