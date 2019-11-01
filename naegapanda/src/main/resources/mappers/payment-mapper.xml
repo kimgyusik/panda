@@ -27,6 +27,7 @@
 		<result property="storeName" column="storename"/>
 		<result property="sBaddress" column="s_baddress"/>
 		<result property="sBphone" column="s_bphone"/>
+		<result property="paChangeName" column="pa_change_name"/>
 	</resultMap>
 
 	<select id="myPaymentList" parameterType="_int" resultMap="paymentResultSet">
