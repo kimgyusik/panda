@@ -169,6 +169,11 @@ public class SellerDao {
 	}
 
 
+	public int delUpdate(Payment pm) {
+		return sqlSession.update("paymentMapper.delUpdate", pm);
+	}
+
+
 	
 
 

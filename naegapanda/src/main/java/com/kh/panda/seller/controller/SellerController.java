@@ -691,7 +691,6 @@ public class SellerController {
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sendMail.setTo(s.getsEmail());
@@ -699,6 +698,25 @@ public class SellerController {
 		
 		return "home";
 	 
+		
+	}
+	
+	@RequestMapping("delStatus.do")
+	public String delUpdate(Payment pm, Model model, HttpServletRequest request) {
+		
+		int result = sService.delUpdate(pm);
+		
+		if(result > 0) {
+			model.addAttribute(pm);
+			return "redirect:oderPage.do";
+		}else {
+			model.addAttribute("msg", "errorPage");
+			return "common/errorPage";
+		}
+		
+		
+		 
+		 
 		
 	}
 	

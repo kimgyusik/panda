@@ -58,7 +58,6 @@
 												<ul>
 													<li><a href="sProduct.do">상품관리</a></li>
 													<li><a href="sConfirm.do">정보수정</a></li>
-													<li><a href="streaming.do">방송관리</a></li>
 												</ul>
 										</li>
 									</c:if>
@@ -71,7 +70,6 @@
 											<ul>
 												<li><a href="sProduct.do">상품관리</a></li>
 												<li><a href="sConfirm.do">정보수정</a></li>
-												<li><a href="streaming.do">방송관리</a></li>
 											</ul>
 									</li>
 									</c:if>
@@ -140,8 +138,7 @@
 									<li><a href="sProduct.do">상품리스트</a></li>
 									<li><a href="pInsertView.do">상품등록</a></li>
 									<li><a href="oderPage.do">주문목록관리</a></li>
-									<li><a href="streaming.do">방송관리</a></li>
-									<li><a href="sConfirm.do">정보수정?</a></li>
+									<li><a href="sConfirm.do">정보수정</a></li>
 								</ul>
 							</div>
 					</div>

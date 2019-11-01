@@ -62,6 +62,8 @@ public interface SellerService {
 	
 	int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
 
+	int delUpdate(Payment pm);
+
 	
 
 	

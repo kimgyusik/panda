@@ -214,6 +214,11 @@ public class SellerServiceImpl implements SellerService{
 		return result;
 	}
 
+	@Override
+	public int delUpdate(Payment pm) {
+		return sDao.delUpdate(pm);
+	}
+
 
 	
 	
