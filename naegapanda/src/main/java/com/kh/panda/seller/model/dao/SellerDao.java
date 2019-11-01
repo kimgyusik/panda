@@ -172,6 +172,7 @@ public class SellerDao {
 
 	public int delUpdate(Payment pm) {
 		return sqlSession.update("paymentMapper.delUpdate", pm);
+	}
 	public int updatestPrice(ProductOption po) {
 		return sqlSession.update("productMapper.updatestPrice", po);
 	}

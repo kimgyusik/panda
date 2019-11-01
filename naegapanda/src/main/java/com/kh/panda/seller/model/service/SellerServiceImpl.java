@@ -218,6 +218,7 @@ public class SellerServiceImpl implements SellerService{
 	@Override
 	public int delUpdate(Payment pm) {
 		return sDao.delUpdate(pm);
+	}
 	public int updatestPrice(ArrayList<ProductOption> poList) {
 		int result = 0;
 		
