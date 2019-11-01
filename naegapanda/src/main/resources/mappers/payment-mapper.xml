@@ -52,11 +52,13 @@
 	</update>
 	
 	<select id="selectoList" resultMap="paymentResultSet" parameterType="_int">
-	<!-- 	select pa_change_name, pay_request, p_name, count, price, pay_date, delivery_status
-		from payment
-		join product on o_no=p_id
-		join product_attachment using(p_id) -->
-		
+		select pm.*, p.p_name, po.o_name, pa.pa_change_name, s.s_no
+		from payment pm
+		left join product_option po on pm.o_no=po.o_no
+		left join product p on p.p_id=po.p_id
+		left join product_attachment pa on pa.p_id=p.p_id
+		left join seller s on s.s_no = p.s_no
+		where pa.pa_file_level = 1 and s.s_no=#{sNo}
 	</select>
 	
 </mapper>
