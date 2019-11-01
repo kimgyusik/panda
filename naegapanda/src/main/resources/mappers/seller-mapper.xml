@@ -23,7 +23,15 @@
 		<result property="sStatus" column="s_status"/>
 		<result property="sViolate" column="s_violate"/>
 	</resultMap>
-
+	
+	<resultMap id="streamingResultSet" type="Streaming">
+		<id property="stNo" column="st_no"/>
+		<result property="sNo" column="s_no"/>
+		<result property="stTime" column="st_time"/>
+		<result property="stTitle" column="stTitle"/>
+		<result property="stStatus" column="st_status"/>
+	</resultMap>
+	
 
 	<!-- 가입 -->
 	<insert id="insertSeller" parameterType="Seller">
@@ -104,6 +112,22 @@
 	<select id="oListCount" resultType="_int" parameterType="_int">
 		select count(*)
 		from payment
+	</select>
+	
+	<insert id="insertStreaming" parameterType="Streaming">
+		insert into Streaming values(streaming_seq.nextval, #{sNo}, SYSDATE, #{stTitle},'Y')
+	</insert>
+	
+	<select id="selectStreaming" resultMap="streamingResultSet" parameterType="_int">
+		select *
+		from Streaming
+		where s_no = #{sNo} and st_status = 'Y'
+	</select>
+	
+	<select id="selectStreamingStNO" resultMap="streamingResultSet" parameterType="_int">
+		select *
+		from Streaming
+		where st_no = #{stNo} and st_status = 'Y'
 	</select>
 
 </mapper>

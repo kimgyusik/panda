@@ -23,6 +23,7 @@ import com.kh.panda.seller.model.dao.SellerDao;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
 import com.kh.panda.seller.model.vo.TempKey;
+import com.kh.panda.streaming.model.vo.Streaming;
 import com.sun.media.jfxmedia.logging.Logger;
 
 @Service("sService")
@@ -212,6 +213,40 @@ public class SellerServiceImpl implements SellerService{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int updatestPrice(ArrayList<ProductOption> poList) {
+		int result = 0;
+		
+		for(int i=0; i<poList.size();i++) {
+			result = sDao.updatestPrice(poList.get(i));
+			if(result<1) {
+				break;
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int insertStreaming(Streaming st) {
+		return sDao.insertStreaming(st);
+	}
+
+	@Override
+	public Streaming selectStreaming(int sNo) {
+		return sDao.selectStreaming(sNo);
+	}
+
+	@Override
+	public int updatestNo(Product p) {
+		return sDao.updatestNo(p);
+	}
+
+	@Override
+	public Streaming selectStreamingToStNo(int stNo) {
+		return sDao.selectStreamingToStNo(stNo);
 	}
 
 

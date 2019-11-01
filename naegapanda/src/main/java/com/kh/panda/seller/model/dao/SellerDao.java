@@ -15,6 +15,7 @@ import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
+import com.kh.panda.streaming.model.vo.Streaming;
 import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository("sDao")
@@ -166,6 +167,31 @@ public class SellerDao {
 	
 	public int insertPaList2(ProductAttachment pa) {
 		return sqlSession.insert("productMapper.insertPa2", pa);
+	}
+
+
+	public int updatestPrice(ProductOption po) {
+		return sqlSession.update("productMapper.updatestPrice", po);
+	}
+
+
+	public int insertStreaming(Streaming st) {
+		return sqlSession.insert("sellerMapper.insertStreaming", st);
+	}
+
+
+	public Streaming selectStreaming(int sNo) {
+		return sqlSession.selectOne("sellerMapper.selectStreaming", sNo);
+	}
+
+
+	public int updatestNo(Product p) {
+		return sqlSession.update("productMapper.updatestNo", p);
+	}
+
+
+	public Streaming selectStreamingToStNo(int stNo) {
+		return sqlSession.selectOne("sellerMapper.selectStreamingStNO", stNo);
 	}
 
 

@@ -32,6 +32,7 @@
 		<typeAlias type="com.kh.panda.home.model.vo.Home" alias="Home"/>
 		<typeAlias type="com.kh.panda.admin.pmanager.model.vo.Pmanager" alias="Pmanager" />
 		<typeAlias type="com.kh.panda.product.model.vo.CategoryNumber" alias="CategoryNumber"/>
+		<typeAlias type="com.kh.panda.streaming.model.vo.Streaming" alias="Streaming"/>
 		
 	</typeAliases>
 
