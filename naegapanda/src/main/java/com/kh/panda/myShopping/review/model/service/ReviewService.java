@@ -45,6 +45,7 @@ public interface ReviewService {
 	
 	// 리플 삭제
 	int deleteReply(int rrId);
-
-
+	
+	// 리뷰 조회수 증가
+	int increaserCount(int rId);
 }

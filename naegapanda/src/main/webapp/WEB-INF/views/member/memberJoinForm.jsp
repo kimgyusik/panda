@@ -8,6 +8,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script src="resources/js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+<!-- services 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+
 <title>PANDA : 회원가입</title>
 <style>
 	.form-row{
@@ -73,7 +80,7 @@
 						<input type="radio" name="gender" value="F"> 여
 			</div>
 			<div class="form-group col-md-6">
-				<input type="date" class="form-control" name="birthDate" max="today" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
+				<input type="date" class="form-control" name="birthDate" min="1919-01-01" max="2019-11-05" placeholder="생년월일과 뒤에한자리(예 199901011)" required>
 			</div>
 			<div class="form-group col-md-6">
 				<input type="Email" class="form-control" name="email" placeholder="Email" required>
@@ -84,19 +91,17 @@
 				<input type="tel" class="form-control" name="phone" placeholder="핸드폰번호(-미포함)" required>
 			</div>
 			<div class="form-group col-md-6" id="ad1">
-					<input type="text" name="post" class="form-control postcodify_postcode5">
-					<button type="button" id="post_search_btn" class="btn btn-light">주소찾기</button>				
+					<input type="text" name="post" id="post" class="form-control postcodify_postcode5">
+					<button type="button" id="post_search_btn1" class="btn btn-light">주소찾기</button>				
 					<input type="text" class="form-control postcodify_address" name="address1" placeholder="도로명주소" >
 					<input type="text" class="form-control postcodify_extra_info" name="address2" placeholder="상세주소" >
 			</div>
-			
-		 </div> 
 
-		 <br><hr>
+		 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 				<script>
 					$(function(){
 						// 검색 버튼 누르면 팝업 레이어가 열리도록 설정
-						$("#post_search_btn").postcodifyPopUp();
+						$("#post_search_btn1").postcodifyPopUp();
 					});
 				</script>
 		
@@ -105,10 +110,11 @@
 		<div align="center">
 			<button type="submit" class="btn btn-primary" onclick="return validate();">가입하기</button>
 			<button type="reset" class="btn btn-primary">취소하기</button>
+			<button type="reset" class="btn btn-primary" onclick="location.href='home.do';">처음으로</button>
 		</div>
 	</form>
 	
-	<c:import url="../common/footer.jsp"/>
+
 	
 </div>
 
@@ -189,6 +195,6 @@
 			});
 			
 	</script>
-	
+		<c:import url="../common/footer.jsp"/>
 </body>
 </html>

@@ -17,6 +17,7 @@
 	</resultMap>
 	
 	<resultMap id="paymentResultSet" type="Payment">
+	
 		<id property="payId" column="pay_id" />
 		<result property="pId" column="p_id"/>
 		<result property="price" column="price"/>
@@ -52,6 +53,7 @@
 		from REVIEW
 		join member using(m_no)
 		where m_no = #{mNo} and r_del = 'N'
+		
 	</select>
 	
 	<select id="selectProdReviewList" parameterType="_int" resultMap="reviewResultSet">
@@ -143,7 +145,7 @@
 		from REVIEW_REPLY
 		join member using(m_no)
 		where r_id = #{rId} and R_R_DEL = 'N'
-		order by r_r_date
+		order by r_r_date desc
 	</select>
 	
 	<insert id="addReply" parameterType="Reply">
@@ -155,6 +157,12 @@
 		update REVIEW_REPLY
 		set r_r_del = 'Y'
 		where r_r_id = #{rrId}
+	</update>
+	
+	<update id="increaserCount" parameterType="_int">
+		update review
+		set r_count = r_count+1
+		where r_id = #{rId}
 	</update>
 	
 	

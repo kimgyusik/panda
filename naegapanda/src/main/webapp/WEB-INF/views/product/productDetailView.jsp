@@ -155,7 +155,7 @@
 							<h3>리뷰 ${ reList.size() }개</h3>
 							<div id="review">
 								<input type="hidden" id="loginUser" value="${loginUser}">
-								<!-- 占쏙옙占쏙옙 占쏙옙占쏙옙트(占쌉쏙옙) -->
+			
 								<c:if test="${!empty reList}">
 								 	<table style="width:100%">
 								 		<c:forEach items="${ reList }" var="re">
@@ -204,9 +204,16 @@
 							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
 							 						</div>
 							 						<div >
-							 							<br> <b>┗</b> &nbsp;&nbsp;<span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> <br>
-										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
-										 				<table id="replyTable${re.rId}" style="margin-bottom:15px;">
+							 							<br> <b>┗</b> &nbsp;&nbsp;<span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> &nbsp;&nbsp;&nbsp;&nbsp;
+							 							<c:if test="${loginUser == null }">
+							 								<input type="text" class="inputReply" placeholder="로그인 후 이용 가능합니다" disabled="disabled">
+							 							</c:if>
+							 							<c:if test="${loginUser != null }">
+							 								<input type="text" class="inputReply" >
+							 								<span class="add">추가</span>
+							 							</c:if>
+							 							<br>
+										 				<table id="replyTable${re.rId}" style="margin-top: 10px;margin-bottom:15px;">
 										 					
 							 							</table>
 							 						</div>
