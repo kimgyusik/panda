@@ -24,6 +24,7 @@ import com.kh.panda.member.model.vo.Member;
 import com.kh.panda.myShopping.ggim.model.service.GgimService;
 import com.kh.panda.myShopping.ggim.model.vo.Ggim;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
+import com.kh.panda.myShopping.review.model.vo.Commend;
 import com.kh.panda.myShopping.review.model.vo.Review;
 import com.kh.panda.product.model.service.ProductService;
 import com.kh.panda.product.model.vo.Product;
@@ -71,25 +72,27 @@ public class ProductController {
 	}
 	
 	@RequestMapping("pDetailView.do")
-	public ModelAndView loginView(@RequestParam(name="pId") int pId, ModelAndView mv) {
+	public ModelAndView loginView(@RequestParam(name="pId") int pId, ModelAndView mv, HttpSession session) {
 		
 		Product p = sService.selectProduct(pId);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
-		//ArrayList<Review> reList = reService.selectProdReviewList(pId);
-		//
 		
-		// 리뷰 데스트 데이터 생성
-		ArrayList<Review> reList = new ArrayList<>();
-		Date date = new Date();
-		reList.add(new Review(1, "너무 잘 받엇어요", "배송도 빠르고 물건도 좋고 다음에 또 살 거 같아요.", date, 12323, 1, "vjxmfwl", "N", 323, 13,"blog_2.jpg"));
-		reList.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "best_6.png"));
+		// 해당 상품 리뷰 리스트
+		ArrayList<Review> reList = reService.selectProdReviewList(pId);	
 		
+		// 세션유저가 좋아요 한 리뷰 리스트
+		ArrayList<Commend> rcList = new ArrayList<>();
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		if(m != null) {
+			rcList = reService.selectCommendList(m.getmNo());
+		}
 		
 		int result = pService.increasepCount(pId);
 		
 		if(result > 0) {
-			mv.addObject("p", p).addObject("paList", paList).addObject("poList", poList).addObject("reList", reList).setViewName("product/productDetailView");
+			mv.addObject("p", p).addObject("paList", paList).addObject("poList", poList).addObject("reList", reList).addObject("rcList", rcList).setViewName("product/productDetailView");
 		} else {
 			mv.setViewName("common/errorPage");
 		}
@@ -152,11 +155,18 @@ public class ProductController {
 		System.out.println(keyword);
 		System.out.println(category);
 		System.out.println(pList);
+		System.out.println(listCount);
+		System.out.println(pi);
 		
 		ArrayList<Ggim> gglist = getGgimList(session);
 		
-		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
+		if(listCount == 0) {
+			pi.setMaxPage(1);
+		}
+		System.out.println("2"+pi);
+		System.out.println(pi.getMaxPage());
 		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
 		return mv;
 	}
 	

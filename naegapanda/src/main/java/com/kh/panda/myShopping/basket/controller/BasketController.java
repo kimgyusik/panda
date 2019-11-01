@@ -44,19 +44,24 @@ public class BasketController {
 	}
 	
 	
-	// 장바구니 추가 처리
+	// 장바구니 추가 처리 
 	@ResponseBody
 	@RequestMapping("addBasket.ba")
 	public void addBasket(Basket b, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException {
 		
 		b.setmNo(getmNo(session));
 		
+		int result = 0;
 		String msg = "";
 		
-		int result = baService.addBasket(b);
+		if(b.getoNo() == 0) {
+			result = baService.addBasket2(b); // pId로 처리
+		}else {
+			result = baService.addBasket(b); // oNo으로 처리
+		}
 		
 		if(result == 1 ) {
-			msg = "상품을 장바구니에 추가했습니다.";
+			msg = "해당 상품을 장바구니에 담았습니다.";
 		}else if(result == 2){
 			msg = "이미 장바구니에 담은 상품입니다.";
 		}else {
@@ -69,6 +74,7 @@ public class BasketController {
 		gson.toJson(msg, response.getWriter());
 		
 	}
+
 	
 	// 상품 개수 수정
 	@ResponseBody

@@ -955,7 +955,7 @@ $(document).ready(function()
 
 	*/
 
-	function initTimer()
+	function initTimer2()
     {
     	if($('.deals_timer_box').length)
     	{
@@ -1029,4 +1029,6 @@ $(document).ready(function()
     		});	
     	}	
     }
+	
 });
+

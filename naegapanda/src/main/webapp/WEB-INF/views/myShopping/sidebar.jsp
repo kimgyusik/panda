@@ -22,10 +22,11 @@
 <style>
 
 .sidebar_subtitle, .sidebar_title{
-font-size: 19px;
+font-size: 16px;
+color: #2e263c;
 }
 .sidebar_categories, .brand{
-font-size: 16px;
+font-size: 14px;
 }
 .shop_sidebar{
 height: 450px;
@@ -36,7 +37,7 @@ border: 0px solid red;
 padding-left: 0;
 }
 .brand{
-color:black;
+color: #2e263c;
 }
 .active a{
 color:#0e8ce4;

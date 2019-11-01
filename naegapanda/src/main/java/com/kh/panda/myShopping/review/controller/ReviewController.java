@@ -39,8 +39,7 @@ public class ReviewController {
 	
 	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
-		return 2;
-		//return ((Member)session.getAttribute("loginUser")).getmNo();
+		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
 	// 내 리뷰 리스트 조회
@@ -284,13 +283,13 @@ public class ReviewController {
 	// 리뷰 좋아요/취소 토글 처리(비동기)
 	@ResponseBody
 	@RequestMapping(value="changeCommend.re")
-	public String changeCommend(int rId, int flag, HttpSession session) throws IOException {
+	public String changeCommend(int rId, HttpSession session) throws IOException {
 				
 		Commend c = new Commend();
 		c.setmNo(getmNo(session));
 		c.setrId(rId);
 		
-		int result = reService.changeCommend(c, flag);
+		int result = reService.changeCommend(c);
 		
 		if(result > 0) {
 			return "success";
@@ -304,27 +303,31 @@ public class ReviewController {
 	@RequestMapping("replyList.re")
 	public void getReplyList(int rId, HttpServletResponse response) throws JsonIOException, IOException {
 		
-		//ArrayList<Reply> list = reService.getReplyList(rId);
-		ArrayList<Reply> list = new ArrayList<>();
-		Date d = new Date();
-		
-		if(rId == 1) {
-			Reply r = new Reply(1, 3, "test01", "헐 대박", d, "N", 1);
-			Reply r2 = new Reply(2, 5, "test033", "님 알바세요?", d, "N", 1);
-			Reply r3 = new Reply(3, 4, "test022222", "위에 머라노", d, "N", 1);
-			
-			list.add(r);
-			list.add(r2);
-			list.add(r3);
-		}else {
-			Reply r = new Reply(1, 3, "테스트1", "마저마저", d, "N", 2);
-			Reply r2 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
-			Reply r3 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
-			
-			list.add(r);
-			list.add(r2);
-			list.add(r3);
-		}
+		ArrayList<Reply> list = reService.getReplyList(rId);
+//		ArrayList<Reply> list = new ArrayList<>();
+//		Date d = new Date();
+//		
+//		if(rId == 1) {
+//			Reply r = new Reply(1, 3, "test01", "헐 대박", d, "N", 1);
+//			Reply r2 = new Reply(2, 5, "test033", "님 알바세요?", d, "N", 1);
+//			Reply r3 = new Reply(3, 4, "test022222", "위에 머라노", d, "N", 1);
+//			
+//			list.add(r);
+//			list.add(r2);
+//			list.add(r3);
+//		}else if(rId ==2){
+//			Reply r = new Reply(1, 3, "테스트1", "마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저", d, "N", 2);
+//			Reply r2 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
+//			Reply r3 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
+//			Reply r4 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
+//			Reply r5 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
+//			
+//			list.add(r);
+//			list.add(r2);
+//			list.add(r3);
+//			list.add(r4);
+//			list.add(r5);
+//		}
 		
 		
 		response.setContentType("application/json; charset=utf-8");

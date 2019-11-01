@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="pmViolateList" resultMap="pmanagerResultSet">
-		select *
+		select * 
 		from pmvlist
 		where p_id=#{pId}
 	</select>

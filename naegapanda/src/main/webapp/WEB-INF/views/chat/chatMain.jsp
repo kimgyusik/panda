@@ -25,7 +25,7 @@
 
 
 </div>
-<div style="width:300px;align:center">
+<div style="width:250px;align:center">
 <input type="text" id="message">  
 <button id="sendBtn">전송</button>
 </div>

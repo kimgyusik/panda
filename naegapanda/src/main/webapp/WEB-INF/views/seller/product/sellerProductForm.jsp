@@ -66,8 +66,9 @@
 								<th>가격</th>
 								<th>재고</th>
 								<th>판매개수</th>
-								<th colspan="2">수정/삭제</th>
-								
+								<th>방송하기<th>
+								<th>수정</th>
+								<th>삭제</th>
 							</tr>
 							
 							<c:if test="${empty list}" >
@@ -84,6 +85,7 @@
 									<td>${ p.oPrice }</td>
 									<td>${ p.oAmount }</td>
 									<td>${ p.oPurchase }</td>
+									<td><button onclick="location.href='pStreamingView.do?pId=${p.pId}'">방송하기</button></td>
 									<td><button onclick="location.href='pUpdateView.do?pId=${p.pId}'">수정</button></td>
 									<td><button onclick="location.href='pDelete.do?oNo=${p.oNo}&pId=${p.pId }'">삭제</button></td>
 								</tr>
