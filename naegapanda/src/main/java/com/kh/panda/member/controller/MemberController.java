@@ -100,25 +100,31 @@ public class MemberController {
 		return "member/myPage";
 	}
 
+	
+	
 	@RequestMapping("mupdate.do")
-	public String updateMember(Member m, Model model, @RequestParam("post") String post,
-			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
-
-		if (!post.equals("")) { // 주소 작성해서 값이 넘어왔을 경우
-			m.setAddress(post + "," + address1 + "," + address2);
+	public String updateMember(Member m, Model model,
+							   @RequestParam("post") String post,
+							   @RequestParam("address1") String address1,
+							   @RequestParam("address2") String address2) {
+		
+		if(!post.equals("")) { // 주소 작성해서 값이 넘어왔을 경우
+			m.setAddress(post+","+address1+","+address2);
 		}
-
+		
 		int result = mService.updateMember(m);
-
-		if (result > 0) {
+		
+		if(result > 0) {
 			model.addAttribute("loginUser", m);
 			return "redirect:home.do";
-		} else {
+		}else {
 			model.addAttribute("msg", "회원 정보 수정 실패!!");
 			return "common/errorPage";
 		}
-
+		
 	}
+
+	
 
 	@RequestMapping("mdelete.do")
 	public String deleteMember(String id, Model model) {
