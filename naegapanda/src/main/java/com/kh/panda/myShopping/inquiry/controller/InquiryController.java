@@ -30,34 +30,8 @@ public class InquiryController {
 	@RequestMapping("myInquiryList.in")
 	public ModelAndView selectMyInquiryList(ModelAndView mv, HttpSession session) {
 		
-		//ArrayList<Inquiry> list = inService.selectMyInquiryList(getmNo(session));
-		
-		Date date = new Date();
-		
-		ArrayList<Inquiry> list = new ArrayList<>();
-		Inquiry i = new Inquiry();
-		i.setpName("이쁜인형");
-		i.setiTitle("아 언제 와요");
-		i.setiContents("기다리도 돌아가시겟어요");
-		i.setiDate(date);
-		i.setiAnswer("죄송죄송 곧감");
-		i.setIaDate(date);
-		i.setiState("Y");
-		i.setPaChangeName("blog_9.jpg");
-		
-		list.add(i);
-		
-		Inquiry i2 = new Inquiry();
-		i2.setpName("깜칙한곰인형");
-		i2.setiTitle("오 받음");
-		i2.setiContents("빨리와서 좋앗음");
-		i2.setiDate(date);
-		i2.setiState("N");
-		i2.setPaChangeName("blog_6.jpg");
-		
-		list.add(i2);
-		
-		
+		ArrayList<Inquiry> list = inService.selectMyInquiryList(getmNo(session));
+
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/inquiry/myInquiryList");
 		

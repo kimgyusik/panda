@@ -11,6 +11,7 @@ import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
 import com.kh.panda.product.model.vo.ProductOption;
 import com.kh.panda.seller.model.vo.Seller;
+import com.kh.panda.streaming.model.vo.Streaming;
 
 public interface SellerService {
 	
@@ -63,6 +64,16 @@ public interface SellerService {
 	int updateProduct(Product p, ArrayList<ProductAttachment> paList, ArrayList<ProductOption> poList);
 
 	int delUpdate(Payment pm);
+	int updatestPrice(ArrayList<ProductOption> poList);
+
+	int insertStreaming(Streaming st);
+
+	Streaming selectStreaming(int getsNo);
+
+	int updatestNo(Product p);
+
+	Streaming selectStreamingToStNo(int stNo);
+
 
 	
 

@@ -29,6 +29,9 @@
 	.temp{
 	height:300px important;
 	}
+	.temp2{
+	height:200px important;
+	}
 	.target{
 	display: block !important;
 	text-overflow: ellipsis !important;
@@ -209,21 +212,19 @@
 									</div>
 								</c:if>
 								</c:forEach>
-								<c:forEach items="${ LiveList }" var="p"> 
 								<c:if test="${ empty LiveList }">
 									<div class="owl-item deals_item">
 									<div class="deals_image"><img src="resources/images/pandalive.jpeg" alt=""></div>
 									<div class="deals_content">
-											<div class="deals_info_line d-flex flex-row justify-content-start">
-												<div class="deals_item_category">진행 중인 방송이 없습니다 잠시만 기다려주세요</div>
+											<div class="deals_info_line d-flex flex-row justify-content-start temp2">
+												<div class="deals_item_category ">진행 중인 방송이 없습니다 잠시만 기다려주세요</div>
 											</div>
-											<div class="deals_info_line d-flex flex-row justify-content-start">
+											<!-- <div class="deals_info_line d-flex flex-row justify-content-start">
 												<div class="deals_item_price ml-auto">  </div>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</c:if>
-								</c:forEach>
 
 							</div>
 
