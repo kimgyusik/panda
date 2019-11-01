@@ -155,11 +155,18 @@ public class ProductController {
 		System.out.println(keyword);
 		System.out.println(category);
 		System.out.println(pList);
+		System.out.println(listCount);
+		System.out.println(pi);
 		
 		ArrayList<Ggim> gglist = getGgimList(session);
 		
-		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
+		if(listCount == 0) {
+			pi.setMaxPage(1);
+		}
+		System.out.println("2"+pi);
+		System.out.println(pi.getMaxPage());
 		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
 		return mv;
 	}
 	
