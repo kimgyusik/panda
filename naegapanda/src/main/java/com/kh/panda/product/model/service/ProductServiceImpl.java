@@ -130,6 +130,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	
+	public ArrayList<Product> LiveList(){
+		return pDao.LiveList();
+	}
+	
 	@Override
 	public ArrayList<Product> random() {
 		return pDao.random();
