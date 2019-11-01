@@ -250,12 +250,10 @@
 				</div>
 			</div>
 		</div>
-					
-	
-	
 
-	<c:import url="../common/footer.jsp"/>
 	</div>
+	
+	<c:import url="../common/footer.jsp"/>
 	
 	
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
