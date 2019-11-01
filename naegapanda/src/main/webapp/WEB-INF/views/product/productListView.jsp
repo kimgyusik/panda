@@ -115,7 +115,7 @@
 							<div class="product_grid_border"></div>
 
 							<!-- Product Item -->
-							<c:forEach items="${pList }" var="p" varStatus="status">
+							<c:forEach items="${ pList }" var="p" varStatus="status">
 							<div class="product_item" style="width:220px; height:230px; padding:10px;">
 								<c:if test="${status.count mod 4 != 0 }">
 									<div class="product_border"></div>
@@ -126,7 +126,7 @@
 								</div>
 								<div class="product_content">
 									<input type="hidden" value="${p.pId }" class="pId">
-									<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
+									<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${ p.pPrice }" /> ~</div>
 									<div class="product_name" style="height:42px;"><div>${p.pName }</div></div>
 								</div>
 								<c:if test="${!empty loginUser }">
@@ -199,7 +199,6 @@
 										<c:if test="${pi.currentPage eq p }">
 											<font color="red" size="4">[${p }]</font>
 										</c:if>
-										<c:if test="${pi.currentPage ne p }">
 											<font color="black" size="4">
 												<c:url value="pListView.do" var="page">
 													<c:param name="currentPage" value="${p }"/>
