@@ -142,7 +142,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="col-lg-5">
-							<h3>상세내용</h3>
+							<h3>상세내용</h3><br>
 							<div id="detail_contents">
 								${p.pContent }
 							</div>
@@ -152,7 +152,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>리뷰 ${ reList.size() }개</h3>
+							<h3>리뷰 ${ reList.size() }건</h3><br>
 							<div id="review">
 								<input type="hidden" id="loginUser" value="${loginUser}">
 			
@@ -206,7 +206,7 @@
 							 						<div >
 							 							<br> <b>┗</b> &nbsp;&nbsp;<span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> &nbsp;&nbsp;&nbsp;&nbsp;
 							 							<c:if test="${loginUser == null }">
-							 								<input type="text" class="inputReply" placeholder="로그인 후 이용 가능합니다" disabled="disabled">
+							 								<input type="text" class="inputReply" placeholder="일반회원만 이용 가능합니다" disabled="disabled">
 							 							</c:if>
 							 							<c:if test="${loginUser != null }">
 							 								<input type="text" class="inputReply" >
@@ -228,7 +228,7 @@
 							 	<c:if test="${empty reList}">
 				 					<div style="text-align: left;">
 					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
-					 					<br>
+					 					<br>등록된 리뷰가 없습니다.
 					 				</div>
 				 				</c:if>
 
@@ -240,9 +240,123 @@
 						<div class="col-lg-5">
 							<br>
 							<br>
-							<br>
-							<h3>문의하기</h3>
+							<h3>상품 문의 </h3>
 							<div id="inquiry">
+								
+								등록하기
+								<c:if test="${loginUser == null }">
+	 								
+	 							</c:if>
+								
+						
+			
+								<c:if test="${!empty inqList}">
+								 	<table  style="width:100%; ">
+								 		<thead>
+								 			<tr>
+								 				<td width="10%;">답변상태</td>
+								 				<td width="65%;">제목</td>
+								 				<td width="10%;">작성자</td>
+								 				<td width="15%;">작성일</td>
+								 			</tr>
+								 		</thead>
+								 		<tbody>
+									 		<c:forEach items="${ inqList }" var="i">
+										 		<tr class="inquiryTr1">
+										 			<td>
+										 				<input type="hidden" class="sNo" value="${loginSeller.sNo}">
+										 				<input type="hidden" class="mNo" value="${loginUser.mNo}">
+										 				<c:if test="${i.iState eq 'N' }">
+										 					<span class="answerYn">미답변</span>
+										 				</c:if>
+										 				<c:if test="${i.iState eq 'Y' }">
+										 					<span class="answerYn">답변완료</span>
+										 				</c:if>
+										 				
+										 			</td>
+										 			<td style="text-align: left;">
+										 				<input type="hidden" class="openYn" value="${i.openYn}">
+										 				<input type="hidden" class="imNo" value="${i.mNo}">
+										 				<input type="hidden" class="isNo" value="${i.sNo}">
+										 				<input type="hidden" class="iState" value="${i.iState}">
+											 			
+											 			<c:if test="${loginSeller == null || p.sNo ne loginSeller.sNo }">
+											 				<c:if test="${i.openYn eq 'Y'}">
+									 							<span>${i.iTitle }</span>
+									 						</c:if>
+									 						<c:if test="${i.openYn eq 'N'}">
+									 							<c:if test="${loginUser ne null && i.mNo eq loginUser.mNo}">
+										 							<span>${i.iTitle }</span>
+										 						</c:if>
+										 						<c:if test="${loginUser eq null || i.mNo ne loginUser.mNo}">
+										 							<span>비밀글입니다.</span> &nbsp;
+										 							<img src="resources/images/lock.ico" width="16px;" style="margin-bottom:3px;">
+										 						</c:if>
+									 						</c:if>
+								 						</c:if>
+								 						<c:if test="${loginSeller != null && p.sNo eq loginSeller.sNo }">
+								 							<span>${i.iTitle }</span>
+								 						</c:if>
+										 			</td>
+										 			<td>
+										 				<span>${i.mId}</span>
+										 			</td>
+										 			<td>
+										 				<span ><fmt:formatDate value="${i.iDate}" pattern="yyyy. MM. dd. hh:mm" /></span>
+										 			</td>
+								 				</tr>
+								 				<tr class="inquiryTr2">
+								 					<td></td>
+								 					<td style="text-align: left;">
+								 						${i.iContents}
+								 					</td>
+								 					<td></td>
+								 					<td></td>
+								 				</tr>
+								 				<tr class="inquiryTr3">
+								 					<td></td>
+								 					<td style="text-align: left;">
+								 						<div>
+								 							<input type="hidden" id="iId" value="${i.iId}">
+								 							<b>┗</b> &nbsp;&nbsp;<span class="answerBox">답변</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								 							
+								 							<c:if test="${i.iAnswer != null}">
+								 								<span class="iAnswer">${i.iAnswer }</span>
+								 							</c:if>
+								 							<c:if test="${loginSeller != null && p.sNo eq loginSeller.sNo }">
+								 								<c:if test="${i.iAnswer == null}">
+								 									<input type="text" class="addAnswer" >
+								 									<span id="a${i.iId}" class="addInq" onclick="addInq(this.id);">등록</span>
+								 								</c:if>
+								 								<c:if test="${i.iAnswer != null}">
+								 									<span id="d${i.iId}" class="deleteInq" onclick="deleteInq(this.id);">삭제</span>
+								 								</c:if>
+								 							</c:if>
+
+								 						</div>
+								 					</td>
+								 					<td>판매자</td>
+								 					<td><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. hh:mm" /></td>
+								 				</tr>
+									 		</c:forEach>																				
+								 		</tbody>
+								 	</table>
+							 	</c:if>
+							 	
+							 	<c:if test="${empty inqList}">
+				 					<div style="text-align: left;">
+					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
+					 					<br>
+					 				</div>
+				 				</c:if>
+								
+								
+								
+								
+								
+								
+								
+								
 								
 							</div>
 						</div>

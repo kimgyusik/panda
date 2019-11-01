@@ -67,6 +67,12 @@
 		set i_answer = #{iAnswer}
 		where i_id = #{iId}
 	</update>
+	
+	<update id="deleteAnswerInquiry" parameterType="_int">
+		update inquiry
+		set i_answer = null, i_a_date = null, i_state = 'N'
+		where i_id = #{iId}
+	</update>
 
 	
 </mapper>

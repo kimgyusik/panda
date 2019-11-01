@@ -48,7 +48,7 @@ public class PaymentController {
 		return mv;
 	}
 		
-	// 내 결재 리스트 조회(마이쇼핑의 메인페이지)
+	// 내 결재 리스트 조회
 	@RequestMapping("myPaymentList.pa")
 	public ModelAndView myPaymentList(ModelAndView mv, HttpSession session) {
 	

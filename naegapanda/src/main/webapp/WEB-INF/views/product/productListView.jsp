@@ -250,9 +250,12 @@
 <script>
 	$(function(){
 		
+		
+		
 		// 찜 토글 처리
 		$(".favPid").off().on("click", function(e){
 			e.stopImmediatePropagation();
+			
 			var flag = 0;
 			if($(this).hasClass("active") == true) {
 				flag = 1; // class 변경 처리가 더 빠르므로, 이 분기가 찜 추가하는 케이스임
@@ -260,7 +263,7 @@
 				flag = 0; // 찜 삭제
 			}
 			var pId = $(this).parent().find('.pId').val();
-
+			
 			$.ajax({
 				url:"changeGgim.gg",
 				data:{pId:pId, flag:flag},
@@ -304,6 +307,5 @@
 <script src="resources/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="resources/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="resources/js/shop_custom.js"></script>
-
 </body>
 </html>

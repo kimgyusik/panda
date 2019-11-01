@@ -52,15 +52,15 @@
 
 												 		<tr class="contentsList" height="130px;">
 												 		
-												 			<c:url value="상품조회url" var="product">
+												 			<c:url value="pDetailView.do" var="product">
 																<c:param name="pId" value="${i.pId }"/>
 															</c:url>	
 																
 												 			<td width="270px;" rowspan="2">
 												 				<input type="hidden" class="rId" value="${i.iId}">
 												 				<a href="${ product }"><img class="inquiryImg" src="resources/product_uploadFiles/${i.paChangeName}" ></a>
-												 				<span style="display: block;font-size: 13px; height:30px;">
-												 					<br><a href="${ product }"><b>${i.pName}</b></a>
+												 				<span style="display: block;font-size: 13px; margin-top:10px;">
+												 					<a href="${ product }"><b>${i.pName}</b></a>
 												 				</span>
 												 			</td>
 												 			

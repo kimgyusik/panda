@@ -23,6 +23,7 @@ import com.kh.panda.member.model.service.MemberService;
 import com.kh.panda.member.model.vo.Member;
 import com.kh.panda.myShopping.ggim.model.service.GgimService;
 import com.kh.panda.myShopping.ggim.model.vo.Ggim;
+import com.kh.panda.myShopping.inquiry.model.service.InquiryService;
 import com.kh.panda.myShopping.inquiry.model.vo.Inquiry;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
 import com.kh.panda.myShopping.review.model.vo.Commend;
@@ -51,6 +52,9 @@ public class ProductController {
 	
 	@Autowired
 	private GgimService ggService;
+	
+	@Autowired
+	private InquiryService inService;
 	
 	
 	@RequestMapping("test11.do")
@@ -90,34 +94,14 @@ public class ProductController {
 			rcList = reService.selectCommendList(m.getmNo());
 		}
 		
-		// 조회수 증가
+		// 상품 문의 리스트
+		ArrayList<Inquiry> inqList =  inService.selectprodInquiryList(pId);
+		
+		// 상세화면 진입 시 조회수 증가
 		int result = pService.increasepCount(pId);
 		
-		// 상품문의 테스트
-		Date date = new Date();
 		
-		ArrayList<Inquiry> inqList = new ArrayList<>();
-		Inquiry i = new Inquiry();
-		i.setpName("이쁜인형");
-		i.setiTitle("아 언제 와요");
-		i.setiContents("기다리도 돌아가시겟어요");
-		i.setiDate(date);
-		i.setiAnswer("죄송죄송 곧감");
-		i.setIaDate(date);
-		i.setiState("Y");
-		i.setPaChangeName("blog_9.jpg");
 		
-		inqList.add(i);
-		
-		Inquiry i2 = new Inquiry();
-		i2.setpName("깜칙한곰인형");
-		i2.setiTitle("오 받음");
-		i2.setiContents("빨리와서 좋앗음");
-		i2.setiDate(date);
-		i2.setiState("N");
-		i2.setPaChangeName("blog_6.jpg");
-		
-		inqList.add(i2);
 
 		
 		

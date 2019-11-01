@@ -370,6 +370,7 @@ public class ReviewController {
 	}
 	
 	// 리뷰 조회수 증가
+	@ResponseBody
 	@RequestMapping("increaserCount.re")
 	public String increaserCount(int rId) {	
 		int result = reService.increaserCount(rId);

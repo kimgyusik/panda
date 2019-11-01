@@ -28,4 +28,7 @@ public interface InquiryService {
 	// 문의 답변 수정
 	int updateAnswerInquiry(Inquiry i);
 	
+	// 문의 답변 수정
+	int deleteAnswerInquiry(int iId);
+	
 }

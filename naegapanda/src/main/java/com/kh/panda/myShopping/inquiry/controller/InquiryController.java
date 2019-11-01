@@ -117,7 +117,7 @@ public class InquiryController {
 		
 	}
 	
-	// 문의 답변 수정 처리
+	// 문의 답변 수정 처리(디컴)
 	@ResponseBody
 	@RequestMapping("updateAnswerInquiry.in")
 	public String updateAnswerInquiry(HttpSession session, Inquiry i) {
@@ -132,6 +132,21 @@ public class InquiryController {
 		
 	}
 	
+	// 문의 답변 삭제 처리
+	@ResponseBody
+	@RequestMapping("deleteAnswerInquiry.in")
+	public String deleteAnswerInquiry(HttpSession session, int iId) {
+		
+		int result = inService.deleteAnswerInquiry(iId);
+		
+		if(result > 0 ) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+
 	
 	
 

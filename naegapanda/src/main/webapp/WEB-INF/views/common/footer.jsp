@@ -124,7 +124,6 @@ Made by 이거사조 in 2019
 <script src="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="resources/plugins/slick-1.8.0/slick.js"></script>
 <script src="resources/plugins/easing/easing.js"></script>
-<script src="resources/js/custom.js"></script>
 
 </body>
 </html>

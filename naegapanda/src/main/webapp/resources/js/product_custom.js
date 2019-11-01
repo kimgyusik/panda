@@ -428,6 +428,7 @@ $(document).ready(function()
 			$(this).find('.reviewImg').css('display','inline-table');
 			$(this).next().css('display','none');
 			$(this).removeClass('more');
+			$(this).next().find('.inputReply').val("");
 		}
 	});
 	
@@ -493,7 +494,119 @@ $(document).ready(function()
 		
 	});
 	
+	
+	// 상품 문의 처리
+	$('.inquiryTr2').hide();
+	$('.inquiryTr3').hide();
+	$('.inquiryTr1').on("click", function(){
+		
+		var loginSeller = $(this).find('.sNo').val();
+		var loginUser =  $(this).find('.mNo').val();
+		var openYn = $(this).find('.openYn').val();
+		var imNo = $(this).find('.imNo').val();
+		var isNo = $(this).find('.isNo').val();
+		var iState = $(this).find('.iState').val();
+		
+		if($(this).hasClass('more')){ // 닫기
+			$(this).removeClass('more');
+			$(this).next().next().find('.addAnswer').val("");
+			$(this).next().hide();
+			$(this).next().next().hide();
+			
+		}else{ // 열기
+			if(openYn == 'Y' || loginSeller == isNo || loginUser == imNo){ // 공개중이거나 판매자거나 본인만 보임
+				$(this).addClass('more');
+				$(this).next().show();
+				if(iState == 'Y' || loginSeller == isNo){ // 미답변 상태일 시 판매자만 보임
+					$(this).next().next().show();
+				}
+			}else{
+				alert('비공개 문의내역은 작성자 본인만 확인하실 수 있습니다.');
+			}
+		}
+	});
+	
+	// 문의답변 엔터키 이벤트
+	$(".addAnswer").keypress(function (e) {
+        if (e.which == 13){
+        	
+        	var id = $(this).next().attr('id');
+        	addInq(id);
+        }
+    });
+
+	
+
 });
+
+
+
+
+
+
+
+// 문의 답변 등록
+function addInq(id){
+
+	var addInq = $('#'+id);
+	var addAnswer = addInq.parent().find('.addAnswer');
+	var iId = addInq.parent().find('#iId').val();
+	
+	$.ajax({
+		url:"answerInquiry.in",
+		data:{iId:iId, iAnswer:addAnswer.val()},
+		type:"post",
+		success:function(data){
+			if(data == "success"){
+				addInq.after("<span id='d"+iId+"' class='deleteInq' onclick='deleteInq(this.id);'>삭제</span>");
+				addInq.after("<span class='iAnswer'>"+addAnswer.val()+"</span>");
+				addInq.parent().parent().parent().prev().prev().find('.answerYn').html("답변완료");
+				
+				addInq.remove();
+				addAnswer.remove();
+			}else{
+				alert("처리실패");
+			}
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+}
+
+// 문의 답변 삭제
+function deleteInq(id){
+
+	var deleteInq = $('#'+id);
+	var iAnswer = deleteInq.parent().find('.iAnswer');
+	var iId = deleteInq.parent().find('#iId').val();
+	
+	$.ajax({
+		url:"deleteAnswerInquiry.in",
+		data:{iId:iId},
+		type:"post",
+		success:function(data){
+			if(data == "success"){
+				deleteInq.after("<span id='a"+iId+"' class='addInq' onclick='addInq(this.id);'>등록</span>");
+				deleteInq.after("<input type='text' class='addAnswer' >");
+				deleteInq.parent().parent().parent().prev().prev().find('.answerYn').html("미답변");
+				
+				deleteInq.remove();
+				iAnswer.remove();
+			}else{
+				alert("처리실패");
+			}
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+}
+
+
+
+
+
 
 // 리뷰 댓글 불러오기
 function getReplyList(rId, mNo){
@@ -548,14 +661,17 @@ function getReplyList(rId, mNo){
 	});
 }
 
+// 리뷰 상세 보기 시 조회수 증가
 function increaserCount(rId){
 	
 	$.ajax({
 		url:"increaserCount.re",
 		data:{rId:rId},
 		type:"post",
-		success:function(){
-			
+		success:function(data){
+			if(data == "success"){
+			}else{
+			}
 		},
 		error:function(){
 			console.log("서버와의 통신 실패");

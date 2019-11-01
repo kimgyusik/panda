@@ -2116,8 +2116,9 @@ select option
 	margin-right: 0px;
 }
 
-#review{
+#review, #inquiry{
 	width: 1170px;
+	margin-bottom: 30px;
 }
 #review td{
 	height:auto;
@@ -2130,10 +2131,10 @@ select option
 }
 .reviewTitle{
 	display: inline-block;
-	font-size: 16px;
+	font-size: 14px;
 }
 .reviewContents{
-	font-size:15px;
+	font-size:13px;
 }
 .reviewWriter{
 	
@@ -2161,13 +2162,18 @@ max-height:500px;
 }
 .reviewTop{
 	height:70px !important;
+	border-bottom: 1px solid #dadada;
+	border-top: 1px solid #dadada;
+	
+}
+.more{
 	background-color: #e6eeff;
 }
 .reviewTop:hover{
 	cursor: pointer;
 	background-color: #ccdcff;
 }
-.replyCount{
+.replyCount, .answerBox{
 	margin-bottom:5px;
 padding:3px;
 border-radius:3px;
@@ -2184,7 +2190,7 @@ color:white;
 	padding-right:10px;
 	
 }
-.update, .delete, .add{
+.update, .delete, .add, .deleteInq, .addInq{
 	font-size:10px;
 	border: 1px solid #ced3e4;
 	padding:4px;
@@ -2192,7 +2198,7 @@ color:white;
 	border-radius: 5px;
 	font-weight: bold;
 }
-.update:hover, .delete:hover, .add:hover{
+.update:hover, .delete:hover, .add:hover, .addInq:hover, .deleteInq:hover{
 	cursor: pointer;
 	background-color: #ccdcff;
 	
@@ -2226,4 +2232,29 @@ font-size:19px;
 -o-transform: scale(1.2,1.2);
 -ms-transform: scale(1.2,1.2);
 transform: scale(1.2,1.2);
+}
+#inquiry td{
+	text-align: center;
+	height: 50px;
+	color:#5f5f5f;
+	font-size:12px;
+}
+#inquiry thead{
+	font-weight: bold;
+	font-size:13px;
+	border-top: 2px solid black;
+}
+.inquiryTr1 td{
+	border-bottom: 1px solid #dadada;
+	border-top: 1px solid #dadada;
+}
+.inquiryTr1:hover{
+	background-color: #ccdcff;
+}
+.answerArea{
+	margin-top:30px;
+
+}
+.addAnswer{
+	width:400px !important;
 }

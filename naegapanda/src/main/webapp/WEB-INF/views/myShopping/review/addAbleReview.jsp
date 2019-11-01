@@ -57,7 +57,7 @@
 											 				
 														 		<tr class="contentsList" height="180px;">
 														 		
-														 			<c:url value="상품조회url" var="product">
+														 			<c:url value="pDetailView.do" var="product">
 																		<c:param name="pId" value="${r.pId }"/>
 																	</c:url>	
 																		
