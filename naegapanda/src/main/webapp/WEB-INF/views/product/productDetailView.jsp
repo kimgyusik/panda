@@ -227,8 +227,7 @@
 							 	</c:if>
 							 	<c:if test="${empty reList}">
 				 					<div style="text-align: left;">
-					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
-					 					<br>등록된 리뷰가 없습니다.
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등록된 리뷰가 없습니다.
 					 				</div>
 				 				</c:if>
 
@@ -242,8 +241,9 @@
 							<br>
 							<h3>상품 문의 </h3>
 							<div id="inquiry">
-								
-								등록하기
+								<br>
+								<br>
+							
 								<c:if test="${loginUser == null }">
 	 								
 	 							</c:if>
@@ -345,8 +345,7 @@
 							 	
 							 	<c:if test="${empty inqList}">
 				 					<div style="text-align: left;">
-					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
-					 					<br>
+					 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등록된 문의가 없습니다.
 					 				</div>
 				 				</c:if>
 								

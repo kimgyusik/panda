@@ -1089,13 +1089,33 @@
 												<div class="arrivals_single_name"><a href="pDetailView.do?pId=${ p.pId }">${ p.pName }</a></div>
 												<div class="arrivals_single_price text-right">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
 											</div>
-											<form action="#"><button class="arrivals_single_button" onclick="location.href='addBasket.ba?pId=${p.pId}';">Add to Cart</button></form>
+											<c:if test="${!empty loginUser }">
+												<button class="arrivals_single_button" onclick="addCart(${p.pId });">Add to Cart</button>
+											</c:if>
 										</div>
+										<c:if test="${!empty loginUser }">
+											<input class="pId" type="hidden" value="${p.pId}">
+											<c:set var="doneLoop" value="false"/> 
+											<c:if test="${fn:length(gglist) == 0}">
+												<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+											</c:if>
+											<c:forEach items="${gglist}" var="g" varStatus="status">
+												<c:if test="${not doneLoop}"> 
+													<c:if test = "${g.pId eq p.pId}">
+														<div class="product_fav active favPid"><i class="fas fa-heart "></i></div>
+														<c:set var="doneLoop" value="true"/> 
+													</c:if>
+													<c:if test = "${g.pId ne p.pId && status.last}">
+														<div class="product_fav favPid"><i class="fas fa-heart "></i></div>
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</c:if>
 								
-											<div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i></div>
-											<ul class="arrivals_single_marks product_marks">
-												<li class="arrivals_single_mark product_mark product_new">new</li>
-											</ul>
+										
+										<ul class="arrivals_single_marks product_marks">
+											<li class="arrivals_single_mark product_mark product_new">new</li>
+										</ul>
 									
 									</div>
 								</div>
