@@ -95,7 +95,7 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span>${pi.listCount }</span> products found</div>
+							<div class="shop_product_count"><span>${ pi.listCount }</span> products found</div>
 							<div class="shop_sorting">
 								<span>Sort by:</span>
 								<ul>
@@ -115,7 +115,7 @@
 							<div class="product_grid_border"></div>
 
 							<!-- Product Item -->
-							<c:forEach items="${pList }" var="p">
+							<c:forEach items="${ pList }" var="p">						
 							<div class="product_item" style="width:220px; height:230px; padding:10px;">
 								<div class="product_border"></div>
 								<div class="product_image d-flex flex-column align-items-center justify-content-center" style="width:115px;">
