@@ -36,7 +36,8 @@
 							<tr>
 								<th>사진</th>
 								<th>이름</th>
-								<th>요청사항</th>
+								<th>옵션</th>
+								<th>주문자</th>
 								<th>주문갯수</th>
 								<th>가격</th>
 								<th>주문날짜</th>
@@ -51,8 +52,9 @@
 								<tr>
 									
 									<td><img src="resources/product_uploadFiles/${o.paChangeName}" style="width:100px; height:100px;"></td> 
-									<td>${ o.oName }</td>
 									<td>${ o.pName }</td>
+									<td>${ o.oName }</td>
+									<td>${ o.recipient }</td>
 									<td>${ o.count }</td>
 									<td>${ o.price*o.count }</td>
 									<td>${ o.payDate }</td>
