@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PANDA:내정보</title>
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <style>
 	.outer{
@@ -133,10 +133,10 @@
 						</c:if>
 			</table>
 			<br>
-			<button type="submit">수정하기</button>
+			<button type="submit" class="btn btn-primary">수정하기</button><label>탈퇴를 원하시면</label><a href="sDelete.do">회원탈퇴</a><label>를 눌러주세요.</label>
 		</form>
 		
-		<label>탈퇴를 원하시면</label><a href="sDelete.do">회원탈퇴</a><label>를 눌러주세요.</label>
+		
 		
 			</div>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
