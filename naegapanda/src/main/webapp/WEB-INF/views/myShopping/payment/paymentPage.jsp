@@ -246,6 +246,7 @@
 	<script>
 		
 		$(function(){
+			
 			priceAll();
 			
 			$("#postcodify_search_button").postcodifyPopUp();

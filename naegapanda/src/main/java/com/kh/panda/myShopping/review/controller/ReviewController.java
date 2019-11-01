@@ -369,7 +369,18 @@ public class ReviewController {
 		
 	}
 	
-	
+	// 리뷰 조회수 증가
+	@RequestMapping("increaserCount.re")
+	public String increaserCount(int rId) {	
+		int result = reService.increaserCount(rId);
+
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
 	
 
 }
