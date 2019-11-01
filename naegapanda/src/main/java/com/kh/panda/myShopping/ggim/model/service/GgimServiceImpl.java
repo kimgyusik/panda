@@ -51,7 +51,7 @@ public class GgimServiceImpl implements GgimService{
 		
 		int count = ggDao.selectGgim(ggim);
 		
-		if(count > 0) {
+		if(count == 0) {
 			return ggDao.addGgim(ggim);
 		}
 		

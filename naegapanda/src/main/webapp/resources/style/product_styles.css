@@ -1978,6 +1978,7 @@ select option
 .footer .logo_container
 {
 	height: auto;
+	width: auto;
 	margin-bottom: 18px;
 	margin-top: -10px;
 }
@@ -2123,7 +2124,8 @@ select option
 	
 }
 #review tr{
-	height: 90px;
+	height: auto;
+
 	
 }
 .reviewTitle{
@@ -2134,12 +2136,12 @@ select option
 	font-size:15px;
 }
 .reviewWriter{
-	width:140px;
+	
 	text-align: left;
 	font-size:13px;
 }
 .reviewGray{
-	font-size:13px;
+	font-size:12px;
 	color:gray;
 }
 .reviewImg{
@@ -2147,6 +2149,7 @@ max-height:50px;
  max-width:100px;
  width:auto;
  height:auto;
+ border-radius: 6px;
 }
 .reviewImg2{
 max-height:500px;
@@ -2174,11 +2177,12 @@ color:white;
 }
 .reply{
 	height:40px !important;
-	font-size:13px;
+	font-size:12px;
+
 }
 .reply td{
 	padding-right:10px;
-	border-bottom: 2px solid #ced3e4;
+	
 }
 .update, .delete{
 	font-size:10px;
@@ -2191,4 +2195,27 @@ color:white;
 	cursor: pointer;
 	background-color: #ccdcff;
 	
+}
+.reviewGood{
+	font-size:15px;
+	color:gray;
+}
+.reviewHart{
+display: inline-block;
+color: red;
+-webkit-transition: 0.1s;
+-moz-transition: 0.1s;
+-o-transition: 0.1s;
+-ms-transition: 0.1s;
+transition: 0.1s;
+font-size:19px;
+
+}
+/*크기 설정 1.0 기본크기*/
+.reviewHart:hover { color:red; font-weight:bold;
+-webkit-transform: scale(1.2,1.2);
+-moz-transform: scale(1.2,1.2);
+-o-transform: scale(1.2,1.2);
+-ms-transform: scale(1.2,1.2);
+transform: scale(1.2,1.2);
 }

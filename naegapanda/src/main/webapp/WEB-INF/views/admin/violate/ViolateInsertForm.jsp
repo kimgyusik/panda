@@ -7,6 +7,16 @@
 <meta charset="UTF-8">
 <title>PANDA</title>
 
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+
+
+
 <style>
 	.outer{
 		width:800px;
@@ -23,15 +33,7 @@
 
 
 <script
-   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-<script
    src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<!-- include summernote css/js-->
-<link
-   href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css"
-   rel="stylesheet">
-<script
-   src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -73,9 +75,19 @@ $(function(){
 			    <tr>
 			      <th scope="row" height="300px">내용</th>
 			      <td colspan="3">
-			      	<!-- <div id="summernote" style="height:300px"> -->
+			      			<div >
+								<textarea  id="summernote" name="vContent"></textarea>
+							</div>
+						    <script>
+						      $('#summernote').summernote({
+						        height: 800
+						      });
+						    </script>
+<!-- 			      
+			      	<div id="summernote" style="height:300px">
 			      		<textarea name="vContent" style="width:650px;height:300px;border:none;" required></textarea>
-			      	<!-- </div>	 -->		      
+			      	</div>		
+			      	 -->	      
 			      </td>
 			    </tr>
 			    <tr>
@@ -100,6 +112,11 @@ $(function(){
 	  	  	</tbody>
 		</table>
 	</form>
+	<script>
+						function postForm() {
+							$('textarea[name="vContent"]').html($('.summernote').code());
+						}
+					</script>
 	</div>
 	
 	
@@ -119,14 +136,14 @@ $(function(){
 	
 	
 	 <script>
-		$(document).ready(function() {
+	/* 	$(document).ready(function() {
 		     $('#summernote').summernote({
 		             height: 300,                 // set editor height
 		             minHeight: null,             // set minimum height of editor
 		             maxHeight: null,             // set maximum height of editor
 		             focus: true                  // set focus to editable area after initializing summernote
 		     });
-		});
+		}); */
 		
 		
 		$(function(){

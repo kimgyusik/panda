@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
  <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
@@ -115,13 +116,15 @@
 
 							<!-- Product Item -->
 							<c:forEach items="${pList }" var="p">
-							<div class="product_item" style="width:220px; padding:10px;">
+							<div class="product_item" style="width:220px; height:230px; padding:10px;">
 								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center" style="width:115px;"><img src="resources/product_uploadFiles/${p.paChangeName }" width="115" height="115" alt=""></div>
+								<div class="product_image d-flex flex-column align-items-center justify-content-center" style="width:115px;">
+									<img src="resources/product_uploadFiles/${p.paChangeName }" style="border-radius: 4px;" width="115" height="115" alt="">
+								</div>
 								<div class="product_content">
 									<input type="hidden" value="${p.pId }" class="pId">
-									<div class="product_price">${p.pPrice }</div>
-									<div class="product_name" height="30px"><div>${p.pName }</div></div>
+									<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
+									<div class="product_name" style="height:42px;"><div>${p.pName }</div></div>
 								</div>
 								<c:if test="${!empty loginUser }">
 									<input class="pId" type="hidden" value="${p.pId}">
@@ -416,7 +419,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			dataType:"json",
 			success:function(data){
 					$('.wishlist_count').children().first().text(data);
-					$('#'+ item.id).css("display","none");
 			},
 			error:function(){
 				console.log("ajax 통신 실패");
