@@ -101,6 +101,7 @@
 				</div>
 			</div>
 		</div>
+			<c:import url="../../common/footer.jsp"/>
 	</div>
 
 	<!-- 모달 -->
@@ -147,9 +148,9 @@
 			
 			</div>
 		</div>
+
 	</div>  
 
-	<c:import url="../../common/footer.jsp"/>
 	
 	<script>
 	
