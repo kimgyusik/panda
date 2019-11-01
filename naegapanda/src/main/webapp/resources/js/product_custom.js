@@ -505,10 +505,9 @@ function getReplyList(rId, mNo){
 					);
 
 					if(value.mNo == mNo){
-						$tr.append("<td style='border-bottom:none;'>" +
+						$tr.append("<td id = 'rrId"+value.rrId+"'style='border-bottom:none; width:24%'>" +
 								"<input type='hidden' value='"+value.rrId+"'>" +
-									"<span class='update'>수정</span>" +
-									"<span class='delete'>삭제</span>");
+									"<span class='delete' onclick='deleteReply("+value.rrId+");'>삭제</span>");
 					}	
 					$replyBody.append($tr);
 				});
@@ -520,6 +519,26 @@ function getReplyList(rId, mNo){
 	});
 }
 
+// 리플 삭제
+function deleteReply(rrId){
+
+	$.ajax({
+		url:"deleteReply.re",
+		data:{rrId:rrId},
+		type:"post",
+		success:function(data){
+			if(data == "success"){
+				$('#rrId'+rrId).parent().remove();
+			}else{
+				alert("처리실패");
+			}
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+	
+}
 
 // 장바구니 담기 처리
 function addCart(t){

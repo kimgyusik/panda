@@ -168,7 +168,7 @@
 								${p.pContent }
 							</div>
 						</div>
-						<br>
+						
 						<div class="col-lg-5">
 							<br>
 							<br>
@@ -250,7 +250,7 @@
 								
 							</div>
 						</div>
-						<br>
+
 						<div class="col-lg-5">
 							<br>
 							<br>
