@@ -6,9 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>PANDA</title>
 <style>
 	.product_name{
@@ -19,7 +23,23 @@
 	text-decoration:none;
 	color:#000000;
 	}
+	
+	.carousel{
+	    /* background: #cedaed; */
+	    /* margin-top: 20px; */
+	}
+	.carousel-item{
+	    text-align: center;
+	    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+	}
+	.bs-example{
+		/* margin: 20px; */
+	}
+	#myCarousel{
+		height:448px;
+	}
 </style>
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -46,7 +66,7 @@
 	
 	<!-- Banner -->
 
-	<div class="banner">
+	<!-- <div class="banner">
 		<div class="banner_background" style="background-image:url(resources/images/banner_background.jpg)"></div>
 		<div class="container fill_height">
 			<div class="row fill_height">
@@ -60,6 +80,37 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div> -->
+	<div class="banner">
+		<div class="bs-example">
+		    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		        <!-- Carousel indicators -->
+		        <ol class="carousel-indicators">
+		            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		            <li data-target="#myCarousel" data-slide-to="1"></li>
+		            <li data-target="#myCarousel" data-slide-to="2"></li>
+		        </ol>
+		        <!-- Wrapper for carousel items -->
+		        <div class="carousel-inner">
+		            <div class="carousel-item active">
+		                <img src="resources/images/asdf.jpg" alt="First Slide">
+		            </div>
+		            <div class="carousel-item">
+		                <img src="resources/images/carpet.jpg" alt="Second Slide">
+		            </div>
+		            <div class="carousel-item">
+		                <img src="resources/images/misemu.jpg" alt="Third Slide">
+		            </div>
+		        </div>
+		        <!-- Carousel controls -->
+		        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+		            <span class="carousel-control-prev-icon"></span>
+		        </a>
+		        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+		            <span class="carousel-control-next-icon"></span>
+		        </a>
+		    </div>
 		</div>
 	</div>
 
