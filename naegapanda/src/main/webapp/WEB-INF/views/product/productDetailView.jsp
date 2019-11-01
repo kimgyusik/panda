@@ -28,10 +28,10 @@
 			
 			<div class="container">
 				<div class="col-lg-2 order-lg-2 order-1">
-					<div style="display:inline-block;">
+					<div style="display:inline-block ;">
 						<video id="localStream" width="800" controls></video>
 					</div>
-					<div>
+					<div style="display:inline-block  ;">
 						<c:import url="../chat/chatMain.jsp"/> 
 					</div>
 					<script>
@@ -70,7 +70,7 @@
 							<div class="product_name">${ p.pName }
 									<c:if test="${ !empty loginUser }">  
 								<form action="violateinsert.do">
-									<input type="hidden" name="pId" value="${ p.pId }">
+									<input type="hidden" id="pId" name="pId" value="${ p.pId }">
 									<button type="submit" class="button cart_button">신고하기</button>
 								</form>
 									</c:if>	
@@ -143,9 +143,8 @@
 	
 									<div class="button_container">
 										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
-										<button type="button" class="button cart_button" onclick="addCart(${sessionScope.loginUser.mNo});">장바구니로</button>
-										<button type="button" class="button cart_button" onclick="addGgim(${sessionScope.loginUser.mNo});">찜하기</button> 
-										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
+										<button type="button" class="button cart_button" onclick="addCart(${loginUser.mNo});">장바구니로</button>
+										<button type="button" class="button cart_button" onclick="addGgim(${loginUser.mNo}) ;">찜하기</button> 
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>
 									
@@ -176,26 +175,44 @@
 							<br>
 							<h3>리뷰 ${ reList.size() }개</h3>
 							<div id="review">
-							
+								<input type="hidden" id="loginUser" value="${loginUser}">
 								<!-- 占쏙옙占쏙옙 占쏙옙占쏙옙트(占쌉쏙옙) -->
 								<c:if test="${!empty reList}">
-								 	<table>
+								 	<table style="width:100%">
 								 		<c:forEach items="${ reList }" var="re">
 									 		<tr class="reviewTop" >
-									 			<td width="50px;"></td>
-									 			<td width="630px;" style="text-align: left;">
+									 			<td width="5%"></td>
+									 			<td width="40%;" style="text-align: left;">
 									 				<span class="reviewTitle">${re.rTitle }</span>
 									 				<span class="reviewGray">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${re.rDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
 									 			</td>
-									 			<td class="reviewWriter">
+									 			<td width="25%" class="reviewWriter">
 									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
 									 			</td>
-									 			<td width="200px;" style="text-align: center;">
+									 			<td width="15%;" style="text-align: center;">
 									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
 									 			</td>
-									 			<td width="100px;" >
-									 				<img src="resources/images/hart.png" width="20px;"> 
-									 				<span style="font-size:13px;">${re.rCommend }</span>
+									 			<td  width="10%" >
+									 				<input type="hidden" class="rId" value="${re.rId }">
+										 				<c:if test="${fn:length(rcList) == 0}">
+										 					<span class="reviewHart" >♡</span>
+										 				</c:if>
+										 				<c:if test="${fn:length(rcList) != 0}">
+											 				<c:set var="doneLoop" value="false"/> 
+											 				<c:forEach items="${rcList }" var="rc" varStatus="status">
+											 					<c:if test="${not doneLoop}"> 
+												 					<c:if test="${re.rId eq rc.rId}">
+																		<span class="reviewHart" >♥</span>
+																		<c:set var="doneLoop" value="true"/> 
+													 				</c:if>
+													 				<c:if test="${status.last && re.rId ne rc.rId }">
+																		<span class="reviewHart" >♡</span>
+													 				</c:if>
+												 				</c:if>
+											 				</c:forEach>
+										 				</c:if>
+										 				<span class="reviewGood">${re.rCommend }</span>
+									 				
 									 			</td>
 							 				</tr>
 							 				<tr class="reviewDetail">
@@ -203,14 +220,14 @@
 							 						<input id="replyId${re.rId}" type="hidden" value="${re.rId}">
 							 						<input type="hidden" value="${sessionScope.loginUser.mNo}">
 							 					</td>
-							 					<td width="630px;">
-							 						<div style="padding-top:10px;">
+							 					<td  style="vertical-align: top;">
+							 						<div style="padding-top:15px; ">
 							 							<span class="reviewContents">&nbsp;&nbsp;${re.rContents }</span>
 							 						</div>
 							 						<div >
-							 							<br>댓글  <span class="replyCount">댓글개수(<span id="rCount${re.rId}"></span>)</span> <br>
+							 							<br> <b>┗</b> &nbsp;&nbsp;<span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> <br>
 										 				<span style="color:gray;"><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. HH:mm" /></span>
-										 				<table id="replyTable${re.rId}" style="margin-left:30px;">
+										 				<table id="replyTable${re.rId}" style="margin-bottom:15px;">
 										 					
 							 							</table>
 							 						</div>
@@ -228,7 +245,8 @@
 					 					<br>
 					 				</div>
 				 				</c:if>
-								<!-- 占쏙옙占쏙옙 占쏙옙占쏙옙트(占쌉쏙옙) --> 
+
+								<!-- 리뷰끝 --> 
 								
 							</div>
 						</div>
@@ -398,6 +416,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:import url="../common/footer.jsp"/>
 	
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
 	<script src="resources/style/bootstrap4/popper.js"></script>

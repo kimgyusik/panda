@@ -69,7 +69,7 @@
 																<tr class="tablehead">
 																	<td style="display:none;">
 																	</td>
-																	<td style="width:100px;">
+																	<td style="width:70px;">
 																		<input class="allCheck" type="checkbox" >
 																	</td>
 																	<td style="width:700px;" colspan="2">

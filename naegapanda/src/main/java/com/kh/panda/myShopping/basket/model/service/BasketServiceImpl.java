@@ -31,6 +31,22 @@ public class BasketServiceImpl implements BasketService{
 		}
 		
 	}
+	
+	@Override
+	public int addBasket2(Basket b) {
+		
+		int oNo = baDao.selectoNo(b.getpId());
+		b.setoNo(oNo);
+		
+		int count = baDao.selectbasket(b);
+		
+		if(count > 0) {
+			return 2;
+		}else {
+			return baDao.addBasket(b);
+		}
+		
+	}
 
 	@Override
 	public int deleteBasket(Basket b) {

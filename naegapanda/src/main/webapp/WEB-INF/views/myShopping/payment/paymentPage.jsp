@@ -288,7 +288,7 @@
 				$("#recipientPhone").val($('#phone1').val()+'-'+$('#phone2').val()+'-'+$('#phone3').val()); // 전화번호
 				$("#deliverySpot").val($('#address1').val()+' '+$('#address2').val()); // 주소
 				
-				if($("#payRequest").val() == null){
+				if($("#payRequest").val() == null || $("#payRequest").val() == ""){
 					$("#payRequest").val("없음");
 				}
 				
