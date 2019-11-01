@@ -244,6 +244,7 @@ public class SellerController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, oListCount);
 		System.out.println(pi);
 		ArrayList<Payment> oList = sService.selectoList(pi, ((Seller) session.getAttribute("loginSeller")).getsNo());
+		System.out.println(oList);
 		mv.addObject("oList", oList).addObject("pi", pi).setViewName("seller/product/oderProductForm");
 		
 		return mv;

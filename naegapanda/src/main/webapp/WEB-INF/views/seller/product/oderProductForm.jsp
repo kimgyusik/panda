@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PANDA:판매자페이지</title>
 </head>
 <body>
 
@@ -54,7 +54,7 @@
 									<td>${ o.oName }</td>
 									<td>${ o.pName }</td>
 									<td>${ o.count }</td>
-									<td>${ o.oPrice }</td>
+									<td>${ o.price*o.count }</td>
 									<td>${ o.payDate }</td>
 									<td><select>
 										<option>${ o.deliveryStatus }</option>
