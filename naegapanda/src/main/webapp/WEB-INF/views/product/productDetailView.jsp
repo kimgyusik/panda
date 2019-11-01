@@ -27,27 +27,6 @@
 		<div class="single_product" style="padding-top:0px;">
 			
 			<div class="container">
-				<div class="col-lg-2 order-lg-2 order-1">
-					<div style="display:inline-block;">
-						<video id="localStream" width="800" controls></video>
-					</div>
-					<div>
-						<c:import url="../chat/chatMain.jsp"/> 
-					</div>
-					<script>
-						navigator.mediaDevices.getUserMedia({audio:true, video:{width: 800, height: 500}})
-						.then(stream => {
-							const video = document.getElementById('localStream');
-							video.srcObject = stream;
-							video.onloadedmetadata = function(){
-								video.play();
-							};
-						})
-						.catch(err => console.log(err));
-					</script>
-					<script src="resources/js/bundle.js"></script>
-					
-				</div>
 				<div class="row">
 					<!-- Images -->
 					<div class="col-lg-2 order-lg-1 order-2">
