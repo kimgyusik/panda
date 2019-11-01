@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,8 +75,10 @@
 							<li><a href="nlist.do">판다 공지</a></li>
 							<li><a href="qlist.do">서비스 문의</a></li>
 							<li><a href="sqlist.do">판매자 문의</a></li>
-							<li><a href="ggimList.gg">찜 목록</a></li>
-							<li><a href="basketList.ba">장바구니</a></li>
+							<c:if test="${!empty loginUser }">
+								<li><a href="ggimList.gg">찜 목록</a></li>
+								<li><a href="basketList.ba">장바구니</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
