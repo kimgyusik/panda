@@ -162,10 +162,10 @@ public class ProductController {
 								ModelAndView mv, HttpSession session) {
 		
 		int listCount = pService.getListCount(category);
+		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
-		
+		System.out.println(listCount);
 		ArrayList<Product> pList = pService.selectpList(pi, category);
-		
 		ArrayList<Ggim> gglist = getGgimList(session);
 		
 		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");

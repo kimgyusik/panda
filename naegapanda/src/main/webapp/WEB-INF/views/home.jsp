@@ -23,17 +23,22 @@
 	text-decoration:none;
 	color:#000000;
 	}
-	
-	.carousel{
-	    /* background: #cedaed; */
-	    /* margin-top: 20px; */
+	.test{
+	height:480px !important;
 	}
+	.temp{
+	height:300px important;
+	}
+	.temp2{
+	height:200px important;
+	}
+	.target{
+	display: block !important;
+	text-overflow: ellipsis !important;
+	
 	.carousel-item{
 	    text-align: center;
 	    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
-	}
-	.bs-example{
-		/* margin: 20px; */
 	}
 	#myCarousel{
 		height:448px;
@@ -93,14 +98,14 @@
 		        </ol>
 		        <!-- Wrapper for carousel items -->
 		        <div class="carousel-inner">
-		            <div class="carousel-item active">
-		                <img src="resources/images/paddd.jpg" alt="First Slide">
+		            <div class="carousel-item active" onclick="location.href='pListView.do?category=30'" style="cursor:pointer;">
+		                <img src="resources/images/misemungi.jpg" alt="First Slide" style="width:100%; height:450px;">
 		            </div>
-		            <div class="carousel-item">
-		                <img src="resources/images/carpet.jpg" alt="Second Slide">
+		            <div class="carousel-item" onclick="location.href='pListView.do?category=1002'" style="cursor:pointer;">
+		                <img src="resources/images/zipup.jpg" alt="Second Slide" style="width:100%; height:450px;">
 		            </div>
-		            <div class="carousel-item">
-		                <img src="resources/images/misemu.jpg" alt="Third Slide">
+		            <div class="carousel-item" onclick="location.href='pListView.do?category=1004'" style="cursor:pointer;">
+		                <img src="resources/images/friday.jpg" alt="Third Slide" style="width:100%; height:450px;">
 		            </div>
 		        </div>
 		        <!-- Carousel controls -->
@@ -181,143 +186,45 @@
 					<!-- Deals -->
 
 					<div class="deals">
-						<div class="deals_title" style="color:red">Live On</div>
+						<div class="deals_title" style="color:red">On Air</div>
 						<div class="deals_slider_container">
 							
 							<!-- Deals Slider -->
-							<div class="owl-carousel owl-theme deals_slider">
+							<div class="owl-carousel owl-theme deals_slider test">
 								
 								<!-- Deals Item -->
-								<div class="owl-item deals_item">
-									<div class="deals_image"><img src="resources/images/deals.png" alt=""></div>
-									<div class="deals_content">
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
-										</div>
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
-										</div>
-										<div class="available">
-											<div class="available_line d-flex flex-row justify-content-start">
-												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+								<c:forEach items="${ LiveList }" var="p"> 
+								<c:if test="${ !empty LiveList }">
+									<div class="owl-item deals_item">
+										<div class="deals_image"><img src="resources/product_uploadFiles/${p.paChangeName }" onclick="location.href='pDetailView.do?pId=${p.pId }';"></div>
+										<div class="deals_content">
+											<div class="deals_info_line d-flex flex-row justify-content-start">
+												<div class="deals_item_category">${ p.cName2 }</div>
+												<div class="deals_item_price_a ml-auto"><s>￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</s></div>
 											</div>
-											<div class="available_bar"><span style="width:17%"></span></div>
-										</div>
-										<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-											<div class="deals_timer_title_container">
-												<div class="deals_timer_title">Hurry Up</div>
-												<div class="deals_timer_subtitle">Offer ends in:</div>
+											<div class="deals_info_line d-flex flex-row justify-content-start temp">
+												<div class="deals_item_name target temp"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
 											</div>
-											<div class="deals_timer_content ml-auto">
-												<div class="deals_timer_box clearfix" data-target-time="">
-													<div class="deals_timer_unit">
-														<div id="deals_timer1_hr" class="deals_timer_hr"></div>
-														<span>hours</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer1_min" class="deals_timer_min"></div>
-														<span>mins</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer1_sec" class="deals_timer_sec"></div>
-														<span>secs</span>
-													</div>
-												</div>
+											<div class="deals_info_line d-flex flex-row justify-content-start">
+												<div class="deals_item_price ml-auto"> ￦ ????? </div>
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<!-- Deals Item -->
-								<div class="owl-item deals_item">
-									<div class="deals_image"><img src="resources/images/deals.png" alt=""></div>
+								</c:if>
+								</c:forEach>
+								<c:if test="${ empty LiveList }">
+									<div class="owl-item deals_item">
+									<div class="deals_image"><img src="resources/images/pandalive.jpeg" alt=""></div>
 									<div class="deals_content">
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
-										</div>
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
-										</div>
-										<div class="available">
-											<div class="available_line d-flex flex-row justify-content-start">
-												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+											<div class="deals_info_line d-flex flex-row justify-content-start temp2">
+												<div class="deals_item_category ">진행 중인 방송이 없습니다 잠시만 기다려주세요</div>
 											</div>
-											<div class="available_bar"><span style="width:17%"></span></div>
-										</div>
-										<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-											<div class="deals_timer_title_container">
-												<div class="deals_timer_title">Hurry Up</div>
-												<div class="deals_timer_subtitle">Offer ends in:</div>
-											</div>
-											<div class="deals_timer_content ml-auto">
-												<div class="deals_timer_box clearfix" data-target-time="">
-													<div class="deals_timer_unit">
-														<div id="deals_timer2_hr" class="deals_timer_hr"></div>
-														<span>hours</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer2_min" class="deals_timer_min"></div>
-														<span>mins</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer2_sec" class="deals_timer_sec"></div>
-														<span>secs</span>
-													</div>
-												</div>
-											</div>
+											<!-- <div class="deals_info_line d-flex flex-row justify-content-start">
+												<div class="deals_item_price ml-auto">  </div>
+											</div> -->
 										</div>
 									</div>
-								</div>
-
-								<!-- Deals Item -->
-								<div class="owl-item deals_item">
-									<div class="deals_image"><img src="resources/images/deals.png" alt=""></div>
-									<div class="deals_content">
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
-										</div>
-										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
-										</div>
-										<div class="available">
-											<div class="available_line d-flex flex-row justify-content-start">
-												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
-											</div>
-											<div class="available_bar"><span style="width:17%"></span></div>
-										</div>
-										<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-											<div class="deals_timer_title_container">
-												<div class="deals_timer_title">Hurry Up</div>
-												<div class="deals_timer_subtitle">Offer ends in:</div>
-											</div>
-											<div class="deals_timer_content ml-auto">
-												<div class="deals_timer_box clearfix" data-target-time="">
-													<div class="deals_timer_unit">
-														<div id="deals_timer3_hr" class="deals_timer_hr"></div>
-														<span>hours</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer3_min" class="deals_timer_min"></div>
-														<span>mins</span>
-													</div>
-													<div class="deals_timer_unit">
-														<div id="deals_timer3_sec" class="deals_timer_sec"></div>
-														<span>secs</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								</c:if>
 
 							</div>
 
