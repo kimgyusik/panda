@@ -45,24 +45,24 @@
 					<div class="footer_column">
 						<div class="footer_title">Find it Fast</div>
 						<ul class="footer_list">
-							<li><a href="#">농산물</a></li>
-							<li><a href="#">냉동/가공식품</a></li>
-							<li><a href="#">여성 의류</a></li>
-							<li><a href="#">남성 의류</a></li>
-							<li><a href="#">가구</a></li>
-							<li><a href="#">셀프 인테리어</a></li>
+							<li><a href="pListView.do?category=1">농산물</a></li>
+							<li><a href="pListView.do?category=4">냉동/가공식품</a></li>
+							<li><a href="pListView.do?category=10">여성 의류</a></li>
+							<li><a href="pListView.do?category=12">남성 의류</a></li>
+							<li><a href="pListView.do?category=20">가구</a></li>
+							<li><a href="pListView.do?category=28">셀프 인테리어</a></li>
 					</div>
 				</div>
 
 				<div class="col-lg-2">
 					<div class="footer_column">
 						<ul class="footer_list footer_list_2">
-							<li><a href="#">계절 가전</a></li>
-							<li><a href="#">주방 가전</a></li>
-							<li><a href="#">공연 티켓</a></li>
-							<li><a href="#">애완 용품</a></li>
-							<li><a href="#">메이크업</a></li>
-							<li><a href="#">다이어트</a></li>
+							<li><a href="pListView.do?category=30">계절 가전</a></li>
+							<li><a href="pListView.do?category=39">주방 가전</a></li>
+							<li><a href="pListView.do?category=45">공연 티켓</a></li>
+							<li><a href="pListView.do?category=47">애완 용품</a></li>
+							<li><a href="pListView.do?category=51">메이크업</a></li>
+							<li><a href="pListView.do?category=54">다이어트</a></li>
 						</ul>
 					</div>
 				</div>
