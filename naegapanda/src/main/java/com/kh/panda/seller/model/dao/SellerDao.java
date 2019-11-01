@@ -1,6 +1,7 @@
 package com.kh.panda.seller.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -41,9 +42,10 @@ public class SellerDao {
 	}
 
 
-	public String findsId(String sEmail) {
-		return sqlSession.selectOne("sellerMapper.findsId", sEmail);
-	}
+	
+	 public String findsId(String sEmail) { return
+	 sqlSession.selectOne("sellerMapper.findsId", sEmail); }
+	 
 
 
 	public int updateSeller(Seller s) {
@@ -137,6 +139,7 @@ public class SellerDao {
 		
 		return (ArrayList)sqlSession.selectList("paymentMapper.selectoList", sNo, rowBounds);
 	}
+	
 	public int updateProduct(Product p) {
 		return sqlSession.update("productMapper.updateProduct", p);
 	}
@@ -164,7 +167,7 @@ public class SellerDao {
 	public int insertPaList2(ProductAttachment pa) {
 		return sqlSession.insert("productMapper.insertPa2", pa);
 	}
-	
+
 
 	
 

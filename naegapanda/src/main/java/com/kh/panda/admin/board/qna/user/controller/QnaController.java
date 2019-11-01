@@ -36,6 +36,8 @@ public class QnaController {
 		ArrayList<Qna> qlist = qService.selectList(pi);
 		ArrayList<Answer> alist = qService.selectAList(); 
 		
+		//System.out.println("유저큐엔에이"+pi);
+		
 		//System.out.println(qlist);
 		//System.out.println(alist);
 		

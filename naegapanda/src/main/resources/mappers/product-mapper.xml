@@ -188,14 +188,14 @@
 		<![CDATA[
 			select * 
 			from NewTopList 
-			where rownum = 1
+			where rnum = 1
 		]]>
 	</select>
 	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 			select * 
 			from NewTopList 
-			where c_id between #{startNum} and #{endNum} and rownum <= 20
+			where c_id between 1 and 58 and rnum between 2 and 21
 		]]>
 	</select>
 	<select id="NewList" parameterType="CategoryNumber" resultMap="productResultSet2">

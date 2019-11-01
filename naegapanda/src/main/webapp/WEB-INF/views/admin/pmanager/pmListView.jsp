@@ -26,6 +26,7 @@
 <style type="text/css">
     .bs-example{
     	margin: 20px;
+    	width:71%;
     }
     .btn{
     	background:#0e8ce4;
@@ -57,13 +58,13 @@
 			<h4 style="font-weight:bold;">판매품 관리</h4><br>
 				<thead align="center">
 					<tr>
-						<th>No.</th>
-						<th width="100">Cat.</th>
-						<th width="100">Cat2.</th>
+						<th width="50">No.</th>
+						<th width="120">Cat.</th>
+						<th width="80">Cat2.</th>
 						<th width="300">상품명</th>
 						<th width="100">판매자</th>
-						<th>신고횟수</th>
-						<th>상태</th>
+						<th width="80">신고횟수</th>
+						<th width="80">상태</th>
 					</tr>
 				</thead>
 					<tbody>
@@ -99,8 +100,8 @@
 											</td>
 											
 											<td>
-												<c:if test="${ pm.pStatus eq 'N' }">
-													<h5 style="color:red; font-weight:bold">판매중</h5>
+												<c:if test="${ pm.pStatus eq 'Y' }">
+													<h5 style="color:red; font-weight:bold; text-align:center;">판매중</h5>
 												</c:if>
 											</td>
 											
@@ -120,7 +121,8 @@
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
 											<c:url value="pmlist.do" var="before">
-												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+												<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+												<c:param name="cName2" value="${ pmlist.get(0).cName2 }" />
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
 										</c:if>		
@@ -133,6 +135,7 @@
 											<c:if test="${ p ne pi.currentPage }">
 												<c:url value="pmlist.do" var="page">
 													<c:param name="currentPage" value="${ p }"/>
+													<c:param name="cName2" value="${ pmlist.get(0).cName2 }" />
 												</c:url>
 												<a href="${ page }">${ p }</a>
 											</c:if>
@@ -145,6 +148,7 @@
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
 											<c:url value="pmlist.do" var="next">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+												<c:param name="cName2" value="${ pmlist.get(0).cName2 }" />
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>
@@ -193,7 +197,7 @@
 											</td>
 											
 											<td>
-												<c:if test="${ pmx.pStatus eq 'Y' }">
+												<c:if test="${ pmx.pStatus eq 'N' }">
 													<h5 style="color:blue; font-weight:bold">판매정지</h5>
 												</c:if>
 											</td>
@@ -206,36 +210,39 @@
 				<div class="col-lg-12" align="center">
 					
 										<!-- [이전] -->	
-										<c:if test="${ pi.currentPage eq 1 }">
+										<c:if test="${ pi2.currentPage eq 1 }">
 											[이전] 
 										</c:if>
-										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="pmxlist.do" var="before">
-												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+										<c:if test="${ pi2.currentPage ne 1 }">
+											<c:url value="pmlist.do" var="before">
+												<c:param name="currentPage2" value="${ pi2.currentPage -1 }"/>
+												<c:param name="cName2" value="${ pmxlist.get(0).cName2 }" />
 											</c:url>
 											<a class="atag" href="${ before }">[이전] </a> 
 										</c:if>		
 										
 										<!-- 번호  -->
-										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-											<c:if test="${ p eq pi.currentPage }">
+										<c:forEach begin="${ pi2.startPage }" end="${ pi2.endPage }" var="p">
+											<c:if test="${ p eq pi2.currentPage }">
 												<font  size="4">[${ p }]</font>
 											</c:if>
-											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="pmxlist.do" var="page">
-													<c:param name="currentPage" value="${ p }"/>
+											<c:if test="${ p ne pi2.currentPage }">
+												<c:url value="pmlist.do" var="page">
+													<c:param name="currentPage2" value="${ p }"/>
+													<c:param name="cName2" value="${ pmxlist.get(0).cName2 }" />
 												</c:url>
 												<a href="${ page }">${ p }</a>
 											</c:if>
 										</c:forEach>
 										
 										<!-- [다음] -->
-										<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<c:if test="${ pi2.currentPage eq pi2.maxPage }">
 											 [다음]
 										</c:if>
-										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="pmxlist.do" var="next">
-												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										<c:if test="${ pi2.currentPage ne pi2.maxPage }">
+											<c:url value="pmlist.do" var="next">
+												<c:param name="currentPage2" value="${ pi2.currentPage + 1 }"/>
+												<c:param name="cName2" value="${ pmxlist.get(0).cName2 }" />
 											</c:url>
 											<a class="atag" href="${ next }" > [다음]</a>
 										</c:if>

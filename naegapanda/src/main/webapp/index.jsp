@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel=" shortcut icon" href="panda.ico">d
+<link rel="icon" href="panda.ico">
 <title></title>
 </head>
 <body>

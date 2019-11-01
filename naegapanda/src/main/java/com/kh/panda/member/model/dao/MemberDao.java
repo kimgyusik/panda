@@ -48,6 +48,11 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.upDatePwd", mp);
 	}
 
+	public Member loginMember(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

@@ -17,6 +17,10 @@ font-size: 13px;
 font-style: bold;
 color:black;
 }
+.categoryMenu{
+	color:#2e263c;
+	font-weight: bold;
+}
 .categoryMenu:hover{
 cursor: pointer;
 
@@ -391,7 +395,7 @@ height:auto;
 }
 .ggimImg{
 	border-radius:6px;
-max-width:320px;
+max-width:200px;
 max-height:170px;
 width:auto;
 height:auto;
