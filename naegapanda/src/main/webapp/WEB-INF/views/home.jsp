@@ -94,7 +94,7 @@
 		        <!-- Wrapper for carousel items -->
 		        <div class="carousel-inner">
 		            <div class="carousel-item active">
-		                <img src="resources/images/asdf.jpg" alt="First Slide">
+		                <img src="resources/images/paddi.jpg" alt="First Slide">
 		            </div>
 		            <div class="carousel-item">
 		                <img src="resources/images/carpet.jpg" alt="Second Slide">
@@ -771,7 +771,7 @@
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="resources/images/pepelo.png" alt=""></div>
+										<div class="banner_2_image"><img src="resources/images/pepero.png" alt=""></div>
 									</div>
 								</div>
 							</div>
