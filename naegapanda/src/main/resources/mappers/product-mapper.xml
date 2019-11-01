@@ -218,9 +218,9 @@
 	</select>
 	
 	<select id="LiveList" resultMap="productResultSet2">
-		select p.* , st_no, st_status
+		select p.* , s.st_no, st_status
 		from prettypList p
-		left outer join streaming s on(p.p_id = s.p_id)
+		left outer join streaming s on(p.st_no = s.st_no)
 		where st_status='Y'
 	</select>
 	
