@@ -175,37 +175,82 @@
 									<c:if test="${pi.currentPage eq 1}">
 										[처음으로]
 									</c:if>
-									<c:if test="${pi.currentPage ne 1}">
-										<c:url value="pListView.do" var="first">
-											<c:param name="currentPage" value="1"/>
-											<c:param name="category" value="${category }"/>
-										</c:url>
-										<a href="${first }">[처음으로]</a>&nbsp;
-									</c:if>
+									
+										<c:if test="${pi.currentPage ne 1}">
+											<c:if test="${ !empty keyword }">
+												<c:url value="search.do" var="first">
+													<c:param name="currentPage" value="1"/>
+													<c:param name="category" value="${ category }"/>
+													<c:param name="keyword" value="${ keyword }"/>
+												</c:url>
+												<a href="${ first }">[처음으로 ]</a>&nbsp;
+											</c:if>
+											<c:if test="${ empty keyword }">
+												<c:url value="pListView.do" var="first">
+													<c:param name="currentPage" value="1"/>
+													<c:param name="category" value="${ category }"/>
+												</c:url>
+												<a href="${first }">[처음으로]</a>&nbsp;
+											</c:if>
+										</c:if>
+									
 									<!-- 이전 -->
+									
+									
 									<c:if test="${pi.currentPage eq 1}">
 										[이전]
 									</c:if>
+									
 									<c:if test="${pi.currentPage ne 1}">
-										<c:url value="pListView.do" var="before">
-											<c:param name="currentPage" value="${pi.currentPage -1 }"/>
-											<c:param name="category" value="${category }"/>
-										</c:url>
-										<a href="${before }">[이전]</a>&nbsp;
+										<c:if test="${ !empty keyword }">
+											<c:if test="${ pi.currentPage > 1 }">
+												<c:url value="search.do" var="before">
+													<c:param name="currentPage" value="${ pi.currentPage-1 }"/>
+													<c:param name="category" value="${ category }"/>
+													<c:param name="keyword" value="${ keyword }"/>
+												</c:url>
+												<a href="${ before }">[이전 ]</a>
+											</c:if>
+										</c:if>
+									
+										<c:if test="${ empty keyword }">
+											<c:url value="pListView.do" var="before">
+												<c:param name="currentPage" value="${pi.currentPage -1 }"/>
+												<c:param name="category" value="${category }"/>
+											</c:url>
+											<a href="${before }">[이전]</a>&nbsp;
+										</c:if>
 									</c:if>
 									
 									<!-- 페이지 -->
-									<c:forEach begin="${pi.startPage }" end="${pi.endPage }" var="p">
-										<c:if test="${pi.currentPage eq p }">
-											<font color="red" size="4">[${p }]</font>
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<c:if test="${ pi.currentPage eq p }">
+											<font color="red" size="4">[${ p }]</font>
 										</c:if> 
-											<font color="black" size="4">
-												<c:url value="pListView.do" var="page">
-													<c:param name="currentPage" value="${p }"/>
-													<c:param name="category" value="${category }"/>
-												</c:url>
-												<a href="${page }">${p }</a>
-											</font>
+										
+										<c:if test="${ pi.currentPage ne p }">
+										
+											<c:if test="${ !empty keyword }">
+												<font color="black" size="4">
+													<c:url value="search.do" var="page">
+														<c:param name="currentPage" value="${ p }"/>
+														<c:param name="category" value="${ category }"/>
+														<c:param name="keyword" value="${ keyword }"/>
+													</c:url>
+													<a href="${ page }">${ p }</a>
+												</font>
+											</c:if>
+										
+											<c:if test="${ empty keyword }">
+												<font color="black" size="4">
+													<c:url value="pListView.do" var="page">
+														<c:param name="currentPage" value="${ p }"/>
+														<c:param name="category" value="${ category }"/>
+													</c:url>
+													<a href="${ page }">${ p }</a>
+												</font>
+											</c:if>
+										</c:if>
 									
 									</c:forEach>
 									
@@ -214,21 +259,48 @@
 										[다음]
 									</c:if>
 									<c:if test="${pi.currentPage ne pi.maxPage}">
-										<c:url value="pListView.do" var="next">
-											<c:param name="currentPage" value="${pi.currentPage +1 }"/>
-											<c:param name="category" value="${category }"/>
-										</c:url>
-										<a href="${next }">[다음]&nbsp;</a>
+										<c:if test="${ !empty keyword }">
+											<c:url value="search.do" var="next">
+												<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+												<c:param name="category" value="${ category }"/>
+												<c:param name="keyword" value="${ keyword }"/>
+											</c:url>
+											<a href="${ next }">[다음]&nbsp;</a>
+										</c:if>
+										
+										<c:if test="${ empty keyword }">
+											<c:url value="pListView.do" var="next">
+												<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+												<c:param name="category" value="${category }"/>
+											</c:url>
+											<a href="${ next }">[다음]&nbsp;</a>
+										</c:if>
 									</c:if>
+									
+									
+									
+									
 									<c:if test="${pi.currentPage eq pi.maxPage}">
 										[끝으로]
 									</c:if>
 									<c:if test="${pi.currentPage ne pi.maxPage}">
-									<c:url value="pListView.do" var="last">
-										<c:param name="currentPage" value="${pi.maxPage }"/>
-										<c:param name="category" value="${category }"/>
-									</c:url>
-									<a href="${last }">[끝으로]&nbsp;</a>
+									
+										<c:if test="${ !empty keyword }">
+											<c:url value="search.do" var="last">
+												<c:param name="currentPage" value="${pi.maxPage }"/>
+												<c:param name="category" value="${ category }"/>
+												<c:param name="keyword" value="${ keyword }"/>
+											</c:url>
+											<a href="${ last }">[끝으로]&nbsp;</a>
+										</c:if>
+									
+										<c:if test="${ empty keyword }">
+											<c:url value="pListView.do" var="last">
+												<c:param name="currentPage" value="${pi.maxPage }"/>
+												<c:param name="category" value="${ category }"/>
+											</c:url>
+											<a href="${ last }">[끝으로]&nbsp;</a>
+										</c:if>
 									</c:if>
 								</td>
 							</tr>
