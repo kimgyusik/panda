@@ -166,11 +166,11 @@ public class ProductController {
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
 		ArrayList<Product> pList = pService.search(keyword,pi,category); 
-		/*
-		 * System.out.println(keyword); System.out.println(category);
-		 * System.out.println(pList); System.out.println(listCount);
-		 * System.out.println(pi);
-		 */
+		
+		  System.out.println(keyword); System.out.println(category);
+		  System.out.println(pList); System.out.println(listCount);
+		  System.out.println(pi);
+		
 		
 		ArrayList<Ggim> gglist = getGgimList(session);
 		
@@ -180,7 +180,7 @@ public class ProductController {
 			 }
 		 
 		
-		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).addObject("keyword",keyword).setViewName("product/productListView");
 		return mv;
 	}
 	
