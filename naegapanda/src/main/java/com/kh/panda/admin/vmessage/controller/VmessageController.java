@@ -46,6 +46,9 @@ public class VmessageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Vmessage> list = vmService.selectList(pi);
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
 
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/vmessage/VmessageListView");
 
@@ -64,16 +67,14 @@ public class VmessageController {
 		System.out.print("listCount:");
 		System.out.println(listCount);
 		
-		if(listCount == 0) {
-			listCount = 1;
-		}
+
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Vmessage> list = vmService.selectSellerList(pi, sNo);
-		System.out.print("list:");
-		System.out.println(list);
-		
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
 		
 		mv.addObject("pi", pi).addObject("list", list).addObject("sNo", sNo)
 				.setViewName("admin/vmessage/SellerVmessageListView");

@@ -60,7 +60,6 @@ public class ProductController {
 	@RequestMapping("test11.do")
 	public String test11(@RequestParam(value="category", defaultValue="1000") int category, HttpServletResponse response, Model model) throws JsonIOException, IOException{
 		
-		System.out.println(category);
 		ArrayList<Product> HotTopList = pService.HotTopList(category);
 		
 	      response.setContentType("application/json; charset=utf-8"); 
@@ -146,12 +145,16 @@ public class ProductController {
 								ModelAndView mv, HttpSession session) {
 		
 		int listCount = pService.getListCount(category);
-		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
-		System.out.println(listCount);
 		ArrayList<Product> pList = pService.selectpList(pi, category);
 		ArrayList<Ggim> gglist = getGgimList(session);
-		System.out.println(pi);
+		
+		
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
+		
+		
 		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
 		
 		return mv;
@@ -167,9 +170,6 @@ public class ProductController {
 		
 		ArrayList<Product> pList = pService.search(keyword,pi,category); 
 		
-		  System.out.println(keyword); System.out.println(category);
-		  System.out.println(pList); System.out.println(listCount);
-		  System.out.println(pi);
 		
 		
 		ArrayList<Ggim> gglist = getGgimList(session);
