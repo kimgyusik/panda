@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,18 +40,26 @@ public class InquiryController {
 	}
 	
 	// 문의 추가 처리
-	@ResponseBody
+
 	@RequestMapping("addInquiry.in")
-	public String addInquiry(Inquiry i, HttpSession session) {
+	public String addInquiry(Inquiry i, HttpSession session, Model model) {
 		
 		i.setmNo(getmNo(session));
 		
+		if(i.getOpenYn() !=null && i.getOpenYn().equals("on")) {
+			i.setOpenYn("Y");
+		}else {
+			i.setOpenYn("N");
+		}
+		
 		int result = inService.addInquiry(i);
 		
-		if(result > 0 ) {
-			return "success";
+		if(result > 0) {
+			model.addAttribute("pId", i.getpId());
+			return "redirect:pDetailView.do";
 		}else {
-			return "fail";
+			model.addAttribute("msg", "문의 등록 실패");
+			return "common/errorPage";
 		}
 		
 	}

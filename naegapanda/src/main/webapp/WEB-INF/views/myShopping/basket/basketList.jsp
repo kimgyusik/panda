@@ -219,11 +219,10 @@
 				success:function(data){
 					if(data == "success"){
 						
-						price2.text(addComma(price*amount)); // 해당 상품의 갯수*단일금액을 천 단위 콤마 형태로 출력
-						
+						price2.text(addComma(price*amount)); // 해당 상품의 갯수*단일금액을 천 단위 콤마 형태로 출력	
 						price2.parent().children().eq(0).attr("value", price*amount); // 위 금액을 hidden에 숫자형으로 저장
-						
 						priceAll();
+						getCart()
 						
 					}else{
 						alert("처리실패");
@@ -270,6 +269,7 @@
 							$('#'+oNo).parent().children().eq(7).children().eq(0).attr('value', 0);
 							$('#'+oNo).parent().css('display','none');
 							priceAll();
+							getCart()
 						}else{
 							alert("처리실패");
 						}
@@ -309,6 +309,26 @@
 				location.href='<%=request.getContextPath()%>/paymentPage.pa';
 			}
 			return false;
+		}
+		
+		// 메인메뉴 장바구니 비동기 처리
+		function getCart(){
+			$.ajax({
+				url:"currentBasket.ba",
+				dataType:"json",
+				success:function(data){
+					if(data[0] == 0){
+						$('.cart_count').children().first().text(data[0]);
+						$('.cart_price').children().first().text("장바구니가 비었어요.");
+					}else{
+						$('.cart_count').children().first().text(data[0]);
+						$('.cart_price').children().first().text(data[1]+"원");
+					}
+				},
+				error:function(){
+					console.log("ajax 통신 실패");
+				}
+			});
 		}
 	</script>
 

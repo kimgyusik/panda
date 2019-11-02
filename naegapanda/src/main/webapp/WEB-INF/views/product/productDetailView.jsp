@@ -169,7 +169,7 @@
 									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
 									 			</td>
 									 			<td width="15%;" style="text-align: center;">
-									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
+									 				<img class="reviewImg" src="resources/review_uploadFiles/${re.rImage}" >
 									 			</td>
 									 			<td  width="10%" >
 									 				<input type="hidden" class="rId" value="${re.rId }">
@@ -210,7 +210,7 @@
 							 							</c:if>
 							 							<c:if test="${loginUser != null }">
 							 								<input type="text" class="inputReply" >
-							 								<span class="add">추가</span>
+							 								<span class="add reviewGray">추가</span>
 							 							</c:if>
 							 							<br>
 										 				<table id="replyTable${re.rId}" style="margin-top: 10px;margin-bottom:15px;">
@@ -219,7 +219,7 @@
 							 						</div>
 							 					</td>
 							 					<td colspan="3" style="text-align: center;">
-							 						<img class="reviewImg2" src="resources/images/${re.rImage}" >
+							 						<img class="reviewImg2" src="resources/review_uploadFiles/${re.rImage}" >
 							 					</td>
 							 				</tr>
 								 		</c:forEach>
@@ -242,14 +242,25 @@
 							<h3>상품 문의 </h3>
 							<div id="inquiry">
 								<br>
-								<br>
-							
-								<c:if test="${loginUser == null }">
-	 								
+								<c:if test="${empty inqList}">
+				 					<div style="text-align: left;">
+					 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등록된 문의가 없습니다.
+					 				</div>
+					 				<br>
+				 				</c:if>
+								<c:if test="${loginUser != null }">
+									<input type="hidden" value="${p.pId}">
+	 								<div id="addInq">
+	 									상품 문의 작성하기
+	 								</div>
 	 							</c:if>
-								
-						
-			
+	 							<c:if test="${loginUser == null }">
+	 								<div id="addInqDisable">
+	 									상품 문의 작성하기
+	 								</div>
+	 							</c:if>
+	 							<br>
+
 								<c:if test="${!empty inqList}">
 								 	<table  style="width:100%; ">
 								 		<thead>
@@ -289,7 +300,7 @@
 										 							<span>${i.iTitle }</span>
 										 						</c:if>
 										 						<c:if test="${loginUser eq null || i.mNo ne loginUser.mNo}">
-										 							<span>비밀글입니다.</span> &nbsp;
+										 							<span >비밀글입니다.</span> &nbsp;
 										 							<img src="resources/images/lock.ico" width="16px;" style="margin-bottom:3px;">
 										 						</c:if>
 									 						</c:if>
@@ -342,21 +353,8 @@
 								 		</tbody>
 								 	</table>
 							 	</c:if>
-							 	
-							 	<c:if test="${empty inqList}">
-				 					<div style="text-align: left;">
-					 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등록된 문의가 없습니다.
-					 				</div>
-				 				</c:if>
-								
-								
-								
-								
-								
-								
-								
-								
-								
+
+		
 							</div>
 						</div>
 					</div>
@@ -367,6 +365,51 @@
 	</div>
 	
 	<c:import url="../common/footer.jsp"/>
+	
+	
+	<!-- 모달 -->
+	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm" style="width:300px;">
+			<div class="modal-content">
+			
+			<div class="modal-header">
+				<span style="color:white; "><b>문의 등록</b></span>
+				<button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
+			</div>
+			
+			<form action="addInquiry.in" method="post" >
+				<table id="inqModal">
+					<tr>
+						<td>
+							<div class="modal-body" style="padding-left:30px; padding-right:30px;">
+								<input type="hidden" id="pIdInq" name="pId"><br>
+								<label class="modalLabel">제목</label>
+								<br><input type="text" class="modal-title" id="title" name="iTitle" ><br><br>
+								<label class="modalLabel">내용</label><br>
+								<textarea id="content" cols="15" rows="4" name="iContents"></textarea><br>
+								<label id="contentLabel" >0/500</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="modal-footer">
+								<div style="flex: auto; margin-left:20px;">
+									<input type="checkbox" id="openYn" name="openYn" checked="checked">
+									<label id="openYnLabel" for="openYn">공개 여부</label>
+								</div>
+								<button id="submit" type="submit" class="btn btnInq" data-dismiss="modal"><b>작성완료</b></button>
+								<button type="button" class="btn btnInq" data-dismiss="modal"><b>취소</b></button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+			</div>
+		</div>
+	</div> 
 	
 	
 	<script src="resources/js/jquery-3.3.1.min.js"></script>

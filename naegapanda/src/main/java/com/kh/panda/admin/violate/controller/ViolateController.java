@@ -46,6 +46,10 @@ public class ViolateController {
 		
 		ArrayList<Violate> list = vService.selectList(pi);
 		
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
+		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView");
 		// 객체                                                                                         경로로반환한거당
 		return mv;
@@ -161,6 +165,10 @@ public class ViolateController {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
 			ArrayList<Violate> list = vService.selectList(pi);
+			
+			if(listCount == 0) { 
+				 pi.setMaxPage(1); 
+				 }
 			
 			mv.addObject("pi", pi).addObject("list", list).setViewName("admin/violate/ViolateListView");
 			// 객체                                                                                         경로로반환한거당

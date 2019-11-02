@@ -80,13 +80,13 @@
 	<select id="selectReview" parameterType="_int" resultMap="reviewResultSet">
 		select *
 		from review
-		where r_id = #{rId] and r_del = 'N'
+		where r_id = #{rId} and r_del = 'N'
 	</select>
 	
 	<update id="countUp" parameterType="_int">
 		update review
 		set r_count = r_count+1
-		where r_id = #{rId]
+		where r_id = #{rId}
 	</update>
 	
 	<insert id="addReview" parameterType="Review">
@@ -97,7 +97,7 @@
 	<update id="updateReview" parameterType="Review">
 		update review
 		set r_title = #{rTitle}, r_contents = #{rContents}, r_image = #{rImage}
-		where r_id = #{rId]
+		where r_id = #{rId}
 	</update>
 	
 	<update id="deleteReview" parameterType="_int">

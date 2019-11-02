@@ -57,7 +57,7 @@
 															</c:url>	
 																
 												 			<td width="270px;" rowspan="2">
-												 				<input type="hidden" class="rId" value="${i.iId}">
+												 				<input type="hidden" class="iId" value="${i.iId}">
 												 				<a href="${ product }"><img class="inquiryImg" src="resources/product_uploadFiles/${i.paChangeName}" ></a>
 												 				<span style="display: block;font-size: 13px; margin-top:10px;">
 												 					<a href="${ product }"><b>${i.pName}</b></a>
@@ -72,7 +72,7 @@
 												 			</td>
 										
 												 			<td style="vertical-align: top; padding:10px;">
-												 				<span class="cancle" onclick="return removeInquiry(${i.iId});">X</span>
+												 				<span class="cancle" >X</span>
 												 			</td>
 										 				</tr>
 										 				
@@ -94,9 +94,9 @@
 										 		
 										 		<c:if test="${empty list}">
 									 				<div style="text-align: center;">
-									 					<br>
+									 					<br><br><br>
 									 					<img src="resources/images/pandaImage.jpg" width="100px;">
-									 					<br>상품문의 내역이 없습니다.
+									 					<br>상품 문의 내역이 없습니다.
 									 				</div>
 									 			</c:if>
 										 		
@@ -109,9 +109,6 @@
 						</div>
 					</div>
 					<!-- 문의 끝 -->
-					<div>
-					구현예정 콤보박스: 답변/미답변, 기간별
-					</div>
 				</div>
 			</div>
 		</div>
@@ -123,19 +120,46 @@
 	<script>
 
 		$(function(){
-			
+			// 문의 삭제
+			$(".cancle").on("click", function(){
+				
+				if(!confirm("삭제한 문의는 복구할 수 없습니다.\n정말 삭제하시겠습니까?")){
+					return false;
+				}
+				
+				var iId =$(this).parent().parent().find('.iId').val();
+				var tr = $(this).parent().parent();
+				
+				$.ajax({
+					url:"deleteInquiry.in",
+					data:{iId:iId},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							var $tableBody = tr.parent();
+							tr.next().remove();
+							tr.remove();
+
+							if(tr.parent().find('.contentsList').length == 0){
+								$tableBody.append(
+										"<div style='text-align: center; left:200%'><br><br><br>"
+					 					+ "<img src='resources/images/pandaImage.jpg' width='100px;'>"
+					 					+ "<br>상품 문의 내역이 없습니다."
+										);
+							}
+						}else{
+							alert("처리실패");
+						}
+					},
+					error:function(){
+						console.log("서버와의 통신 실패");
+					}
+				});
+				
+			});
 		
 		});
 	
-
-		// 문의 삭제 (단일)
-		function removeInquiry(rId){
-			if(confirm("삭제한 문의는 복구할 수 없습니다.\n정말 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteInquiry.in?iId='+iId;
-			}
-			return false;
-		}
-
 	</script>
 	
 

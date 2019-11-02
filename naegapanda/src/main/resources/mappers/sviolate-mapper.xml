@@ -22,12 +22,13 @@
 	<select id="getAllListCount" resultType="_int">
 		select count(*)
 		from svlist
+		where s_violate >= 20
 	</select>
 	
 	<select id="getScListCount" resultType="_int">
 		select count(*)
 		from svlist
-		where s_violate >= 0
+		where s_violate >= 20
 		<if test="sName != null">
 			and s_name LIKE '%' || #{sName} || '%'
 		</if>
@@ -42,26 +43,25 @@
 	<select id="selectAllList" resultMap="sviolateResultSet">
 		select s_NO, s_Name, storeName, s_Violate, s_Status
 		from seller
+		where s_violate>=20
 	</select>
-		<!-- where s_violate>=20 -->
 		
 	<select id="selectScList" resultMap="sviolateResultSet">
 		select s_NO, s_Name, storeName, s_Violate, s_Status
 		from seller
-		where
+		where s_violate>=20
 		<choose>
 			<when test="sName != null">
-				s_name LIKE '%' || #{sName} || '%'
+				and s_name LIKE '%' || #{sName} || '%'
 			</when>
 			<when test="storeName != null">
-				storename LIKE '%' || #{storeName} || '%'
+				and storename LIKE '%' || #{storeName} || '%'
 			</when>
 			<otherwise>
-				s_Status LIKE '%' || #{sStatus} || '%'
+				and s_Status LIKE '%' || #{sStatus} || '%'
 			</otherwise>
 		</choose>
 	</select>
-		<!-- where s_violate>=20 -->
 	
 	<select id="getPersonalListCount" parameterType="_int" resultType="_int">
 		select count(*)

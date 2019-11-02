@@ -30,6 +30,9 @@ public class SviolateController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Sviolate> list = svService.selectAllList(pi);
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/sviolate/sViolateAllListView");
 		// 객체                                                                                         경로로반환한거당
@@ -42,12 +45,13 @@ public class SviolateController {
 	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo, String sName) {
 		
 		int listCount = svService.getPersonalListCount(sNo);
-		System.out.println("Personal:");
-		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Sviolate> list = svService.selectPersonalList(pi, sNo);
-		System.out.println(list);
+		
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
 		
 		mv.addObject("pi", pi).addObject("list", list).addObject("sName",sName).addObject("sNo",sNo).setViewName("admin/sviolate/sViolatePersonalListView");
 		// 객체                                                                                         경로로반환한거당
@@ -69,32 +73,25 @@ public class SviolateController {
 	 
 	 @RequestMapping("sellerDelete.do")
 	 public ModelAndView sellerDelete(ModelAndView mv, int sNo) {
-		 System.out.println(sNo);
 		 int result = svService.sellerDelete(sNo);
-		 System.out.println(result);
 		 mv.setViewName("admin/sviolate/sViolateAllListView");
 		 return mv;
 	 }
 	 
 	 @RequestMapping("sviolateSearch.do")
 	 public ModelAndView sviolateSearch(ModelAndView mv, String condition, String keyword, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-		 System.out.print("keyword:");
-		 System.out.println(keyword);
+
 		 
 		 SearchCondition sc = new SearchCondition();
 		 
 			if(condition.equals("sName")) {
-				System.out.println("sName");
 				sc.setsName(keyword);
 			}else if(condition.equals("storeName")) {
-				System.out.println("storeName");	
 				sc.setStoreName(keyword);
 			}else {
-				System.out.println("sStatus");	
 				sc.setsStatus(keyword);
 			}
 			
-			System.out.println(sc);
 			
 			
 			int listCount = svService.getAllListCount(sc);
@@ -103,7 +100,9 @@ public class SviolateController {
 			ArrayList<Sviolate> list = svService.selectAllList(sc,pi);
 			
 			
-			
+			if(listCount == 0) { 
+				 pi.setMaxPage(1); 
+				 }
 			
 			mv.addObject("pi", pi).addObject("list", list).addObject("condition",condition).addObject("keyword",keyword).addObject("sc",sc).setViewName("admin/sviolate/sViolateAllListView");
 			// 객체                                                                                         경로로반환한거당
