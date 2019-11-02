@@ -46,35 +46,35 @@ public class ReviewController {
 	@RequestMapping("myReviewList.re")
 	public ModelAndView selectMyReviewList(ModelAndView mv, HttpSession session) {
 		
-//		ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
-//		ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
+		ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
+		ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
 		
-		ArrayList<Review> list = new ArrayList<>();
-		ArrayList<Payment> list2 = new ArrayList<>();
-		
-		Payment p = new Payment();
-		p.setmNo(1);
-		p.setpName("맛있는과자");
-		p.setoName("33박스");
-		p.setpId(11);
-		p.setPayId(13);
-		p.setStoreName("이지몰");
-		list2.add(p);
-		
-		Payment p2 = new Payment();
-		p2.setmNo(1);
-		p2.setpName("매운라면");
-		p2.setoName("24242개");
-		p2.setpId(22);
-		p2.setPayId(24);
-		p2.setStoreName("라면상점");
-		list2.add(p2);
-		
-		
-		
-		Date date = new Date();
-		list.add(new Review(1, "너무 잘 받엇어요", "진짜찐짜진자찌장", date, 12323, 1, "vjxmfwl", "N", 323, 13,"blog_2.jpg"));
-		list.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "best_3.png"));
+//		ArrayList<Review> list = new ArrayList<>();
+//		ArrayList<Payment> list2 = new ArrayList<>();
+//		
+//		Payment p = new Payment();
+//		p.setmNo(1);
+//		p.setpName("맛있는과자");
+//		p.setoName("33박스");
+//		p.setpId(11);
+//		p.setPayId(13);
+//		p.setStoreName("이지몰");
+//		list2.add(p);
+//		
+//		Payment p2 = new Payment();
+//		p2.setmNo(1);
+//		p2.setpName("매운라면");
+//		p2.setoName("24242개");
+//		p2.setpId(22);
+//		p2.setPayId(24);
+//		p2.setStoreName("라면상점");
+//		list2.add(p2);
+//		
+//		
+//		
+//		Date date = new Date();
+//		list.add(new Review(1, "너무 잘 받엇어요", "진짜찐짜진자찌장", date, 12323, 1, "vjxmfwl", "N", 323, 13,"blog_2.jpg"));
+//		list.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "best_3.png"));
 		
 		mv.addObject("list", list);
 		mv.addObject("list2", list2);
@@ -249,6 +249,7 @@ public class ReviewController {
 	
 	
 	// 리뷰 삭제 처리
+	@ResponseBody
 	@RequestMapping("deleteReview.re")
 	public String deleteReview(int rId, HttpServletRequest request) {
 		
@@ -260,10 +261,10 @@ public class ReviewController {
 		
 		int result = reService.deleteReview(rId);
 		
-		if(result > 0) {
-			return "redirect:myReviewList.re";
+		if(result > 0 ) {
+			return "success";
 		}else {
-			return "common/errorPage";
+			return "fail";
 		}
 	}
 	

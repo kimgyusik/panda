@@ -127,7 +127,7 @@
 							<div class="modal-body" style="padding-left:30px;">
 								<input type="hidden" id="payId" name="payId"><br>
 								<label class="modalLabel">제목</label>
-								<input type="text" class="modal-title" id="title" name="rTitle" ><br><br>
+								<br><input type="text" class="modal-title" id="title" name="rTitle" ><br><br>
 								<label class="modalLabel">내용</label><br>
 								<textarea id="content" cols="35" name="rContents"></textarea><br>
 								<label id="contentLabel" >0/500</label>

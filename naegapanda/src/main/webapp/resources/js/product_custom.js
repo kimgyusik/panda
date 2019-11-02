@@ -475,6 +475,7 @@ $(document).ready(function()
 		var rId =$(this).parent().parent().parent().children().eq(0).children().eq(0).val();
 		var rrContents = $(this).prev().val();
 		var mNo = $(this).parent().parent().parent().children().eq(0).children().eq(1).val();
+		var inputReply = $(this).prev();
 		
 		$.ajax({
 			url:"addReply.re",
@@ -483,6 +484,7 @@ $(document).ready(function()
 			success:function(data){
 				if(data == "success"){
 					getReplyList(rId, mNo)
+					inputReply.val("");
 				}else{
 					alert("처리실패");
 				}
@@ -529,12 +531,53 @@ $(document).ready(function()
 	// 문의답변 엔터키 이벤트
 	$(".addAnswer").keypress(function (e) {
         if (e.which == 13){
-        	
         	var id = $(this).next().attr('id');
         	addInq(id);
         }
     });
-
+	
+	// 댓글 작성 엔터키 이벤트
+	$(".inputReply").keypress(function (e) {
+        if (e.which == 13){
+        	$(this).next().trigger("click");
+        }
+    });
+	
+	// 회원 아닐 시 문의 작성 못 함
+	$('#addInqDisable').click(function(){
+		alert('일반회원으로 로그인 이후 이용 가능합니다.');
+	});
+	
+	// 문의 작성 모달창 호출
+	$('#addInq').click(function(){
+		var pId = $(this).prev().val();
+		$("#pIdInq").val(pId);
+		$("#myModal").modal('show');
+	});
+	
+	// 문의내용 글자 수 제한
+	 $('#content').on('keyup', function() {
+        if($(this).val().length > 500) {
+            $(this).val($(this).val().substring(0, 500));
+        }
+		$('#contentLabel').html($(this).val().length+"/500");
+    });
+	 
+	// 모달 종료 시 input-area 초기화
+	$("#myModal").on('hide.bs.modal', function(e){
+		$('#title').val('');
+		$('#content').val('');
+		$('#openYn').prop('checked', true);
+		e.stopImmediatePropagation();
+	});
+	
+	// 모달창 제출
+	$('#submit').click(function (e) {
+		event.stopPropagation();
+		$('#submit').click();
+	});
+	
+	
 	
 
 });
