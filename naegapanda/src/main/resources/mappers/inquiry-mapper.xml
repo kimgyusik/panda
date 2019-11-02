@@ -26,13 +26,13 @@
 		join product using(p_id)
         join product_attachment using(p_id)
 		join member using(m_no)
-		where m_no = 3 and i_del = 'N'
+		where m_no = #{mNo} and i_del = 'N'
 		order by i_date desc
 	</select>
 	
 	<insert id="addInquiry" parameterType="Inquiry">
 		insert into inquiry
-		values ()
+		values (inquiry_seq.nextval, #{iTitle}, #{iContents}, sysdate, #{mNo}, null, null, 'N', default, #{pId}, #{openYn})
 	</insert>
 	
 	<update id="deleteInquiry" parameterType="_int">
