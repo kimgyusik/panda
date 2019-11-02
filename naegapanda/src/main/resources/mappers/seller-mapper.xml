@@ -65,7 +65,7 @@
 	<select id="findsId" parameterType="String" resultType="String">
 		select s_id 
 		from seller
-		where s_email = #{sEmail} and s_name = #{sName}
+		where s_email = #{sEmail}
 	</select>
 	
 	
