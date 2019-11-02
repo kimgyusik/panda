@@ -57,7 +57,7 @@
 																	
 													 			<td width="300px;">
 													 				<input type="hidden" class="rId" value="${r.rId}">
-													 				<a href="${ product }"><img class="ableReviewImg" src="resources/images/${r.rImage}" ></a>
+													 				<a href="${ product }"><img class="ableReviewImg" src="resources/review_uploadFiles/${r.rImage}" ></a>
 													 				<br><br>
 													 				<span style="display: inline-block;font-size: 12px; height:30px;">
 													 					[${p.storeName }]
@@ -66,7 +66,7 @@
 													 			</td>
 													 			
 													 			<td width="600px;" style="text-align: left; ">
-													 				<span style="display: inline-block;font-size: 15px;">${r.rTitle } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+													 				<span style="display: inline-block;font-size: 15px;">${r.rTitle }</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											 						<span style="color:gray;"><fmt:formatDate value="${r.rDate}" pattern="yyyy. MM. dd." /></span>
 											 						<br><br>
 											 						&nbsp;&nbsp;&nbsp;<span>${r.rContents }</span>
@@ -130,7 +130,7 @@
 							<img id="titleImg" >
 						</td>
 						<td>
-							<div class="modal-body" style="padding-left:30px;">
+							<div class="modal-body" style="padding-left:20px;">
 								<input type="hidden" id="rId" name="rId">
 								<label class="modalLabel">제목</label>
 								<br><input type="text" class="modal-title" id="title" name="rTitle" >
@@ -146,7 +146,7 @@
 							<button id="btn-upload" type="button" class="btn btn-outline-info" data-dismiss="modal" style="margin-left:20px;"><b>사진 업로드</b></button></td>
 						<td>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-info" data-dismiss="modal"><b>수정하기</b></button>
+								<button id="submit" type="submit" class="btn btn-info" data-dismiss="modal"><b>수정하기</b></button>
 								<button type="button" class="btn btn-info" data-dismiss="modal"><b>취소</b></button>
 							</div>
 						</td>
@@ -202,9 +202,15 @@
 		        }
 				$('#contentLabel').html($(this).val().length+"/500");
 		    });
+			
+			 // 모달창 제출
+			$('#submit').click(function (e) {
+				event.stopPropagation();
+				
+				$('#submit').click();
+			});
 		
-		    
-		    
+
 			 // 리뷰 삭제
 			$(".removeReview").on("click", function(){
 				

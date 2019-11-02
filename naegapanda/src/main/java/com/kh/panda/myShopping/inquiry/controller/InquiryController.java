@@ -46,7 +46,7 @@ public class InquiryController {
 		
 		i.setmNo(getmNo(session));
 		
-		if(i.getOpenYn().equals("on")) {
+		if(i.getOpenYn() !=null && i.getOpenYn().equals("on")) {
 			i.setOpenYn("Y");
 		}else {
 			i.setOpenYn("N");

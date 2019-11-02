@@ -63,7 +63,7 @@
 																		
 														 			<td width="300px;">
 														 				<input type="hidden" class="payId" value="${r.payId}">
-														 				<a href="${ product }"><img src="resources/images/${r.paChangeName}" style="max-height:180px; width:auto; max-width:200px;"></a>
+														 				<a href="${ product }"><img class="reviewImg" src="resources/images/${r.paChangeName}"></a>
 														 			</td>
 														 			
 														 			<td width="1000px;" style="text-align: left;">
@@ -124,7 +124,7 @@
 							<img id="titleImg">
 						</td>
 						<td>
-							<div class="modal-body" style="padding-left:30px;">
+							<div class="modal-body" style="padding-left:20px;">
 								<input type="hidden" id="payId" name="payId"><br>
 								<label class="modalLabel">제목</label>
 								<br><input type="text" class="modal-title" id="title" name="rTitle" ><br><br>

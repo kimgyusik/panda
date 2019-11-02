@@ -120,6 +120,9 @@
 								<c:if test="${status.count mod 4 != 0 }">
 									<div class="product_border"></div>
 								</c:if>
+								<c:if test="${status.count mod 4 == 0 }">
+									<div></div>
+								</c:if>
 								
 								<div class="product_image d-flex flex-column align-items-center justify-content-center" style="width:115px;">
 									<img src="resources/product_uploadFiles/${p.paChangeName }" style="border-radius: 4px;" width="115" height="115" alt="">

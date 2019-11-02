@@ -169,7 +169,7 @@
 									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
 									 			</td>
 									 			<td width="15%;" style="text-align: center;">
-									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
+									 				<img class="reviewImg" src="resources/review_uploadFiles/${re.rImage}" >
 									 			</td>
 									 			<td  width="10%" >
 									 				<input type="hidden" class="rId" value="${re.rId }">
@@ -219,7 +219,7 @@
 							 						</div>
 							 					</td>
 							 					<td colspan="3" style="text-align: center;">
-							 						<img class="reviewImg2" src="resources/images/${re.rImage}" >
+							 						<img class="reviewImg2" src="resources/review_uploadFiles/${re.rImage}" >
 							 					</td>
 							 				</tr>
 								 		</c:forEach>

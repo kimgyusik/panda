@@ -381,6 +381,13 @@ width:auto;
 height:auto;
 
 }
+.reviewImg{
+	max-height:180px; 
+	max-width:200px;
+	width:auto; 
+	height:auto;
+	border-radius: 5px;
+}
 .basketImg{
 	border-radius: 3px;
 max-width:110px;
@@ -393,6 +400,7 @@ max-width:170px;
 max-height:90px;
 width:auto;
 height:auto;
+border-radius: 3px;
 }
 .ggimImg{
 	border-radius:6px;
@@ -478,6 +486,9 @@ cursor: pointer;
 background-color:white;
 border: 2px solid #e6e6e6;
 
+}
+.btn-info, .btn-outline-info{
+	font-size: 12px !important;
 }
 #content{
 height:100px;

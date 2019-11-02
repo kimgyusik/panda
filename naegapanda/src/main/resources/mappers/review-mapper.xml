@@ -97,7 +97,7 @@
 	<update id="updateReview" parameterType="Review">
 		update review
 		set r_title = #{rTitle}, r_contents = #{rContents}, r_image = #{rImage}
-		where r_id = #{rId]
+		where r_id = #{rId}
 	</update>
 	
 	<update id="deleteReview" parameterType="_int">
