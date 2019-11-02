@@ -39,8 +39,7 @@ public class InquiryController {
 		return mv;
 	}
 	
-	// 문의 추가 처리
-
+	// 문의 추가 처리(상품 상세)
 	@RequestMapping("addInquiry.in")
 	public String addInquiry(Inquiry i, HttpSession session, Model model) {
 		
@@ -60,6 +59,29 @@ public class InquiryController {
 		}else {
 			model.addAttribute("msg", "문의 등록 실패");
 			return "common/errorPage";
+		}
+		
+	}
+	
+	// 문의 추가 처리(마이쇼핑)
+	@ResponseBody
+	@RequestMapping("addInquiry2.in")
+	public String addInquiry2(Inquiry i, HttpSession session) {
+		
+		i.setmNo(getmNo(session));
+		
+		if(i.getOpenYn() !=null && i.getOpenYn().equals("true")) {
+			i.setOpenYn("Y");
+		}else {
+			i.setOpenYn("N");
+		}
+		
+		int result = inService.addInquiry(i);
+		
+		if(result > 0 ) {
+			return "success";
+		}else {
+			return "fail";
 		}
 		
 	}

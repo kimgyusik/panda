@@ -144,14 +144,7 @@ padding:0 !important;
 margin:0 !important;
 
 }
-.cartinfo{
 
-background-color: #edeeef;
-padding:20px;
-margin-top:30px;
-margin-bottom:30px;
-font-size:13px;
-}
 .clearfix{
 padding: 0px;
 }
@@ -329,8 +322,8 @@ text-align:center;
 margin:auto; 
 border:1px solid gray;
 }
-.updateReview:hover, .makeReview:hover, .updateInfo:hover{
-
+.updateReview:hover, .makeReview:hover, .updateInfo:hover, .addCart:hover, .makeInquiry:hover, .deliveryDone:hover, .makeViolate:hover{
+cursor: pointer;
 border: 2px solid #0e8ce4;
 }
 
@@ -343,9 +336,6 @@ height: 30px;
 line-height: normal;
 border: 2px solid #edeeef;
 width:100%;
-}
-.modal-header{
-background-color: #0e8ce4;
 }
 .modal-body{
 text-align: left !important;
@@ -375,15 +365,15 @@ vertical-align: middle;
 #file { display:none; } 
 
 #titleImg{
-max-width:280px;
-max-height:230px;
+max-width:260px;
+max-height:210px;
 width:auto;
 height:auto;
 
 }
 .reviewImg{
-	max-height:180px; 
-	max-width:200px;
+	max-height:140px; 
+	max-width:150px;
 	width:auto; 
 	height:auto;
 	border-radius: 5px;
@@ -406,6 +396,13 @@ border-radius: 3px;
 	border-radius:6px;
 max-width:200px;
 max-height:170px;
+width:auto;
+height:auto;
+}
+.payImg{
+	border-radius:6px;
+max-width:150px;
+max-height:140px;
 width:auto;
 height:auto;
 }
@@ -469,7 +466,7 @@ padding-bottom: 0px !important;
 padding-top:50px  !important;
 }
 
-.cartinfo{
+.info{
 background-color: #edeeef;
 padding:20px;
 margin-top:30px;
@@ -478,11 +475,11 @@ font-size:13px;
 }
 
 
-.updateReview, .makeReview, .updateInfo{
+.updateReview, .makeReview, .updateInfo, .addCart{
 width:70%;
 padding: 4px;
 font-size:13px;
-cursor: pointer;
+
 background-color:white;
 border: 2px solid #e6e6e6;
 
@@ -495,8 +492,8 @@ height:100px;
 border: 2px solid #edeeef;
 }
 
-.modal-header{
-background-color: #0e8ce4;
+.reviewModal{
+background-color: #0e8ce4 !important;
 }
 .modalLabel{
 font-size:12px;
@@ -637,3 +634,63 @@ input[type="radio"], input[type="checkbox"]{
 	text-align: center;
 	margin:30px;
 }
+.makeInquiry, .deliveryDone, .makeViolate{
+	width:60%;
+	padding: 3px;
+	font-size:11px;
+	background-color:white;
+	border: 2px solid #e6e6e6;
+}
+.deliveryStatus{
+	font-size:13px;
+	color:gray;
+}
+.modal-header{
+	background-color:  #333;
+}
+.close:hover{
+	color:white;
+}
+#inqModal{
+	width:100%;
+}
+#title{
+	width:100%
+}
+#content{
+	width:100%
+}
+#contentLabel{
+color:gray; 
+display: block; 
+text-align: right; 
+margin-right:10px;
+margin-bottom: 0px;
+}
+.btnInq{
+	background-color: #333 ;
+	font-size: 12px !important;
+	border:none;
+	color:white;
+	cursor: pointer;
+}
+.btnReview{
+	background-color: #0e8ce4 !important;
+	font-size: 12px !important;
+	border:none;
+	color:white;
+	cursor: pointer;
+}
+#openYnLabel{
+	font-size: 12px !important;
+}
+input[type="radio"], input[type="checkbox"]{
+	width:13px;
+	height:13px;
+	margin:0 0 2px;
+	padding:0;
+	border: 1px solid #FFF;
+	vertical-align:middle;
+	 background-color: $white-color;
+  border: 2px solid $font-color-3;
+	}

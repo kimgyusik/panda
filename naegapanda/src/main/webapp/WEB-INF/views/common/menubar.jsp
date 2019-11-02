@@ -87,6 +87,9 @@
 													<a href="#" id="page">My Page<i class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a href="basketList.ba">장바구니</a></li>
+														<li><a href="myPaymentList.pa">구매내역</a></li>
+														<li><a href="myInquiryList.in">상품문의</a></li>
+														<li><a href="myReviewList.re">구매리뷰</a></li>
 														<li><a href="myInfo.do">정보수정</a></li>
 													</ul>
 												</li>

@@ -31,6 +31,7 @@
 		<result property="sBphone" column="s_bphone"/>
 		<result property="oNo" column="o_no"/>
 		<result property="oName" column="o_name"/>
+		<result property="paChangeName" column="pa_Change_Name"/>
 	</resultMap>
 	
 	<resultMap id="replyResultSet" type="Reply">
@@ -67,14 +68,10 @@
 	</select>
 	
 	<select id="addAbleReview" parameterType="_int" resultMap="paymentResultSet">
-		select pay_id, p_id, price, p_status, pay_request, pay_date, count, delevery_status, p_name, storename, s_bphone, o_no, o_name
-		from payment
-		left join review using(pay_id)
-		join PRODUCT_OPTION using(o_no)
-		join product using(p_id)
-		join seller using(s_no)
-		where m_no = #{mNo} and DELIVERY_STATUS = '구매확정'
-		and r_id is null
+		select A.pay_id, A.o_no, r_id, o_name, C.p_id, A.price, A.p_status, pay_request, pay_date, A.count, DELIVERY_STATUS, p_name, storename, s_bphone, pa_Change_Name
+		from payment A, review B, PRODUCT_OPTION C, product D, seller E, product_attachment F
+		where A.pay_id = B.pay_id (+) and A.o_no = C.o_no and C.p_ID = D.p_id and D.s_no = E.s_no and D.p_id = F.p_id
+		and A.m_no = 3 and DELIVERY_STATUS = '배송완료' and  r_id is null and pa_file_level = 1
 	</select>
 	
 	<select id="selectReview" parameterType="_int" resultMap="reviewResultSet">

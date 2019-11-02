@@ -19,6 +19,7 @@ import com.kh.panda.myShopping.basket.model.service.BasketService;
 import com.kh.panda.myShopping.basket.model.vo.Basket;
 import com.kh.panda.myShopping.payment.model.service.PaymentService;
 import com.kh.panda.myShopping.payment.model.vo.Payment;
+import com.kh.panda.product.model.vo.Product;
 
 @Controller
 public class PaymentController {
@@ -47,6 +48,26 @@ public class PaymentController {
 		
 		return mv;
 	}
+	
+	// 바로결재 진행 화면
+	@RequestMapping("paymentPage2.pa")
+	public ModelAndView paymentPage2(Basket b, ModelAndView mv, HttpSession session) {
+		
+		Member m = ((Member)session.getAttribute("loginUser"));
+		
+		Basket b2 = baService.selectProductByoNo(b.getoNo());
+		b2.setAmount(b.getAmount());
+
+		ArrayList<Basket> list = new ArrayList<>();
+		
+		list.add(b);
+				
+		mv.addObject("m", m);
+		mv.addObject("list", list);
+		mv.setViewName("myShopping/payment/paymentPage");
+		
+		return mv;
+	}
 		
 	// 내 결재 리스트 조회
 	@RequestMapping("myPaymentList.pa")
@@ -59,8 +80,6 @@ public class PaymentController {
 		
 		return mv;
 	}
-	
-	// 상품 결재 리스트 조회??
 	
 	// 결재 추가 처리
 	@RequestMapping("addPayment.pa")
@@ -89,7 +108,7 @@ public class PaymentController {
 		
 	}
 	
-	// 구매확정 처리
+	// 배송완료 처리
 	@ResponseBody
 	@RequestMapping(value="fixPayment.pa")
 	public String fixPayment(int payId) throws IOException {

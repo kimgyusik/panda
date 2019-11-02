@@ -73,7 +73,7 @@
 																<tr class="tablebody">
 																	<td style="width:200px;">
 																		<c:url value="pDetailView.do" var="product">
-																			<c:param name="pId" value="${ p	.pId }"/>
+																			<c:param name="pId" value="${ p.pId }"/>
 																		</c:url>
 																		<a href="${ product }"><img class="basketImg" src="resources/product_uploadFiles/${p.paChangeName}" ></a>
 																	</td>
