@@ -138,11 +138,11 @@
 	</form>
 	
 	<br><br><br><br>
-	통신판매검색(임시)
-	<form name="frm1">
+	
+	<!-- <form name="frm1">
 <input name="wrkr_no" type="text" />
 <input type="button" value="팝업" class="btn btn-primary" onclick="onopen();"/>
-</form>
+</form> -->
 	
 </div>
 
