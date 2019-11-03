@@ -21,6 +21,10 @@ public class VmessageServiceImpl implements VmessageService{
 		return vmDao.getListCount();
 	}
 	@Override
+	public int getscListCount(String keyword) {
+		return vmDao.getscListCount(keyword);
+	}
+	@Override
 	public int getSellerListCount(int sNo) {
 		return vmDao.getSellerListCount(sNo);
 	}
@@ -28,6 +32,10 @@ public class VmessageServiceImpl implements VmessageService{
 	@Override
 	public ArrayList<Vmessage> selectList(PageInfo pi) {
 		return vmDao.selectList(pi);
+	}
+	@Override
+	public ArrayList<Vmessage> selectscList(PageInfo pi, String keyword) {
+		return vmDao.selectscList(pi,keyword);
 	}
 	@Override
 	public ArrayList<Vmessage> selectSellerList(PageInfo pi, int sNo) {
@@ -42,21 +50,16 @@ public class VmessageServiceImpl implements VmessageService{
 	@Override
 	public Vmessage vmessageSellerDetail(int vmNo, int sNo) {
 		
-		String check = vmDao.vmessageCheck(vmNo);
-		int result = 0;
+		String check = vmDao.vmessageCheck(vmNo,sNo);
+		
 		
 		if(check == null){
-			result = vmDao.vmessageCheckDate(vmNo);
+			int result = vmDao.vmessageCheckDate(vmNo);
 		}
-		System.out.println("11111111111111111");
-		System.out.println(check);
-		System.out.println(result);
 		
-		if(result > 0) {
+		
 			return vmDao.vmessageDetail(vmNo);
-		}else {
-			return null;
-		}
+		
 	}
 	
 	@Override

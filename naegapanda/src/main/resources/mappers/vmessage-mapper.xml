@@ -18,9 +18,15 @@
   		<result property="vmStatus" column="vm_status"/>
 	</resultMap>
 	
+	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from vmessage
+	</select>
+	<select id="getscListCount" parameterType="String" resultType="_int">
+		select count(*)
+		from vmList
+		where s_name LIKE '%' || #{keyword} || '%'
 	</select>
 	<select id="getSellerListCount" resultType="_int" parameterType="_int">
 		select count(*)
@@ -32,6 +38,11 @@
 		select *
 		from vmList
 	</select>
+	<select id="selectscList" parameterType="String" resultMap="vmessageResultSet">
+		select *
+		from vmList
+		where s_name LIKE '%' || #{sName} || '%'
+	</select>
 	<select id="selectSellerList" resultMap="vmessageResultSet" parameterType="_int">
 		select *
 		from vmList
@@ -39,10 +50,10 @@
 	</select>
 
 	
-	<select id="vmessageCheck" parameterType="_int" resultType="String">
+	<select id="vmessageCheck" parameterType="Vmessage" resultType="String">
 		select vm_check_date
 		from vmList
-		where s_no=#{sNo}
+		where s_no=#{sNo} and vm_no=#{vmNo}
 	</select>
 	
 	<update id="vmessageCheckDate" parameterType="_int">

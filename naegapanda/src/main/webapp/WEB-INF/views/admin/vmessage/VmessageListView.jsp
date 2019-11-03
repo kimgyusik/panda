@@ -93,10 +93,21 @@
 									[◁]
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url value="vmessage.do" var="before">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
-									</c:url>
-									<a href="${ before }">[◀]</a>
+								
+									<c:if test="${ !empty sc }">
+										<c:url value="messageSearch.do" var="before">
+											<c:param name="currentPage" value="${ scpi.currentPage - 1 }"/>
+											<c:param name="keyword" value="${ keyword }"/>
+										</c:url>
+										<a href="${ before }">[◀]</a>
+									</c:if>
+								
+									<c:if test="${ empty sc }">
+										<c:url value="vmessage.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+										</c:url>
+										<a href="${ before }">[◀]</a>
+									</c:if>
 								</c:if>					
 								<!-- 번호들 -->
 								<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
@@ -104,10 +115,21 @@
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="vmessage.do" var="page">
-											<c:param name="currentPage" value="${ p }"/>
-										</c:url>
-										<a href="${ page }">${ p }</a>
+									
+										<c:if test="${ !empty sc }">
+											<c:url value="messageSearch.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+												<c:param name="keyword" value="${ keyword }"/>
+											</c:url>
+											<a href="${ page }">${ p }</a>
+										</c:if>
+										
+										<c:if test="${ empty sc }">
+											<c:url value="vmessage.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+											</c:url>
+											<a href="${ page }">${ p }</a>
+										</c:if>
 									</c:if>
 								</c:forEach>
 								<!-- [다음] -->
@@ -115,10 +137,20 @@
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="vmessage.do" var="next">
-										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-									</c:url>
-									<a href="${ next }">[▶]</a>
+								
+									<c:if test="${ !empty sc }">
+										<c:url value="messageSearch.do" var="next">
+											<c:param name="currentPage" value="${ scpi.currentPage+1 }"/>
+											<c:param name="keyword" value="${ keyword }"/>
+										</c:url>
+										<a href="${ next }">[▶ ]</a>
+									</c:if>
+									<c:if test="${ empty sc }">
+										<c:url value="vmessage.do" var="next">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										</c:url>
+										<a href="${ next }">[▶]</a>
+									</c:if>
 								</c:if>	
 						
 							</td>
@@ -127,7 +159,16 @@
 					</table>
 				</div>
    
-   
+			
+			<div id="searchArea" align="center">
+				<form action="messageSearch.do" method="get">
+					<input type="search" name="keyword" value="${ keyword }">
+					<button type="submit" class="searchButton" onclick="return validate();">검색하기</button>
+				</form>
+			</div>
+			
+			
+			<br><br>
    
    
    
