@@ -62,7 +62,7 @@ public class BasketServiceImpl implements BasketService{
 			
 			Basket b = new Basket();
 			b.setmNo(mNo);
-			b.setpId(Integer.parseInt(arr[i]));
+			b.setoNo(Integer.parseInt(arr[i]));
 			
 			result = baDao.deleteBasket(b);
 			
@@ -97,6 +97,11 @@ public class BasketServiceImpl implements BasketService{
 		}
 		
 		return arr;
+	}
+
+	@Override
+	public Basket selectProductByoNo(int oNo) {
+		return baDao.selectProductByoNo(oNo);
 	}
 
 }

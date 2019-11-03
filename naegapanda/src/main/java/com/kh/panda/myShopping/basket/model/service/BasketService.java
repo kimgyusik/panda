@@ -27,5 +27,8 @@ public interface BasketService {
 	// 장바구니 갯수,금액(메인메뉴바)
 	int[] currentBasket(int mNo);
 	
+	// oNo으로 상품정보 조회
+	Basket selectProductByoNo(int oNo);
+	
 	
 }

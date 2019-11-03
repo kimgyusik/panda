@@ -40,6 +40,14 @@ public class Vmessage {
 		this.vmStatus = vmStatus;
 	}
 
+	
+
+	public Vmessage(int vmNo, int sNo) {
+		super();
+		this.vmNo = vmNo;
+		this.sNo = sNo;
+	}
+
 
 	public int getVmNo() {
 		return vmNo;

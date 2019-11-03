@@ -37,7 +37,7 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public int addPayment(Payment p) {
+	public int addPayment(Payment p , int flag2) {
 		
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -50,35 +50,44 @@ public class PaymentServiceImpl implements PaymentService{
 			e.printStackTrace();
 		}
 		
-		// 현재 내 장바구니 가져옴
-		ArrayList<Basket> list = baDao.selectbasketList(p.getmNo());
-		
 		int count = 0;
 		
 		Payment addP = new Payment();
 		
-		// 장바구니에 담긴 각 상품을 결제 태이블에 등록하고 장바구니에서는 삭제하는 로직
-		for(Basket b : list) {
+		
+		if(flag2 == 1) { // 일반 결제
 			
-			addP = p; // input으로 받은 결재정보 복사
+			// 현재 내 장바구니 가져옴
+			ArrayList<Basket> list = baDao.selectbasketList(p.getmNo());
 			
-			addP.setoNo(b.getoNo());
-			addP.setCount(b.getAmount());
-			addP.setPrice(b.getAmount() * b.getPrice());
-			
-			int result = paDao.addPayment(addP);
-			int result2 = baDao.deleteBasket(b);
-			
-			pDao.increaseOpurchase(addP);
-			pDao.increasePpurchase(addP);
-			
-			if(result == 0 || result2 == 0) {
-				transactionManager.rollback(status);
-				return 0;
-			}else {
-				count++;
+			// 장바구니에 담긴 각 상품을 결제 태이블에 등록하고 장바구니에서는 삭제하는 로직
+			for(Basket b : list) {
+				
+				addP = p; // input으로 받은 결재정보 복사
+				
+				addP.setoNo(b.getoNo());
+				addP.setCount(b.getAmount());
+				addP.setPrice(b.getAmount() * b.getPrice());
+				
+				int result = paDao.addPayment(addP);
+				int result2 = baDao.deleteBasket(b);
+				
+				if(result == 0 || result2 == 0) {
+					transactionManager.rollback(status);
+					return 0;
+				}else {
+					count++;
+				}
 			}
+		}else if(flag2 == 2) { //즉시 결제
+			System.out.println(addP.toString());
+			count = paDao.addPayment(addP);
 		}
+		
+		// 상품 구매 개수 증가
+		pDao.increaseOpurchase(addP);
+		pDao.increasePpurchase(addP);
+		
 		transactionManager.commit(status);
 		return count;
 	}

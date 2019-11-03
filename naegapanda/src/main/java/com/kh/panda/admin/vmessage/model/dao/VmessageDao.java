@@ -19,6 +19,9 @@ public class VmessageDao {
 	public int getListCount() {
 		return sqlsession.selectOne("vmessageMapper.getListCount");
 	}
+	public int getscListCount(String keyword) {
+		return sqlsession.selectOne("vmessageMapper.getscListCount");
+	}
 	public int getSellerListCount(int sNo) {
 		return sqlsession.selectOne("vmessageMapper.getSellerListCount",sNo);
 	}
@@ -33,6 +36,14 @@ public class VmessageDao {
 		
 		return (ArrayList)sqlsession.selectList("vmessageMapper.selectList", null, rowBounds);
 	}
+	public ArrayList<Vmessage> selectscList(PageInfo pi,String sName){
+		
+		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		return (ArrayList)sqlsession.selectList("vmessageMapper.selectscList", sName, rowBounds);
+	}
 	public ArrayList<Vmessage> selectSellerList(PageInfo pi, int sNo){
 		
 		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
@@ -45,8 +56,11 @@ public class VmessageDao {
 	
 	
 	
-	public String vmessageCheck(int vmNo) {
-		return sqlsession.selectOne("vmessageMapper.vmessageCheck",vmNo);
+	public String vmessageCheck(int vmNo, int sNo) {
+		
+		Vmessage vm = new Vmessage(vmNo,sNo);
+		
+		return sqlsession.selectOne("vmessageMapper.vmessageCheck",vm);
 	}
 	
 	public int vmessageCheckDate(int vmNo) {

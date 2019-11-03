@@ -44,6 +44,7 @@ public class PaymentController {
 
 		mv.addObject("m", m);
 		mv.addObject("list", list);
+		mv.addObject("flag2", 1);
 		mv.setViewName("myShopping/payment/paymentPage");
 		
 		return mv;
@@ -52,18 +53,20 @@ public class PaymentController {
 	// 바로결재 진행 화면
 	@RequestMapping("paymentPage2.pa")
 	public ModelAndView paymentPage2(Basket b, ModelAndView mv, HttpSession session) {
-		
+		// oNo, amount, price 받으면됨
 		Member m = ((Member)session.getAttribute("loginUser"));
 		
 		Basket b2 = baService.selectProductByoNo(b.getoNo());
 		b2.setAmount(b.getAmount());
+		b2.setPrice(b.getPrice());
 
 		ArrayList<Basket> list = new ArrayList<>();
 		
-		list.add(b);
+		list.add(b2);
 				
 		mv.addObject("m", m);
 		mv.addObject("list", list);
+		mv.addObject("flag2", 2);
 		mv.setViewName("myShopping/payment/paymentPage");
 		
 		return mv;
@@ -83,7 +86,7 @@ public class PaymentController {
 	
 	// 결재 추가 처리
 	@RequestMapping("addPayment.pa")
-	public String addPayment(Payment p, Model model, HttpSession session, @RequestParam("flag") int flag) {
+	public String addPayment(Payment p, Model model, HttpSession session, @RequestParam("flag") int flag, @RequestParam("flag2") int flag2) {
 		
 		int result = 0;
 		
@@ -94,10 +97,9 @@ public class PaymentController {
 			p.setDeliverySpot(m.getAddress());
 			p.setRecipient(m.getName());
 			p.setRecipientPhone(m.getPhone());
-			result = paService.addPayment(p);
-		}else { // 신규 배송지
-			result = paService.addPayment(p);
-		}
+		}else {} // 신규 배송지
+			
+		result = paService.addPayment(p, flag2);
 		
 		if(result > 0) {
 			return "redirect:myPaymentList.pa";
