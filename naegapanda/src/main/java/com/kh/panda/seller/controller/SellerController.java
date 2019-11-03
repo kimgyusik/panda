@@ -176,21 +176,21 @@ public class SellerController {
 		 *
 		 */
 		
-		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())  && loginSeller.getsStatus().equals("Y")) {
+		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd()) &&loginSeller.getsEmailKey().contentEquals("Y")  && loginSeller.getsStatus().equals("Y")) {
 
 			model.addAttribute("loginSeller", loginSeller);
 			return "redirect:sProduct.do";
+			
+		} else if(loginSeller.getsStatus().equals("N")){
+			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
 
 		} else if(loginSeller.getsEmailKey().equals("N")){
 			model.addAttribute("msg", "이메일 인증을 완료해주세요.");
 			model.addAttribute("url", "sellerLogin.do");
 			return "common/errorAlert";
 
-		} else if(loginSeller.getsStatus().equals("N")){
-			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
-			model.addAttribute("url", "sellerLogin.do");
-			return "common/errorAlert";
-			 
 		} else {
 			model.addAttribute("msg", "아이디 혹은 비밀번호가 틀립니다.");
 			model.addAttribute("url", "sellerLogin.do");
