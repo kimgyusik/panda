@@ -21,14 +21,14 @@
 
 	<select id="getAllListCount" resultType="_int">
 		select count(*)
-		from svlist
-		where s_violate >= 20
+        from seller
+		where s_violate>=20
 	</select>
 	
 	<select id="getScListCount" resultType="_int">
 		select count(*)
-		from svlist
-		where s_violate >= 20
+        from seller
+		where s_violate>=20
 		<if test="sName != null">
 			and s_name LIKE '%' || #{sName} || '%'
 		</if>
@@ -78,6 +78,12 @@
 	<update id="sellerDelete" parameterType="_int">
 		update seller
 		set s_status='N'
+		where s_no=#{sNo}
+	</update>
+	
+	<update id="sellerPermission" parameterType="_int">
+		update seller
+		set s_status='Y'
 		where s_no=#{sNo}
 	</update>
 

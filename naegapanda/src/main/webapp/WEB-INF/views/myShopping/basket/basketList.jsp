@@ -45,7 +45,7 @@
 										
 											<div class="cart_title subTitle">장바구니</div>
 											
-											<div class="cartinfo">
+											<div class="info">
 												<ul>
 													<li>· 옵션, 가격 등 상품정보가 변경될 수 있으니 확인 후 진행하시기 바랍니다.</li>
 													<li>· 판매 취소 및 종료 된 상품은 회원님의 장바구니에서 자동으로 삭제됩니다.</li>
@@ -241,13 +241,9 @@
 			$.ajax({
 				url:"addGgim.gg",
 				data:{pId:pId},
-				type:"post",
+				dataType:"json",
 				success:function(data){
-					if(data == "success"){			
-						alert("찜한 상품으로 등록됐습니다.");
-					}else{
-						alert("처리실패");
-					}
+					alert(data);
 				},
 				error:function(){
 					console.log("서버와의 통신 실패");

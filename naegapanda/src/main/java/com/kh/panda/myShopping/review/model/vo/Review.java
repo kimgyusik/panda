@@ -15,6 +15,7 @@ public class Review {
 	private int rCommend;
 	private int payId;
 	private String rImage;
+	private String existrImage;
 	
 	public Review() {
 		super();
@@ -22,7 +23,7 @@ public class Review {
 	}
 
 	public Review(int rId, String rTitle, String rContents, Date rDate, int rCount, int mNo, String mId, String rDel,
-			int rCommend, int payId, String rImage) {
+			int rCommend, int payId, String rImage, String existrImage) {
 		super();
 		this.rId = rId;
 		this.rTitle = rTitle;
@@ -35,6 +36,7 @@ public class Review {
 		this.rCommend = rCommend;
 		this.payId = payId;
 		this.rImage = rImage;
+		this.existrImage = existrImage;
 	}
 
 	public int getrId() {
@@ -125,13 +127,21 @@ public class Review {
 		this.rImage = rImage;
 	}
 
+	public String getExistrImage() {
+		return existrImage;
+	}
+
+	public void setExistrImage(String existrImage) {
+		this.existrImage = existrImage;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [rId=" + rId + ", rTitle=" + rTitle + ", rContents=" + rContents + ", rDate=" + rDate
 				+ ", rCount=" + rCount + ", mNo=" + mNo + ", mId=" + mId + ", rDel=" + rDel + ", rCommend=" + rCommend
-				+ ", payId=" + payId + ", rImage=" + rImage + "]";
+				+ ", payId=" + payId + ", rImage=" + rImage + ", existrImage=" + existrImage + "]";
 	}
-	
+
 	
 	
 	

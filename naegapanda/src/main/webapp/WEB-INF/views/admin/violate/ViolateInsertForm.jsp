@@ -76,11 +76,11 @@ $(function(){
 			      <th scope="row" height="300px">내용</th>
 			      <td colspan="3">
 			      			<div >
-								<textarea  id="summernote" name="vContent"></textarea>
+								<textarea style="width:650px;height:300px;border:none;" required id="summernote" name="vContent"></textarea>
 							</div>
 						    <script>
 						      $('#summernote').summernote({
-						        height: 800
+						        height: 300
 						      });
 						    </script>
 <!-- 			      

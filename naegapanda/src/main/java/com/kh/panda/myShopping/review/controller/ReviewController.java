@@ -95,33 +95,7 @@ public class ReviewController {
 	@RequestMapping("addAbleReview.re")
 	public ModelAndView addAbleReview(ModelAndView mv, HttpSession session) {
 		
-		//ArrayList<Payment> list = reService.addAbleReview(getmNo(session));
-		
-		ArrayList<Payment> list = new ArrayList<>();
-		
-		Date date = new Date();
-		
-		Payment p = new Payment();
-	
-		p.setpName("맛있는과자");
-		p.setoName("1kg x 10박스");
-		p.setpId(11);
-		p.setPayId(13);
-		p.setStoreName("이지몰");
-		p.setPayDate(date);
-		p.setPaChangeName("blog_1.jpg");
-		list.add(p);
-		
-		Payment p2 = new Payment();
-
-		p2.setpName("매운라면");
-		p2.setoName("24242개");
-		p2.setpId(22);
-		p2.setPayId(24);
-		p2.setPayDate(date);
-		p2.setStoreName("라면상점");
-		p2.setPaChangeName("view_5.jpg");
-		list.add(p2);
+		ArrayList<Payment> list = reService.addAbleReview(getmNo(session));
 		
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/review/addAbleReview");
@@ -132,9 +106,11 @@ public class ReviewController {
 	
 	// 리뷰 추가 처리
 	@RequestMapping("addReview.re")
-	public String addReview(Review r, HttpServletRequest request, Model model,
-							  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
-		System.out.println("로그로그");
+	public String addReview(Review r, HttpServletRequest request, Model model, 
+							  @RequestParam(name="uploadFile", required=false) MultipartFile file, HttpSession session) {
+		
+		r.setmNo(getmNo(session));
+		
 		if(file!= null && !file.getOriginalFilename().equals("")) {
 			
 			String renameFileName = saveFile(file, request);
@@ -191,7 +167,9 @@ public class ReviewController {
 	// 리뷰 업데이트 처리
 	@RequestMapping("updateReview.re")
 	public String updateReview(Review r, HttpServletRequest request, Model model,
-							  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+							  @RequestParam(name="uploadFile", required=false) MultipartFile file, HttpSession session) {
+		
+		r.setmNo(getmNo(session));
 		
 		if(file!= null && !file.getOriginalFilename().equals("")) {
 			
@@ -207,9 +185,10 @@ public class ReviewController {
 			if(renameFileName != null) {
 				r.setrImage(renameFileName);
 			}
+		}else {
+			r.setrImage(r.getExistrImage());
 		}
 		
-		System.out.println(r.toString());
 		int result = reService.updateReview(r);
 		
 		if(result > 0) {

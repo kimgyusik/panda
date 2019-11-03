@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신고회원관리</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 a:visited { 
@@ -56,26 +56,7 @@ a:visited {
    	});
    		
    		
-   	/* 	<!--  onclick="removeCheck()" -->
-   	function removeCheck() {
-				id.click $this.prev().val()
-   				swal({
-   				  title: "정말 삭제 시키시겠습니까?",
-   				  icon: "warning",
-   				  buttons: true,
-   				  dangerMode: true,
-   				})
-   				.then((willDelete) => {
-   				  if (willDelete) {
-   					location.href="sellerDelete.do";
-   				    swal("삭제 되었습니다!", {
-   				      icon: "success",
-   				    });
-   				  } else {
-   				    swal("취소되었습니다.");
-   				  }
-   				});
-   			} */
+   
    		</script>
 		</form>
    		
@@ -139,6 +120,7 @@ a:visited {
 									<c:url value="sViolatePersonalList.do" var="before">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 										<c:param name="sNo" value="${ sNo }"/>
+										<c:param name="sName" value="${ sName }"/>
 									</c:url>
 									<a href="${ before }">[◀]</a>
 								</c:if>					
@@ -151,6 +133,7 @@ a:visited {
 										<c:url value="sViolatePersonalList.do" var="page">
 											<c:param name="currentPage" value="${ p }"/>
 											<c:param name="sNo" value="${ sNo }"/>
+											<c:param name="sName" value="${ sName }"/>
 										</c:url>
 										<a href="${ page }">${ p }</a>
 									</c:if>
@@ -163,6 +146,7 @@ a:visited {
 									<c:url value="sViolatePersonalList.do" var="next">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 										<c:param name="sNo" value="${ sNo }"/>
+										<c:param name="sName" value="${ sName }"/>
 									</c:url>
 									<a href="${ next }">[▶]</a>
 								</c:if>	

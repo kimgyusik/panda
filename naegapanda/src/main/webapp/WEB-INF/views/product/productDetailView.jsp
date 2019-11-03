@@ -98,7 +98,7 @@
 									</div>
 									<script>
 									 	function addOp(){
-									 		console.log(this.val());
+									 		
 									 		var $tb = $("#chooseOp");
 									 		var max = $(this).parent().parent().children().eq(3).val();
 									 		var $tr = $("<tr>");
@@ -363,6 +363,7 @@
 		</div>
 
 	</div>
+	<br><br><br><br>
 	
 	<c:import url="../common/footer.jsp"/>
 	

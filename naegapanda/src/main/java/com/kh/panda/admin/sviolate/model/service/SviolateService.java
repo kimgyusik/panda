@@ -24,6 +24,7 @@ public interface SviolateService {
 	Violate violateDetail(int vNo);
 	
 	int sellerDelete(int sNo);
+	int sellerPermission(int sNo);
 	
 
 }

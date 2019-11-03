@@ -57,9 +57,18 @@
 																	
 													 			<td width="300px;">
 													 				<input type="hidden" class="rId" value="${r.rId}">
-													 				<a href="${ product }"><img class="ableReviewImg" src="resources/review_uploadFiles/${r.rImage}" ></a>
-													 				<br><br>
-													 				<span style="display: inline-block;font-size: 12px; height:30px;">
+													 				<input type="hidden" class="rImage" value="${r.rImage}">
+													 				<c:if test="${!empty  r.rImage}">
+													 					<br>
+													 					<a href="${ product }"><img class="ableReviewImg" src="resources/review_uploadFiles/${r.rImage}" ></a>
+													 					<br><br>
+													 				</c:if>
+													 				<c:if test="${empty  r.rImage}">
+													 					<img width="180px;" src="resources/images/noimage.gif" >
+													 					
+													 				</c:if>
+													 				
+													 				<span style="display: inline-block;font-size: 12px; height:20px;">
 													 					[${p.storeName }]
 													 					<br><a href="${ product }"><b>${p.pName}</b></a>
 													 				</span>
@@ -118,7 +127,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 			
-			<div class="modal-header">
+			<div class="modal-header reviewModal">
 				<span style="color:white; "><b>리뷰 수정</b></span>
 				<button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
 			</div>
@@ -128,6 +137,7 @@
 					<tr>
 						<td width="300px;" style="text-align: center; padding:0;">
 							<img id="titleImg" >
+							<input type="hidden" id="existrImage" name="existrImage">
 						</td>
 						<td>
 							<div class="modal-body" style="padding-left:20px;">
@@ -146,8 +156,8 @@
 							<button id="btn-upload" type="button" class="btn btn-outline-info" data-dismiss="modal" style="margin-left:20px;"><b>사진 업로드</b></button></td>
 						<td>
 							<div class="modal-footer">
-								<button id="submit" type="submit" class="btn btn-info" data-dismiss="modal"><b>수정하기</b></button>
-								<button type="button" class="btn btn-info" data-dismiss="modal"><b>취소</b></button>
+								<button id="submit" type="submit" class="btn btn-info btnReview" data-dismiss="modal"><b>수정하기</b></button>
+								<button type="button" class="btn btn-info btnReview" data-dismiss="modal"><b>취소</b></button>
 							</div>
 						</td>
 					</tr>
@@ -169,6 +179,7 @@
 			
 			// 모달 종료 시 input-area 초기화
 			$("#myModal").on('hide.bs.modal', function(e){
+	
 				$("#file").val("");
 				e.stopImmediatePropagation();
 			});
@@ -179,14 +190,15 @@
 				var contents = $(this).parent().parent().children().eq(1).children().eq(4).text();
 				var img = $(this).parent().parent().children().eq(0).find('img').attr('src');
 				var rId = $(this).parent().parent().children().eq(0).children().eq(0).val();
+				var existrImage = $(this).parents('.contentsList').find('.rImage').val();
 				
 				$("#title").val(title);
 			    $("#content").text(contents);
 			    $("#titleImg").attr('src', img);
 			    $("#rId").val(rId);
-			    $('#contentLabel').html(contents.length+"/500");
-	
+			    $('#existrImage').val(existrImage);
 				$("#myModal").modal('show');
+				
 			});
 			
 			// 리뷰 수정 중 이미지 업로드에 필요
@@ -248,9 +260,7 @@
 			});
 	
 		});
-			
-	
-		
+
 		// 모달창 이미지 출력
 		function loadImg(value){
 			if(value.files && value.files[0]){
@@ -262,9 +272,6 @@
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
-
-
-
 
 	</script>
 
