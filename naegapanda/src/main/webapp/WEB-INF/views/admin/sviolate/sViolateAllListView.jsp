@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신고회원관리</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 a:visited { 
 		color: black; 
@@ -67,7 +68,37 @@ a:visited {
 											<a href="${ sviolatelist }">${sv.sViolate}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sStatus}</a>
+											<c:if test="${ sv.sStatus eq 'Y' }">
+												<a href="${ sviolatelist }">${sv.sStatus}</a>
+											</c:if>
+											<c:if test="${ sv.sStatus eq 'N' }">
+											<form action="sellerPermission.do">
+											<input type = "hidden" name = "sNo" value = "${ sv.sNo }" >
+											<h6 style="font-weight:bold;" id="permissionSeller">${sv.sStatus}</h6>
+											<script>
+											   	$("#permissionSeller").click(function(){
+											   		var sNo = $(this).prev().val();
+														swal({
+														  title: "중지 해체 시키시겠습니까?",
+														  icon: "warning",
+														  buttons: true,
+														  dangerMode: true,
+														})
+														.then((willDelete) => {
+														  if (willDelete) {
+															location.href="sellerPermission.do?sNo=" + sNo;
+														    swal("중지 해체 되었습니다!", {
+														      icon: "success",
+														    });
+														  } else {
+														    swal("취소되었습니다.");
+														  }
+														});
+											   	});
+										   	</script>
+									   	</form>
+											
+										</c:if>
 										</td>
 							  			
 								    </tr>

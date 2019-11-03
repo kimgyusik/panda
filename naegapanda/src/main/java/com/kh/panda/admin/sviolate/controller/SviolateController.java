@@ -72,10 +72,15 @@ public class SviolateController {
 	}
 	 
 	 @RequestMapping("sellerDelete.do")
-	 public ModelAndView sellerDelete(ModelAndView mv, int sNo) {
+	 public String sellerDelete(int sNo) {
 		 int result = svService.sellerDelete(sNo);
-		 mv.setViewName("admin/sviolate/sViolateAllListView");
-		 return mv;
+		 return "redirect:sViolateAllList.do";
+	 }
+	 @RequestMapping("sellerPermission.do")
+	 public String sellerPermission(int sNo) {
+		 System.out.println(sNo);
+		 int result = svService.sellerPermission(sNo);
+		 return "redirect:sViolateAllList.do";
 	 }
 	 
 	 @RequestMapping("sviolateSearch.do")
