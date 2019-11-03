@@ -69,10 +69,13 @@
 												 			<td width="1000px;" style="text-align: left;">
 												 				<span style="color:gray;">구매일자: &nbsp; <fmt:formatDate value="${p.payDate}" pattern="yyyy. MM. dd" /></span><br><br>
 												 				[&nbsp;&nbsp;${p.cName2}&nbsp;&nbsp;>&nbsp;&nbsp;${p.cName}&nbsp;&nbsp;]<br>
-												 				<span style="display: inline-block;font-size: 15px; height:30px;">
-												 					<a  href="${ product }"><b>${p.pName} :: ${p.oName }</b></a>
-												 				</span><br>
-												 				
+												 				<span style="display: inline-block;font-size: 14px; height:20px;">
+												 					<a  href="${ product }"><b>${p.pName} &nbsp;&nbsp;::&nbsp;&nbsp; ${p.oName }</b></a> &nbsp;&nbsp;x ${p.count}개
+												 				</span><br><br>
+												 				<span class="deliveryStatus">
+												 					${p.recipient} &nbsp;&nbsp;l&nbsp;&nbsp; ${p.recipientPhone}<br>
+												 					${p.deliverySpot}
+												 				</span>
 												 				<div class="deliveryStatus">
 													 				<c:if test="${p.deliveryStatus eq '배송전'}">
 														 				<span>배송전</span>
