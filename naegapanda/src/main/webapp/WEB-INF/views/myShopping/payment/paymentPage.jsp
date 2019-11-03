@@ -39,7 +39,7 @@
 										
 											<div class="cart_title subTitle"><b>주문/결제</b></div>
 											
-											<div class="cartinfo">
+											<div class="info">
 												<ul>
 													<li>· 구매하신 상품 배송 및 주문처리를 위해 판매자에게 개인정보를 제공합니다.</li>
 													<li>· 개인정보를 확인하시고 필요 시 수정 후 진행하시기 바랍니다.</li>
