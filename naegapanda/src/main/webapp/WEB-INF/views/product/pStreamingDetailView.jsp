@@ -67,7 +67,7 @@
 							</div>
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
-								<form action="#">
+								<form action="paymentPage2.pa" method="post">
 									<div class="clearfix" style="z-index: 1000;">	
 										
 										<!-- Product option -->
@@ -86,45 +86,83 @@
 													<td style="margin:10px;">${po.oName }</td>
 													<td style="margin:10px;">${po.stPrice }</td>
 													<td style="margin:10px;">${po.oAmount }</td>
-													<td style="margin:10px;"><button type="button" onclick="addOp()">선택</button></td>
+													<td style="margin:10px;">
+														<c:if test="${po.oAmount ne 0 }">
+														<button class="opSelect" type="button">선택</button>
+														</c:if>
+														<c:if test="${po.oAmount eq 0 }">
+														매진
+														</c:if>
+													</td>
 												</tr>
 											</c:forEach>
 											</table>
 										</div>
 									</div>
-									
+									<br><br>
 									<div id="chooseProduct">
-										<table id="chooseOp">
 										
-										</table>
+											<table id="chooseOp">
+												
+											</table>
 									</div>
 									<script>
-									 	function addOp(){
-									 		console.log(this.val());
-									 		var $tb = $("#chooseOp");
-									 		var max = $(this).parent().parent().children().eq(3).val();
-									 		var $tr = $("<tr>");
-									 		var $oNo = $("<td>").text($(this).parent().parent().children().eq(0).val());
-									 		var $oName = $("<td>").text($(this).parent().parent().children().eq(1).val());
-									 		var $oPrice = $("<td>").text($(this).parent().parent().children().eq(2).val());
-									 		var $amount = "<input type='number' min='1' max='"+max+"'>";
-									 		var $delete = "<button type='button' onclick='deleteOp();'>삭제</button>";
-									 		
-									 		$tr.append($tr);
-									 		$tr.append($oNo);
-									 		$tr.append($oName);
-									 		$tr.append($oPrice);
-									 		$tr.append($amount);
-									 		$tr.append($delete);
-									 		$tb.append($tr);
-									 	}
+										var count = 0;
+										$(document).ready(function(){
+											
+										    $(".opSelect").click(function(){
+										    	var oNo =  $(this).parent().parent().children().eq(0).text();
+										    	var $tb = $("#chooseOp");
+										 		var max = $(this).parent().parent().children().eq(3).text();
+										 		var $tr = $("<tr>");
+										 		var $oNo = $("<td>").text($(this).parent().parent().children().eq(0).text());
+										 		var $oName = $("<td>").text($(this).parent().parent().children().eq(1).text());
+										 		var $oPrice = $("<td>").text($(this).parent().parent().children().eq(2).text());
+										 		var $amount = "<td><input name='amount' type='number' min='1' max='"+max+"' value=1></td>";
+										 		var $delete = "<td><button type='button' onclick='deleteOp()'>삭제</button></td>";
+										 		
+										 		var oName = $(this).parent().parent().children().eq(0).text();
+										 		var oPrice = $(this).parent().parent().children().eq(2).text();
+										 		var $oN = "<input name='oNo' type='hidden' value='"+oName+"'>";
+										 		var $oP = "<input name='price' type='hidden' value='"+oPrice+"'>";
+												if(count == 0){
+										    		var $tr1 = $("<tr>");
+										    		$tr1.append('<th style="margin:10px;">옵션번호</th> <th style="margin:10px;">옵션명</th> <th style="margin:10px;">옵션가격</th> <th style="margin:10px;">갯수</th> <th style="margin:10px;">삭제</th>');
+										    		$tb.append('선택한 상품');
+										    		$tb.append($tr1);
+										    	}
+										 		$tr.append($tr);
+										 		$tr.append($oNo);
+										 		$tr.append($oName);
+										 		$tr.append($oPrice);
+										 		$tr.append($amount);
+										 		$tr.append($delete);
+										 		$tr.append($oN);
+										 		$tr.append($oP);
+										 		$tb.append($tr);
+										 		
+										 		count = count +1;
+										    });
+										    
+										    
+										});
+										function deleteOp(){
+									    	if(count >0){
+											$(this).parents().remove();
+											console.log($(this).parent());
+											count = count -1;
+									    	} else{
+									    		$(this).parent().parent().parent().remove();
+									    		count = 0;
+									    	}
+									    }
 									
 									</script>
 									
 	
 									<div class="button_container">
 										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
-										<button type="button" class="button cart_button" onclick="">즉시구매</button> 
+										<button type="submit" class="button cart_button" >즉시구매</button> 
 										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
 										<div class="product_fav"><i class="fas fa-heart"></i></div>
 									</div>

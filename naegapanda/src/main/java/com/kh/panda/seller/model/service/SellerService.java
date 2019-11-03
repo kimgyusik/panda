@@ -74,6 +74,12 @@ public interface SellerService {
 
 	Streaming selectStreamingToStNo(int stNo);
 
+	int stopStreaming(int pId, int stNo);
+
+	int getStNo(int pId);
+
+	int isStreaming(int getsNo);
+
 
 	
 
