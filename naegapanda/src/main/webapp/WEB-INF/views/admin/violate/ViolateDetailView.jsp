@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고관리</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:신고관리</title>
 
 
 <style type="text/css">

@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="resources/pandaicon.ico">
 <title></title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">

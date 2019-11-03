@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PANDA:판매자 아이디 찾기</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:비밀번호찾기</title>
 </head>
 <style>
 	.outer{

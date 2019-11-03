@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:회원정보확인</title>
 <style>
 	#name{

@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA</title>
 </head>
 <body>
 <script type="text/javascript">

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:방송관리</title>
 </head>
 <body>

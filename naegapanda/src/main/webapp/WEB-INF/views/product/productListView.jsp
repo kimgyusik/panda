@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA</title>
 <meta charset="EUC-KR">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

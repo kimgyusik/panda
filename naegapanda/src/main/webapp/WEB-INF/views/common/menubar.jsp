@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
