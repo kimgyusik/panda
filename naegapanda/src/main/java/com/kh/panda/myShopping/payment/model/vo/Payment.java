@@ -9,6 +9,7 @@ public class Payment {
 	private int pId;
 	private int oNo;
 	private String oName;
+	private int pPrice; // 구매시가격
 	private int oPrice; // 상품 단가
 	private int price; // 상품 단가 * 구매 갯수
 	private String oStatus;
@@ -36,16 +37,18 @@ public class Payment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Payment(int payId, int mNo, int pId, int oNo, String oName, int oPrice, int price, String oStatus,
-			String pStatus, String deliverySpot, String payRequest, Date payDate, int count, String deliveryStatus,
-			String recipient, String recipientPhone, String pName, String pContent, int cId, String cName,
-			String cName2, int sNo, String storeName, String sBaddress, String sBphone, String paChangeName) {
+	public Payment(int payId, int mNo, int pId, int oNo, String oName, int pPrice, int oPrice, int price,
+			String oStatus, String pStatus, String deliverySpot, String payRequest, Date payDate, int count,
+			String deliveryStatus, String recipient, String recipientPhone, String pName, String pContent, int cId,
+			String cName, String cName2, int sNo, String storeName, String sBaddress, String sBphone,
+			String paChangeName) {
 		super();
 		this.payId = payId;
 		this.mNo = mNo;
 		this.pId = pId;
 		this.oNo = oNo;
 		this.oName = oName;
+		this.pPrice = pPrice;
 		this.oPrice = oPrice;
 		this.price = price;
 		this.oStatus = oStatus;
@@ -107,6 +110,14 @@ public class Payment {
 
 	public void setoName(String oName) {
 		this.oName = oName;
+	}
+
+	public int getpPrice() {
+		return pPrice;
+	}
+
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
 
 	public int getoPrice() {
@@ -280,13 +291,16 @@ public class Payment {
 	@Override
 	public String toString() {
 		return "Payment [payId=" + payId + ", mNo=" + mNo + ", pId=" + pId + ", oNo=" + oNo + ", oName=" + oName
-				+ ", oPrice=" + oPrice + ", price=" + price + ", oStatus=" + oStatus + ", pStatus=" + pStatus
-				+ ", deliverySpot=" + deliverySpot + ", payRequest=" + payRequest + ", payDate=" + payDate + ", count="
-				+ count + ", deliveryStatus=" + deliveryStatus + ", recipient=" + recipient + ", recipientPhone="
-				+ recipientPhone + ", pName=" + pName + ", pContent=" + pContent + ", cId=" + cId + ", cName=" + cName
-				+ ", cName2=" + cName2 + ", sNo=" + sNo + ", storeName=" + storeName + ", sBaddress=" + sBaddress
-				+ ", sBphone=" + sBphone + ", paChangeName=" + paChangeName + "]";
+				+ ", pPrice=" + pPrice + ", oPrice=" + oPrice + ", price=" + price + ", oStatus=" + oStatus
+				+ ", pStatus=" + pStatus + ", deliverySpot=" + deliverySpot + ", payRequest=" + payRequest
+				+ ", payDate=" + payDate + ", count=" + count + ", deliveryStatus=" + deliveryStatus + ", recipient="
+				+ recipient + ", recipientPhone=" + recipientPhone + ", pName=" + pName + ", pContent=" + pContent
+				+ ", cId=" + cId + ", cName=" + cName + ", cName2=" + cName2 + ", sNo=" + sNo + ", storeName="
+				+ storeName + ", sBaddress=" + sBaddress + ", sBphone=" + sBphone + ", paChangeName=" + paChangeName
+				+ "]";
 	}
+
+	
 
 	
 

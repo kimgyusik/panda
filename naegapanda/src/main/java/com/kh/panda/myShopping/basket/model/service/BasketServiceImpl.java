@@ -23,7 +23,7 @@ public class BasketServiceImpl implements BasketService{
 	public int addBasket(Basket b) {
 		
 		int count = baDao.selectbasket(b);
-		
+
 		if(count > 0) {
 			return 2;
 		}else {
@@ -44,6 +44,29 @@ public class BasketServiceImpl implements BasketService{
 			return 2;
 		}else {
 			return baDao.addBasket(b);
+		}
+		
+	}
+	
+	@Override
+	public int addBasketList(ArrayList<Basket> list) {
+		
+		int result = 0;
+		boolean dupl = false;
+		
+		for(Basket b : list) {
+			
+			result = addBasket(b);
+			
+			if(result == 2) {
+				dupl = true; // 중복 장바구니 존재
+			}
+		}
+		
+		if(dupl) {
+			return 2;
+		}else {
+			return 1;
 		}
 		
 	}
@@ -103,5 +126,7 @@ public class BasketServiceImpl implements BasketService{
 	public Basket selectProductByoNo(int oNo) {
 		return baDao.selectProductByoNo(oNo);
 	}
+
+	
 
 }
