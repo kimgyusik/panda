@@ -79,8 +79,8 @@
 	                                        방송시작하기
 	                                    </a>
                                     	</c:if>
-                                    	 </c:if>
-                                    	 <c:if test="${empty loginSeller or empty loginMember}">
+                                    </c:if>
+                                   	 <c:if test="${empty loginSeller or empty loginMember}">
                                     	 <div style="display:none">
 	                                    <a id="channelBtn" href="#"
 	                                    class="btn btn-primary btn-user btn-block text-center">
@@ -88,7 +88,7 @@
 	                                    </a>
 	                                    </div>
                                    
-                                    </c:if>
+                                   	</c:if>
                                 </main>
                             </div>
                         </div>
@@ -107,6 +107,7 @@
             var sNo = -1;
             var flag = 0;
             var psNo = ${p.sNo};
+            var seller = ${loginSeller.sNo};
 const channelBtnEl = document.querySelector('#channelBtn');
 const channelList = document.getElementById("lvChannel");
 const channelNameInput = document.getElementById("channelNameInput");
@@ -166,8 +167,9 @@ function setViewsViaParameters(runWaitLoop, waitingTvVisibility, btnText, inputV
         clearInterval(waitingLoop);
     }
     waitingTv.style.visibility = waitingTvVisibility;
-    channelBtnEl.innerHTML = pId;
+    channelBtnEl.innerHTML = "종료하기";
     channelNameInput.style.visibility = inputVisiblility;
+    
 }
 function start(isViewer) {
     if (isConnected) {
@@ -176,6 +178,8 @@ function start(isViewer) {
         setViewsViaParameters(false, 'hidden', 'CREATE', 'visible');
         remon.close();
         myChannelId = "";
+        alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
+        location.href="stopStreaming.do?pId="+pId;
     } else {
         isConnected = true;
         isCaster = !isViewer;
@@ -187,6 +191,7 @@ function start(isViewer) {
         myChannelId = channelNameInput.value ? channelNameInput.value : getRandomId();
         channelNameInput.value = "";
         isCaster? remon.createCast(myChannelId): remon.joinCast(myChannelId);
+       
     }
 }
 function getRandomId() {
@@ -257,12 +262,13 @@ function startSearchLoop() {
 function test(){
 	 channelNameInput.value = pId;
      start(true);
-       evt.preventDefault();  
+       /* evt.preventDefault(); */  
 }
 $(function(){
-	
-	setTimeout(test, 1000);
-	console.log(pId);
+	if(seller == null){
+		setTimeout(test, 1000);
+		console.log(pId);
+	}
 })
             </script>
         </div>
