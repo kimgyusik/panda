@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="resources/pandaicon.ico">
     <title>PANDA:로그인</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" type="text/css" href="resources/style/memberLoginForm.css">

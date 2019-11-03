@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>
 	$(function(){
 		$("#loginBtn").click(function(){
@@ -15,7 +16,8 @@
 		})
 	})
 </script>
-<title>아이디 찾기</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:아이디 찾기</title>
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">

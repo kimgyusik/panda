@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:판매자페이지</title>
 </head>
 <style>

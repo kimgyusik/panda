@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>고객센터</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:고객센터</title>
 <meta charset="utf-8">
 
 <!-- Bootstrap CSS -->

@@ -42,7 +42,7 @@ public class SviolateController {
 	
 	
 	@RequestMapping("sViolatePersonalList.do")
-	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo, String sName) {
+	public ModelAndView selectPviolateList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, int sNo, String sName, String sStatus) {
 		
 		int listCount = svService.getPersonalListCount(sNo);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -53,7 +53,7 @@ public class SviolateController {
 			 pi.setMaxPage(1); 
 			 }
 		
-		mv.addObject("pi", pi).addObject("list", list).addObject("sName",sName).addObject("sNo",sNo).setViewName("admin/sviolate/sViolatePersonalListView");
+		mv.addObject("pi", pi).addObject("list", list).addObject("sName",sName).addObject("sNo",sNo).addObject("sStatus",sStatus).setViewName("admin/sviolate/sViolatePersonalListView");
 		// 객체                                                                                         경로로반환한거당
 		return mv;
 		

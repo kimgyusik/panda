@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="resources/style/myPage.css">
-<title>마이페이지</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:마이페이지</title>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

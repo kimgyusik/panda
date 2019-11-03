@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:회원가입</title>
 </head>
 <style>
 	.outer{
@@ -16,14 +17,6 @@
 
 <c:import url="../common/menubar.jsp"/> 
 <div class="outer" align="center">
-	<div class="jumbotron" style="width:450px; display: inline-block;" align="center">
-	  <h1 class="display-4">내가판다의 회원가입 환영^^</h1>
-	  <p class="lead">가입하쇼</p>
-	  <hr class="my-4">
-	  <p>일반회원과 판매회원 구분 해놨다.</p>
-	 	<button class="btn btn-primary btn-lg" onclick="location.href='mJoin.do';">일반회원</button>
-		<button class="btn btn-primary btn-lg" onclick="location.href='sJoin.do';">판매회원</button>
-	</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<div class="jumbotron" style="width:450px;  display: inline-block;" align="center">
 	  <h1 class="display-4">내가판다의 회원가입 환영^^</h1>
 	  <p class="lead">가입하쇼</p>

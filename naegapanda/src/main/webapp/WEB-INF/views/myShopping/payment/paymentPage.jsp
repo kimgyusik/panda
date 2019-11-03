@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title></title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -72,6 +73,7 @@
 															<c:forEach items="${ list }" var="p">
 																<tr class="tablebody">
 																	<td style="width:200px;">
+																		
 																		<c:url value="pDetailView.do" var="product">
 																			<c:param name="pId" value="${ p.pId }"/>
 																		</c:url>
@@ -81,6 +83,7 @@
 																		<a href="${ product }" style="font-size:13px;"><b>${p.pName}</b> <br>${p.oName}</a>	
 																	</td>
 																	<td>
+																		
 																		<span>${p.amount }</span>
 																	</td>
 																	<td>
@@ -224,6 +227,16 @@
 													
 													<button type="button"  id="paymentDone" class="cart_checkout" onclick="return paymentConfirm();">결제하기</button>
 													
+													<input type="hidden" name="flag2" value="${flag2}">
+													
+													<!-- 즉시결제인 경우 -->
+													<c:if test="${flag2 eq 2 }">
+														<c:forEach items="${ list }" var="p">
+															<input type="hidden" name="oNo" value="${p.oNo}">
+															<input type="hidden" name="count" value="${p.amount}">
+															<input type="hidden" name="price" value="${p.price}">
+														</c:forEach>
+													</c:if>
 												</div>
 												
 											</form>

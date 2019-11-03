@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>고객센터</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:고객센터</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -69,8 +70,8 @@
 								<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 									<li><a href="categoryView.do">판매관리</a></li>
 									<li><a href="approvalList.do">판매허가관리</a></li>
+									<li><a href="sViolateAllList.do">판매자관리</a></li>
 									<li><a href="violateView.do">신고관리</a></li>
-									<li><a href="sViolateAllList.do">판매자신고관리</a></li>
 									<li><a href="vmessage.do">신고메세지</a></li>
 									
 								</c:if>

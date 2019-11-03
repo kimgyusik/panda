@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:스트리밍</title>
  <link href="resources/style/style.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

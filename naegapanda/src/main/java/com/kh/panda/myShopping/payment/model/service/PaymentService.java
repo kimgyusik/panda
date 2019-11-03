@@ -10,9 +10,11 @@ public interface PaymentService {
 	ArrayList<Payment> myPaymentList(int mNo);
 	
 	// 결재 추가 처리
-	int addPayment(Payment p);
+	int addPayment(Payment p, int flag2);
 	
 	// 구매확정 처리
 	int fixPayment(int payId);
+	
+	
 
 }

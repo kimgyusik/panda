@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:회원가입</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -137,11 +138,11 @@
 	</form>
 	
 	<br><br><br><br>
-	통신판매검색(임시)
-	<form name="frm1">
+	
+	<!-- <form name="frm1">
 <input name="wrkr_no" type="text" />
 <input type="button" value="팝업" class="btn btn-primary" onclick="onopen();"/>
-</form>
+</form> -->
 	
 </div>
 

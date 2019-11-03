@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고회원관리</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:신고회원관리</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 a:visited { 
@@ -16,6 +17,10 @@ a:visited {
 		color : blue;
 		background : white;
 	}
+	
+.pointer{
+	cursor:pointer;
+}
 </style>
 
 </head>
@@ -53,6 +58,7 @@ a:visited {
 											<c:url value="sViolatePersonalList.do" var="sviolatelist">
 					 						    <c:param name="sNo" value="${ sv.sNo }"/>
 					 						    <c:param name="sName" value="${ sv.sName }"/>
+					 						    <c:param name="sStatus" value="${ sv.sStatus }"/>
 											</c:url>
 									<tr>
 										<td align="center">
@@ -74,7 +80,7 @@ a:visited {
 											<c:if test="${ sv.sStatus eq 'N' }">
 											<form action="sellerPermission.do">
 											<input type = "hidden" name = "sNo" value = "${ sv.sNo }" >
-											<h6 style="font-weight:bold;" id="permissionSeller">${sv.sStatus}</h6>
+											<h6 style="font-weight:bold;" id="permissionSeller" class="pointer">${sv.sStatus}</h6>
 											<script>
 											   	$("#permissionSeller").click(function(){
 											   		var sNo = $(this).prev().val();

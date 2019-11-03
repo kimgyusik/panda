@@ -14,8 +14,8 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
-
-<title>PANDA : 회원가입</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:회원가입</title>
 <style>
 	.form-row{
 		display: inline-block !important;

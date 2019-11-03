@@ -43,4 +43,7 @@ public class BasketDao {
 		return sqlSession.update("basketMapper.updateAmount", b);
 	}
 
+	public Basket selectProductByoNo(int oNo) {
+		return sqlSession.selectOne("basketMapper.selectProductByoNo", oNo);
+	}
 }

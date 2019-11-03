@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:방송</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -36,7 +37,7 @@
 								<li><a href="pInsert.do">상품등록</a></li>
 								<li><a href="oderPage.do">주문목록관리</a></li>
 								<li><a href="streaming.do">방송관리</a></li>
-								<li><a href="sPage.do">정보수정?</a></li>
+								<li><a href="sPage.do">정보수정</a></li>
 							</ul>
 						</div>
 					</div>
