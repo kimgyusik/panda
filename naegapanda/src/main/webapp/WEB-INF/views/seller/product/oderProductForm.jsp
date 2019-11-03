@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:판매자페이지</title>
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 </head>
@@ -33,7 +34,7 @@
 				<div class="col-lg-9">
 					<div class="shop_content">
 					<form action="delStatus.do" >
-							<table style="width:1000px">
+							<table style="width:1000px; margin-top:30px">
 								<tr style="background-color:#0e8ce4; color:white; height:50px" align=center>
 									<th>사진</th>
 									<th>이름</th>

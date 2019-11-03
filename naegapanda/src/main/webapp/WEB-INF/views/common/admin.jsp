@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>고객센터</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:고객센터</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">

@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고회원관리</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:신고회원관리</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 a:visited { 
