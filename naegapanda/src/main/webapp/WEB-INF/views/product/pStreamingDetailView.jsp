@@ -19,24 +19,22 @@
 <link rel="stylesheet" type="text/css" href="resources/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="resources/style/product_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/product_responsive.css">
+
 </head>
 <body>
 	<c:import url="../common/menubar.jsp"/>
 	<div class="super_container"> 
 	<!-- Single Product -->
-		<c:import url="../chat/streamingTest.jsp"/>
+			
+				<c:import url="../chat/streamingTest.jsp"/>
+				<c:import url="../chat/chatMain.jsp" /> 
+		<br>
 		<div class="single_product" style="padding-top:0px;">
 			
 			<div class="container">
 				<div class="col-lg-2 order-lg-2 order-1">
 					<h3>${st.stTitle }</h3>
 					
-					<div class="col-lg-2 order-lg-2 order-1">
-						
-					</div>
-					<div>
-						<c:import url="../chat/chatMain.jsp"/> 
-					</div>
 				</div>
 				<div class="row">
 					<!-- Images -->
