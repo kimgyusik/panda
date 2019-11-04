@@ -78,6 +78,7 @@
 	                                    class="btn btn-primary btn-user btn-block text-center">
 	                                        방송시작하기
 	                                    </a>
+	                                    <input type="hidden" value="${loginSeller.sNo }" id="sNo">
                                     	</c:if>
                                     </c:if>
                                    	 <c:if test="${empty loginSeller or empty loginMember}">
@@ -86,6 +87,7 @@
 	                                    class="btn btn-primary btn-user btn-block text-center">
 	                                        방송시작하기
 	                                    </a>
+	                                    <input type="hidden" value="0" id="sNo">
 	                                    </div>
                                    
                                    	</c:if>
@@ -107,7 +109,8 @@
             var sNo = -1;
             var flag = 0;
             var psNo = ${p.sNo};
-            var seller = ${loginSeller.sNo};
+            var seller = $('#sNo').val();
+            
 const channelBtnEl = document.querySelector('#channelBtn');
 const channelList = document.getElementById("lvChannel");
 const channelNameInput = document.getElementById("channelNameInput");
@@ -152,6 +155,14 @@ const listener = {
         isConnected = false;
         myChannelId = "";
         setViewsViaParameters(false, 'hidden', 'CREATE', 'visible');
+        if(seller != 0){
+            alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
+           location.href="stopStreaming.do?pId="+pId; 
+        } else{
+        	alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
+            location.href="home.do";
+        }
+        
     },
     onError(error) {
         console.log(`EVENT FIRED: onError: ${error}`);
@@ -178,8 +189,7 @@ function start(isViewer) {
         setViewsViaParameters(false, 'hidden', 'CREATE', 'visible');
         remon.close();
         myChannelId = "";
-        alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
-        location.href="stopStreaming.do?pId="+pId;
+        
     } else {
         isConnected = true;
         isCaster = !isViewer;
@@ -265,7 +275,7 @@ function test(){
        /* evt.preventDefault(); */  
 }
 $(function(){
-	if(seller == null){
+	if(seller == 0){
 		setTimeout(test, 1000);
 		console.log(pId);
 	}

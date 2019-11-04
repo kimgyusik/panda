@@ -71,7 +71,7 @@
 									<div class="clearfix" style="z-index: 1000;">	
 										
 										<!-- Product option -->
-										<div>
+										<%-- <div>
 											<table style="text-align:center;border:solid 2px blue">
 												<tr>
 													<th style="margin:10px;">옵션번호</th>
@@ -97,6 +97,36 @@
 												</tr>
 											</c:forEach>
 											</table>
+										</div> --%>
+										<div class="prodOptionDiv">
+											<table class="prodTable">
+												<tr style="height:50px;">
+													<th >옵션번호</th>
+													<th>옵션명</th>
+													<th>옵션가격</th>
+													<th>남은갯수</th>
+													<th></th>
+												</tr>
+											<c:forEach items="${poList }" var="po">
+												<tr>
+													<td class="oNo" width="15%">${po.oNo }</td>
+													<td class="oName">${po.oName }</td>
+													<td width="20%">
+														<input class="price" type="hidden" value="${po.stPrice}">
+														<fmt:formatNumber type="number" maxFractionDigits="3" value="${po.stPrice}" /> 원
+													</td>
+													<td class="oAmount" width="15%">${po.oAmount }</td>
+													<td  width="10%">
+														<c:if test="${po.oAmount ne 0 }">
+														<button class="choiceOption" type="button">선택</button>
+														</c:if>
+														<c:if test="${po.oAmount eq 0 }">
+														매진
+														</c:if>
+													</td>
+												</tr>
+											</c:forEach>
+											</table>
 										</div>
 									</div>
 									<br><br>
@@ -107,7 +137,7 @@
 											</table>
 									</div>
 									<script>
-										var count = 0;
+										/* var count = 0;
 										$(document).ready(function(){
 											
 										    $(".opSelect").click(function(){
@@ -155,7 +185,59 @@
 									    		$(this).parent().parent().parent().remove();
 									    		count = 0;
 									    	}
-									    }
+									    } */
+										$(function(){
+											
+											// 옵션 추가 처리
+											$('.choiceOption').click(function(){
+												
+												var $tb = $("#chooseOp");
+												var option = $(this).parent().parent();
+												
+												var oNo = option.find('.oNo').text();
+												
+												if($("#"+oNo).length<=0){
+														
+											 		var $tr = $("<tr id='"+oNo+"' height='50px'>");
+											 		var $oName = $("<td width='40%'>").text(option.find('.oName').text());
+											 		var $oPrice = $("<td width='25%'>" +
+											 							"<input class='oNo2' name='oNo' type='hidden' value='"+oNo+"'>" +
+											 							"<input type='hidden' name='price' value='"+option.find('.price').val()+"'>" +
+											 							"<span>" + addComma(option.find('.price').val())+"</span> 원</td>");
+											 		var max = option.find('.oAmount').text();
+											 		var $amount = $("<td width='20%'><input class='onlyNum' name='amount' type='number' value='1' min='1' max='"+max+"'></td>");
+											 		var $delete = $("<td width='15%'><div  class='optionCancle' onclick='deleteOp(this);'>x</div></td>");
+											 		
+											 		$tr.append($oName);
+											 		$tr.append($oPrice);
+											 		$tr.append($amount);
+											 		$tr.append($delete);
+											 		$tb.append($tr);
+										 		
+												}else{
+													alert('이미 선택한 옵션입니다.');
+													return false;
+												}
+											});
+											
+											// 옵션 수량 변경 시 처리
+											$(document).on("keyup change",".onlyNum",function(){
+												
+												this.value=this.value.replace(/[^1-9]/g,'');
+												
+												var price = $(this).parent().prev().children().eq(0).val();
+												var amount = $(this).val();
+												var cost = addComma(price*amount)
+												
+												$(this).parent().prev().children().eq(1).text(cost);
+											});
+
+										})
+
+										// 옵셕 제외 처리
+										function deleteOp(a){
+											a.parentNode.parentNode.remove();
+										}
 									
 									</script>
 									
@@ -259,157 +341,6 @@
 							<div id="inquiry">
 								
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-					
-	
-		<!-- Recently Viewed -->
-	
-		<div class="viewed">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="viewed_title_container">
-							<h3 class="viewed_title">Recently Viewed</h3>
-							<div class="viewed_nav_container">
-								<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
-								<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
-							</div>
-						</div>
-	
-						<div class="viewed_slider_container">
-							
-							<!-- Recently Viewed Slider -->
-	
-							<div class="owl-carousel owl-theme viewed_slider">
-								
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_1.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$225<span>$300</span></div>
-											<div class="viewed_name"><a href="#">Beoplay H7</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_2.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$379</div>
-											<div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_3.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$225</div>
-											<div class="viewed_name"><a href="#">Samsung J730F...</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_4.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$379</div>
-											<div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_5.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$225<span>$300</span></div>
-											<div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_6.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$375</div>
-											<div class="viewed_name"><a href="#">Speedlink...</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-		<!-- Brands -->
-	
-		<div class="brands">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="brands_slider_container">
-							
-							<!-- Brands Slider -->
-	
-							<div class="owl-carousel owl-theme brands_slider">
-								
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_1.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_2.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_3.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_4.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_5.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_6.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_7.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_8.jpg" alt=""></div></div>
-	
-							</div>
-							
-							<!-- Brands Slider Navigation -->
-							<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-							<div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-	
 						</div>
 					</div>
 				</div>
