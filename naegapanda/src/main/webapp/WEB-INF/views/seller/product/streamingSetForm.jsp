@@ -47,7 +47,7 @@
 				<div class="panel-body" width="500px">
 					<form action="pStreaming.do?pId=${p.pId }" method="post" encType="multipart/form-data" >
 						<div class="form-group">
-							<label for="stTitle">상품명</label> 
+							<label for="stTitle">방송 제목</label> 
 							<input type="text" class="form-control" id="stTitle" name="stTitle" placeholder="방송 제목을 입력해주세요." />
 						</div>
 						<div class="form-group">
