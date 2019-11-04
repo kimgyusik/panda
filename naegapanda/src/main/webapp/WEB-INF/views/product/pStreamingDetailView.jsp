@@ -71,7 +71,7 @@
 									<div class="clearfix" style="z-index: 1000;">	
 										
 										<!-- Product option -->
-										<div>
+										<%-- <div>
 											<table style="text-align:center;border:solid 2px blue">
 												<tr>
 													<th style="margin:10px;">옵션번호</th>
@@ -97,6 +97,36 @@
 												</tr>
 											</c:forEach>
 											</table>
+										</div> --%>
+										<div class="prodOptionDiv">
+											<table class="prodTable">
+												<tr style="height:50px;">
+													<th >옵션번호</th>
+													<th>옵션명</th>
+													<th>옵션가격</th>
+													<th>남은갯수</th>
+													<th></th>
+												</tr>
+											<c:forEach items="${poList }" var="po">
+												<tr>
+													<td class="oNo" width="15%">${po.oNo }</td>
+													<td class="oName">${po.oName }</td>
+													<td width="20%">
+														<input class="oPrice" type="hidden" value="${po.stPrice}">
+														<fmt:formatNumber type="number" maxFractionDigits="3" value="${po.stPrice}" /> 원
+													</td>
+													<td class="oAmount" width="15%">${po.oAmount }</td>
+													<td  width="10%">
+														<c:if test="${po.oAmount ne 0 }">
+														<button class="choiceOption" type="button">선택</button>
+														</c:if>
+														<c:if test="${po.oAmount eq 0 }">
+														매진
+														</c:if>
+													</td>
+												</tr>
+											</c:forEach>
+											</table>
 										</div>
 									</div>
 									<br><br>
@@ -107,7 +137,7 @@
 											</table>
 									</div>
 									<script>
-										var count = 0;
+										/* var count = 0;
 										$(document).ready(function(){
 											
 										    $(".opSelect").click(function(){
@@ -155,7 +185,59 @@
 									    		$(this).parent().parent().parent().remove();
 									    		count = 0;
 									    	}
-									    }
+									    } */
+										$(function(){
+											
+											// 옵션 추가 처리
+											$('.choiceOption').click(function(){
+												
+												var $tb = $("#chooseOp");
+												var option = $(this).parent().parent();
+												
+												var oNo = option.find('.oNo').text();
+												
+												if($("#"+oNo).length<=0){
+														
+											 		var $tr = $("<tr id='"+oNo+"' height='50px'>");
+											 		var $oName = $("<td width='40%'>").text(option.find('.oName').text());
+											 		var $oPrice = $("<td width='25%'>" +
+											 							"<input class='oNo2' name='oNo' type='hidden' value='"+oNo+"'>" +
+											 							"<input type='hidden' name='price' value='"+option.find('.oPrice').val()+"'>" +
+											 							"<span>" + addComma(option.find('.oPrice').val())+"</span> 원</td>");
+											 		var max = option.find('.oAmount').text();
+											 		var $amount = $("<td width='20%'><input class='onlyNum' name='amount' type='number' value='1' min='1' max='"+max+"'></td>");
+											 		var $delete = $("<td width='15%'><div  class='optionCancle' onclick='deleteOp(this);'>x</div></td>");
+											 		
+											 		$tr.append($oName);
+											 		$tr.append($oPrice);
+											 		$tr.append($amount);
+											 		$tr.append($delete);
+											 		$tb.append($tr);
+										 		
+												}else{
+													alert('이미 선택한 옵션입니다.');
+													return false;
+												}
+											});
+											
+											// 옵션 수량 변경 시 처리
+											$(document).on("keyup change",".onlyNum",function(){
+												
+												this.value=this.value.replace(/[^1-9]/g,'');
+												
+												var price = $(this).parent().prev().children().eq(0).val();
+												var amount = $(this).val();
+												var cost = addComma(price*amount)
+												
+												$(this).parent().prev().children().eq(1).text(cost);
+											});
+
+										})
+
+										// 옵셕 제외 처리
+										function deleteOp(a){
+											a.parentNode.parentNode.remove();
+										}
 									
 									</script>
 									
