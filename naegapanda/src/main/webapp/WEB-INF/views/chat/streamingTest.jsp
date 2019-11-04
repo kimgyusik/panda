@@ -95,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                    <c:import url="../chat/chatMain.jsp" /> 
                 </div>
             </div>
             <!-- /.container-fluid -->

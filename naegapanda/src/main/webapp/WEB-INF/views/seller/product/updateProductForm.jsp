@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
@@ -7,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <link rel="icon" href="resources/pandaicon.ico">
-<title>PANDA:ÆÇ¸ÅÀÚÆäÀÌÁö</title>
+<title>PANDA:íŒë§¤ìí˜ì´ì§€</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -34,25 +33,25 @@
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
-								<li><a href="sProduct.do">»óÇ°¸®½ºÆ®</a></li>
-								<li><a href="pInsert.do">»óÇ°µî·Ï</a></li>
-								<li><a href="oderPage.do">ÁÖ¹®¸ñ·Ï°ü¸®</a></li>
-								<li><a href="streaming.do">¹æ¼Û°ü¸®</a></li>
-								<li><a href="sPage.do">Á¤º¸¼öÁ¤?</a></li>
+								<li><a href="sProduct.do">ìƒí’ˆë¦¬ìŠ¤íŠ¸</a></li>
+								<li><a href="pInsert.do">ìƒí’ˆë“±ë¡</a></li>
+								<li><a href="oderPage.do">ì£¼ë¬¸ëª©ë¡ê´€ë¦¬</a></li>
+								<li><a href="streaming.do">ë°©ì†¡ê´€ë¦¬</a></li>
+								<li><a href="sPage.do">ì •ë³´ìˆ˜ì •?</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="panel-heading"><label style="text-size:30px;">»óÇ° ¼öÁ¤</label></div>
+				<div class="panel-heading"><label style="text-size:30px;">ìƒí’ˆ ìˆ˜ì •</label></div>
 				<br>
 				<div class="panel-body" width="500px">
 					<form action="pUpdate.do?pId=${p.pId }" method="post" encType="multipart/form-data" >
 						<div class="form-group">
-							<label for="pName">»óÇ°¸í</label> 
-							<input type="text" class="form-control" id="pName" name="pName" value="${p.pName}" placeholder="»óÇ°¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä." />
+							<label for="pName">ìƒí’ˆëª…</label> 
+							<input type="text" class="form-control" id="pName" name="pName" value="${p.pName}" placeholder="ìƒí’ˆëª…ì„ ì…ë ¥í•˜ì„¸ìš”." />
 						</div>
 						<div class="form-group">
-							<label for="Product_Category">Ä«Å×°í¸®</label> 
+							<label for="Product_Category">ì¹´í…Œê³ ë¦¬</label> 
 							<select
 								name="cId" id="cId" class="form-control" >
 								 <c:forEach items="${cList }" var="c">
@@ -67,7 +66,7 @@
 						</div>
 						<div class="form-group">
 							<div>
-								<label>¸ŞÀÎ »çÁø</label>
+								<label>ë©”ì¸ ì‚¬ì§„</label>
 								<div class="productPic" id="productPicArea1">
 									<c:forEach items="${paList}" var="pa">
 										<c:if test="${pa.paFileLevel eq 1}">
@@ -77,7 +76,7 @@
 									
 								</div>
 							</div>
-							<label>´Ù¸¥ »óÇ° »çÁø</label> <br>
+							<label>ë‹¤ë¥¸ ìƒí’ˆ ì‚¬ì§„</label> <br>
 							<table>
 								<tr>
 									<td>
@@ -115,7 +114,7 @@
 									onchange="loadImg(this, 3);">
 							</div>
 							<script>
-                    // ¹Ì¸®º¸±â ¿µ¿ªÀ» Å¬¸¯ÇÒ ¶§ ÆÄÀÏ Ã·ºÎ Ã¢ÀÌ ¶ßµµ·Ï
+                    // ë¯¸ë¦¬ë³´ê¸° ì˜ì—­ì„ í´ë¦­í•  ë•Œ íŒŒì¼ ì²¨ë¶€ ì°½ì´ ëœ¨ë„ë¡
                     $(function(){
                       $("#fileArea").hide();
                       
@@ -132,12 +131,12 @@
                       });
                     });
                     
-                    // ÆÄÀÏ Ã·ºÎ ÇßÀ» ¶§ ¹Ì¸®º¸±âÇÏ´Â ±â´É
-                    // Âü°í https://developer.mozilla.org/ko/docs/Web/API/FileReader
+                    // íŒŒì¼ ì²¨ë¶€ í–ˆì„ ë•Œ ë¯¸ë¦¬ë³´ê¸°í•˜ëŠ” ê¸°ëŠ¥
+                    // ì°¸ê³  https://developer.mozilla.org/ko/docs/Web/API/FileReader
                     function loadImg(value,num) {
                       
                       if(value.files && value.files[0]){
-                        // ÆÄÀÏÀ» ÀĞ¾îµéÀÏ FileReader °´Ã¼ »ı¼º
+                        // íŒŒì¼ì„ ì½ì–´ë“¤ì¼ FileReader ê°ì²´ ìƒì„±
                         var reader = new FileReader();
                         
                         reader.onload = function(e){
@@ -147,7 +146,7 @@
                           case 3: $('#pImg3').attr("src", e.target.result); break;
                           }
                         }
-                        // ÆÄÀÏ ÀĞ¾îÁÖ´Â ¸Ş¼Òµå
+                        // íŒŒì¼ ì½ì–´ì£¼ëŠ” ë©”ì†Œë“œ
                         reader.readAsDataURL(value.files[0]);
                       }
                     }
@@ -156,16 +155,16 @@
 						
 						<div style="border:2px solid blue;">
 							<div class="form-group">
-								<label for="optionName1">¿É¼Ç¸í</label>
-								<input type="text" class="form-control" id="oName" name="oName" value="${poList[0].oName}" placeholder="¿É¼Ç ¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä."/>
+								<label for="optionName1">ì˜µì…˜ëª…</label>
+								<input type="text" class="form-control" id="oName" name="oName" value="${poList[0].oName}" placeholder="ì˜µì…˜ ëª…ì„ ì…ë ¥í•˜ì„¸ìš”."/>
 							</div>
 							<div class="form-group">
-								<label for="price1">°¡°İ</label> <input type="number"
-									class="form-control" id="oPrice" name="oPrice" value="${poList[0].oPrice }" placeholder="»óÇ° °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä." />
+								<label for="price1">ê°€ê²©</label> <input type="number"
+									class="form-control" id="oPrice" name="oPrice" value="${poList[0].oPrice }" placeholder="ìƒí’ˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”." />
 							</div>
 							<div class="form-group">
-								<label for="amount1">¼ö·®</label> <input type="number"
-									class="form-control" id="oAmount" name="oAmount" value="${poList[0].oAmount }" placeholder="»óÇ° °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä." />
+								<label for="amount1">ìˆ˜ëŸ‰</label> <input type="number"
+									class="form-control" id="oAmount" name="oAmount" value="${poList[0].oAmount }" placeholder="ìƒí’ˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”." />
 							</div>
 						</div>
 						
@@ -175,28 +174,28 @@
 						<c:if test="${vs.index ne 0 }">
 						<div style="border:2px solid blue;">
 							<div class="form-group">
-								<label for="optionName1">¿É¼Ç¸í</label>
-								<input type="text" class="form-control" id="oName" name="oName" value="${po.oName}" placeholder="¿É¼Ç ¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä."/>
+								<label for="optionName1">ì˜µì…˜ëª…</label>
+								<input type="text" class="form-control" id="oName" name="oName" value="${po.oName}" placeholder="ì˜µì…˜ ëª…ì„ ì…ë ¥í•˜ì„¸ìš”."/>
 							</div>
 							<div class="form-group">
-								<label for="price1">°¡°İ</label> <input type="number"
-									class="form-control" id="oPrice" name="oPrice" value="${po.oPrice }" placeholder="»óÇ° °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä." />
+								<label for="price1">ê°€ê²©</label> <input type="number"
+									class="form-control" id="oPrice" name="oPrice" value="${po.oPrice }" placeholder="ìƒí’ˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”." />
 							</div>
 							<div class="form-group">
-								<label for="amount1">¼ö·®</label> <input type="number"
-									class="form-control" id="oAmount" name="oAmount" value="${po.oAmount }" placeholder="»óÇ° °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä." />
+								<label for="amount1">ìˆ˜ëŸ‰</label> <input type="number"
+									class="form-control" id="oAmount" name="oAmount" value="${po.oAmount }" placeholder="ìƒí’ˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”." />
 							</div>
 						</div>
 						</c:if>
 						</c:forEach>
 						</div>
 						<div style="margin:10px;">
-							<button type="button" onclick="insertOption()">¿É¼ÇÃß°¡</button>
-							<button type="button" onclick="deleteOption()" >¿É¼Ç»èÁ¦</button>
+							<button type="button" onclick="insertOption()">ì˜µì…˜ì¶”ê°€</button>
+							<button type="button" onclick="deleteOption()" >ì˜µì…˜ì‚­ì œ</button>
 						</div>
 						<script>
 							function insertOption(){
-								$("#optionTable").append('<div><div style="border:2px solid blue;"><div class="form-group"><label for="optionName1">¿É¼Ç¸í</label><input type="text" class="form-control" id="oName" name="oName" placeholder="¿É¼Ç ¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä."/></div><div class="form-group"><label for="price1">°¡°İ</label> <input type="number"class="form-control" id="oPrice" name="oPrice" placeholder="»óÇ° °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä." /></div>	<div class="form-group"><label for="amount1">¼ö·®</label> <input type="number"class="form-control" id="oAmount" name="oAmount" placeholder="»óÇ° °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä." />	</div></div><br><div>');
+								$("#optionTable").append('<div><div style="border:2px solid blue;"><div class="form-group"><label for="optionName1">ì˜µì…˜ëª…</label><input type="text" class="form-control" id="oName" name="oName" placeholder="ì˜µì…˜ ëª…ì„ ì…ë ¥í•˜ì„¸ìš”."/></div><div class="form-group"><label for="price1">ê°€ê²©</label> <input type="number"class="form-control" id="oPrice" name="oPrice" placeholder="ìƒí’ˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”." /></div>	<div class="form-group"><label for="amount1">ìˆ˜ëŸ‰</label> <input type="number"class="form-control" id="oAmount" name="oAmount" placeholder="ìƒí’ˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”." />	</div></div><br><div>');
 							}
 							
 							function deleteOption(){
@@ -204,7 +203,7 @@
 							}
 						</script>
 						<div class="form-group">
-							<label>»ó¼¼ ¼³¸í</label>
+							<label>ìƒì„¸ ì„¤ëª…</label>
 							<div>
 								<textarea id="summernote" name="pContent">${p.pContent}</textarea>
 							</div>
@@ -215,7 +214,7 @@
 						    </script>
 						</div>
 						<div align=right>
-							<button type="submit" class="btn btn-default">»óÇ° ¼öÁ¤</button>
+							<button type="submit" class="btn btn-default">ìƒí’ˆ ìˆ˜ì •</button>
 						</div>
 						<div>
 							<input type="hidden" value="${loginSeller.sNo }" name="sNo"/>

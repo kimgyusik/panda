@@ -21,14 +21,21 @@
 
 </head>
 <body>
-<div  style="width:200px;height:500px;">
-<div id="data" style="width:200px;height:500px;border:1px solid blue;overflow:auto;">
+<div  style="width:450px;height:500px;">
+<div id="data" style="width:450px;height:500px;border:1px solid blue;overflow:auto;">
 
 
 </div>
-<div style="width:250px;align:center">
-<input type="text" id="message">  
-<button id="sendBtn">전송</button>
+<div style="width:450px;align:center">
+	<c:choose>
+	<c:when test="${!empty loginUser || !empty loginSeller}">
+		<input type="text" id="message" style="width:402px;">
+		<button id="sendBtn" > 전  송 </button>
+	</c:when>
+	<c:otherwise>
+	<input type="text" id="message" value="로그인 해야 채팅을 할 수 있습니다." style="width:440px;" readonly>
+	</c:otherwise>
+	</c:choose>
 </div>
 
 </div>
