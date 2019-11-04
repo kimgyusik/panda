@@ -64,7 +64,7 @@
 	
 	<select id="selectcList" resultMap="categoryResultSet">
 		select *
-		from category
+		from category 
 	</select>
 	
 	<select id="selectList" resultMap="poResultSet" parameterType="_int">
@@ -72,7 +72,7 @@
 		from Product_option o
 		left join product p on p.p_id=o.p_Id
 		left join product_attachment pa on p.p_id=pa.p_id
-		where o_status='Y' and p.s_No = #{sNo} and p.p_status = 'Y' and pa.pa_file_level=1 and pa.pa_status='Y'
+		where o_status='Y' and p.s_No = #{sNo} and p.p_status = 'Y' and pa.pa_file_level=1 and pa.pa_status='Y' and p_ok='Y'
 		order by o_No desc
 	</select>
 	
@@ -140,7 +140,7 @@
 	<update id="updatePa" parameterType="ProductAttachment">
 		update product_attachment
 		set pa_create_date=SYSDATE, pa_origin_name=#{paOriginName}, pa_change_name=#{paChangeName}
-		where p_id=#{pId} and pa_file_level = #{paFileLevel}
+		where p_id=#{pId} and pa_file_level = #{paFileLevel} 
 	</update>
 	
 	<select id="selectpList" parameterType="CategoryNumber" resultMap="productResultSet2">
@@ -148,19 +148,19 @@
 		from product p
 		join product_attachment pa on(p.p_Id = pa.p_Id)
 		join category c on (p.c_id=c.c_id)
-		where p.p_status='Y' and pa.pa_file_level=1 and p.c_id between #{startNum} and #{endNum}
+		where p.p_status='Y' and pa.pa_file_level=1 and p.c_id between #{startNum} and #{endNum} and p_ok='Y'
 	</select>
 	
 	<select id="listCount" parameterType="CategoryNumber" resultType="_int">
 		select count(*)
 		from product p
-		where p.p_status='Y' and c_id between #{startNum} and #{endNum}
+		where p.p_status='Y' and c_id between #{startNum} and #{endNum}  and p_ok='Y'
 	</select>
 	
 	<select id="searchListCount" parameterType="CategoryNumber" resultType="_int">
 		select count(*)
 		from product p
-		where p.p_status='Y' and p_name like '%' ||  #{keyword} || '%' and c_id between #{startNum} and #{endNum}
+		where p.p_status='Y' and p_name like '%' ||  #{keyword} || '%' and c_id between #{startNum} and #{endNum}  and p_ok='Y'
 	</select>
 
 	<select id="search" parameterType="CategoryNumber" resultMap="productResultSet2">
@@ -168,43 +168,43 @@
 		from product p
 		join product_attachment pa on(p.p_Id = pa.p_Id)
 		join category c on (p.c_id=c.c_id)
-		where p.p_status='Y' and pa.pa_file_level=1 and p_name like '%' ||#{keyword} || '%' and p.c_id between #{startNum} and #{endNum}
+		where p.p_status='Y' and pa.pa_file_level=1 and p_name like '%' ||#{keyword} || '%' and p.c_id between #{startNum} and #{endNum}  and p_ok='Y'
 	</select>
 	
 	<select id="HotTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 		select * 
 		from HotTopList 
-		where c_id between #{startNum} and #{endNum} and rownum <= 16
+		where c_id between #{startNum} and #{endNum} and rownum <= 16 and p_ok='Y'
 		]]>
 	</select>
 	<select id="HotList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 			select * 
 			from HotTopList 
-			where c_id between #{startNum} and #{endNum} and rownum <= 16
+			where c_id between #{startNum} and #{endNum} and rownum <= 16  and p_ok='Y'
 		]]>
 	</select>
 	<select id="Newest" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 			select * 
 			from NewTopList 
-			where rnum = 1
+			where rnum = 1  and p_ok='Y'
 		]]>
 	</select>
 	<select id="NewTopList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 			select * 
 			from NewTopList 
-			where c_id between 1 and 58 and rnum between 2 and 21
+			where c_id between 1 and 58 and rnum between 2 and 21  and p_ok='Y'
 		]]>
 	</select>
 	<select id="NewList" parameterType="CategoryNumber" resultMap="productResultSet2">
 		<![CDATA[
 			select * 
 			from NewTopList 
-			where c_id between #{startNum} and #{endNum} and rownum <= 20
-		]]>
+			where c_id between #{startNum} and #{endNum} and rownum <= 20  and p_ok='Y'
+		]]> 
 	</select>
 	
 	<select id="random" resultMap="productResultSet2">
@@ -213,7 +213,7 @@
 			from  (select * 
 	        from prettypList
 	        order by dbms_random.value)
-	 		where rownum <= 10
+	 		where rownum <= 10  and p_ok='Y'
  		]]>
 	</select>
 	
@@ -221,7 +221,7 @@
 		select p.* , s.st_no, st_status
 		from prettypList p
 		left outer join streaming s on(p.st_no = s.st_no)
-		where st_status='Y'
+		where st_status='Y' and p_ok='Y'
 	</select>
 	
 

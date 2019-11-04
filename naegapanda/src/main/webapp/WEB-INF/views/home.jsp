@@ -204,7 +204,7 @@
 												<div class="deals_item_price_a ml-auto"><s>￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</s></div>
 											</div>
 											<div class="deals_info_line d-flex flex-row justify-content-start temp">
-												<div class="deals_item_name target temp"><a href="pDetailView.do?pId=${p.pId }">${p.pName }</a></div>
+												<div class="deals_item_name target temp"><a href="StreamingView.do?pId=${p.pId }">${p.pName }</a></div>
 											</div>
 											<div class="deals_info_line d-flex flex-row justify-content-start">
 												<div class="deals_item_price ml-auto"> ￦ ????? </div>
