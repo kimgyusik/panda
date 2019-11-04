@@ -577,8 +577,15 @@ $(document).ready(function()
 		$('#submit').click();
 	});
 	
+	// 메인 금액 넘기기
+	var arr = new Array();
+	$(".oPrice").each(function(){
+		arr.push($(this).val());
+	});
 	
-	
+	var min = Math.min.apply(null, arr);
+	$('.mainPrice').append('<span>'+addComma(min)+' 원 ~</span>');
+
 
 });
 
@@ -646,7 +653,11 @@ function deleteInq(id){
 	});
 }
 
-
+//숫자형 천 단위 처리
+function addComma(num) {
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
 
 
 
@@ -744,32 +755,47 @@ function deleteReply(rrId,rId,mNo){
 }
 
 // 장바구니 담기 처리
-function addCart(t){
+function addCart(mNo){
 	
-	if(t == null || t == ""){
+	if(mNo == null || mNo == ""){
 		alert('일반회원으로 로그인 이후 이용 가능합니다.');
-		return;
-	}else{
-		// 선택된 옵션과 수량을 변수로 잡아줘야함
-		$.ajax({
-			url:"addBasket.ba",
-			data: {oNo:oNo, amount:amount},
-			dataType:"json",
-			success:function(data){
-				alert(data);
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-		});
+		return false;
 	}
 	
+	if($('#chooseOp tr').length <= 0){
+		alert('선택된 옵션이 없습니다.');
+		return false;
+	}
+	
+	var oNo = [];
+    $(".oNo2").each(function(i) {
+    	oNo.push($(this).val());
+    });
+    
+    var amount = [];
+    $(".onlyNum").each(function(i) {
+    	amount.push($(this).val());
+    });
+    
+	$.ajax({
+		url:"addBasket2.ba",
+		data: {oNo:oNo, amount:amount},
+		dataType:"json",
+		success:function(data){
+			alert(data);
+			getCart()
+		},
+		error:function(){
+			console.log("ajax 통신 실패");
+		}
+	});
 }
 
+
 // 찜하기 처리
-function addGgim(t){
+function addGgim(mNo){
 	
-	if(t == null || t == ""){
+	if(mNo == null || mNo== ""){
 		alert('일반회원으로 로그인 이후 이용 가능합니다.');
 		return;
 	}else{
@@ -790,6 +816,28 @@ function addGgim(t){
 		});
 	}
 	
+}
+
+//메인메뉴 장바구니 비동기 처리
+function getCart(){
+	$.ajax({
+		url:"currentBasket.ba",
+		dataType:"json",
+		success:function(data){
+			if(data[0] == 0){
+				$('.cart_count').children().first().text(data[0]);
+				$('.cart_price').children().first().text("장바구니가 비었어요.");
+			}else{
+				$('.cart_count').children().first().text(data[0]);
+				 var regexp = /\B(?=(\d{3})+(?!\d))/g;
+				 var cost = data[1].toString().replace(regexp, ',');
+			     $('.cart_price').children().first().text(cost+"원");
+			}
+		},
+		error:function(){
+			console.log("ajax 통신 실패");
+		}
+	});
 }
 
 //메인메뉴 찜하기 비동기 처리

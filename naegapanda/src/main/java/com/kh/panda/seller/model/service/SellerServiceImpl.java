@@ -252,6 +252,29 @@ public class SellerServiceImpl implements SellerService{
 		return sDao.selectStreamingToStNo(stNo);
 	}
 
+	@Override
+	public int stopStreaming(int pId, int stNo) {
+		int result1 = sDao.pStopStream(pId);
+		int result2 = sDao.poStopStream(pId);
+		int result3 = sDao.deleteStreaming(stNo);
+		int result = 0;
+		if(result1 >0 && result2 >0 && result3>0) {
+			result = 1;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int getStNo(int pId) {
+		return sDao.getStNo(pId);
+	}
+
+	@Override
+	public int isStreaming(int sNo) {
+		return sDao.isStreaming(sNo);
+	}
+
 
 	
 	

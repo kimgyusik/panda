@@ -129,6 +129,37 @@
 		from Streaming
 		where st_no = #{stNo} and st_status = 'Y'
 	</select>
+	
+	<update id="pStopStream" parameterType="_int">
+		update product
+		set st_No=null
+		where p_id=#{pId}
+	</update>
+	
+	<update id="poStopStream" parameterType="_int">
+		update product_option
+		set st_price=null
+		where p_id=#{pId}
+	</update>
+	
+	<update id="deleteStreaming" parameterType="_int">
+		update streaming
+		set st_Status = 'N'
+		where st_no=#{stNo}
+	</update>
+	
+	<select id="getStNo" parameterType="_int" resultType="_int">
+		select st_no
+		from product
+		where p_id = #{pId}
+	</select>
+	
+	<select id="isStreaming" parameterType="_int" resultType="_int">
+		select count(*)
+		from streaming
+		where s_No = #{sNo} and st_status = 'Y'
+	</select>
+	
 	<!-- <select id="selectoList" resultMap="paymentsResultSet" parameterType="_int">
 		select pm.*, p.p_name, po.o_name, pa.pa_change_name, s.s_no
 		from payment pm

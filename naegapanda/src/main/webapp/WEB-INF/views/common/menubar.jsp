@@ -556,13 +556,16 @@
 						$('.cart_price').children().first().text("장바구니가 비었어요.");
 					}else{
 						$('.cart_count').children().first().text(data[0]);
-						$('.cart_price').children().first().text(data[1]+"원");
+						 var regexp = /\B(?=(\d{3})+(?!\d))/g;
+						 var cost = data[1].toString().replace(regexp, ',');
+					     $('.cart_price').children().first().text(cost+"원");
 					}
 				},
 				error:function(){
 					console.log("ajax 통신 실패");
 				}
 			});
+
 			
 			// 메인메뉴 찜하기 비동기 처리
 			$.ajax({

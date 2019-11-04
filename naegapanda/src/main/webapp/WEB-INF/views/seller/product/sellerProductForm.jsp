@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@
 								<th>가격</th>
 								<th>재고</th>
 								<th>판매개수</th>
-								<th>방송하기<th>
+								<th>방송하기</th>
 								<th>수정</th>
 								<th>삭제</th>
 							</tr>
@@ -157,7 +158,13 @@
 
 
 
-
+<script>
+	var msg = ${msg};
+	console.log(msg);
+	if(msg != null){
+		alert(msg);
+	}
+</script>
 
 
 
