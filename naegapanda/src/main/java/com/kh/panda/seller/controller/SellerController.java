@@ -693,7 +693,7 @@ public class SellerController {
 		// 해당 상품 리뷰 리스트
 		ArrayList<Review> reList = reService.selectProdReviewList(p.getpId());	
 		
-		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("product/pStreamingDetailView");;
+		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("redirect:/StreamingView.do?pId="+p.getpId());
 		
 		return mv;
 	}
