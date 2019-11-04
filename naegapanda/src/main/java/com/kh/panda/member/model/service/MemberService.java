@@ -34,11 +34,14 @@ public interface MemberService {
 	int pwdUpdate(Member mp);
 
 
+	/* int update_pwd(Member mp); */
 	
 	
 	/*
 	 * // 이메일도전 int emailConfirm(String sId);
 	 */
+	
+
 	
 	
 }
