@@ -71,7 +71,7 @@
 		select A.pay_id, A.o_no, r_id, o_name, C.p_id, A.price, A.p_status, pay_request, pay_date, A.count, DELIVERY_STATUS, p_name, storename, s_bphone, pa_Change_Name
 		from payment A, review B, PRODUCT_OPTION C, product D, seller E, product_attachment F
 		where A.pay_id = B.pay_id (+) and A.o_no = C.o_no and C.p_ID = D.p_id and D.s_no = E.s_no and D.p_id = F.p_id
-		and A.m_no = 3 and DELIVERY_STATUS = '배송완료' and  r_id is null and pa_file_level = 1
+		and A.m_no = #{mNo} and DELIVERY_STATUS = '배송완료' and  r_id is null and pa_file_level = 1
 	</select>
 	
 	<select id="selectReview" parameterType="_int" resultMap="reviewResultSet">

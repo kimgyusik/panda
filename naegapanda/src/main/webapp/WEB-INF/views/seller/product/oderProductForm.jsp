@@ -63,16 +63,24 @@
 										<td>${ o.price*o.count }</td>
 										<td><fmt:formatDate var="resultRegDt" value="${o.payDate}" pattern="yyyy-MM-dd"/>${resultRegDt}</td>
 										<td style="width:200px">${ o.deliverySpot }</td>
-										<td><select name="deliveryStatus">
-											<c:if test="${ o.deliveryStatus eq '배송전'}">
-												<option value="배송전">${ o.deliveryStatus }</option>
-												<option value="배송중">배송중</option>
+										<td>
+											<c:if test="${ o.deliveryStatus eq '배송완료'}">
+												${ o.deliveryStatus }
 											</c:if>
-											<c:if test="${ o.deliveryStatus ne '배송전'}">
-												<option value="배송중">${ o.deliveryStatus }</option>
-												<option value="배송전">배송전</option>
+												<c:if test="${ o.deliveryStatus ne '배송완료' }">
+													<select name="deliveryStatus">
+													
+													<c:if test="${ o.deliveryStatus eq '배송전'}">
+														<option value="배송전">${ o.deliveryStatus }</option>
+														<option value="배송중">배송중</option>
+													</c:if>
+													<c:if test="${ o.deliveryStatus eq '배송중'}">
+														<option value="배송중">${ o.deliveryStatus }</option>
+														<option value="배송전">배송전</option>
+												</c:if>
+											</select>
 											</c:if>
-										</select></td>
+										</td>
 										<td><input value="${ o.payId }" name="payId" style="width:20px; border:none"></td>
 										
 									</tr>
