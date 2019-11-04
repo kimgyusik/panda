@@ -101,7 +101,7 @@ button:hover {
 }
 </style>
 <body>
-<c:import url="../common/sellerMenubar.jsp"/>
+<c:import url="../common/menubar.jsp"/>
 
 
 <br><br><br>
