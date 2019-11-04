@@ -55,7 +55,7 @@
 										 		<c:if test="${!empty list}">
 											 		<c:forEach items="${ list }" var="p">	
 											 				
-												 		<tr class="contentsList" height="180px;">
+												 		<tr class="contentsList" height="230px;">
 												 		
 												 			<c:url value="pDetailView.do" var="product">
 																<c:param name="pId" value="${p.pId }"/>
@@ -68,26 +68,20 @@
 												 			</td>
 												 			
 												 			<td width="1000px;" style="text-align: left;">
-												 				<span style="color:gray;">구매일자: &nbsp; <fmt:formatDate value="${p.payDate}" pattern="yyyy. MM. dd" /></span><br><br>
+												 			
+												 				<span class="deliveryStatus"> ${p.deliveryStatus } </span>
+												 				<br><br>
 												 				[&nbsp;&nbsp;${p.cName2}&nbsp;&nbsp;>&nbsp;&nbsp;${p.cName}&nbsp;&nbsp;]<br>
 												 				<span style="display: inline-block;font-size: 14px; height:20px;">
 												 					<a  href="${ product }"><b>${p.pName} &nbsp;&nbsp;::&nbsp;&nbsp; ${p.oName }</b></a> &nbsp;&nbsp;x ${p.count}개
-												 				</span><br><br>
-												 				<span class="deliveryStatus">
+												 				</span>
+												 				<p style="color:black">구매가:&nbsp;&nbsp;<fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice}" /> 원</p>
+												 				<span class="deliveryInfo">
 												 					${p.recipient} &nbsp;&nbsp;l&nbsp;&nbsp; ${p.recipientPhone}<br>
 												 					${p.deliverySpot}
 												 				</span>
-												 				<div class="deliveryStatus">
-													 				<c:if test="${p.deliveryStatus eq '배송전'}">
-														 				<span>배송전</span>
-														 			</c:if>
-														 			<c:if test="${p.deliveryStatus eq '배송중'}">
-															 			<span>배송중</span>
-														 			</c:if>
-														 			<c:if test="${p.deliveryStatus eq '배송완료'}">
-														 				<span>배송완료</span>
-														 			</c:if>
-													 			</div>
+												 				<br><br>
+												 				<span style="color:gray;">구매일자: &nbsp; <fmt:formatDate value="${p.payDate}" pattern="yyyy. MM. dd" /></span>
 													 			
 												 			</td>
 												 			

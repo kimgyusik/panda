@@ -31,7 +31,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <div id="content">
-            <div class="container-fluid">
+            <div class="container-fluid" >
 
                 <!-- Page Heading -->
                 <!-- <h4 class="font-weight-bold">How to use</h4>
@@ -78,17 +78,19 @@
 	                                    class="btn btn-primary btn-user btn-block text-center">
 	                                        방송시작하기
 	                                    </a>
+	                                    <input type="hidden" value="${loginSeller.sNo }" id="sNo">
                                     	</c:if>
-                                    	 </c:if>
-                                    	 <c:if test="${empty loginSeller or empty loginMember}">
+                                    </c:if>
+                                   	 <c:if test="${empty loginSeller or empty loginMember}">
                                     	 <div style="display:none">
 	                                    <a id="channelBtn" href="#"
 	                                    class="btn btn-primary btn-user btn-block text-center">
 	                                        방송시작하기
 	                                    </a>
+	                                    <input type="hidden" value="0" id="sNo">
 	                                    </div>
                                    
-                                    </c:if>
+                                   	</c:if>
                                 </main>
                             </div>
                         </div>
@@ -107,6 +109,8 @@
             var sNo = -1;
             var flag = 0;
             var psNo = ${p.sNo};
+            var seller = $('#sNo').val();
+            
 const channelBtnEl = document.querySelector('#channelBtn');
 const channelList = document.getElementById("lvChannel");
 const channelNameInput = document.getElementById("channelNameInput");
@@ -151,6 +155,14 @@ const listener = {
         isConnected = false;
         myChannelId = "";
         setViewsViaParameters(false, 'hidden', 'CREATE', 'visible');
+        if(seller != 0){
+            alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
+           location.href="stopStreaming.do?pId="+pId; 
+        } else{
+        	alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
+            location.href="home.do";
+        }
+        
     },
     onError(error) {
         console.log(`EVENT FIRED: onError: ${error}`);
@@ -166,8 +178,9 @@ function setViewsViaParameters(runWaitLoop, waitingTvVisibility, btnText, inputV
         clearInterval(waitingLoop);
     }
     waitingTv.style.visibility = waitingTvVisibility;
-    channelBtnEl.innerHTML = pId;
+    channelBtnEl.innerHTML = "종료하기";
     channelNameInput.style.visibility = inputVisiblility;
+    
 }
 function start(isViewer) {
     if (isConnected) {
@@ -176,6 +189,7 @@ function start(isViewer) {
         setViewsViaParameters(false, 'hidden', 'CREATE', 'visible');
         remon.close();
         myChannelId = "";
+        
     } else {
         isConnected = true;
         isCaster = !isViewer;
@@ -187,6 +201,7 @@ function start(isViewer) {
         myChannelId = channelNameInput.value ? channelNameInput.value : getRandomId();
         channelNameInput.value = "";
         isCaster? remon.createCast(myChannelId): remon.joinCast(myChannelId);
+       
     }
 }
 function getRandomId() {
@@ -257,12 +272,13 @@ function startSearchLoop() {
 function test(){
 	 channelNameInput.value = pId;
      start(true);
-       evt.preventDefault();  
+       /* evt.preventDefault(); */  
 }
 $(function(){
-	
-	setTimeout(test, 1000);
-	console.log(pId);
+	if(seller == 0){
+		setTimeout(test, 1000);
+		console.log(pId);
+	}
 })
             </script>
         </div>

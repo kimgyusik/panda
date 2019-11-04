@@ -21,8 +21,8 @@
 
 </head>
 <body>
-<div>
-<div id="data" style="width:200px;height:300px;border:1px solid blue;">
+<div  style="width:200px;height:500px;">
+<div id="data" style="width:200px;height:500px;border:1px solid blue;overflow:auto;">
 
 
 </div>
@@ -99,6 +99,7 @@ function onMessage(evt) {
   
     $("#data").append(data + "<br/>");
     /* document.body.scrollIntoView(false); */   // 스크롤을 제일 아래로
+    $("#data").scrollTop($("#data")[0].scrollHeight);
     //sock.close();
 
 }

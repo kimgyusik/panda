@@ -25,8 +25,8 @@
 	<div class="super_container"> 
 	<!-- Single Product -->
 		
-		<div class="single_product" style="padding-top:0px;">
-			
+		<div class="single_product" style="padding:0px;">
+			<br><br>
 			<div class="container">
 				<div class="row">
 					<!-- Images -->
@@ -46,18 +46,19 @@
 					<!-- Description -->
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
-							<div class="product_category">${p.cId }</div>
-							<div class="product_name">${ p.pName }
-									<c:if test="${ !empty loginUser }">  
-								<form action="violateinsert.do">
-									<input type="hidden" id="pId" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">신고하기</button>
-								</form>
-									</c:if>	
+							
+							<div class="product_category">
+								상품번호:&nbsp;&nbsp; ${p.pId }
 							</div>
+							<div class="product_name">
+								${ p.pName }
+							</div><br>
+							<div class="mainPrice"></div>
+							
+							<br>
+							
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
-								<form action="#">
 									<div class="clearfix" style="z-index: 1000;">	
 										<!-- Product Quantity -->
 										<!-- <div class="product_quantity clearfix">
@@ -70,74 +71,132 @@
 										</div> -->
 	
 										<!-- Product option -->
-										<div>
-											<table style="text-align:center;border:solid 2px blue">
-												<tr>
-													<th style="margin:10px;">옵션번호</th>
-													<th style="margin:10px;">옵션명</th>
-													<th style="margin:10px;">옵션가격</th>
-													<th style="margin:10px;">남은갯수</th>
-													<th style="margin:10px;">선택</th>
+										<div class="prodOptionDiv">
+											<table class="prodTable">
+												<tr style="height:50px;">
+													<th >옵션번호</th>
+													<th>옵션명</th>
+													<th>옵션가격</th>
+													<th>남은갯수</th>
+													<th></th>
 												</tr>
 											<c:forEach items="${poList }" var="po">
 												<tr>
-													<td style="margin:10px;">${po.oNo }</td>
-													<td style="margin:10px;">${po.oName }</td>
-													<td style="margin:10px;">${po.oPrice }</td>
-													<td style="margin:10px;">${po.oAmount }</td>
-													<td style="margin:10px;"><button type="button" onclick="addOp()">선택</button></td>
+													<td class="oNo" width="15%">${po.oNo }</td>
+													<td class="oName">${po.oName }</td>
+													<td width="20%">
+														<input class="oPrice" type="hidden" value="${po.oPrice}">
+														<fmt:formatNumber type="number" maxFractionDigits="3" value="${po.oPrice}" /> 원
+													</td>
+													<td class="oAmount" width="15%">${po.oAmount }</td>
+													<td  width="10%">
+														<button type="button" class="choiceOption" >선택</button>
+													</td>
 												</tr>
 											</c:forEach>
 											</table>
 										</div>
 									</div>
 									
-									<div id="chooseProduct">
-										<table id="chooseOp">
-										
-										</table>
-									</div>
+									
 									<script>
-									 	function addOp(){
+									$(function(){
+										
+										// 옵션 추가 처리
+										$('.choiceOption').click(function(){
+											
+											var $tb = $("#chooseOp");
+											var option = $(this).parent().parent();
+											
+											var oNo = option.find('.oNo').text();
+											
+											if($("#"+oNo).length<=0){
+													
+										 		var $tr = $("<tr id='"+oNo+"' height='50px'>");
+										 		var $oName = $("<td width='40%'>").text(option.find('.oName').text());
+										 		var $oPrice = $("<td width='25%'>" +
+										 							"<input class='oNo2' name='oNo' type='hidden' value='"+oNo+"'>" +
+										 							"<input type='hidden' value='"+option.find('.oPrice').val()+"'>" +
+										 							"<span>" + addComma(option.find('.oPrice').val())+"</span> 원</td>");
+										 		var max = option.find('.oAmount').text();
+										 		var $amount = $("<td width='20%'><input class='onlyNum' name='amount' type='number' value='1' min='1' max='"+max+"'></td>");
+										 		var $delete = $("<td width='15%'><div  class='optionCancle' onclick='deleteOp(this);'>x</div></td>");
+										 		
+										 		$tr.append($oName);
+										 		$tr.append($oPrice);
+										 		$tr.append($amount);
+										 		$tr.append($delete);
+										 		$tb.append($tr);
 									 		
-									 		var $tb = $("#chooseOp");
-									 		var max = $(this).parent().parent().children().eq(3).val();
-									 		var $tr = $("<tr>");
-									 		var $oNo = $("<td>").text($(this).parent().parent().children().eq(0).val());
-									 		var $oName = $("<td>").text($(this).parent().parent().children().eq(1).val());
-									 		var $oPrice = $("<td>").text($(this).parent().parent().children().eq(2).val());
-									 		var $amount = "<input type='number' min='1' max='"+max+"'>";
-									 		var $delete = "<button type='button' onclick='deleteOp();'>삭제</button>";
-									 		
-									 		$tr.append($tr);
-									 		$tr.append($oNo);
-									 		$tr.append($oName);
-									 		$tr.append($oPrice);
-									 		$tr.append($amount);
-									 		$tr.append($delete);
-									 		$tb.append($tr);
-									 	}
+											}else{
+												alert('이미 선택한 옵션입니다.');
+												return false;
+											}
+										});
+										
+										// 옵션 수량 변경 시 처리
+										$(document).on("keyup change",".onlyNum",function(){
+											
+											this.value=this.value.replace(/[^1-9]/g,'');
+											
+											var price = $(this).parent().prev().children().eq(1).val();
+											var amount = $(this).val();
+											var cost = addComma(price*amount)
+											console.log(price);
+											console.log(amount);
+											$(this).parent().prev().children().eq(2).text(cost);
+										});
+
+									})
+
+									// 옵셕 제외 처리
+									function deleteOp(a){
+										a.parentNode.parentNode.remove();
+									}
 									
+									// 신고
+									function violateinsert(pId){
+										location.href='<%=request.getContextPath()%>/violateinsert.do?pId='+pId;
+									}
 									</script>
-									
-	
-									<div class="button_container">
-										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
-										<button type="button" class="button cart_button" onclick="addCart(${loginUser.mNo});">장바구니로</button>
-										<button type="button" class="button cart_button" onclick="addGgim(${loginUser.mNo}) ;">찜하기</button> 
-										<div class="product_fav"><i class="fas fa-heart"></i></div>
-									</div>
-									
-								</form>
+
 							</div>
+							<br><br>
+							<div id="chooseProduct">
+								<table id="chooseOp">
+									
+								</table>
+							</div>
+							<br><br>
+							
+							<div style="text-align: right">
+								<button type="button" class="cart_button" onclick="addCart(${loginUser.mNo});">
+									<img width="20px;"src="resources/images/cart2.jpg" >장바구니
+								</button>
+								
+								<button type="button" class="cart_button" onclick="addGgim(${loginUser.mNo}) ;">
+									<img width="20px;"src="resources/images/heart2.png" >찜하기
+								</button> 
+								<c:if test="${ !empty loginUser }">  
+									
+										<input type="hidden" id="pId" name="pId" value="${ p.pId }">
+										<button type="submit" class="cart_button" onclick="violateinsert(${ p.pId })">신고하기</button>
+									
+								</c:if>	
+							</div>
+							
 						</div>
+						
 						<br>
 								
 					</div>
 					
+	
 				</div>
 			</div>
 		</div>
+		
+		<br><br><br><br><br>
 		<div >
 			<div class="container">
 				<div class="row">

@@ -34,7 +34,7 @@
 				<div class="col-lg-9">
 					<div class="shop_content">
 					<form action="delStatus.do" >
-							<table style="width:1000px; margin-top:30px">
+							<table style="width:1200px; margin-top:30px">
 								<tr style="background-color:#0e8ce4; color:white; height:50px" align=center>
 									<th>사진</th>
 									<th>이름</th>
@@ -58,21 +58,29 @@
 										<td><img src="resources/product_uploadFiles/${o.paChangeName}" style="width:100px; height:100px;"></td> 
 										<td style="width:200px">${ o.pName }</td>
 										<td>${ o.oName }</td>
-										<td>${ o.recipient }</td>
+										<td style="width:100px">${ o.recipient }</td>
 										<td>${ o.count }</td>
 										<td>${ o.price*o.count }</td>
 										<td><fmt:formatDate var="resultRegDt" value="${o.payDate}" pattern="yyyy-MM-dd"/>${resultRegDt}</td>
 										<td style="width:200px">${ o.deliverySpot }</td>
-										<td><select name="deliveryStatus">
-											<c:if test="${ o.deliveryStatus eq '배송전'}">
-												<option value="배송전">${ o.deliveryStatus }</option>
-												<option value="배송중">배송중</option>
+										<td>
+											<c:if test="${ o.deliveryStatus eq '배송완료'}">
+												${ o.deliveryStatus }
 											</c:if>
-											<c:if test="${ o.deliveryStatus ne '배송전'}">
-												<option value="배송중">${ o.deliveryStatus }</option>
-												<option value="배송전">배송전</option>
+												<c:if test="${ o.deliveryStatus ne '배송완료' }">
+													<select name="deliveryStatus">
+													
+													<c:if test="${ o.deliveryStatus eq '배송전'}">
+														<option value="배송전">${ o.deliveryStatus }</option>
+														<option value="배송중">배송중</option>
+													</c:if>
+													<c:if test="${ o.deliveryStatus eq '배송중'}">
+														<option value="배송중">${ o.deliveryStatus }</option>
+														<option value="배송전">배송전</option>
+												</c:if>
+											</select>
 											</c:if>
-										</select></td>
+										</td>
 										<td><input value="${ o.payId }" name="payId" style="width:20px; border:none"></td>
 										
 									</tr>

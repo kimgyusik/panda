@@ -8,6 +8,7 @@
 		<result property="pId" column="p_id"/>
 		<result property="oNo" column="o_no"/>
 		<result property="oName" column="o_name"/>
+		<result property="pPrice" column="price"/>
 		<result property="oPrice" column="o_price"/>
 		<result property="oStatus" column="o_status"/>
 		<result property="pStatus" column="p_status"/>
@@ -31,7 +32,7 @@
 	</resultMap>
 
 	<select id="myPaymentList" parameterType="_int" resultMap="paymentResultSet">
-		select pay_id, m_no, p_id, o_no, o_name, o_price, o_status, delivery_spot, pay_request, pay_date, count, delivery_status
+		select pay_id, m_no, p_id, o_no, price, o_name, o_price, o_status, delivery_spot, pay_request, pay_date, count, delivery_status
 		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, storename, s_baddress, s_bphone, pa_Change_Name
 		from payment
 		join PRODUCT_OPTION using(o_no)

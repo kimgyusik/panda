@@ -157,7 +157,7 @@ public class SellerController {
 	public String loginSeller(Seller s, Model model) {
 
 		Seller loginSeller = sService.loginSeller(s);
-		
+		System.out.println(loginSeller);
 		/*
 		 * System.out.println(loginSeller); System.out.println(s);
 		 */
@@ -176,6 +176,12 @@ public class SellerController {
 		 *
 		 */
 		
+		if(loginSeller == null) {
+			model.addAttribute("msg", "등록되지 않은 아이디 입니다.");
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
+		}
+		
 		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd()) &&loginSeller.getsEmailKey().contentEquals("Y")  && loginSeller.getsStatus().equals("Y")) {
 
 			model.addAttribute("loginSeller", loginSeller);
@@ -192,7 +198,7 @@ public class SellerController {
 			return "common/errorAlert";
 
 		} else {
-			model.addAttribute("msg", "아이디 혹은 비밀번호가 틀립니다.");
+			model.addAttribute("msg", "비밀번호가 틀립니다.");
 			model.addAttribute("url", "sellerLogin.do");
 			return "common/errorAlert";
 		}
@@ -223,7 +229,7 @@ public class SellerController {
 		int listCount = sService.getListCount(((Seller) session.getAttribute("loginSeller")).getsNo());
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		System.out.println(pi);
+		
 		ArrayList<ProductOption> list = sService.selectList(pi,
 				((Seller) session.getAttribute("loginSeller")).getsNo());
 		mv.addObject("list", list).addObject("pi",pi).setViewName("seller/product/sellerProductForm");
@@ -250,9 +256,7 @@ public class SellerController {
 		int oListCount = sService.oListCount(((Seller) session.getAttribute("loginSeller")).getsNo());
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, oListCount);
-		System.out.println(pi);
 		ArrayList<Payment> oList = sService.selectoList(pi, ((Seller) session.getAttribute("loginSeller")).getsNo());
-		System.out.println(oList);
 		mv.addObject("oList", oList).addObject("pi", pi).setViewName("seller/product/oderProductForm");
 		
 		return mv;
@@ -645,8 +649,15 @@ public class SellerController {
 		return mv;
 	}
 	
-	@RequestMapping(value="pStreamingView.do")
-	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping(value="pStreamingView.do", method=RequestMethod.GET)
+	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId,HttpSession session, ModelAndView mv, HttpServletRequest request) {
+		int s = sService.isStreaming(((Seller) session.getAttribute("loginSeller")).getsNo());
+		
+		if(s > 0) {
+			mv.setViewName("redirect:/sProduct.do");
+			return mv;
+		}
+		
 		Product p = sService.selectProduct(pId);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
@@ -655,6 +666,7 @@ public class SellerController {
 		
 		return mv;
 	}
+	
 	
 	@RequestMapping(value = "pStreaming.do", method = RequestMethod.POST)
 	public ModelAndView insertStreaming(Product p, HttpSession session, Model model, ModelAndView mv, @RequestParam("oNo") int[] oNo,
@@ -681,13 +693,15 @@ public class SellerController {
 		// 해당 상품 리뷰 리스트
 		ArrayList<Review> reList = reService.selectProdReviewList(p.getpId());	
 		
-		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("product/pStreamingDetailView");;
+		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("redirect:/StreamingView.do?pId="+p.getpId());
 		
 		return mv;
 	}
 	
 	@RequestMapping(value = "StreamingView.do", method = RequestMethod.GET)
 	public ModelAndView StreamingView(@RequestParam("pId") int pId, HttpSession session,  ModelAndView mv) {
+		
+		
 		Product p = sService.selectProduct(pId);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
@@ -700,6 +714,21 @@ public class SellerController {
 		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("product/pStreamingDetailView");;
 		
 		return mv;
+		
+	}
+	
+	@RequestMapping(value = "stopStreaming.do", method = RequestMethod.GET)
+	public String stopStreaming(@RequestParam("pId") int pId, HttpSession session,  ModelAndView mv) {
+		int stNo = sService.getStNo(pId);
+		
+		int result = sService.stopStreaming(pId, stNo);
+		
+		
+		if(result > 0) {
+			return "redirect:home.do";
+		} else {
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
@@ -715,7 +744,7 @@ public class SellerController {
 		
 		sendMail.setSubject("[PANDA 비밀번호 찾기]");
 		sendMail.setText(
-				new StringBuffer().append("<h1>메일인증</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
+				new StringBuffer().append("<h1>비밀번호찾기</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
@@ -731,20 +760,24 @@ public class SellerController {
 	
 	@RequestMapping("delStatus.do")
 	public String delUpdate(Payment pm, Model model, HttpServletRequest request) {
+		String[] a = request.getParameterValues("deliveryStatus");
+		String[] b = request.getParameterValues("payId");
 		
-		int result = sService.delUpdate(pm);
 		
-		if(result > 0) {
-			model.addAttribute(pm);
-			return "redirect:oderPage.do";
-		}else {
-			model.addAttribute("msg", "errorPage");
-			return "common/errorPage";
+		Payment p = null;
+		for(int i=0; i<a.length; i++) {
+			p = new Payment();
+			p.setPayId(Integer.parseInt(b[i]));
+			p.setDeliveryStatus(a[i]);
+			
+			sService.delUpdate(p);
 		}
+	
 		
 		
-		 
-		 
+		/* int result = sService.delUpdate(pm); */
+		
+			return "redirect:oderPage.do";
 		
 	}
 	
