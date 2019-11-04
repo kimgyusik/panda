@@ -53,7 +53,7 @@
 							<input type="hidden" >
 							<input type="hidden" name="mNo" value="${ loginUser.mNo }">
 
-							<div class="a">
+							<div class="mb-3">
 
 								<label for="category">카테고리</label> 
 								<select id="cat" name="uqCategory">
