@@ -46,6 +46,10 @@ public class SviolateServiceImple implements SviolateService{
 	public int sellerDelete(int sNo) {
 		return svDao.sellerDelete(sNo);
 	}
+	@Override
+	public int sellerPermission(int sNo) {
+		return svDao.sellerPermission(sNo);
+	}
 
 	@Override
 	public int getAllListCount(SearchCondition sc) {

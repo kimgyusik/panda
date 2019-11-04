@@ -8,6 +8,7 @@
 		<result property="pId" column="p_id"/>
 		<result property="oNo" column="o_no"/>
 		<result property="oName" column="o_name"/>
+		<result property="pPrice" column="price"/>
 		<result property="oPrice" column="o_price"/>
 		<result property="oStatus" column="o_status"/>
 		<result property="pStatus" column="p_status"/>
@@ -27,17 +28,20 @@
 		<result property="storeName" column="storename"/>
 		<result property="sBaddress" column="s_baddress"/>
 		<result property="sBphone" column="s_bphone"/>
+		<result property="paChangeName" column="pa_change_name"/>
 	</resultMap>
 
 	<select id="myPaymentList" parameterType="_int" resultMap="paymentResultSet">
-		select pay_id, m_no, p_id, o_no, o_name, o_price, o_status, delivery_spot, pay_request, pay_date, count, delivery_status
-		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, storename, s_baddress, s_bphone
+		select pay_id, m_no, p_id, o_no, price, o_name, o_price, o_status, delivery_spot, pay_request, pay_date, count, delivery_status
+		, recipient, recipient_phone, p_name, p_content, c_id, c_name, c_name2, s_no, storename, s_baddress, s_bphone, pa_Change_Name
 		from payment
 		join PRODUCT_OPTION using(o_no)
 		join product using(p_id)
+		join product_attachment using(p_id)
 		join category using(c_id)
 		join seller using(s_no)
-		where m_no = #{mNo} 
+		where m_no = #{mNo}  and pa_file_level = 1
+		order by pay_date desc
 	</select>
 	
 	<insert id="addPayment" parameterType="Payment">
@@ -47,7 +51,7 @@
 	
 	<update id="fixPayment" parameterType="_int">
 		update payment
-		set DELIVERY_STATUS = '구매확정'
+		set DELIVERY_STATUS = '배송완료'
 		where pay_id = #{payId}
 	</update>
 	
@@ -60,6 +64,12 @@
 		left join seller s on s.s_no = p.s_no
 		where pa.pa_file_level = 1 and s.s_no=#{sNo}
 	</select>
+	
+	<update id="delUpdate" parameterType="Payment">
+		update payment
+		set delivery_status = #{deliveryStatus}
+		where pay_id=#{payId}
+	</update>
 	
 </mapper>
 	

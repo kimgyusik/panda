@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA</title>
 <meta charset="EUC-KR">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,7 +97,7 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span>${pi.listCount }</span> products found</div>
+							<div class="shop_product_count"><span>${ pi.listCount }</span> products found</div>
 							<div class="shop_sorting">
 								<span>Sort by:</span>
 								<ul>
@@ -115,10 +117,13 @@
 							<div class="product_grid_border"></div>
 
 							<!-- Product Item -->
-							<c:forEach items="${pList }" var="p" varStatus="status">
+							<c:forEach items="${ pList }" var="p" varStatus="status">
 							<div class="product_item" style="width:220px; height:230px; padding:10px;">
 								<c:if test="${status.count mod 4 != 0 }">
 									<div class="product_border"></div>
+								</c:if>
+								<c:if test="${status.count mod 4 == 0 }">
+									<div></div>
 								</c:if>
 								
 								<div class="product_image d-flex flex-column align-items-center justify-content-center" style="width:115px;">
@@ -126,7 +131,7 @@
 								</div>
 								<div class="product_content">
 									<input type="hidden" value="${p.pId }" class="pId">
-									<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }" /> ~</div>
+									<div class="product_price">￦ <fmt:formatNumber type="number" maxFractionDigits="3" value="${ p.pPrice }" /> ~</div>
 									<div class="product_name" style="height:42px;"><div>${p.pName }</div></div>
 								</div>
 								<c:if test="${!empty loginUser }">
@@ -175,39 +180,83 @@
 									<c:if test="${pi.currentPage eq 1}">
 										[처음으로]
 									</c:if>
-									<c:if test="${pi.currentPage ne 1}">
-										<c:url value="pListView.do" var="first">
-											<c:param name="currentPage" value="1"/>
-											<c:param name="category" value="${category }"/>
-										</c:url>
-										<a href="${first }">[처음으로]</a>&nbsp;
-									</c:if>
+									
+										<c:if test="${pi.currentPage ne 1}">
+											<c:if test="${ !empty keyword }">
+												<c:url value="search.do" var="first">
+													<c:param name="currentPage" value="1"/>
+													<c:param name="category" value="${ category }"/>
+													<c:param name="keyword" value="${ keyword }"/>
+												</c:url>
+												<a href="${ first }">[처음으로 ]</a>&nbsp;
+											</c:if>
+											<c:if test="${ empty keyword }">
+												<c:url value="pListView.do" var="first">
+													<c:param name="currentPage" value="1"/>
+													<c:param name="category" value="${ category }"/>
+												</c:url>
+												<a href="${first }">[처음으로]</a>&nbsp;
+											</c:if>
+										</c:if>
+									
 									<!-- 이전 -->
+									
+									
 									<c:if test="${pi.currentPage eq 1}">
 										[이전]
 									</c:if>
+									
 									<c:if test="${pi.currentPage ne 1}">
-										<c:url value="pListView.do" var="before">
-											<c:param name="currentPage" value="${pi.currentPage -1 }"/>
-											<c:param name="category" value="${category }"/>
-										</c:url>
-										<a href="${before }">[이전]</a>&nbsp;
+										<c:if test="${ !empty keyword }">
+											<c:if test="${ pi.currentPage > 1 }">
+												<c:url value="search.do" var="before">
+													<c:param name="currentPage" value="${ pi.currentPage-1 }"/>
+													<c:param name="category" value="${ category }"/>
+													<c:param name="keyword" value="${ keyword }"/>
+												</c:url>
+												<a href="${ before }">[이전 ]</a>
+											</c:if>
+										</c:if>
+									
+										<c:if test="${ empty keyword }">
+											<c:url value="pListView.do" var="before">
+												<c:param name="currentPage" value="${pi.currentPage -1 }"/>
+												<c:param name="category" value="${category }"/>
+											</c:url>
+											<a href="${before }">[이전]</a>&nbsp;
+										</c:if>
 									</c:if>
 									
 									<!-- 페이지 -->
-									<c:forEach begin="${pi.startPage }" end="${pi.endPage }" var="p">
-										<c:if test="${pi.currentPage eq p }">
-											<font color="red" size="4">[${p }]</font>
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<c:if test="${ pi.currentPage eq p }">
+											<font color="red" size="4">[${ p }]</font>
+										</c:if> 
+										
+										<c:if test="${ pi.currentPage ne p }">
+										
+											<c:if test="${ !empty keyword }">
+												<font color="black" size="4">
+													<c:url value="search.do" var="page">
+														<c:param name="currentPage" value="${ p }"/>
+														<c:param name="category" value="${ category }"/>
+														<c:param name="keyword" value="${ keyword }"/>
+													</c:url>
+													<a href="${ page }">${ p }</a>
+												</font>
+											</c:if>
+										
+											<c:if test="${ empty keyword }">
+												<font color="black" size="4">
+													<c:url value="pListView.do" var="page">
+														<c:param name="currentPage" value="${ p }"/>
+														<c:param name="category" value="${ category }"/>
+													</c:url>
+													<a href="${ page }">${ p }</a>
+												</font>
+											</c:if>
 										</c:if>
-										<c:if test="${pi.currentPage ne p }">
-											<font color="black" size="4">
-												<c:url value="pListView.do" var="page">
-													<c:param name="currentPage" value="${p }"/>
-													<c:param name="category" value="${category }"/>
-												</c:url>
-												<a href="${page }">${p }</a>
-											</font>
-										</c:if>
+									
 									</c:forEach>
 									
 									<!-- 다음 -->
@@ -215,21 +264,48 @@
 										[다음]
 									</c:if>
 									<c:if test="${pi.currentPage ne pi.maxPage}">
-										<c:url value="pListView.do" var="next">
-											<c:param name="currentPage" value="${pi.currentPage +1 }"/>
-											<c:param name="category" value="${category }"/>
-										</c:url>
-										<a href="${next }">[다음]&nbsp;</a>
+										<c:if test="${ !empty keyword }">
+											<c:url value="search.do" var="next">
+												<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+												<c:param name="category" value="${ category }"/>
+												<c:param name="keyword" value="${ keyword }"/>
+											</c:url>
+											<a href="${ next }">[다음]&nbsp;</a>
+										</c:if>
+										
+										<c:if test="${ empty keyword }">
+											<c:url value="pListView.do" var="next">
+												<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+												<c:param name="category" value="${category }"/>
+											</c:url>
+											<a href="${ next }">[다음]&nbsp;</a>
+										</c:if>
 									</c:if>
+									
+									
+									
+									
 									<c:if test="${pi.currentPage eq pi.maxPage}">
 										[끝으로]
 									</c:if>
 									<c:if test="${pi.currentPage ne pi.maxPage}">
-									<c:url value="pListView.do" var="last">
-										<c:param name="currentPage" value="${pi.maxPage }"/>
-										<c:param name="category" value="${category }"/>
-									</c:url>
-									<a href="${last }">[끝으로]&nbsp;</a>
+									
+										<c:if test="${ !empty keyword }">
+											<c:url value="search.do" var="last">
+												<c:param name="currentPage" value="${pi.maxPage }"/>
+												<c:param name="category" value="${ category }"/>
+												<c:param name="keyword" value="${ keyword }"/>
+											</c:url>
+											<a href="${ last }">[끝으로]&nbsp;</a>
+										</c:if>
+									
+										<c:if test="${ empty keyword }">
+											<c:url value="pListView.do" var="last">
+												<c:param name="currentPage" value="${pi.maxPage }"/>
+												<c:param name="category" value="${ category }"/>
+											</c:url>
+											<a href="${ last }">[끝으로]&nbsp;</a>
+										</c:if>
 									</c:if>
 								</td>
 							</tr>
@@ -242,157 +318,21 @@
 		</div>
 	</div>
 
-	<!-- Recently Viewed -->
-
-	<div class="viewed">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="viewed_title_container">
-						<h3 class="viewed_title">Recently Viewed</h3>
-						<div class="viewed_nav_container">
-							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
-							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
-						</div>
-					</div>
-
-					<div class="viewed_slider_container">
-						
-						<!-- Recently Viewed Slider -->
-
-						<div class="owl-carousel owl-theme viewed_slider">
-							
-							<!-- Recently Viewed Item -->
-							<div class="owl-item">
-								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="resources/images/view_1.jpg" alt=""></div>
-									<div class="viewed_content text-center">
-										<div class="viewed_price">$225<span>$300</span></div>
-										<div class="viewed_name"><a href="#">Beoplay H7</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">-25%</li>
-										<li class="item_mark item_new">new</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Recently Viewed Item -->
-							<div class="owl-item">
-								<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="resources/images/view_2.jpg" alt=""></div>
-									<div class="viewed_content text-center">
-										<div class="viewed_price">$379</div>
-										<div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">-25%</li>
-										<li class="item_mark item_new">new</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Recently Viewed Item -->
-							<div class="owl-item">
-								<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="resources/images/view_3.jpg" alt=""></div>
-									<div class="viewed_content text-center">
-										<div class="viewed_price">$225</div>
-										<div class="viewed_name"><a href="#">Samsung J730F...</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">-25%</li>
-										<li class="item_mark item_new">new</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Recently Viewed Item -->
-							<div class="owl-item">
-								<div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="resources/images/view_4.jpg" alt=""></div>
-									<div class="viewed_content text-center">
-										<div class="viewed_price">$379</div>
-										<div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">-25%</li>
-										<li class="item_mark item_new">new</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Recently Viewed Item -->
-							<div class="owl-item">
-								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="resources/images/view_5.jpg" alt=""></div>
-									<div class="viewed_content text-center">
-										<div class="viewed_price">$225<span>$300</span></div>
-										<div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">-25%</li>
-										<li class="item_mark item_new">new</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Recently Viewed Item -->
-							<div class="owl-item">
-								<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="resources/images/view_6.jpg" alt=""></div>
-									<div class="viewed_content text-center">
-										<div class="viewed_price">$375</div>
-										<div class="viewed_name"><a href="#">Speedlink...</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">-25%</li>
-										<li class="item_mark item_new">new</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<c:import url="../common/footer.jsp"/>
 
 
-	<!-- Copyright -->
-
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
-						<div class="logos ml-sm-auto">
-							<ul class="logos_list">
-								<li><a href="#"><img src="resources/images/logos_1.png" alt=""></a></li>
-								<li><a href="#"><img src="resources/images/logos_2.png" alt=""></a></li>
-								<li><a href="#"><img src="resources/images/logos_3.png" alt=""></a></li>
-								<li><a href="#"><img src="resources/images/logos_4.png" alt=""></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 </div>
 
 <script>
 	$(function(){
 		
+		
+		
 		// 찜 토글 처리
 		$(".favPid").off().on("click", function(e){
 			e.stopImmediatePropagation();
+			
 			var flag = 0;
 			if($(this).hasClass("active") == true) {
 				flag = 1; // class 변경 처리가 더 빠르므로, 이 분기가 찜 추가하는 케이스임
@@ -400,7 +340,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				flag = 0; // 찜 삭제
 			}
 			var pId = $(this).parent().find('.pId').val();
-
+			
 			$.ajax({
 				url:"changeGgim.gg",
 				data:{pId:pId, flag:flag},
@@ -444,6 +384,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="resources/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="resources/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="resources/js/shop_custom.js"></script>
-
 </body>
 </html>

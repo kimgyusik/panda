@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:아이디/비밀번호 찾기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="resources/js/jquery-3.3.1.min.js"></script>
@@ -16,17 +17,15 @@
 	
 	#idForm{
 		display:inline-block;
-		width:250px;
-		height:300px;
-		border:1px solid lightgray;
+		width:270px;
+		height:155px;
 		margin-top:50px;
 	}
 	
 	#pwdForm{
 		display:inline-block;
-		width:250px;
-		height:300px;
-		border:1px solid lightgray;
+		width:270px;
+		height:155px;
 	}
 	#h{
 		margin-top:30px;
@@ -36,7 +35,7 @@
 	
 </style>
 <body>
-	<c:import url="../common/sellerMenubar.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
 	
 		<div class="outer" align="center">
 			<div id="h"><h2>아이디/비밀번호 찾기</h2></div>
@@ -45,10 +44,10 @@
 				<form action="findsId.do" method="post">
 					<div class="outer">
 						<h3>아이디 찾기</h3>
-						<input type="text" id="sName" name="sName" placeholder="이름을 입력해주세요" required>
-						<input type="email" id="sEmail" name="sEmail" placeholder="이메일을 입력해주세요" required>
+						<input type="text" id="sName" name="sName" class="form-control" placeholder="이름을 입력해주세요" required>
+						<input type="email" id="sEmail" name="sEmail" class="form-control" placeholder="이메일을 입력해주세요" required>
 					</div>
-					<button type="submit" id="findsId">아이디찾기</button>
+					<button type="submit" class="btn btn-primary" id="findsId" style="margin-top:10px">아이디찾기</button>
 					
 					<span id="sIdLists"></span>
 				</form>
@@ -57,9 +56,9 @@
 			<div id="pwdForm">
 				<form action="findsPwd.do" method="post">
 					<h3>비밀번호 찾기</h3>
-					<input type="text" name="sId" id="sId" placeholder="아이디를 입력해주세요" required>
-					<input type="email" name="sEmail" id="ssEmail" placeholder="이메일을 입력해주세요" required>
-					<button type="submit" id="findsPwd">비밀번호 찾기</button>		
+					<input type="text" name="sId" id="sId" class="form-control" placeholder="아이디를 입력해주세요" required>
+					<input type="email" name="sEmail" id="ssEmail" class="form-control" placeholder="이메일을 입력해주세요" required>
+					<button type="submit" class="btn btn-primary" id="findsPwd" style="margin-top:10px">비밀번호 찾기</button>		
 				</form>	
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br><br>

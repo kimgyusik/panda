@@ -428,6 +428,7 @@ $(document).ready(function()
 			$(this).find('.reviewImg').css('display','inline-table');
 			$(this).next().css('display','none');
 			$(this).removeClass('more');
+			$(this).next().find('.inputReply').val("");
 		}
 	});
 	
@@ -474,6 +475,7 @@ $(document).ready(function()
 		var rId =$(this).parent().parent().parent().children().eq(0).children().eq(0).val();
 		var rrContents = $(this).prev().val();
 		var mNo = $(this).parent().parent().parent().children().eq(0).children().eq(1).val();
+		var inputReply = $(this).prev();
 		
 		$.ajax({
 			url:"addReply.re",
@@ -482,6 +484,7 @@ $(document).ready(function()
 			success:function(data){
 				if(data == "success"){
 					getReplyList(rId, mNo)
+					inputReply.val("");
 				}else{
 					alert("처리실패");
 				}
@@ -493,7 +496,171 @@ $(document).ready(function()
 		
 	});
 	
+	
+	// 상품 문의 처리
+	$('.inquiryTr2').hide();
+	$('.inquiryTr3').hide();
+	$('.inquiryTr1').on("click", function(){
+		
+		var loginSeller = $(this).find('.sNo').val();
+		var loginUser =  $(this).find('.mNo').val();
+		var openYn = $(this).find('.openYn').val();
+		var imNo = $(this).find('.imNo').val();
+		var isNo = $(this).find('.isNo').val();
+		var iState = $(this).find('.iState').val();
+		
+		if($(this).hasClass('more')){ // 닫기
+			$(this).removeClass('more');
+			$(this).next().next().find('.addAnswer').val("");
+			$(this).next().hide();
+			$(this).next().next().hide();
+			
+		}else{ // 열기
+			if(openYn == 'Y' || loginSeller == isNo || loginUser == imNo){ // 공개중이거나 판매자거나 본인만 보임
+				$(this).addClass('more');
+				$(this).next().show();
+				if(iState == 'Y' || loginSeller == isNo){ // 미답변 상태일 시 판매자만 보임
+					$(this).next().next().show();
+				}
+			}else{
+				alert('비공개 문의내역은 작성자 본인만 확인하실 수 있습니다.');
+			}
+		}
+	});
+	
+	// 문의답변 엔터키 이벤트
+	$(".addAnswer").keypress(function (e) {
+        if (e.which == 13){
+        	var id = $(this).next().attr('id');
+        	addInq(id);
+        }
+    });
+	
+	// 댓글 작성 엔터키 이벤트
+	$(".inputReply").keypress(function (e) {
+        if (e.which == 13){
+        	$(this).next().trigger("click");
+        }
+    });
+	
+	// 회원 아닐 시 문의 작성 못 함
+	$('#addInqDisable').click(function(){
+		alert('일반회원으로 로그인 이후 이용 가능합니다.');
+	});
+	
+	// 문의 작성 모달창 호출
+	$('#addInq').click(function(){
+		var pId = $(this).prev().val();
+		$("#pIdInq").val(pId);
+		$("#myModal").modal('show');
+	});
+	
+	// 문의내용 글자 수 제한
+	 $('#content').on('keyup', function() {
+        if($(this).val().length > 500) {
+            $(this).val($(this).val().substring(0, 500));
+        }
+		$('#contentLabel').html($(this).val().length+"/500");
+    });
+	 
+	// 모달 종료 시 input-area 초기화
+	$("#myModal").on('hide.bs.modal', function(e){
+		$('#title').val('');
+		$('#content').val('');
+		$('#openYn').prop('checked', true);
+		e.stopImmediatePropagation();
+	});
+	
+	// 모달창 제출
+	$('#submit').click(function (e) {
+		event.stopPropagation();
+		$('#submit').click();
+	});
+	
+	// 메인 금액 넘기기
+	var arr = new Array();
+	$(".oPrice").each(function(){
+		arr.push($(this).val());
+	});
+	
+	var min = Math.min.apply(null, arr);
+	$('.mainPrice').append('<span>'+addComma(min)+' 원 ~</span>');
+
+
 });
+
+
+
+
+
+
+
+// 문의 답변 등록
+function addInq(id){
+
+	var addInq = $('#'+id);
+	var addAnswer = addInq.parent().find('.addAnswer');
+	var iId = addInq.parent().find('#iId').val();
+	
+	$.ajax({
+		url:"answerInquiry.in",
+		data:{iId:iId, iAnswer:addAnswer.val()},
+		type:"post",
+		success:function(data){
+			if(data == "success"){
+				addInq.after("<span id='d"+iId+"' class='deleteInq' onclick='deleteInq(this.id);'>삭제</span>");
+				addInq.after("<span class='iAnswer'>"+addAnswer.val()+"</span>");
+				addInq.parent().parent().parent().prev().prev().find('.answerYn').html("답변완료");
+				
+				addInq.remove();
+				addAnswer.remove();
+			}else{
+				alert("처리실패");
+			}
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+}
+
+// 문의 답변 삭제
+function deleteInq(id){
+
+	var deleteInq = $('#'+id);
+	var iAnswer = deleteInq.parent().find('.iAnswer');
+	var iId = deleteInq.parent().find('#iId').val();
+	
+	$.ajax({
+		url:"deleteAnswerInquiry.in",
+		data:{iId:iId},
+		type:"post",
+		success:function(data){
+			if(data == "success"){
+				deleteInq.after("<span id='a"+iId+"' class='addInq' onclick='addInq(this.id);'>등록</span>");
+				deleteInq.after("<input type='text' class='addAnswer' >");
+				deleteInq.parent().parent().parent().prev().prev().find('.answerYn').html("미답변");
+				
+				deleteInq.remove();
+				iAnswer.remove();
+			}else{
+				alert("처리실패");
+			}
+		},
+		error:function(){
+			console.log("서버와의 통신 실패");
+		}
+	});
+}
+
+//숫자형 천 단위 처리
+function addComma(num) {
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
+
+
+
 
 // 리뷰 댓글 불러오기
 function getReplyList(rId, mNo){
@@ -548,14 +715,17 @@ function getReplyList(rId, mNo){
 	});
 }
 
+// 리뷰 상세 보기 시 조회수 증가
 function increaserCount(rId){
 	
 	$.ajax({
 		url:"increaserCount.re",
 		data:{rId:rId},
 		type:"post",
-		success:function(){
-			
+		success:function(data){
+			if(data == "success"){
+			}else{
+			}
 		},
 		error:function(){
 			console.log("서버와의 통신 실패");
@@ -585,32 +755,47 @@ function deleteReply(rrId,rId,mNo){
 }
 
 // 장바구니 담기 처리
-function addCart(t){
+function addCart(mNo){
 	
-	if(t == null || t == ""){
+	if(mNo == null || mNo == ""){
 		alert('일반회원으로 로그인 이후 이용 가능합니다.');
-		return;
-	}else{
-		// 선택된 옵션과 수량을 변수로 잡아줘야함
-		$.ajax({
-			url:"addBasket.ba",
-			data: {oNo:oNo, amount:amount},
-			dataType:"json",
-			success:function(data){
-				alert(data);
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-		});
+		return false;
 	}
 	
+	if($('#chooseOp tr').length <= 0){
+		alert('선택된 옵션이 없습니다.');
+		return false;
+	}
+	
+	var oNo = [];
+    $(".oNo2").each(function(i) {
+    	oNo.push($(this).val());
+    });
+    
+    var amount = [];
+    $(".onlyNum").each(function(i) {
+    	amount.push($(this).val());
+    });
+    
+	$.ajax({
+		url:"addBasket2.ba",
+		data: {oNo:oNo, amount:amount},
+		dataType:"json",
+		success:function(data){
+			alert(data);
+			getCart()
+		},
+		error:function(){
+			console.log("ajax 통신 실패");
+		}
+	});
 }
 
+
 // 찜하기 처리
-function addGgim(t){
+function addGgim(mNo){
 	
-	if(t == null || t == ""){
+	if(mNo == null || mNo== ""){
 		alert('일반회원으로 로그인 이후 이용 가능합니다.');
 		return;
 	}else{
@@ -631,6 +816,28 @@ function addGgim(t){
 		});
 	}
 	
+}
+
+//메인메뉴 장바구니 비동기 처리
+function getCart(){
+	$.ajax({
+		url:"currentBasket.ba",
+		dataType:"json",
+		success:function(data){
+			if(data[0] == 0){
+				$('.cart_count').children().first().text(data[0]);
+				$('.cart_price').children().first().text("장바구니가 비었어요.");
+			}else{
+				$('.cart_count').children().first().text(data[0]);
+				 var regexp = /\B(?=(\d{3})+(?!\d))/g;
+				 var cost = data[1].toString().replace(regexp, ',');
+			     $('.cart_price').children().first().text(cost+"원");
+			}
+		},
+		error:function(){
+			console.log("ajax 통신 실패");
+		}
+	});
 }
 
 //메인메뉴 찜하기 비동기 처리

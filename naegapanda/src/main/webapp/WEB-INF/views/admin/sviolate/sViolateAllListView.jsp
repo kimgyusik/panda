@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:신고회원관리</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 a:visited { 
 		color: black; 
@@ -15,6 +17,10 @@ a:visited {
 		color : blue;
 		background : white;
 	}
+	
+.pointer{
+	cursor:pointer;
+}
 </style>
 
 </head>
@@ -52,6 +58,7 @@ a:visited {
 											<c:url value="sViolatePersonalList.do" var="sviolatelist">
 					 						    <c:param name="sNo" value="${ sv.sNo }"/>
 					 						    <c:param name="sName" value="${ sv.sName }"/>
+					 						    <c:param name="sStatus" value="${ sv.sStatus }"/>
 											</c:url>
 									<tr>
 										<td align="center">
@@ -67,7 +74,37 @@ a:visited {
 											<a href="${ sviolatelist }">${sv.sViolate}</a>
 										</td>
 										<td align="center">
-											<a href="${ pviolatelist }">${sv.sStatus}</a>
+											<c:if test="${ sv.sStatus eq 'Y' }">
+												<a href="${ sviolatelist }">${sv.sStatus}</a>
+											</c:if>
+											<c:if test="${ sv.sStatus eq 'N' }">
+											<form action="sellerPermission.do">
+											<input type = "hidden" name = "sNo" value = "${ sv.sNo }" >
+											<h6 style="font-weight:bold;" id="permissionSeller" class="pointer">${sv.sStatus}</h6>
+											<script>
+											   	$("#permissionSeller").click(function(){
+											   		var sNo = $(this).prev().val();
+														swal({
+														  title: "중지 해체 시키시겠습니까?",
+														  icon: "warning",
+														  buttons: true,
+														  dangerMode: true,
+														})
+														.then((willDelete) => {
+														  if (willDelete) {
+															location.href="sellerPermission.do?sNo=" + sNo;
+														    swal("중지 해체 되었습니다!", {
+														      icon: "success",
+														    });
+														  } else {
+														    swal("취소되었습니다.");
+														  }
+														});
+											   	});
+										   	</script>
+									   	</form>
+											
+										</c:if>
 										</td>
 							  			
 								    </tr>
@@ -88,21 +125,47 @@ a:visited {
 									[◁]
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url value="sViolateAllList.do" var="before">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
-									</c:url>
-									<a href="${ before }">[◀]</a>
-								</c:if>					
+								
+									<c:if test="${ !empty sc }">
+										<c:url value="sviolateSearch.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage-1 }"/>
+											<c:param name="condition" value="${ condition }"/>
+											<c:param name="search" value="${ search }"/>
+										</c:url>
+										<a href="${ before }">[◀ ]</a>
+									</c:if>
+										
+									<c:if test="${ empty sc }">
+										<c:url value="sViolateAllList.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+										</c:url>
+										<a href="${ before }">[◀ ]</a>
+									</c:if>					
+								</c:if>
 								<!-- 번호들 -->
 								<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
 									<c:if test="${ p eq pi.currentPage }">
 										<font color="blue" size="4">[${ p }]</font>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url value="sViolateAllList.do" var="page">
-											<c:param name="currentPage" value="${ p }"/>
-										</c:url>
-										<a href="${ page }">${ p }</a>
+									
+										<c:if test="${ !empty sc }">
+											<c:url value="sviolateSearch.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+												<c:param name="condition" value="${ condition }"/>
+												<c:param name="search" value="${ search }"/>
+											</c:url>
+											<a href="${ page }">${ p }</a>
+										</c:if>
+									
+									
+									
+										<c:if test="${ empty sc }">
+											<c:url value="sViolateAllList.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+											</c:url>
+											<a href="${ page }">${ p }</a>
+										</c:if>
 									</c:if>
 								</c:forEach>
 								<!-- [다음] -->
@@ -110,10 +173,23 @@ a:visited {
 									[▷]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url value="sViolateAllList.do" var="next">
-										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-									</c:url>
-									<a href="${ next }">[▶]</a>
+								
+									<c:if test="${ !empty sc }">
+										<c:url value="sviolateSearch.do" var="next">
+											<c:param name="currentPage" value="${ pi.currentPage+1 }"/>
+											<c:param name="condition" value="${ condition }"/>
+											<c:param name="search" value="${ search }"/>
+										</c:url>
+										<a href="${ next }">[▶ ]</a>
+									</c:if>
+								
+									<c:if test="${ empty sc }">
+										<c:url value="sViolateAllList.do" var="next">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										</c:url>
+										<a href="${ next }">[▶ ]</a>
+									</c:if>	
+									
 								</c:if>	
 						
 							</td>

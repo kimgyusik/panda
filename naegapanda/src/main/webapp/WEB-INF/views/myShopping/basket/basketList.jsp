@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:장바구니</title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
@@ -45,7 +46,7 @@
 										
 											<div class="cart_title subTitle">장바구니</div>
 											
-											<div class="cartinfo">
+											<div class="info">
 												<ul>
 													<li>· 옵션, 가격 등 상품정보가 변경될 수 있으니 확인 후 진행하시기 바랍니다.</li>
 													<li>· 판매 취소 및 종료 된 상품은 회원님의 장바구니에서 자동으로 삭제됩니다.</li>
@@ -219,11 +220,10 @@
 				success:function(data){
 					if(data == "success"){
 						
-						price2.text(addComma(price*amount)); // 해당 상품의 갯수*단일금액을 천 단위 콤마 형태로 출력
-						
+						price2.text(addComma(price*amount)); // 해당 상품의 갯수*단일금액을 천 단위 콤마 형태로 출력	
 						price2.parent().children().eq(0).attr("value", price*amount); // 위 금액을 hidden에 숫자형으로 저장
-						
 						priceAll();
+						getCart()
 						
 					}else{
 						alert("처리실패");
@@ -242,13 +242,9 @@
 			$.ajax({
 				url:"addGgim.gg",
 				data:{pId:pId},
-				type:"post",
+				dataType:"json",
 				success:function(data){
-					if(data == "success"){			
-						alert("찜한 상품으로 등록됐습니다.");
-					}else{
-						alert("처리실패");
-					}
+					alert(data);
 				},
 				error:function(){
 					console.log("서버와의 통신 실패");
@@ -270,6 +266,7 @@
 							$('#'+oNo).parent().children().eq(7).children().eq(0).attr('value', 0);
 							$('#'+oNo).parent().css('display','none');
 							priceAll();
+							getCart()
 						}else{
 							alert("처리실패");
 						}
@@ -309,6 +306,26 @@
 				location.href='<%=request.getContextPath()%>/paymentPage.pa';
 			}
 			return false;
+		}
+		
+		// 메인메뉴 장바구니 비동기 처리
+		function getCart(){
+			$.ajax({
+				url:"currentBasket.ba",
+				dataType:"json",
+				success:function(data){
+					if(data[0] == 0){
+						$('.cart_count').children().first().text(data[0]);
+						$('.cart_price').children().first().text("장바구니가 비었어요.");
+					}else{
+						$('.cart_count').children().first().text(data[0]);
+						$('.cart_price').children().first().text(data[1]+"원");
+					}
+				},
+				error:function(){
+					console.log("ajax 통신 실패");
+				}
+			});
 		}
 	</script>
 

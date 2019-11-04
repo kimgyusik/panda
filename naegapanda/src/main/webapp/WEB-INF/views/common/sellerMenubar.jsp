@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA</title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -58,7 +59,6 @@
 												<ul>
 													<li><a href="sProduct.do">상품관리</a></li>
 													<li><a href="sConfirm.do">정보수정</a></li>
-													<li><a href="streaming.do">방송관리</a></li>
 												</ul>
 										</li>
 									</c:if>
@@ -71,7 +71,6 @@
 											<ul>
 												<li><a href="sProduct.do">상품관리</a></li>
 												<li><a href="sConfirm.do">정보수정</a></li>
-												<li><a href="streaming.do">방송관리</a></li>
 											</ul>
 									</li>
 									</c:if>
@@ -140,8 +139,7 @@
 									<li><a href="sProduct.do">상품리스트</a></li>
 									<li><a href="pInsertView.do">상품등록</a></li>
 									<li><a href="oderPage.do">주문목록관리</a></li>
-									<li><a href="streaming.do">방송관리</a></li>
-									<li><a href="sConfirm.do">정보수정?</a></li>
+									<li><a href="sConfirm.do">정보수정</a></li>
 								</ul>
 							</div>
 					</div>

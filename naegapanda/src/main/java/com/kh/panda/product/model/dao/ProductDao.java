@@ -285,5 +285,9 @@ public class ProductDao {
 		return (ArrayList)sqlSession.selectList("productMapper.HotList",cn);
 	}
 	
+	public ArrayList<Product> LiveList(){
+		return (ArrayList)sqlSession.selectList("productMapper.LiveList");
+	}
+	
 	
 }

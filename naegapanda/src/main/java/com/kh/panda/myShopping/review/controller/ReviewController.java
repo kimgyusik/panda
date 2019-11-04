@@ -46,35 +46,8 @@ public class ReviewController {
 	@RequestMapping("myReviewList.re")
 	public ModelAndView selectMyReviewList(ModelAndView mv, HttpSession session) {
 		
-//		ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
-//		ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
-		
-		ArrayList<Review> list = new ArrayList<>();
-		ArrayList<Payment> list2 = new ArrayList<>();
-		
-		Payment p = new Payment();
-		p.setmNo(1);
-		p.setpName("맛있는과자");
-		p.setoName("33박스");
-		p.setpId(11);
-		p.setPayId(13);
-		p.setStoreName("이지몰");
-		list2.add(p);
-		
-		Payment p2 = new Payment();
-		p2.setmNo(1);
-		p2.setpName("매운라면");
-		p2.setoName("24242개");
-		p2.setpId(22);
-		p2.setPayId(24);
-		p2.setStoreName("라면상점");
-		list2.add(p2);
-		
-		
-		
-		Date date = new Date();
-		list.add(new Review(1, "너무 잘 받엇어요", "진짜찐짜진자찌장", date, 12323, 1, "vjxmfwl", "N", 323, 13,"blog_2.jpg"));
-		list.add(new Review(2, "머이럼", "넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네넘오하네", date, 24243, 1, "WFEJWEE", "N", 221, 24, "best_3.png"));
+		ArrayList<Review> list = reService.selectMyReviewList(getmNo(session));
+		ArrayList<Payment> list2 = paService.myPaymentList(getmNo(session));
 		
 		mv.addObject("list", list);
 		mv.addObject("list2", list2);
@@ -122,33 +95,7 @@ public class ReviewController {
 	@RequestMapping("addAbleReview.re")
 	public ModelAndView addAbleReview(ModelAndView mv, HttpSession session) {
 		
-		//ArrayList<Payment> list = reService.addAbleReview(getmNo(session));
-		
-		ArrayList<Payment> list = new ArrayList<>();
-		
-		Date date = new Date();
-		
-		Payment p = new Payment();
-	
-		p.setpName("맛있는과자");
-		p.setoName("1kg x 10박스");
-		p.setpId(11);
-		p.setPayId(13);
-		p.setStoreName("이지몰");
-		p.setPayDate(date);
-		p.setPaChangeName("blog_1.jpg");
-		list.add(p);
-		
-		Payment p2 = new Payment();
-
-		p2.setpName("매운라면");
-		p2.setoName("24242개");
-		p2.setpId(22);
-		p2.setPayId(24);
-		p2.setPayDate(date);
-		p2.setStoreName("라면상점");
-		p2.setPaChangeName("view_5.jpg");
-		list.add(p2);
+		ArrayList<Payment> list = reService.addAbleReview(getmNo(session));
 		
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/review/addAbleReview");
@@ -159,9 +106,11 @@ public class ReviewController {
 	
 	// 리뷰 추가 처리
 	@RequestMapping("addReview.re")
-	public String addReview(Review r, HttpServletRequest request, Model model,
-							  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
-		System.out.println("로그로그");
+	public String addReview(Review r, HttpServletRequest request, Model model, 
+							  @RequestParam(name="uploadFile", required=false) MultipartFile file, HttpSession session) {
+		
+		r.setmNo(getmNo(session));
+		
 		if(file!= null && !file.getOriginalFilename().equals("")) {
 			
 			String renameFileName = saveFile(file, request);
@@ -186,7 +135,7 @@ public class ReviewController {
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\uploadImages\\review"; 
+		String savePath = root + "\\review_uploadFiles"; 
 		
 		File folder = new File(savePath); 
 		
@@ -218,7 +167,9 @@ public class ReviewController {
 	// 리뷰 업데이트 처리
 	@RequestMapping("updateReview.re")
 	public String updateReview(Review r, HttpServletRequest request, Model model,
-							  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+							  @RequestParam(name="uploadFile", required=false) MultipartFile file, HttpSession session) {
+		
+		r.setmNo(getmNo(session));
 		
 		if(file!= null && !file.getOriginalFilename().equals("")) {
 			
@@ -234,6 +185,8 @@ public class ReviewController {
 			if(renameFileName != null) {
 				r.setrImage(renameFileName);
 			}
+		}else {
+			r.setrImage(r.getExistrImage());
 		}
 		
 		int result = reService.updateReview(r);
@@ -249,6 +202,7 @@ public class ReviewController {
 	
 	
 	// 리뷰 삭제 처리
+	@ResponseBody
 	@RequestMapping("deleteReview.re")
 	public String deleteReview(int rId, HttpServletRequest request) {
 		
@@ -260,17 +214,17 @@ public class ReviewController {
 		
 		int result = reService.deleteReview(rId);
 		
-		if(result > 0) {
-			return "redirect:myReviewList.re";
+		if(result > 0 ) {
+			return "success";
 		}else {
-			return "common/errorPage";
+			return "fail";
 		}
 	}
 	
 	// 첨부파일 삭제 로직
 	public void deleteFile(String fileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\uploadImages\\review";
+		String savePath = root + "\\review_uploadFiles";
 		
 		File f = new File(savePath + "\\" + fileName);
 		
@@ -304,32 +258,7 @@ public class ReviewController {
 	public void getReplyList(int rId, HttpServletResponse response) throws JsonIOException, IOException {
 		
 		ArrayList<Reply> list = reService.getReplyList(rId);
-//		ArrayList<Reply> list = new ArrayList<>();
-//		Date d = new Date();
-//		
-//		if(rId == 1) {
-//			Reply r = new Reply(1, 3, "test01", "헐 대박", d, "N", 1);
-//			Reply r2 = new Reply(2, 5, "test033", "님 알바세요?", d, "N", 1);
-//			Reply r3 = new Reply(3, 4, "test022222", "위에 머라노", d, "N", 1);
-//			
-//			list.add(r);
-//			list.add(r2);
-//			list.add(r3);
-//		}else if(rId ==2){
-//			Reply r = new Reply(1, 3, "테스트1", "마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저마저", d, "N", 2);
-//			Reply r2 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
-//			Reply r3 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
-//			Reply r4 = new Reply(2, 5, "ㅌ0ㅔ스032", "진짜 별로임", d, "N", 2);
-//			Reply r5 = new Reply(3, 4, "테스틐", "주문하지마셈", d, "N", 2);
-//			
-//			list.add(r);
-//			list.add(r2);
-//			list.add(r3);
-//			list.add(r4);
-//			list.add(r5);
-//		}
-		
-		
+
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
@@ -370,6 +299,7 @@ public class ReviewController {
 	}
 	
 	// 리뷰 조회수 증가
+	@ResponseBody
 	@RequestMapping("increaserCount.re")
 	public String increaserCount(int rId) {	
 		int result = reService.increaserCount(rId);

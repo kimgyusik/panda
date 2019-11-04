@@ -46,9 +46,35 @@ public class VmessageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Vmessage> list = vmService.selectList(pi);
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
 
 		mv.addObject("pi", pi).addObject("list", list).setViewName("admin/vmessage/VmessageListView");
 
+		return mv;
+	}
+	@RequestMapping("messageSearch.do")
+	public ModelAndView vmessageSearchList(ModelAndView mv, String keyword,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+		
+		int listCount = vmService.getscListCount(keyword);
+		System.out.print("keyword:");
+		System.out.println(keyword);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Vmessage> list = vmService.selectscList(pi, keyword);
+		if(listCount == 0) { 
+			pi.setMaxPage(1); 
+		}
+		
+		System.out.print("pi:");
+		System.out.println(pi);
+		System.out.print("list:");
+		System.out.println(list);
+		
+		mv.addObject("pi", pi).addObject("list", list).addObject("keyword",keyword).setViewName("admin/vmessage/VmessageListView");
+		
 		return mv;
 	}
 
@@ -59,21 +85,13 @@ public class VmessageController {
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
 
 		int listCount = vmService.getSellerListCount(sNo);
-		System.out.print("sNo:");
-		System.out.println(sNo);
-		System.out.print("listCount:");
-		System.out.println(listCount);
-		
-		if(listCount == 0) {
-			listCount = 1;
-		}
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Vmessage> list = vmService.selectSellerList(pi, sNo);
-		System.out.print("list:");
-		System.out.println(list);
-		
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
 		
 		mv.addObject("pi", pi).addObject("list", list).addObject("sNo", sNo)
 				.setViewName("admin/vmessage/SellerVmessageListView");
@@ -97,7 +115,6 @@ public class VmessageController {
 		int sNo = ((Seller) (session.getAttribute("loginSeller"))).getsNo();
 
 		Vmessage vm = vmService.vmessageSellerDetail(vmNo, sNo);
-		System.out.println(vm);
 
 		mv.addObject("vm", vm).setViewName("admin/vmessage/VmessageDetailView");
 

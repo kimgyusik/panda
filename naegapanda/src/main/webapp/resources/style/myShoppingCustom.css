@@ -68,8 +68,8 @@ list-style:none;
 height:60px;
 margin-top:30px;
 display:block;
-border-top: 2px solid #edeeef;
-border-bottom: 2px solid #edeeef;
+border-top: 2px solid #e6e6e6;
+border-bottom: 2px solid #e6e6e6;
 }
 .tabmenu ul li{
 display:  inline-block;
@@ -144,14 +144,7 @@ padding:0 !important;
 margin:0 !important;
 
 }
-.cartinfo{
 
-background-color: #edeeef;
-padding:20px;
-margin-top:30px;
-margin-bottom:30px;
-font-size:13px;
-}
 .clearfix{
 padding: 0px;
 }
@@ -168,11 +161,12 @@ border: 2px solid #edeeef;
 }
 .btnCart{
 width:auto;
-padding: 1px;
+padding: 2px;
 font-size:9px;
 cursor: pointer;
-background-color: #f7f7f7;
+background-color: #e6e6e6;
 border: 1px solid #edeeef;
+border-radius: 2px;
 }
 .btnSearch{
 	cursor: pointer;
@@ -180,7 +174,7 @@ border: 1px solid #edeeef;
 	color:white ;
 	border: 1px solid #edeeef;
 	padding: 3px;
-font-size:12px;
+font-size:11px;
 border-radius: 4px;
 	
 }
@@ -193,7 +187,7 @@ width:100px;
 font-size:12px;
 height:30px;
 margin-top:30px;
-background-color: #f7f7f7;
+background-color: #e6e6e6;
 border: 1px solid #edeeef;
 cursor: pointer;
 }
@@ -328,8 +322,8 @@ text-align:center;
 margin:auto; 
 border:1px solid gray;
 }
-.updateReview:hover, .makeReview:hover, .updateInfo:hover{
-
+.updateReview:hover, .makeReview:hover, .updateInfo:hover, .addCart:hover, .makeInquiry:hover, .deliveryDone:hover, .makeViolate:hover{
+cursor: pointer;
 border: 2px solid #0e8ce4;
 }
 
@@ -341,10 +335,7 @@ border: 2px solid #edeeef;
 height: 30px;
 line-height: normal;
 border: 2px solid #edeeef;
-width:80%;
-}
-.modal-header{
-background-color: #0e8ce4;
+width:100%;
 }
 .modal-body{
 text-align: left !important;
@@ -374,11 +365,18 @@ vertical-align: middle;
 #file { display:none; } 
 
 #titleImg{
-max-width:280px;
-max-height:230px;
+max-width:260px;
+max-height:210px;
 width:auto;
 height:auto;
 
+}
+.reviewImg{
+	max-height:140px; 
+	max-width:150px;
+	width:auto; 
+	height:auto;
+	border-radius: 5px;
 }
 .basketImg{
 	border-radius: 3px;
@@ -392,11 +390,19 @@ max-width:170px;
 max-height:90px;
 width:auto;
 height:auto;
+border-radius: 3px;
 }
 .ggimImg{
 	border-radius:6px;
 max-width:200px;
-max-height:170px;
+max-height:150px;
+width:auto;
+height:auto;
+}
+.payImg{
+	border-radius:6px;
+max-width:220px;
+max-height:200px;
 width:auto;
 height:auto;
 }
@@ -434,10 +440,11 @@ color:black;
 
 .contentsList td{
 text-align: center;
-border: 2px solid #edeeef;
+border: 2px solid #e6e6e6;
 border-left: 1px solid white;
 border-right: 1px solid white;
 font-size:12px;
+height:200px;
 }
 .cart_title{
 font-size: 20px !important;
@@ -460,7 +467,7 @@ padding-bottom: 0px !important;
 padding-top:50px  !important;
 }
 
-.cartinfo{
+.info{
 background-color: #edeeef;
 padding:20px;
 margin-top:30px;
@@ -469,27 +476,25 @@ font-size:13px;
 }
 
 
-.updateReview, .makeReview, .updateInfo{
+.updateReview, .makeReview, .updateInfo, .addCart{
 width:70%;
 padding: 4px;
 font-size:13px;
-cursor: pointer;
-background-color:white;
-border: 2px solid #edeeef;
 
+background-color:white;
+border: 2px solid #e6e6e6;
+
+}
+.btn-info, .btn-outline-info{
+	font-size: 12px !important;
 }
 #content{
 height:100px;
 border: 2px solid #edeeef;
 }
-#title{
-height: 30px;
-line-height: normal;
-border: 2px solid #edeeef;
-width:80%;
-}
-.modal-header{
-background-color: #0e8ce4;
+
+.reviewModal{
+background-color: #0e8ce4 !important;
 }
 .modalLabel{
 font-size:12px;
@@ -515,14 +520,7 @@ vertical-align: middle;
 #file { display:none; } 
 
 
-#contentLabel{
-color:gray; 
-display: block; 
-text-align: right; 
-margin-right:20px;
-}
-
-.answer{
+.answer, .deliveryStatus{
 margin:5px;
 padding:3px;
 border-radius:3px;
@@ -559,8 +557,8 @@ color:white;
 	padding-left:70px;
 	padding-right:80px;
 	box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
-	border: 3px solid #edeeef;
-	background-color: #fafafa;
+	border: 5px solid #edeeef;
+	background-color: #e6eeff;
 }
 .orderTotal{
 	width:auto;
@@ -637,3 +635,63 @@ input[type="radio"], input[type="checkbox"]{
 	text-align: center;
 	margin:30px;
 }
+.makeInquiry, .deliveryDone, .makeViolate{
+	width:60%;
+	padding: 3px;
+	font-size:11px;
+	background-color:white;
+	border: 2px solid #e6e6e6;
+}
+.deliveryInfo{
+	font-size:12px;
+	color:gray;
+}
+.modal-header{
+	background-color:  #333;
+}
+.close:hover{
+	color:white;
+}
+#inqModal{
+	width:100%;
+}
+#title{
+	width:100%
+}
+#content{
+	width:100%
+}
+#contentLabel{
+color:gray; 
+display: block; 
+text-align: right; 
+margin-right:10px;
+margin-bottom: 0px;
+}
+.btnInq{
+	background-color: #333 ;
+	font-size: 12px !important;
+	border:none;
+	color:white;
+	cursor: pointer;
+}
+.btnReview{
+	background-color: #0e8ce4 !important;
+	font-size: 12px !important;
+	border:none;
+	color:white;
+	cursor: pointer;
+}
+#openYnLabel{
+	font-size: 12px !important;
+}
+input[type="radio"], input[type="checkbox"]{
+	width:13px;
+	height:13px;
+	margin:0 0 2px;
+	padding:0;
+	border: 1px solid #FFF;
+	vertical-align:middle;
+	 background-color: $white-color;
+  border: 2px solid $font-color-3;
+	}

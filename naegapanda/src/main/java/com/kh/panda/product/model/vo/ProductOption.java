@@ -10,6 +10,7 @@ public class ProductOption {
 	private int oPurchase;
 	private String paChangeName;
 	private String filePath;
+	private int stPrice;
 	
 	public ProductOption() {}
 	
@@ -39,6 +40,21 @@ public class ProductOption {
 		this.oPurchase = oPurchase;
 		this.paChangeName = paChangeName;
 		this.filePath = filePath;
+	}
+	
+	public ProductOption(int pId, int oNo, String oName, int oPrice, int oAmount, String oStatus, int oPurchase,
+			String paChangeName, String filePath, int stPrice) {
+		super();
+		this.pId = pId;
+		this.oNo = oNo;
+		this.oName = oName;
+		this.oPrice = oPrice;
+		this.oAmount = oAmount;
+		this.oStatus = oStatus;
+		this.oPurchase = oPurchase;
+		this.paChangeName = paChangeName;
+		this.filePath = filePath;
+		this.stPrice = stPrice;
 	}
 
 	public int getpId() {
@@ -113,11 +129,20 @@ public class ProductOption {
 		this.filePath = filePath;
 	}
 
+
+	public int getStPrice() {
+		return stPrice;
+	}
+
+	public void setStPrice(int stPrice) {
+		this.stPrice = stPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductOption [pId=" + pId + ", oNo=" + oNo + ", oName=" + oName + ", oPrice=" + oPrice + ", oAmount="
 				+ oAmount + ", oStatus=" + oStatus + ", oPurchase=" + oPurchase + ", paChangeName=" + paChangeName
-				+ ", filePath=" + filePath + "]";
+				+ ", filePath=" + filePath + ", stPrice=" + stPrice + "]";
 	}
 
 }

@@ -15,32 +15,36 @@ public class InquiryDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public ArrayList<Inquiry> selectMyInquiryList(int mNo){
-		return (ArrayList)sqlSession.selectList("InquiryMapper.selectMyInquiryList", mNo);
+		return (ArrayList)sqlSession.selectList("inquiryMapper.selectMyInquiryList", mNo);
 	}
 	
 	public int addInquiry(Inquiry i) {
-		return sqlSession.insert("InquiryMapper.addInquiry", i);
+		return sqlSession.insert("inquiryMapper.addInquiry", i);
 	}
 	
 	public int deleteInquiry(int iId) {
-		return sqlSession.update("InquiryMapper.deleteInquiry", iId);
+		return sqlSession.update("inquiryMapper.deleteInquiry", iId);
 	}
 	
 	public int updateInquiry(Inquiry i) {
-		return sqlSession.update("InquiryMapper.updateInquiry", i);
+		return sqlSession.update("inquiryMapper.updateInquiry", i);
 	}
 	
 	
 	public ArrayList<Inquiry> selectprodInquiryList(int pId){
-		return (ArrayList)sqlSession.selectList("InquiryMapper.selectprodInquiryList", pId);
+		return (ArrayList)sqlSession.selectList("inquiryMapper.selectprodInquiryList", pId);
 	}
 	
 	public int answerInquiry(Inquiry i) {
-		return sqlSession.update("InquiryMapper.answerInquiry", i);
+		return sqlSession.update("inquiryMapper.answerInquiry", i);
 	}
 	
 	public int updateAnswerInquiry(Inquiry i) {
-		return sqlSession.update("InquiryMapper.updateAnswerInquiry", i);
+		return sqlSession.update("inquiryMapper.updateAnswerInquiry", i);
+	}
+	
+	public int deleteAnswerInquiry(int iId) {
+		return sqlSession.update("inquiryMapper.deleteAnswerInquiry", iId);
 	}
 	
 

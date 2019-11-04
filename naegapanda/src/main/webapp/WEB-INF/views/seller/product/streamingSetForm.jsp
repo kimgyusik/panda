@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:ë°©ì†¡</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -33,29 +33,29 @@
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
-								<li><a href="sProduct.do">»óÇ°¸®½ºÆ®</a></li>
-								<li><a href="pInsert.do">»óÇ°µî·Ï</a></li>
-								<li><a href="oderPage.do">ÁÖ¹®¸ñ·Ï°ü¸®</a></li>
-								<li><a href="streaming.do">¹æ¼Û°ü¸®</a></li>
-								<li><a href="sPage.do">Á¤º¸¼öÁ¤?</a></li>
+								<li><a href="sProduct.do">ìƒí’ˆë¦¬ìŠ¤íŠ¸</a></li>
+								<li><a href="pInsert.do">ìƒí’ˆë“±ë¡</a></li>
+								<li><a href="oderPage.do">ì£¼ë¬¸ëª©ë¡ê´€ë¦¬</a></li>
+								<li><a href="streaming.do">ë°©ì†¡ê´€ë¦¬</a></li>
+								<li><a href="sPage.do">ì •ë³´ìˆ˜ì •</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="panel-heading"><label style="text-size:30px;">¹æ¼Û ¼³Á¤</label></div>
+				<div class="panel-heading"><label style="text-size:30px;">ë°©ì†¡ ì„¤ì •</label></div>
 				<br>
 				<div class="panel-body" width="500px">
 					<form action="pStreaming.do?pId=${p.pId }" method="post" encType="multipart/form-data" >
 						<div class="form-group">
-							<label for="stTitle">»óÇ°¸í</label> 
-							<input type="text" class="form-control" id="stTitle" name="stTitle" placeholder="¹æ¼Û Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä." />
+							<label for="stTitle">ìƒí’ˆëª…</label> 
+							<input type="text" class="form-control" id="stTitle" name="stTitle" placeholder="ë°©ì†¡ ì œëª©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”." />
 						</div>
 						<div class="form-group">
-							<label for="pName">»óÇ°¸í</label> 
+							<label for="pName">ìƒí’ˆëª…</label> 
 							<input type="text" class="form-control" id="pName" name="pName" value="${p.pName}" readonly="readonly" />
 						</div>
 						<div class="form-group">
-							<label for="Product_Category">Ä«Å×°í¸®</label> 
+							<label for="Product_Category">ì¹´í…Œê³ ë¦¬</label> 
 							<select
 								name="cId" id="cId" class="form-control" >
 								 <c:forEach items="${cList }" var="c">
@@ -67,7 +67,7 @@
 						</div>
 						<div class="form-group">
 							<div>
-								<label>¸ÞÀÎ »çÁø</label>
+								<label>ë©”ì¸ ì‚¬ì§„</label>
 								<div class="productPic" id="productPicArea1">
 									<c:forEach items="${paList}" var="pa">
 										<c:if test="${pa.paFileLevel eq 1}">
@@ -77,7 +77,7 @@
 									
 								</div>
 							</div>
-							<label>´Ù¸¥ »óÇ° »çÁø</label> <br>
+							<label>ë‹¤ë¥¸ ìƒí’ˆ ì‚¬ì§„</label> <br>
 							<table>
 								<tr>
 									<td>
@@ -87,9 +87,6 @@
 										<img id='pImg2' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 											</c:if>
 										</c:forEach>
-										<c:if test="${fn:length(paList) eq 1}">
-										<img id='pImg2' width='98px' height='98px'>
-										</c:if>	
 										</div>
 									</td>
 									<td>
@@ -99,9 +96,6 @@
 										<img id='pImg3' width='98px' height='98px' src="resources/product_uploadFiles/${pa.paChangeName}">
 											</c:if>
 										</c:forEach>
-										<c:if test="${fn:length(paList) eq 1 or fn:length(paList) eq 2}">
-										<img id='pImg3' width='98px' height='98px'>
-										</c:if>	
 										</div>
 									</td>
 								</tr>
@@ -112,12 +106,12 @@
 						<c:forEach items="${poList }" var="po" varStatus="vs">
 						<div style="border:2px solid blue;">
 							<div class="form-group">
-								<label for="optionName1">¿É¼Ç¸í</label>
+								<label for="optionName1">ì˜µì…˜ëª…</label>
 								<input type="text" class="form-control" id="oName" name="oName" value="${po.oName}" readonly="readonly"/>
 							</div>
 							<div class="form-group">
-								<label for="price1">¹æ¼Û °¡°Ý(ÃÊ±â ¼³Á¤Àº ±âÁ¸ °¡°ÝÀÔ´Ï´Ù.)</label> <input type="number"
-									class="form-control" id="oPrice" name="oPrice" value="${po.oPrice }" placeholder="»óÇ° °¡°ÝÀ» ÀÔ·ÂÇÏ¼¼¿ä." />
+								<label for="price1">ë°©ì†¡ ê°€ê²©(ì´ˆê¸° ì„¤ì •ì€ ê¸°ì¡´ ê°€ê²©ìž…ë‹ˆë‹¤.)</label> <input type="number"
+									class="form-control" id="stPrice" name="stPrice" value="${po.oPrice }" placeholder="ìƒí’ˆ ê°€ê²©ì„ ìž…ë ¥í•˜ì„¸ìš”." />
 									<input type='hidden' name="oNo" id="oNo" value="${po.oNo }">
 							</div>
 						</div>
@@ -125,10 +119,11 @@
 						</div>
 						
 						<div align=right>
-							<button type="submit" class="btn btn-default">¹æ¼Û ½ÃÀÛ</button>
+							<button type="submit" class="btn btn-default">ë°©ì†¡ ì‹œìž‘</button>
 						</div>
 						<div>
 							<input type="hidden" value="${loginSeller.sNo }" name="sNo"/>
+							<input type="hidden" value="${p.pContent }" name="pContent"/>
 						</div>
 					</form>
 					

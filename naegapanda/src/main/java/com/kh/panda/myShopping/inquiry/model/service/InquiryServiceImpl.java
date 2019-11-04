@@ -50,4 +50,9 @@ public class InquiryServiceImpl implements InquiryService{
 		return inDao.updateAnswerInquiry(i);
 	}
 
+	@Override
+	public int deleteAnswerInquiry(int iId) {
+		return inDao.deleteAnswerInquiry(iId);
+	}
+
 }

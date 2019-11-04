@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:판매자페이지</title>
 </head>
 <style>
@@ -49,8 +51,7 @@
 								<li><a href="sProduct.do">상품리스트</a></li>
 								<li><a href="pInsertView.do">상품등록</a></li>
 								<li><a href="oderPage.do">주문목록관리</a></li>
-								<li><a href="streaming.do">방송관리</a></li>
-								<li><a href="sPage.do">정보수정?</a></li>
+								<li><a href="sPage.do">정보수정</a></li>
 							</ul>
 						</div>
 					</div>
@@ -66,7 +67,7 @@
 								<th>가격</th>
 								<th>재고</th>
 								<th>판매개수</th>
-								<th>방송하기<th>
+								<th>방송하기</th>
 								<th>수정</th>
 								<th>삭제</th>
 							</tr>
@@ -157,7 +158,13 @@
 
 
 
-
+<script>
+	var msg = ${msg};
+	console.log(msg);
+	if(msg != null){
+		alert(msg);
+	}
+</script>
 
 
 

@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고 메세지 작성</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:신고 메세지 작성</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 

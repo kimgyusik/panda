@@ -23,6 +23,7 @@ import com.kh.panda.seller.model.dao.SellerDao;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
 import com.kh.panda.seller.model.vo.TempKey;
+import com.kh.panda.streaming.model.vo.Streaming;
 import com.sun.media.jfxmedia.logging.Logger;
 
 @Service("sService")
@@ -212,6 +213,66 @@ public class SellerServiceImpl implements SellerService{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int delUpdate(Payment pm) {
+		return sDao.delUpdate(pm);
+	}
+	public int updatestPrice(ArrayList<ProductOption> poList) {
+		int result = 0;
+		
+		for(int i=0; i<poList.size();i++) {
+			result = sDao.updatestPrice(poList.get(i));
+			if(result<1) {
+				break;
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int insertStreaming(Streaming st) {
+		return sDao.insertStreaming(st);
+	}
+
+	@Override
+	public Streaming selectStreaming(int sNo) {
+		return sDao.selectStreaming(sNo);
+	}
+
+	@Override
+	public int updatestNo(Product p) {
+		return sDao.updatestNo(p);
+	}
+
+	@Override
+	public Streaming selectStreamingToStNo(int stNo) {
+		return sDao.selectStreamingToStNo(stNo);
+	}
+
+	@Override
+	public int stopStreaming(int pId, int stNo) {
+		int result1 = sDao.pStopStream(pId);
+		int result2 = sDao.poStopStream(pId);
+		int result3 = sDao.deleteStreaming(stNo);
+		int result = 0;
+		if(result1 >0 && result2 >0 && result3>0) {
+			result = 1;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int getStNo(int pId) {
+		return sDao.getStNo(pId);
+	}
+
+	@Override
+	public int isStreaming(int sNo) {
+		return sDao.isStreaming(sNo);
 	}
 
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,11 +57,11 @@ public class PmanagerController {
 		ArrayList<Pmanager> pmlist = pmService.selectList(pi, cName2);
 		ArrayList<Pmanager> pmxlist = pmService.selectxList(pi2, cName2);
 		
-		//System.out.println(pi);
-		System.out.println(pi2);
+		//System.out.println("피엠리스트"+pi);
+		//System.out.println(pi2);
 		
 		//System.out.println("판매관리 리스트"+pmlist);
-		System.out.println("판매중지 리스트"+pmxlist);
+		//System.out.println("판매중지 리스트"+pmxlist);
 		
 		mv.addObject("pi", pi).addObject("pi2", pi2).addObject("pmlist", pmlist).addObject("pmxlist", pmxlist).setViewName("admin/pmanager/pmListView");
 		
@@ -75,10 +76,10 @@ public class PmanagerController {
 		
 		PageInfo pi = Pagination.getPageInfo5(currentPage, listCount3);
 		
-		//System.out.println(pi);
 		
 		ArrayList <Pmanager> pmVlist = pmService.pmViolateList(pi, pId);
 		
+		//System.out.println(pi);
 		//System.out.println("피엠븨리스트" + pmVlist);
 		
 		
@@ -88,7 +89,7 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmstop.do")
-	public String pmStop(int pId, int vNo , int sNo, HttpServletRequest request) {
+	public String pmStop(int pId, int vNo , int sNo, HttpServletRequest request, Model model) {
 		
 		int result = pmService.pmStop(pId);
 		
@@ -99,10 +100,7 @@ public class PmanagerController {
 		 
 		  int result2 = vmService.vmessageStautsY(vm);
 		 
-		
-		
-		
-		System.out.println("판매정지"+result);
+		//System.out.println("판매정지"+result);
 		
 		if(result > 0) {
 			return "redirect:categoryView.do";
@@ -112,7 +110,7 @@ public class PmanagerController {
 	}
 	
 	@RequestMapping("pmrestart.do")
-	public String pmrestart(int pId, int sNo , int vNo, HttpServletRequest request) {
+	public String pmrestart(int pId, int sNo , int vNo, HttpServletRequest request, Model model) {
 		
 		int result = pmService.pmrestart(pId);
 		

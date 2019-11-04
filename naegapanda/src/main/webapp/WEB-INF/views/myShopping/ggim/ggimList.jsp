@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:찜</title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
@@ -82,7 +83,12 @@
 												 				<p style="color:black;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${g.price}" />원 ~</p>
 												 				<span style="color:gray;">${g.storeName }</span>
 												 			</td>
-												 			<td style="vertical-align: top; padding:10px;"><span class="cancle" onclick="cancle(${g.pId});">X</span></td>
+												 			<td width="250px;" >
+												 				<button  class="addCart" onclick="addCart(${g.pId})" >Add to Cart</button>
+												 			</td>
+												 			<td style="vertical-align: top; padding:10px;">
+												 				<span class="cancle" onclick="cancle(${g.pId});">X</span>
+												 			</td>
 												 		</tr>
 											 		</c:forEach>
 											 	</table>
@@ -147,6 +153,23 @@
 			}
 
 		});
+		
+		
+		//장바구니 추가
+		function addCart(pId){
+			$.ajax({
+				url:"addBasket.ba",
+				data:{pId:pId, amount:1},
+				dataType:"json",
+				success:function(data){
+					alert(data);
+					getCart()
+				},
+				error:function(){
+					console.log("ajax 통신 실패");
+				}
+			});
+		}
 
 		// 찜 취소
 		function cancle(pId){

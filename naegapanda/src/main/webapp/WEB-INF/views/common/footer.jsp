@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA</title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -45,24 +47,24 @@
 					<div class="footer_column">
 						<div class="footer_title">Find it Fast</div>
 						<ul class="footer_list">
-							<li><a href="#">농산물</a></li>
-							<li><a href="#">냉동/가공식품</a></li>
-							<li><a href="#">여성 의류</a></li>
-							<li><a href="#">남성 의류</a></li>
-							<li><a href="#">가구</a></li>
-							<li><a href="#">셀프 인테리어</a></li>
+							<li><a href="pListView.do?category=1">농산물</a></li>
+							<li><a href="pListView.do?category=4">냉동/가공식품</a></li>
+							<li><a href="pListView.do?category=10">여성 의류</a></li>
+							<li><a href="pListView.do?category=12">남성 의류</a></li>
+							<li><a href="pListView.do?category=20">가구</a></li>
+							<li><a href="pListView.do?category=28">셀프 인테리어</a></li>
 					</div>
 				</div>
 
 				<div class="col-lg-2">
 					<div class="footer_column">
 						<ul class="footer_list footer_list_2">
-							<li><a href="#">계절 가전</a></li>
-							<li><a href="#">주방 가전</a></li>
-							<li><a href="#">공연 티켓</a></li>
-							<li><a href="#">애완 용품</a></li>
-							<li><a href="#">메이크업</a></li>
-							<li><a href="#">다이어트</a></li>
+							<li><a href="pListView.do?category=30">계절 가전</a></li>
+							<li><a href="pListView.do?category=39">주방 가전</a></li>
+							<li><a href="pListView.do?category=45">공연 티켓</a></li>
+							<li><a href="pListView.do?category=47">애완 용품</a></li>
+							<li><a href="pListView.do?category=51">메이크업</a></li>
+							<li><a href="pListView.do?category=54">다이어트</a></li>
 						</ul>
 					</div>
 				</div>
@@ -74,8 +76,10 @@
 							<li><a href="nlist.do">판다 공지</a></li>
 							<li><a href="qlist.do">서비스 문의</a></li>
 							<li><a href="sqlist.do">판매자 문의</a></li>
-							<li><a href="ggimList.gg">찜 목록</a></li>
-							<li><a href="basketList.ba">장바구니</a></li>
+							<c:if test="${!empty loginUser }">
+								<li><a href="ggimList.gg">찜 목록</a></li>
+								<li><a href="basketList.ba">장바구니</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -121,7 +125,6 @@ Made by 이거사조 in 2019
 <script src="resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="resources/plugins/slick-1.8.0/slick.js"></script>
 <script src="resources/plugins/easing/easing.js"></script>
-<script src="resources/js/custom.js"></script>
 
 </body>
 </html>

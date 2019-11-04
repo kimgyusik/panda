@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title></title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -57,19 +58,28 @@
 																	
 													 			<td width="300px;">
 													 				<input type="hidden" class="rId" value="${r.rId}">
-													 				<a href="${ product }"><img class="ableReviewImg" src="resources/images/${r.rImage}" ></a>
-													 				<br><br>
-													 				<span style="display: inline-block;font-size: 13px; height:30px;">
+													 				<input type="hidden" class="rImage" value="${r.rImage}">
+													 				<c:if test="${!empty  r.rImage}">
+													 					<br>
+													 					<a href="${ product }"><img class="ableReviewImg" src="resources/review_uploadFiles/${r.rImage}" ></a>
+													 					<br><br>
+													 				</c:if>
+													 				<c:if test="${empty  r.rImage}">
+													 					<img width="180px;" src="resources/images/noimage.gif" >
+													 					
+													 				</c:if>
+													 				
+													 				<span style="display: inline-block;font-size: 12px; height:20px;">
 													 					[${p.storeName }]
-													 					<br><a href="${ product }"><b>${p.pName} :: ${p.oName }</b></a>
+													 					<br><a href="${ product }"><b>${p.pName}</b></a>
 													 				</span>
 													 			</td>
 													 			
 													 			<td width="600px;" style="text-align: left; ">
-													 				<span style="display: inline-block;font-size: 15px;">${r.rTitle } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+													 				<span style="display: inline-block;font-size: 15px;">${r.rTitle }</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											 						<span style="color:gray;"><fmt:formatDate value="${r.rDate}" pattern="yyyy. MM. dd." /></span>
 											 						<br><br>
-											 						<span>&nbsp;&nbsp;${r.rContents }</span>
+											 						&nbsp;&nbsp;&nbsp;<span>${r.rContents }</span>
 													 			</td>
 													 			<td width="150px;" >
 													 				<img src="resources/images/eye.png" width="30px;"  > 
@@ -81,13 +91,21 @@
 													 				<button  class="updateReview"  >수정하기</button>
 													 			</td>
 													 			<td style="vertical-align: top; padding:10px;">
-													 				<span class="removeReview" onclick="return removeReview(${r.rId});">X</span>
+													 				<span class="removeReview" >X</span>
 													 			</td>
 											 				</tr>
 
 											 			</c:if>
 										 			</c:forEach>
 										 		</c:forEach>
+										 		
+										 		<c:if test="${empty list}">
+									 				<div style="text-align: center;">
+									 					<br><br><br>
+									 					<img src="resources/images/pandaImage.jpg" width="100px;">
+									 					<br>등록한 리뷰가 없습니다.
+									 				</div>
+									 			</c:if>
 										 		
 										 	</table>
 						
@@ -101,6 +119,7 @@
 				</div>
 			</div>
 		</div>
+			<c:import url="../../common/footer.jsp"/>
 	</div>
 
 	<!-- 모달 -->
@@ -109,7 +128,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 			
-			<div class="modal-header">
+			<div class="modal-header reviewModal">
 				<span style="color:white; "><b>리뷰 수정</b></span>
 				<button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
 			</div>
@@ -119,9 +138,10 @@
 					<tr>
 						<td width="300px;" style="text-align: center; padding:0;">
 							<img id="titleImg" >
+							<input type="hidden" id="existrImage" name="existrImage">
 						</td>
 						<td>
-							<div class="modal-body" style="padding-left:30px;">
+							<div class="modal-body" style="padding-left:20px;">
 								<input type="hidden" id="rId" name="rId">
 								<label class="modalLabel">제목</label>
 								<br><input type="text" class="modal-title" id="title" name="rTitle" >
@@ -137,26 +157,30 @@
 							<button id="btn-upload" type="button" class="btn btn-outline-info" data-dismiss="modal" style="margin-left:20px;"><b>사진 업로드</b></button></td>
 						<td>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-info" data-dismiss="modal"><b>수정하기</b></button>
-								<button type="button" class="btn btn-info" data-dismiss="modal"><b>취소</b></button>
+								<button id="submit" type="submit" class="btn btn-info btnReview" data-dismiss="modal"><b>수정하기</b></button>
+								<button type="button" class="btn btn-info btnReview" data-dismiss="modal"><b>취소</b></button>
 							</div>
 						</td>
 					</tr>
+				 			
 				</table>
 			</form>
 			
 			</div>
 		</div>
+
 	</div>  
 
-	<c:import url="../../common/footer.jsp"/>
 	
 	<script>
 	
 		$(function () {
 			
+			$('[data-toggle="tooltip"]').tooltip()
+			
 			// 모달 종료 시 input-area 초기화
 			$("#myModal").on('hide.bs.modal', function(e){
+	
 				$("#file").val("");
 				e.stopImmediatePropagation();
 			});
@@ -167,14 +191,15 @@
 				var contents = $(this).parent().parent().children().eq(1).children().eq(4).text();
 				var img = $(this).parent().parent().children().eq(0).find('img').attr('src');
 				var rId = $(this).parent().parent().children().eq(0).children().eq(0).val();
+				var existrImage = $(this).parents('.contentsList').find('.rImage').val();
 				
 				$("#title").val(title);
 			    $("#content").text(contents);
 			    $("#titleImg").attr('src', img);
 			    $("#rId").val(rId);
-			    $('#contentLabel').html(contents.length+"/500");
-	
+			    $('#existrImage').val(existrImage);
 				$("#myModal").modal('show');
+				
 			});
 			
 			// 리뷰 수정 중 이미지 업로드에 필요
@@ -190,19 +215,53 @@
 		        }
 				$('#contentLabel').html($(this).val().length+"/500");
 		    });
-	
-		    $('[data-toggle="tooltip"]').tooltip()
 			
-		});
-	
-		// 리뷰 삭제 (단일)
-		function removeReview(rId){
-			if(confirm("삭제한 리뷰는 복구할 수 없습니다.\n정말 삭제하시겠습니까?")){
-				location.href='<%=request.getContextPath()%>/deleteReview.re?rId='+rId;
-			}
-			return false;
-		}
+			 // 모달창 제출
+			$('#submit').click(function (e) {
+				event.stopPropagation();
+				
+				$('#submit').click();
+			});
 		
+
+			 // 리뷰 삭제
+			$(".removeReview").on("click", function(){
+				
+				if(!confirm("삭제한 리뷰는 복구할 수 없습니다.\n정말 삭제하시겠습니까?")){
+					return false;
+				}
+				
+				var rId =$(this).parent().parent().find('.rId').val();
+				var tr = $(this).parent().parent();
+				
+				$.ajax({
+					url:"deleteReview.re",
+					data:{rId:rId},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							var $tableBody = tr.parent();
+							tr.remove();
+							
+							if(tr.parent().find('.contentsList').length == 0){
+								$tableBody.append(
+										"<div style='text-align: center; left:200%'><br><br><br>"
+					 					+ "<img src='resources/images/pandaImage.jpg' width='100px;'>"
+					 					+ "<br>등록한 리뷰가 없습니다."
+										);
+							}
+						}else{
+							alert("처리실패");
+						}
+					},
+					error:function(){
+						console.log("서버와의 통신 실패");
+					}
+				});
+			});
+	
+		});
+
 		// 모달창 이미지 출력
 		function loadImg(value){
 			if(value.files && value.files[0]){
@@ -214,9 +273,6 @@
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
-
-
-
 
 	</script>
 

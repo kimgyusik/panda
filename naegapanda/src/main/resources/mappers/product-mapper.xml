@@ -59,6 +59,7 @@
 		<result property="oPurchase" column="o_purchase"/>
 		<result property="paChangeName" column="pa_change_name"/>
 		<result property="filePath" column="file_path"/>
+		<result property="stPrice" column="st_Price"/>
 	</resultMap>
 	
 	<select id="selectcList" resultMap="categoryResultSet">
@@ -76,7 +77,7 @@
 	</select>
 	
 	<insert id="insertProduct" parameterType="Product">
-		insert into Product values(product_seq.nextval, #{pName}, #{sNo}, #{pContent}, #{cId}, default, default, 'Y', default, default, default)
+		insert into Product values(product_seq.nextval, #{pName}, #{sNo}, #{pContent}, #{cId}, default, default, 'Y', default, default, default, null)
 	</insert>
 	
 	<insert id="insertPa" parameterType="ProductAttachment">
@@ -87,11 +88,11 @@
 	</insert>
 	
 	<insert id="insertPo" parameterType="ProductOption">
-		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, product_seq.currval)
+		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, product_seq.currval, null)
 	</insert>
 	
 	<insert id="insertPo2" parameterType="ProductOption">
-		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, #{pId})
+		insert into Product_Option values(product_Option_seq.nextval, #{oName}, #{oPrice}, #{oAmount}, default, default, #{pId}, null)
 	</insert>
 	
 	<select id="selectProduct" parameterType="_int" resultMap="productResultSet">
@@ -216,6 +217,12 @@
  		]]>
 	</select>
 	
+	<select id="LiveList" resultMap="productResultSet2">
+		select p.* , s.st_no, st_status
+		from prettypList p
+		left outer join streaming s on(p.st_no = s.st_no)
+		where st_status='Y'
+	</select>
 	
 
 	<update id="increasePpurchase" parameterType="Payment" >
@@ -245,7 +252,17 @@
 
 	</update>
 	
-
+	<update id="updatestPrice" parameterType="ProductOption">
+		update product_option
+		set st_price = #{stPrice}
+		where o_No=#{oNo}
+	</update>
+	
+	<update id="updatestNo" parameterType="Product">
+		update product
+		set st_no = #{stNo}
+		where p_id=#{pId}
+	</update>
 
 
 </mapper>

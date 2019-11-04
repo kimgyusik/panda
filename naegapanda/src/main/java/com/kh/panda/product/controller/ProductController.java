@@ -23,6 +23,8 @@ import com.kh.panda.member.model.service.MemberService;
 import com.kh.panda.member.model.vo.Member;
 import com.kh.panda.myShopping.ggim.model.service.GgimService;
 import com.kh.panda.myShopping.ggim.model.vo.Ggim;
+import com.kh.panda.myShopping.inquiry.model.service.InquiryService;
+import com.kh.panda.myShopping.inquiry.model.vo.Inquiry;
 import com.kh.panda.myShopping.review.model.service.ReviewService;
 import com.kh.panda.myShopping.review.model.vo.Commend;
 import com.kh.panda.myShopping.review.model.vo.Review;
@@ -51,11 +53,13 @@ public class ProductController {
 	@Autowired
 	private GgimService ggService;
 	
+	@Autowired
+	private InquiryService inService;
+	
 	
 	@RequestMapping("test11.do")
 	public String test11(@RequestParam(value="category", defaultValue="1000") int category, HttpServletResponse response, Model model) throws JsonIOException, IOException{
 		
-		System.out.println(category);
 		ArrayList<Product> HotTopList = pService.HotTopList(category);
 		
 	      response.setContentType("application/json; charset=utf-8"); 
@@ -89,10 +93,15 @@ public class ProductController {
 			rcList = reService.selectCommendList(m.getmNo());
 		}
 		
+		// 상품 문의 리스트
+		ArrayList<Inquiry> inqList =  inService.selectprodInquiryList(pId);
+		
+		// 상세화면 진입 시 조회수 증가
 		int result = pService.increasepCount(pId);
 		
+		
 		if(result > 0) {
-			mv.addObject("p", p).addObject("paList", paList).addObject("poList", poList).addObject("reList", reList).addObject("rcList", rcList).setViewName("product/productDetailView");
+			mv.addObject("p", p).addObject("paList", paList).addObject("poList", poList).addObject("reList", reList).addObject("rcList", rcList).addObject("inqList", inqList).setViewName("product/productDetailView");
 		} else {
 			mv.setViewName("common/errorPage");
 		}
@@ -133,10 +142,14 @@ public class ProductController {
 		
 		int listCount = pService.getListCount(category);
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
-		
 		ArrayList<Product> pList = pService.selectpList(pi, category);
-		
 		ArrayList<Ggim> gglist = getGgimList(session);
+		
+		
+		if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
+		
 		
 		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
 		
@@ -152,21 +165,18 @@ public class ProductController {
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
 		ArrayList<Product> pList = pService.search(keyword,pi,category); 
-		System.out.println(keyword);
-		System.out.println(category);
-		System.out.println(pList);
-		System.out.println(listCount);
-		System.out.println(pi);
+		
+		
 		
 		ArrayList<Ggim> gglist = getGgimList(session);
 		
-		if(listCount == 0) {
-			pi.setMaxPage(1);
-		}
-		System.out.println("2"+pi);
-		System.out.println(pi.getMaxPage());
 		
-		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).setViewName("product/productListView");
+		 if(listCount == 0) { 
+			 pi.setMaxPage(1); 
+			 }
+		 
+		
+		mv.addObject("pList", pList).addObject("pi", pi).addObject("category", category).addObject("gglist",gglist).addObject("keyword",keyword).setViewName("product/productListView");
 		return mv;
 	}
 	

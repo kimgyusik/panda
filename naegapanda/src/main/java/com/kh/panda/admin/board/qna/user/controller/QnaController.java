@@ -120,7 +120,7 @@ public class QnaController {
 	}
 	
 	@RequestMapping("qdelete.do")
-	public String deleteQna(int uqId, HttpServletRequest request){
+	public String deleteQna(int uqId, HttpServletRequest request, Model model){
 		
 		//System.out.println(uqId);
 		
@@ -130,6 +130,7 @@ public class QnaController {
 		if(result > 0 && result2 > 0) {
 			return "redirect:qlist.do";
 		}else {
+			model.addAttribute("msg", "게시판 삭세 실패");
 			return "common/errorPage";
 		}
 	}
@@ -155,7 +156,7 @@ public class QnaController {
 	@RequestMapping("ainsert.do")
 	public String insertAnswer(Answer a, HttpServletRequest request, Model model) {
 		
-		System.out.println("인서트"+a);
+		//System.out.println("인서트"+a);
 		
 		int result = qService.insertAnswer(a);
 		

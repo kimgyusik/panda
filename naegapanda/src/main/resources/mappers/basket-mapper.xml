@@ -6,7 +6,6 @@
 		<id property="pId" column="p_id" />
 		<id property="mNo" column="m_no"/>
 		<result property="pName" column="p_name"/>
-		<result property="oNo" column="o_no"/>
 		<result property="price" column="o_price"/>
 		<result property="oName" column="o_name"/>
 		<result property="category2" column="c_name2"/>
@@ -16,6 +15,15 @@
 		<result property="oAmount" column="o_amount"/>
 		<result property="paChangeName" column="PA_CHANGE_NAME"/>
 		<result property="oNo" column="o_no"/>
+	</resultMap>
+	
+	<resultMap id="basketResultSet2" type="Basket">
+		<id property="oNo" column="o_no" />
+		<result property="pName" column="p_name"/>
+		<result property="pId" column="p_id"/>
+		<result property="oName" column="o_name"/>
+		<result property="storeName" column="storeName"/>
+		<result property="paChangeName" column="PA_CHANGE_NAME"/>
 	</resultMap>
 
 	<select id="selectbasketList" parameterType="_int" resultMap="basketResultSet">
@@ -42,6 +50,15 @@
 	where p_id = #{pId} and rownum = 1
 	</select>
 	
+	<select id="selectProductByoNo" parameterType="_int" resultMap="basketResultSet2">
+		select o_no, o_name, p_id, p_name, storename, pa_change_name
+        from PRODUCT_OPTION
+        join product using(p_id)
+		join PRODUCT_ATTACHMENT using(p_id)
+		join seller using(s_no)
+        where o_no = #{oNo} and PA_FILE_LEVEL = 1
+	</select>
+	
 	<insert id="addBasket" parameterType="Basket">
 		insert into SHOPPING_BASKET
 		values (#{oNo}, #{mNo}, #{amount})
@@ -58,6 +75,8 @@
 		set SB_AMOUNT = #{amount}
 		where o_no = #{oNo} and m_no = #{mNo}
 	</update>
+	
+	
 	
 </mapper>
 	

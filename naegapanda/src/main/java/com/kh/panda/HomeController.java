@@ -87,6 +87,8 @@ public class HomeController {
 			}
 
 			
+			ArrayList<Product> LiveList = pService.LiveList();
+			mv.addObject("LiveList",LiveList);
 
 			mv.addObject("Newest",Newest).addObject("NewTopList",NewTopList).addObject("gglist",gglist).addObject("New1List",New1List).addObject("New2List",New2List).addObject("New3List",New3List).addObject("New4List",New4List).addObject("New5List",New5List).addObject("New6List",New6List);
 

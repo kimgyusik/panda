@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
@@ -63,7 +64,6 @@
 											<li><a href="nlist.do">판다 공지</a></li>
 											<li><a href="qlist.do">서비스문의</a></li>
 											<li><a href="sqlist.do">판매자문의</a></li>
-											
 											<c:if test="${ sessionScope.loginUser.id eq 'admin' }">
 												<li><a href="categoryView.do">판매관리</a></li>
 												<li><a href="approvalList.do">판매허가관리</a></li>
@@ -88,6 +88,9 @@
 													<a href="#" id="page">My Page<i class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a href="basketList.ba">장바구니</a></li>
+														<li><a href="myPaymentList.pa">구매내역</a></li>
+														<li><a href="myInquiryList.in">상품문의</a></li>
+														<li><a href="myReviewList.re">구매리뷰</a></li>
 														<li><a href="myInfo.do">정보수정</a></li>
 													</ul>
 												</li>
@@ -158,7 +161,7 @@
 								<div class="header_search_form_container">
 									<form action="search.do" class="header_search_form clearfix">
 										<input type="text" name="keyword" required="required" class="header_search_input" placeholder="Search for products...">
-										<div class="custom_dropdown">
+										 <div class="custom_dropdown" style="display:none;">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
 												<i class="fas fa-chevron-down"></i>
@@ -553,13 +556,16 @@
 						$('.cart_price').children().first().text("장바구니가 비었어요.");
 					}else{
 						$('.cart_count').children().first().text(data[0]);
-						$('.cart_price').children().first().text(data[1]+"원");
+						 var regexp = /\B(?=(\d{3})+(?!\d))/g;
+						 var cost = data[1].toString().replace(regexp, ',');
+					     $('.cart_price').children().first().text(cost+"원");
 					}
 				},
 				error:function(){
 					console.log("ajax 통신 실패");
 				}
 			});
+
 			
 			// 메인메뉴 찜하기 비동기 처리
 			$.ajax({

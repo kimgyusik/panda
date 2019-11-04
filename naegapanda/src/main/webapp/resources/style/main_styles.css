@@ -1173,7 +1173,7 @@ section
 {
 	width: 100%;
 	padding-top: 68px;
-	padding-bottom: 83px;
+	padding-bottom: 40px;
 	overflow: hidden;
 }
 .banner_background
@@ -1253,7 +1253,7 @@ section
 
 .characteristics
 {
-	padding-top: 70px;
+	padding-top: 30px;
 	padding-bottom: 70px;
 }
 .char_item
@@ -2183,7 +2183,7 @@ section
 {
 	width: 100%;
 	padding-top: 96px;
-	padding-bottom: 96px;
+	padding-bottom: 50px;
 }
 .new_arrivals_title
 {

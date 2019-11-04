@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -21,7 +20,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +33,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.kh.panda.common.PageInfo;
 import com.kh.panda.common.Pagination;
+import com.kh.panda.member.model.vo.Member;
 import com.kh.panda.myShopping.payment.model.vo.Payment;
+import com.kh.panda.myShopping.review.model.service.ReviewService;
+import com.kh.panda.myShopping.review.model.vo.Commend;
+import com.kh.panda.myShopping.review.model.vo.Review;
 import com.kh.panda.product.model.vo.Category;
 import com.kh.panda.product.model.vo.Product;
 import com.kh.panda.product.model.vo.ProductAttachment;
@@ -44,6 +46,7 @@ import com.kh.panda.seller.model.service.SellerService;
 import com.kh.panda.seller.model.vo.MailHandler;
 import com.kh.panda.seller.model.vo.Seller;
 import com.kh.panda.seller.model.vo.TempKey;
+import com.kh.panda.streaming.model.vo.Streaming;
 
 @SessionAttributes("loginSeller")
 @Controller
@@ -57,7 +60,11 @@ public class SellerController {
 	private SellerService sService;
 
 	@Autowired
+	private ReviewService reService;
+	
+	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 
 	// 가입화면
 	@RequestMapping("sJoin.do")
@@ -115,6 +122,7 @@ public class SellerController {
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sendMail.setTo(s.getsEmail());
@@ -149,7 +157,7 @@ public class SellerController {
 	public String loginSeller(Seller s, Model model) {
 
 		Seller loginSeller = sService.loginSeller(s);
-		
+		System.out.println(loginSeller);
 		/*
 		 * System.out.println(loginSeller); System.out.println(s);
 		 */
@@ -168,21 +176,21 @@ public class SellerController {
 		 *
 		 */
 		
-		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd())  && loginSeller.getsStatus().equals("Y")) {
+		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd()) &&loginSeller.getsEmailKey().contentEquals("Y")  && loginSeller.getsStatus().equals("Y")) {
 
 			model.addAttribute("loginSeller", loginSeller);
 			return "redirect:sProduct.do";
+			
+		} else if(loginSeller.getsStatus().equals("N")){
+			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
 
 		} else if(loginSeller.getsEmailKey().equals("N")){
 			model.addAttribute("msg", "이메일 인증을 완료해주세요.");
 			model.addAttribute("url", "sellerLogin.do");
 			return "common/errorAlert";
 
-		} else if(loginSeller.getsStatus().equals("N")){
-			model.addAttribute("msg", "탈퇴또는 정지 당한 회원입니다."); 
-			model.addAttribute("url", "sellerLogin.do");
-			return "common/errorAlert";
-			 
 		} else {
 			model.addAttribute("msg", "아이디 혹은 비밀번호가 틀립니다.");
 			model.addAttribute("url", "sellerLogin.do");
@@ -269,13 +277,11 @@ public class SellerController {
 	}
 
 	// 아이디 찾기
-    @RequestMapping(value = "findsId.do", method =  RequestMethod.POST) public
-    String findsId(@RequestParam("sEmail") String sEmail, Model model) throws
-    Exception { model.addAttribute("sId", sService.findsId(sEmail)); return
-    "seller/find_sId"; }
-	 
-	
-	
+	@RequestMapping(value = "findsId.do", method = RequestMethod.POST)
+	public String findsId(@RequestParam("sEmail") String sEmail, Model model) throws Exception {
+		model.addAttribute("sId", sService.findsId(sEmail));
+		return "seller/find_sId";
+	}
 
 	@ResponseBody // 자동으로 response에 담겨서 반환시켜줌(String 밖에 안됨)
 	@RequestMapping("sIdCheck.do")
@@ -639,37 +645,84 @@ public class SellerController {
 		return mv;
 	}
 	
-	@RequestMapping(value="pStreamingView.do")
-	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping(value="pStreamingView.do", method=RequestMethod.GET)
+	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId,HttpSession session, ModelAndView mv, HttpServletRequest request) {
+		int s = sService.isStreaming(((Seller) session.getAttribute("loginSeller")).getsNo());
+		
+		if(s > 0) {
+			mv.setViewName("redirect:/sProduct.do");
+			return mv;
+		}
+		
 		Product p = sService.selectProduct(pId);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
 		ArrayList<Category> cList = sService.selectcList();
-		mv.addObject("cList", cList).addObject("p", p).addObject("paList", paList).addObject("poList", poList).setViewName("seller/product/updateProductForm");
+		mv.addObject("cList", cList).addObject("p", p).addObject("paList", paList).addObject("poList", poList).setViewName("seller/product/streamingSetForm");
 		
 		return mv;
 	}
 	
+	
 	@RequestMapping(value = "pStreaming.do", method = RequestMethod.POST)
-	public String insertStreaming(Product p, HttpServletRequest request,Model model, ModelAndView mv, @RequestParam("oNo") int[] oNo,
-			 @RequestParam("oPrice") int[] oPrice, @RequestParam("spTitle") String spTitle) {
+	public ModelAndView insertStreaming(Product p, HttpSession session, Model model, ModelAndView mv, @RequestParam("oNo") int[] oNo,
+			 @RequestParam("stPrice") int[] stPrice, @RequestParam("stTitle") String stTitle) {
 		
-		ArrayList<ProductAttachment> paList = new ArrayList<>();
-		ArrayList<ProductOption> poList = new ArrayList<>();
-			
-		for(int i=0; i<paList.size(); i++) {
-			System.out.println(paList.get(i));
-		}
+		ArrayList<ProductAttachment> paList = sService.selectPa(p);
+		ArrayList<ProductOption> poList = sService.selectPo(p);
+		Streaming st = new Streaming();
+		
 		for(int i=0; i<poList.size(); i++) {
-			System.out.println(poList.get(i));
+			poList.get(i).setStPrice(stPrice[i]);
 		}
 		
-		int result = sService.updateProduct(p, paList, poList);
-
+		
+		st.setStTitle(stTitle);
+		st.setsNo(((Seller) session.getAttribute("loginSeller")).getsNo());
+		
+		int result1= sService.insertStreaming(st);
+		st = sService.selectStreaming(((Seller) session.getAttribute("loginSeller")).getsNo());
+		p.setStNo(st.getStNo());
+		int result2 = sService.updatestNo(p);
+		int result = sService.updatestPrice(poList);
+		
+		// 해당 상품 리뷰 리스트
+		ArrayList<Review> reList = reService.selectProdReviewList(p.getpId());	
+		
+		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("product/pStreamingDetailView");;
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "StreamingView.do", method = RequestMethod.GET)
+	public ModelAndView StreamingView(@RequestParam("pId") int pId, HttpSession session,  ModelAndView mv) {
+		
+		
+		Product p = sService.selectProduct(pId);
+		ArrayList<ProductAttachment> paList = sService.selectPa(p);
+		ArrayList<ProductOption> poList = sService.selectPo(p);
+		
+		Streaming st = sService.selectStreamingToStNo(p.getStNo());
+		
+		// 해당 상품 리뷰 리스트
+		ArrayList<Review> reList = reService.selectProdReviewList(p.getpId());	
+		
+		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("product/pStreamingDetailView");;
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value = "stopStreaming.do", method = RequestMethod.GET)
+	public String stopStreaming(@RequestParam("pId") int pId, HttpSession session,  ModelAndView mv) {
+		int stNo = sService.getStNo(pId);
+		
+		int result = sService.stopStreaming(pId, stNo);
+		
+		
 		if(result > 0) {
-			return "redirect:sProduct.do";
+			return "redirect:home.do";
 		} else {
-			model.addAttribute("msg", "수정에 실패했습니다");
 			return "common/errorPage";
 		}
 	}
@@ -691,7 +744,6 @@ public class SellerController {
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sendMail.setTo(s.getsEmail());
@@ -699,6 +751,21 @@ public class SellerController {
 		
 		return "home";
 	 
+		
+	}
+	
+	@RequestMapping("delStatus.do")
+	public String delUpdate(Payment pm, Model model, HttpServletRequest request) {
+		
+		int result = sService.delUpdate(pm);
+		
+		if(result > 0) {
+			model.addAttribute(pm);
+			return "redirect:oderPage.do";
+		}else {
+			model.addAttribute("msg", "errorPage");
+			return "common/errorPage";
+		}
 		
 	}
 	

@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:판매자페이지</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <!-- include summernote css/js -->
@@ -162,12 +163,6 @@
 							<div>
 								<textarea id="summernote" name="pContent"></textarea>
 							</div>
-						    <script>
-						      $('#summernote').summernote({
-						        tabsize: 2,
-						        height: 800
-						      });
-						    </script>
 						</div>
 						<div align=right>
 							<button type="submit" class="btn btn-default">상품 추가</button>
@@ -177,6 +172,12 @@
 						</div>
 					</form>
 					<script>
+						$('#summernote').summernote({
+						  height: 300,                 // set editor height
+						  minHeight: null,             // set minimum height of editor
+						  maxHeight: null,             // set maximum height of editor
+						  focus: true                  // set focus to editable area after initializing summernote
+						});
 						function postForm() {
 							$('textarea[name="pContent"]').html($('.summernote').code());
 						}

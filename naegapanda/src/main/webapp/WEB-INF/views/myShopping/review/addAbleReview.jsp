@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title></title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -39,10 +40,10 @@
 									<div class="cart_container" style="width:120%;">
 										<div class="cart_title subTitle">작성 가능한 리뷰</div>
 										
-										<div class="cartinfo">
+										<div class="info">
 											<ul>
-												<li>· 배송완료된 구매에 대해서만 리뷰 작성이 가능합니다.</li>
-												<li>· 작성하신 리뷰는 [내가 작성한 리뷰]메뉴에서 확인하실 수 있습니다</li>
+												<li>· 배송완료 상태인 구매에 대해서만 리뷰 작성이 가능합니다.</li>
+												<li>· 작성하신 리뷰는 [내가 작성한 리뷰] 메뉴에서 확인하실 수 있습니다.</li>
 												<li>· 상품과 무관한 사진/동영상을 첨부한 리뷰는 통보없이 삭제 및 제재 대상이 될 수 있습니다.</li>
 											</ul>
 										</div>
@@ -57,13 +58,13 @@
 											 				
 														 		<tr class="contentsList" height="180px;">
 														 		
-														 			<c:url value="상품조회url" var="product">
+														 			<c:url value="pDetailView.do" var="product">
 																		<c:param name="pId" value="${r.pId }"/>
 																	</c:url>	
 																		
 														 			<td width="300px;">
 														 				<input type="hidden" class="payId" value="${r.payId}">
-														 				<a href="${ product }"><img src="resources/images/${r.paChangeName}" style="max-height:180px; width:auto; max-width:200px;"></a>
+														 				<a href="${ product }"><img class="reviewImg" src="resources/product_uploadFiles/${r.paChangeName}"></a>
 														 			</td>
 														 			
 														 			<td width="1000px;" style="text-align: left;">
@@ -76,7 +77,7 @@
 														 			
 														 			
 														 			<td width="250px;" >
-														 				<button  class="makeReview"  >리뷰 작성하기</button>
+														 				<button  class="makeReview">리뷰 작성하기</button>
 														 			</td>
 														 		
 												 				</tr>
@@ -112,7 +113,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 			
-			<div class="modal-header">
+			<div class="modal-header reviewModal">
 				<span style="color:white; "><b>리뷰 등록</b></span>
 				<button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
 			</div>
@@ -124,10 +125,10 @@
 							<img id="titleImg">
 						</td>
 						<td>
-							<div class="modal-body" style="padding-left:30px;">
+							<div class="modal-body" style="padding-left:20px;">
 								<input type="hidden" id="payId" name="payId"><br>
 								<label class="modalLabel">제목</label>
-								<input type="text" class="modal-title" id="title" name="rTitle" ><br><br>
+								<br><input type="text" class="modal-title" id="title" name="rTitle" ><br><br>
 								<label class="modalLabel">내용</label><br>
 								<textarea id="content" cols="35" name="rContents"></textarea><br>
 								<label id="contentLabel" >0/500</label>
@@ -140,8 +141,8 @@
 							<button id="btn-upload" type="button" class="btn btn-outline-info" data-dismiss="modal" style="margin-left:20px;"><b>사진 업로드</b></button></td>
 						<td>
 							<div class="modal-footer">
-								<button id="submit" type="submit" class="btn btn-info" data-dismiss="modal"><b>작성완료</b></button>
-								<button type="button" class="btn btn-info" data-dismiss="modal"><b>취소</b></button>
+								<button id="submit" type="submit" class="btn btn-info btnReview" data-dismiss="modal"><b>작성완료</b></button>
+								<button type="button" class="btn btn-info btnReview" data-dismiss="modal"><b>취소</b></button>
 							</div>
 						</td>
 					</tr>

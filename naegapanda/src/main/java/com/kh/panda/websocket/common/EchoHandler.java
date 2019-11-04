@@ -1,7 +1,9 @@
 package com.kh.panda.websocket.common;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +21,8 @@ private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 
     
 
-    private static List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+    private static Map<String, ArrayList<WebSocketSession>> chatList = new HashMap<>();
+    private static List<WebSocketSession> mList = new ArrayList<>();
 
     /**
 
@@ -27,14 +30,16 @@ private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 
      */
 
-    @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-       
-        sessionList.add(session);
-
-        logger.info("{} 연결됨", session.getId());
-    }
-
+	
+	/*
+	 * @Override public void afterConnectionEstablished(WebSocketSession session)
+	 * throws Exception {
+	 * 
+	 * mList.add(session);
+	 * 
+	 * logger.info("{} 연결됨", session.getId()); }
+	 */
+	 
     /**
 
      * 클라이언트가 웹소켓서버로 메시지를 전송했을 때 실행되는 메소드
@@ -46,41 +51,43 @@ private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 //       String username = (String)session.getUserProperties().get("username");
        System.out.println(session.getAttributes()); //map형식
+       String t = message.getPayload().split(":")[0];
+       String pId = message.getPayload().split(":")[1];
        System.out.println(session.getAttributes().get("loginUser")); //map형식 (request 는 안된당)
-              
+       ArrayList<WebSocketSession> list;
+       if(t.equals("소켓오픈")) {
+	       if(!chatList.containsKey(pId)) {
+	    	   list = new ArrayList<>();
+	       }else  {
+	    	   list = chatList.get(pId);
+	       }
+	       list.add(session);
+	       chatList.put(pId, list);
+       } else if(t.equals("메세지")) {
+    	   pId = message.getPayload().split(":")[1];
+    	   System.out.println(pId);
+    	    mList = chatList.get(pId);
+			logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
+			String user = ((Member) (session.getAttributes().get("loginUser"))).getName(); // getId();
 
-        logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-        String user = ((Member)(session.getAttributes().get("loginUser"))).getName();   //getId();
-       
- 
-        //for(WebSocketSession sess : sessionList){
-        for(WebSocketSession sess : sessionList){
-        	for(int i = 0; i > 0 ; i++) {
-        		sess.sendMessage(new TextMessage("- - - - " + user+"님이 입장하셨습니다. - - - -"));// 아이디 : 메세지 내용 출력              
-        	}
-	           if(session.getAttributes().get("bId") == null) {   // 방에 안들어왔으면
-	        	  
-	        	   if(session.getId().equals(sess.getId())) {      // 보낸사람 id와 보내야되는 사람 id 가 같을때
-	        		   sess.sendMessage(new TextMessage("나 : "+ message.getPayload()));   // 나 : 메세지 내용 출력
-	        	   }else {                                 // 다를때
-	        		sess.sendMessage(new TextMessage(user+" : "+ message.getPayload()));// 아이디 : 메세지 내용 출력              
-	        	   }
-	              
-	              
-	           }else {                                    // 방에 들어왔으면  // 사용 ㄴㄴ
-	              if(session.getAttributes().get("loginUser") == sess.getAttributes().get("loginUser")) {   // 보낸사람 bId와 보내야되는사람 bId가 같을때
-	                 if(session.getId().equals(sess.getId())) {
-	                     sess.sendMessage(new TextMessage("나:"+ message.getPayload()));   
-	                  }else {
-	                     sess.sendMessage(new TextMessage("상대방:"+ message.getPayload())); 
-	                  }
-	              }
-	           }
-           
+			// for(WebSocketSession sess : sessionList){
+			for (WebSocketSession sess : mList) {
+				/*
+				 * for (int i = 0; i > 0; i++) { sess.sendMessage(new TextMessage("- - - - " +
+				 * user + "님이 입장하셨습니다. - - - -"));// 아이디 : 메세지 내용 출력 }
+				 */
+				if (session.getAttributes().get("loginUser") == sess.getAttributes().get("loginUser")) { // 보낸사람
+					if (session.getId().equals(sess.getId())) {
+						sess.sendMessage(new TextMessage("나:" + message.getPayload().substring(message.getPayload().indexOf(":", 5)+1)));
+					} else {
+						sess.sendMessage(new TextMessage("상대방:" + message.getPayload().substring(message.getPayload().indexOf(":", 5)+1)));
+					}
+				}
+			}
 
-        }
+		}
 
-    }
+	}
 
     /**
 
@@ -93,7 +100,7 @@ private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
     public void afterConnectionClosed(WebSocketSession session,
 
             CloseStatus status) throws Exception {
-        sessionList.remove(session);
+        mList.remove(session);
         
         logger.info("{} 연결 끊김", session.getId());
 

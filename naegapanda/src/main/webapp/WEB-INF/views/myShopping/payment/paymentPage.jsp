@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/pandaicon.ico">
 <title></title>
 <link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
 <link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -39,7 +40,7 @@
 										
 											<div class="cart_title subTitle"><b>주문/결제</b></div>
 											
-											<div class="cartinfo">
+											<div class="info">
 												<ul>
 													<li>· 구매하신 상품 배송 및 주문처리를 위해 판매자에게 개인정보를 제공합니다.</li>
 													<li>· 개인정보를 확인하시고 필요 시 수정 후 진행하시기 바랍니다.</li>
@@ -72,8 +73,9 @@
 															<c:forEach items="${ list }" var="p">
 																<tr class="tablebody">
 																	<td style="width:200px;">
+																		
 																		<c:url value="pDetailView.do" var="product">
-																			<c:param name="pId" value="${ p	.pId }"/>
+																			<c:param name="pId" value="${ p.pId }"/>
 																		</c:url>
 																		<a href="${ product }"><img class="basketImg" src="resources/product_uploadFiles/${p.paChangeName}" ></a>
 																	</td>
@@ -81,6 +83,7 @@
 																		<a href="${ product }" style="font-size:13px;"><b>${p.pName}</b> <br>${p.oName}</a>	
 																	</td>
 																	<td>
+																		
 																		<span>${p.amount }</span>
 																	</td>
 																	<td>
@@ -224,6 +227,16 @@
 													
 													<button type="button"  id="paymentDone" class="cart_checkout" onclick="return paymentConfirm();">결제하기</button>
 													
+													<input type="hidden" name="flag2" value="${flag2}">
+													
+													<!-- 즉시결제인 경우 -->
+													<c:if test="${flag2 eq 2 }">
+														<c:forEach items="${ list }" var="p">
+															<input type="hidden" name="oNo" value="${p.oNo}">
+															<input type="hidden" name="count" value="${p.amount}">
+															<input type="hidden" name="price" value="${p.price}">
+														</c:forEach>
+													</c:if>
 												</div>
 												
 											</form>
@@ -246,7 +259,7 @@
 	<script>
 		
 		$(function(){
-			alert("z");
+			
 			priceAll();
 			
 			$("#postcodify_search_button").postcodifyPopUp();
@@ -264,7 +277,7 @@
 		    	var p = parseInt($(this).parent().children().eq(0).val()); // hidden된 각 상품의 합계금액
 		        sum = sum + p; 
 		    });
-			alert(sum);
+			
 			$(".order_total_amount").text(addComma(sum));
 			$(".order_total_amount").css("font-size","30px");
 		}

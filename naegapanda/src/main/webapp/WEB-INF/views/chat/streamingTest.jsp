@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:스트리밍</title>
  <link href="resources/style/style.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,25 +42,25 @@
 
                 <!-- Content Row -->
                 <div class="row">
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
+                    <div class="col-xl-4 col-lg-5" style="display:none;">
+                        <div class="card shadow mb-4"> 
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Channels</h6>
-                            </div>
+                            </div> 
                             <!-- Card Body -->
                             <div class="card-body">
                                 <main id="lvChannel" class="text-center">
                                 </main>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-xl-8 col-lg-7">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <!-- <!-- Card Header - Dropdown -->
+                          <!--   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" >
                                 <h6 class="m-0 font-weight-bold text-primary">My Channel</h6>
-                            </div>
+                            </div>  -->
                             <!-- Card Body -->
                             <div class="card-body">
                                 <main class="text-center">
@@ -69,12 +70,25 @@
                                         style="z-index:3; position: absolute;bottom: 55px;right:45px; visibility: hidden;">
                                         waiting</h6>
 
-                                    <input id="channelNameInput" class="form-control text-center" type="text"
-                                        placeholder="room name" autofocus>
-                                    <a id="channelBtn" href="#"
-                                    class="btn btn-primary btn-user btn-block text-center">
-                                        CREATE
-                                    </a>
+                                     <input id="channelNameInput" class="form-control text-center" type="hidden"
+                                        value="${p.pId }" autofocus>
+                                     <c:if test="${!empty loginSeller }">
+	                                    <c:if test="${loginSeller.sNo eq p.sNo}">
+	                                    <a id="channelBtn" href="#"
+	                                    class="btn btn-primary btn-user btn-block text-center">
+	                                        방송시작하기
+	                                    </a>
+                                    	</c:if>
+                                    </c:if>
+                                   	 <c:if test="${empty loginSeller or empty loginMember}">
+                                    	 <div style="display:none">
+	                                    <a id="channelBtn" href="#"
+	                                    class="btn btn-primary btn-user btn-block text-center">
+	                                        방송시작하기
+	                                    </a>
+	                                    </div>
+                                   
+                                   	</c:if>
                                 </main>
                             </div>
                         </div>
@@ -89,6 +103,11 @@
             <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk@2.4.20/remon.min.js"></script>
 
             <script>
+            var pId = ${p.pId}+"";
+            var sNo = -1;
+            var flag = 0;
+            var psNo = ${p.sNo};
+            var seller = ${loginSeller.sNo};
 const channelBtnEl = document.querySelector('#channelBtn');
 const channelList = document.getElementById("lvChannel");
 const channelNameInput = document.getElementById("channelNameInput");
@@ -148,8 +167,9 @@ function setViewsViaParameters(runWaitLoop, waitingTvVisibility, btnText, inputV
         clearInterval(waitingLoop);
     }
     waitingTv.style.visibility = waitingTvVisibility;
-    channelBtnEl.innerHTML = btnText;
+    channelBtnEl.innerHTML = "종료하기";
     channelNameInput.style.visibility = inputVisiblility;
+    
 }
 function start(isViewer) {
     if (isConnected) {
@@ -158,6 +178,8 @@ function start(isViewer) {
         setViewsViaParameters(false, 'hidden', 'CREATE', 'visible');
         remon.close();
         myChannelId = "";
+        alert("방송이 종료됐습니다. 메인화면으로 이동합니다.");
+        location.href="stopStreaming.do?pId="+pId;
     } else {
         isConnected = true;
         isCaster = !isViewer;
@@ -169,6 +191,7 @@ function start(isViewer) {
         myChannelId = channelNameInput.value ? channelNameInput.value : getRandomId();
         channelNameInput.value = "";
         isCaster? remon.createCast(myChannelId): remon.joinCast(myChannelId);
+       
     }
 }
 function getRandomId() {
@@ -177,12 +200,16 @@ function getRandomId() {
     for (var i = 0; i < 5; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     /* return Date.now() + "_" + text; */
-    return "1000";
+    flag = 1;
+    return pId;
 }
+if(channelBtnEl != null){
 channelBtnEl.addEventListener('click', (evt) => {
     start(false);
     evt.preventDefault();
 }, false);
+}
+
 function createDummyRemonForSearchLoop() {
     if (remon) remon.close();
     let cfg = {
@@ -233,12 +260,15 @@ function startSearchLoop() {
 }*/
 
 function test(){
-	 channelNameInput.value = '1000';
+	 channelNameInput.value = pId;
      start(true);
-    /*  evt.preventDefault(); */
+       /* evt.preventDefault(); */  
 }
 $(function(){
-	setTimeout(test, 10000);
+	if(seller == null){
+		setTimeout(test, 1000);
+		console.log(pId);
+	}
 })
             </script>
         </div>

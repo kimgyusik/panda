@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA:채팅</title>
 <style>
 	#data{
 		display:inline-block;
@@ -70,11 +71,11 @@ sock.onclose = onClose;
 
 
 
-/* sock.onopen = function(){
+sock.onopen = function(){
 
-    sock.send($("#message").val());
+    sock.send("소켓오픈:" + ${p.pId});
 
-}; */
+}; 
 
 function sendMessage() {
 
@@ -82,7 +83,7 @@ function sendMessage() {
      
   }else{                     // 메세지 내용이 있으면
        /*소켓으로 보내겠다.  */
-       sock.send($("#message").val());   // 메세지를 소켓에 보내고
+       sock.send("메세지:"+ ${p.pId} +":" + $("#message").val());   // 메세지를 소켓에 보내고
        $("#message").val("");         // 메세지 내용을 비운다.
      
   }

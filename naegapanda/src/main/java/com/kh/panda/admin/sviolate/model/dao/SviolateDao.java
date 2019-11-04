@@ -64,6 +64,9 @@ public class SviolateDao {
 	public int sellerDelete(int sNo) {
 		return sqlSession.update("sviolateMapper.sellerDelete",sNo);
 	}
+	public int sellerPermission(int sNo) {
+		return sqlSession.update("sviolateMapper.sellerPermission",sNo);
+	}
 	
 	
 }

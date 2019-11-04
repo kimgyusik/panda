@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<link rel="icon" href="resources/pandaicon.ico">
+<title>PANDA</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +25,8 @@
 	<div class="super_container"> 
 	<!-- Single Product -->
 		
-		<div class="single_product" style="padding-top:0px;">
-			
+		<div class="single_product" style="padding:0px;">
+			<br><br>
 			<div class="container">
 				<div class="row">
 					<!-- Images -->
@@ -45,18 +46,19 @@
 					<!-- Description -->
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
-							<div class="product_category">${p.cId }</div>
-							<div class="product_name">${ p.pName }
-									<c:if test="${ !empty loginUser }">  
-								<form action="violateinsert.do">
-									<input type="hidden" id="pId" name="pId" value="${ p.pId }">
-									<button type="submit" class="button cart_button">신고하기</button>
-								</form>
-									</c:if>	
+							
+							<div class="product_category">
+								상품번호:&nbsp;&nbsp; ${p.pId }
 							</div>
+							<div class="product_name">
+								${ p.pName }
+							</div><br>
+							<div class="mainPrice"></div>
+							
+							<br>
+							
 							<div class="rating_r rating_r_4 product_rating"></div>
 							<div class="order_info d-flex flex-row">
-								<form action="#">
 									<div class="clearfix" style="z-index: 1000;">	
 										<!-- Product Quantity -->
 										<!-- <div class="product_quantity clearfix">
@@ -69,80 +71,131 @@
 										</div> -->
 	
 										<!-- Product option -->
-										<div>
-											<table style="text-align:center;border:solid 2px blue">
-												<tr>
-													<th style="margin:10px;">옵션번호</th>
-													<th style="margin:10px;">옵션명</th>
-													<th style="margin:10px;">옵션가격</th>
-													<th style="margin:10px;">남은갯수</th>
-													<th style="margin:10px;">선택</th>
+										<div class="prodOptionDiv">
+											<table class="prodTable">
+												<tr style="height:50px;">
+													<th >옵션번호</th>
+													<th>옵션명</th>
+													<th>옵션가격</th>
+													<th>남은갯수</th>
+													<th></th>
 												</tr>
 											<c:forEach items="${poList }" var="po">
 												<tr>
-													<td style="margin:10px;">${po.oNo }</td>
-													<td style="margin:10px;">${po.oName }</td>
-													<td style="margin:10px;">${po.oPrice }</td>
-													<td style="margin:10px;">${po.oAmount }</td>
-													<td style="margin:10px;"><button type="button" onclick="addOp()">선택</button></td>
+													<td class="oNo" width="15%">${po.oNo }</td>
+													<td class="oName">${po.oName }</td>
+													<td width="20%">
+														<input class="oPrice" type="hidden" value="${po.oPrice}">
+														<fmt:formatNumber type="number" maxFractionDigits="3" value="${po.oPrice}" /> 원
+													</td>
+													<td class="oAmount" width="15%">${po.oAmount }</td>
+													<td  width="10%">
+														<button type="button" class="choiceOption" >선택</button>
+													</td>
 												</tr>
 											</c:forEach>
 											</table>
 										</div>
 									</div>
 									
-									<div id="chooseProduct">
-										<table id="chooseOp">
-										
-										</table>
-									</div>
+									
 									<script>
-									 	function addOp(){
-									 		console.log(this.val());
-									 		var $tb = $("#chooseOp");
-									 		var max = $(this).parent().parent().children().eq(3).val();
-									 		var $tr = $("<tr>");
-									 		var $oNo = $("<td>").text($(this).parent().parent().children().eq(0).val());
-									 		var $oName = $("<td>").text($(this).parent().parent().children().eq(1).val());
-									 		var $oPrice = $("<td>").text($(this).parent().parent().children().eq(2).val());
-									 		var $amount = "<input type='number' min='1' max='"+max+"'>";
-									 		var $delete = "<button type='button' onclick='deleteOp();'>삭제</button>";
+									$(function(){
+										
+										// 옵션 추가 처리
+										$('.choiceOption').click(function(){
+											
+											var $tb = $("#chooseOp");
+											var option = $(this).parent().parent();
+											
+											var oNo = option.find('.oNo').text();
+											
+											if($("#"+oNo).length<=0){
+													
+										 		var $tr = $("<tr id='"+oNo+"' height='50px'>");
+										 		var $oName = $("<td width='40%'>").text(option.find('.oName').text());
+										 		var $oPrice = $("<td width='25%'>" +
+										 							"<input class='oNo2' name='oNo' type='hidden' value='"+oNo+"'>" +
+										 							"<input type='hidden' value='"+option.find('.oPrice').val()+"'>" +
+										 							"<span>" + addComma(option.find('.oPrice').val())+"</span> 원</td>");
+										 		var max = option.find('.oAmount').text();
+										 		var $amount = $("<td width='20%'><input class='onlyNum' name='amount' type='number' value='1' min='1' max='"+max+"'></td>");
+										 		var $delete = $("<td width='15%'><div  class='optionCancle' onclick='deleteOp(this);'>x</div></td>");
+										 		
+										 		$tr.append($oName);
+										 		$tr.append($oPrice);
+										 		$tr.append($amount);
+										 		$tr.append($delete);
+										 		$tb.append($tr);
 									 		
-									 		$tr.append($tr);
-									 		$tr.append($oNo);
-									 		$tr.append($oName);
-									 		$tr.append($oPrice);
-									 		$tr.append($amount);
-									 		$tr.append($delete);
-									 		$tb.append($tr);
-									 	}
-									
+											}else{
+												alert('이미 선택한 옵션입니다.');
+												return false;
+											}
+										});
+										
+										// 옵션 수량 변경 시 처리
+										$(document).on("keyup change",".onlyNum",function(){
+											
+											this.value=this.value.replace(/[^1-9]/g,'');
+											
+											var price = $(this).parent().prev().children().eq(1).val();
+											var amount = $(this).val();
+											var cost = addComma(price*amount)
+											console.log(price);
+											console.log(amount);
+											$(this).parent().prev().children().eq(2).text(cost);
+										});
+
+									})
+
+									// 옵셕 제외 처리
+									function deleteOp(a){
+										a.parentNode.parentNode.remove();
+									}
 									</script>
-									
-	
-									<div class="button_container">
-										<!-- 占쏙옙,占쏙옙袂占쏙옙占�(占쌉쏙옙) -->
-										<button type="button" class="button cart_button" onclick="addCart(${loginUser.mNo});">장바구니로</button>
-										<button type="button" class="button cart_button" onclick="addGgim(${loginUser.mNo}) ;">찜하기</button> 
-										<div class="product_fav"><i class="fas fa-heart"></i></div>
-									</div>
-									
-								</form>
+
 							</div>
+							<br><br>
+							<div id="chooseProduct">
+								<table id="chooseOp">
+									
+								</table>
+							</div>
+							<br><br>
+							
+							<div style="text-align: right">
+								<button type="button" class="cart_button" onclick="addCart(${loginUser.mNo});">
+									<img width="20px;"src="resources/images/cart2.jpg" >장바구니
+								</button>
+								
+								<button type="button" class="cart_button" onclick="addGgim(${loginUser.mNo}) ;">
+									<img width="20px;"src="resources/images/heart2.png" >찜하기
+								</button> 
+								<c:if test="${ !empty loginUser }">  
+										<input type="hidden" id="pId" name="pId" value="${ p.pId }">
+										<button type="submit" class="cart_button">신고하기</button>
+								</c:if>	
+							</div>
+							
 						</div>
+						
 						<br>
 								
 					</div>
 					
+	
 				</div>
 			</div>
 		</div>
+		
+		<br><br><br><br><br>
 		<div >
 			<div class="container">
 				<div class="row">
 					<div class="col">
 						<div class="col-lg-5">
-							<h3>상세내용</h3>
+							<h3>상세내용</h3><br>
 							<div id="detail_contents">
 								${p.pContent }
 							</div>
@@ -152,7 +205,7 @@
 							<br>
 							<br>
 							<br>
-							<h3>리뷰 ${ reList.size() }개</h3>
+							<h3>리뷰 ${ reList.size() }건</h3><br>
 							<div id="review">
 								<input type="hidden" id="loginUser" value="${loginUser}">
 			
@@ -169,7 +222,7 @@
 									 				<span >&nbsp;&nbsp;작성자: ${re.mId }</span>
 									 			</td>
 									 			<td width="15%;" style="text-align: center;">
-									 				<img class="reviewImg" src="resources/images/${re.rImage}" >
+									 				<img class="reviewImg" src="resources/review_uploadFiles/${re.rImage}" >
 									 			</td>
 									 			<td  width="10%" >
 									 				<input type="hidden" class="rId" value="${re.rId }">
@@ -206,11 +259,11 @@
 							 						<div >
 							 							<br> <b>┗</b> &nbsp;&nbsp;<span class="replyCount">댓글(<span id="rCount${re.rId}"></span>)</span> &nbsp;&nbsp;&nbsp;&nbsp;
 							 							<c:if test="${loginUser == null }">
-							 								<input type="text" class="inputReply" placeholder="로그인 후 이용 가능합니다" disabled="disabled">
+							 								<input type="text" class="inputReply" placeholder="일반회원만 이용 가능합니다" disabled="disabled">
 							 							</c:if>
 							 							<c:if test="${loginUser != null }">
 							 								<input type="text" class="inputReply" >
-							 								<span class="add">추가</span>
+							 								<span class="add reviewGray">추가</span>
 							 							</c:if>
 							 							<br>
 										 				<table id="replyTable${re.rId}" style="margin-top: 10px;margin-bottom:15px;">
@@ -219,7 +272,7 @@
 							 						</div>
 							 					</td>
 							 					<td colspan="3" style="text-align: center;">
-							 						<img class="reviewImg2" src="resources/images/${re.rImage}" >
+							 						<img class="reviewImg2" src="resources/review_uploadFiles/${re.rImage}" >
 							 					</td>
 							 				</tr>
 								 		</c:forEach>
@@ -227,8 +280,7 @@
 							 	</c:if>
 							 	<c:if test="${empty reList}">
 				 					<div style="text-align: left;">
-					 					<br><img src="resources/images/pandaImage.jpg" width="100px;">
-					 					<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등록된 리뷰가 없습니다.
 					 				</div>
 				 				</c:if>
 
@@ -240,170 +292,179 @@
 						<div class="col-lg-5">
 							<br>
 							<br>
-							<br>
-							<h3>문의하기</h3>
+							<h3>상품 문의 </h3>
 							<div id="inquiry">
-								
+								<br>
+								<c:if test="${empty inqList}">
+				 					<div style="text-align: left;">
+					 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등록된 문의가 없습니다.
+					 				</div>
+					 				<br>
+				 				</c:if>
+								<c:if test="${loginUser != null }">
+									<input type="hidden" value="${p.pId}">
+	 								<div id="addInq">
+	 									상품 문의 작성하기
+	 								</div>
+	 							</c:if>
+	 							<c:if test="${loginUser == null }">
+	 								<div id="addInqDisable">
+	 									상품 문의 작성하기
+	 								</div>
+	 							</c:if>
+	 							<br>
+
+								<c:if test="${!empty inqList}">
+								 	<table  style="width:100%; ">
+								 		<thead>
+								 			<tr>
+								 				<td width="10%;">답변상태</td>
+								 				<td width="65%;">제목</td>
+								 				<td width="10%;">작성자</td>
+								 				<td width="15%;">작성일</td>
+								 			</tr>
+								 		</thead>
+								 		<tbody>
+									 		<c:forEach items="${ inqList }" var="i">
+										 		<tr class="inquiryTr1">
+										 			<td>
+										 				<input type="hidden" class="sNo" value="${loginSeller.sNo}">
+										 				<input type="hidden" class="mNo" value="${loginUser.mNo}">
+										 				<c:if test="${i.iState eq 'N' }">
+										 					<span class="answerYn">미답변</span>
+										 				</c:if>
+										 				<c:if test="${i.iState eq 'Y' }">
+										 					<span class="answerYn">답변완료</span>
+										 				</c:if>
+										 				
+										 			</td>
+										 			<td style="text-align: left;">
+										 				<input type="hidden" class="openYn" value="${i.openYn}">
+										 				<input type="hidden" class="imNo" value="${i.mNo}">
+										 				<input type="hidden" class="isNo" value="${i.sNo}">
+										 				<input type="hidden" class="iState" value="${i.iState}">
+											 			
+											 			<c:if test="${loginSeller == null || p.sNo ne loginSeller.sNo }">
+											 				<c:if test="${i.openYn eq 'Y'}">
+									 							<span>${i.iTitle }</span>
+									 						</c:if>
+									 						<c:if test="${i.openYn eq 'N'}">
+									 							<c:if test="${loginUser ne null && i.mNo eq loginUser.mNo}">
+										 							<span>${i.iTitle }</span>
+										 						</c:if>
+										 						<c:if test="${loginUser eq null || i.mNo ne loginUser.mNo}">
+										 							<span >비밀글입니다.</span> &nbsp;
+										 							<img src="resources/images/lock.ico" width="16px;" style="margin-bottom:3px;">
+										 						</c:if>
+									 						</c:if>
+								 						</c:if>
+								 						<c:if test="${loginSeller != null && p.sNo eq loginSeller.sNo }">
+								 							<span>${i.iTitle }</span>
+								 						</c:if>
+										 			</td>
+										 			<td>
+										 				<span>${i.mId}</span>
+										 			</td>
+										 			<td>
+										 				<span ><fmt:formatDate value="${i.iDate}" pattern="yyyy. MM. dd. hh:mm" /></span>
+										 			</td>
+								 				</tr>
+								 				<tr class="inquiryTr2">
+								 					<td></td>
+								 					<td style="text-align: left;">
+								 						${i.iContents}
+								 					</td>
+								 					<td></td>
+								 					<td></td>
+								 				</tr>
+								 				<tr class="inquiryTr3">
+								 					<td></td>
+								 					<td style="text-align: left;">
+								 						<div>
+								 							<input type="hidden" id="iId" value="${i.iId}">
+								 							<b>┗</b> &nbsp;&nbsp;<span class="answerBox">답변</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								 							
+								 							<c:if test="${i.iAnswer != null}">
+								 								<span class="iAnswer">${i.iAnswer }</span>
+								 							</c:if>
+								 							<c:if test="${loginSeller != null && p.sNo eq loginSeller.sNo }">
+								 								<c:if test="${i.iAnswer == null}">
+								 									<input type="text" class="addAnswer" >
+								 									<span id="a${i.iId}" class="addInq" onclick="addInq(this.id);">등록</span>
+								 								</c:if>
+								 								<c:if test="${i.iAnswer != null}">
+								 									<span id="d${i.iId}" class="deleteInq" onclick="deleteInq(this.id);">삭제</span>
+								 								</c:if>
+								 							</c:if>
+
+								 						</div>
+								 					</td>
+								 					<td>판매자</td>
+								 					<td><fmt:formatDate value="${i.iaDate}" pattern="yyyy. MM. dd. hh:mm" /></td>
+								 				</tr>
+									 		</c:forEach>																				
+								 		</tbody>
+								 	</table>
+							 	</c:if>
+
+		
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-					
-	
-		<!-- Recently Viewed -->
-	
-		<div class="viewed">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="viewed_title_container">
-							<h3 class="viewed_title">Recently Viewed</h3>
-							<div class="viewed_nav_container">
-								<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
-								<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
-							</div>
-						</div>
-	
-						<div class="viewed_slider_container">
-							
-							<!-- Recently Viewed Slider -->
-	
-							<div class="owl-carousel owl-theme viewed_slider">
-								
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_1.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$225<span>$300</span></div>
-											<div class="viewed_name"><a href="#">Beoplay H7</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_2.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$379</div>
-											<div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_3.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$225</div>
-											<div class="viewed_name"><a href="#">Samsung J730F...</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_4.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$379</div>
-											<div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_5.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$225<span>$300</span></div>
-											<div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-	
-								<!-- Recently Viewed Item -->
-								<div class="owl-item">
-									<div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-										<div class="viewed_image"><img src="resources/images/view_6.jpg" alt=""></div>
-										<div class="viewed_content text-center">
-											<div class="viewed_price">$375</div>
-											<div class="viewed_name"><a href="#">Speedlink...</a></div>
-										</div>
-										<ul class="item_marks">
-											<li class="item_mark item_discount">-25%</li>
-											<li class="item_mark item_new">new</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-		<!-- Brands -->
-	
-		<div class="brands">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="brands_slider_container">
-							
-							<!-- Brands Slider -->
-	
-							<div class="owl-carousel owl-theme brands_slider">
-								
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_1.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_2.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_3.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_4.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_5.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_6.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_7.jpg" alt=""></div></div>
-								<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="resources/images/brands_8.jpg" alt=""></div></div>
-	
-							</div>
-							
-							<!-- Brands Slider Navigation -->
-							<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-							<div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</div>
+	<br><br><br><br>
 	
 	<c:import url="../common/footer.jsp"/>
+	
+	
+	<!-- 모달 -->
+	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm" style="width:300px;">
+			<div class="modal-content">
+			
+			<div class="modal-header">
+				<span style="color:white; "><b>문의 등록</b></span>
+				<button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
+			</div>
+			
+			<form action="addInquiry.in" method="post" >
+				<table id="inqModal">
+					<tr>
+						<td>
+							<div class="modal-body" style="padding-left:30px; padding-right:30px;">
+								<input type="hidden" id="pIdInq" name="pId"><br>
+								<label class="modalLabel">제목</label>
+								<br><input type="text" class="modal-title" id="title" name="iTitle" ><br><br>
+								<label class="modalLabel">내용</label><br>
+								<textarea id="content" cols="15" rows="4" name="iContents"></textarea><br>
+								<label id="contentLabel" >0/500</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="modal-footer">
+								<div style="flex: auto; margin-left:20px;">
+									<input type="checkbox" id="openYn" name="openYn" checked="checked">
+									<label id="openYnLabel" for="openYn">공개 여부</label>
+								</div>
+								<button id="submit" type="submit" class="btn btnInq" data-dismiss="modal"><b>작성완료</b></button>
+								<button type="button" class="btn btnInq" data-dismiss="modal"><b>취소</b></button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+			</div>
+		</div>
+	</div> 
+	
 	
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
 	<script src="resources/style/bootstrap4/popper.js"></script>

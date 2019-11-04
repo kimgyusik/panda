@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="resources/style/memberLoginForm.css">
 <link rel="stylesheet" type="text/css" href="resources/style/memberLoginContainer.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>
 	$(function(){
 		$("#loginBtn").click(function(){

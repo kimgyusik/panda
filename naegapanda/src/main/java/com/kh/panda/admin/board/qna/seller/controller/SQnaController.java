@@ -36,8 +36,8 @@ public class SQnaController {
 		ArrayList<SQna> sqlist = sqService.selectList(pi);
 		ArrayList<SAnswer> salist = sqService.selectSAList(); 
 		
-		System.out.println(sqlist);
-		System.out.println(salist);
+		//System.out.println(sqlist);
+		//System.out.println(salist);
 		
 		mv.addObject("pi", pi).addObject("sqlist", sqlist).addObject("salist", salist).setViewName("admin/board/sqnaListView");
 		
@@ -70,18 +70,22 @@ public class SQnaController {
 	@RequestMapping("sqdetail.do")
 	public ModelAndView sqnaDetail(int sqId, ModelAndView mv) {
 		
-		SQna q = sqService.sqnaDetail(sqId);
-		SAnswer a = sqService.sanswerDetail(sqId);
+			
+			SQna q = sqService.sqnaDetail(sqId);
+			SAnswer a = sqService.sanswerDetail(sqId);
+			
+			//System.out.println(q);
+			//System.out.println(q.getmName());
+			//System.out.println("디테일"+a);
+			
+			if(q != null) {
+				mv.addObject("q",q).addObject("a",a).setViewName("admin/board/sqnaDetailView");
+			}else {
+				mv.addObject("msg", "문의게시판 상세조회 실패!!").setViewName("common/errorPage");
+			}
+			
+			
 		
-		//System.out.println(q);
-		//System.out.println(q.getmName());
-		//System.out.println("디테일"+a);
-		
-		if(q != null) {
-			mv.addObject("q",q).addObject("a",a).setViewName("admin/board/sqnaDetailView");
-		}else {
-			mv.addObject("msg", "문의게시판 상세조회 실패!!").setViewName("common/errorPage");
-		}
 		
 		return mv;
 	}
@@ -118,7 +122,7 @@ public class SQnaController {
 	}
 	
 	@RequestMapping("sqdelete.do")
-	public String deleteSQna(int sqId, HttpServletRequest request){
+	public String deleteSQna(int sqId, HttpServletRequest request, Model model){
 		
 		//System.out.println(uqId);
 		
@@ -128,6 +132,7 @@ public class SQnaController {
 		if(result > 0 && result2 > 0) {
 			return "redirect:sqlist.do";
 		}else {
+			model.addAttribute("msg", "게시판 삭제 실패");
 			return "common/errorPage";
 		}
 	}
@@ -155,7 +160,7 @@ public class SQnaController {
 		
 		
 		int result = sqService.insertSAnswer(a);
-		System.out.println("인서트"+a);
+		//System.out.println("인서트"+a);
 		
 		if(result > 0) {
 			return "redirect:sqlist.do";
