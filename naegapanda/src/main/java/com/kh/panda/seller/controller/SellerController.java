@@ -198,7 +198,7 @@ public class SellerController {
 			return "common/errorAlert";
 
 		} else {
-			model.addAttribute("msg", "아이디 혹은 비밀번호가 틀립니다.");
+			model.addAttribute("msg", "비밀번호가 틀립니다.");
 			model.addAttribute("url", "sellerLogin.do");
 			return "common/errorAlert";
 		}
