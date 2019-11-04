@@ -13,6 +13,10 @@ a:visited {
 		color: black; 
 		text-decoration: none;
 	}
+	
+.pointer{
+	cursor:pointer;
+}
 </style>
 
 </head>
@@ -34,7 +38,13 @@ a:visited {
 
 		<form action="sellerDelete.do">
 		<input type = "hidden" name = "sNo" value = "${ sNo }" >
-   		<h3 style="font-weight:bold;" id="deleteSeller"> ${sName} 님의 신고 회원 관리</h3>
+		
+		<c:if test="${ sStatus eq 'Y' }">
+   		<h3 style="font-weight:bold;" id="deleteSeller" class="pointer"> ${sName} 님의 신고 회원 관리</h3>
+		</c:if>
+		<c:if test="${ sStatus eq 'N' }">
+   		<h3 style="font-weight:bold;"> ${sName} 님의 신고 회원 관리</h3>
+		</c:if>
    	<script>
    	$("#deleteSeller").click(function(){
    		var sNo = $(this).prev().val();

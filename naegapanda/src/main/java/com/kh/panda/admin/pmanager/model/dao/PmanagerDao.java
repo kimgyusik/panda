@@ -30,7 +30,7 @@ public class PmanagerDao {
 	}
 	
 	public int getListCount3() {
-		return sqlSession.selectOne("pmanagerMapper.getListCount");
+		return sqlSession.selectOne("pmanagerMapper.getListCount3");
 	}
 	
 	public ArrayList<Pmanager> selectList(PageInfo pi, String cName2){

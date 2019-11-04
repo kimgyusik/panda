@@ -100,10 +100,6 @@ public class ProductController {
 		int result = pService.increasepCount(pId);
 		
 		
-		
-
-		
-		
 		if(result > 0) {
 			mv.addObject("p", p).addObject("paList", paList).addObject("poList", poList).addObject("reList", reList).addObject("rcList", rcList).addObject("inqList", inqList).setViewName("product/productDetailView");
 		} else {

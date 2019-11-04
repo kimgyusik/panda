@@ -157,7 +157,7 @@ public class SellerController {
 	public String loginSeller(Seller s, Model model) {
 
 		Seller loginSeller = sService.loginSeller(s);
-		
+		System.out.println(loginSeller);
 		/*
 		 * System.out.println(loginSeller); System.out.println(s);
 		 */
@@ -651,8 +651,15 @@ public class SellerController {
 		return mv;
 	}
 	
-	@RequestMapping(value="pStreamingView.do")
-	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId, ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping(value="pStreamingView.do", method=RequestMethod.GET)
+	public ModelAndView pStreamingView(@RequestParam(value="pId") int pId,HttpSession session, ModelAndView mv, HttpServletRequest request) {
+		int s = sService.isStreaming(((Seller) session.getAttribute("loginSeller")).getsNo());
+		
+		if(s > 0) {
+			mv.setViewName("redirect:/sProduct.do");
+			return mv;
+		}
+		
 		Product p = sService.selectProduct(pId);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
@@ -661,6 +668,7 @@ public class SellerController {
 		
 		return mv;
 	}
+	
 	
 	@RequestMapping(value = "pStreaming.do", method = RequestMethod.POST)
 	public ModelAndView insertStreaming(Product p, HttpSession session, Model model, ModelAndView mv, @RequestParam("oNo") int[] oNo,
@@ -694,6 +702,8 @@ public class SellerController {
 	
 	@RequestMapping(value = "StreamingView.do", method = RequestMethod.GET)
 	public ModelAndView StreamingView(@RequestParam("pId") int pId, HttpSession session,  ModelAndView mv) {
+		
+		
 		Product p = sService.selectProduct(pId);
 		ArrayList<ProductAttachment> paList = sService.selectPa(p);
 		ArrayList<ProductOption> poList = sService.selectPo(p);
@@ -706,6 +716,21 @@ public class SellerController {
 		mv.addObject("poList", poList).addObject("p",p).addObject("reList", reList).addObject("paList",paList).addObject("st", st).setViewName("product/pStreamingDetailView");;
 		
 		return mv;
+		
+	}
+	
+	@RequestMapping(value = "stopStreaming.do", method = RequestMethod.GET)
+	public String stopStreaming(@RequestParam("pId") int pId, HttpSession session,  ModelAndView mv) {
+		int stNo = sService.getStNo(pId);
+		
+		int result = sService.stopStreaming(pId, stNo);
+		
+		
+		if(result > 0) {
+			return "redirect:home.do";
+		} else {
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping(value="findsPwd.do", method=RequestMethod.POST)
@@ -747,10 +772,6 @@ public class SellerController {
 			model.addAttribute("msg", "errorPage");
 			return "common/errorPage";
 		}
-		
-		
-		 
-		 
 		
 	}
 	

@@ -198,6 +198,31 @@ public class SellerDao {
 	}
 
 
+	public int pStopStream(int pId) {
+		return sqlSession.update("sellerMapper.pStopStream", pId);
+	}
+
+
+	public int poStopStream(int pId) {
+		return sqlSession.update("sellerMapper.poStopStream", pId);
+	}
+
+
+	public int getStNo(int pId) {
+		return sqlSession.selectOne("sellerMapper.getStNo", pId);
+	}
+
+
+	public int deleteStreaming(int stNo) {
+		return sqlSession.update("sellerMapper.deleteStreaming", stNo);
+	}
+
+
+	public int isStreaming(int sNo) {
+		return sqlSession.selectOne("sellerMapper.isStreaming", sNo);
+	}
+
+
 	
 
 

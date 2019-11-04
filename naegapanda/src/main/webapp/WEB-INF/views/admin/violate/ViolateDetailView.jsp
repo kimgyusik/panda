@@ -96,9 +96,11 @@
                         ${ v.vTitle } <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+                    <a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" download>
                         <img class="img-responsive" src="${ contextPath }/resources/vupload/${ v.vRenameFileName }" alt="" width="700px" height="500px">
+                    </a>
                     		<br><br>
-                    		<div style="align:center"><a href="${ contextPath }/resources/vupload/${ v.vRenameFileName }" download>${ v.vRenameFileName }</a></div>
+                    		<div style="align:center">${v.vContent}</div>
                     </div>
                 </div>
             </div>

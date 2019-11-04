@@ -2,6 +2,7 @@ package com.kh.panda.myShopping.basket.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,8 +44,7 @@ public class BasketController {
 		return mv;
 	}
 	
-	
-	// 장바구니 추가 처리 
+	// 장바구니 추가 처리 (단일)
 	@ResponseBody
 	@RequestMapping("addBasket.ba")
 	public void addBasket(Basket b, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException {
@@ -68,6 +68,47 @@ public class BasketController {
 			msg = "나며 안 된는 오류";
 		}
 
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(msg, response.getWriter());
+		
+	}
+	
+	// 장바구니 추가 처리 (다중)
+	@ResponseBody
+	@RequestMapping("addBasket2.ba")
+	public void addBasket2(HttpSession session, HttpServletResponse response, HttpServletRequest request,
+			@RequestParam(value="oNo[]") List<String> oNo, @RequestParam(value="amount[]") List<String> amount) throws JsonIOException, IOException {
+		
+//		String[] oNo = request.getParameterValues("oNo");
+//		String[] amount = request.getParameterValues("amount");
+		
+		ArrayList<Basket> list = new ArrayList<>();
+		Basket b = null;
+		
+		for(int i=0; i<oNo.size(); i++) {
+			b = new Basket();
+			b.setoNo(Integer.parseInt(oNo.get(i)));
+			b.setAmount(Integer.parseInt(amount.get(i)));
+			b.setmNo(getmNo(session));
+			list.add(b);
+		}
+		
+		int result = 0;
+		String msg = "";
+		
+		result = baService.addBasketList(list);
+		
+		if(result == 1 ) {
+			msg = "해당 상품을 장바구니에 담았습니다.";
+		}else if(result == 2){
+			msg = "이미 장바구니에 담은 상품이 포함돼 있습니다.";
+		}else {
+			msg = "나며 안 된는 오류";
+		}
+
+		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
