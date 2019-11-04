@@ -25,15 +25,17 @@
 	<c:import url="../common/menubar.jsp"/>
 	<div class="super_container"> 
 	<!-- Single Product -->
-			
+		<h3>${st.stTitle }</h3>
+			<div>
 				<c:import url="../chat/streamingTest.jsp"/>
 				<c:import url="../chat/chatMain.jsp" /> 
+			</div>
 		<br>
 		<div class="single_product" style="padding-top:0px;">
 			
 			<div class="container">
 				<div class="col-lg-2 order-lg-2 order-1">
-					<h3>${st.stTitle }</h3>
+					
 					
 				</div>
 				<div class="row">
