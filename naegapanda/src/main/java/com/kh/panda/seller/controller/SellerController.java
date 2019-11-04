@@ -176,6 +176,12 @@ public class SellerController {
 		 *
 		 */
 		
+		if(loginSeller == null) {
+			model.addAttribute("msg", "등록되지 않은 아이디 입니다.");
+			model.addAttribute("url", "sellerLogin.do");
+			return "common/errorAlert";
+		}
+		
 		if (loginSeller != null && loginSeller.getsPwd().equals(s.getsPwd()) &&loginSeller.getsEmailKey().contentEquals("Y")  && loginSeller.getsStatus().equals("Y")) {
 
 			model.addAttribute("loginSeller", loginSeller);
@@ -715,7 +721,7 @@ public class SellerController {
 		
 		sendMail.setSubject("[PANDA 비밀번호 찾기]");
 		sendMail.setText(
-				new StringBuffer().append("<h1>메일인증</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
+				new StringBuffer().append("<h1>비밀번호찾기</h1>").append("<h5 style='display:inline-block'>임시비밀번호 : </h5>").append(s.getsPwd()).toString());
 		try {
 			sendMail.setFrom("dkj01043@gmail.com", "관리자");
 		} catch (UnsupportedEncodingException e) {
