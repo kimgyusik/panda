@@ -1,51 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:장바구니</title>
-<link rel="stylesheet" type="text/css" href="resources/style/bootstrap4/bootstrap.min.css">
-<link href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
-<link rel="stylesheet" type="text/css" href="resources/style/cart_responsive.css">
-<link rel="stylesheet" type="text/css" href="resources/style/myShoppingCustom.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/style/bootstrap4/bootstrap.min.css">
+<link
+	href="resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"
+	href="resources/style/cart_styles.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/style/cart_responsive.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/style/myShoppingCustom.css">
 <style>
-
-
-
 </style>
 </head>
 <body>
 
 	<div class="super_container">
 
-	<c:import url="../../common/menubar.jsp"/>
+		<c:import url="../../common/menubar.jsp" />
 
 		<div class="shop">
 			<div class="container">
 				<div class="row">
-				
+
 					<!-- 사이드 메뉴바 -->
 					<div class="col-lg-1">
-						<c:import url="../sidebar.jsp"/>
+						<c:import url="../sidebar.jsp" />
 					</div>
-	
-					<div class="col-lg-10" >
-					
+
+					<div class="col-lg-10">
+
 						<!-- Cart -->
-	
+
 						<div class="cart_section">
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-10 offset-lg-1">
-										<div class="cart_container" style="width:120%;">
-										
+										<div class="cart_container" style="width: 120%;">
+
 											<div class="cart_title subTitle">장바구니</div>
-											
+
 											<div class="info">
 												<ul>
 													<li>· 옵션, 가격 등 상품정보가 변경될 수 있으니 확인 후 진행하시기 바랍니다.</li>
@@ -53,105 +56,92 @@
 													<li>· 장바구니에서 제외시킨 상품은 원복되지 않습니다.</li>
 												</ul>
 											</div>
-											
+
 											<c:if test="${empty list}">
-												<div style="text-align: center; margin-top:70px;">
+												<div style="text-align: center; margin-top: 70px;">
 													<img src="resources/images/cart2.png" width="100px;">
-													<br><br>장바구니가 비어 있습니다.
+													<br> <br>장바구니가 비어 있습니다.
 												</div>
 											</c:if>
-											
+
 											<c:if test="${!empty list}">
-											
-												<div class="cart_items" >
-													<ul class="cart_list" >
-														<li class="cart_item clearfix" >
+
+												<div class="cart_items">
+													<ul class="cart_list">
+														<li class="cart_item clearfix">
 															<table class="cartTb">
 																<tr class="tablehead">
-																	<td style="display:none;">
-																	</td>
-																	<td style="width:70px;">
-																		<input class="allCheck" type="checkbox" >
-																	</td>
-																	<td style="width:700px;" colspan="2">
-																		상품정보
-																	</td>
-																
-																	<td style="width:100px;">
-																		수량
-																	</td>
-																	<td style="width:200px;">
-																		판매가
-																	</td>
-																	<td style="width:200px;">
-																		판매자
-																	</td>
-																	<td style="width:230px;">
-																		합계
-																	</td>
+																	<td style="display: none;"></td>
+																	<td style="width: 70px;"><input class="allCheck"
+																		type="checkbox"></td>
+																	<td style="width: 700px;" colspan="2">상품정보</td>
+
+																	<td style="width: 100px;">수량</td>
+																	<td style="width: 200px;">판매가</td>
+																	<td style="width: 200px;">판매자</td>
+																	<td style="width: 230px;">합계</td>
 																</tr>
 																<c:forEach items="${ list }" var="b">
 																	<tr class="tablebody">
-																		<td id ="${b.oNo}" class="test" style="display:none;">
-																			${b.oNo}
+																		<td id="${b.oNo}" class="test" style="display: none;">
+																			${b.oNo}</td>
+																		<td><input name="arr" class="checkCart"
+																			type="checkbox" value="${b.oNo}"></td>
+																		<td style="width: 200px;"><c:url
+																				value="pDetailView.do" var="product">
+																				<c:param name="pId" value="${ b.pId }" />
+																			</c:url> <a href="${ product }"><img class="basketImg"
+																				src="resources/product_uploadFiles/${b.paChangeName}"></a>
 																		</td>
-																		<td>
-																			<input name="arr" class="checkCart" type="checkbox" value="${b.oNo}">
+																		<td style="text-align: left; width: 600px;">[
+																			${b.category2} > ${b.category} ]<br> <a
+																			href="${ product }" style="font-size: 13px;"><b>${b.pName}</b>
+																				<br>${b.oName}</a>
 																		</td>
-																		<td style="width:200px;">
-																			<c:url value="pDetailView.do" var="product">
-																				<c:param name="pId" value="${ b.pId }"/>
-																			</c:url>
-																			<a href="${ product }"><img class="basketImg" src="resources/product_uploadFiles/${b.paChangeName}" ></a>
+																		<td><input class="amount" type="number"
+																			value="${b.amount }" min="1"
+																			onKeyup="this.value=this.value.replace(/[^1-9]/g,'');">
 																		</td>
-																		<td style="text-align:left;width:600px; ">
-																			
-																			[ ${b.category2} > ${b.category} ]<br>
-																			<a href="${ product }" style="font-size:13px;"><b>${b.pName}</b> <br>${b.oName}</a>	
-																		</td>
-																		<td>
-																			<input class="amount" type="number" value="${b.amount }" min="1" onKeyup="this.value=this.value.replace(/[^1-9]/g,'');" >
-																		</td>
-																		<td>
-																			<input type="hidden" value="${b.price}">
-																			<fmt:formatNumber type="number" maxFractionDigits="3" value="${b.price }" />원
-																		</td>
-																		<td>
-																			${b.storeName }
-																		</td>
-																		<td >
-																			<c:set var="p" value="${b.amount *b.price }" />
-																			<input type="hidden" value="${p }">
-																			<span class="price2"  >
-																				<fmt:formatNumber type="number" maxFractionDigits="3" value="${p }" />
-																			</span><span>원</span>
-																			<br>
-																			<button class="btnCart" onclick="return ggim(${b.pId});"style="margin-top:5px;">찜하기</button> &nbsp;
-																			<button class="btnCart" onclick="return removeCart(${b.oNo});">삭제</button>
-																		</td>
+																		<td><input type="hidden" value="${b.price}">
+																			<fmt:formatNumber type="number" maxFractionDigits="3"
+																				value="${b.price }" />원</td>
+																		<td>${b.storeName }</td>
+																		<td><c:set var="p" value="${b.amount *b.price }" />
+																			<input type="hidden" value="${p }"> <span
+																			class="price2"> <fmt:formatNumber
+																					type="number" maxFractionDigits="3" value="${p }" />
+																		</span><span>원</span> <br>
+																			<button class="btnCart"
+																				onclick="return ggim(${b.pId});"
+																				style="margin-top: 5px;">찜하기</button> &nbsp;
+																			<button class="btnCart"
+																				onclick="return removeCart(${b.oNo});">삭제</button></td>
 																	</tr>
 																</c:forEach>
-															
+
 															</table>
-															
+
 														</li>
 													</ul>
 												</div>
-												
+
 												<!-- Order Total -->
 												<div class="order_total">
 													<div class="order_total_content text-md-right">
 														<div class="order_total_title">결제 금액:</div>
-														<div class="order_total_amount"></div><span>&nbsp; 원</span>
+														<div class="order_total_amount"></div>
+														<span>&nbsp; 원</span>
 													</div>
 												</div>
-												
-												<button class="btnCart2" onclick="return removeCartLIst();">선택상품 삭제</button>
-												
-												<div class="cart_buttons" style="margin-top:30px;">
-													<button type="button" class="cart_checkout" onclick="return paymentPage();">주문하기</button>
+
+												<button class="btnCart2" onclick="return removeCartLIst();">선택상품
+													삭제</button>
+
+												<div class="cart_buttons" style="margin-top: 30px;">
+													<button type="button" class="cart_checkout"
+														onclick="return paymentPage();">주문하기</button>
 												</div>
-											
+
 											</c:if>
 										</div>
 									</div>
@@ -164,10 +154,10 @@
 			</div>
 		</div>
 
-	
-		<c:import url="../../common/footer.jsp"/>
+
+		<c:import url="../../common/footer.jsp" />
 	</div>
-	
+
 	<script>
 		
 		$(function(){
@@ -301,6 +291,11 @@
 		
 		// 결재하러가기
 		function paymentPage(){
+			
+			if($('.order_total_amount').text() == "0"){
+				alert('먼저 상품을 추가해주세요.');
+				return false;
+			}
 			
 			if(confirm("결제 페이지로 이동하시겠습니까?")){
 				location.href='<%=request.getContextPath()%>/paymentPage.pa';

@@ -142,8 +142,7 @@
 											var price = $(this).parent().prev().children().eq(1).val();
 											var amount = $(this).val();
 											var cost = addComma(price*amount)
-											console.log(price);
-											console.log(amount);
+
 											$(this).parent().prev().children().eq(2).text(cost);
 										});
 
@@ -446,9 +445,9 @@
 							<div class="modal-body" style="padding-left:30px; padding-right:30px;">
 								<input type="hidden" id="pIdInq" name="pId"><br>
 								<label class="modalLabel">제목</label>
-								<br><input type="text" class="modal-title" id="title" name="iTitle" ><br><br>
+								<br><input type="text" class="modal-title" id="title" name="iTitle" required="required" ><br><br>
 								<label class="modalLabel">내용</label><br>
-								<textarea id="content" cols="15" rows="4" name="iContents"></textarea><br>
+								<textarea id="content" cols="15" rows="4" name="iContents" required="required" ></textarea><br>
 								<label id="contentLabel" >0/500</label>
 							</div>
 						</td>
@@ -461,7 +460,7 @@
 									<label id="openYnLabel" for="openYn">공개 여부</label>
 								</div>
 								<button id="submit" type="submit" class="btn btnInq" data-dismiss="modal"><b>작성완료</b></button>
-								<button type="button" class="btn btnInq" data-dismiss="modal"><b>취소</b></button>
+								<button type="button" class="btn btnInq" data-dismiss="modal"><b>취소</b></button>&nbsp;&nbsp;&nbsp;&nbsp;
 							</div>
 						</td>
 					</tr>

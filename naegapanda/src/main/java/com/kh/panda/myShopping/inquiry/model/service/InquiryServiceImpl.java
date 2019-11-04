@@ -34,7 +34,6 @@ public class InquiryServiceImpl implements InquiryService{
 		return inDao.updateInquiry(i);
 	}
 	
-	
 	@Override
 	public ArrayList<Inquiry> selectprodInquiryList(int pId) {
 		return inDao.selectprodInquiryList(pId);

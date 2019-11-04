@@ -386,8 +386,8 @@ width:auto;
 height:auto;
 }
 .ableReviewImg{
-max-width:170px;
-max-height:90px;
+max-width:200px;
+max-height:110px;
 width:auto;
 height:auto;
 border-radius: 3px;
@@ -675,6 +675,12 @@ margin-bottom: 0px;
 	color:white;
 	cursor: pointer;
 }
+.btnInq:hover{
+	color:white !important;
+}
+.btnInq:after{
+	color:white !important;
+}
 .btnReview{
 	background-color: #0e8ce4 !important;
 	font-size: 12px !important;
@@ -695,3 +701,10 @@ input[type="radio"], input[type="checkbox"]{
 	 background-color: $white-color;
   border: 2px solid $font-color-3;
 	}
+	
+.checkbox{
+	text-align: right;
+}
+.checkbox label{
+	font-size: 12px;
+}

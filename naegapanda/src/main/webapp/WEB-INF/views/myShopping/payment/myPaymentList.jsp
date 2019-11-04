@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_responsive.css">
 <link rel="stylesheet" type="text/css" href="resources/style/myShoppingCustom.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet"/>
 <style>
 
 </style>
@@ -47,10 +48,14 @@
 											</ul>
 										</div>
 									
-									
+										
 										<!-- 구매 내역 리스트 -->
 										<div style="margin-top:50px;">
-											 
+
+											<div class="checkbox">
+											  <label><input id="deliveryDoneHide" type="checkbox" value="check1" style="margin-bottom:7px;"/> &nbsp;&nbsp;배송완료 구매 감추기 </label>
+											</div>
+
 										 	<table>
 										 		<c:if test="${!empty list}">
 											 		<c:forEach items="${ list }" var="p">	
@@ -69,7 +74,7 @@
 												 			
 												 			<td width="1000px;" style="text-align: left;">
 												 			
-												 				<span class="deliveryStatus"> ${p.deliveryStatus } </span>
+												 				<span class="deliveryStatus">${p.deliveryStatus }</span>
 												 				<br><br>
 												 				[&nbsp;&nbsp;${p.cName2}&nbsp;&nbsp;>&nbsp;&nbsp;${p.cName}&nbsp;&nbsp;]<br>
 												 				<span style="display: inline-block;font-size: 14px; height:20px;">
@@ -159,12 +164,13 @@
 					<tr>
 						<td>
 							<div class="modal-footer">
-								<div style="flex: auto; margin-left:-20px;">
-									<input type="checkbox" id="openYn" name="openYn" checked="checked">
-									<label id="openYnLabel" for="openYn">공개 여부</label>
+								<div style="flex: auto;text-align: left">
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="checkbox" id="openYn" name="openYn" checked="checked" style="margin-bottom:7px;">
+									<label id="openYnLabel" for="openYn">&nbsp;&nbsp; 공개 여부</label>
 								</div>
 								<button type="button" class="btn btnInq submitInq" data-dismiss="modal"><b>작성완료</b></button>
-								<button type="button" class="btn btnInq" data-dismiss="modal"><b>취소</b></button>
+								<button type="button" class="btn btnInq" data-dismiss="modal"><b>취소</b></button>&nbsp;&nbsp;&nbsp;&nbsp;
 							</div>
 						</td>
 					</tr>
@@ -211,6 +217,15 @@
 				var iTitle = $(this).parents('table').find('#title').val(); // 김규식
 				var iContents =$(this).parents('table').find('#content').val();
 				var openYn = $(this).parents('table').find('#openYn').is(":checked");
+				
+				if(iTitle == ""){
+					alert('제목은 반드시 작성해야 합니다.');
+					return false;
+				}
+
+				if(iContents == ""){
+					iContents = "내용없음"; 
+				}
 
 				$.ajax({
 					url:"addInquiry2.in",
@@ -245,7 +260,7 @@
 					type:"post",
 					success:function(data){
 						if(data == "success"){
-							deliveryDone.parents('.contentsList').find('.deliveryStatus').children().first().text("배송완료");
+							deliveryDone.parents('.contentsList').find('.deliveryStatus').text("배송완료");
 							deliveryDone.remove();
 						}else{
 							alert("처리실패");
@@ -255,14 +270,33 @@
 						console.log("서버와의 통신 실패");
 					}
 				});
+	
 			});
+
+			// 배송 완료된 상품 감추기
+			$('#deliveryDoneHide').click(function(){
+				
+				var list = $('.deliveryStatus');
 	
-			
+
+				
+			    if($(this).is(":checked")) {
+			    	
+			    	$.each(list, function(index, item){ 
+
+						if($(item).text() == '배송완료'){
+							$(item).parents('.contentsList').css("display","none");
+						}else{
+							$(item).parents('.contentsList').css("display","");
+						}
+					});
+			    	
+			    }else{
+			    	$('.contentsList').css("display","");
+			    }
+			});
+
 		});
-		
-	
-
-
 	</script>
 
 </body>

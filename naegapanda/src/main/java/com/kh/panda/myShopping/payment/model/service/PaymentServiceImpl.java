@@ -54,7 +54,6 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		Payment addP = new Payment();
 		
-		
 		if(flag2 == 1) { // 일반 결제
 			
 			// 현재 내 장바구니 가져옴

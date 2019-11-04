@@ -37,7 +37,6 @@ public class BasketController {
 		
 		ArrayList<Basket> list = baService.selectbasketList(getmNo(session));
 		
-
 		mv.addObject("list", list);
 		mv.setViewName("myShopping/basket/basketList");
 		
@@ -116,7 +115,6 @@ public class BasketController {
 		
 	}
 
-	
 	// 상품 개수 수정
 	@ResponseBody
 	@RequestMapping("updateAmount.ba")

@@ -33,12 +33,7 @@ public class GgimController {
 	
 	// 내 찜 리스트 조회
 	@RequestMapping("ggimList.gg")
-	public ModelAndView selectGgimList(ModelAndView mv, HttpSession session/*, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage*/) {
-		
-//		int listCount = gService.getListCount(getmNo(session));
-//		PageInfo pi = Pagination.getPageInfo(listCount, currentPage);
-//		ArrayList<Ggim> list = gService.selectList(pi, getmNo(session));
-//		mv.addObject("pi", pi);
+	public ModelAndView selectGgimList(ModelAndView mv, HttpSession session) {
 		
 		ArrayList<Ggim> list = ggService.selectGgimList(getmNo(session));
 		

@@ -477,6 +477,10 @@ $(document).ready(function()
 		var mNo = $(this).parent().parent().parent().children().eq(0).children().eq(1).val();
 		var inputReply = $(this).prev();
 		
+		if(rrContents == ""){
+			return false;
+		}
+		
 		$.ajax({
 			url:"addReply.re",
 			data:{rId:rId, rrContents:rrContents},

@@ -18,7 +18,6 @@ public interface InquiryService {
 	// 문의 수정
 	int updateInquiry(Inquiry i);
 	
-	
 	// 상품 문의 리스트
 	ArrayList<Inquiry> selectprodInquiryList(int pId);
 	

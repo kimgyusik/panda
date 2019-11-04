@@ -69,28 +69,7 @@ public class ReviewController {
 		gson.toJson(list, response.getWriter());
 		
 	}
-	
-	
-	// 리뷰 상세 조회(디컴일듯)
-	@RequestMapping("selectReview.re")
-	public ModelAndView selectReview(int rId, ModelAndView mv) {
-		
-		Review r = reService.selectReview(rId);
-		
-		if(r != null) {
-			mv.addObject("r", r)
-			  .setViewName("review/selectReview");
-			
-		}else {
-			mv.addObject("msg", "리뷰 상세조회 실패")
-			  .setViewName("common/errorPage");
-		}
-		
-		return mv;
-		
-	}
-	
-	
+
 	// 작성 가능 리뷰 리스트
 	@RequestMapping("addAbleReview.re")
 	public ModelAndView addAbleReview(ModelAndView mv, HttpSession session) {
@@ -102,7 +81,6 @@ public class ReviewController {
 		
 		return mv;
 	}
-	
 	
 	// 리뷰 추가 처리
 	@RequestMapping("addReview.re")
@@ -163,7 +141,6 @@ public class ReviewController {
 		
 	}
 	
-	
 	// 리뷰 업데이트 처리
 	@RequestMapping("updateReview.re")
 	public String updateReview(Review r, HttpServletRequest request, Model model,
@@ -199,7 +176,6 @@ public class ReviewController {
 		}
 		
 	}
-	
 	
 	// 리뷰 삭제 처리
 	@ResponseBody
@@ -251,7 +227,6 @@ public class ReviewController {
 			return "fail";
 		}
 	}
-	
 	
 	// 리뷰에 달려있는 리플 가져오기(비동기)
 	@RequestMapping("replyList.re")

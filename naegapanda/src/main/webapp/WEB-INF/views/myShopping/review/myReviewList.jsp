@@ -144,9 +144,9 @@
 							<div class="modal-body" style="padding-left:20px;">
 								<input type="hidden" id="rId" name="rId">
 								<label class="modalLabel">제목</label>
-								<br><input type="text" class="modal-title" id="title" name="rTitle" >
+								<br><input type="text" class="modal-title" id="title" name="rTitle" required="required">
 								<br><br><label class="modalLabel">내용</label>
-								<br><textarea id="content" cols="35" name="rContents"></textarea>
+								<br><textarea id="content" cols="35" name="rContents" required="required"></textarea>
 								<br><label id="contentLabel" ></label>
 							</div>
 						</td>

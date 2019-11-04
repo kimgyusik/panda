@@ -29,12 +29,11 @@ public class PaymentController {
 	@Autowired
 	private BasketService baService;
 	
-	// 세션 유저 번호 받아오는 로직
 	private int getmNo(HttpSession session) {
 		return ((Member)session.getAttribute("loginUser")).getmNo();
 	}
 	
-	// 결재 진행 화면
+	// 일반결재 진행 화면
 	@RequestMapping("paymentPage.pa")
 	public ModelAndView paymentPage(ModelAndView mv, HttpSession session) {
 		

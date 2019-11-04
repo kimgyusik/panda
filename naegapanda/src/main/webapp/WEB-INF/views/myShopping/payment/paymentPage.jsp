@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="resources/style/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/style/cart_responsive.css">
 <link rel="stylesheet" type="text/css" href="resources/style/myShoppingCustom.css">
+
 <style>
 
 </style>
@@ -259,6 +260,8 @@
 	<script>
 		
 		$(function(){
+			
+		
 			
 			priceAll();
 			
