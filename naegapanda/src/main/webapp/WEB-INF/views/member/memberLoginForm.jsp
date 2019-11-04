@@ -17,25 +17,24 @@
 <script src="https://tistory3.daumcdn.net/tistory/941717/skin/images/snowfall.jquery.js" type="text/javascript"></script>
 
 <style>
+
 	table{
-	font-size: 1.1em;
+	font-size: 1.3em;
 	margin-left:auto;
 	margin-right:auto;
 	margin:auto;
 	}
+	
 	a{
 	font-size : larger;
 	}
-	 p{
-	        text-align: center;
-	    }
-	    
-	    
-	    		    body {
-		    background: rgb(14, 140, 228);
-		}
-		
-		form {
+	p{
+	text-align: center;
+    }
+	body{
+	background: rgb(14, 140, 228);
+	}
+	form {
 		    width: 320px;
 		    padding: 60px 25px 80px;
 		    margin: 50px auto;
@@ -84,8 +83,8 @@
 	
 		#visual-btn {
 		z-index: 50;
-		color: #fff;
-		font-size: 20px;
+		color: #eefa70;
+		font-size: 18px;
 		border: 2px solid #fff;
 		padding: 12px 24px;
 		border-radius: 5px;
@@ -94,9 +93,9 @@
 	}
 	
 	#visual-btn:hover {
-		color: #ff6868;
-		font-size: 30px;
-		border: 2px solid #ff6868;
+		color: #ffffff;
+		font-size: 21px;
+		border: 2px solid #eefa70;
 		padding: 12px 24px;
 		border-radius: 5px;
 		cursor: pointer;
@@ -130,14 +129,20 @@
 		cursor: pointer;
 	}
 
-	
+	form { 
+
+        margin: 0 auto; 
+
+        width:400px;
+
+    }    
 	
 	
 </style>
 <style type="text/css">
  a:link { color: red; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: blue; text-decoration: underline;}
+ a:visited { color: white; text-decoration: none;}
+ a:hover { color: yellow; text-decoration: underline;}
 </style>
 </head>
 <body>
@@ -187,25 +192,26 @@
 
 </script>
 			<table id="loginTable" style="text-algin:center">
+				
 				<tr>
-					<td><input type="text" name="id" placeholder="아이디" required></td>
+					<td><input type="text" name="id" placeholder="아이디" size="30"  required></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="pwd" placeholder="비밀번호" required></td>
+					<td><input type="password" name="pwd" placeholder="비밀번호" size="30" required></td>
 				</tr>
+				
 				<tr>
 					<td colspan="3">
 						<p>
-							<a href="join.do" style="color:white;">회원가입  l</a>
-							<a href="find_id_form.do" style="color:white;">아이디 찾기 l</a>
-							<a href="find_pwd_form.do" id="loginBtn2" style="color:white;">비밀번호 찾기</a>
+							<a href="join.do">회원가입<a style="color:white;">  I</a></a>
+							<a href="find_id_form.do">아이디 찾기<a style="color:white;">  I</a></a>
+							<a href="find_pwd_form.do">비밀번호 찾기</a>
 						</p>
-						<button type="submit" id="loginBtn">로그인</button>
-						<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>
+						<button type="submit" id="visual-btn"  style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;</button>
+						<button type="button" id="visual-btn" onclick="location.href='home.do';" style="float:right">&nbsp;&nbsp;처음으로&nbsp;&nbsp;&nbsp;</button>
 					</td>
 				</tr>
 			</table>
-
 
 
 

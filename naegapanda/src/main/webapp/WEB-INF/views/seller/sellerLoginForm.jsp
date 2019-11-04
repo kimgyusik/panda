@@ -72,8 +72,69 @@
 	  min-height: 200px;
 	  background: #3498db;
 	}
-		
+	
+	
+	
+		#loginBtn{
+		z-index: 50;
+		color: #fff;
+		font-size: 40px;
+		border: 2px solid #fff;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0);
+	}
+	
+	#loginBtn:hover {
+		color: #ff6868;
+		font-size: 50px;
+		border: 2px solid #ff6868;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	
+			#visual-btn {
+		z-index: 50;
+		color: #eefa70;
+		font-size: 18px;
+		border: 2px solid #fff;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0);
+	}
+	
+	#visual-btn:hover {
+		color: #ffffff;
+		font-size: 21px;
+		border: 2px solid #eefa70;
+		padding: 12px 24px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	
+	table{
+	font-size: 1.3em;
+	margin-left:auto;
+	margin-right:auto;
+	margin:auto;
+	}
+	
+	a{
+	font-size : larger;
+	}
+	
 </style>
+	<style type="text/css">
+		 a:link { color: white; text-decoration: none;}
+		 a:visited { color: white; text-decoration: none;}
+		 a:hover { color: yellow; text-decoration: underline;}
+	</style>
+	
 </head>
 <body>
     <form action="sLogin.do" method="post"> 
@@ -101,22 +162,24 @@
         </svg>
 
 
-		<div class="container">
+		
 
 			<table id="loginTable" style="text-algin: center">
 				<tr>
-					<td style="display:block"><input type="text" name="sId" id="sId" placeholder="아이디" required></td>
+					<td style="display:block"><input type="text" name="sId" id="sId" placeholder="아이디" size="30" required></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="sPwd" placeholder="비밀번호" id="sPwd" required></td>
+					<td><input type="password" name="sPwd" placeholder="비밀번호" id="sPwd" size="30" required></td>
 						
 				</tr>
 				<tr>
 					<td colspan="3">
 						<p>
-							<a href="join.do">회원가입</a> <a href="findSeller.do">아이디/비밀번호찾기</a>
+							<a href="join.do">회원가입<a style="color:white;">  I</a></a>
+							<a href="findSeller.do" >아이디/비밀번호찾기</a>
 						</p>
-						<button type="submit" id="loginBtn">로그인</button>
+						<button type="submit" id="visual-btn" style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;</button>
+						<button type="button" id="visual-btn" onclick="location.href='home.do';" style="float:right">&nbsp;&nbsp;처음으로&nbsp;&nbsp;&nbsp;</button>
 					</td>
 				</tr>
 			</table>
@@ -124,12 +187,12 @@
 
 	
 
-
+<!-- 
 			<div id="indexBtn" class="center">
 				<button type="button" id="visual-btn" onclick="location.href='home.do';">처음으로</button>
 			</div>
 		</div>
-
+ -->
 
 
 

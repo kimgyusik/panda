@@ -88,7 +88,7 @@
 				<label for="email_yn"><input name="email_yn" type="checkbox" id="email_yn" value="Y" /> 이벤트/쇼핑정보 이메일 수신에 동의합니다.</label>
 			</div>
 			<div class="form-group col-md-6">
-				<input type="tel" class="form-control" name="phone" placeholder="핸드폰번호(-미포함)" required>
+				<input type="tel" class="form-control" name="phone" maxLength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="핸드폰번호(-미포함)" required>
 			</div>
 			<div class="form-group col-md-6" id="ad1">
 					<input type="text" name="post" id="post" class="form-control postcodify_postcode5">
@@ -97,13 +97,7 @@
 					<input type="text" class="form-control postcodify_extra_info" name="address2" placeholder="상세주소" >
 			</div>
 
-		 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-				<script>
-					$(function(){
-						// 검색 버튼 누르면 팝업 레이어가 열리도록 설정
-						$("#post_search_btn1").postcodifyPopUp();
-					});
-				</script>
+		
 		
 		
 
@@ -120,7 +114,7 @@
 
 	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 	<script> 
-			$("#post_search_btn").postcodifyPopUp({container: $("#ad1") });
+			$("#post_search_btn1").postcodifyPopUp({container: $("#ad1") });
 	function validate(){
 		// 아이디 중복체크 여부
 		if($("#idDuplicateCheck").val() == 0){ // 현재 아이디 사용 불가능

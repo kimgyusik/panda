@@ -44,4 +44,13 @@ public class MemberControll {
 		public String pwdChangebeFore() {
 			return "member/pwdChangebeFore";
 		}
+		
+		
+		
+			
+		@RequestMapping("changePasswd.do")
+		public String changePasswd() {
+
+			return "member/changePasswd";
+		}
 }
