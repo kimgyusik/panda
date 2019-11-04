@@ -139,11 +139,12 @@
 											
 											this.value=this.value.replace(/[^1-9]/g,'');
 											
-											var price = $(this).parent().prev().children().eq(0).val();
+											var price = $(this).parent().prev().children().eq(1).val();
 											var amount = $(this).val();
 											var cost = addComma(price*amount)
-											
-											$(this).parent().prev().children().eq(1).text(cost);
+											console.log(price);
+											console.log(amount);
+											$(this).parent().prev().children().eq(2).text(cost);
 										});
 
 									})
