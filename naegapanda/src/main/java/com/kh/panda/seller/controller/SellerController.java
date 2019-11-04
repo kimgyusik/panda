@@ -229,7 +229,7 @@ public class SellerController {
 		int listCount = sService.getListCount(((Seller) session.getAttribute("loginSeller")).getsNo());
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		System.out.println(pi);
+		
 		ArrayList<ProductOption> list = sService.selectList(pi,
 				((Seller) session.getAttribute("loginSeller")).getsNo());
 		mv.addObject("list", list).addObject("pi",pi).setViewName("seller/product/sellerProductForm");
@@ -256,9 +256,7 @@ public class SellerController {
 		int oListCount = sService.oListCount(((Seller) session.getAttribute("loginSeller")).getsNo());
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, oListCount);
-		System.out.println(pi);
 		ArrayList<Payment> oList = sService.selectoList(pi, ((Seller) session.getAttribute("loginSeller")).getsNo());
-		System.out.println(oList);
 		mv.addObject("oList", oList).addObject("pi", pi).setViewName("seller/product/oderProductForm");
 		
 		return mv;
@@ -762,16 +760,24 @@ public class SellerController {
 	
 	@RequestMapping("delStatus.do")
 	public String delUpdate(Payment pm, Model model, HttpServletRequest request) {
+		String[] a = request.getParameterValues("deliveryStatus");
+		String[] b = request.getParameterValues("payId");
 		
-		int result = sService.delUpdate(pm);
 		
-		if(result > 0) {
-			model.addAttribute(pm);
-			return "redirect:oderPage.do";
-		}else {
-			model.addAttribute("msg", "errorPage");
-			return "common/errorPage";
+		Payment p = null;
+		for(int i=0; i<a.length; i++) {
+			p = new Payment();
+			p.setPayId(Integer.parseInt(b[i]));
+			p.setDeliveryStatus(a[i]);
+			
+			sService.delUpdate(p);
 		}
+	
+		
+		
+		/* int result = sService.delUpdate(pm); */
+		
+			return "redirect:oderPage.do";
 		
 	}
 	
