@@ -96,7 +96,9 @@
 		.outer{
 		width:900px;
 		height: 1250px;
-		margin-left: 300px;
+		margin-left: auto;
+		margin-right: auto;
+		margin: center;
 		margin-top:5px; 
 	}
 	
