@@ -523,7 +523,7 @@ public class SellerController {
 		for(int i=0; i<oName.length; i++) {
 			ProductOption po = new ProductOption();
 			po.setoName(oName[i]);
-			po.setoPrice(oPrice[i]);
+			po.setoPrice(oPrice[i]);	
 			po.setoAmount(oAmount[i]);
 			po.setpId(p.getpId());
 			poList.add(po);
@@ -535,7 +535,7 @@ public class SellerController {
 			// 서버에 파일 등록 ( 폴더에 저장 )
 			// 내가 저장하고자 하는 파일, request 전달하고 실제로 저장된 파일
 			String renameFileName = saveFile(file1, request);
-			System.out.println(renameFileName);
+			System.out.println(renameFileName);	
 			if (renameFileName != null) { // 파일이 잘 저장된 경우
 				ProductAttachment pa = new ProductAttachment();
 				pa.setPaOriginName(file1.getOriginalFilename());

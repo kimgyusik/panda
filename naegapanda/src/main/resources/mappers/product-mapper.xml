@@ -239,7 +239,7 @@
 		set o_purchase = o_purchase + #{count}
 		where o_no = #{oNo}
 	</update>
-	<select id="oCount" parameterType="_int">
+	<select id="oCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from product_option
 		where p_id=#{pId} and o_status='Y'
