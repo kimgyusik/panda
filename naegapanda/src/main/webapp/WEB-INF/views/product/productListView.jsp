@@ -94,10 +94,11 @@
 				<div class="col-lg-9">
 					
 					<!-- Shop Content -->
-
+		
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
 							<div class="shop_product_count"><span>${ pi.listCount }</span> products found</div>
+							<!--  
 							<div class="shop_sorting">
 								<span>Sort by:</span>
 								<ul>
@@ -111,6 +112,7 @@
 									</li>
 								</ul>
 							</div>
+							-->
 						</div>
 
 						<div class="product_grid">

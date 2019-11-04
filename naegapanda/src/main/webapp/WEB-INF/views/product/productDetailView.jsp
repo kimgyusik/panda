@@ -153,6 +153,11 @@
 									function deleteOp(a){
 										a.parentNode.parentNode.remove();
 									}
+									
+									// 신고
+									function violateinsert(pId){
+										location.href='<%=request.getContextPath()%>/violateinsert.do?pId='+pId;
+									}
 									</script>
 
 							</div>
@@ -173,8 +178,10 @@
 									<img width="20px;"src="resources/images/heart2.png" >찜하기
 								</button> 
 								<c:if test="${ !empty loginUser }">  
+									
 										<input type="hidden" id="pId" name="pId" value="${ p.pId }">
-										<button type="submit" class="cart_button">신고하기</button>
+										<button type="submit" class="cart_button" onclick="violateinsert(${ p.pId })">신고하기</button>
+									
 								</c:if>	
 							</div>
 							
