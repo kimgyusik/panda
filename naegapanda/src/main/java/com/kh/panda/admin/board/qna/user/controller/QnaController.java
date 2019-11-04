@@ -130,7 +130,7 @@ public class QnaController {
 		if(result > 0 && result2 > 0) {
 			return "redirect:qlist.do";
 		}else {
-			model.addAttribute("msg", "게시판 삭세 실패");
+			model.addAttribute("msg", "게시판 삭제 실패");
 			return "common/errorPage";
 		}
 	}
