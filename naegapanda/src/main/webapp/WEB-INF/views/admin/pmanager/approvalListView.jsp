@@ -7,7 +7,7 @@
 <link rel="icon" href="resources/pandaicon.ico">
 <title>PANDA:고객센터</title>
 <meta charset="utf-8">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
     .bs-example{
     	margin: 20px;
@@ -46,8 +46,8 @@
 				<thead align="center">
 					<tr>
 						<th>No.</th>
-						<th width="100">Cat.</th>
-						<th width="100">Cat2.</th>
+						<th width="120">Cat.</th>
+						<th width="120">Cat2.</th>
 						<th width="300">상품명</th>
 						<th width="100">판매자</th>
 						<th>상태</th>

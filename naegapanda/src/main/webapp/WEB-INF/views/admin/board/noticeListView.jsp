@@ -50,21 +50,16 @@
 					</tr>
 				</thead>
 					<tbody>
-								
+							
 						<c:forEach items="${ list }" var="n">
 									
 										<tr>
 											<td align="center">${ n.nId }</td>
 											<td align="center">
-												<c:if test="${ empty loginUser }">
-													${ n.nTitle }
-												</c:if>
-												<c:if test="${ !empty loginUser }">
-													<c:url value="ndetail.do" var="ndetail">
-														<c:param name="nId" value="${ n.nId }"/>
-													</c:url>
-													<a href="${ ndetail }">${ n.nTitle }</a>
-												</c:if>
+												<c:url value="ndetail.do" var="ndetail">
+													<c:param name="nId" value="${ n.nId }"/>
+												</c:url>
+												<a href="${ ndetail }">${ n.nTitle }</a>
 											</td>
 											<td align="center">${ n.nCreateDate }</td>
 											<td align="center">${ n.nCount }</td>
