@@ -107,7 +107,7 @@ $(function(){
 				    	<input type="hidden" name="pId" value="${ v.pId }"> 
 				    	<input type="hidden" name="pName" value="${ v.pName }"> 
 			    		<button type="submit" class="btn btn-outline-primary" onclick="locatioin.href='violateFinish.do';">신고하기</button>
-			    		<button type="button" class="btn btn-outline-primary" onclick="locatioin.href='home.do';">취소</button>
+			    		<button type="button" class="btn btn-outline-primary" onclick="history.back(-1);">취소</button>
 			    	</td>
 			    </tr>
 	  	  	</tbody>

@@ -58,13 +58,8 @@ public class ViolateController {
 	
 	@RequestMapping("violateinsert.do")
 	public ModelAndView ViolateInsertView(ModelAndView mv, int pId, HttpSession session) {
-		System.out.print("pId:");
-		System.out.println(pId);
 		Violate v = vService.selectInfo(pId);
-		System.out.print("v:");		
-		System.out.println(v);
 		int mNo = ((Member) (session.getAttribute("loginUser"))).getmNo();
-		System.out.println(mNo);
 		
 		mv.addObject("v",v).addObject("mNo", mNo).setViewName("admin/violate/ViolateInsertForm");
 		return mv;
