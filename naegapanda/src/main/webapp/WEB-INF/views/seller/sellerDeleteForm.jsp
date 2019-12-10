@@ -58,7 +58,7 @@
 				<label>이름 : </label><input type="text" name="sName" value="${ loginSeller.sName }" style="border:none;" readonly>
 				<label>아이디 : </label><input type="text" name="sId" value="${ loginSeller.sId }" style="border:none;" readonly>
 				<label>비밀번호 : </label><input type="password" name="sPwd">
-				<button type="submit" style="margin-left:10px;">본인확인</button>
+				<button type="submit" style="margin-left:10px;" class="btn btn-primary">본인확인</button>
 			</div>
 		</form>
 		

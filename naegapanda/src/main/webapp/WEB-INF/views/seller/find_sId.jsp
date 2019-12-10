@@ -11,14 +11,24 @@
 	label{
 		color:blue;
 	}
+	.outer{
+		width:300px;
+		border: 1px solid lightgray;
+	}
 </style>
 </head>
 <body>
-
-		<p>회원님의 아이디는 <label>${sId}</label> 입니다</p>
-		
-		<button onclick="location.href='findSeller.do';">비밀번호 찾기</button>
 	
+	<c:import url="../common/menubar.jsp"/>
+		<div align="center">
+			<div class="outer" align="center">
+				<h3 style="margin-top:20px;">ID찾기</h3>
+				<p style="margin-top:30px;">회원님의 아이디는 <label>${sId}</label> 입니다</p>
+				
+				<button style="margin-bottom: 50px" onclick="location.href='findSeller.do';" class="btn btn-primary">비밀번호 찾기</button>
+			</div>
+		</div>
+	<c:import url="../common/footer.jsp"/>
 	
 </body>
 </html>

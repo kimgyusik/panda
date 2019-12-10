@@ -72,7 +72,8 @@
 	<!-- 정보 수정 -->
 	<update id="updateSeller" parameterType="Seller">
 		update seller
-		set s_pwd=#{sPwd}, s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
+		set s_pwd=#{sPwd}, s_phone=#{sPhone}, s_address=#{sAddress}, storeName=#{storeName}
+		, s_ceoName=#{sCeoName}, s_bphone=#{sbPhone}, s_bAddress=#{sbAddress}
 		where s_id=#{sId}
 	</update>
 	
@@ -85,7 +86,7 @@
 	<update id="deleteSeller" parameterType="Seller">
 		update seller
 		set s_status='N'
-		where s_name=#{sName} and s_id=#{sId}
+		where s_name=#{sName} and s_id=#{sId} and s_pwd=#{sPwd}
 	</update>
 	
 	<!-- 이메일 확인 -->
